@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Parse.xcodeproj">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "Vendor">
+      <FileRef
+         location = "group:Vendor/OCMock/Source/OCMock.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
+      name = "StarterProjects">
+      <Group
+         location = "container:"
+         name = "iOS">
+         <FileRef
+            location = "group:ParseStarterProject/iOS/ParseStarterProject/ParseStarterProject.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "group:ParseStarterProject/iOS/ParseStarterProject-Swift/ParseStarterProject-Swift.xcodeproj">
+         </FileRef>
+      </Group>
+      <Group
+         location = "container:"
+         name = "OS X">
+         <FileRef
+            location = "group:ParseStarterProject/OSX/ParseOSXStarterProject/ParseOSXStarterProject.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "group:ParseStarterProject/OSX/ParseOSXStarterProject-Swift/ParseOSXStarterProject-Swift.xcodeproj">
+         </FileRef>
+      </Group>
+   </Group>
+</Workspace>

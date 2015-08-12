@@ -1,0 +1,173 @@
+/**
+ * Copyright (c) 2015-present, Parse, LLC.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+#import "PFObject+Subclass.h"
+#import "PFObjectPrivate.h"
+#import "PFSubclassing.h"
+#import "PFUnitTestCase.h"
+#import "Parse_Private.h"
+
+///--------------------------------------
+#pragma mark - Helpers
+///--------------------------------------
+
+@interface TheFlash : PFObject<PFSubclassing> {
+    NSString *flashName;
+}
+
++ (NSString *)parseClassName;
+
+@property (atomic, copy) NSString *flashName;
+@property (atomic, copy, readonly) NSString *realName;
+@end
+
+@implementation TheFlash
+
+@dynamic flashName;
+@dynamic realName;
+
+- (instancetype)init {
+    self = [super init];
+    if (!self) return nil;
+
+    self.flashName = @"The Flash";
+
+    return self;
+}
+
++ (NSString *)parseClassName {
+    return @"Person";
+}
+
+@end
+
+@interface BarryAllen : TheFlash
+
+@end
+
+@implementation BarryAllen
+
++ (NSString *)parseClassName {
+    return @"TheFlash";
+}
+
+@end
+
+@interface ClassWithDirtyingConstructor : PFObject<PFSubclassing>
+@end
+
+@implementation ClassWithDirtyingConstructor
+
+- (instancetype)init {
+    self = [super init];
+    if (!self) return nil;
+
+    self[@"Bar"] = @"Foo";
+
+    return self;
+}
+
++ (NSString *)parseClassName {
+    return @"ClassWithDirtyingConstructor";
+}
+
+@end
+
+@interface UtilityClass : PFObject
+@end
+
+@implementation UtilityClass
+@end
+
+@interface DescendantOfUtility : UtilityClass<PFSubclassing>
+@end
+
+@implementation DescendantOfUtility
++ (NSString *)parseClassName {
+    return @"Descendant";
+}
+@end
+
+///--------------------------------------
+#pragma mark - ObjectSubclassTests
+///--------------------------------------
+
+@interface ObjectSubclassTests : PFUnitTestCase
+
+@end
+
+@implementation ObjectSubclassTests
+
+///--------------------------------------
+#pragma mark - XCTestCase
+///--------------------------------------
+
+- (void)tearDown {
+    [PFObject unregisterSubclass:[TheFlash class]];
+    [PFObject unregisterSubclass:[BarryAllen class]];
+
+    [super tearDown];
+}
+
+///--------------------------------------
+#pragma mark - Tests
+///--------------------------------------
+
+- (void)testExplicitConstructor {
+    TheFlash *flash = [TheFlash alloc];
+    XCTAssertThrows(flash = [flash init], @"Cannot init an unregistered subclass");
+
+    [TheFlash registerSubclass];
+    flash = [[TheFlash alloc] init];
+    XCTAssertEqualObjects(@"Person", TheFlash.parseClassName);
+    XCTAssertEqualObjects(@"The Flash", ((TheFlash*)flash).flashName);
+}
+
+- (void)testSubclassConstructor {
+    PFObject *theFlash = [PFObject objectWithClassName:@"Person"];
+    XCTAssertFalse([theFlash isKindOfClass:[TheFlash class]], @"We're living the past.");
+
+    [TheFlash registerSubclass];
+    theFlash = [PFObject objectWithClassName:@"Person"];
+    XCTAssertTrue([theFlash isKindOfClass:[TheFlash class]], @"In the future, everyone is the Flash.");
+    XCTAssertEqualObjects(@"The Flash", [(TheFlash*)theFlash flashName], @"The Flash's name should be The Flash, duh.");
+}
+
+- (void)testSubclassesMustHaveTheirParentsParseClassName {
+    [TheFlash registerSubclass];
+    XCTAssertThrows([BarryAllen registerSubclass]);
+}
+
+- (void)testDirtyPointerDetection {
+    [ClassWithDirtyingConstructor registerSubclass];
+    XCTAssertThrows([ClassWithDirtyingConstructor objectWithoutDataWithObjectId:@"NotUsed"],
+                    @"ClassWithDirtyingConstructor has an invalid init method");
+    [PFObject unregisterSubclass:[ClassWithDirtyingConstructor class]];
+}
+
+- (void)testSubclassesCanInheritUtilityClassesWithoutParseClassName {
+    // Even though this class subclasses a subclass of PFObject and defines
+    // its own parseClassName, this should succeed because the parent class
+    // did not define parseClassName
+    [DescendantOfUtility registerSubclass];
+}
+
+- (void)testSubclassRegistrationBeforeInitializingParse {
+    [[Parse _currentManager] clearEventuallyQueue];
+    [Parse _clearCurrentManager];
+
+    [TheFlash registerSubclass];
+
+    [Parse setApplicationId:@"a" clientKey:@"b"];
+
+    PFObject *theFlash = [PFObject objectWithClassName:@"Person"];
+    PFAssertIsKindOfClass(theFlash, [TheFlash class]);
+}
+
+@end
