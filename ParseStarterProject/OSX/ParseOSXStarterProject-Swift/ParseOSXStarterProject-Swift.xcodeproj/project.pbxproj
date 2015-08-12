@@ -1,0 +1,397 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		81993FD51B69AC760077D6B9 /* Bootstrap */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 81993FD81B69AC760077D6B9 /* Build configuration list for PBXAggregateTarget "Bootstrap" */;
+			buildPhases = (
+				81993FD91B69AC7B0077D6B9 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Bootstrap;
+			productName = Bootstrap;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		814C3AD21B69887B00E307BB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 814C3ACE1B69887B00E307BB /* MainMenu.xib */; };
+		814C3AD31B69887B00E307BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 814C3AD01B69887B00E307BB /* Images.xcassets */; };
+		81CC85BE1A49F2E00076DE19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC85BD1A49F2E00076DE19 /* AppDelegate.swift */; };
+		81CC85DA1A49F3D70076DE19 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81CC85D81A49F3D70076DE19 /* Bolts.framework */; };
+		81CC85DB1A49F3D70076DE19 /* ParseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81CC85D91A49F3D70076DE19 /* ParseOSX.framework */; };
+		81CC85DF1A49F53C0076DE19 /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 81CC85D81A49F3D70076DE19 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		81CC85E01A49F53C0076DE19 /* ParseOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 81CC85D91A49F3D70076DE19 /* ParseOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		81993FDA1B69AC880077D6B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81CC85B01A49F2E00076DE19 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81993FD51B69AC760077D6B9;
+			remoteInfo = Bootstrap;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		81CC85DE1A49F5340076DE19 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				81CC85DF1A49F53C0076DE19 /* Bolts.framework in CopyFiles */,
+				81CC85E01A49F53C0076DE19 /* ParseOSX.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		814C3ACF1B69887B00E307BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		814C3AD01B69887B00E307BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		814C3AD11B69887B00E307BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81CC85B81A49F2E00076DE19 /* ParseOSXStarterProject-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ParseOSXStarterProject-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81CC85BD1A49F2E00076DE19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		81CC85D81A49F3D70076DE19 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		81CC85D91A49F3D70076DE19 /* ParseOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseOSX.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		81CC85B51A49F2E00076DE19 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81CC85DA1A49F3D70076DE19 /* Bolts.framework in Frameworks */,
+				81CC85DB1A49F3D70076DE19 /* ParseOSX.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		814C3ACD1B69887B00E307BB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				814C3AD01B69887B00E307BB /* Images.xcassets */,
+				814C3AD11B69887B00E307BB /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		81CC85AF1A49F2E00076DE19 = {
+			isa = PBXGroup;
+			children = (
+				81CC85BA1A49F2E00076DE19 /* ParseOSXStarterProject */,
+				814C3ACD1B69887B00E307BB /* Resources */,
+				81CC85DC1A49F3DA0076DE19 /* Frameworks */,
+				81CC85B91A49F2E00076DE19 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		81CC85B91A49F2E00076DE19 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				81CC85B81A49F2E00076DE19 /* ParseOSXStarterProject-Swift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		81CC85BA1A49F2E00076DE19 /* ParseOSXStarterProject */ = {
+			isa = PBXGroup;
+			children = (
+				81CC85BD1A49F2E00076DE19 /* AppDelegate.swift */,
+				814C3ACE1B69887B00E307BB /* MainMenu.xib */,
+			);
+			path = ParseOSXStarterProject;
+			sourceTree = "<group>";
+		};
+		81CC85DC1A49F3DA0076DE19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				81CC85D81A49F3D70076DE19 /* Bolts.framework */,
+				81CC85D91A49F3D70076DE19 /* ParseOSX.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		81CC85B71A49F2E00076DE19 /* ParseOSXStarterProject-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81CC85D21A49F2E00076DE19 /* Build configuration list for PBXNativeTarget "ParseOSXStarterProject-Swift" */;
+			buildPhases = (
+				81CC85B41A49F2E00076DE19 /* Sources */,
+				81CC85B51A49F2E00076DE19 /* Frameworks */,
+				81CC85B61A49F2E00076DE19 /* Resources */,
+				81CC85DE1A49F5340076DE19 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				81993FDB1B69AC880077D6B9 /* PBXTargetDependency */,
+			);
+			name = "ParseOSXStarterProject-Swift";
+			productName = ParseOSXStarterProject;
+			productReference = 81CC85B81A49F2E00076DE19 /* ParseOSXStarterProject-Swift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		81CC85B01A49F2E00076DE19 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Parse;
+				TargetAttributes = {
+					81993FD51B69AC760077D6B9 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					81CC85B71A49F2E00076DE19 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 81CC85B31A49F2E00076DE19 /* Build configuration list for PBXProject "ParseOSXStarterProject-Swift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 81CC85AF1A49F2E00076DE19;
+			productRefGroup = 81CC85B91A49F2E00076DE19 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				81CC85B71A49F2E00076DE19 /* ParseOSXStarterProject-Swift */,
+				81993FD51B69AC760077D6B9 /* Bootstrap */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		81CC85B61A49F2E00076DE19 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				814C3AD21B69887B00E307BB /* MainMenu.xib in Resources */,
+				814C3AD31B69887B00E307BB /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		81993FD91B69AC7B0077D6B9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ ! -d \"Bolts.framework\" ]]; then\n  cp -R ../../../Vendor/Bolts-ObjC/build/osx/Bolts.framework .\nfi\n\nrm -rf ParseOSX.framework\ncp -R $BUILT_PRODUCTS_DIR/ParseOSX.framework .\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		81CC85B41A49F2E00076DE19 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81CC85BE1A49F2E00076DE19 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		81993FDB1B69AC880077D6B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81993FD51B69AC760077D6B9 /* Bootstrap */;
+			targetProxy = 81993FDA1B69AC880077D6B9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		814C3ACE1B69887B00E307BB /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				814C3ACF1B69887B00E307BB /* Base */,
+			);
+			name = MainMenu.xib;
+			path = ../Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		81993FD61B69AC760077D6B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		81993FD71B69AC760077D6B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		81CC85D01A49F2E00076DE19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		81CC85D11A49F2E00076DE19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		81CC85D31A49F2E00076DE19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "ParseOSXStarterProject-Swift";
+			};
+			name = Debug;
+		};
+		81CC85D41A49F2E00076DE19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "ParseOSXStarterProject-Swift";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		81993FD81B69AC760077D6B9 /* Build configuration list for PBXAggregateTarget "Bootstrap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81993FD61B69AC760077D6B9 /* Debug */,
+				81993FD71B69AC760077D6B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81CC85B31A49F2E00076DE19 /* Build configuration list for PBXProject "ParseOSXStarterProject-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81CC85D01A49F2E00076DE19 /* Debug */,
+				81CC85D11A49F2E00076DE19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81CC85D21A49F2E00076DE19 /* Build configuration list for PBXNativeTarget "ParseOSXStarterProject-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81CC85D31A49F2E00076DE19 /* Debug */,
+				81CC85D41A49F2E00076DE19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 81CC85B01A49F2E00076DE19 /* Project object */;
+}

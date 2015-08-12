@@ -1,0 +1,25 @@
+//
+// Copyright (c) 2015-present, Parse, LLC.
+// All rights reserved.
+//
+// This source code is licensed under the BSD-style license found in the
+// LICENSE file in the root directory of this source tree. An additional grant
+// of patent rights can be found in the PATENTS file in the same directory.
+//
+
+#include "Shared/Platform/iOS.xcconfig"
+#include "Shared/Product/UnitTest.xcconfig"
+
+PRODUCT_NAME = ParseUnitTests-iOS
+PRODUCT_MODULE_NAME = ParseUnitTests
+
+INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/ParseUnitTests-iOS-Info.plist
+
+FRAMEWORK_SEARCH_PATHS = $(inherited) $(VENDOR_DIR)/Bolts-ObjC/build/ios
+LIBRARY_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR) $(BUILT_PRODUCTS_DIR)/../Release$(EFFECTIVE_PLATFORM_NAME)
+
+HEADER_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR) $(BUILT_PRODUCTS_DIR)/../Release$(EFFECTIVE_PLATFORM_NAME)
+USER_HEADER_SEARCH_PATHS = $(inherited) $(PARSE_DIR)/Parse/Internal/**
+
+// Swift
+SWIFT_OBJC_BRIDGING_HEADER = $(SRCROOT)/Tests/Other/Swift/ParseUnitTests-iOS-Bridging-Header.h

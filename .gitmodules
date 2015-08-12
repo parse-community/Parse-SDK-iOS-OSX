@@ -1,0 +1,6 @@
+[submodule "Vendor/Bolts-ObjC"]
+	path = Vendor/Bolts-ObjC
+	url = git@github.com:BoltsFramework/Bolts-iOS.git
+[submodule "Vendor/OCMock"]
+	path = Vendor/OCMock
+	url = git@github.com:erikdoe/ocmock.git

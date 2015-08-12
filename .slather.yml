@@ -1,0 +1,6 @@
+ci_service: travis_pro
+coverage_service: coveralls
+xcodeproj: Parse.xcodeproj
+ignore:
+  - Tests/*
+  - Vendor/*
