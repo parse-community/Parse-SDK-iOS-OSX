@@ -15,7 +15,7 @@ if [[ $ACTION == "clean" ]]; then
 fi
 
 if [[ $1 == "" || $2 == "" || $3 == "" ]]; then
-  echo "Use this script to build a thid party framework for iOS/OSX."
+  echo "Use this script to build a third party framework for iOS/OSX."
   echo "It is intended to support building Bolts.framework and FacebookSDK.framework"
   echo "Usage: 'build_third_party.sh <framework_path> <built_products_dir> <build_script_path>"
   exit 1
