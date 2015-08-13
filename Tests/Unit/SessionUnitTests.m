@@ -44,24 +44,12 @@
 #pragma mark - Tests
 ///--------------------------------------
 
-- (void)testSessionClassIsRegistered {
-    [[Parse _currentManager] clearEventuallyQueue];
-    [Parse _clearCurrentManager];
-    [PFObjectSubclassingController clearDefaultController];
-
-    [PFObject unregisterSubclass:[PFSession class]];
-    [Parse setApplicationId:@"a" clientKey:@"b"];
-    XCTAssertNotNil([PFSession query]);
-}
-
 - (void)testConstructorsClassNameValidation {
     PFAssertThrowsInvalidArgumentException([[PFSession alloc] initWithClassName:@"yarrclass"],
                                            @"Should throw an exception for invalid classname");
 }
 
 - (void)testSessionImmutableFieldsCannotBeChanged {
-    [PFSession registerSubclass];
-
     PFSession *session = [PFSession object];
     session[@"yolo"] = @"El Capitan!"; // Test for regular mutability
     PFAssertThrowsInvalidArgumentException(session[@"sessionToken"] = @"a");
@@ -73,8 +61,6 @@
 }
 
 - (void)testSessionImmutableFieldsCannotBeDeleted {
-    [PFSession registerSubclass];
-
     PFSession *session = [PFSession object];
 
     [session removeObjectForKey:@"yolo"];// Test for regular mutability
