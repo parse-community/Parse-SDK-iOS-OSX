@@ -28,5 +28,6 @@
 @property (nonatomic, copy, readwrite) NSString *deviceType;
 @property (nonatomic, copy, readwrite) NSString *installationId;
 @property (nonatomic, copy, readwrite) NSString *timeZone;
+@property (nonatomic, copy, readwrite) NSString *localeIdentifier;
 
 @end
