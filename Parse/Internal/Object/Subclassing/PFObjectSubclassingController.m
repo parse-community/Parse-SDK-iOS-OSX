@@ -16,6 +16,8 @@
 
 #import "PFAssert.h"
 #import "PFMacros.h"
+#import "PFObject.h"
+#import "PFObject+Subclass.h"
 #import "PFObjectSubclassInfo.h"
 #import "PFPropertyInfo_Private.h"
 #import "PFPropertyInfo_Runtime.h"
@@ -99,17 +101,6 @@ static PFObjectSubclassingController *defaultController_;
     return self;
 }
 
-+ (instancetype)defaultController {
-    if (!defaultController_) {
-        defaultController_ = [[PFObjectSubclassingController alloc] init];
-    }
-    return defaultController_;
-}
-
-+ (void)clearDefaultController {
-    defaultController_ = nil;
-}
-
 ///--------------------------------------
 #pragma mark - Public
 ///--------------------------------------
@@ -120,6 +111,33 @@ static PFObjectSubclassingController *defaultController_;
         result = [_registeredSubclasses[parseClassName] subclass];
     });
     return result;
+}
+
+- (void)scanForUnregisteredSubclasses:(BOOL)shouldSubscribe {
+    // NOTE: Potential race-condition here - if another thread dynamically loads a bundle, we may end up accidentally
+    // Skipping a bundle. Not entirely sure of the best solution to that here.
+    if (shouldSubscribe) {
+        @weakify(self);
+        [[NSNotificationCenter defaultCenter] addObserverForName:NSBundleDidLoadNotification
+                                                          object:nil
+                                                           queue:nil
+                                                      usingBlock:^(NSNotification *note) {
+                                                          @strongify(self);
+                                                          [self _registerSubclassesInBundle:note.object];
+                                                      }];
+    }
+    NSArray *bundles = [[NSBundle allFrameworks] arrayByAddingObjectsFromArray:[NSBundle allBundles]];
+    for (NSBundle *bundle in bundles) {
+        // Skip bundles that aren't loaded yet.
+        if (!bundle.loaded || !bundle.executablePath) {
+            continue;
+        }
+        // Filter out any system bundles
+        if ([[bundle bundlePath] hasPrefix:@"/System/"] || [[bundle bundlePath] hasPrefix:@"/Library/"]) {
+            continue;
+        }
+        [self _registerSubclassesInBundle:bundle];
+    }
 }
 
 - (void)registerSubclass:(Class<PFSubclassing>)kls {
@@ -313,6 +331,49 @@ static PFObjectSubclassingController *defaultController_;
         subclassInfo = [PFObjectSubclassInfo subclassInfoWithSubclass:kls];
     }
     _registeredSubclasses[[kls parseClassName]] = subclassInfo;
+}
+
+- (void)_registerSubclassesInBundle:(NSBundle *)bundle {
+    PFConsistencyAssert(bundle.loaded, @"Cannot register subclasses in a bundle that hasn't been loaded!");
+    dispatch_sync(_registeredSubclassesAccessQueue, ^{
+        Class pfObjectClass = [PFObject class];
+        unsigned bundleClassCount = 0;
+
+        // NSBundle's executablePath does not resolve symlinks (sadface). Unfortunately, objc_copyClassNamesForImage()
+        // Only takes absolute paths, as it does a direct string compare. This causes issues when using a framework
+        // which uses the `Versions/XXX` format, vs. just having the binary be at the root of the `.framework` bundle.
+        // However, we cannot use stringByResolvingSymlinksInPath for some reason here. On iOS, it never resolves the first,
+        // symlink in the path, e.g. /var to /private/var.
+        // Luckily, the POSIX function `realpath` will expand that symlink, and give us the path we need.
+        char pathBuf[PATH_MAX + 1] = { 0 };
+        if (!realpath([[bundle executablePath] UTF8String], pathBuf)) {
+            return;
+        }
+        
+        const char **classNames = objc_copyClassNamesForImage(pathBuf, &bundleClassCount);
+        for (unsigned i = 0; i < bundleClassCount; i++) {
+            Class bundleClass = objc_getClass(classNames[i]);
+            // For obvious reasons, don't register the PFObject class.
+            if (bundleClass == pfObjectClass) {
+                continue;
+            }
+            // NOTE: (richardross) Cannot use isSubclassOfClass here. Some classes may be part of a system bundle (even
+            // though we attempt to filter those out) that may be an internal class which doesn't inherit from NSObject.
+            // Scary, I know!
+            for (Class kls = bundleClass; kls != nil; kls = class_getSuperclass(kls)) {
+                if (kls == pfObjectClass) {
+                    // Do class_conformsToProtocol as late in the checking as possible, as its SUUUPER slow.
+                    // Behind the scenes this is a strcmp (lolwut?)
+                    if (class_conformsToProtocol(bundleClass, @protocol(PFSubclassing)) &&
+                        !class_conformsToProtocol(bundleClass, @protocol(PFSubclassingSkipAutomaticRegistration))) {
+                        [self _rawRegisterSubclass:bundleClass];
+                    }
+                    break;
+                }
+            }
+        }
+        free(classNames);
+    });
 }
 
 @end

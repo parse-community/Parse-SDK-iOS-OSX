@@ -25,15 +25,11 @@
 }
 
 - (void)testImmutableFieldsCannotBeChanged {
-    [PFUser registerSubclass];
-
     PFUser *user = [PFUser object];
     PFAssertThrowsInvalidArgumentException(user[@"sessionToken"] = @"a");
 }
 
 - (void)testImmutableFieldsCannotBeDeleted {
-    [PFUser registerSubclass];
-
     PFUser *user = [PFUser object];
     PFAssertThrowsInvalidArgumentException([user removeObjectForKey:@"username"]);
     PFAssertThrowsInvalidArgumentException([user removeObjectForKey:@"sessionToken"]);

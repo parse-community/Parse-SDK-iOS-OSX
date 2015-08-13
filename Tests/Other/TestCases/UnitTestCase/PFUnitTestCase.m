@@ -42,7 +42,6 @@
 - (void)tearDown {
     [[Parse _currentManager] clearEventuallyQueue];
     [Parse _clearCurrentManager];
-    [PFObjectSubclassingController clearDefaultController];
 
     [super tearDown];
 }

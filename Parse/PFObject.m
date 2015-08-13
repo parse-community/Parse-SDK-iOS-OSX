@@ -2465,7 +2465,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 }
 
 + (PFObjectSubclassingController *)subclassingController {
-    return [PFObjectSubclassingController defaultController];
+    return [Parse _currentManager].coreManager.objectSubclassingController;
 }
 
 @end
