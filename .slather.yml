@@ -1,4 +1,4 @@
-ci_service: travis_pro
+ci_service: travis_ci
 coverage_service: coveralls
 xcodeproj: Parse.xcodeproj
 ignore:
