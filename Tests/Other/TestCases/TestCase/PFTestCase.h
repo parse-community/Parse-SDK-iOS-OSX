@@ -76,22 +76,6 @@
 #define OCMProtocolMock                _PFOCMockWarning _PFProtocolMock
 #define OCMPartialMock                 _PFOCMockWarning _PFPartialMock
 
-#define GHFail XCTFail
-#define GHAssertTrue XCTAssertTrue
-#define GHAssertFalse XCTAssertFalse
-#define GHAssertNil XCTAssertNil
-#define GHAssertNotNil XCTAssertNotNil
-#define GHAssertEquals XCTAssertEqual
-#define GHAssertNotEquals XCTAssertNotEqual
-#define GHAssertEqualStrings XCTAssertEqualObjects
-#define GHAssertNotEqualStrings XCTAssertNotEqualObjects
-#define GHAssertEqualObjects XCTAssertEqualObjects
-#define GHAssertNotEqualObjects XCTAssertNotEqualObjects
-#define GHAssertEqualsWithAccuracy XCTAssertEqualWithAccuracy
-#define GHAssertThrows XCTAssertThrows
-#define GHAssertThrowsSpecificNamed XCTAssertThrowsSpecificNamed
-#define GHAssertNoThrow XCTAssertNoThrow
-
 #define PFAssertEqualInts(a1, a2, description...) \
 XCTAssertEqual((int)(a1), (int)(a2), ## description);
 
@@ -105,9 +89,9 @@ XCTAssertTrue([a1 isKindOfClass:[a2 class]], ## description)
 XCTAssertFalse([a1 isKindOfClass:[a2 class]], ## description)
 
 #define PFAssertThrowsInconsistencyException(expression, ...) \
-GHAssertThrowsSpecificNamed(expression, NSException, NSInternalInconsistencyException, __VA_ARGS__)
+XCTAssertThrowsSpecificNamed(expression, NSException, NSInternalInconsistencyException, __VA_ARGS__)
 
 #define PFAssertThrowsInvalidArgumentException(expression, ...) \
-GHAssertThrowsSpecificNamed(expression, NSException, NSInvalidArgumentException, __VA_ARGS__)
+XCTAssertThrowsSpecificNamed(expression, NSException, NSInvalidArgumentException, __VA_ARGS__)
 
 #define PFAssertStringContains(a, b) XCTAssertTrue([(a) rangeOfString:(b)].location != NSNotFound)

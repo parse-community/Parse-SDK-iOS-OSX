@@ -157,7 +157,7 @@
         } else if ([contents isKindOfClass:[NSNull class]]) {
             [self assertFileExists:path];
         } else {
-            GHFail(@"Not sure what to do with a %@", [contents class]);
+            XCTFail(@"Not sure what to do with a %@", [contents class]);
         }
     }];
 
