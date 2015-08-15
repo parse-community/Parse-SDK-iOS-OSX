@@ -14,7 +14,6 @@
 
 #import "BFTask+Private.h"
 #import "PFAssert.h"
-#import "PFBlockRetryer.h"
 #import "PFCommandResult.h"
 #import "PFCommandRunning.h"
 #import "PFFileManager.h"

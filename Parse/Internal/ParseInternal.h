@@ -17,7 +17,6 @@
 
 #import "PFAssert.h"
 #import "PFAuthenticationProvider.h"
-#import "PFBlockRetryer.h"
 #import "PFCommandCache.h"
 #import "PFEventuallyQueue.h"
 #import "PFFieldOperation.h"
