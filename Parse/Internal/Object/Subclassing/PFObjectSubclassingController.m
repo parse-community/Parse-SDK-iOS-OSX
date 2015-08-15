@@ -61,11 +61,28 @@ static CFNumberType PFNumberTypeForObjCType(const char *encodedType) {
         ['f'] = kCFNumberFloatType,
         ['d'] = kCFNumberDoubleType,
 
-        // C99 & CXX boolean
+        // C99 & CXX boolean. We are keeping this here for decoding, as you can safely use CFNumberGetBytes on a
+        // CFBoolean, and extract it into a char.
         ['B'] = kCFNumberCharType,
     };
 
     return (CFNumberType)types[encodedType[0]];
+}
+
+static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes) {
+    // NOTE: This is required because NSJSONSerialization treats all NSNumbers with the 'char' type as numbers, not
+    // booleans. As such, we must treat any and all boolean type encodings as explicit booleans, otherwise we will
+    // send '1' and '0' to the api server rather than 'true' and 'false'.
+    //
+    // TODO (richardross): When we drop support for 10.9/iOS 7, remove the 'c' encoding and only use the new 'B'
+    // encoding.
+    if (typeEncoding[0] == 'B' || typeEncoding[0] == 'c') {
+        return [NSNumber numberWithBool:*(BOOL *)bytes];
+    }
+
+    CFNumberType numberType = PFNumberTypeForObjCType(typeEncoding);
+    PFConsistencyAssert(numberType != kCFNumberTypeUnknown, @"Unsupported type encoding %s!", typeEncoding);
+    return (__bridge_transfer NSNumber *)CFNumberCreate(NULL, numberType, bytes);
 }
 
 @implementation PFObjectSubclassingController {
@@ -230,11 +247,7 @@ static PFObjectSubclassingController *defaultController_;
                 dictionaryValue = [dictionaryValue copy];
             }
         } else {
-            CFNumberType numberType = PFNumberTypeForObjCType(argumentType);
-            PFConsistencyAssert(numberType != kCFNumberTypeUnknown, @"Unsupported type encoding %s!", argumentType);
-
-            CFNumberRef number = CFNumberCreate(NULL, numberType, argumentValueBytes);
-            dictionaryValue = (__bridge_transfer id)number;
+            dictionaryValue = PFNumberCreateSafe(argumentType, argumentValueBytes);
         }
 
         if (dictionaryValue == nil) {
