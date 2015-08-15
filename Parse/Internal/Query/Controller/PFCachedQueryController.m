@@ -112,7 +112,7 @@
         }
             break;
         case kPFCachePolicyCacheThenNetwork:
-            PFConsistencyAssert(NO, @"kPFCachePolicyCacheThenNetwork is not implmented as a runner.");
+            PFConsistencyAssert(NO, @"kPFCachePolicyCacheThenNetwork is not implemented as a runner.");
             break;
         default:
             PFConsistencyAssert(NO, @"Unrecognized cache policy: %d", queryState.cachePolicy);

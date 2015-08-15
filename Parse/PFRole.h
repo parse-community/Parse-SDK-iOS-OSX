@@ -30,7 +30,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  Roles must have a name (which cannot be changed after creation of the role), and must specify an ACL.
  */
-@interface PFRole : PFObject<PFSubclassing>
+@interface PFRole : PFObject <PFSubclassing>
 
 ///--------------------------------------
 /// @name Creating a New Role

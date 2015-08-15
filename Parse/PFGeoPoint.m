@@ -58,21 +58,16 @@ const double EARTH_RADIUS_KILOMETERS = 6371.0;
 #pragma mark - Accessors
 ///--------------------------------------
 
-- (void)setLatitude:(double)newLatitude {
-    // Restrictions for mongo ranges (exclusive at high end).
-    if (newLatitude >= 90.0 || newLatitude < -90.0) {
-        [NSException raise:NSInvalidArgumentException
-                    format:@"latitude out of range (expect [-90.0, 90.0): %f", newLatitude];
-    }
-    _latitude = newLatitude;
+- (void)setLatitude:(double)latitude {
+    PFParameterAssert(latitude >= -90.0 && latitude <= 90.0,
+                      @"`latitude` is out of range [-90.0, 90.0]: %f", latitude);
+    _latitude = latitude;
 }
 
-- (void)setLongitude:(double)newLongitude {
-    if (newLongitude >= 180.0 || newLongitude < -180.0) {
-        [NSException raise:NSInvalidArgumentException
-                    format:@"longitude out of range (expect [-180.0, 180.0): %f", newLongitude];
-    }
-    _longitude = newLongitude;
+- (void)setLongitude:(double)longitude {
+    PFParameterAssert(longitude >= -180.0 && longitude <= 180.0,
+                      @"`longitude` is out of range [-180.0, 180.0]: %f", longitude);
+    _longitude = longitude;
 }
 
 - (double)distanceInRadiansTo:(PFGeoPoint *)point {
