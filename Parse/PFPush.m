@@ -415,7 +415,7 @@ static Class _pushInternalUtilClass = nil;
 
     NSString *soundName = aps[@"sound"];
 
-    if (soundName.length == 0 || [soundName isEqualToString:@"default"]) {
+    if ((id)soundName == [NSNull null] || soundName.length == 0 || [soundName isEqualToString:@"default"]) {
         [[self pushInternalUtilClass] playVibrate];
     } else {
         [[self pushInternalUtilClass] playAudioWithName:soundName];
