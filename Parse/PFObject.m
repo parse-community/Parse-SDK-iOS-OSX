@@ -1962,8 +1962,8 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 }
 
 + (PFQuery *)queryWithPredicate:(NSPredicate *)predicate {
-    NSAssert([self conformsToProtocol:@protocol(PFSubclassing)],
-             @"+[PFObject queryWithPredicate:] can only be called on subclasses conforming to PFSubclassing.");
+    PFConsistencyAssert([self conformsToProtocol:@protocol(PFSubclassing)],
+                        @"+[PFObject queryWithPredicate:] can only be called on subclasses conforming to PFSubclassing.");
     [PFObject assertSubclassIsRegistered:[self class]];
     return [PFQuery queryWithClassName:[(id<PFSubclassing>)self parseClassName] predicate:predicate];
 }

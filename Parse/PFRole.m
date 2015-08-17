@@ -18,7 +18,9 @@
 
 @implementation PFRole
 
-#pragma mark Creating a New Role
+///--------------------------------------
+#pragma mark - Init
+///--------------------------------------
 
 - (instancetype)initWithName:(NSString *)name {
     return [self initWithName:name acl:nil];
@@ -50,11 +52,11 @@
 
 // Dynamic synthesizers would use objectForKey, not relationForKey
 - (PFRelation *)roles {
-    return [self relationForKey:@"roles"];
+    return [self relationForKey:@keypath(PFRole, roles)];
 }
 
 - (PFRelation *)users {
-    return [self relationForKey:@"users"];
+    return [self relationForKey:@keypath(PFRole, users)];
 }
 
 ///--------------------------------------
@@ -62,28 +64,17 @@
 ///--------------------------------------
 
 - (void)setObject:(id)object forKey:(NSString *)key {
-    if ([@"name" isEqualToString:key]) {
-        if (self.objectId) {
-            [NSException raise:NSInternalInconsistencyException
-                        format:@"A role's name can only be set before it has been saved."];
-        }
-        if (![object isKindOfClass:[NSString class]]) {
-            [NSException raise:NSInvalidArgumentException
-                        format:@"A role's name must be an NSString."];
-        }
-        if ([object rangeOfString:@"^[0-9a-zA-Z_\\- ]+$" options:NSRegularExpressionSearch].location == NSNotFound) {
-            [NSException raise:NSInvalidArgumentException
-                        format:@"A role's name can only contain alphanumeric characters, _, -, and spaces."];
-        }
+    if ([key isEqualToString:@keypath(PFRole, name)]) {
+        PFConsistencyAssert(!self.objectId, @"A role's name can only be set before it has been saved.");
+        PFParameterAssert([object isKindOfClass:[NSString class]], @"A role's name must be an NSString.");
+        PFParameterAssert([object rangeOfString:@"^[0-9a-zA-Z_\\- ]+$" options:NSRegularExpressionSearch].location != NSNotFound,
+                          @"A role's name can only contain alphanumeric characters, _, -, and spaces.");
     }
     [super setObject:object forKey:key];
 }
 
 - (BFTask *)saveInBackground {
-    if (!self.objectId && !self.name) {
-        [NSException raise:NSInternalInconsistencyException
-                    format:@"New roles must specify a name."];
-    }
+    PFConsistencyAssert(self.objectId || self.name, @"New roles must specify a name.");
     return [super saveInBackground];
 }
 
