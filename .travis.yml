@@ -3,7 +3,6 @@ branches:
     - master
 language: objective-c
 osx_image: xcode6.4
-cache: bundler
 env:
   global:
     - LC_CTYPE=en_US.UTF-8
@@ -14,7 +13,7 @@ env:
     - TEST_TYPE=deployment
     - TEST_TYPE=starters
     - TEST_TYPE=podspecs
-before_install:
+install:
   - bundle install
 script:
   - bundle exec rake test:$TEST_TYPE
