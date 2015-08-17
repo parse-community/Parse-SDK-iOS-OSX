@@ -103,7 +103,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
     // Guards basically all of the variables below.
     NSObject *lock;
 
-    PFObjectState *_state;
+    PFObjectState *_pfinternal_state;
 
     PFObjectEstimatedData *_estimatedData;
     NSMutableSet *_availableKeys; // TODO: (nlutsenko) Maybe decouple this further.
@@ -818,7 +818,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 - (void)setHasBeenFetched:(BOOL)fetched {
     @synchronized (lock) {
         if (self._state.complete != fetched) {
-            PFMutableObjectState *state = [_state mutableCopy];
+            PFMutableObjectState *state = [_pfinternal_state mutableCopy];
             state.complete = fetched;
             self._state = state;
         }
@@ -828,7 +828,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 - (void)_setDeleted:(BOOL)deleted {
     @synchronized (lock) {
         if (self._state.deleted != deleted) {
-            PFMutableObjectState *state = [_state mutableCopy];
+            PFMutableObjectState *state = [_pfinternal_state mutableCopy];
             state.deleted = deleted;
             self._state = state;
         }
@@ -1718,7 +1718,6 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 
 @implementation PFObject
 
-@synthesize _state = _state;
 @synthesize _availableKeys = _availableKeys;
 
 ///--------------------------------------
@@ -1729,26 +1728,26 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
     self = [super init];
     if (!self) return nil;
 
-    if (!_state) {
+    if (!_pfinternal_state) {
         PFConsistencyAssert([self conformsToProtocol:@protocol(PFSubclassing)],
                             @"Can only call -[PFObject init] on subclasses conforming to PFSubclassing.");
         [PFObject assertSubclassIsRegistered:[self class]];
-        _state = [[self class] _newObjectStateWithParseClassName:[[self class] parseClassName]
-                                                        objectId:nil
-                                                      isComplete:YES];
+        _pfinternal_state = [[self class] _newObjectStateWithParseClassName:[[self class] parseClassName]
+                                                                   objectId:nil
+                                                                 isComplete:YES];
     }
-    [[self class] _assertValidInstanceClassName:_state.parseClassName];
+    [[self class] _assertValidInstanceClassName:_pfinternal_state.parseClassName];
 
     lock = [[NSObject alloc] init];
     operationSetQueue = [NSMutableArray arrayWithObject:[[PFOperationSet alloc] init]];
-    _estimatedData = [PFObjectEstimatedData estimatedDataFromServerData:_state.serverData
+    _estimatedData = [PFObjectEstimatedData estimatedDataFromServerData:_pfinternal_state.serverData
                                                       operationSetQueue:operationSetQueue];
     _availableKeys = [NSMutableSet set];
     hashedObjectsCache = [[NSMutableDictionary alloc] init];
     self.taskQueue = [[PFTaskQueue alloc] init];
     _eventuallyTaskQueue = [[PFTaskQueue alloc] init];
 
-    if (_state.complete) {
+    if (_pfinternal_state.complete) {
         dirty = YES;
         [self setDefaultValues];
     }
@@ -1762,7 +1761,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 }
 
 - (instancetype)initWithObjectState:(PFObjectState *)state {
-    _state = state;
+    _pfinternal_state = state;
     return [self init];
 }
 
@@ -1853,12 +1852,12 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 
 - (void)set_state:(PFObjectState *)state {
     @synchronized(lock) {
-        NSString *oldObjectId = _state.objectId;
+        NSString *oldObjectId = _pfinternal_state.objectId;
         if (self._state != state) {
-            _state = [state copy];
+            _pfinternal_state = [state copy];
         }
 
-        NSString *newObjectId = _state.objectId;
+        NSString *newObjectId = _pfinternal_state.objectId;
         if (![PFObjectUtilities isObject:oldObjectId equalToObject:newObjectId]) {
             [self _notifyObjectIdChangedFrom:oldObjectId toObjectId:newObjectId];
         }
@@ -1867,7 +1866,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 
 - (PFObjectState *)_state {
     @synchronized(lock) {
-        return _state;
+        return _pfinternal_state;
     }
 }
 
@@ -1888,7 +1887,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 
         PFMutableObjectState *state = [self._state mutableCopy];
         state.objectId = objectId;
-        _state = state;
+        _pfinternal_state = state;
 
         [self _notifyObjectIdChangedFrom:oldObjectId toObjectId:objectId];
     }

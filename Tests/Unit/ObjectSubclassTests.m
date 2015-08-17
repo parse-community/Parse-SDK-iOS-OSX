@@ -94,6 +94,22 @@
 }
 @end
 
+@interface StateClass : PFObject<PFSubclassing>
+
+@property NSString *state;
+
+@end
+
+@implementation StateClass
+
+@dynamic state;
+
++ (NSString *)parseClassName {
+    return @"State";
+}
+
+@end
+
 ///--------------------------------------
 #pragma mark - ObjectSubclassTests
 ///--------------------------------------
@@ -168,6 +184,15 @@
 
     PFObject *theFlash = [PFObject objectWithClassName:@"Person"];
     PFAssertIsKindOfClass(theFlash, [TheFlash class]);
+}
+
+- (void)testStateIsSubclassable {
+    [StateClass registerSubclass];
+    StateClass *stateClass = [StateClass object];
+    XCTAssertNil(stateClass.state);
+
+    stateClass.state = @"StateString!";
+    XCTAssertEqualObjects(stateClass.state, @"StateString!");
 }
 
 @end
