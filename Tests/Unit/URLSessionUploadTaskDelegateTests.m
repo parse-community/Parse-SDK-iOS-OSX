@@ -205,6 +205,7 @@ totalBytesExpectedToSend:5];
     [delegate URLSession:mockedSession task:mockedTask didCompleteWithError:expectedError];
 
     XCTAssertEqualObjects(delegate.resultTask.error.userInfo[@"originalError"], expectedError);
+    XCTAssertEqualObjects(delegate.resultTask.error.userInfo[NSUnderlyingErrorKey], expectedError);
 }
 
 - (void)testJSONError {

@@ -82,6 +82,7 @@
         errorDictionary[@"code"] = @(kPFErrorConnectionFailed);
         errorDictionary[@"error"] = [self.error localizedDescription];
         errorDictionary[@"originalError"] = self.error;
+        errorDictionary[NSUnderlyingErrorKey] = self.error;
         errorDictionary[@"temporary"] = @(self.response.statusCode >= 500 || self.response.statusCode < 400);
         self.error = [PFErrorUtilities errorFromResult:errorDictionary];
     }
