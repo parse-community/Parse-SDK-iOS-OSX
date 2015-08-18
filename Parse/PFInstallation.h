@@ -86,6 +86,11 @@ PF_ASSUME_NONNULL_BEGIN
 @property (PF_NULLABLE_PROPERTY nonatomic, copy, readonly) NSString *timeZone;
 
 /*!
+ @abstract The localeIdentifier for the `PFInstallation` ([language code]-[COUNTRY CODE]).
+ */
+@property (PF_NULLABLE_PROPERTY nonatomic, copy, readonly) NSString *localeIdentifier;
+
+/*!
  @abstract The channels for the `PFInstallation`.
  */
 @property (PF_NULLABLE_PROPERTY nonatomic, copy) NSArray *channels;
