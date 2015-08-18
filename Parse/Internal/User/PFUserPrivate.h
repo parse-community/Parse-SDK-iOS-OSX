@@ -9,11 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
 # import <Parse/PFUser.h>
-#else
-# import <ParseOSX/PFUser.h>
-#endif
 
 #import "PFAuthenticationProvider.h"
 

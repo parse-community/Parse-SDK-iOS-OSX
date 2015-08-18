@@ -10,12 +10,8 @@
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
 
-#if TARGET_OS_IPHONE
-# import <Parse/PFConstants.h>
-# import "PFPushPrivate.h"
-#else
-# import <ParseOSX/PFConstants.h>
-#endif
+#import <Parse/PFConstants.h>
+#import "PFPushPrivate.h"
 
 #import "PFEncoder.h"
 

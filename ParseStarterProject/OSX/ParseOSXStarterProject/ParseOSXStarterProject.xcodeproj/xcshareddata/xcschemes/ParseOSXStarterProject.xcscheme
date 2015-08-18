@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "NO"
-      buildImplicitDependencies = "YES">
+      buildImplicitDependencies = "NO">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "97010FAB1630B18F00AB761E"
-               BuildableName = "ParseOSX.framework"
+               BuildableName = "Parse.framework"
                BlueprintName = "Parse-OSX"
                ReferencedContainer = "container:../../../Parse.xcodeproj">
             </BuildableReference>

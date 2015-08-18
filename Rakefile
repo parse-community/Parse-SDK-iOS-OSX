@@ -83,7 +83,7 @@ namespace :build do
       t.directory = script_folder
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::OSX
-      t.framework_name = 'ParseOSX.framework'
+      t.framework_name = 'Parse.framework'
 
       t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-OSX'
@@ -124,7 +124,7 @@ namespace :package do
     ## Build OS X Framework
     Rake::Task['build:osx'].invoke
     bolts_path = File.join(bolts_build_folder, 'osx', 'Bolts.framework')
-    osx_framework_path = File.join(build_folder, 'ParseOSX.framework')
+    osx_framework_path = File.join(build_folder, 'Parse.framework')
     make_package(release_folder,
                  [osx_framework_path, bolts_path],
                  package_osx_name)

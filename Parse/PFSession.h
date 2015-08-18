@@ -9,13 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
 #import <Parse/PFObject.h>
 #import <Parse/PFSubclassing.h>
-#else
-#import <ParseOSX/PFObject.h>
-#import <ParseOSX/PFSubclassing.h>
-#endif
 
 PF_ASSUME_NONNULL_BEGIN
 

@@ -13,13 +13,12 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.9'
   s.requires_arc = true
   
-  s.header_dir = 'ParseOSX'
-  s.module_name = 'ParseOSX'
+  s.header_dir = 'Parse'
+  s.module_name = 'Parse'
   
   s.source_files = 'Parse/*.{h,m}',
-                   'Parse/OSX.{h,m}',
                    'Parse/Internal/**/*.{h,m}'
-  s.public_header_files = 'Parse/*.h', 'Parse/OSX/*.h'
+  s.public_header_files = 'Parse/*.h'
   s.resources = 'Parse/Resources/en.lproj'
   s.exclude_files = 'Parse/PFNetworkActivityIndicatorManager.{h,m}',
                     'Parse/PFProduct.{h,m}',

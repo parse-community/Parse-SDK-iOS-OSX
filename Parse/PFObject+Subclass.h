@@ -9,13 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
 #import <Parse/PFNullability.h>
 #import <Parse/PFObject.h>
-#else
-#import <ParseOSX/PFNullability.h>
-#import <ParseOSX/PFObject.h>
-#endif
 
 PF_ASSUME_NONNULL_BEGIN
 

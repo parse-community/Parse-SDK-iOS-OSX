@@ -9,11 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
 #import <Parse/PFSession.h>
-#else
-#import <ParseOSX/PFSession.h>
-#endif
 
 @class PFSessionController;
 
