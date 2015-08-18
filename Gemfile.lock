@@ -62,7 +62,7 @@ GEM
       activesupport (>= 3)
       claide (~> 0.9.1)
       colored (~> 1.2)
-    xcpretty (0.1.10)
+    xcpretty (0.1.11)
 
 PLATFORMS
   ruby
