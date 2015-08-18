@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
                    'Parse/OSX.{h,m}',
                    'Parse/Internal/**/*.{h,m}'
   s.public_header_files = 'Parse/*.h', 'Parse/OSX/*.h'
-  s.resources = 'Parse/Resources/Localizable.strings'
+  s.resources = 'Parse/Resources/en.lproj'
   s.exclude_files = 'Parse/PFNetworkActivityIndicatorManager.{h,m}',
                     'Parse/PFProduct.{h,m}',
                     'Parse/PFPurchase.{h,m}',

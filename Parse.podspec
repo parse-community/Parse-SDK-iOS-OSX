@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Parse/*.{h,m}',
                    'Parse/Internal/**/*.{h,m}'
   s.public_header_files = 'Parse/*.h'
-  s.resources = 'Parse/Resources/Localizable.strings'
+  s.resources = 'Parse/Resources/en.lproj'
 
   s.frameworks        = 'AudioToolbox',
                         'CFNetwork',

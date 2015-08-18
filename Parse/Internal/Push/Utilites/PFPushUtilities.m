@@ -56,13 +56,14 @@
 
 #if TARGET_OS_IPHONE
 
-+ (void)showAlertViewWithTitle:(NSString *)title
-                       message:(NSString *)message {
++ (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message {
+    NSString *cancelButtonTitle = NSLocalizedStringFromTableInBundle(@"OK", @"Parse",
+                                                                     [NSBundle bundleForClass:[self class]],
+                                                                     @"Default alert view cancel button title.");
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                     message:message
                                                    delegate:nil
-                                          cancelButtonTitle:NSLocalizedString(@"OK",
-                                                                              @"Default alert cancel button title.")
+                                          cancelButtonTitle:cancelButtonTitle
                                           otherButtonTitles:nil];
     [alert show];
 }
