@@ -565,8 +565,6 @@
 		81AFE0E91A1FDB7D00AB6CB3 /* PFRESTUserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AFE0E61A1FDB7900AB6CB3 /* PFRESTUserCommand.m */; };
 		81B3F2011AC5DA7600A92677 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6393F38B15D3018400C4F78D /* libsqlite3.dylib */; };
 		81B3F2021AC5DAA400A92677 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970110191630B1FE00AB761E /* Cocoa.framework */; };
-		81B3F2541AC9D4E100A92677 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81B3F2531AC9D4E100A92677 /* Localizable.strings */; };
-		81B3F2551AC9D4E100A92677 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81B3F2531AC9D4E100A92677 /* Localizable.strings */; };
 		81BB6E211B0E7A1A00465C38 /* PFBase64Encoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 81BB6E1F1B0E7A1A00465C38 /* PFBase64Encoder.h */; };
 		81BB6E221B0E7A1A00465C38 /* PFBase64Encoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 81BB6E1F1B0E7A1A00465C38 /* PFBase64Encoder.h */; };
 		81BB6E231B0E7A1A00465C38 /* PFBase64Encoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BB6E201B0E7A1A00465C38 /* PFBase64Encoder.m */; };
@@ -733,6 +731,8 @@
 		81E7A2261B6042BD006CB680 /* PFObjectFileCodingLogic.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E7A2231B6042BD006CB680 /* PFObjectFileCodingLogic.h */; };
 		81E7A2271B6042BD006CB680 /* PFObjectFileCodingLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E7A2241B6042BD006CB680 /* PFObjectFileCodingLogic.m */; };
 		81E7A2281B6042BD006CB680 /* PFObjectFileCodingLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E7A2241B6042BD006CB680 /* PFObjectFileCodingLogic.m */; };
+		81E7BDFE1B82B931007ACDD8 /* Parse.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81E7BE011B82B931007ACDD8 /* Parse.strings */; };
+		81E7BDFF1B82B931007ACDD8 /* Parse.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81E7BE011B82B931007ACDD8 /* Parse.strings */; };
 		81EB595E1AF46434001EA1FC /* PFFileController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EB595C1AF46434001EA1FC /* PFFileController.h */; };
 		81EB595F1AF46434001EA1FC /* PFFileController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EB595C1AF46434001EA1FC /* PFFileController.h */; };
 		81EB59601AF46434001EA1FC /* PFFileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EB595D1AF46434001EA1FC /* PFFileController.m */; };
@@ -1357,7 +1357,6 @@
 		81ABC0FD1B5427EC00BA9009 /* PFUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFUserController.m; sourceTree = "<group>"; };
 		81AFE0E51A1FDB7900AB6CB3 /* PFRESTUserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRESTUserCommand.h; sourceTree = "<group>"; };
 		81AFE0E61A1FDB7900AB6CB3 /* PFRESTUserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFRESTUserCommand.m; sourceTree = "<group>"; };
-		81B3F2531AC9D4E100A92677 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		81BB6E1F1B0E7A1A00465C38 /* PFBase64Encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFBase64Encoder.h; sourceTree = "<group>"; };
 		81BB6E201B0E7A1A00465C38 /* PFBase64Encoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFBase64Encoder.m; sourceTree = "<group>"; };
 		81BBE12D19FFCB3700622646 /* PFURLConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFURLConstructor.h; sourceTree = "<group>"; };
@@ -1449,6 +1448,7 @@
 		81E7A21B1B602560006CB680 /* PFUserFileCodingLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFUserFileCodingLogic.m; sourceTree = "<group>"; };
 		81E7A2231B6042BD006CB680 /* PFObjectFileCodingLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFObjectFileCodingLogic.h; sourceTree = "<group>"; };
 		81E7A2241B6042BD006CB680 /* PFObjectFileCodingLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFObjectFileCodingLogic.m; sourceTree = "<group>"; };
+		81E7BE001B82B931007ACDD8 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Parse.strings; sourceTree = "<group>"; };
 		81EB595C1AF46434001EA1FC /* PFFileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileController.h; sourceTree = "<group>"; };
 		81EB595D1AF46434001EA1FC /* PFFileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFileController.m; sourceTree = "<group>"; };
 		81EB6632198A7FA600851598 /* PFConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFConfig.h; sourceTree = "<group>"; };
@@ -1730,8 +1730,8 @@
 			children = (
 				09809FB91434F98C00EC3E74 /* Framework.plist */,
 				97AA93B816780B7600445C2D /* FrameworkOSX.plist */,
-				81B3F2531AC9D4E100A92677 /* Localizable.strings */,
 				8139B12C1A7BF559002BEF84 /* third_party_licenses.txt */,
+				81E7BE011B82B931007ACDD8 /* Parse.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3627,7 +3627,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				"zh-Hans",
 				Base,
 			);
 			mainGroup = 09D3363F139C54930098E916;
@@ -3694,8 +3693,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81E7BDFF1B82B931007ACDD8 /* Parse.strings in Resources */,
 				8139B12E1A7BF630002BEF84 /* third_party_licenses.txt in Resources */,
-				81B3F2551AC9D4E100A92677 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3703,8 +3702,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81E7BDFE1B82B931007ACDD8 /* Parse.strings in Resources */,
 				8139B1301A7BF662002BEF84 /* third_party_licenses.txt in Resources */,
-				81B3F2541AC9D4E100A92677 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3737,7 +3736,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 genstrings -q -o $PROJECT_DIR/Parse/Resources\n";
+			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 genstrings -q -o $PROJECT_DIR/Parse/Resources/en.lproj\n";
 		};
 		97010FB71630B1B800AB761E /* Generate Localizable Strings */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3751,7 +3750,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 genstrings -q -o $PROJECT_DIR/Parse/Resources\n";
+			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 genstrings -q -o $PROJECT_DIR/Parse/Resources/en.lproj\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4309,6 +4308,17 @@
 			targetProxy = F569F07E1B14DB3C00296F73 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		81E7BE011B82B931007ACDD8 /* Parse.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81E7BE001B82B931007ACDD8 /* en */,
+			);
+			name = Parse.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		09D3366B139C54940098E916 /* Debug */ = {

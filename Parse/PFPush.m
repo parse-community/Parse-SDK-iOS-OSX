@@ -398,8 +398,8 @@ static Class _pushInternalUtilClass = nil;
             NSDictionary *alertDict = alert;
             NSString *locKey = alertDict[@"loc-key"];
             if (locKey) {
-                message = [PFInternalUtils _stringWithFormat:NSLocalizedString(locKey, nil)
-                                                   arguments:alertDict[@"loc-args"]];
+                NSString *format = [[NSBundle mainBundle] localizedStringForKey:locKey value:@"" table:nil];
+                message = [PFInternalUtils _stringWithFormat:format arguments:alertDict[@"loc-args"]];
             }
         }
         if (message) {
