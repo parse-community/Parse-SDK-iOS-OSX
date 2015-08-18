@@ -801,6 +801,8 @@
 		F50C66331B33A708001941A6 /* PFPushUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F50C66311B33A708001941A6 /* PFPushUtilities.h */; };
 		F50C66341B33A708001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
 		F50C667C1B34B231001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
+		F50E486E1B83ED270055094D /* PFFileStagingController.h in Headers */ = {isa = PBXBuildFile; fileRef = F50E486C1B83ED270055094D /* PFFileStagingController.h */; };
+		F50E486F1B83ED270055094D /* PFFileStagingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50E486D1B83ED270055094D /* PFFileStagingController.m */; };
 		F510509F1B6AA4CE00749060 /* ExtensionDataSharingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915E61B66D44500EFD14F /* ExtensionDataSharingTests.m */; };
 		F51050A01B6AA4D100749060 /* ExtensionDataSharingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915E61B66D44500EFD14F /* ExtensionDataSharingTests.m */; };
 		F51050A11B6AA4D600749060 /* ExtensionDataSharingMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915E51B66D44500EFD14F /* ExtensionDataSharingMobileTests.m */; };
@@ -901,6 +903,7 @@
 		F5C42CDB1B38761B00C720D8 /* PFObjectSubclassInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C42CD81B38761B00C720D8 /* PFObjectSubclassInfo.h */; };
 		F5C42CDC1B38761B00C720D8 /* PFObjectSubclassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C42CD91B38761B00C720D8 /* PFObjectSubclassInfo.m */; };
 		F5C42CDD1B38761B00C720D8 /* PFObjectSubclassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C42CD91B38761B00C720D8 /* PFObjectSubclassInfo.m */; };
+		F5C6B38B1B83F7A100690F3A /* PFFileStagingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50E486D1B83ED270055094D /* PFFileStagingController.m */; };
 		F5C8F2C01B1F7E7800CD98E7 /* PFAsyncTaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C8F2BF1B1F7E6B00CD98E7 /* PFAsyncTaskQueue.m */; };
 		F5C8F2C11B1F7E7900CD98E7 /* PFAsyncTaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C8F2BF1B1F7E6B00CD98E7 /* PFAsyncTaskQueue.m */; };
 		F5E381311B68832000A3B9F2 /* URLSessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5556A141B66F36000410837 /* URLSessionTests.m */; };
@@ -1488,6 +1491,8 @@
 		E9E81E8316EEF93E001D034F /* PFSubclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFSubclassing.h; sourceTree = "<group>"; };
 		F50C66311B33A708001941A6 /* PFPushUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPushUtilities.h; sourceTree = "<group>"; };
 		F50C66321B33A708001941A6 /* PFPushUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPushUtilities.m; sourceTree = "<group>"; };
+		F50E486C1B83ED270055094D /* PFFileStagingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileStagingController.h; sourceTree = "<group>"; };
+		F50E486D1B83ED270055094D /* PFFileStagingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFileStagingController.m; sourceTree = "<group>"; };
 		F51534F61B571E9100C49F56 /* PFACLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFACLPrivate.h; sourceTree = "<group>"; };
 		F51534F81B571E9100C49F56 /* PFACLState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFACLState.h; sourceTree = "<group>"; };
 		F51534F91B571E9100C49F56 /* PFACLState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFACLState.m; sourceTree = "<group>"; };
@@ -2892,6 +2897,8 @@
 			children = (
 				81EB595C1AF46434001EA1FC /* PFFileController.h */,
 				81EB595D1AF46434001EA1FC /* PFFileController.m */,
+				F50E486C1B83ED270055094D /* PFFileStagingController.h */,
+				F50E486D1B83ED270055094D /* PFFileStagingController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3154,6 +3161,7 @@
 				F5B0B2DF1B449EEF00F3EBC4 /* PFCommandCache_Private.h in Headers */,
 				F5B0B2E01B449EEF00F3EBC4 /* PFCommandResult.h in Headers */,
 				812B02961B5DE3EE003846EE /* PFURLSession.h in Headers */,
+				F50E486E1B83ED270055094D /* PFFileStagingController.h in Headers */,
 				8166FC731B50376D003841A2 /* PFObjectController.h in Headers */,
 				F5B0B2EB1B449EEF00F3EBC4 /* PFAlertView.h in Headers */,
 				8119C9971A76E28F0085B516 /* PFNetworkCommand.h in Headers */,
@@ -4031,6 +4039,7 @@
 				814881471B795C63008763BF /* PFKeyValueCache.m in Sources */,
 				81C3825119CCAD2C0066284A /* PFNetworkActivityIndicatorManager.m in Sources */,
 				81C3824819CCAD2C0066284A /* PFObject.m in Sources */,
+				F50E486F1B83ED270055094D /* PFFileStagingController.m in Sources */,
 				F51D06351B792CF10044539E /* PFSQLiteDatabaseController.m in Sources */,
 				815960A31ABCA3B30069EBCC /* PFFileManager.m in Sources */,
 				81CD66561B4DA5A70042FC0B /* PFCurrentInstallationController.m in Sources */,
@@ -4198,6 +4207,7 @@
 				81EBF3461B33E7DE00991947 /* PFPushChannelsController.m in Sources */,
 				9701108A1630B45800AB761E /* PFRole.m in Sources */,
 				9701108C1630B45800AB761E /* PFUser.m in Sources */,
+				F5C6B38B1B83F7A100690F3A /* PFFileStagingController.m in Sources */,
 				81E7A2281B6042BD006CB680 /* PFObjectFileCodingLogic.m in Sources */,
 				8166FCEB1B504083003841A2 /* PFPushManager.m in Sources */,
 				819A4B0B1A67330200D01241 /* PFHash.m in Sources */,

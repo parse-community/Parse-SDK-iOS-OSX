@@ -54,7 +54,10 @@
     OCMStub([mockedDataSource commandRunner]).andReturn(mockedCommandRunner);
 
     id mockedFileManager = PFStrictClassMock([PFFileManager class]);
+
     OCMStub([mockedDataSource fileManager]).andReturn(mockedFileManager);
+    OCMStub([mockedFileManager parseLocalSandboxDataDirectoryPath]).andReturn([self temporaryDirectory]);
+
     return mockedDataSource;
 }
 
@@ -65,16 +68,13 @@
 - (void)setUp {
     [super setUp];
 
-    [[NSFileManager defaultManager] createDirectoryAtPath:[self temporaryDirectory]
-                              withIntermediateDirectories:YES
-                                               attributes:nil
-                                                    error:NULL];
+    [[PFFileManager createDirectoryIfNeededAsyncAtPath:[self temporaryDirectory]] waitUntilFinished];
 }
 
 - (void)tearDown {
-    [[NSFileManager defaultManager] removeItemAtPath:[self temporaryDirectory] error:NULL];
-
     [super tearDown];
+
+    [[PFFileManager removeItemAtPathAsync:[self temporaryDirectory]] waitUntilFinished];
 }
 
 ///--------------------------------------
@@ -490,6 +490,7 @@
     NSString *downloadsPath = [temporaryPath stringByAppendingPathComponent:@"downloads"];
 
     OCMStub([mockedDataSource fileManager]).andReturn(mockedFileManager);
+    OCMStub([mockedFileManager parseLocalSandboxDataDirectoryPath]).andReturn(temporaryPath);
     OCMStub([mockedFileManager parseCacheItemPathForPathComponent:@"PFFileCache"]).andReturn(downloadsPath);
 
     PFFileController *fileController = [PFFileController controllerWithDataSource:mockedDataSource];
@@ -502,21 +503,6 @@
     }];
 
     [self waitForTestExpectations];
-}
-
-- (void)testStagedDirectoryPath {
-    id mockedDataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
-    id mockedFileManager = PFStrictClassMock([PFFileManager class]);
-
-    NSString *temporaryPath = [self temporaryDirectory];
-
-    OCMStub([mockedDataSource fileManager]).andReturn(mockedFileManager);
-    OCMStub([mockedFileManager parseLocalSandboxDataDirectoryPath]).andReturn(temporaryPath);
-
-    PFFileController *fileController = [PFFileController controllerWithDataSource:mockedDataSource];
-
-    XCTAssertEqualObjects([temporaryPath stringByAppendingPathComponent:@"PFFileStaging"],
-                          [fileController stagedFilesDirectoryPath]);
 }
 
 @end

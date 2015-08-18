@@ -15,6 +15,7 @@
 #import "PFFile.h"
 #import "PFFileController.h"
 #import "PFFileManager.h"
+#import "PFFileStagingController.h"
 #import "PFFileState.h"
 #import "PFFile_Private.h"
 #import "PFUnitTestCase.h"
@@ -93,11 +94,19 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
 
 - (PFFileController *)mockedFileController {
     id mockedFileController = PFStrictClassMock([PFFileController class]);
+    id mockedFileStagingController = PFStrictClassMock([PFFileStagingController class]);
 
     NSString *stagedDirectory = [self sampleStagingPath];
+    NSString *sampleFile = [stagedDirectory stringByAppendingPathComponent:@"stagedFile.dat"];
     [self clearStagingAndTemporaryFiles];
 
-    OCMStub([mockedFileController stagedFilesDirectoryPath]).andReturn(stagedDirectory);
+    OCMStub([mockedFileController fileStagingController]).andReturn(mockedFileStagingController);
+    OCMStub([[mockedFileStagingController ignoringNonObjectArgs] stageFileAsyncWithData:OCMOCK_ANY
+                                                                                   name:OCMOCK_ANY
+                                                                               uniqueId:0]).andReturn([BFTask taskWithResult:sampleFile]);
+    OCMStub([[mockedFileStagingController ignoringNonObjectArgs] stageFileAsyncAtPath:OCMOCK_ANY
+                                                                                 name:OCMOCK_ANY
+                                                                             uniqueId:0]).andReturn([BFTask taskWithResult:sampleFile]);
 
     return mockedFileController;
 }
