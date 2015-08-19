@@ -1,4 +1,7 @@
 Pod::Spec.new do |s|
+  s.deprecated = true
+  s.deprecated_in_favor_of = 'Parse'
+  
   s.name              = 'Parse-OSX'
   s.version           = '1.8.0'
   s.license           =  { :type => 'Commercial', :text => "See https://www.parse.com/about/terms" }

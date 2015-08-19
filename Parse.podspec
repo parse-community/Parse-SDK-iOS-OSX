@@ -8,25 +8,43 @@ Pod::Spec.new do |s|
 
   s.source           = { :git => "https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git", :tag => s.version.to_s }
 
-  s.platform = :ios
+  s.platform = :ios, :osx
   s.ios.deployment_target = '7.0'
+  s.osx.deployment_target = '10.9'
+  
   s.requires_arc = true
 
   s.source_files = 'Parse/*.{h,m}',
                    'Parse/Internal/**/*.{h,m}'
   s.public_header_files = 'Parse/*.h'
+  
+  s.osx.exclude_files = 'Parse/PFNetworkActivityIndicatorManager.{h,m}',
+                        'Parse/PFProduct.{h,m}',
+                        'Parse/PFPurchase.{h,m}',
+                        'Parse/Internal/PFAlertView.{h,m}',
+                        'Parse/Internal/Product/**/*.{h,m}',
+                        'Parse/Internal/Purchase/**/*.{h,m}'
+  
   s.resources = 'Parse/Resources/en.lproj'
 
-  s.frameworks        = 'AudioToolbox',
-                        'CFNetwork',
-                        'CoreGraphics',
-                        'CoreLocation',
-                        'QuartzCore',
-                        'Security',
-                        'StoreKit',
-                        'SystemConfiguration'
-  s.weak_frameworks   = 'Accounts',
-                        'Social'
+  s.ios.frameworks        = 'AudioToolbox',
+                            'CFNetwork',
+                            'CoreGraphics',
+                            'CoreLocation',
+                            'QuartzCore',
+                            'Security',
+                            'StoreKit',
+                            'SystemConfiguration'
+  s.ios.weak_frameworks   = 'Accounts',
+                            'Social'
+  s.osx.frameworks = 'ApplicationServices',
+                     'CFNetwork',
+                     'CoreGraphics',
+                     'CoreLocation',
+                     'QuartzCore',
+                     'Security',
+                     'SystemConfiguration'
+                            
   s.libraries        = 'z', 'sqlite3'
 
   s.dependency 'Bolts/Tasks', '>= 1.2.0'
