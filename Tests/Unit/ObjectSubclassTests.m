@@ -147,12 +147,12 @@
 
 - (void)testSubclassConstructor {
     PFObject *theFlash = [PFObject objectWithClassName:@"Person"];
-    XCTAssertFalse([theFlash isKindOfClass:[TheFlash class]], @"We're living the past.");
+    XCTAssertFalse([theFlash isKindOfClass:[TheFlash class]]);
 
     [TheFlash registerSubclass];
     theFlash = [PFObject objectWithClassName:@"Person"];
-    XCTAssertTrue([theFlash isKindOfClass:[TheFlash class]], @"In the future, everyone is the Flash.");
-    XCTAssertEqualObjects(@"The Flash", [(TheFlash*)theFlash flashName], @"The Flash's name should be The Flash, duh.");
+    XCTAssertTrue([theFlash isKindOfClass:[TheFlash class]]);
+    XCTAssertEqualObjects(@"The Flash", [(TheFlash*)theFlash flashName]);
 }
 
 - (void)testSubclassesMustHaveTheirParentsParseClassName {
@@ -162,8 +162,7 @@
 
 - (void)testDirtyPointerDetection {
     [ClassWithDirtyingConstructor registerSubclass];
-    XCTAssertThrows([ClassWithDirtyingConstructor objectWithoutDataWithObjectId:@"NotUsed"],
-                    @"ClassWithDirtyingConstructor has an invalid init method");
+    XCTAssertThrows([ClassWithDirtyingConstructor objectWithoutDataWithObjectId:@"NotUsed"]);
     [PFObject unregisterSubclass:[ClassWithDirtyingConstructor class]];
 }
 

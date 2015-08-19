@@ -69,20 +69,19 @@
                                        @"object" : object };
     PFObject *object2 = [PFObject objectWithClassName:@"Test" dictionary:validDictionary];
     XCTAssertNotNil(object2);
-    XCTAssertEqualObjects(string, object2[@"string"], @"'string' should be set via constructor");
-    XCTAssertEqualObjects(number, object2[@"number"], @"'number' should be set via constructor");
-    XCTAssertEqualObjects(date, object2[@"date"], @"'date' should be set via constructor");
-    XCTAssertEqualObjects(object, object2[@"object"], @"'object' should be set via constructor");
-    XCTAssertEqualObjects(null, object2[@"null"], @"'null' should be set via constructor");
-    XCTAssertEqualObjects(data, object2[@"data"], @"'data' should be set via constructor");
+    XCTAssertEqualObjects(string, object2[@"string"]);
+    XCTAssertEqualObjects(number, object2[@"number"]);
+    XCTAssertEqualObjects(date, object2[@"date"]);
+    XCTAssertEqualObjects(object, object2[@"object"]);
+    XCTAssertEqualObjects(null, object2[@"null"]);
+    XCTAssertEqualObjects(data, object2[@"data"]);
 
     validDictionary = @{ @"array" : @[ object, object2 ],
                          @"dictionary" : @{@"bar" : date, @"score" : number} };
     PFObject *object3 = [PFObject objectWithClassName:@"Stuff" dictionary:validDictionary];
     XCTAssertNotNil(object3);
-    XCTAssertEqualObjects(validDictionary[@"array"], object3[@"array"], @"'array' should be set via constructor");
-    XCTAssertEqualObjects(validDictionary[@"dictionary"], object3[@"dictionary"],
-                         @"'dictionary' should be set via constructor");
+    XCTAssertEqualObjects(validDictionary[@"array"], object3[@"array"]);
+    XCTAssertEqualObjects(validDictionary[@"dictionary"], object3[@"dictionary"]);
 
     // Dictionary constructor relise on constraints enforced by PFObject -setObject:forKey:
     NSDictionary *invalidDictionary = @{ @"1" : @"2",

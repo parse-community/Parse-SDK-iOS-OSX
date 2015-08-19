@@ -21,8 +21,7 @@
 ///--------------------------------------
 
 - (void)testConstructorsClassNameValidation {
-    PFAssertThrowsInvalidArgumentException([[PFUser alloc] initWithClassName:@"notuserclass"],
-                                           @"Should throw an exception for invalid classname");
+    PFAssertThrowsInvalidArgumentException([[PFUser alloc] initWithClassName:@"notuserclass"]);
 }
 
 - (void)testImmutableFieldsCannotBeChanged {
