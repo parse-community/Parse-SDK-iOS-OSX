@@ -244,6 +244,7 @@
     [[session performDataURLRequestAsync:mockedURLRequest forCommand:mockedCommand cancellationToken:nil]
      continueWithBlock:^id(BFTask *task) {
          XCTAssertEqualObjects(expectedError, task.error.userInfo[@"originalError"]);
+         XCTAssertEqualObjects(expectedError, task.error.userInfo[NSUnderlyingErrorKey]);
          [expectation fulfill];
          return nil;
      }];
