@@ -7,9 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <ParseOSX/Parse.h>
-
 #import "AppDelegate.h"
+
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
 

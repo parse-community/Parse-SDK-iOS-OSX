@@ -9,11 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
 #import <Parse/PFPush.h>
-#else
-#import <ParseOSX/PFPush.h>
-#endif
 
 #import "PFMacros.h"
 

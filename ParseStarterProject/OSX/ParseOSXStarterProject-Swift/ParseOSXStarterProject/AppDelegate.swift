@@ -10,7 +10,7 @@
 import Cocoa
 
 import Bolts
-import ParseOSX
+import Parse
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

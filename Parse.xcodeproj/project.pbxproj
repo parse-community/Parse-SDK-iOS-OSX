@@ -599,7 +599,7 @@
 		81BF4ABD1B0BF64B00A3D75B /* PFCurrentConfigController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81BF4ABA1B0BF64B00A3D75B /* PFCurrentConfigController.h */; };
 		81BF4ABE1B0BF64B00A3D75B /* PFCurrentConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BF4ABB1B0BF64B00A3D75B /* PFCurrentConfigController.m */; };
 		81BF4ABF1B0BF64B00A3D75B /* PFCurrentConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BF4ABB1B0BF64B00A3D75B /* PFCurrentConfigController.m */; };
-		81C09F891AF97EA70043B49C /* ParseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97010FAC1630B18F00AB761E /* ParseOSX.framework */; };
+		81C09F891AF97EA70043B49C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97010FAC1630B18F00AB761E /* Parse.framework */; };
 		81C09F8D1AF9816D0043B49C /* Bolts.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8103FA44198FC267000BAE3F /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		81C1EE491AE1EF960031C438 /* PFWeakValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C1EE471AE1EF960031C438 /* PFWeakValue.h */; };
 		81C1EE4A1AE1EF960031C438 /* PFWeakValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1EE481AE1EF960031C438 /* PFWeakValue.m */; };
@@ -754,7 +754,6 @@
 		81EEE1B21B446D600087AC4D /* PFCurrentUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EEE1AF1B446D600087AC4D /* PFCurrentUserController.m */; };
 		81EEE1B31B446D600087AC4D /* PFCurrentUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EEE1AF1B446D600087AC4D /* PFCurrentUserController.m */; };
 		81F0E88E19E6F7D600812A88 /* Parse.h in Headers */ = {isa = PBXBuildFile; fileRef = 09EEA12D1434FB1F00E3A3FA /* Parse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		81F0E88F19E6F7DB00812A88 /* ParseOSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 971AC55C1716405A00A4EB71 /* ParseOSX.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81F0E89019E6F83E00812A88 /* PFACL.h in Headers */ = {isa = PBXBuildFile; fileRef = 64C47802147336C70092082F /* PFACL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81F0E89119E6F83E00812A88 /* PFAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9739513816B9D28E0010B884 /* PFAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81F0E89219E6F83E00812A88 /* PFAnonymousUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 638CBBB415191435004F54E4 /* PFAnonymousUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -919,6 +918,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		811167461B8402DA003CB026 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09D33641139C54930098E916 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97010FAB1630B18F00AB761E;
+			remoteInfo = "Parse-OSX";
+		};
+		8111674B1B8402DF003CB026 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09D33641139C54930098E916 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81C3821B19CCA89E0066284A;
+			remoteInfo = "Parse-iOS";
+		};
 		81493A991A0D3CE3008D5504 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 09D33641139C54930098E916 /* Project object */;
@@ -1467,9 +1480,8 @@
 		91DF24941A09BAF100CFC7D4 /* PFPinningEventuallyQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPinningEventuallyQueue.h; sourceTree = "<group>"; };
 		91DF24951A09BAF100CFC7D4 /* PFPinningEventuallyQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPinningEventuallyQueue.m; sourceTree = "<group>"; };
 		91DF24981A0B0FF200CFC7D4 /* PFEventuallyQueue_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFEventuallyQueue_Private.h; sourceTree = "<group>"; };
-		97010FAC1630B18F00AB761E /* ParseOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		97010FAC1630B18F00AB761E /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		970110191630B1FE00AB761E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		971AC55C1716405A00A4EB71 /* ParseOSX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParseOSX.h; sourceTree = "<group>"; };
 		9739513816B9D28E0010B884 /* PFAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAnalytics.h; sourceTree = "<group>"; };
 		9739513916B9D28E0010B884 /* PFAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAnalytics.m; sourceTree = "<group>"; };
 		97A3EA0C161FB6A9007A96B2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1560,7 +1572,7 @@
 			files = (
 				81AB68C61B7E7F250053210E /* OCMock.framework in Frameworks */,
 				F5B0B3171B44A2CA00F3EBC4 /* StoreKit.framework in Frameworks */,
-				81C09F891AF97EA70043B49C /* ParseOSX.framework in Frameworks */,
+				81C09F891AF97EA70043B49C /* Parse.framework in Frameworks */,
 				815868E21AF9818D009A5751 /* Bolts.framework in Frameworks */,
 				F5B0B3161B44A22300F3EBC4 /* SystemConfiguration.framework in Frameworks */,
 			);
@@ -1594,7 +1606,6 @@
 			children = (
 				09809FAE1434F98C00EC3E74 /* Internal */,
 				09809FB81434F98C00EC3E74 /* Resources */,
-				97DE04271631E686007154E8 /* OSX */,
 				09EEA12D1434FB1F00E3A3FA /* Parse.h */,
 				09EEA12E1434FB1F00E3A3FA /* Parse.m */,
 				64C47802147336C70092082F /* PFACL.h */,
@@ -1762,7 +1773,7 @@
 		09D3364B139C54940098E916 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				97010FAC1630B18F00AB761E /* ParseOSX.framework */,
+				97010FAC1630B18F00AB761E /* Parse.framework */,
 				81C3821C19CCA89E0066284A /* Parse.framework */,
 				816F449B1A8E8933009CDB32 /* ParseUnitTests-iOS.xctest */,
 				81C09F861AF97A490043B49C /* ParseUnitTests-OSX.xctest */,
@@ -2940,14 +2951,6 @@
 			path = CurrentUserController;
 			sourceTree = "<group>";
 		};
-		97DE04271631E686007154E8 /* OSX */ = {
-			isa = PBXGroup;
-			children = (
-				971AC55C1716405A00A4EB71 /* ParseOSX.h */,
-			);
-			path = OSX;
-			sourceTree = "<group>";
-		};
 		F50C66301B33A6CE001941A6 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
@@ -3380,7 +3383,6 @@
 				81D0EE9A19B0A2060000AE75 /* PFKeychainStore.h in Headers */,
 				81BF4AB71B0BF3E500A3D75B /* PFConfigController.h in Headers */,
 				F515355A1B57573700C49F56 /* PFDefaultACLController.h in Headers */,
-				81F0E88F19E6F7DB00812A88 /* ParseOSX.h in Headers */,
 				8119C9981A76E28F0085B516 /* PFNetworkCommand.h in Headers */,
 				8166FCDE1B503914003841A2 /* PFAnonymousAuthenticationProvider.h in Headers */,
 				81CD665B1B4DA5BA0042FC0B /* PFInstallationController.h in Headers */,
@@ -3537,6 +3539,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8111674C1B8402DF003CB026 /* PBXTargetDependency */,
 				81AB68C21B7E7EEA0053210E /* PBXTargetDependency */,
 			);
 			name = "ParseUnitTests-iOS";
@@ -3556,6 +3559,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				811167471B8402DA003CB026 /* PBXTargetDependency */,
 				81AB68C81B7E7F2A0053210E /* PBXTargetDependency */,
 			);
 			name = "ParseUnitTests-OSX";
@@ -3600,7 +3604,7 @@
 			);
 			name = "Parse-OSX";
 			productName = ParseMac;
-			productReference = 97010FAC1630B18F00AB761E /* ParseOSX.framework */;
+			productReference = 97010FAC1630B18F00AB761E /* Parse.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -4287,6 +4291,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		811167471B8402DA003CB026 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97010FAB1630B18F00AB761E /* Parse-OSX */;
+			targetProxy = 811167461B8402DA003CB026 /* PBXContainerItemProxy */;
+		};
+		8111674C1B8402DF003CB026 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81C3821B19CCA89E0066284A /* Parse-iOS */;
+			targetProxy = 8111674B1B8402DF003CB026 /* PBXContainerItemProxy */;
+		};
 		81493A9A1A0D3CE3008D5504 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 81493A931A0D3492008D5504 /* BoltsSDK-OSX */;

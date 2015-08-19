@@ -9,13 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
 #import <Parse/PFConstants.h>
 #import <Parse/PFFile.h>
-#else
-#import <ParseOSX/PFConstants.h>
-#import <ParseOSX/PFFile.h>
-#endif
 
 #import "PFFileState.h"
 

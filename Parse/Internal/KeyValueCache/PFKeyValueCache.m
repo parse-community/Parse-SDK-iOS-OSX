@@ -9,10 +9,6 @@
 
 #import "PFKeyValueCache_Private.h"
 
-#import <Parse_Private.h>
-
-#import <Foundation/Foundation.h>
-
 #import "BFTask+Private.h"
 #import "PFAssert.h"
 #import "PFConstants.h"

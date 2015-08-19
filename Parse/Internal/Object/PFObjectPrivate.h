@@ -9,11 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
-# import <Parse/PFObject.h>
-#else
-# import <ParseOSX/PFObject.h>
-#endif
+#import <Parse/PFObject.h>
 
 #import <Bolts/BFTask.h>
 

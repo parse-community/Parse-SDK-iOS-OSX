@@ -10,7 +10,7 @@
 #include "Shared/Platform/OSX.xcconfig"
 #include "Shared/Product/Framework.xcconfig"
 
-PRODUCT_NAME = ParseOSX
+PRODUCT_NAME = Parse
 
 MACH_O_TYPE = mh_dylib
 DEFINES_MODULE = YES
