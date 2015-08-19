@@ -76,6 +76,7 @@
 		812714891AE6F1270076AE8D /* ParseManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 812714861AE6F1270076AE8D /* ParseManager.h */; };
 		8127148A1AE6F1270076AE8D /* ParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 812714871AE6F1270076AE8D /* ParseManager.m */; };
 		8127148B1AE6F1270076AE8D /* ParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 812714871AE6F1270076AE8D /* ParseManager.m */; };
+		8129E47B1B84265800309634 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AB68BB1B7E7ECC0053210E /* libOCMock.a */; };
 		812B02961B5DE3EE003846EE /* PFURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 812B02921B5DE3EE003846EE /* PFURLSession.h */; };
 		812B02971B5DE3EE003846EE /* PFURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 812B02921B5DE3EE003846EE /* PFURLSession.h */; };
 		812B02981B5DE3EE003846EE /* PFURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 812B02931B5DE3EE003846EE /* PFURLSession.m */; };
@@ -553,7 +554,6 @@
 		81A715A51B423A4100A504FC /* PFObjectUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 81A715A21B423A4100A504FC /* PFObjectUtilities.h */; };
 		81A715A61B423A4100A504FC /* PFObjectUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A715A31B423A4100A504FC /* PFObjectUtilities.m */; };
 		81A715A71B423A4100A504FC /* PFObjectUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A715A31B423A4100A504FC /* PFObjectUtilities.m */; };
-		81AB68C01B7E7EE20053210E /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AB68BF1B7E7ECC0053210E /* OCMock.framework */; };
 		81AB68C61B7E7F250053210E /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AB68B71B7E7ECC0053210E /* OCMock.framework */; };
 		81AB68C91B7E7F460053210E /* OCMock.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 81AB68B71B7E7ECC0053210E /* OCMock.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		81AB68CB1B7E7F970053210E /* OCMock.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 81AB68BF1B7E7ECC0053210E /* OCMock.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -972,13 +972,6 @@
 			containerPortal = 81AB68AE1B7E7ECC0053210E /* OCMock.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = F0B950F11B0080BE00942C38;
-			remoteInfo = "OCMock iOS";
-		};
-		81AB68C11B7E7EEA0053210E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81AB68AE1B7E7ECC0053210E /* OCMock.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F0B950F01B0080BE00942C38;
 			remoteInfo = "OCMock iOS";
 		};
 		81AB68C71B7E7F2A0053210E /* PBXContainerItemProxy */ = {
@@ -1554,7 +1547,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB68C01B7E7EE20053210E /* OCMock.framework in Frameworks */,
+				8129E47B1B84265800309634 /* libOCMock.a in Frameworks */,
 				816F44741A8E8933009CDB32 /* Parse.framework in Frameworks */,
 				F5C42CC71B34C22100C720D8 /* AudioToolbox.framework in Frameworks */,
 				816F44761A8E8933009CDB32 /* StoreKit.framework in Frameworks */,
@@ -4305,11 +4298,6 @@
 			isa = PBXTargetDependency;
 			target = 81493A931A0D3492008D5504 /* BoltsSDK-OSX */;
 			targetProxy = 81493A991A0D3CE3008D5504 /* PBXContainerItemProxy */;
-		};
-		81AB68C21B7E7EEA0053210E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "OCMock iOS";
-			targetProxy = 81AB68C11B7E7EEA0053210E /* PBXContainerItemProxy */;
 		};
 		81AB68C81B7E7F2A0053210E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
