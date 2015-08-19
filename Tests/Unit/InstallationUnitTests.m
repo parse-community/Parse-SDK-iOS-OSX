@@ -31,6 +31,8 @@
                                            @"Should throw an exception for trying to change deviceType.");
     PFAssertThrowsInvalidArgumentException(installation[@"installationId"] = @"a"
                                            @"Should throw an exception for trying to change installationId.");
+    PFAssertThrowsInvalidArgumentException(installation[@"localeIdentifier"] = @"a"
+                                           @"Should throw an exception for trying to change installationId.");
 }
 
 - (void)testInstallationImmutableFieldsCannotBeDeleted {
@@ -40,6 +42,8 @@
     PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"deviceType"],
                                            @"Should throw an exception for trying to delete deviceType.");
     PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"installationId"],
+                                           @"Should throw an exception for trying to delete installationId.");
+    PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"localeIdentifier"],
                                            @"Should throw an exception for trying to delete installationId.");
 }
 
