@@ -108,7 +108,6 @@ static NSSet *protectedKeys;
 @dynamic installationId;
 @dynamic deviceToken;
 @dynamic timeZone;
-@dynamic localeIdentifier;
 @dynamic channels;
 @dynamic badge;
 
@@ -336,8 +335,10 @@ static NSSet *protectedKeys;
         localeIdentifier = language;
     }
 
-    if (localeIdentifier.length > 0 && ![localeIdentifier isEqualToString:self.localeIdentifier]) {
-        self.localeIdentifier = localeIdentifier;
+    NSString *currentLocaleIdentifier = self[PFInstallationKeyLocaleIdentifier];
+    if (localeIdentifier.length > 0 && ![localeIdentifier isEqualToString:currentLocaleIdentifier]) {
+        // Call into super to avoid checking on protected keys.
+        [super setObject:localeIdentifier forKey:PFInstallationKeyLocaleIdentifier];
     }
 }
 
