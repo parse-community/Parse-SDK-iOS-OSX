@@ -1,9 +1,8 @@
 Pod::Spec.new do |s|
-  s.deprecated = true
   s.deprecated_in_favor_of = 'Parse'
   
   s.name              = 'Parse-OSX'
-  s.version           = '1.8.0'
+  s.version           = '1.8.1'
   s.license           =  { :type => 'Commercial', :text => "See https://www.parse.com/about/terms" }
   s.homepage          = 'https://www.parse.com/'
   s.summary           = 'Parse is a complete technology stack to power your app\'s backend.'
