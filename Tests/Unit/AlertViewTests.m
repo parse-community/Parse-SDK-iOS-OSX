@@ -102,7 +102,7 @@
                   cancelButtonTitle:@"Cancel"
                   otherButtonTitles:@[ @"Yes", @"No" ]
                          completion:^(NSUInteger selectedOtherButtonIndex) {
-                             XCTAssertEqual(selectedOtherButtonIndex, -1);
+                             XCTAssertEqual(selectedOtherButtonIndex, NSNotFound);
 
                              [expectation fulfill];
                          }];
@@ -147,7 +147,7 @@
             [delegate alertView:self clickedButtonAtIndex:0];
         });
 
-        OCMStub([mockedAlertView firstOtherButtonIndex]).andReturn(1);
+        OCMStub([mockedAlertView cancelButtonIndex]).andReturn(0);
 
         XCTestExpectation *expectation = [self currentSelectorTestExpectation];
         [PFAlertView showAlertWithTitle:@"Title"
@@ -155,7 +155,7 @@
                       cancelButtonTitle:@"Cancel"
                       otherButtonTitles:@[ @"Yes", @"No" ]
                              completion:^(NSUInteger selectedOtherButtonIndex) {
-                                 XCTAssertEqual(selectedOtherButtonIndex, -1);
+                                 XCTAssertEqual(selectedOtherButtonIndex, NSNotFound);
 
                                  [expectation fulfill];
                              }];
