@@ -556,7 +556,6 @@
 		81A715A71B423A4100A504FC /* PFObjectUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A715A31B423A4100A504FC /* PFObjectUtilities.m */; };
 		81AB68C61B7E7F250053210E /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AB68B71B7E7ECC0053210E /* OCMock.framework */; };
 		81AB68C91B7E7F460053210E /* OCMock.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 81AB68B71B7E7ECC0053210E /* OCMock.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		81AB68CB1B7E7F970053210E /* OCMock.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 81AB68BF1B7E7ECC0053210E /* OCMock.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		81ABC0FE1B5427EC00BA9009 /* PFUserController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81ABC0FC1B5427EC00BA9009 /* PFUserController.h */; };
 		81ABC0FF1B5427EC00BA9009 /* PFUserController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81ABC0FC1B5427EC00BA9009 /* PFUserController.h */; };
 		81ABC1001B5427EC00BA9009 /* PFUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81ABC0FD1B5427EC00BA9009 /* PFUserController.m */; };
@@ -997,7 +996,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				81AB68CB1B7E7F970053210E /* OCMock.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3533,7 +3531,6 @@
 			);
 			dependencies = (
 				8111674C1B8402DF003CB026 /* PBXTargetDependency */,
-				81AB68C21B7E7EEA0053210E /* PBXTargetDependency */,
 			);
 			name = "ParseUnitTests-iOS";
 			productName = ParseTests;
