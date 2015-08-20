@@ -153,13 +153,15 @@
     PFPurchaseController *mockedPurchaseController = [self mockedPurchaseController];
     [Parse _currentManager].purchaseController = mockedPurchaseController;
 
+    PFProduct *product = [PFProduct object];
+
     NSString *somePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
 
     OCMStub([mockedPurchaseController assetContentPathForProductWithIdentifier:OCMOCK_ANY
                                                                       fileName:OCMOCK_ANY]).andReturn(somePath);
 
 
-    XCTAssertNil([PFPurchase assetContentPathForProduct:nil]);
+    XCTAssertNil([PFPurchase assetContentPathForProduct:product]);
 
     NSError *error;
     [@"" writeToFile:somePath atomically:YES
@@ -167,7 +169,7 @@
                error:&error];
 
     XCTAssertNil(error);
-    XCTAssertNotNil([PFPurchase assetContentPathForProduct:nil]);
+    XCTAssertNotNil([PFPurchase assetContentPathForProduct:product]);
 }
 
 @end
