@@ -9,6 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Bolts/BFTask.h>
+
 #import <Parse/PFObject.h>
 #import <Parse/PFSubclassing.h>
 

@@ -9,11 +9,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Bolts/BFTask.h>
+
 #import <Parse/PFConstants.h>
 
 PF_ASSUME_NONNULL_BEGIN
-
-@class BFTask;
 
 /*!
  `PFAnalytics` provides an interface to Parse's logging and analytics backend.

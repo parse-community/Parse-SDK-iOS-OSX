@@ -9,9 +9,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Bolts/BFTask.h>
+
 #import <Parse/PFConstants.h>
 
-@class BFTask;
 @class PFQuery;
 
 /*!

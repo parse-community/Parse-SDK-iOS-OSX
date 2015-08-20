@@ -9,13 +9,14 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Bolts/BFTask.h>
+
 #import <Parse/PFACL.h>
 #import <Parse/PFConstants.h>
 
 PF_ASSUME_NONNULL_BEGIN
 
 @protocol PFSubclassing;
-@class BFTask;
 @class PFRelation;
 
 /*!

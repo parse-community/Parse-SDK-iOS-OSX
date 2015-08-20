@@ -9,7 +9,6 @@
 
 import Cocoa
 
-import Bolts
 import Parse
 
 @NSApplicationMain
