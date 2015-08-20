@@ -9,11 +9,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Bolts/BFTask.h>
+
 #import <Parse/PFNullability.h>
 
 PF_ASSUME_NONNULL_BEGIN
 
-@class BFTask;
 @class PFConfig;
 
 typedef void(^PFConfigResultBlock)(PFConfig *PF_NULLABLE_S config, NSError *PF_NULLABLE_S error);

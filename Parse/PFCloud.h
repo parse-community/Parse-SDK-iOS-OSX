@@ -9,11 +9,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Bolts/BFTask.h>
+
 #import <Parse/PFConstants.h>
 
 PF_ASSUME_NONNULL_BEGIN
-
-@class BFTask;
 
 /*!
  The `PFCloud` class provides methods for interacting with Parse Cloud Functions.

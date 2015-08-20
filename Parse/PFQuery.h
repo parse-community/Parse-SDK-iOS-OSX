@@ -9,14 +9,14 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Bolts/BFTask.h>
+
 #import <Parse/PFConstants.h>
 #import <Parse/PFGeoPoint.h>
 #import <Parse/PFObject.h>
 #import <Parse/PFUser.h>
 
 PF_ASSUME_NONNULL_BEGIN
-
-@class BFTask;
 
 /*!
  The `PFQuery` class defines a query that is used to query for <PFObject>s.
