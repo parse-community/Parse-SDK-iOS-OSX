@@ -297,8 +297,7 @@ namespace :test do
 
   desc 'Run Podspec Lint'
   task :podspecs do |_|
-    podspecs = ['Parse.podspec',
-                'Parse-OSX.podspec']
+    podspecs = ['Parse.podspec']
     results = []
     podspecs.each do |podspec|
       results << system("pod lib lint #{podspec} --verbose")
