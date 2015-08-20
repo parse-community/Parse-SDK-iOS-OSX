@@ -17,23 +17,26 @@
 #import "PFCommandResult.h"
 #import "PFCommandRunning.h"
 #import "PFFileManager.h"
+#import "PFFileStagingController.h"
 #import "PFFileState.h"
 #import "PFHash.h"
 #import "PFMacros.h"
 #import "PFRESTFileCommand.h"
 
 static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
-static NSString *const PFFileControllerStagingDirectoryName_ = @"PFFileStaging";
 
 @interface PFFileController () {
     NSMutableDictionary *_downloadTasks; // { "urlString" : BFTask }
     NSMutableDictionary *_downloadProgressBlocks; // { "urlString" : [ block1, block2 ] }
     dispatch_queue_t _downloadDataAccessQueue;
+    dispatch_queue_t _fileStagingControllerAccessQueue;
 }
 
 @end
 
 @implementation PFFileController
+
+@synthesize fileStagingController = _fileStagingController;
 
 ///--------------------------------------
 #pragma mark - Init
@@ -52,12 +55,28 @@ static NSString *const PFFileControllerStagingDirectoryName_ = @"PFFileStaging";
     _downloadTasks = [NSMutableDictionary dictionary];
     _downloadProgressBlocks = [NSMutableDictionary dictionary];
     _downloadDataAccessQueue = dispatch_queue_create("com.parse.fileController.download", DISPATCH_QUEUE_SERIAL);
+    _fileStagingControllerAccessQueue = dispatch_queue_create("com.parse.filestaging.controller.access", DISPATCH_QUEUE_SERIAL);
 
     return self;
 }
 
 + (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource {
     return [[self alloc] initWithDataSource:dataSource];
+}
+
+///--------------------------------------
+#pragma mark - Properties
+///--------------------------------------
+
+- (PFFileStagingController *)fileStagingController {
+    __block PFFileStagingController *result = nil;
+    dispatch_sync(_fileStagingControllerAccessQueue, ^{
+        if (!_fileStagingController) {
+            _fileStagingController = [PFFileStagingController controllerWithDataSource:self.dataSource];
+        }
+        result = _fileStagingController;
+    });
+    return result;
 }
 
 ///--------------------------------------
@@ -242,17 +261,6 @@ static NSString *const PFFileControllerStagingDirectoryName_ = @"PFFileStaging";
 - (BFTask *)clearFileCacheAsync {
     NSString *path = [self cacheFilesDirectoryPath];
     return [PFFileManager removeDirectoryContentsAsyncAtPath:path];
-}
-
-///--------------------------------------
-#pragma mark - Staging
-///--------------------------------------
-
-- (NSString *)stagedFilesDirectoryPath {
-    NSString *folderPath = [self.dataSource.fileManager parseLocalSandboxDataDirectoryPath];
-    NSString *path = [folderPath stringByAppendingPathComponent:PFFileControllerStagingDirectoryName_];
-    [[PFFileManager createDirectoryIfNeededAsyncAtPath:path] waitForResult:nil withMainThreadWarning:NO];
-    return path;
 }
 
 @end

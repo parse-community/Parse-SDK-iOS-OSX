@@ -19,6 +19,7 @@
 #import "PFCoreManager.h"
 #import "PFFileController.h"
 #import "PFFileManager.h"
+#import "PFFileStagingController.h"
 #import "PFInternalUtils.h"
 #import "PFMacros.h"
 #import "PFMutableFileState.h"
@@ -80,16 +81,8 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
     PFParameterAssert(length <= PFFileMaxFileSize, @"PFFile cannot be larger than %lli bytes", PFFileMaxFileSize);
 
     PFFile *file = [self fileWithName:name url:nil];
-    if (file) {
-        // Copy the file write away, since we can construct staged file path only from a PFFile.
-        NSError *copyError = nil;
-        [fileManager copyItemAtPath:path toPath:file.stagedFilePath error:&copyError];
-        if (copyError) {
-            if (error) {
-                *error = copyError;
-            }
-            return nil;
-        }
+    if (![file _stageWithPath:path error:error]) {
+        return nil;
     }
     return file;
 }
@@ -111,17 +104,7 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
                       @"PFFile cannot be larger than %llu bytes", PFFileMaxFileSize);
 
     PFFile *file = [[self alloc] initWithName:name urlString:nil mimeType:contentType];
-
-    // Save the file write away, since we can construct staged file path only from a PFFile.
-    NSError *writeError = nil;
-    [[PFFileManager writeDataAsync:data toFile:file.stagedFilePath]
-     waitForResult:&writeError
-     withMainThreadWarning:NO];
-
-    if (writeError) {
-        if (error) {
-            *error = writeError;
-        }
+    if (![file _stageWithData:data error:error]) {
         return nil;
     }
     return file;
@@ -427,6 +410,36 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
     return [NSInputStream inputStreamWithFileAtPath:filePath];
 }
 
+///--------------------------------------
+#pragma mark - Staging
+///--------------------------------------
+
+- (BOOL)_stageWithData:(NSData *)data error:(NSError **)error {
+    __block BOOL result = NO;
+    [self _performDataAccessBlock:^{
+        _stagedFilePath = [[[[self class] fileController].fileStagingController stageFileAsyncWithData:data
+                                                                                                  name:self.state.name
+                                                                                              uniqueId:(uintptr_t)self]
+                           waitForResult:error withMainThreadWarning:NO];
+
+        result = (_stagedFilePath != nil);
+    }];
+    return result;
+}
+
+- (BOOL)_stageWithPath:(NSString *)path error:(NSError **)error {
+    __block BOOL result = NO;
+    [self _performDataAccessBlock:^{
+        _stagedFilePath = [[[[self class] fileController].fileStagingController stageFileAsyncAtPath:path
+                                                                                                name:self.state.name
+                                                                                            uniqueId:(uintptr_t)self]
+                           waitForResult:error withMainThreadWarning:NO];
+
+        result = (_stagedFilePath != nil);
+    }];
+    return result;
+}
+
 #pragma mark Data Access
 
 - (NSString *)name {
@@ -467,22 +480,6 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
         state = self.state;
     }];
     return state;
-}
-
-- (NSString *)stagedFilePath {
-    // Construct a path in PFFile instead of PFFileController, because we need a pointer to PFFile itself.
-    __block NSString *path = nil;
-    @weakify(self);
-    [self _performDataAccessBlock:^{
-        @strongify(self);
-        if (!_stagedFilePath) {
-            NSString *filename = [NSString stringWithFormat:@"%p_%@", self, self.state.name];
-            NSString *stagedDirectoryPath = [[self class] fileController].stagedFilesDirectoryPath;
-            _stagedFilePath = [stagedDirectoryPath stringByAppendingPathComponent:filename];
-        }
-        path = _stagedFilePath;
-    }];
-    return path;
 }
 
 #pragma mark Progress

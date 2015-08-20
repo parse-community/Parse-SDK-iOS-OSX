@@ -16,13 +16,15 @@
 @class BFCancellationToken;
 @class BFTask;
 @class PFFileState;
+@class PFFileStagingController;
 
 @interface PFFileController : NSObject
 
 @property (nonatomic, weak, readonly) id<PFCommandRunnerProvider, PFFileManagerProvider> dataSource;
 
+@property (nonatomic, strong, readonly) PFFileStagingController *fileStagingController;
+
 @property (nonatomic, copy, readonly) NSString *cacheFilesDirectoryPath;
-@property (nonatomic, copy, readonly) NSString *stagedFilesDirectoryPath;
 
 ///--------------------------------------
 /// @name Init
