@@ -44,6 +44,7 @@
     id mockedApplication = PFStrictClassMock([UIApplication class]);
     UIWindow *mockedWindow = PFStrictClassMock([UIWindow class]);
     UIViewController *mockedViewController = PFStrictClassMock([UIViewController class]);
+    OCMStub(mockedViewController.presentedViewController).andReturn(nil);
 
     // Using .andReturn() here will result in a retain cycle, which will cause our mocked shared application to
     // persist across tests.

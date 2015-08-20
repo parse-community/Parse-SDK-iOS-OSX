@@ -52,6 +52,9 @@
 
         UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
         UIViewController *viewController = keyWindow.rootViewController;
+        while (viewController.presentedViewController) {
+            viewController = viewController.presentedViewController;
+        }
 
         [viewController presentViewController:alertController animated:YES completion:nil];
     } else {
