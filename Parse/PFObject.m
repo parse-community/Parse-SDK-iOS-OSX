@@ -2313,6 +2313,38 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
     }
 }
 
+- (void)revert {
+    @synchronized (self.lock) {
+        if ([self isDirty]) {
+            NSMutableSet *persistentKeys = [NSMutableSet setWithArray:[self._state.serverData allKeys]];
+
+            PFOperationSet *unsavedChanges = [self unsavedChanges];
+            for (PFOperationSet *operationSet in operationSetQueue) {
+                if (operationSet != unsavedChanges) {
+                    [persistentKeys addObjectsFromArray:[operationSet.keyEnumerator allObjects]];
+                }
+            }
+
+            [unsavedChanges removeAllObjects];
+            [_availableKeys intersectSet:persistentKeys];
+
+            [self rebuildEstimatedData];
+            [self checkpointAllMutableContainers];
+        }
+    }
+}
+
+- (void)revertObjectForKey:(NSString *)key {
+    @synchronized (self.lock) {
+        if ([self isDirtyForKey:key]) {
+            [[self unsavedChanges] removeObjectForKey:key];
+            [self rebuildEstimatedData];
+            [_availableKeys removeObject:key];
+            [self checkpointAllMutableContainers];
+        }
+    }
+}
+
 #pragma mark Relations
 
 - (PFRelation *)relationforKey:(NSString *)key {

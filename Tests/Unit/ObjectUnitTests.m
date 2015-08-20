@@ -10,6 +10,7 @@
 #import "PFObject.h"
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
+#import "PFObjectPrivate.h"
 
 @interface ObjectUnitTests : PFUnitTestCase
 
@@ -186,7 +187,7 @@
 
 - (void)testFetchObjectWithoutObjectIdError {
     PFObject *object = [PFObject objectWithClassName:@"Test"];
-    
+
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[object fetchInBackground] continueWithBlock:^id(BFTask *task) {
         XCTAssertNotNil(task.error);
@@ -196,6 +197,33 @@
         return nil;
     }];
     [self waitForTestExpectations];
+}
+
+#pragma mark Revert
+
+- (void)testRevert {
+    NSDate *date = [NSDate date];
+    NSNumber *number = @0.75;
+    PFObject *object = [PFObject _objectFromDictionary:@{ @"yarr" : date,
+                                                          @"score": number }
+                                      defaultClassName:@"Test" completeData:YES];
+    object[@"yarr"] = @"yolo";
+    [object revert];
+    XCTAssertEqualObjects(object[@"yarr"], date);
+    XCTAssertEqualObjects(object[@"score"], number);
+}
+
+- (void)testRevertObjectForKey {
+    NSDate *date = [NSDate date];
+    NSNumber *number = @0.75;
+    PFObject *object = [PFObject _objectFromDictionary:@{ @"yarr" : date,
+                                                          @"score" : @1.0 }
+                                      defaultClassName:@"Test" completeData:YES];
+    object[@"yarr"] = @"yolo";
+    object[@"score"] = number;
+    [object revertObjectForKey:@"yarr"];
+    XCTAssertEqualObjects(object[@"yarr"], date);
+    XCTAssertEqualObjects(object[@"score"], number);
 }
 
 @end
