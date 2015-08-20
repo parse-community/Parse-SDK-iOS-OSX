@@ -28,6 +28,6 @@ extern const double EARTH_RADIUS_KILOMETERS;
 /*!
  Creates an GeoPoint from its encoded format.
  */
-+ (PFGeoPoint *)geoPointWithDictionary:(NSDictionary *)dictionary;
++ (instancetype)geoPointWithDictionary:(NSDictionary *)dictionary;
 
 @end
