@@ -26,17 +26,17 @@ const double EARTH_RADIUS_KILOMETERS = 6371.0;
 #pragma mark - Init
 ///--------------------------------------
 
-+ (PFGeoPoint *)geoPoint {
++ (instancetype)geoPoint {
     return [[self alloc] init];
 }
 
-+ (PFGeoPoint *)geoPointWithLocation:(CLLocation *)location {
++ (instancetype)geoPointWithLocation:(CLLocation *)location {
     return [self geoPointWithLatitude:location.coordinate.latitude
                             longitude:location.coordinate.longitude];
 }
 
-+ (PFGeoPoint *)geoPointWithLatitude:(double)latitude longitude:(double)longitude {
-    PFGeoPoint *gpt = [PFGeoPoint geoPoint];
++ (instancetype)geoPointWithLatitude:(double)latitude longitude:(double)longitude {
+    PFGeoPoint *gpt = [self geoPoint];
     gpt.latitude = latitude;
     gpt.longitude = longitude;
     return gpt;
@@ -111,7 +111,7 @@ static NSString *const PFGeoPointCodingLongitudeKey = @"longitude";
              };
 }
 
-+ (PFGeoPoint *)geoPointWithDictionary:(NSDictionary *)dictionary {
++ (instancetype)geoPointWithDictionary:(NSDictionary *)dictionary {
     return [[self alloc] initWithEncodedDictionary:dictionary];
 }
 
