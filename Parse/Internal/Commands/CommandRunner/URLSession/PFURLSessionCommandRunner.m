@@ -30,6 +30,10 @@
 #import "PFURLConstructor.h"
 #import "PFURLSession.h"
 
+@interface PFURLSessionCommandRunner () <PFURLSessionDelegate>
+
+@end
+
 @implementation PFURLSessionCommandRunner
 
 @synthesize applicationId = _applicationId;
@@ -49,7 +53,7 @@
                          clientKey:(NSString *)clientKey {
     NSURLSessionConfiguration *configuration = [[self class] _urlSessionConfigurationForApplicationId:applicationId
                                                                                             clientKey:clientKey];
-    PFURLSession *session = [PFURLSession sessionWithConfiguration:configuration];
+    PFURLSession *session = [PFURLSession sessionWithConfiguration:configuration delegate:self];
     PFCommandURLRequestConstructor *constructor = [PFCommandURLRequestConstructor constructorWithDataSource:dataSource];
     self = [self initWithDataSource:dataSource
                             session:session
@@ -235,6 +239,28 @@
     configuration.HTTPAdditionalHeaders = headers;
 
     return configuration;
+}
+
+///--------------------------------------
+#pragma mark - PFURLSessionDelegate
+///--------------------------------------
+
+- (void)urlSession:(PFURLSession *)session willPerformURLRequest:(NSURLRequest *)request {
+    NSDictionary *userInfo = @{ PFCommandRunnerNotificationURLRequestUserInfoKey : request };
+    [[NSNotificationCenter defaultCenter] postNotificationName:PFCommandRunnerWillSendURLRequestNotification
+                                                        object:self
+                                                      userInfo:userInfo];
+}
+
+- (void)urlSession:(PFURLSession *)session didPerformURLRequest:(NSURLRequest *)request withURLResponse:(nullable NSURLResponse *)response {
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+    userInfo[PFCommandRunnerNotificationURLRequestUserInfoKey] = request;
+    if (response) {
+        userInfo[PFCommandRunnerNotificationURLResponseUserInfoKey] = response;
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:PFCommandRunnerDidReceiveURLResponseNotification
+                                                        object:self
+                                                      userInfo:userInfo];
 }
 
 @end
