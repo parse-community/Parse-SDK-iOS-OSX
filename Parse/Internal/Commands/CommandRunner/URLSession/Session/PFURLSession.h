@@ -17,15 +17,29 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class PFURLSession;
+
+@protocol PFURLSessionDelegate <NSObject>
+
+- (void)urlSession:(PFURLSession *)session willPerformURLRequest:(NSURLRequest *)request;
+- (void)urlSession:(PFURLSession *)session didPerformURLRequest:(NSURLRequest *)request withURLResponse:(nullable NSURLResponse *)response;
+
+@end
+
 @interface PFURLSession : NSObject
+
+@property (nonatomic, weak, readonly) id<PFURLSessionDelegate> delegate;
 
 ///--------------------------------------
 /// @name Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithConfiguration:(NSURLSessionConfiguration *)configuration NS_DESIGNATED_INITIALIZER;
-+ (instancetype)sessionWithConfiguration:(NSURLSessionConfiguration *)configuration;
+- (instancetype)initWithConfiguration:(NSURLSessionConfiguration *)configuration
+                             delegate:(id<PFURLSessionDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+
++ (instancetype)sessionWithConfiguration:(NSURLSessionConfiguration *)configuration
+                                delegate:(id<PFURLSessionDelegate>)delegate;
 
 ///--------------------------------------
 /// @name Teardown
@@ -51,7 +65,6 @@ NS_ASSUME_NONNULL_BEGIN
                                   toFileAtPath:(NSString *)filePath
                          withCancellationToken:(nullable BFCancellationToken *)cancellationToken
                                  progressBlock:(nullable PFProgressBlock)progressBlock;
-
 
 @end
 
