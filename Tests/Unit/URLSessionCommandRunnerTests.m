@@ -54,6 +54,7 @@
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
     id mockedSession = PFStrictClassMock([PFURLSession class]);
     id mockedRequestConstructor = PFStrictClassMock([PFCommandURLRequestConstructor class]);
+    id mockedNotificationCenter = PFStrictClassMock([NSNotificationCenter class]);
 
     id mockedCommand = PFStrictClassMock([PFRESTCommand class]);
     id mockedCommandResult = PFStrictClassMock([PFCommandResult class]);
@@ -71,7 +72,8 @@
 
     PFURLSessionCommandRunner *commandRunner = [[PFURLSessionCommandRunner alloc] initWithDataSource:mockedDataSource
                                                                                              session:mockedSession
-                                                                                  requestConstructor:mockedRequestConstructor];
+                                                                                  requestConstructor:mockedRequestConstructor
+                                                                                  notificationCenter:mockedNotificationCenter];
 
     XCTestExpectation *expecatation = [self currentSelectorTestExpectation];
     [[commandRunner runCommandAsync:mockedCommand withOptions:0] continueWithBlock:^id(BFTask *task) {
@@ -89,6 +91,7 @@
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
     id mockedSession = PFStrictClassMock([PFURLSession class]);
     id mockedRequestConstructor = PFStrictClassMock([PFCommandURLRequestConstructor class]);
+    id mockedNotificationCenter = PFStrictClassMock([NSNotificationCenter class]);
 
     id mockedCommand = PFStrictClassMock([PFRESTCommand class]);
 
@@ -96,7 +99,8 @@
 
     PFURLSessionCommandRunner *commandRunner = [[PFURLSessionCommandRunner alloc] initWithDataSource:mockedDataSource
                                                                                              session:mockedSession
-                                                                                  requestConstructor:mockedRequestConstructor];
+                                                                                  requestConstructor:mockedRequestConstructor
+                                                                                  notificationCenter:mockedNotificationCenter];
 
     BFCancellationTokenSource *cancellationToken = [BFCancellationTokenSource cancellationTokenSource];
     [cancellationToken cancel];
@@ -117,6 +121,7 @@
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
     id mockedSession = PFStrictClassMock([PFURLSession class]);
     id mockedRequestConstructor = PFStrictClassMock([PFCommandURLRequestConstructor class]);
+    id mockedNotificationCenter = PFStrictClassMock([NSNotificationCenter class]);
 
     id mockedCommand = PFStrictClassMock([PFRESTCommand class]);
 
@@ -140,7 +145,8 @@
 
     PFURLSessionCommandRunner *commandRunner = [[PFURLSessionCommandRunner alloc] initWithDataSource:mockedDataSource
                                                                                              session:mockedSession
-                                                                                  requestConstructor:mockedRequestConstructor];
+                                                                                  requestConstructor:mockedRequestConstructor
+                                                                                  notificationCenter:mockedNotificationCenter];
     commandRunner.initialRetryDelay = DBL_MIN; // Lets not needlessly sleep here.
 
     XCTestExpectation *expecatation = [self currentSelectorTestExpectation];
@@ -162,6 +168,7 @@
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
     id mockedSession = PFStrictClassMock([PFURLSession class]);
     id mockedRequestConstructor = PFStrictClassMock([PFCommandURLRequestConstructor class]);
+    id mockedNotificationCenter = PFStrictClassMock([NSNotificationCenter class]);
 
     id mockedCommand = PFStrictClassMock([PFRESTCommand class]);
     id mockedCommandResult = PFStrictClassMock([PFCommandResult class]);
@@ -191,7 +198,8 @@
 
     PFURLSessionCommandRunner *commandRunner = [[PFURLSessionCommandRunner alloc] initWithDataSource:mockedDataSource
                                                                                              session:mockedSession
-                                                                                  requestConstructor:mockedRequestConstructor];
+                                                                                  requestConstructor:mockedRequestConstructor
+                                                                                  notificationCenter:mockedNotificationCenter];
 
     XCTestExpectation *expecatation = [self currentSelectorTestExpectation];
     [[commandRunner runFileUploadCommandAsync:mockedCommand
@@ -213,6 +221,7 @@
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
     id mockedSession = PFStrictClassMock([PFURLSession class]);
     id mockedRequestConstructor = PFStrictClassMock([PFCommandURLRequestConstructor class]);
+    id mockedNotificationCenter = PFStrictClassMock([NSNotificationCenter class]);
 
     id mockedCommand = PFStrictClassMock([PFRESTCommand class]);
     id mockedCommandResult = PFStrictClassMock([PFCommandResult class]);
@@ -230,7 +239,8 @@
 
     PFURLSessionCommandRunner *commandRunner = [[PFURLSessionCommandRunner alloc] initWithDataSource:mockedDataSource
                                                                                              session:mockedSession
-                                                                                  requestConstructor:mockedRequestConstructor];
+                                                                                  requestConstructor:mockedRequestConstructor
+                                                                                  notificationCenter:mockedNotificationCenter];
 
     XCTestExpectation *expecatation = [self currentSelectorTestExpectation];
     [[commandRunner runCommandAsync:mockedCommand withOptions:0] continueWithBlock:^id(BFTask *task) {

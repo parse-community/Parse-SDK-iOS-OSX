@@ -41,17 +41,21 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
     PFNotDesignatedInitializer();
 }
 
-- (instancetype)initWithConfiguration:(NSURLSessionConfiguration *)configuration {
+- (instancetype)initWithConfiguration:(NSURLSessionConfiguration *)configuration
+                             delegate:(id<PFURLSessionDelegate>)delegate {
     // NOTE: cast to id suppresses warning about designated initializer.
     return [(id)self initWithURLSession:[NSURLSession sessionWithConfiguration:configuration
                                                                      delegate:self
-                                                                delegateQueue:nil]];
+                                                                delegateQueue:nil]
+                               delegate:delegate];
 }
 
-- (instancetype)initWithURLSession:(NSURLSession *)session {
+- (instancetype)initWithURLSession:(NSURLSession *)session
+                          delegate:(id<PFURLSessionDelegate>)delegate {
     self = [super init];
     if (!self) return nil;
 
+    _delegate = delegate;
     _urlSession = session;
 
     _sessionTaskQueue = dispatch_queue_create("com.parse.urlSession.tasks", DISPATCH_QUEUE_SERIAL);
@@ -62,12 +66,14 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
     return self;
 }
 
-+ (instancetype)sessionWithConfiguration:(NSURLSessionConfiguration *)configuration {
-    return [[self alloc] initWithConfiguration:configuration];
++ (instancetype)sessionWithConfiguration:(NSURLSessionConfiguration *)configuration
+                                delegate:(id<PFURLSessionDelegate>)delegate {
+    return [[self alloc] initWithConfiguration:configuration delegate:delegate];
 }
 
-+ (instancetype)sessionWithURLSession:(nonnull NSURLSession *)session {
-    return [[self alloc] initWithURLSession:session];
++ (instancetype)sessionWithURLSession:(nonnull NSURLSession *)session
+                             delegate:(id<PFURLSessionDelegate>)delegate {
+    return [[self alloc] initWithURLSession:session delegate:delegate];
 }
 
 ///--------------------------------------
@@ -161,6 +167,8 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
 }
 
 - (BFTask *)_performDataTask:(NSURLSessionDataTask *)dataTask withDelegate:(PFURLSessionDataTaskDelegate *)delegate {
+    [self.delegate urlSession:self willPerformURLRequest:dataTask.originalRequest];
+
     @weakify(self);
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         @strongify(self);
@@ -169,6 +177,8 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
 
         BFTask *resultTask = [delegate.resultTask continueWithBlock:^id(BFTask *task) {
             @strongify(self);
+            [self.delegate urlSession:self didPerformURLRequest:dataTask.originalRequest withURLResponse:delegate.response];
+
             [self _removeDelegateForTaskWithIdentifier:taskIdentifier];
             return task;
         }];

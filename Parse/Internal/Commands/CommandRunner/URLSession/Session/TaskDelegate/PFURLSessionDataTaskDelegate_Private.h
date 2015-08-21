@@ -13,8 +13,6 @@
 
 @property (nonatomic, strong, readonly) dispatch_queue_t dataQueue;
 
-@property (nonatomic, strong, readonly) NSHTTPURLResponse *response;
-
 /*!
  @abstract Defaults to to-memory output stream if not overwritten.
  */
