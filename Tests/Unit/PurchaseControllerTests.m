@@ -48,6 +48,8 @@
 - (void)tearDown {
     PFTestSKProductsRequest.validProducts = nil;
 
+    [[NSFileManager defaultManager] removeItemAtPath:[self sampleReceiptFilePath] error:nil];
+
     [super tearDown];
 }
 
@@ -73,6 +75,10 @@
     return [NSData dataWithBytes:sampleData length:sizeof(sampleData)];
 }
 
+- (NSString *)sampleReceiptFilePath {
+    return [NSTemporaryDirectory() stringByAppendingPathComponent:@"receipt.data"];
+}
+
 ///--------------------------------------
 #pragma mark - Tests
 ///--------------------------------------
@@ -80,13 +86,16 @@
 - (void)testConstructor {
     id commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
     id fileManager = PFClassMock([PFFileManager class]);
+    id bundle = PFStrictClassMock([NSBundle class]);
 
     PFPurchaseController *controller = [[PFPurchaseController alloc] initWithCommandRunner:commandRunner
-                                                                               fileManager:fileManager];
+                                                                               fileManager:fileManager
+                                                                                    bundle:bundle];
 
     XCTAssertNotNil(controller);
     XCTAssertEqual(controller.commandRunner, commandRunner);
     XCTAssertEqual(controller.fileManager, fileManager);
+    XCTAssertEqual(controller.bundle, bundle);
 
     // This makes the test less sad.
     controller.paymentQueue = PFClassMock([SKPaymentQueue class]);
@@ -98,9 +107,11 @@
 - (void)testFindProductsAsync {
     id commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
     id fileManager = PFStrictClassMock([PFFileManager class]);
+    id bundle = PFStrictClassMock([NSBundle class]);
 
     PFPurchaseController *purchaseController = [PFPurchaseController controllerWithCommandRunner:commandRunner
-                                                                                     fileManager:fileManager];
+                                                                                     fileManager:fileManager
+                                                                                          bundle:bundle];
 
     purchaseController.productsRequestClass = [PFTestSKProductsRequest class];
 
@@ -123,9 +134,11 @@
 - (void)testBuyProductsAsync {
     id commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
     id fileManager = PFStrictClassMock([PFFileManager class]);
+    id bundle = PFStrictClassMock([NSBundle class]);
 
     PFPurchaseController *purchaseController = [[PFPurchaseController alloc] initWithCommandRunner:commandRunner
-                                                                                       fileManager:fileManager];
+                                                                                       fileManager:fileManager
+                                                                                            bundle:bundle];
 
     purchaseController.productsRequestClass = [PFTestSKProductsRequest class];
     purchaseController.paymentQueue = PFStrictClassMock([SKPaymentQueue class]);
@@ -189,9 +202,11 @@
 - (void)testDownloadAssetAsync {
     id commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
     id fileManager = PFStrictClassMock([PFFileManager class]);
+    id bundle = PFStrictClassMock([NSBundle class]);
 
     PFPurchaseController *purchaseController = [[PFPurchaseController alloc] initWithCommandRunner:commandRunner
-                                                                                       fileManager:fileManager];
+                                                                                       fileManager:fileManager
+                                                                                            bundle:bundle];
 
     purchaseController.productsRequestClass = [PFTestSKProductsRequest class];
     purchaseController.paymentQueue = PFStrictClassMock([SKPaymentQueue class]);
@@ -200,7 +215,10 @@
     PFTestSKPaymentTransaction *transaction = [PFTestSKPaymentTransaction transactionForPayment:payment
                                                                                       withError:nil
                                                                                         inState:SKPaymentTransactionStatePurchased];
-    transaction.transactionReceipt = [self sampleData];
+
+    NSString *receiptFile = [self sampleReceiptFilePath];
+    OCMStub([bundle appStoreReceiptURL]).andReturn([NSURL fileURLWithPath:receiptFile]);
+    [[self sampleData] writeToFile:receiptFile atomically:YES];
 
     PFFile *mockedFile = PFPartialMock([PFFile fileWithName:@"testData" data:[self sampleData]]);
 
@@ -245,9 +263,11 @@
 - (void)testDownloadInvalidReceipt {
     id commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
     id fileManager = PFStrictClassMock([PFFileManager class]);
+    id bundle = PFStrictClassMock([NSBundle class]);
 
     PFPurchaseController *purchaseController = [[PFPurchaseController alloc] initWithCommandRunner:commandRunner
-                                                                                       fileManager:fileManager];
+                                                                                       fileManager:fileManager
+                                                                                            bundle:bundle];
     purchaseController.productsRequestClass = [PFTestSKProductsRequest class];
     purchaseController.paymentQueue = PFStrictClassMock([SKPaymentQueue class]);
 
@@ -255,6 +275,41 @@
     PFTestSKPaymentTransaction *transaction = [PFTestSKPaymentTransaction transactionForPayment:payment
                                                                                       withError:nil
                                                                                         inState:SKPaymentTransactionStatePurchased];
+    OCMStub([bundle appStoreReceiptURL]).andReturn(nil);
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[purchaseController downloadAssetAsyncForTransaction:transaction
+                                        withProgressBlock:nil
+                                             sessionToken:@"token"] continueWithBlock:^id(BFTask *task) {
+        XCTAssertTrue(task.faulted);
+        XCTAssertNotNil(task.error);
+        XCTAssertEqual(task.error.code, kPFErrorReceiptMissing);
+
+        [expectation fulfill];
+
+        return nil;
+    }];
+
+    [self waitForTestExpectations];
+}
+
+- (void)testDownloadMissingReceiptData {
+    id commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
+    id fileManager = PFStrictClassMock([PFFileManager class]);
+    id bundle = PFStrictClassMock([NSBundle class]);
+
+    PFPurchaseController *purchaseController = [[PFPurchaseController alloc] initWithCommandRunner:commandRunner
+                                                                                       fileManager:fileManager
+                                                                                            bundle:bundle];
+    purchaseController.productsRequestClass = [PFTestSKProductsRequest class];
+    purchaseController.paymentQueue = PFStrictClassMock([SKPaymentQueue class]);
+
+    SKPayment *payment = [SKPayment paymentWithProduct:[self sampleProduct]];
+    PFTestSKPaymentTransaction *transaction = [PFTestSKPaymentTransaction transactionForPayment:payment
+                                                                                      withError:nil
+                                                                                        inState:SKPaymentTransactionStatePurchased];
+
+    OCMStub([bundle appStoreReceiptURL]).andReturn([NSURL fileURLWithPath:[self sampleReceiptFilePath]]);
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[purchaseController downloadAssetAsyncForTransaction:transaction
@@ -275,9 +330,11 @@
 - (void)testDownloadInvalidFile {
     id commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
     id fileManager = PFStrictClassMock([PFFileManager class]);
+    id bundle = PFStrictClassMock([NSBundle class]);
 
     PFPurchaseController *purchaseController = [[PFPurchaseController alloc] initWithCommandRunner:commandRunner
-                                                                                       fileManager:fileManager];
+                                                                                       fileManager:fileManager
+                                                                                            bundle:bundle];
     purchaseController.productsRequestClass = [PFTestSKProductsRequest class];
     purchaseController.paymentQueue = PFStrictClassMock([SKPaymentQueue class]);
 
@@ -285,7 +342,10 @@
     PFTestSKPaymentTransaction *transaction = [PFTestSKPaymentTransaction transactionForPayment:payment
                                                                                       withError:nil
                                                                                         inState:SKPaymentTransactionStatePurchased];
-    transaction.transactionReceipt = [self sampleData];
+
+    NSString *temporaryFile = [self sampleReceiptFilePath];
+    OCMStub([bundle appStoreReceiptURL]).andReturn([NSURL fileURLWithPath:temporaryFile]);
+    [[self sampleData] writeToFile:temporaryFile atomically:YES];
 
     PFCommandResult *mockedResult = [PFCommandResult commandResultWithResult:@{ @"a" : @"Hello" }
                                                                 resultString:nil

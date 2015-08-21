@@ -34,9 +34,11 @@
 - (PFPurchaseController *)mockedPurchaseController {
     id<PFCommandRunning> commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
     PFFileManager *fileManager = PFStrictClassMock([PFFileManager class]);
+    id bundle = PFStrictClassMock([NSBundle class]);
 
     PFPurchaseController *purchaseController = PFPartialMock([[PFPurchaseController alloc] initWithCommandRunner:commandRunner
-                                                                                                      fileManager:fileManager]);
+                                                                                                     fileManager:fileManager
+                                                                                                          bundle:bundle]);
 
     SKPaymentQueue *paymentQueue = PFClassMock([SKPaymentQueue class]);
     purchaseController.paymentQueue = paymentQueue;

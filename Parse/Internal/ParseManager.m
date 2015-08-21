@@ -342,7 +342,8 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     dispatch_sync(_controllerAccessQueue, ^{
         if (!_purchaseController) {
             _purchaseController = [PFPurchaseController controllerWithCommandRunner:self.commandRunner
-                                                                        fileManager:self.fileManager];
+                                                                        fileManager:self.fileManager
+                                                                             bundle:[NSBundle mainBundle]];
         }
         controller = _purchaseController;
     });

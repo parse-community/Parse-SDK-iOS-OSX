@@ -46,19 +46,23 @@
     PFNotDesignatedInitializer();
 }
 
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner fileManager:(PFFileManager *)fileManager {
+- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
+                          fileManager:(PFFileManager *)fileManager
+                               bundle:(NSBundle *)bundle {
     self = [super init];
     if (!self) return nil;
 
     _commandRunner = commandRunner;
     _fileManager = fileManager;
+    _bundle = bundle;
 
     return self;
 }
 
 + (instancetype)controllerWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                                fileManager:(PFFileManager *)fileManager {
-    return [[self alloc] initWithCommandRunner:commandRunner fileManager:fileManager];
+                                fileManager:(PFFileManager *)fileManager
+                                     bundle:(NSBundle *)bundle {
+    return [[self alloc] initWithCommandRunner:commandRunner fileManager:fileManager bundle:bundle];
 }
 
 ///--------------------------------------
@@ -137,20 +141,30 @@
 - (BFTask *)downloadAssetAsyncForTransaction:(SKPaymentTransaction *)transaction
                            withProgressBlock:(PFProgressBlock)progressBlock
                                 sessionToken:(NSString *)sessionToken {
-    // Ignore the deprecation, as it works until iOS 9.
-    // TODO: (nlutsenko) Update for iOS 9 receipt verification. This will require server-side change, most likely.
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    NSData *transactionReceipt = transaction.transactionReceipt;
-#pragma clang diagnostic pop
-    if (!transactionReceipt) {
-        NSError *error = [NSError errorWithDomain:PFParseErrorDomain
-                                             code:kPFErrorReceiptMissing
-                                         userInfo:nil];
-        return [BFTask taskWithError:error];
+    NSString *productIdentifier = transaction.payment.productIdentifier;
+    NSURL *appStoreReceiptURL = [self.bundle appStoreReceiptURL];
+    if (!productIdentifier || !appStoreReceiptURL) {
+        return [BFTask taskWithError:[NSError errorWithDomain:PFParseErrorDomain
+                                                         code:kPFErrorReceiptMissing
+                                                     userInfo:nil]];
     }
 
-    NSDictionary *params = [[PFEncoder objectEncoder] encodeObject:@{ @"receipt" : transactionReceipt }];
+    NSError *error = nil;
+    NSData *appStoreReceipt = [NSData dataWithContentsOfURL:appStoreReceiptURL
+                                                    options:NSDataReadingMappedIfSafe
+                                                      error:&error];
+    if (!appStoreReceipt || error) {
+        NSDictionary *userInfo = nil;
+        if (error) {
+            userInfo = @{ NSUnderlyingErrorKey : error };
+        }
+        return [BFTask taskWithError:[NSError errorWithDomain:PFParseErrorDomain
+                                                         code:kPFErrorReceiptMissing
+                                                     userInfo:userInfo]];
+    }
+
+    NSDictionary *params = [[PFEncoder objectEncoder] encodeObject:@{ @"receipt" : appStoreReceipt,
+                                                                      @"productIdentifier" : productIdentifier }];
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"validate_purchase"
                                                      httpMethod:PFHTTPRequestMethodPOST
                                                      parameters:params
