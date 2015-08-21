@@ -96,7 +96,7 @@
 
 @interface StateClass : PFObject<PFSubclassing>
 
-@property NSString *state;
+@property (nonatomic, copy) NSString *state;
 
 @end
 
