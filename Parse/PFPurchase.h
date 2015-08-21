@@ -11,8 +11,11 @@
 #import <StoreKit/StoreKit.h>
 
 #import <Parse/PFConstants.h>
+#import <Parse/PFNullability.h>
 
 @class PFProduct;
+
+PF_ASSUME_NONNULL_BEGIN
 
 /*!
  `PFPurchase` provides a set of APIs for working with in-app purchases.
@@ -65,7 +68,7 @@
  */
 + (void)downloadAssetForTransaction:(SKPaymentTransaction *)transaction
                          completion:(void(^)(NSString *filePath, NSError *error))completion
-                           progress:(PFProgressBlock)progress;
+                           progress:(PF_NULLABLE PFProgressBlock)progress;
 
 /*!
  @abstract *Asynchronously* restore completed transactions for the current user.
@@ -85,6 +88,8 @@
 
  @warning This method will return `nil`, if the purchase wasn't verified or if the asset was not downloaded.
  */
-+ (NSString *)assetContentPathForProduct:(PFProduct *)product;
++ (PF_NULLABLE NSString *)assetContentPathForProduct:(PFProduct *)product;
 
 @end
+
+PF_ASSUME_NONNULL_END
