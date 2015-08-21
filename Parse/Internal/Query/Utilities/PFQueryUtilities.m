@@ -9,6 +9,7 @@
 
 #import "PFQueryUtilities.h"
 
+#import "PFAssert.h"
 #import "PFConstants.h"
 #import "PFErrorUtilities.h"
 
@@ -195,20 +196,15 @@
                        NSComparisonPredicate *between = (NSComparisonPredicate *)predicate;
                        NSExpression *rhs = between.rightExpression;
 
-                       if (rhs.expressionType != NSConstantValueExpressionType &&
-                           rhs.expressionType != NSAggregateExpressionType) {
-                           [NSException raise:NSInternalInconsistencyException
-                                       format:@"The right-hand side of a BETWEEN operation must be a value or literal."];
-                       }
-                       if (![rhs.constantValue isKindOfClass:[NSArray class]]) {
-                           [NSException raise:NSInternalInconsistencyException
-                                       format:@"The right-hand side of a BETWEEN operation must be an array."];
-                       }
+                       PFConsistencyAssert(rhs.expressionType == NSConstantValueExpressionType ||
+                                           rhs.expressionType == NSAggregateExpressionType,
+                                           @"The right-hand side of a BETWEEN operation must be a value or literal.");
+
+                       PFConsistencyAssert([rhs.constantValue isKindOfClass:[NSArray class]],
+                                           @"The right-hand side of a BETWEEN operation must be an array.");
+
                        NSArray *array = rhs.constantValue;
-                       if (array.count != 2) {
-                           [NSException raise:NSInternalInconsistencyException
-                                       format:@"The right-hand side of a BETWEEN operation must have 2 items."];
-                       }
+                       PFConsistencyAssert(array.count == 2, @"The right-hand side of a BETWEEN operation must have 2 items.");
 
                        id minValue = array[0];
                        id maxValue = array[1];
@@ -406,11 +402,9 @@
     [self _mapPredicate:predicate
           compoundBlock:nil
         comparisonBlock:^NSPredicate *(NSComparisonPredicate *comparison) {
-            if (comparison.comparisonPredicateModifier != NSDirectPredicateModifier) {
-                [NSException raise:NSInternalInconsistencyException
-                            format:@"Unsupported comparison predicate modifier %zd.",
-                 comparison.comparisonPredicateModifier];
-            }
+            PFConsistencyAssert(comparison.comparisonPredicateModifier == NSDirectPredicateModifier,
+                                @"Unsupported comparison predicate modifier %zd.",
+                                comparison.comparisonPredicateModifier);
             return comparison;
         }];
 }

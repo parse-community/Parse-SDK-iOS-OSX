@@ -9,6 +9,7 @@
 
 #import "PFRESTQueryCommand.h"
 
+#import "PFAssert.h"
 #import "PFEncoder.h"
 #import "PFHTTPRequest.h"
 #import "PFQueryPrivate.h"
@@ -133,30 +134,11 @@
                 NSMutableArray *newArray = [NSMutableArray array];
                 for (PFQuery *subquery in array) {
                     // TODO: (nlutsenko) Move this validation into PFQuery/PFQueryState.
-                    if (subquery.state.limit >= 0) {
-                        [NSException raise:NSInvalidArgumentException
-                                    format:@"OR queries do not support sub queries with limits"];
-                    }
-
-                    if (subquery.state.skip > 0) {
-                        [NSException raise:NSInvalidArgumentException
-                                    format:@"OR queries do not support sub queries with skip"];
-                    }
-
-                    if ([subquery.state.sortKeys count]) {
-                        [NSException raise:NSInvalidArgumentException
-                                    format:@"OR queries do not support sub queries with order"];
-                    }
-
-                    if ([subquery.state.includedKeys count] > 0) {
-                        [NSException raise:NSInvalidArgumentException
-                                    format:@"OR queries do not support sub-queries with includes"];
-                    }
-
-                    if (subquery.state.selectedKeys) {
-                        [NSException raise:NSInvalidArgumentException
-                                    format:@"OR queries do not support sub-queries with selectKeys"];
-                    }
+                    PFParameterAssert(subquery.state.limit < 0, @"OR queries do not support sub queries with limits");
+                    PFParameterAssert(subquery.state.skip == 0, @"OR queries do not support sub queries with skip");
+                    PFParameterAssert(subquery.state.sortKeys.count == 0, @"OR queries do not support sub queries with order");
+                    PFParameterAssert(subquery.state.includedKeys.count == 0, @"OR queries do not support sub-queries with includes");
+                    PFParameterAssert(subquery.state.selectedKeys == nil, @"OR queries do not support sub-queries with selectKeys");
 
                     NSDictionary *queryDict = [self findCommandParametersWithOrder:subquery.state.sortOrderString
                                                                         conditions:subquery.state.conditions
