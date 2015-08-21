@@ -66,8 +66,8 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 // to the currentUser singleton and disk object
 @property (nonatomic, assign) BOOL isCurrentUser;
 
-@property (strong, readonly) NSMutableDictionary *authData;
-@property (strong, readonly) NSMutableSet *linkedServiceNames;
+@property (nonatomic, strong, readonly) NSMutableDictionary *authData;
+@property (nonatomic, strong, readonly) NSMutableSet *linkedServiceNames;
 @property (nonatomic, assign) BOOL isLazy;
 
 - (BOOL)_isAuthenticatedWithCurrentUser:(PFUser *)currentUser;
