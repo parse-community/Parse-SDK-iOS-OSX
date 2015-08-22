@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong, readonly) id<PFCommandRunning> commandRunner;
 @property (nonatomic, strong, readonly) PFFileManager *fileManager;
+@property (nonatomic, strong, readonly) NSBundle *bundle;
 
 @property (nonatomic, strong) SKPaymentQueue *paymentQueue;
 @property (nonatomic, strong, readonly) PFPaymentTransactionObserver *transactionObserver;
@@ -34,10 +35,12 @@
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                          fileManager:(PFFileManager *)fileManager NS_DESIGNATED_INITIALIZER;
+                          fileManager:(PFFileManager *)fileManager
+                               bundle:(NSBundle *)bundle NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)controllerWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                                fileManager:(PFFileManager *)fileManager;
+                                fileManager:(PFFileManager *)fileManager
+                                     bundle:(NSBundle *)bundle;
 
 ///--------------------------------------
 /// @name Products
