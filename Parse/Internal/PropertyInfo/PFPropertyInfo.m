@@ -74,7 +74,7 @@ static inline NSString *stringByCapitalizingFirstCharacter(NSString *string) {
             _ivar = class_getInstanceVariable(superClass, [safeStringWithPropertyAttributeValue(superProperty, "V") UTF8String]);
             if (_ivar) break;
 
-            superClass = class_getSuperclass(kls);
+            superClass = class_getSuperclass(superClass);
         }
 
         if (_ivar) break;
