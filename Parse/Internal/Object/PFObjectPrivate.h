@@ -229,7 +229,6 @@
 ///--------------------------------------
 #pragma mark - Data helpers
 ///--------------------------------------
-- (void)checkForChangesToMutableContainers;
 - (void)rebuildEstimatedData;
 
 ///--------------------------------------
