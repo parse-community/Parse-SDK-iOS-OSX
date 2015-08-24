@@ -580,13 +580,10 @@ static BOOL revocableSessionEnabled_;
 
                 PFConsistencyAssert(!isCurrentUser, @"Attempt to merge currentUser with itself.");
 
-                [self checkForChangesToMutableContainers];
                 @synchronized ([currentUser lock]) {
                     NSString *oldUsername = [currentUser.username copy];
                     NSString *oldPassword = [currentUser.password copy];
                     NSArray *oldAnonymousData = currentUser.authData[[PFAnonymousAuthenticationProvider authType]];
-
-                    [currentUser checkForChangesToMutableContainers];
 
                     // Move the changes to this object over to the currentUser object.
                     PFOperationSet *selfOperations = operationSetQueue[0];
