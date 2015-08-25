@@ -133,9 +133,7 @@ typedef BOOL (^PFSubQueryMatcherBlock)(id object, NSArray *results);
         PFObject *object = (PFObject *)container;
 
         // The object needs to have been fetched already if we are going to sort by one of its field.
-        if (!object.isDataAvailable) {
-            [NSException raise:NSInvalidArgumentException format:@"Bad key %@", key];
-        }
+        PFParameterAssert(object.isDataAvailable, @"Bad key %@", key);
 
         // Handle special keys for PFObject.
         if ([key isEqualToString:@"objectId"]) {
@@ -336,9 +334,9 @@ greaterThanOrEqualTo:(id)constraint {
     if (options == nil) {
         options = @"";
     }
-    if ([options rangeOfString:@"^[imxs]*$" options:NSRegularExpressionSearch].location == NSNotFound) {
-        [NSException raise:NSInvalidArgumentException format:@"Invalid regex options: %@", options];
-    }
+
+    PFParameterAssert([options rangeOfString:@"^[imxs]*$" options:NSRegularExpressionSearch].location != NSNotFound,
+                      @"Invalid regex options %@", options);
 
     NSRegularExpressionOptions flags = 0;
     if ([options rangeOfString:@"i"].location != NSNotFound) {
@@ -402,19 +400,13 @@ greaterThanOrEqualTo:(id)constraint {
     PFGeoPoint *northEast = box[1];
     PFGeoPoint *target = (PFGeoPoint *)value;
 
-    if (northEast.longitude < southWest.longitude) {
-        [NSException raise:NSInvalidArgumentException
-                    format:@"whereWithinGeoBox queries cannot cross the International Date Line."];
-    }
-    if (northEast.latitude < southWest.latitude) {
-        [NSException raise:NSInvalidArgumentException
-                    format:@"The southwest corner of a geo box must be south of the northeast corner."];
-    }
-    if (northEast.longitude - southWest.longitude > 180) {
-        [NSException raise:NSInvalidArgumentException
-                    format:@"Geo box queries larger than 180 degrees in longitude are not supported."
-         @"Please check point order."];
-    }
+    PFParameterAssert(northEast.longitude >= southWest.longitude,
+                      @"whereWithinGeoBox queries cannot cross the International Date Line.");
+    PFParameterAssert(northEast.latitude >= southWest.latitude,
+                      @"The southwest corner of a geo box must be south of the northeast corner.");
+    PFParameterAssert((northEast.longitude - southWest.longitude) <= 180,
+                      @"Geo box queries larger than 180 degrees in longitude are not supported."
+                      @"Please check point order.");
 
     return (target.latitude >= southWest.latitude &&
             target.latitude <= northEast.latitude &&
@@ -826,10 +818,8 @@ greaterThanOrEqualTo:(id)constraint {
     [keys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSString *key = (NSString *)obj;
         if ([key rangeOfString:@"^-?[A-Za-z][A-Za-z0-9_]*$" options:NSRegularExpressionSearch].location == NSNotFound) {
-            if (![@"_created_at" isEqualToString:key] && ![@"_updated_at" isEqualToString:key]) {
-                [NSException raise:NSInternalInconsistencyException
-                            format:@"Invalid key name: %@", key];
-            }
+            PFConsistencyAssert([@"_created_at" isEqualToString:key] || [@"_updated_at" isEqualToString:key],
+                                @"Invalid key name: %@", key);
         }
     }];
 

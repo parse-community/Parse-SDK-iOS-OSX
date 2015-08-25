@@ -94,11 +94,7 @@ static BOOL revocableSessionEnabled_;
 
 // Check security on delete
 - (void)checkDeleteParams {
-    if (![self isAuthenticated]) {
-        [NSException raise:NSInternalInconsistencyException
-                    format:@"User cannot be deleted unless they have been authenticated via logIn or signUp", nil];
-    }
-
+    PFConsistencyAssert(self.isAuthenticated, @"User cannot be deleted unless they have been authenticated via logIn or signUp");
     [super checkDeleteParams];
 }
 
@@ -115,33 +111,22 @@ static BOOL revocableSessionEnabled_;
 // Checks the properties on the object before saving.
 - (void)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser {
     @synchronized ([self lock]) {
-        if (!self.objectId && !self.isLazy) {
-            [NSException raise:NSInternalInconsistencyException
-                        format:@"User cannot be saved unless they are already signed up. Call signUp first.", nil];
-        }
+        PFConsistencyAssert(self.objectId || self.isLazy,
+                            @"User cannot be saved unless they are already signed up. Call signUp first.");
 
-        if (![self _isAuthenticatedWithCurrentUser:currentUser]
-            && ![self.objectId isEqualToString:currentUser.objectId]) {
-            [NSException raise:NSInternalInconsistencyException
-                        format:@"User cannot be saved unless they have been authenticated via logIn or signUp", nil];
-        }
+        PFConsistencyAssert([self _isAuthenticatedWithCurrentUser:currentUser] ||
+                            [self.objectId isEqualToString:currentUser.objectId],
+                            @"User cannot be saved unless they have been authenticated via logIn or signUp", nil);
     }
 }
 
 // Checks the properties on the object before signUp.
 - (void)checkSignUpParams {
     @synchronized ([self lock]) {
-        if (self.username == nil) {
-            [NSException raise:NSInternalInconsistencyException format:@"Cannot sign up without a username."];
-        }
+        PFConsistencyAssert(self.username, @"Cannot sign up without a username.");
+        PFConsistencyAssert(self.password, @"Cannot sign up without a password.");
 
-        if (self.password == nil) {
-            [NSException raise:NSInternalInconsistencyException format:@"Cannot sign up without a password."];
-        }
-
-        if (![self isDirty:NO] || self.objectId) {
-            [NSException raise:NSInternalInconsistencyException format:@"Cannot sign up an existing user."];
-        }
+        PFConsistencyAssert([self isDirty:NO] && !self.objectId, @"Cannot sign up an existing user.");
     }
 }
 

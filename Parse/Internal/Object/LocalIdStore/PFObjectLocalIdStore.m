@@ -140,10 +140,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
  * Grabs one entry in the local id map off the disk.
  */
 - (PFObjectLocalIdStoreMapEntry *)getMapEntry:(NSString *)localId {
-    if (![[self class] isLocalId:localId]) {
-        [NSException raise:NSInternalInconsistencyException
-                    format:@"Tried to get invalid local id: \"%@\".", localId];
-    }
+    PFConsistencyAssert([[self class] isLocalId:localId], @"Tried to get invalid local id: \"%@\".", localId);
 
     PFObjectLocalIdStoreMapEntry *entry = nil;
 
@@ -173,10 +170,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
  * Writes one entry to the local id map on disk.
  */
 - (void)putMapEntry:(PFObjectLocalIdStoreMapEntry *)entry forLocalId:(NSString *)localId {
-    if (![[self class] isLocalId:localId]) {
-        [NSException raise:NSInternalInconsistencyException
-                    format:@"Tried to get invalid local id: \"%@\".", localId];
-    }
+    PFConsistencyAssert([[self class] isLocalId:localId], @"Tried to get invalid local id: \"%@\".", localId);
 
     NSString *file = [_diskPath stringByAppendingPathComponent:localId];
     [entry writeToFile:file];
@@ -186,10 +180,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
  * Removes an entry from the local id map on disk.
  */
 - (void)removeMapEntry:(NSString *)localId {
-    if (![[self class] isLocalId:localId]) {
-        [NSException raise:NSInternalInconsistencyException
-                    format:@"Tried to get invalid local id: \"%@\".", localId];
-    }
+    PFConsistencyAssert([[self class] isLocalId:localId], @"Tried to get invalid local id: \"%@\".", localId);
 
     NSString *file = [_diskPath stringByAppendingPathComponent:localId];
     [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
@@ -207,10 +198,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
         uint64_t localIdNumber = (((uint64_t)arc4random()) << 32) | ((uint64_t)arc4random());
         NSString *localId = [NSString stringWithFormat:@"local_%016llx", localIdNumber];
 
-        if (![[self class] isLocalId:localId]) {
-            [NSException raise:NSInternalInconsistencyException
-                        format:@"Generated an invalid local id: \"%@\".", localId];
-        }
+        PFConsistencyAssert([[self class] isLocalId:localId], @"Generated an invalid local id: \"%@\".", localId);
 
         return localId;
     }
