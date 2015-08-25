@@ -1561,11 +1561,9 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 
 - (BFTask *)fetchAsync:(BFTask *)toAwait {
     PFCurrentUserController *controller = [[self class] currentUserController];
-    @weakify(self);
     return [[controller getCurrentUserSessionTokenAsync] continueWithBlock:^id(BFTask *task) {
         NSString *sessionToken = task.result;
         return [toAwait continueAsyncWithBlock:^id(BFTask *task) {
-            @strongify(self);
             return [[[self class] objectController] fetchObjectAsync:self withSessionToken:sessionToken];
         }];
     }];
@@ -1575,11 +1573,9 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
     [self checkDeleteParams];
 
     PFCurrentUserController *controller = [[self class] currentUserController];
-    @weakify(self);
     return [[controller getCurrentUserSessionTokenAsync] continueWithBlock:^id(BFTask *task) {
         NSString *sessionToken = task.result;
         return [toAwait continueAsyncWithBlock:^id(BFTask *task) {
-            @strongify(self);
             return [[[self class] objectController] deleteObjectAsync:self withSessionToken:sessionToken];
         }];
     }];
