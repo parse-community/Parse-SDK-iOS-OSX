@@ -166,6 +166,11 @@ NSString *const PFOperationSetKeyACL = @"ACL";
     self.updatedAt = [NSDate date];
 }
 
+- (void)removeAllObjects {
+    [self.dictionary removeAllObjects];
+    self.updatedAt = [NSDate date];
+}
+
 ///--------------------------------------
 #pragma mark - NSFastEnumeration
 ///--------------------------------------
