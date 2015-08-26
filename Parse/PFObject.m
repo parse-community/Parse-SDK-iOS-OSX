@@ -870,7 +870,6 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
     PFParameterAssert(![className hasPrefix:@"_"], @"Invalid class name. Class names cannot start with an underscore.");
 }
 
-
 ///--------------------------------------
 #pragma mark - Serialization helpers
 ///--------------------------------------
@@ -2123,9 +2122,10 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 }
 
 - (BFTask *)fetchInBackground {
-    //TODO: (nlutsenko) Replace with an error?
-    @synchronized (lock) {
-        PFParameterAssert(self._state.objectId, @"Can't refresh an object that hasn't been saved to the server.");
+    if (!self._state.objectId) {
+        NSError *error = [PFErrorUtilities errorWithCode:kPFErrorMissingObjectId
+                                                 message:@"Can't refresh an object that hasn't been saved to the server."];
+        return [BFTask taskWithError:error];
     }
     return [self.taskQueue enqueue:^BFTask *(BFTask *toAwait) {
         return [self fetchAsync:toAwait];

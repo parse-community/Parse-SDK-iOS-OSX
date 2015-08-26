@@ -182,4 +182,20 @@
     XCTAssertEqualObjects([object valueForKey:@"yarr"], @"yolo");
 }
 
+#pragma mark Fetch
+
+- (void)testFetchObjectWithoutObjectIdError {
+    PFObject *object = [PFObject objectWithClassName:@"Test"];
+    
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[object fetchInBackground] continueWithBlock:^id(BFTask *task) {
+        XCTAssertNotNil(task.error);
+        XCTAssertEqualObjects(task.error.domain, PFParseErrorDomain);
+        XCTAssertEqual(task.error.code, kPFErrorMissingObjectId);
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
+}
+
 @end
