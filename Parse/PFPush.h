@@ -386,7 +386,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @param userInfo The userInfo dictionary you get in `appplication:didReceiveRemoteNotification:`.
  */
-+ (void)handlePush:(PF_NULLABLE NSDictionary *)userInfo NS_AVAILABLE_IOS(3_0);
++ (void)handlePush:(PF_NULLABLE NSDictionary *)userInfo NS_AVAILABLE_IOS(3_0) PF_EXTENSION_UNAVAILABLE("");
 
 ///--------------------------------------
 /// @name Managing Channel Subscriptions

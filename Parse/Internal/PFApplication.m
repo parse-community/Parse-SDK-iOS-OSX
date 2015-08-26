@@ -48,7 +48,7 @@
 
 - (NSInteger)iconBadgeNumber {
 #if TARGET_OS_IPHONE
-    return [UIApplication sharedApplication].applicationIconBadgeNumber;
+    return self.systemApplication.applicationIconBadgeNumber;
 #else
     // Make sure not to use `NSApp` here, because it doesn't work sometimes,
     // `NSApplication +sharedApplication` does though.
@@ -72,11 +72,16 @@
 - (void)setIconBadgeNumber:(NSInteger)iconBadgeNumber {
     if (self.iconBadgeNumber != iconBadgeNumber) {
 #if TARGET_OS_IPHONE
-        [UIApplication sharedApplication].applicationIconBadgeNumber = iconBadgeNumber;
+        self.systemApplication.applicationIconBadgeNumber = iconBadgeNumber;
 #else
         [[NSApplication sharedApplication] dockTile].badgeLabel = [@(iconBadgeNumber) stringValue];
 #endif
     }
+}
+
+- (UIApplication *)systemApplication {
+    // Workaround to make `sharedApplication` still be called even if compiling for App Extensions or WatchKit apps.
+    return [UIApplication performSelector:@selector(sharedApplication)];
 }
 
 @end

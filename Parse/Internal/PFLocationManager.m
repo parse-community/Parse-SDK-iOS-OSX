@@ -13,13 +13,7 @@
 
 #import "PFConstants.h"
 #import "PFGeoPoint.h"
-
-#if !TARGET_OS_IPHONE
-
-// To let us compile for OSX.
-@compatibility_alias UIApplication NSApplication;
-
-#endif
+#import "PFApplication.h"
 
 @interface PFLocationManager () <CLLocationManagerDelegate>
 
@@ -66,7 +60,7 @@
 
 - (instancetype)initWithSystemLocationManager:(CLLocationManager *)manager {
     return [self initWithSystemLocationManager:manager
-                                   application:[UIApplication sharedApplication]
+                                   application:[PFApplication currentApplication].systemApplication
                                         bundle:[NSBundle mainBundle]];
 }
 

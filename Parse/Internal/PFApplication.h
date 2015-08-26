@@ -9,11 +9,20 @@
 
 #import <Foundation/Foundation.h>
 
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#else
+#import <AppKit/AppKit.h>
+@compatibility_alias UIApplication NSApplication;
+#endif
+
 /*!
  `PFApplication` class provides a centralized way to get the information about the current application,
  or the environment it's running in. Please note, that all device specific things - should go to <PFDevice>.
  */
 @interface PFApplication : NSObject
+
+@property (nonatomic, strong, readonly) UIApplication *systemApplication;
 
 @property (nonatomic, assign, readonly, getter=isAppStoreEnvironment) BOOL appStoreEnvironment;
 @property (nonatomic, assign, readonly, getter=isExtensionEnvironment) BOOL extensionEnvironment;
