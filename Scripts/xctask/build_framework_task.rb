@@ -112,7 +112,7 @@ module XCTask
         t.actions = [BuildAction::CLEAN, BuildAction::BUILD]
         t.formatter = BuildFormatter::XCPRETTY
 
-        t.additional_options = { 'CONFIGURATION_BUILD_DIR' => "#{configuration_directory}" }
+        t.additional_options = { 'CONFIGURATION_BUILD_DIR' => "'#{configuration_directory}'" }
       end
 
       result = build_task.execute
