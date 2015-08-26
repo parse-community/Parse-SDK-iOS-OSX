@@ -142,7 +142,7 @@ static NSTimeInterval const PFNetworkActivityIndicatorVisibilityDelay = 0.17;
     }
 }
 
-- (void)_updateNetworkActivityIndicatorVisibility {
+- (void)_updateNetworkActivityIndicatorVisibility NS_EXTENSION_UNAVAILABLE_IOS("") {
     if (![PFApplication currentApplication].extensionEnvironment) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:self.networkActivityIndicatorVisible];
     }
