@@ -103,6 +103,24 @@
     XCTAssertNotEqualObjects(date, operationSet.updatedAt);
 }
 
+- (void)testRemoveAllObjects {
+    PFOperationSet *operationSet = [[PFOperationSet alloc] init];
+
+    operationSet[@"yarr"] = [PFSetOperation setWithValue:@"a"];
+    operationSet[@"yolo"] = [PFAddOperation addWithObjects:@[ @"b" ]];
+
+    XCTAssertNotNil(operationSet[@"yarr"]);
+    XCTAssertNotNil(operationSet[@"yolo"]);
+    XCTAssertEqual(operationSet.count, 2);
+
+    NSDate *date = operationSet.updatedAt;
+    [operationSet removeAllObjects];
+    XCTAssertNil(operationSet[@"yarr"]);
+    XCTAssertNil(operationSet[@"yolo"]);
+    XCTAssertEqual(operationSet.count, 0);
+    XCTAssertNotEqualObjects(date, operationSet.updatedAt);
+}
+
 - (void)testCopying {
     PFOperationSet *operationSet = [[PFOperationSet alloc] init];
     operationSet[@"yarr"] = [PFSetOperation setWithValue:@"yolo"];
