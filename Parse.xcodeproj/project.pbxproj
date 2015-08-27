@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C6417541B8EBDB6000EE8C7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C64174A1B8EBDB6000EE8C7 /* AudioToolbox.framework */; };
+		7C6417551B8EBDB6000EE8C7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C64174B1B8EBDB6000EE8C7 /* CFNetwork.framework */; };
+		7C6417561B8EBDB6000EE8C7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C64174C1B8EBDB6000EE8C7 /* CoreGraphics.framework */; };
+		7C6417571B8EBDB6000EE8C7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C64174D1B8EBDB6000EE8C7 /* CoreLocation.framework */; };
+		7C6417581B8EBDB6000EE8C7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C64174E1B8EBDB6000EE8C7 /* libsqlite3.tbd */; };
+		7C6417591B8EBDB6000EE8C7 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C64174F1B8EBDB6000EE8C7 /* libz.tbd */; };
+		7C64175A1B8EBDB6000EE8C7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6417501B8EBDB6000EE8C7 /* QuartzCore.framework */; };
+		7C64175B1B8EBDB6000EE8C7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6417511B8EBDB6000EE8C7 /* Security.framework */; };
+		7C64175C1B8EBDB6000EE8C7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6417521B8EBDB6000EE8C7 /* StoreKit.framework */; };
+		7C64175D1B8EBDB6000EE8C7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6417531B8EBDB6000EE8C7 /* SystemConfiguration.framework */; };
+		7C6417651B8EBE6D000EE8C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6417641B8EBE6D000EE8C7 /* UIKit.framework */; };
+		7C6417671B8EBEB3000EE8C7 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6417661B8EBEB3000EE8C7 /* Bolts.framework */; };
 		7CBC8DA116D594F800AEC66D /* PFTaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF213BB16D41D980065CF1A /* PFTaskQueue.m */; };
 		8103FA38198FC190000BAE3F /* BFTask+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 8103FA33198FC190000BAE3F /* BFTask+Private.h */; };
 		8103FA3A198FC190000BAE3F /* BFTask+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 8103FA34198FC190000BAE3F /* BFTask+Private.m */; };
@@ -1064,6 +1076,21 @@
 		64C47803147336C70092082F /* PFACL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFACL.m; sourceTree = "<group>"; };
 		7C1FDDCA14E1B1BD00A77007 /* PFCommandCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFCommandCache.h; sourceTree = "<group>"; };
 		7C1FDDCB14E1B1BD00A77007 /* PFCommandCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFCommandCache.m; sourceTree = "<group>"; };
+		7C64174A1B8EBDB6000EE8C7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		7C64174B1B8EBDB6000EE8C7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		7C64174C1B8EBDB6000EE8C7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		7C64174D1B8EBDB6000EE8C7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		7C64174E1B8EBDB6000EE8C7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
+		7C64174F1B8EBDB6000EE8C7 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		7C6417501B8EBDB6000EE8C7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		7C6417511B8EBDB6000EE8C7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		7C6417521B8EBDB6000EE8C7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		7C6417531B8EBDB6000EE8C7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		7C64175E1B8EBE12000EE8C7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Accounts.framework; sourceTree = DEVELOPER_DIR; };
+		7C6417601B8EBE19000EE8C7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Social.framework; sourceTree = DEVELOPER_DIR; };
+		7C6417621B8EBE4D000EE8C7 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../DWearIOS/Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
+		7C6417641B8EBE6D000EE8C7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		7C6417661B8EBEB3000EE8C7 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		7C9455DE15B8793F0037A86D /* PFCommandResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFCommandResult.h; sourceTree = "<group>"; };
 		7CF213BA16D41D980065CF1A /* PFTaskQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFTaskQueue.h; sourceTree = "<group>"; };
 		7CF213BB16D41D980065CF1A /* PFTaskQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFTaskQueue.m; sourceTree = "<group>"; };
@@ -1578,6 +1605,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C6417671B8EBEB3000EE8C7 /* Bolts.framework in Frameworks */,
+				7C6417651B8EBE6D000EE8C7 /* UIKit.framework in Frameworks */,
+				7C6417541B8EBDB6000EE8C7 /* AudioToolbox.framework in Frameworks */,
+				7C6417551B8EBDB6000EE8C7 /* CFNetwork.framework in Frameworks */,
+				7C6417561B8EBDB6000EE8C7 /* CoreGraphics.framework in Frameworks */,
+				7C6417571B8EBDB6000EE8C7 /* CoreLocation.framework in Frameworks */,
+				7C6417581B8EBDB6000EE8C7 /* libsqlite3.tbd in Frameworks */,
+				7C6417591B8EBDB6000EE8C7 /* libz.tbd in Frameworks */,
+				7C64175A1B8EBDB6000EE8C7 /* QuartzCore.framework in Frameworks */,
+				7C64175B1B8EBDB6000EE8C7 /* Security.framework in Frameworks */,
+				7C64175C1B8EBDB6000EE8C7 /* StoreKit.framework in Frameworks */,
+				7C64175D1B8EBDB6000EE8C7 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1780,6 +1819,21 @@
 		09D3364C139C54940098E916 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C6417661B8EBEB3000EE8C7 /* Bolts.framework */,
+				7C6417641B8EBE6D000EE8C7 /* UIKit.framework */,
+				7C6417621B8EBE4D000EE8C7 /* Bolts.framework */,
+				7C6417601B8EBE19000EE8C7 /* Social.framework */,
+				7C64175E1B8EBE12000EE8C7 /* Accounts.framework */,
+				7C64174A1B8EBDB6000EE8C7 /* AudioToolbox.framework */,
+				7C64174B1B8EBDB6000EE8C7 /* CFNetwork.framework */,
+				7C64174C1B8EBDB6000EE8C7 /* CoreGraphics.framework */,
+				7C64174D1B8EBDB6000EE8C7 /* CoreLocation.framework */,
+				7C64174E1B8EBDB6000EE8C7 /* libsqlite3.tbd */,
+				7C64174F1B8EBDB6000EE8C7 /* libz.tbd */,
+				7C6417501B8EBDB6000EE8C7 /* QuartzCore.framework */,
+				7C6417511B8EBDB6000EE8C7 /* Security.framework */,
+				7C6417521B8EBDB6000EE8C7 /* StoreKit.framework */,
+				7C6417531B8EBDB6000EE8C7 /* SystemConfiguration.framework */,
 				8103FA47198FC304000BAE3F /* Bolts */,
 				81AFA6781B0ECF9B000763C0 /* OCMock */,
 				813E97A91A26A76A00373BA7 /* System Frameworks */,
@@ -4369,7 +4423,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACH_O_TYPE = mh_dylib;
 				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_LDFLAGS = "";
 			};
 			name = Test;
 		};
@@ -4440,7 +4501,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACH_O_TYPE = mh_dylib;
 				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_LDFLAGS = "";
 			};
 			name = Debug;
 		};
@@ -4448,7 +4516,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACH_O_TYPE = mh_dylib;
 				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_LDFLAGS = "";
 			};
 			name = Release;
 		};
