@@ -491,7 +491,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @deprecated Please use `-fetch` instead.
  */
-- (void)refresh PARSE_DEPRECATED("Please use `-fetch` instead.");
+- (instancetype)refresh PARSE_DEPRECATED("Please use `-fetch` instead.");
 
 /*!
  @abstract *Synchronously* refreshes the `PFObject` with the current data from the server and sets an error if it occurs.
@@ -500,7 +500,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @deprecated Please use `-fetch:` instead.
  */
-- (void)refresh:(NSError **)error PARSE_DEPRECATED("Please use `-fetch:` instead.");
+- (instancetype)refresh:(NSError **)error PARSE_DEPRECATED("Please use `-fetch:` instead.");
 
 /*!
  @abstract *Asynchronously* refreshes the `PFObject` and executes the given callback block.
@@ -531,13 +531,13 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /*!
  @abstract *Synchronously* fetches the PFObject with the current data from the server.
  */
-- (void)fetch;
+- (instancetype)fetch;
 /*!
  @abstract *Synchronously* fetches the PFObject with the current data from the server and sets an error if it occurs.
 
  @param error Pointer to an `NSError` that will be set if necessary.
  */
-- (void)fetch:(NSError **)error;
+- (instancetype)fetch:(NSError **)error;
 
 /*!
  @abstract *Synchronously* fetches the `PFObject` data from the server if <isDataAvailable> is `NO`.
@@ -614,7 +614,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param objects The list of objects to fetch.
  */
-+ (void)fetchAll:(PF_NULLABLE NSArray *)objects;
++ (NSArray *)fetchAll:(PF_NULLABLE NSArray *)objects;
 
 /*!
  @abstract *Synchronously* fetches all of the `PFObject` objects with the current data from the server
@@ -623,13 +623,13 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects The list of objects to fetch.
  @param error Pointer to an `NSError` that will be set if necessary.
  */
-+ (void)fetchAll:(PF_NULLABLE NSArray *)objects error:(NSError **)error;
++ (NSArray *)fetchAll:(PF_NULLABLE NSArray *)objects error:(NSError **)error;
 
 /*!
  @abstract *Synchronously* fetches all of the `PFObject` objects with the current data from the server.
  @param objects The list of objects to fetch.
  */
-+ (void)fetchAllIfNeeded:(PF_NULLABLE NSArray *)objects;
++ (NSArray *)fetchAllIfNeeded:(PF_NULLABLE NSArray *)objects;
 
 /*!
  @abstract *Synchronously* fetches all of the `PFObject` objects with the current data from the server
@@ -638,7 +638,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects The list of objects to fetch.
  @param error Pointer to an `NSError` that will be set if necessary.
  */
-+ (void)fetchAllIfNeeded:(PF_NULLABLE NSArray *)objects error:(NSError **)error;
++ (NSArray *)fetchAllIfNeeded:(PF_NULLABLE NSArray *)objects error:(NSError **)error;
 
 /*!
  @abstract Fetches all of the `PFObject` objects with the current data from the server *asynchronously*.
@@ -718,7 +718,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @abstract *Synchronously* loads data from the local datastore into this object,
  if it has not been fetched from the server already.
  */
-- (void)fetchFromLocalDatastore;
+- (instancetype)fetchFromLocalDatastore;
 
 /*!
  @abstract *Synchronously* loads data from the local datastore into this object, if it has not been fetched
@@ -729,7 +729,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param error Pointer to an `NSError` that will be set if necessary.
  */
-- (void)fetchFromLocalDatastore:(NSError **)error;
+- (instancetype)fetchFromLocalDatastore:(NSError **)error;
 
 /*!
  @abstract *Asynchronously* loads data from the local datastore into this object,
