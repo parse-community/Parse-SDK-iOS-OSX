@@ -141,7 +141,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /*!
  @abstract Sets the object associated with a given key.
 
- @param object The object for `key`. A strong reference to the object is maintaned by PFObject.
+ @param object The object for `key`. A strong reference to the object is maintained by PFObject.
  Raises an `NSInvalidArgumentException` if `object` is `nil`.
  If you need to represent a `nil` value - use `NSNull`.
  @param key The key for `object`.
@@ -176,7 +176,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @discussion This method enables usage of literal syntax on `PFObject`.
  E.g. `object[@"key"] = @"value";`
 
- @param object The object for `key`. A strong reference to the object is maintaned by PFObject.
+ @param object The object for `key`. A strong reference to the object is maintained by PFObject.
  Raises an `NSInvalidArgumentException` if `object` is `nil`.
  If you need to represent a `nil` value - use `NSNull`.
  @param key The key for `object`.
@@ -201,6 +201,19 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @deprecated Please use `[PFObject relationForKey:]` instead.
  */
 - (PFRelation *)relationforKey:(NSString *)key PARSE_DEPRECATED("Please use -relationForKey: instead.");
+
+/*!
+ @abstract Clears any changes to this object made since the last call to save and sets it back to the server state.
+ */
+- (void)revert;
+
+/*!
+ @abstract Clears any changes to this object's key that were done after last successful save and sets it back to the
+ server state.
+ 
+ @param key The key to revert changes for.
+ */
+- (void)revertObjectForKey:(NSString *)key;
 
 ///--------------------------------------
 /// @name Array Accessors
