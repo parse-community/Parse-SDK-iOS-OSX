@@ -55,8 +55,9 @@ static NSString *containingApplicationBundleIdentifier_;
 ///--------------------------------------
 
 + (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey {
-    // TODO: (nlutsenko) Add assert and unit test here that checks applicationId, clientKey not being nil.
-
+    PFConsistencyAssert([applicationId length], @"'applicationId' should not be nil.");
+    PFConsistencyAssert([clientKey length], @"'clientKey' should not be nil.");
+    
     // Setup new manager first, so it's 100% ready whenever someone sends a request for anything.
     ParseManager *manager = [[ParseManager alloc] initWithApplicationId:applicationId clientKey:clientKey];
     [manager configureWithApplicationGroupIdentifier:applicationGroupIdentifier_
