@@ -4424,11 +4424,12 @@
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACH_O_TYPE = mh_dylib;
 				OTHER_CFLAGS = "-fembed-bitcode";
 				OTHER_LDFLAGS = "";
@@ -4503,12 +4504,14 @@
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACH_O_TYPE = mh_dylib;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-fembed-bitcode";
 				OTHER_LDFLAGS = "";
 			};
@@ -4519,11 +4522,12 @@
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACH_O_TYPE = mh_dylib;
 				OTHER_CFLAGS = "-fembed-bitcode";
 				OTHER_LDFLAGS = "";
