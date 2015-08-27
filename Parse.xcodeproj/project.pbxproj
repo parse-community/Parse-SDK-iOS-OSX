@@ -4369,6 +4369,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
+				OTHER_CFLAGS = "-fembed-bitcode";
 			};
 			name = Test;
 		};
@@ -4439,6 +4440,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
+				OTHER_CFLAGS = "-fembed-bitcode";
 			};
 			name = Debug;
 		};
@@ -4446,6 +4448,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
+				OTHER_CFLAGS = "-fembed-bitcode";
 			};
 			name = Release;
 		};
