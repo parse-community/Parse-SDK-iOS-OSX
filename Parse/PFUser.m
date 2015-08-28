@@ -1098,11 +1098,11 @@ static BOOL revocableSessionEnabled_;
     }];
 }
 
-- (void)fetch:(NSError **)error {
+- (instancetype)fetch:(NSError **)error {
     if (self.isLazy) {
-        return;
+        return self;
     }
-    [super fetch:error];
+    return [super fetch:error];
 }
 
 - (void)fetchInBackgroundWithBlock:(PFObjectResultBlock)block {

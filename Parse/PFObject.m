@@ -1110,6 +1110,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
                     [localOperationSet.updatedAt compare:remoteOperationSet.updatedAt] != NSOrderedAscending) {
                     [localOperationSet mergeOperationSet:remoteOperationSet];
                 } else {
+                    PFConsistencyAssert(remoteOperationSet, @"'remoteOperationSet' should not be nil.");
                     NSUInteger index = [operationSetQueue indexOfObject:localOperationSet];
                     [remoteOperationSet mergeOperationSet:localOperationSet];
                     [operationSetQueue replaceObjectAtIndex:index withObject:remoteOperationSet];
@@ -2097,12 +2098,12 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
     return self._state.complete;
 }
 
-- (void)refresh {
-    [self fetch];
+- (instancetype)refresh {
+    return [self fetch];
 }
 
-- (void)refresh:(NSError **)error {
-    [self fetch:error];
+- (instancetype)refresh:(NSError **)error {
+    return [self fetch:error];
 }
 
 - (void)refreshInBackgroundWithTarget:(id)target selector:(SEL)selector {
@@ -2113,12 +2114,12 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
     [self fetchInBackgroundWithBlock:block];
 }
 
-- (void)fetch {
-    [self fetch:nil];
+- (instancetype)fetch {
+    return [self fetch:nil];
 }
 
-- (void)fetch:(NSError **)error {
-    [[self fetchInBackground] waitForResult:error];
+- (instancetype)fetch:(NSError **)error {
+    return [[self fetchInBackground] waitForResult:error];
 }
 
 - (BFTask *)fetchInBackground {
@@ -2171,20 +2172,20 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 #pragma mark - Fetching Many Objects
 ///--------------------------------------
 
-+ (void)fetchAll:(NSArray *)objects {
-    [PFObject fetchAll:objects error:nil];
++ (NSArray *)fetchAll:(NSArray *)objects {
+    return [PFObject fetchAll:objects error:nil];
 }
 
-+ (void)fetchAllIfNeeded:(NSArray *)objects {
-    [PFObject fetchAllIfNeeded:objects error:nil];
++ (NSArray *)fetchAllIfNeeded:(NSArray *)objects {
+    return [PFObject fetchAllIfNeeded:objects error:nil];
 }
 
-+ (void)fetchAll:(NSArray *)objects error:(NSError **)error {
-    [[self fetchAllInBackground:objects] waitForResult:error];
++ (NSArray *)fetchAll:(NSArray *)objects error:(NSError **)error {
+    return [[self fetchAllInBackground:objects] waitForResult:error];
 }
 
-+ (void)fetchAllIfNeeded:(NSArray *)objects error:(NSError **)error {
-    [[self fetchAllIfNeededInBackground:objects] waitForResult:error];
++ (NSArray *)fetchAllIfNeeded:(NSArray *)objects error:(NSError **)error {
+    return [[self fetchAllIfNeededInBackground:objects] waitForResult:error];
 }
 
 + (BFTask *)fetchAllInBackground:(NSArray *)objects {
@@ -2245,12 +2246,12 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 #pragma mark - Fetch From Local Datastore
 ///--------------------------------------
 
-- (void)fetchFromLocalDatastore {
-    [self fetchFromLocalDatastore:nil];
+- (instancetype)fetchFromLocalDatastore {
+    return [self fetchFromLocalDatastore:nil];
 }
 
-- (void)fetchFromLocalDatastore:(NSError **)error {
-    [[self fetchFromLocalDatastoreInBackground] waitForResult:error];
+- (instancetype)fetchFromLocalDatastore:(NSError **)error {
+    return [[self fetchFromLocalDatastoreInBackground] waitForResult:error];
 }
 
 - (void)fetchFromLocalDatastoreInBackgroundWithBlock:(PFObjectResultBlock)block {
