@@ -9,8 +9,10 @@
 
 #import <OCMock/OCMock.h>
 
+@class PFRESTCommand;
+
 @interface OCMockObject (PFCommandRunning)
 
-- (void)mockCommandResult:(id)result forCommandsPassingTest:(BOOL (^)(id obj))block;
+- (void)mockCommandResult:(id)result forCommandsPassingTest:(BOOL (^)(PFRESTCommand *command))block;
 
 @end
