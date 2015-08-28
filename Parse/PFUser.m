@@ -370,7 +370,7 @@ static BOOL revocableSessionEnabled_;
 
 + (BFTask *)_logInWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData {
     // Handle claiming of user.
-    PFUser *currentUser = [PFUser currentUser];
+    PFUser *currentUser = [self currentUser];
     if (currentUser && [PFAnonymousUtils isLinkedWithUser:currentUser]) {
         if ([currentUser isLazy]) {
             PFUser *user = currentUser;
@@ -521,7 +521,7 @@ static BOOL revocableSessionEnabled_;
 }
 
 + (instancetype)logInLazyUserWithAuthType:(NSString *)authType authData:(NSDictionary *)authData {
-    PFUser *user = [PFUser user];
+    PFUser *user = [self user];
     @synchronized ([user lock]) {
         [user setIsCurrentUser:YES];
         user.isLazy = YES;
@@ -532,7 +532,7 @@ static BOOL revocableSessionEnabled_;
 }
 
 - (BFTask *)signUpAsync:(BFTask *)toAwait {
-    PFUser *currentUser = [PFUser currentUser];
+    PFUser *currentUser = [[self class] currentUser];
     NSString *token = currentUser.sessionToken;
     @synchronized ([self lock]) {
         if (self.objectId) {
@@ -1058,7 +1058,7 @@ static BOOL revocableSessionEnabled_;
 }
 
 + (instancetype)user {
-    return (PFUser *)[PFUser object];
+    return [self object];
 }
 
 - (BFTask *)saveAsync:(BFTask *)toAwait {
@@ -1140,7 +1140,7 @@ static BOOL revocableSessionEnabled_;
 }
 
 - (BOOL)isAuthenticated {
-    PFUser *currentUser = [PFUser currentUser];
+    PFUser *currentUser = [[self class] currentUser];
     return [self _isAuthenticatedWithCurrentUser:currentUser];
 }
 
