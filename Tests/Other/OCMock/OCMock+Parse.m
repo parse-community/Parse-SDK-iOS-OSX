@@ -16,7 +16,7 @@
 
 @implementation OCMockObject (PFCOmmandRunning)
 
-- (void)mockCommandResult:(id)result forCommandsPassingTest:(BOOL (^)(id obj))block {
+- (void)mockCommandResult:(id)result forCommandsPassingTest:(BOOL (^)(PFRESTCommand *command))block {
     PFCommandResult *commandResult = [PFCommandResult commandResultWithResult:result
                                                                  resultString:nil
                                                                  httpResponse:nil];

@@ -394,80 +394,6 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
     }
 }
 
-// Delete all objects in the array.
-+ (BFTask *)deleteAllAsync:(NSArray *)objects withSessionToken:(NSString *)sessionToken {
-    if ([objects count] == 0) {
-        return [BFTask taskWithResult:@YES];
-    }
-
-    return [[[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
-        return [PFObject _enqueue:^BFTask *(BFTask *toAwait) {
-            NSMutableSet *uniqueObjects = [NSMutableSet set];
-            NSMutableArray *commands = [NSMutableArray arrayWithCapacity:[objects count]];
-            for (PFObject *object in objects) {
-                @synchronized (object->lock) {
-                    //Just continue, there is no action to be taken here
-                    if (!object.objectId) {
-                        continue;
-                    }
-
-                    NSString *uniqueCheck = [NSString stringWithFormat:@"%@-%@",
-                                             object.parseClassName,
-                                             [object objectId]];
-                    if (![uniqueObjects containsObject:uniqueCheck]) {
-                        [object checkDeleteParams];
-
-                        [commands addObject:[object _currentDeleteCommandWithSessionToken:sessionToken]];
-                        [uniqueObjects addObject:uniqueCheck];
-                    }
-                }
-            }
-
-            // Batch requests have currently a limit of 50 packaged requests per single request
-            // This splitting will split the overall array into segments of upto 50 requests
-            // and execute them concurrently with a wrapper task for all of them.
-            NSArray *commandBatches = [PFInternalUtils arrayBySplittingArray:commands
-                                             withMaximumComponentsPerSegment:PFRESTObjectBatchCommandSubcommandsLimit];
-            NSMutableArray *tasks = [NSMutableArray arrayWithCapacity:[commandBatches count]];
-            for (NSArray *commandBatch in commandBatches) {
-                PFRESTCommand *command = [PFRESTObjectBatchCommand batchCommandWithCommands:commandBatch
-                                                                               sessionToken:sessionToken];
-                BFTask *task = [[[Parse _currentManager].commandRunner runCommandAsync:command withOptions:0]
-                                continueAsyncWithSuccessBlock:^id(BFTask *task) {
-                                    NSArray *results = [task.result result];
-                                    for (NSDictionary *result in results) {
-                                        NSDictionary *errorResult = result[@"error"];
-                                        if (errorResult) {
-                                            NSError *error = [PFErrorUtilities errorFromResult:errorResult];
-                                            return [BFTask taskWithError:error];
-                                        }
-                                    }
-
-                                    return task;
-                                }];
-                [tasks addObject:task];
-            }
-            return [BFTask taskForCompletionOfAllTasks:tasks];
-        } forObjects:objects];
-    }] continueWithBlock:^id(BFTask *task) {
-        if (!task.exception) {
-            return task;
-        }
-
-        // Return the first exception, instead of the aggregated one
-        // for the sake of compatability with old versions
-
-        if ([task.exception.name isEqualToString:BFTaskMultipleExceptionsException]) {
-            NSException *firstException = [task.exception.userInfo[@"exceptions"] firstObject];
-            if (firstException) {
-                return [BFTask taskWithException:firstException];
-            }
-        }
-
-        return task;
-    }] continueWithSuccessResult:@YES];
-}
-
 // This saves all of the objects and files reachable from the given object.
 // It does its work in multiple waves, saving as many as possible in each wave.
 // If there's ever an error, it just gives up, sets error, and returns NO;
@@ -2495,10 +2421,23 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 }
 
 + (BFTask *)deleteAllInBackground:(NSArray *)objects {
-    return [[[self currentUserController] getCurrentUserSessionTokenAsync] continueWithBlock:^id(BFTask *task) {
+    NSArray *deleteObjects = [objects copy]; // Snapshot the objects.
+    if (deleteObjects.count == 0) {
+        return [BFTask taskWithResult:objects];
+    }
+    return [[[[self currentUserController] getCurrentUserSessionTokenAsync] continueWithBlock:^id(BFTask *task) {
         NSString *sessionToken = task.result;
-        return [PFObject deleteAllAsync:objects withSessionToken:sessionToken];
-    }];
+
+        NSArray *uniqueObjects = [PFObjectBatchController uniqueObjectsArrayFromArray:deleteObjects usingFilter:^BOOL(PFObject *object) {
+            return (object.objectId != nil);
+        }];
+        [uniqueObjects makeObjectsPerformSelector:@selector(checkDeleteParams)]; // TODO: (nlutsenko) Make it async?
+        return [self _enqueue:^BFTask *(BFTask *toAwait) {
+            return [toAwait continueAsyncWithBlock:^id(BFTask *task) {
+                return [[self objectBatchController] deleteObjectsAsync:uniqueObjects withSessionToken:sessionToken];
+            }];
+        } forObjects:uniqueObjects];
+    }] continueWithSuccessResult:@YES];
 }
 
 + (void)deleteAllInBackground:(NSArray *)objects target:(id)target selector:(SEL)selector {
