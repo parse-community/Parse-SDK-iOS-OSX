@@ -88,6 +88,9 @@ static objc_property_t getAccessorMutatorPair(Class klass, SEL sel, SEL outPair[
     _dataAccessQueue = dispatch_queue_create("com.parse.object.subclassing.data.access", DISPATCH_QUEUE_SERIAL);
     _subclass = kls;
 
+    _knownProperties = [NSMutableDictionary dictionary];
+    _knownMethodSignatures = [NSMutableDictionary dictionary];
+
     return self;
 }
 
