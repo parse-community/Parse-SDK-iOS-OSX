@@ -36,25 +36,11 @@
     XCTAssertEqualObjects([PFAnonymousAuthenticationProvider authType], @"anonymous");
 }
 
-- (void)testAuthenticateAsync {
+- (void)testDeauthenticateInBackground {
     PFAnonymousAuthenticationProvider *provider = [[PFAnonymousAuthenticationProvider alloc] init];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[provider authenticateAsync] continueWithBlock:^id(BFTask *task) {
-        NSDictionary *authData = task.result;
-        XCTAssertNotNil(authData);
-        XCTAssertNotNil(authData[@"id"]);
-        [expectation fulfill];
-        return nil;
-    }];
-    [self waitForTestExpectations];
-}
-
-- (void)testDeauthenticateAsync {
-    PFAnonymousAuthenticationProvider *provider = [[PFAnonymousAuthenticationProvider alloc] init];
-
-    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[provider deauthenticateAsync] continueWithBlock:^id(BFTask *task) {
+    [[provider deauthenticateInBackground] continueWithBlock:^id(BFTask *task) {
         XCTAssertNil(task.result);
         XCTAssertFalse(task.faulted);
         XCTAssertFalse(task.cancelled);
@@ -66,12 +52,16 @@
 
 - (void)testRestoreAuthentication {
     PFAnonymousAuthenticationProvider *provider = [[PFAnonymousAuthenticationProvider alloc] init];
-    XCTAssertTrue([provider restoreAuthenticationWithAuthData:@{ @"id" : @"123" }]);
+    BFTask *task = [provider restoreAuthenticationInBackgroundWithAuthData:@{ @"id" : @"123" }];
+    [task waitUntilFinished];
+    XCTAssertFalse(task.faulted);
 }
 
 - (void)testRestoreAuthenticationWithNoData {
     PFAnonymousAuthenticationProvider *provider = [[PFAnonymousAuthenticationProvider alloc] init];
-    XCTAssertTrue([provider restoreAuthenticationWithAuthData:nil]);
+    BFTask *task = [provider restoreAuthenticationInBackgroundWithAuthData:nil];
+    [task waitUntilFinished];
+    XCTAssertFalse(task.faulted);
 }
 
 @end

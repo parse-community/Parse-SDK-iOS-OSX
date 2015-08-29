@@ -9,10 +9,14 @@
 
 #import "PFUserAuthenticationController.h"
 
-#import <Bolts/BFTask.h>
-
+#import "BFTask+Private.h"
 #import "PFMacros.h"
 #import "PFUserPrivate.h"
+#import "PFObjectPrivate.h"
+#import "PFAnonymousUtils.h"
+#import "PFAnonymousAuthenticationProvider.h"
+#import "PFUserController.h"
+#import "PFAssert.h"
 
 @interface PFUserAuthenticationController () {
     dispatch_queue_t _dataAccessQueue;
@@ -42,10 +46,13 @@
 ///--------------------------------------
 
 - (void)registerAuthenticationProvider:(id<PFAuthenticationProvider>)provider {
+    PFParameterAssert(provider, @"Authentication provider can't be `nil`.");
+
     NSString *authType = [[provider class] authType];
-    if (!authType) {
-        return;
-    }
+    PFParameterAssert(authType, @"Authentication provider's `authType` can't be `nil`.");
+    PFConsistencyAssert(![self authenticationProviderForAuthType:authType],
+                        @"Authentication provider already registered for authType `%@`.", authType);
+
     dispatch_sync(_dataAccessQueue, ^{
         _authenticationProviders[authType] = provider;
     });
@@ -82,57 +89,81 @@
 #pragma mark - Authentication
 ///--------------------------------------
 
-- (BFTask *)authenticateAsyncWithProviderForAuthType:(NSString *)authType {
-    id<PFAuthenticationProvider> provider = [self authenticationProviderForAuthType:authType];
-    return [provider authenticateAsync];
-}
-
 - (BFTask *)deauthenticateAsyncWithProviderForAuthType:(NSString *)authType {
     id<PFAuthenticationProvider> provider = [self authenticationProviderForAuthType:authType];
     if (provider) {
-        return [provider deauthenticateAsync];
+        return [provider deauthenticateInBackground];
     }
     return [BFTask taskWithResult:nil];
 }
 
-- (BOOL)restoreAuthenticationWithAuthData:(NSDictionary *)authData withProviderForAuthType:(NSString *)authType {
+- (BFTask *)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary *)authData
+                           forProviderWithAuthType:(NSString *)authType {
     id<PFAuthenticationProvider> provider = [self authenticationProviderForAuthType:authType];
     if (!provider) {
-        return YES;
+        return [BFTask taskWithResult:nil];
     }
-    return [provider restoreAuthenticationWithAuthData:authData];
+    return [provider restoreAuthenticationInBackgroundWithAuthData:authData];
 }
 
 ///--------------------------------------
 #pragma mark - Log In
 ///--------------------------------------
 
-- (BFTask *)logInUserAsyncWithAuthType:(NSString *)authType {
-    @weakify(self);
-    return [[self authenticateAsyncWithProviderForAuthType:authType] continueWithSuccessBlock:^id(BFTask *task) {
-        @strongify(self);
-        return [self logInUserAsyncWithAuthType:authType authData:task.result];
-    }];
-}
-
 - (BFTask *)logInUserAsyncWithAuthType:(NSString *)authType authData:(NSDictionary *)authData {
-    return [PFUser _logInWithAuthTypeInBackground:authType authData:authData];
-}
+    //TODO: (nlutsenko) Make it fully async.
+    //TODO: (nlutsenko) Inject `PFUserController` here.
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser && [PFAnonymousUtils isLinkedWithUser:currentUser]) {
+        if ([currentUser isLazy]) {
+            PFUser *user = currentUser;
+            BFTask *resolveLaziness = nil;
+            NSDictionary *oldAnonymousData = nil;
+            @synchronized (user.lock) {
+                oldAnonymousData = user.authData[[PFAnonymousAuthenticationProvider authType]];
 
-///--------------------------------------
-#pragma mark - Link
-///--------------------------------------
+                // Replace any anonymity with the new linked authData
+                [user stripAnonymity];
 
-- (BFTask *)linkUserAsync:(PFUser *)user withAuthType:(NSString *)authType {
-    @weakify(self);
-    return [[self authenticateAsyncWithProviderForAuthType:authType] continueWithSuccessBlock:^id(BFTask *task) {
-        @strongify(self);
-        return [self linkUserAsync:user withAuthType:authType authData:task.result];
-    }];
-}
+                [user.authData setObject:authData forKey:authType];
+                [user.linkedServiceNames addObject:authType];
 
-- (BFTask *)linkUserAsync:(PFUser *)user withAuthType:(NSString *)authType authData:(NSDictionary *)authData {
-    return [user _linkWithAuthTypeInBackground:authType authData:authData];
+                resolveLaziness = [user resolveLazinessAsync:[BFTask taskWithResult:nil]];
+            }
+
+            return [resolveLaziness continueAsyncWithBlock:^id(BFTask *task) {
+                if (task.isCancelled || task.exception || task.error) {
+                    [user.authData removeObjectForKey:authType];
+                    [user.linkedServiceNames removeObject:authType];
+                    [user restoreAnonymity:oldAnonymousData];
+                    return task;
+                }
+                return task.result;
+            }];
+        } else {
+            return [[currentUser linkWithAuthTypeInBackground:authType
+                                                     authData:authData] continueAsyncWithBlock:^id(BFTask *task) {
+                NSError *error = task.error;
+                if (error) {
+                    if (error.code == kPFErrorAccountAlreadyLinked) {
+                        // An account that's linked to the given authData already exists,
+                        // so log in instead of trying to claim.
+                        return [[PFUser userController] logInCurrentUserAsyncWithAuthType:authType
+                                                                                 authData:authData
+                                                                         revocableSession:[PFUser _isRevocableSessionEnabled]];
+                    } else {
+                        return task;
+                    }
+                }
+
+                return [BFTask taskWithResult:currentUser];
+            }];
+        }
+    }
+    return [[PFUser userController] logInCurrentUserAsyncWithAuthType:authType
+                                                             authData:authData
+                                                     revocableSession:[PFUser _isRevocableSessionEnabled]];
+
 }
 
 @end
