@@ -18,6 +18,9 @@
          location = "container:"
          name = "iOS">
          <FileRef
+            location = "group:ParseStarterProject/iOS/ParseAppExtensionsStarterProject/ParseAppExtensionsStarterProject.xcodeproj">
+         </FileRef>
+         <FileRef
             location = "group:ParseStarterProject/iOS/ParseStarterProject/ParseStarterProject.xcodeproj">
          </FileRef>
          <FileRef
