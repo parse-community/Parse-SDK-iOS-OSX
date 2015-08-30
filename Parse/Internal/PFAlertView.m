@@ -9,8 +9,6 @@
 
 #import "PFAlertView.h"
 
-#import <UIKit/UIKit.h>
-
 @interface PFAlertView () <UIAlertViewDelegate>
 
 @property (nonatomic, copy) PFAlertViewCompletion completion;
@@ -62,6 +60,7 @@
 
         [viewController presentViewController:alertController animated:YES completion:nil];
     } else {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
         __block PFAlertView *pfAlertView = [[self alloc] init];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                             message:message
@@ -83,8 +82,11 @@
 
         alertView.delegate = pfAlertView;
         [alertView show];
+#endif
     }
 }
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
 
 ///--------------------------------------
 #pragma mark - UIAlertViewDelegate
@@ -99,5 +101,7 @@
         }
     }
 }
+
+#endif
 
 @end
