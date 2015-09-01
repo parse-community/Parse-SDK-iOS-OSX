@@ -61,21 +61,25 @@
         return;
     }
 
-    if ([result isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *resultDictionary = (NSDictionary *)result;
-        if (resultDictionary[@"error"]) {
-            NSMutableDictionary *errorDictionary = [NSMutableDictionary dictionaryWithDictionary:resultDictionary];
-            errorDictionary[@"temporary"] = @(self.response.statusCode >= 500 || self.response.statusCode < 400);
-            self.error = [PFErrorUtilities errorFromResult:errorDictionary];
-            [super _taskDidFinish];
-            return;
+    if (self.response.statusCode >= 200) {
+        if (self.response.statusCode < 400) {
+            PFCommandResult *commandResult = [PFCommandResult commandResultWithResult:result
+                                                                         resultString:resultString
+                                                                         httpResponse:self.response];
+            self.result = commandResult;
+        } else if ([result isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *resultDictionary = (NSDictionary *)result;
+            if (resultDictionary[@"error"]) {
+                NSMutableDictionary *errorDictionary = [NSMutableDictionary dictionaryWithDictionary:resultDictionary];
+                errorDictionary[@"temporary"] = @(self.response.statusCode >= 500 || self.response.statusCode < 400);
+                self.error = [PFErrorUtilities errorFromResult:errorDictionary];
+            }
         }
     }
 
-    PFCommandResult *commandResult = [PFCommandResult commandResultWithResult:result
-                                                                 resultString:resultString
-                                                                 httpResponse:self.response];
-    self.result = commandResult;
+    if (!self.result && !self.error) {
+        self.error = [PFErrorUtilities errorWithCode:kPFErrorInternalServer message:resultString];
+    }
     [super _taskDidFinish];
 }
 
