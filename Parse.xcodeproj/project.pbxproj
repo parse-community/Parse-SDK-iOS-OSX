@@ -18,6 +18,7 @@
 		7C64175C1B8EBDB6000EE8C7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6417521B8EBDB6000EE8C7 /* StoreKit.framework */; };
 		7C64175D1B8EBDB6000EE8C7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6417531B8EBDB6000EE8C7 /* SystemConfiguration.framework */; };
 		7C6417651B8EBE6D000EE8C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6417641B8EBE6D000EE8C7 /* UIKit.framework */; };
+		7C8AE9731B957B4400E9B213 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8103FA42198FC25B000BAE3F /* Bolts.framework */; settings = {ASSET_TAGS = (); }; };
 		7CBC8DA116D594F800AEC66D /* PFTaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF213BB16D41D980065CF1A /* PFTaskQueue.m */; };
 		8103FA38198FC190000BAE3F /* BFTask+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 8103FA33198FC190000BAE3F /* BFTask+Private.h */; };
 		8103FA3A198FC190000BAE3F /* BFTask+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 8103FA34198FC190000BAE3F /* BFTask+Private.m */; };
@@ -1102,8 +1103,8 @@
 		8103FA34198FC190000BAE3F /* BFTask+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BFTask+Private.m"; sourceTree = "<group>"; };
 		8103FA35198FC190000BAE3F /* PFCategoryLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFCategoryLoader.h; sourceTree = "<group>"; };
 		8103FA36198FC190000BAE3F /* PFCategoryLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFCategoryLoader.m; sourceTree = "<group>"; };
-		8103FA42198FC25B000BAE3F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Vendor/Bolts-ObjC/build/ios/Bolts.framework"; sourceTree = "<group>"; };
-		8103FA44198FC267000BAE3F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Vendor/Bolts-ObjC/build/osx/Bolts.framework"; sourceTree = "<group>"; };
+		8103FA42198FC25B000BAE3F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Vendor/Bolts/ios/Bolts.framework; sourceTree = "<group>"; };
+		8103FA44198FC267000BAE3F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Vendor/Bolts/osx/Bolts.framework; sourceTree = "<group>"; };
 		81068EBA1ADE462500A34D13 /* Parse_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parse_Private.h; sourceTree = "<group>"; };
 		81068EEF1AE0845D00A34D13 /* PFEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFEncoder.h; sourceTree = "<group>"; };
 		81068EF01AE0845D00A34D13 /* PFEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFEncoder.m; sourceTree = "<group>"; };
@@ -1605,6 +1606,7 @@
 				7C6417651B8EBE6D000EE8C7 /* UIKit.framework in Frameworks */,
 				7C6417541B8EBDB6000EE8C7 /* AudioToolbox.framework in Frameworks */,
 				7C6417551B8EBDB6000EE8C7 /* CFNetwork.framework in Frameworks */,
+				7C8AE9731B957B4400E9B213 /* Bolts.framework in Frameworks */,
 				7C6417561B8EBDB6000EE8C7 /* CoreGraphics.framework in Frameworks */,
 				7C6417571B8EBDB6000EE8C7 /* CoreLocation.framework in Frameworks */,
 				7C6417581B8EBDB6000EE8C7 /* libsqlite3.tbd in Frameworks */,
@@ -4422,6 +4424,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Vendor/Bolts/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACH_O_TYPE = mh_dylib;
@@ -4502,6 +4505,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Vendor/Bolts/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACH_O_TYPE = mh_dylib;
@@ -4520,6 +4524,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Vendor/Bolts/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACH_O_TYPE = mh_dylib;
