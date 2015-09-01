@@ -18,7 +18,6 @@
 		7C64175C1B8EBDB6000EE8C7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6417521B8EBDB6000EE8C7 /* StoreKit.framework */; };
 		7C64175D1B8EBDB6000EE8C7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6417531B8EBDB6000EE8C7 /* SystemConfiguration.framework */; };
 		7C6417651B8EBE6D000EE8C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6417641B8EBE6D000EE8C7 /* UIKit.framework */; };
-		7C6417671B8EBEB3000EE8C7 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6417661B8EBEB3000EE8C7 /* Bolts.framework */; };
 		7CBC8DA116D594F800AEC66D /* PFTaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF213BB16D41D980065CF1A /* PFTaskQueue.m */; };
 		8103FA38198FC190000BAE3F /* BFTask+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 8103FA33198FC190000BAE3F /* BFTask+Private.h */; };
 		8103FA3A198FC190000BAE3F /* BFTask+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 8103FA34198FC190000BAE3F /* BFTask+Private.m */; };
@@ -1088,9 +1087,7 @@
 		7C6417531B8EBDB6000EE8C7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		7C64175E1B8EBE12000EE8C7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Accounts.framework; sourceTree = DEVELOPER_DIR; };
 		7C6417601B8EBE19000EE8C7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Social.framework; sourceTree = DEVELOPER_DIR; };
-		7C6417621B8EBE4D000EE8C7 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../DWearIOS/Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		7C6417641B8EBE6D000EE8C7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		7C6417661B8EBEB3000EE8C7 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		7C9455DE15B8793F0037A86D /* PFCommandResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFCommandResult.h; sourceTree = "<group>"; };
 		7CF213BA16D41D980065CF1A /* PFTaskQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFTaskQueue.h; sourceTree = "<group>"; };
 		7CF213BB16D41D980065CF1A /* PFTaskQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFTaskQueue.m; sourceTree = "<group>"; };
@@ -1605,7 +1602,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C6417671B8EBEB3000EE8C7 /* Bolts.framework in Frameworks */,
 				7C6417651B8EBE6D000EE8C7 /* UIKit.framework in Frameworks */,
 				7C6417541B8EBDB6000EE8C7 /* AudioToolbox.framework in Frameworks */,
 				7C6417551B8EBDB6000EE8C7 /* CFNetwork.framework in Frameworks */,
@@ -1819,9 +1815,7 @@
 		09D3364C139C54940098E916 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7C6417661B8EBEB3000EE8C7 /* Bolts.framework */,
 				7C6417641B8EBE6D000EE8C7 /* UIKit.framework */,
-				7C6417621B8EBE4D000EE8C7 /* Bolts.framework */,
 				7C6417601B8EBE19000EE8C7 /* Social.framework */,
 				7C64175E1B8EBE12000EE8C7 /* Accounts.framework */,
 				7C64174A1B8EBDB6000EE8C7 /* AudioToolbox.framework */,
