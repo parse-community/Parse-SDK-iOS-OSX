@@ -19,6 +19,9 @@
 static const NSUInteger PFKeyValueCacheDefaultDiskCacheSize = 10 << 20;
 static const NSUInteger PFKeyValueCacheDefaultDiskCacheRecords = 1000;
 static const NSUInteger PFKeyValueCacheDefaultMemoryCacheRecordSize = 1 << 20;
+static const NSTimeInterval PFKeyValueCacheDiskCacheTimeResolution = 1; // HFS+ stores only second level accuracy.
+
+static NSString *const PFKeyValueCacheDiskCachePathKey = @"path";
 
 @interface PFKeyValueCacheEntry ()
 
@@ -60,6 +63,10 @@ static const NSUInteger PFKeyValueCacheDefaultMemoryCacheRecordSize = 1 << 20;
 @implementation PFKeyValueCache {
     NSURL *_cacheDirectoryURL;
     dispatch_queue_t _diskCacheQueue;
+
+    NSDate *_lastDiskCacheModDate;
+    NSUInteger _lastDiskCacheSize;
+    NSMutableArray *_lastDiskCacheAttributes;
 }
 
 ///--------------------------------------
@@ -72,13 +79,13 @@ static const NSUInteger PFKeyValueCacheDefaultMemoryCacheRecordSize = 1 << 20;
 
 - (instancetype)initWithCacheDirectoryPath:(NSString *)path {
     return [self initWithCacheDirectoryURL:[NSURL fileURLWithPath:path]
-                                fileManager:[NSFileManager defaultManager]
-                                memoryCache:[[NSCache alloc] init]];
+                               fileManager:[NSFileManager defaultManager]
+                               memoryCache:[[NSCache alloc] init]];
 }
 
 - (instancetype)initWithCacheDirectoryURL:(NSURL *)url
-                               fileManager:(NSFileManager *)fileManager
-                               memoryCache:(NSCache *)cache {
+                              fileManager:(NSFileManager *)fileManager
+                              memoryCache:(NSCache *)cache {
     self = [super init];
     if (!self) return nil;
 
@@ -151,15 +158,15 @@ static const NSUInteger PFKeyValueCacheDefaultMemoryCacheRecordSize = 1 << 20;
     // Writing a value to disk right now.
     __block NSString *value = nil;
     dispatch_sync(_diskCacheQueue, ^{
-        NSDate *creationDate = [self _creationDateOfCacheEntryAtURL:cacheURL];
-        if ([[NSDate date] timeIntervalSinceDate:creationDate] > maxAge) {
+        NSDate *modificationDate = [self _modificationDateOfCacheEntryAtURL:cacheURL];
+        if ([[NSDate date] timeIntervalSinceDate:modificationDate] > maxAge) {
             [self removeObjectForKey:key];
             return;
         }
 
         // Cache misses here (e.g. creationDate and value are both nil) should still be put into the memory cache.
         value = [self _diskCacheEntryForURL:cacheURL];
-        [self.memoryCache setObject:[PFKeyValueCacheEntry cacheEntryWithValue:value creationTime:creationDate]
+        [self.memoryCache setObject:[PFKeyValueCacheEntry cacheEntryWithValue:value creationTime:modificationDate]
                              forKey:key];
     });
 
@@ -197,6 +204,18 @@ static const NSUInteger PFKeyValueCacheDefaultMemoryCacheRecordSize = 1 << 20;
     return [_cacheDirectoryURL URLByAppendingPathComponent:key];
 }
 
+- (void)_updateModificationDateAtURL:(NSURL *)url {
+    [self.fileManager setAttributes:@{ NSFileModificationDate: [NSDate date] } ofItemAtPath:url.path error:NULL];
+}
+
+- (NSDate *)_modificationDateOfCacheEntryAtURL:(NSURL *)url {
+    return [self.fileManager attributesOfItemAtPath:url.path error:NULL][NSFileModificationDate];
+}
+
+///--------------------------------------
+#pragma mark - Disk Cache
+///--------------------------------------
+
 - (NSString *)_diskCacheEntryForURL:(NSURL *)url {
     NSData *bytes = [self.fileManager contentsAtPath:[url path]];
     if (!bytes) {
@@ -208,58 +227,109 @@ static const NSUInteger PFKeyValueCacheDefaultMemoryCacheRecordSize = 1 << 20;
 }
 
 - (void)_createDiskCacheEntry:(NSString *)value atURL:(NSURL *)url {
+    NSString *path = [url path];
     NSData *bytes = [value dataUsingEncoding:NSUTF8StringEncoding];
     NSDate *creationDate = [NSDate date];
 
+    BOOL isDirty = [self _isDiskCacheDirty];
+
     [_fileManager createDirectoryAtURL:_cacheDirectoryURL withIntermediateDirectories:YES attributes:nil error:NULL];
-    [self.fileManager createFileAtPath:[url path]
+    [self.fileManager createFileAtPath:path
                               contents:bytes
                             attributes:@{ NSFileCreationDate: creationDate, NSFileModificationDate: creationDate }];
+
+    if (!isDirty) {
+        _lastDiskCacheModDate = creationDate;
+        _lastDiskCacheSize += bytes.length;
+
+        [self _addToDiskCacheDictionary:path
+                       modificationDate:creationDate
+                                   size:bytes.length];
+    } else {
+        [self _invalidateDiskCache];
+    }
 }
 
-- (void)_updateModificationDateAtURL:(NSURL *)url {
-    [self.fileManager setAttributes:@{ NSFileModificationDate: [NSDate date] } ofItemAtPath:url.path error:NULL];
+- (BOOL)_isDiskCacheDirty {
+    if (!_lastDiskCacheModDate) {
+        return YES;
+    }
+
+    NSDate *modificationDate = [self _modificationDateOfCacheEntryAtURL:_cacheDirectoryURL];
+    NSTimeInterval knownInterval = [_lastDiskCacheModDate timeIntervalSinceReferenceDate];
+    NSTimeInterval actualInterval = [modificationDate timeIntervalSinceReferenceDate];
+
+    // NOTE: Most file systems (HFS) can only store up to 1 second of precision, whereas NSDate is super high resolution
+    // Yes, this is actually really bad to have hard coded, as this does give some window where we can get unwanted
+    // entries in the cache. However, that chance of another process touching this directory is greatly outweighed by
+    // the performance gained by using this technique. Plus, in the case of concurrent modification, we will never over-
+    // agressively remove something from the cache, we just might go a little bit over our limit.
+    return (actualInterval - knownInterval) >= PFKeyValueCacheDiskCacheTimeResolution;
 }
 
-- (NSDate *)_creationDateOfCacheEntryAtURL:(NSURL *)url {
-    return [self.fileManager attributesOfItemAtPath:url.path error:NULL][NSFileModificationDate];
+- (void)_invalidateDiskCache {
+    _lastDiskCacheModDate = nil;
+    _lastDiskCacheSize = 0;
+    _lastDiskCacheAttributes = nil;
 }
 
-- (void)_compactDiskCache {
-    // Check if we should kick out old cache entries
+- (void)_recreateDiskCache {
+    NSDictionary *cacheDirectoryAttributes = [self.fileManager attributesOfItemAtPath:_cacheDirectoryURL.path error:NULL];
+
+    _lastDiskCacheModDate = cacheDirectoryAttributes[NSFileModificationDate];
+    _lastDiskCacheSize = 0;
+    _lastDiskCacheAttributes = [[NSMutableArray alloc] init];
+
     NSDirectoryEnumerator *enumerator = [self.fileManager enumeratorAtPath:[_cacheDirectoryURL path]];
-    NSUInteger numBytes = 0;
-    NSMutableArray *sortedFiles = [[NSMutableArray alloc] init];
-    NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-
     NSString *path = nil;
+
     while ((path = [enumerator nextObject]) != nil) {
         [enumerator skipDescendants];
 
-        attributes[path] = [enumerator.fileAttributes copy];
-        numBytes += [attributes[path][NSFileSize] unsignedIntegerValue];
+        NSDictionary *attributes = enumerator.fileAttributes;
+        NSUInteger size = [attributes[NSFileSize] unsignedIntegerValue];
 
-        NSUInteger insertionIndex = [sortedFiles indexOfObject:path
-                                                 inSortedRange:NSMakeRange(0, sortedFiles.count)
-                                                       options:NSBinarySearchingInsertionIndex
-                                               usingComparator:^NSComparisonResult(id obj1, id obj2) {
-                                                   NSDate *date1 = attributes[obj1][NSFileModificationDate];
-                                                   NSDate *date2 = attributes[obj2][NSURLContentModificationDateKey];
+        _lastDiskCacheSize += size;
 
-                                                   return [date1 compare:date2];
-                                               }];
+        // NOTE: Do not use -copy here, as fileAttributes are lazily-loaded, we would run into issues with a lot of
+        // syscalls all at once here.
+        [self _addToDiskCacheDictionary:path
+                       modificationDate:attributes[NSFileModificationDate]
+                                   size:size];
+    }
+}
 
-        [sortedFiles insertObject:path atIndex:insertionIndex];
+- (void)_addToDiskCacheDictionary:(NSString *)path modificationDate:(NSDate *)modificationDate size:(NSUInteger)size {
+    NSDictionary *entry = @{
+        PFKeyValueCacheDiskCachePathKey: path,
+        NSFileModificationDate: modificationDate,
+        NSFileSize: @(size)
+    };
+
+    NSInteger insertionIndex = [_lastDiskCacheAttributes indexOfObject:entry
+                                                         inSortedRange:NSMakeRange(0, _lastDiskCacheAttributes.count)
+                                                               options:NSBinarySearchingInsertionIndex
+                                                       usingComparator:^NSComparisonResult(id obj1, id obj2) {
+                                                           return [obj1[NSFileModificationDate] compare:obj2[NSFileModificationDate]];
+                                                        }];
+
+    [_lastDiskCacheAttributes insertObject:entry atIndex:insertionIndex];
+}
+
+- (void)_compactDiskCache {
+    if ([self _isDiskCacheDirty]) {
+        [self _recreateDiskCache];
     }
 
-    while (sortedFiles.count > _maxDiskCacheRecords || numBytes > _maxDiskCacheBytes) {
-        NSString *toRemove = [sortedFiles firstObject];
-        NSNumber *fileSize = attributes[toRemove][NSFileSize];
+    while (_lastDiskCacheAttributes.count > _maxDiskCacheRecords || _lastDiskCacheSize > _maxDiskCacheBytes) {
+        NSDictionary *attributes = [_lastDiskCacheAttributes firstObject];
+        NSString *toRemove = attributes[PFKeyValueCacheDiskCachePathKey];
+        NSNumber *fileSize = attributes[NSFileSize];
 
         [self.fileManager removeItemAtURL:[self _cacheURLForKey:toRemove] error:NULL];
-        numBytes -= [fileSize unsignedIntegerValue];
+        _lastDiskCacheSize -= [fileSize unsignedIntegerValue];
 
-        [sortedFiles removeObjectAtIndex:0];
+        [_lastDiskCacheAttributes removeObjectAtIndex:0];
     }
 }
 
