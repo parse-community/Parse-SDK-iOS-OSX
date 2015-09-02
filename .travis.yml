@@ -19,6 +19,6 @@ script:
   - bundle exec rake test:$TEST_TYPE
 after_success:
 - | 
-  if [ "$TEST_TYPE" = ios || "$TEST_TYPE" = osx ]; then
+  if [ "$TEST_TYPE" = "ios" ] || [ "$TEST_TYPE" = "osx" ]; then
     bash <(curl -s https://codecov.io/bash)
   fi
