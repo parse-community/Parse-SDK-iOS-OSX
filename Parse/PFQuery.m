@@ -842,6 +842,9 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
                                                                         user:user];
     }] continueWithBlock:^id(BFTask *task) {
         @strongify(self);
+        if (!self) {
+            return task;
+        }
         @synchronized (self) {
             if (_cancellationTokenSource == cancellationTokenSource) {
                 _cancellationTokenSource = nil;
