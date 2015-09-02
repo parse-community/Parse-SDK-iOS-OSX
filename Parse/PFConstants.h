@@ -420,3 +420,15 @@ typedef void (^PFProgressBlock)(int percentDone);
 #    endif
 #  endif
 #endif
+
+///--------------------------------------
+/// @name Swift Macros
+///--------------------------------------
+
+#ifndef PF_SWIFT_UNAVAILABLE
+#  ifdef NS_SWIFT_UNAVAILABLE
+#    define PF_SWIFT_UNAVAILABLE NS_SWIFT_UNAVAILABLE("")
+#  else
+#    define PF_SWIFT_UNAVAILABLE
+#  endif
+#endif
