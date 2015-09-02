@@ -300,7 +300,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns Returns whether the save succeeded.
  */
-- (BOOL)save;
+- (BOOL)save NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* saves the `PFObject` and sets an error if it occurs.
@@ -387,7 +387,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns Returns whether the save succeeded.
  */
-+ (BOOL)saveAll:(PF_NULLABLE NSArray *)objects;
++ (BOOL)saveAll:(PF_NULLABLE NSArray *)objects NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract Saves a collection of objects *synchronously* all at once and sets an error if necessary.
@@ -443,7 +443,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns Returns whether the delete succeeded.
  */
-+ (BOOL)deleteAll:(PF_NULLABLE NSArray *)objects;
++ (BOOL)deleteAll:(PF_NULLABLE NSArray *)objects NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* deletes a collection of objects all at once and sets an error if necessary.
@@ -504,7 +504,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @deprecated Please use `-fetch` instead.
  */
-- (void)refresh PARSE_DEPRECATED("Please use `-fetch` instead.");
+- (void)refresh PARSE_DEPRECATED("Please use `-fetch` instead.") NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* refreshes the `PFObject` with the current data from the server and sets an error if it occurs.
@@ -544,7 +544,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /*!
  @abstract *Synchronously* fetches the PFObject with the current data from the server.
  */
-- (void)fetch;
+- (void)fetch NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 /*!
  @abstract *Synchronously* fetches the PFObject with the current data from the server and sets an error if it occurs.
 
@@ -555,7 +555,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /*!
  @abstract *Synchronously* fetches the `PFObject` data from the server if <isDataAvailable> is `NO`.
  */
-- (PF_NULLABLE PFObject *)fetchIfNeeded;
+- (PF_NULLABLE PFObject *)fetchIfNeeded NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* fetches the `PFObject` data from the server if <isDataAvailable> is `NO`.
@@ -627,7 +627,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param objects The list of objects to fetch.
  */
-+ (void)fetchAll:(PF_NULLABLE NSArray *)objects;
++ (void)fetchAll:(PF_NULLABLE NSArray *)objects NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* fetches all of the `PFObject` objects with the current data from the server
@@ -642,7 +642,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @abstract *Synchronously* fetches all of the `PFObject` objects with the current data from the server.
  @param objects The list of objects to fetch.
  */
-+ (void)fetchAllIfNeeded:(PF_NULLABLE NSArray *)objects;
++ (void)fetchAllIfNeeded:(PF_NULLABLE NSArray *)objects NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* fetches all of the `PFObject` objects with the current data from the server
@@ -731,7 +731,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @abstract *Synchronously* loads data from the local datastore into this object,
  if it has not been fetched from the server already.
  */
-- (void)fetchFromLocalDatastore;
+- (void)fetchFromLocalDatastore NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* loads data from the local datastore into this object, if it has not been fetched
@@ -770,7 +770,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns Returns whether the delete succeeded.
  */
-- (BOOL)delete;
+- (BOOL)delete NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* deletes the `PFObject` and sets an error if it occurs.
@@ -867,7 +867,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see unpin:
  @see PFObjectDefaultPin
  */
-- (BOOL)pin;
+- (BOOL)pin NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* stores the object and every object it points to in the local datastore, recursively,
@@ -901,7 +901,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see unpinWithName:
  */
-- (BOOL)pinWithName:(NSString *)name;
+- (BOOL)pinWithName:(NSString *)name NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* stores the object and every object it points to in the local datastore, recursively.
@@ -1006,7 +1006,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see unpinAll:
  @see PFObjectDefaultPin
  */
-+ (BOOL)pinAll:(PF_NULLABLE NSArray *)objects;
++ (BOOL)pinAll:(PF_NULLABLE NSArray *)objects NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* stores the objects and every object they point to in the local datastore, recursively,
@@ -1042,7 +1042,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see unpinAll:withName:
  */
-+ (BOOL)pinAll:(PF_NULLABLE NSArray *)objects withName:(NSString *)name;
++ (BOOL)pinAll:(PF_NULLABLE NSArray *)objects withName:(NSString *)name NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* stores the objects and every object they point to in the local datastore, recursively.
@@ -1149,7 +1149,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see pin:
  @see PFObjectDefaultPin
  */
-- (BOOL)unpin;
+- (BOOL)unpin NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* removes the object and every object it points to in the local datastore, recursively,
@@ -1173,7 +1173,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see pinWithName:
  */
-- (BOOL)unpinWithName:(NSString *)name;
+- (BOOL)unpinWithName:(NSString *)name NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* removes the object and every object it points to in the local datastore, recursively.
@@ -1245,7 +1245,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see PFObjectDefaultPin
  */
-+ (BOOL)unpinAllObjects;
++ (BOOL)unpinAllObjects NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* removes all objects in the local datastore
@@ -1266,7 +1266,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns Returns whether the unpin succeeded.
  */
-+ (BOOL)unpinAllObjectsWithName:(NSString *)name;
++ (BOOL)unpinAllObjectsWithName:(NSString *)name NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* removes all objects with the specified pin name.
@@ -1329,7 +1329,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see pinAll:
  @see PFObjectDefaultPin
  */
-+ (BOOL)unpinAll:(PF_NULLABLE NSArray *)objects;
++ (BOOL)unpinAll:(PF_NULLABLE NSArray *)objects NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* removes the objects and every object they point to in the local datastore, recursively,
@@ -1355,7 +1355,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see pinAll:withName:
  */
-+ (BOOL)unpinAll:(PF_NULLABLE NSArray *)objects withName:(NSString *)name;
++ (BOOL)unpinAll:(PF_NULLABLE NSArray *)objects withName:(NSString *)name NS_SWIFT_UNAVAILABLE("Breaks try-catch");
 
 /*!
  @abstract *Synchronously* removes the objects and every object they point to in the local datastore, recursively.
