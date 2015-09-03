@@ -121,13 +121,26 @@ static BOOL revocableSessionEnabled_;
 }
 
 // Checks the properties on the object before signUp.
-- (void)checkSignUpParams {
-    @synchronized ([self lock]) {
-        PFConsistencyAssert(self.username, @"Cannot sign up without a username.");
-        PFConsistencyAssert(self.password, @"Cannot sign up without a password.");
-
-        PFConsistencyAssert([self isDirty:NO] && !self.objectId, @"Cannot sign up an existing user.");
-    }
+- (BFTask *)_validateSignUpAsync {
+    return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
+        NSError *error = nil;
+        @synchronized (self.lock) {
+            if (!self.username) {
+                error = [PFErrorUtilities errorWithCode:kPFErrorUsernameMissing
+                                                message:@"Cannot sign up without a username."];
+            } else if (!self.password) {
+                error = [PFErrorUtilities errorWithCode:kPFErrorUserPasswordMissing
+                                                message:@"Cannot sign up without a password."];
+            } else if (![self isDirty:NO] || self.objectId) {
+                error = [PFErrorUtilities errorWithCode:kPFErrorUsernameTaken
+                                                message:@"Cannot sign up an existing user."];
+            }
+        }
+        if (error) {
+            return [BFTask taskWithError:error];
+        }
+        return nil;
+    }];
 }
 
 - (NSMutableDictionary *)_convertToDictionaryForSaving:(PFOperationSet *)changes
@@ -444,7 +457,7 @@ static BOOL revocableSessionEnabled_;
 
             // Otherwise, return an error
             NSError *error = [PFErrorUtilities errorWithCode:kPFErrorUsernameTaken
-                                                    message:@"Cannot sign up a user that has already signed up."];
+                                                     message:@"Cannot sign up a user that has already signed up."];
             return [BFTask taskWithError:error];
         }
 
@@ -452,12 +465,11 @@ static BOOL revocableSessionEnabled_;
         // If there is a signUp or save already in progress, don't allow another one to start.
         if ([self _hasOutstandingOperations]) {
             NSError *error = [PFErrorUtilities errorWithCode:kPFErrorUsernameTaken
-                                                    message:@"Cannot sign up a user that is already signing up."];
+                                                     message:@"Cannot sign up a user that is already signing up."];
             return [BFTask taskWithError:error];
         }
 
-        return [BFTask taskFromExecutor:[BFExecutor immediateExecutor] withBlock:^id{
-            [self checkSignUpParams];
+        return [[self _validateSignUpAsync] continueWithSuccessBlock:^id(BFTask *task) {
             if (currentUser && [PFAnonymousUtils isLinkedWithUser:currentUser]) {
                 // self doesn't have any outstanding saves, so we can safely merge its operations
                 // into the current user.
@@ -1160,7 +1172,6 @@ static BOOL revocableSessionEnabled_;
                 return;
             }
         }
-        [self checkSignUpParams];
         [[self signUpInBackground] thenCallBackOnMainThreadWithBoolValueAsync:block];
     }
 }
