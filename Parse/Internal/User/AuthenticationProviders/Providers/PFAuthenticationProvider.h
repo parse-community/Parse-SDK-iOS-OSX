@@ -9,7 +9,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class BFTask;
+#import <Bolts/BFTask.h>
+
+#import <Parse/PFConstants.h>
+
+//TODO: (nlutsenko) Update documentation for all these methods.
+
+PF_ASSUME_NONNULL_BEGIN
 
 /*!
  A common protocol for general Parse authentication providers.
@@ -26,16 +32,9 @@
 + (NSString *)authType;
 
 /*!
- Invoked by a PFUser to authenticate with the service.  This function should call back PFUser (using the supplied blocks) to notify it of success.
- The NSDictionary passed to the success block should contain relevant authData (and should match the server's expectations of data to be used
- for verifying identity on the server).
+ Invoked by a PFUser upon logOut. Deauthenticate should be used to clear any state being kept by the provider that is associated with the logged-in user.
  */
-- (BFTask *)authenticateAsync;
-
-/*!
- Invoked by a PFUser upon logOut.  Deauthenticate should be used to clear any state being kept by the provider that is associated with the logged-in user.
- */
-- (BFTask *)deauthenticateAsync;
+- (BFTask *)deauthenticateInBackground;
 
 /*!
  Upon logging in (or restoring a PFUser from disk), authData is returned from the server, and the PFUser passes that data into this function,
@@ -43,6 +42,8 @@
  can be used immediately, without having to reauthorize).  authData can be nil, in which case the user has been unlinked, and the service should clear its
  internal state.  Returning NO from this function indicates the authData was somehow invalid, and the user should be unlinked from the provider.
  */
-- (BOOL)restoreAuthenticationWithAuthData:(NSDictionary *)authData;
+- (BFTask *)restoreAuthenticationInBackgroundWithAuthData:(PF_NULLABLE NSDictionary *)authData;
 
 @end
+
+PF_ASSUME_NONNULL_END

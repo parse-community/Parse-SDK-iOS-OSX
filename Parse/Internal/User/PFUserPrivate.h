@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-# import <Parse/PFUser.h>
+#import <Parse/PFUser.h>
 
 #import "PFAuthenticationProvider.h"
 
@@ -19,6 +19,7 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 
 @class BFTask;
 @class PFCommandResult;
+@class PFUserController;
 
 @interface PFUser (Private)
 
@@ -32,12 +33,7 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 
 - (void)checkSignUpParams;
 
-+ (BFTask *)_logInWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
 - (BFTask *)_handleServiceLoginCommandResult:(PFCommandResult *)result;
-
-- (BFTask *)_linkWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
-
-- (BFTask *)_unlinkWithAuthTypeInBackground:(NSString *)authType;
 
 - (void)synchronizeAuthDataWithAuthType:(NSString *)authType;
 
@@ -51,6 +47,8 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 ///--------------------------------------
 + (BOOL)_isRevocableSessionEnabled;
 + (void)_setRevocableSessionEnabled:(BOOL)enabled;
+
++ (PFUserController *)userController;
 
 @end
 
@@ -73,5 +71,27 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 - (BOOL)_isAuthenticatedWithCurrentUser:(PFUser *)currentUser;
 
 - (BFTask *)_logOutAsync;
+
+///--------------------------------------
+/// @name Authentication Providers
+///--------------------------------------
+
+// TODO: (nlutsenko) Add Documentation
++ (void)registerAuthenticationProvider:(id<PFAuthenticationProvider>)authenticationProvider;
+
+// TODO: (nlutsenko) Add Documentation
++ (BFTask *)logInWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
+
+// TODO: (nlutsenko) Add Documentation
+- (BFTask *)linkWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
+
+// TODO: (nlutsenko) Add Documentation
+- (BFTask *)unlinkWithAuthTypeInBackground:(NSString *)authType;
+
+///--------------------------------------
+/// @name Authentication Providers (Private)
+///--------------------------------------
+
++ (void)_unregisterAuthenticationProvider:(id<PFAuthenticationProvider>)provider;
 
 @end
