@@ -11,6 +11,7 @@
 
 #import <Bolts/BFTask.h>
 
+#import <Parse/PFConstants.h>
 #import <Parse/PFNullability.h>
 
 PF_ASSUME_NONNULL_BEGIN
@@ -47,7 +48,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *PF_NULLABLE_S config, NSError *PF_N
 
  @returns Instance of `PFConfig` if the operation succeeded, otherwise `nil`.
  */
-+ (PF_NULLABLE PFConfig *)getConfig;
++ (PF_NULLABLE PFConfig *)getConfig PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract Gets the `PFConfig` object *synchronously* from the server and sets an error if it occurs.

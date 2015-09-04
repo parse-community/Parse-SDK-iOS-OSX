@@ -501,7 +501,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The <PFObject> if found. Returns `nil` if the object isn't found, or if there was an error.
  */
-+ (PF_NULLABLE PFObject *)getObjectOfClass:(NSString *)objectClass objectId:(NSString *)objectId;
++ (PF_NULLABLE PFObject *)getObjectOfClass:(NSString *)objectClass objectId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract Returns a <PFObject> with a given class and id and sets an error if necessary.
@@ -526,7 +526,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The <PFObject> if found. Returns nil if the object isn't found, or if there was an error.
  */
-- (PF_NULLABLE PFObject *)getObjectWithId:(NSString *)objectId;
+- (PF_NULLABLE PFObject *)getObjectWithId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract Returns a <PFObject> with the given id and sets an error if necessary.
@@ -592,7 +592,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The PFUser if found. Returns nil if the object isn't found, or if there was an error.
  */
-+ (PF_NULLABLE PFUser *)getUserObjectWithId:(NSString *)objectId;
++ (PF_NULLABLE PFUser *)getUserObjectWithId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
 
 /*!
  Returns a PFUser with a given class and id and sets an error if necessary.
@@ -617,7 +617,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns Returns an array of <PFObject> objects that were found.
  */
-- (PF_NULLABLE NSArray *)findObjects;
+- (PF_NULLABLE NSArray *)findObjects PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract Finds objects *synchronously* based on the constructed query and sets an error if there was one.
@@ -664,7 +664,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns Returns a <PFObject>, or `nil` if none was found.
  */
-- (PF_NULLABLE PFObject *)getFirstObject;
+- (PF_NULLABLE PFObject *)getFirstObject PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract Gets an object *synchronously* based on the constructed query and sets an error if any occurred.
@@ -720,7 +720,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns Returns the number of <PFObject> objects that match the query, or `-1` if there is an error.
  */
-- (NSInteger)countObjects;
+- (NSInteger)countObjects PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract Counts objects *synchronously* based on the constructed query and sets an error if there was one.
