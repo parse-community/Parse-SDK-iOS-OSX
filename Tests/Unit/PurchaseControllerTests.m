@@ -29,6 +29,7 @@
 #import "PFTestSKProductsRequest.h"
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
+#import "BFTask+Private.h"
 
 @interface PurchaseControllerTests : PFUnitTestCase
 @end
@@ -233,21 +234,24 @@
 
     NSString *tempDirectory = [NSTemporaryDirectory() stringByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
 
-    OCMStub([[commandRunner ignoringNonObjectArgs] runCommandAsync:OCMOCK_ANY withOptions:0]).andReturn(mockedTask);
+    OCMStub([[commandRunner ignoringNonObjectArgs] runCommandAsync:[OCMArg isNotNil] withOptions:0]).andReturn(mockedTask);
     OCMStub([fileManager parseDataItemPathForPathComponent:@"product"]).andReturn(tempDirectory);
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    XCTestExpectation *progressExpectation = [self expectationWithDescription:@"progress"];
 
     __block int lastProgress = -1;
     [[purchaseController downloadAssetAsyncForTransaction:transaction
                                         withProgressBlock:^(int percentDone) {
                                             XCTAssertGreaterThan(percentDone, lastProgress);
-
                                             lastProgress = percentDone;
+
+                                            if (lastProgress == 100) {
+                                                [progressExpectation fulfill];
+                                            }
                                         }
-                                             sessionToken:@"token"] continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
+                                             sessionToken:@"token"] continueWithBlock:^id(BFTask *task) {
         XCTAssertFalse(task.faulted);
-        XCTAssertEqual(lastProgress, 100);
 
         NSData *contentsOfFile = [NSData dataWithContentsOfFile:task.result];
         XCTAssertEqualObjects(contentsOfFile, [self sampleData]);
@@ -256,7 +260,6 @@
 
         return nil;
     }];
-
     [self waitForTestExpectations];
 }
 
