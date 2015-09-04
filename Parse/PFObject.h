@@ -184,7 +184,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see setObject:forKey:
  */
-- (void)setObject:(PF_NULLABLE_S id)object forKeyedSubscript:(NSString *)key;
+- (void)setObject:(id)object forKeyedSubscript:(NSString *)key;
 
 /*!
  @abstract Returns the relation object associated with the given key.
@@ -504,7 +504,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @deprecated Please use `-fetch` instead.
  */
-- (instancetype)refresh PF_SWIFT_UNAVAILABLE PARSE_DEPRECATED("Please use `-fetch` instead.");
+- (PF_NULLABLE instancetype)refresh PF_SWIFT_UNAVAILABLE PARSE_DEPRECATED("Please use `-fetch` instead.");
 
 /*!
  @abstract *Synchronously* refreshes the `PFObject` with the current data from the server and sets an error if it occurs.
@@ -513,7 +513,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @deprecated Please use `-fetch:` instead.
  */
-- (instancetype)refresh:(NSError **)error PARSE_DEPRECATED("Please use `-fetch:` instead.");
+- (PF_NULLABLE instancetype)refresh:(NSError **)error PARSE_DEPRECATED("Please use `-fetch:` instead.");
 
 /*!
  @abstract *Asynchronously* refreshes the `PFObject` and executes the given callback block.
@@ -544,25 +544,25 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /*!
  @abstract *Synchronously* fetches the PFObject with the current data from the server.
  */
-- (instancetype)fetch PF_SWIFT_UNAVAILABLE;
+- (PF_NULLABLE instancetype)fetch PF_SWIFT_UNAVAILABLE;
 /*!
  @abstract *Synchronously* fetches the PFObject with the current data from the server and sets an error if it occurs.
 
  @param error Pointer to an `NSError` that will be set if necessary.
  */
-- (instancetype)fetch:(NSError **)error;
+- (PF_NULLABLE instancetype)fetch:(NSError **)error;
 
 /*!
  @abstract *Synchronously* fetches the `PFObject` data from the server if <isDataAvailable> is `NO`.
  */
-- (PF_NULLABLE PFObject *)fetchIfNeeded PF_SWIFT_UNAVAILABLE;
+- (PF_NULLABLE instancetype)fetchIfNeeded PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract *Synchronously* fetches the `PFObject` data from the server if <isDataAvailable> is `NO`.
 
  @param error Pointer to an `NSError` that will be set if necessary.
  */
-- (PF_NULLABLE PFObject *)fetchIfNeeded:(NSError **)error;
+- (PF_NULLABLE instancetype)fetchIfNeeded:(NSError **)error;
 
 /*!
  @abstract Fetches the `PFObject` *asynchronously* and sets it as a result for the task.
@@ -615,8 +615,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  `error` will be `nil` on success and set if there was an error.
  `refreshedObject` will be the `PFObject` with the refreshed data.
  */
-- (void)fetchIfNeededInBackgroundWithTarget:(PF_NULLABLE_S id)target
-                                   selector:(PF_NULLABLE_S SEL)selector;
+- (void)fetchIfNeededInBackgroundWithTarget:(PF_NULLABLE_S id)target selector:(PF_NULLABLE_S SEL)selector;
 
 ///--------------------------------------
 /// @name Getting Many Objects
@@ -627,7 +626,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param objects The list of objects to fetch.
  */
-+ (NSArray *)fetchAll:(PF_NULLABLE NSArray *)objects PF_SWIFT_UNAVAILABLE;
++ (PF_NULLABLE NSArray *)fetchAll:(PF_NULLABLE NSArray *)objects PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract *Synchronously* fetches all of the `PFObject` objects with the current data from the server
@@ -636,13 +635,13 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects The list of objects to fetch.
  @param error Pointer to an `NSError` that will be set if necessary.
  */
-+ (NSArray *)fetchAll:(PF_NULLABLE NSArray *)objects error:(NSError **)error;
++ (PF_NULLABLE NSArray *)fetchAll:(PF_NULLABLE NSArray *)objects error:(NSError **)error;
 
 /*!
  @abstract *Synchronously* fetches all of the `PFObject` objects with the current data from the server.
  @param objects The list of objects to fetch.
  */
-+ (NSArray *)fetchAllIfNeeded:(PF_NULLABLE NSArray *)objects PF_SWIFT_UNAVAILABLE;
++ (PF_NULLABLE NSArray *)fetchAllIfNeeded:(PF_NULLABLE NSArray *)objects PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract *Synchronously* fetches all of the `PFObject` objects with the current data from the server
@@ -651,7 +650,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects The list of objects to fetch.
  @param error Pointer to an `NSError` that will be set if necessary.
  */
-+ (NSArray *)fetchAllIfNeeded:(PF_NULLABLE NSArray *)objects error:(NSError **)error;
++ (PF_NULLABLE NSArray *)fetchAllIfNeeded:(PF_NULLABLE NSArray *)objects error:(NSError **)error;
 
 /*!
  @abstract Fetches all of the `PFObject` objects with the current data from the server *asynchronously*.
@@ -731,7 +730,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @abstract *Synchronously* loads data from the local datastore into this object,
  if it has not been fetched from the server already.
  */
-- (instancetype)fetchFromLocalDatastore PF_SWIFT_UNAVAILABLE;
+- (PF_NULLABLE instancetype)fetchFromLocalDatastore PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract *Synchronously* loads data from the local datastore into this object, if it has not been fetched
@@ -742,7 +741,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param error Pointer to an `NSError` that will be set if necessary.
  */
-- (instancetype)fetchFromLocalDatastore:(NSError **)error;
+- (PF_NULLABLE instancetype)fetchFromLocalDatastore:(NSError **)error;
 
 /*!
  @abstract *Asynchronously* loads data from the local datastore into this object,
