@@ -2069,11 +2069,11 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
     }];
 }
 
-- (PFObject *)fetchIfNeeded {
+- (instancetype)fetchIfNeeded {
     return [self fetchIfNeeded:nil];
 }
 
-- (PFObject *)fetchIfNeeded:(NSError **)error {
+- (instancetype)fetchIfNeeded:(NSError **)error {
     return [[self fetchIfNeededInBackground] waitForResult:error];
 }
 
@@ -2099,11 +2099,11 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 ///--------------------------------------
 
 + (NSArray *)fetchAll:(NSArray *)objects {
-    return [PFObject fetchAll:objects error:nil];
+    return [self fetchAll:objects error:nil];
 }
 
 + (NSArray *)fetchAllIfNeeded:(NSArray *)objects {
-    return [PFObject fetchAllIfNeeded:objects error:nil];
+    return [self fetchAllIfNeeded:objects error:nil];
 }
 
 + (NSArray *)fetchAll:(NSArray *)objects error:(NSError **)error {

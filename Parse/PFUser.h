@@ -78,7 +78,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
 
  @returns Returns a new `PFUser` object.
  */
-+ (PFUser *)user;
++ (instancetype)user;
 
 /*!
  @abstract Enables automatic creation of anonymous users.
