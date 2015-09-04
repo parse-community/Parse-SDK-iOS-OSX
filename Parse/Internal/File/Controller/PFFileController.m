@@ -106,15 +106,14 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
                                                                              cancellationToken:cancellationToken
                                                                                  progressBlock:unifyingProgressBlock];
             resultTask = [[resultTask continueWithSuccessBlock:^id(BFTask *task) {
-                // TODO: (nlutsenko) Create `+ moveAsync` in PFFileManager
-                NSError *fileError = nil;
-                [[NSFileManager defaultManager] moveItemAtPath:temporaryPath
-                                                        toPath:[self cachedFilePathForFileState:fileState]
-                                                         error:&fileError];
-                if (fileError && fileError.code != NSFileWriteFileExistsError) {
-                    return fileError;
-                }
-                return nil;
+                return [[PFFileManager moveItemAsyncAtPath:temporaryPath
+                                                    toPath:[self cachedFilePathForFileState:fileState]] continueWithBlock:^id(BFTask *task) {
+                    // Ignore the error if file exists.
+                    if (task.error && task.error.code == NSFileWriteFileExistsError) {
+                        return nil;
+                    }
+                    return task;
+                }];
             }] continueWithBlock:^id(BFTask *task) {
                 dispatch_barrier_async(_downloadDataAccessQueue, ^{
                     [_downloadTasks removeObjectForKey:fileState.urlString];

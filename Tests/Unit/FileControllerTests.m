@@ -105,7 +105,14 @@
 
     id mockedCommandRunner = [mockedDataSource commandRunner];
     OCMStub([mockedCommandRunner runFileDownloadCommandAsyncWithFileURL:tempPath
-                                                         targetFilePath:[OCMArg isNotNil]
+                                                         targetFilePath:[OCMArg checkWithBlock:^BOOL(id obj) {
+        NSString *path = obj;
+        if (!path) {
+            return NO;
+        }
+        [[NSData data] writeToFile:path atomically:YES];
+        return YES;
+    }]
                                                       cancellationToken:nil
                                                           progressBlock:[OCMArg checkWithBlock:^BOOL(id obj) {
         PFProgressBlock block = obj;
@@ -160,7 +167,14 @@
 
     id mockedCommandRunner = [mockedDataSource commandRunner];
     OCMStub([mockedCommandRunner runFileDownloadCommandAsyncWithFileURL:tempPath
-                                                         targetFilePath:[OCMArg isNotNil]
+                                                         targetFilePath:[OCMArg checkWithBlock:^BOOL(id obj) {
+        NSString *path = obj;
+        if (!path) {
+            return NO;
+        }
+        [[NSData data] writeToFile:path atomically:YES];
+        return YES;
+    }]
                                                       cancellationToken:nil
                                                           progressBlock:[OCMArg checkWithBlock:^BOOL(id obj) {
         progressBlock = obj;
