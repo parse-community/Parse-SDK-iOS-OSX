@@ -22,7 +22,6 @@
 - (void)testHandlePushStringAlert {
     id mockedUtils = PFStrictProtocolMock(@protocol(PFPushInternalUtils));
     OCMExpect([mockedUtils showAlertViewWithTitle:[OCMArg isNil] message:@"hello"]);
-    OCMExpect([mockedUtils playVibrate]);
 
     // NOTE: Async parse preload step may call this selector.
     // Don't epxect it because it doesn't ALWAYs get to this point before returning from the method.
@@ -39,7 +38,6 @@
 - (void)testHandlePushDictionaryAlert {
     id mockedUtils = PFStrictProtocolMock(@protocol(PFPushInternalUtils));
     OCMExpect([mockedUtils showAlertViewWithTitle:[OCMArg isNil] message:@"hello bob 1"]);
-    OCMExpect([mockedUtils playVibrate]);
 
     // NOTE: Async parse preload step may call this selector.
     // Don't epxect it because it doesn't ALWAYs get to this point before returning from the method.
@@ -57,7 +55,6 @@
 - (void)testHandlePushWithNullSound {
     id mockedUtils = PFStrictProtocolMock(@protocol(PFPushInternalUtils));
     OCMExpect([mockedUtils showAlertViewWithTitle:[OCMArg isNil] message:@"hello"]);
-    OCMExpect([mockedUtils playVibrate]);
 
     // NOTE: Async parse preload step may call this selector.
     // Don't epxect it because it doesn't ALWAYs get to this point before returning from the method.
@@ -65,6 +62,39 @@
 
     [PFPush setPushInternalUtilClass:mockedUtils];
     [PFPush handlePush:@{ @"aps" : @{@"alert" : @"hello", @"sound": [NSNull null]} }];
+
+    OCMVerifyAll(mockedUtils);
+
+    [PFPush setPushInternalUtilClass:nil];
+}
+
+- (void)testHandlePushWithDefaultSound {
+    id mockedUtils = PFStrictProtocolMock(@protocol(PFPushInternalUtils));
+    OCMExpect([mockedUtils showAlertViewWithTitle:[OCMArg isNil] message:@"hello"]);
+    OCMExpect([mockedUtils playVibrate]);
+
+    // NOTE: Async parse preload step may call this selector.
+    // Don't epxect it because it doesn't ALWAYs get to this point before returning from the method.
+    OCMStub([mockedUtils getDeviceTokenFromKeychain]).andReturn(nil);
+
+    [PFPush setPushInternalUtilClass:mockedUtils];
+    [PFPush handlePush:@{ @"aps" : @{@"alert" : @"hello", @"sound": @"default"} }];
+
+    OCMVerifyAll(mockedUtils);
+
+    [PFPush setPushInternalUtilClass:nil];
+}
+
+- (void)testHandlePushWithCustomSound {
+    id mockedUtils = PFStrictProtocolMock(@protocol(PFPushInternalUtils));
+    OCMExpect([mockedUtils playAudioWithName:@"yolo"]);
+
+    // NOTE: Async parse preload step may call this selector.
+    // Don't epxect it because it doesn't ALWAYs get to this point before returning from the method.
+    OCMStub([mockedUtils getDeviceTokenFromKeychain]).andReturn(nil);
+
+    [PFPush setPushInternalUtilClass:mockedUtils];
+    [PFPush handlePush:@{ @"aps" : @{@"sound": @"yolo"} }];
 
     OCMVerifyAll(mockedUtils);
 
