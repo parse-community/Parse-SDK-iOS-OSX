@@ -33,6 +33,7 @@ typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
 + (BFTask *)writeDataAsync:(NSData *)data toFile:(NSString *)filePath;
 
 + (BFTask *)copyItemAsyncAtPath:(NSString *)fromPath toPath:(NSString *)toPath;
++ (BFTask *)moveItemAsyncAtPath:(NSString *)fromPath toPath:(NSString *)toPath;
 
 + (BFTask *)moveContentsOfDirectoryAsyncAtPath:(NSString *)fromPath
                              toDirectoryAtPath:(NSString *)toPath

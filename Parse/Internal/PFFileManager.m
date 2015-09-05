@@ -112,6 +112,17 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
     }];
 }
 
++ (BFTask *)moveItemAsyncAtPath:(NSString *)fromPath toPath:(NSString *)toPath {
+    return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+        NSError *error = nil;
+        [[NSFileManager defaultManager] moveItemAtPath:fromPath toPath:toPath error:&error];
+        if (error) {
+            return [BFTask taskWithError:error];
+        }
+        return nil;
+    }];
+}
+
 + (BFTask *)moveContentsOfDirectoryAsyncAtPath:(NSString *)fromPath
                              toDirectoryAtPath:(NSString *)toPath
                                       executor:(BFExecutor *)executor {
