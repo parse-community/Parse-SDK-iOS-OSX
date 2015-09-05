@@ -54,18 +54,18 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 ///--------------------------------------
 
 + (instancetype)ACL {
-    return [[PFACL alloc] init];
+    return [[self alloc] init];
 }
 
 + (instancetype)ACLWithUser:(PFUser *)user {
-    PFACL *acl = [PFACL ACL];
+    PFACL *acl = [self ACL];
     [acl setReadAccess:YES forUser:user];
     [acl setWriteAccess:YES forUser:user];
     return acl;
 }
 
 + (instancetype)ACLWithDictionary:(NSDictionary *)dictionary {
-    return [[PFACL alloc] initWithDictionary:dictionary];
+    return [[self alloc] initWithDictionary:dictionary];
 }
 
 + (PFACL *)defaultACL {
@@ -86,8 +86,9 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 - (BOOL)isShared {
     return self.state.shared;
 }
+
 - (instancetype)createUnsharedCopy {
-    PFACL *newACL = [PFACL ACLWithDictionary:self.state.permissions];
+    PFACL *newACL = [[self class] ACLWithDictionary:self.state.permissions];
     if (unresolvedUser) {
         [newACL setReadAccess:[self getReadAccessForUser:unresolvedUser] forUser:unresolvedUser];
         [newACL setWriteAccess:[self getWriteAccessForUser:unresolvedUser] forUser:unresolvedUser];
@@ -143,15 +144,15 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [self init];
-    if (self) {
-        // We iterate over the input ACL rather than just copying to
-        // permissionsById so that we can ensure it is the right format.
-        [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *userId, NSDictionary *permissions, BOOL *stop) {
-            [permissions enumerateKeysAndObjectsUsingBlock:^(NSString *accessType, id obj, BOOL *stop) {
-                [self setAccess:accessType to:[obj boolValue] forUserId:userId];
-            }];
+    if (!self) return nil;
+
+    // We iterate over the input ACL rather than just copying to
+    // permissionsById so that we can ensure it is the right format.
+    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *userId, NSDictionary *permissions, BOOL *stop) {
+        [permissions enumerateKeysAndObjectsUsingBlock:^(NSString *accessType, id obj, BOOL *stop) {
+            [self setAccess:accessType to:[obj boolValue] forUserId:userId];
         }];
-    }
+    }];
 
     return self;
 }
@@ -321,25 +322,17 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 #pragma mark - NSObject
 ///--------------------------------------
 
-- (BOOL)isEqualToACL:(PFACL *)acl {
-    if (!acl) {
-        return NO;
-    }
-
-    return [self.state isEqual:acl.state] && [PFObjectUtilities isObject:self->unresolvedUser
-                                                           equalToObject:acl->unresolvedUser];
-}
-
 - (BOOL)isEqual:(id)object {
     if (object == self) {
         return YES;
     }
-
     if (![object isKindOfClass:[PFACL class]]) {
         return NO;
     }
 
-    return [self isEqualToACL:object];
+    PFACL *acl = (PFACL *)object;
+    return [self.state isEqual:acl.state] && [PFObjectUtilities isObject:self->unresolvedUser
+                                                           equalToObject:acl->unresolvedUser];
 }
 
 - (NSUInteger)hash {
