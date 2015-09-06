@@ -31,8 +31,6 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 
 - (void)synchronizeAllAuthData;
 
-- (void)checkSignUpParams;
-
 - (BFTask *)_handleServiceLoginCommandResult:(PFCommandResult *)result;
 
 - (void)synchronizeAuthDataWithAuthType:(NSString *)authType;
