@@ -68,15 +68,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
             }
         }
-        if application.respondsToSelector("registerUserNotificationSettings:") {
-            let userNotificationTypes = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
-            let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
-        } else {
-            let types = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
-            application.registerForRemoteNotificationTypes(types)
-        }
+
+        //
+        //  Swift 1.2
+        //
+        //        if application.respondsToSelector("registerUserNotificationSettings:") {
+        //            let userNotificationTypes = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
+        //            let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        //            application.registerUserNotificationSettings(settings)
+        //            application.registerForRemoteNotifications()
+        //        } else {
+        //            let types = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
+        //            application.registerForRemoteNotificationTypes(types)
+        //        }
+
+        //
+        //  Swift 2.0
+        //
+        //        if #available(iOS 8.0, *) {
+        //            let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
+        //            let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
+        //            application.registerUserNotificationSettings(settings)
+        //            application.registerForRemoteNotifications()
+        //        } else {
+        //            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
+        //            application.registerForRemoteNotificationTypes(types)
+        //        }
 
         return true
     }
@@ -92,18 +109,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
             if succeeded {
-                println("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.");
+                print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n");
             } else {
-                println("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.", error)
+                print("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.\n", error)
             }
         }
     }
 
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         if error.code == 3010 {
-            println("Push notifications are not supported in the iOS Simulator.")
+            print("Push notifications are not supported in the iOS Simulator.\n")
         } else {
-            println("application:didFailToRegisterForRemoteNotificationsWithError: %@", error)
+            print("application:didFailToRegisterForRemoteNotificationsWithError: %@\n", error)
         }
     }
 
