@@ -1878,7 +1878,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 + (PFQuery *)query {
     PFConsistencyAssert([self conformsToProtocol:@protocol(PFSubclassing)],
                         @"+[PFObject query] can only be called on subclasses conforming to PFSubclassing.");
-    [PFObject assertSubclassIsRegistered:[self class]];
+    [PFObject assertSubclassIsRegistered:self];
     return [PFQuery queryWithClassName:[(id<PFSubclassing>)self parseClassName]];
 }
 
@@ -1895,7 +1895,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
         Class registration = [[self subclassingController] subclassForParseClassName:[subclass parseClassName]];
 
         // It's OK to subclass a subclass (i.e. custom PFUser implementation)
-        PFConsistencyAssert(registration && (registration == subclass || [registration isKindOfClass:subclass]),
+        PFConsistencyAssert(registration && (registration == subclass || [registration isSubclassOfClass:subclass]),
                             @"The class %@ must be registered with registerSubclass before using Parse.", subclass);
     }
 }

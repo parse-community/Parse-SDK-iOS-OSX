@@ -99,7 +99,10 @@ static BOOL revocableSessionEnabled_;
 }
 
 - (NSString *)displayClassName {
-    return @"PFUser";
+    if ([self isMemberOfClass:[PFUser class]]) {
+        return @"PFUser";
+    }
+    return NSStringFromClass([self class]);
 }
 
 // Validates a class name. We override this to only allow the user class name.
