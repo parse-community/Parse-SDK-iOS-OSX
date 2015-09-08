@@ -432,3 +432,14 @@ typedef void (^PFProgressBlock)(int percentDone);
 #    define PF_SWIFT_UNAVAILABLE
 #  endif
 #endif
+
+///--------------------------------------
+/// @name Obj-C Generics Macros
+///--------------------------------------
+
+#if __has_feature(objc_generics) || __has_extension(objc_generics)
+#  define PF_GENERIC(type) <type>
+#else
+#  define PF_GENERIC(type)
+#  define PFGenericObject PFObject *
+#endif
