@@ -3738,7 +3738,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 genstrings -q -o $PROJECT_DIR/Parse/Resources/en.lproj\n";
+			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 xcrun extractLocStrings -q -o $PROJECT_DIR/Parse/Resources/en.lproj\n";
 		};
 		97010FB71630B1B800AB761E /* Generate Localizable Strings */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3752,7 +3752,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 genstrings -q -o $PROJECT_DIR/Parse/Resources/en.lproj\n";
+			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 xcrun extractLocStrings -q -o $PROJECT_DIR/Parse/Resources/en.lproj\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
