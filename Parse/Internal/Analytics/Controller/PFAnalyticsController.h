@@ -42,8 +42,8 @@
 
  @returns `BFTask` with result set to `@YES`.
  */
-- (BFTask *)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(NSDictionary *)payload
-                                                     sessionToken:(NSString *)sessionToken;
+- (BFTask PF_GENERIC(NSNumber *) *)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(NSDictionary *)payload
+                                                                            sessionToken:(NSString *)sessionToken;
 
 /*!
  @abstract Tracks the occurrence of a custom event with additional dimensions.
@@ -54,8 +54,8 @@
 
  @returns `BFTask` with result set to `@YES`.
  */
-- (BFTask *)trackEventAsyncWithName:(NSString *)name
-                         dimensions:(NSDictionary *)dimensions
-                       sessionToken:(NSString *)sessionToken;
+- (BFTask PF_GENERIC(NSNumber *) *)trackEventAsyncWithName:(NSString *)name
+                                                dimensions:(NSDictionary *)dimensions
+                                              sessionToken:(NSString *)sessionToken;
 
 @end
