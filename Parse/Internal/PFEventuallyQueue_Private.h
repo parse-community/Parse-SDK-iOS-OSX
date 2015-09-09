@@ -10,6 +10,7 @@
 #import <SystemConfiguration/SCNetworkReachability.h>
 
 #import "PFEventuallyQueue.h"
+#import "PFMacros.h"
 
 @class BFExecutor;
 @class PFEventuallyPin;
@@ -22,8 +23,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 
 @class BFTaskCompletionSource;
 
-@interface PFEventuallyQueue ()
-{
+@interface PFEventuallyQueue () {
 @protected
     BFExecutor *_synchronizationExecutor;
     dispatch_queue_t _synchronizationQueue;
@@ -92,7 +92,6 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 /// @name Pending Commands
 ///--------------------------------------
 
-
 /*!
  Generates a new identifier for a command so that it can be sorted later by this identifier.
  */
@@ -129,11 +128,11 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
  @param identifier           Unique identifier used to represent a command.
  @returns Task that is resolved when the command is complete enqueueing.
  */
-- (BFTask *)_enqueueCommandInBackground:(id<PFNetworkCommand>)command
-                                 object:(PFObject *)object
-                             identifier:(NSString *)identifier;
+- (BFTask PF_GENERIC(PFEventuallyPin *)*)_enqueueCommandInBackground:(id<PFNetworkCommand>)command
+                                                              object:(PFObject *)object
+                                                          identifier:(NSString *)identifier;
 
-- (BFTask *)_waitForOperationSet:(PFOperationSet *)operationSet
-                   eventuallyPin:(PFEventuallyPin *)eventuallyPin;
+- (BFTask PF_GENERIC(PFVoid) *)_waitForOperationSet:(PFOperationSet *)operationSet
+                                      eventuallyPin:(PFEventuallyPin *)eventuallyPin;
 
 @end
