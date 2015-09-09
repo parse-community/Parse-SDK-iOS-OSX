@@ -31,8 +31,6 @@ NSString *const PFSQLiteDatabaseRollbackOperationCommand = @"ROLLBACK";
 NSString *const PFSQLiteDatabaseErrorSQLiteDomain = @"SQLite";
 NSString *const PFSQLiteDatabaseErrorPFSQLiteDatabaseDomain = @"PFSQLiteDatabase";
 
-char *const PFSQLiteDatabaseDispatchQueue = "com.parse.PFSQLiteDatabase";
-
 int const PFSQLiteDatabaseInvalidArgumenCountErrorCode = 1;
 int const PFSQLiteDatabaseInvalidSQL = 2;
 int const PFSQLiteDatabaseDatabaseAlreadyOpened = 3;
