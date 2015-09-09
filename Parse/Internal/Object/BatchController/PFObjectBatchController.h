@@ -35,13 +35,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Fetch
 ///--------------------------------------
 
-- (BFTask *)fetchObjectsAsync:(nullable NSArray *)objects withSessionToken:(nullable NSString *)sessionToken;
+- (BFTask PF_GENERIC(NSArray<BFTask<PFVoid> *> *)*)fetchObjectsAsync:(nullable NSArray *)objects
+                                                    withSessionToken:(nullable NSString *)sessionToken;
 
 ///--------------------------------------
 /// @name Delete
 ///--------------------------------------
 
-- (BFTask *)deleteObjectsAsync:(nullable NSArray *)objects withSessionToken:(nullable NSString *)sessionToken;
+- (BFTask PF_GENERIC(NSArray<BFTask<PFVoid> *> *)*)deleteObjectsAsync:(nullable NSArray *)objects
+                                                     withSessionToken:(nullable NSString *)sessionToken;
 
 ///--------------------------------------
 /// @name Utilities

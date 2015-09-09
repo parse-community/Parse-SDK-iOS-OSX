@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns `BFTask` with `PFPin` result if pinning succeeds.
  */
-- (BFTask *)fetchPinAsyncWithName:(NSString *)name;
+- (BFTask PF_GENERIC(PFPin *)*)fetchPinAsyncWithName:(NSString *)name;
 
 /*!
  Pins given objects to the pin. Creates new pin if the pin with such name is not found.
@@ -52,9 +52,9 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns `BFTask` with `@YES` result.
  */
-- (BFTask *)pinObjectsAsync:(nullable NSArray *)objects
-                withPinName:(NSString *)name
-            includeChildren:(BOOL)includeChildren;
+- (BFTask PF_GENERIC(NSNumber *)*)pinObjectsAsync:(nullable NSArray *)objects
+                                      withPinName:(NSString *)name
+                                  includeChildren:(BOOL)includeChildren;
 
 ///--------------------------------------
 /// @name Unpin
@@ -68,7 +68,8 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns `BFTask` with `@YES` result.
  */
-- (BFTask *)unpinObjectsAsync:(nullable NSArray *)objects withPinName:(NSString *)name;
+- (BFTask PF_GENERIC(NSNumber *)*)unpinObjectsAsync:(nullable NSArray *)objects
+                                        withPinName:(NSString *)name;
 
 /*!
  Unpins all objects from the pin.
@@ -77,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns `BFTask` with `YES` result.
  */
-- (BFTask *)unpinAllObjectsAsyncWithPinName:(NSString *)name;
+- (BFTask PF_GENERIC(NSNumber *)*)unpinAllObjectsAsyncWithPinName:(NSString *)name;
 
 @end
 

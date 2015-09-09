@@ -29,8 +29,8 @@ typedef NS_ENUM(NSUInteger, PFCurrentObjectStorageType) {
 /// @name Current
 ///--------------------------------------
 
-- (BFTask *)getCurrentObjectAsync;
-- (BFTask *)saveCurrentObjectAsync:(PFObject *)object;
+- (BFTask PF_GENERIC(__kindof PFObject *) *)getCurrentObjectAsync;
+- (BFTask PF_GENERIC(__kindof PFObject *) *)saveCurrentObjectAsync:(PFObject *)object;
 
 @end
 

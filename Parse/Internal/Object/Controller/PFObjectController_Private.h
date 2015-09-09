@@ -10,6 +10,7 @@
 #import "PFObjectController.h"
 
 @class PFRESTCommand;
+@class PFCommandResult;
 
 @interface PFObjectController ()
 
@@ -17,6 +18,6 @@
 /// @name Fetch
 ///--------------------------------------
 
-- (BFTask *)_runFetchCommand:(PFRESTCommand *)command forObject:(PFObject *)object;
+- (BFTask PF_GENERIC(PFCommandResult *)*)_runFetchCommand:(PFRESTCommand *)command forObject:(PFObject *)object;
 
 @end

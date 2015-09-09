@@ -56,7 +56,7 @@
 
  @returns Task that encapsulates the validtion.
  */
-- (BFTask *)_validateSaveEventuallyAsync;
+- (BFTask PF_GENERIC(PFVoid) *)_validateSaveEventuallyAsync;
 
 @end
 
@@ -96,8 +96,8 @@
 ///--------------------------------------
 /// @name Pin
 ///--------------------------------------
-- (BFTask *)_pinInBackgroundWithName:(NSString *)name includeChildren:(BOOL)includeChildren;
-+ (BFTask *)_pinAllInBackground:(NSArray *)objects withName:(NSString *)name includeChildren:(BOOL)includeChildren;
+- (BFTask PF_GENERIC(NSNumber *)*)_pinInBackgroundWithName:(NSString *)name includeChildren:(BOOL)includeChildren;
++ (BFTask PF_GENERIC(NSNumber *)*)_pinAllInBackground:(NSArray *)objects withName:(NSString *)name includeChildren:(BOOL)includeChildren;
 
 + (PFPinningObjectStore *)pinningObjectStore;
 + (id<PFObjectControlling>)objectController;
@@ -142,7 +142,8 @@
 ///--------------------------------------
 #pragma mark - Children helpers
 ///--------------------------------------
-- (BFTask *)_saveChildrenInBackgroundWithCurrentUser:(PFUser *)currentUser sessionToken:(NSString *)sessionToken;
+- (BFTask PF_GENERIC(NSNumber *)*)_saveChildrenInBackgroundWithCurrentUser:(PFUser *)currentUser
+                                                              sessionToken:(NSString *)sessionToken;
 
 ///--------------------------------------
 #pragma mark - Dirtiness helpers
@@ -188,10 +189,11 @@
            defaultClassName:(NSString *)defaultClassName
                completeData:(BOOL)completeData
                     decoder:(PFDecoder *)decoder;
-+ (BFTask *)_migrateObjectInBackgroundFromFile:(NSString *)fileName toPin:(NSString *)pinName;
-+ (BFTask *)_migrateObjectInBackgroundFromFile:(NSString *)fileName
-                                         toPin:(NSString *)pinName
-                           usingMigrationBlock:(BFContinuationBlock)block;
++ (BFTask PF_GENERIC(__kindof PFObject *)*)_migrateObjectInBackgroundFromFile:(NSString *)fileName
+                                                                        toPin:(NSString *)pinName;
++ (BFTask PF_GENERIC(__kindof PFObject *)*)_migrateObjectInBackgroundFromFile:(NSString *)fileName
+                                                                        toPin:(NSString *)pinName
+                                                          usingMigrationBlock:(BFContinuationBlock)block;
 
 - (NSMutableDictionary *)_convertToDictionaryForSaving:(PFOperationSet *)changes
                                      withObjectEncoder:(PFEncoder *)encoder;
@@ -224,16 +226,16 @@
 - (void)_mergeAfterFetchWithResult:(NSDictionary *)result decoder:(PFDecoder *)decoder completeData:(BOOL)completeData;
 - (void)_mergeFromServerWithResult:(NSDictionary *)result decoder:(PFDecoder *)decoder completeData:(BOOL)completeData;
 
-- (BFTask *)handleSaveResultAsync:(NSDictionary *)result;
+- (BFTask PF_GENERIC(NSNumber *)*)handleSaveResultAsync:(NSDictionary *)result;
 
 ///--------------------------------------
 #pragma mark - Asynchronous operations
 ///--------------------------------------
 - (void)startSave;
-- (BFTask *)_enqueueSaveEventuallyWithChildren:(BOOL)saveChildren;
-- (BFTask *)saveAsync:(BFTask *)toAwait;
-- (BFTask *)fetchAsync:(BFTask *)toAwait;
-- (BFTask *)deleteAsync:(BFTask *)toAwait;
+- (BFTask PF_GENERIC(NSNumber *)*)_enqueueSaveEventuallyWithChildren:(BOOL)saveChildren;
+- (BFTask PF_GENERIC(NSNumber *)*)saveAsync:(BFTask PF_GENERIC(id) *)toAwait;
+- (BFTask PF_GENERIC(PFObject *)*)fetchAsync:(BFTask PF_GENERIC(id) *)toAwait;
+- (BFTask PF_GENERIC(PFVoid) *)deleteAsync:(BFTask PF_GENERIC(id) *)toAwait;
 
 ///--------------------------------------
 #pragma mark - Command constructors
