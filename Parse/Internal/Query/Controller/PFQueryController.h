@@ -50,9 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns Task that resolves to `NSArray` of `PFObject`s.
  */
-- (BFTask *)findObjectsAsyncForQueryState:(PFQueryState *)queryState
-                    withCancellationToken:(nullable BFCancellationToken *)cancellationToken
-                                     user:(nullable PFUser *)user; // TODO: (nlutsenko) Pass `PFUserState` instead of user.
+- (BFTask PF_GENERIC(NSArray<PFObject *> *)*)findObjectsAsyncForQueryState:(PFQueryState *)queryState
+                                                     withCancellationToken:(nullable BFCancellationToken *)cancellationToken
+                                                                      user:(nullable PFUser *)user; // TODO: (nlutsenko) Pass `PFUserState` instead of user.
 
 ///--------------------------------------
 /// @name Count
@@ -68,9 +68,9 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns Task that resolves to `NSNumber` with a count of results.
  */
-- (BFTask *)countObjectsAsyncForQueryState:(PFQueryState *)queryState
-                     withCancellationToken:(nullable BFCancellationToken *)cancellationToken
-                                      user:(nullable PFUser *)user; // TODO: (nlutsenko) Pass `PFUserState` instead of user.
+- (BFTask PF_GENERIC(NSNumber *)*)countObjectsAsyncForQueryState:(PFQueryState *)queryState
+                                           withCancellationToken:(nullable BFCancellationToken *)cancellationToken
+                                                            user:(nullable PFUser *)user; // TODO: (nlutsenko) Pass `PFUserState` instead of user.
 
 ///--------------------------------------
 /// @name Caching
@@ -95,9 +95,9 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns `BFTask` instance with result of `PFCommandResult`.
  */
-- (BFTask *)runNetworkCommandAsync:(PFRESTCommand *)command
-             withCancellationToken:(nullable BFCancellationToken *)cancellationToken
-                     forQueryState:(PFQueryState *)queryState;
+- (BFTask PF_GENERIC(PFCommandResult *)*)runNetworkCommandAsync:(PFRESTCommand *)command
+                                          withCancellationToken:(nullable BFCancellationToken *)cancellationToken
+                                                  forQueryState:(PFQueryState *)queryState;
 
 @end
 
