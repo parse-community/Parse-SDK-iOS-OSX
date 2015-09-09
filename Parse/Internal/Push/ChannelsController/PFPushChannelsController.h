@@ -33,14 +33,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Get
 ///--------------------------------------
 
-- (BFTask *)getSubscribedChannelsAsync;
+- (BFTask PF_GENERIC(NSSet<NSString *> *)*)getSubscribedChannelsAsync;
 
 ///--------------------------------------
 /// @name Subscribe
 ///--------------------------------------
 
-- (BFTask *)subscribeToChannelAsyncWithName:(NSString *)name;
-- (BFTask *)unsubscribeFromChannelAsyncWithName:(NSString *)name;
+- (BFTask PF_GENERIC(NSNumber *)*)subscribeToChannelAsyncWithName:(NSString *)name;
+- (BFTask PF_GENERIC(NSNumber *)*)unsubscribeFromChannelAsyncWithName:(NSString *)name;
 
 @end
 
