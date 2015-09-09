@@ -9,8 +9,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
 @class BFCancellationToken;
-@class BFTask;
+
+@class BFTask PF_GENERIC(__covariant BFGenericType);
 
 NS_ASSUME_NONNULL_BEGIN
 
