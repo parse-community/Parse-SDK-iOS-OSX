@@ -11,10 +11,12 @@
 
 #import "PFBaseState.h"
 
+//TODO: (nlutsenko) Add nullability annotations
 @interface PFFileState : PFBaseState <PFBaseStateSubclass, NSCopying, NSMutableCopying>
 
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSString *urlString;
+@property (nonatomic, copy, readonly) NSString *secureURLString;
 
 @property (nonatomic, copy, readonly) NSString *mimeType;
 
