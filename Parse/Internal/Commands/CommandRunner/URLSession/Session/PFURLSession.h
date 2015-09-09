@@ -22,7 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol PFURLSessionDelegate <NSObject>
 
 - (void)urlSession:(PFURLSession *)session willPerformURLRequest:(NSURLRequest *)request;
-- (void)urlSession:(PFURLSession *)session didPerformURLRequest:(NSURLRequest *)request withURLResponse:(nullable NSURLResponse *)response;
+
+- (void)urlSession:(PFURLSession *)session didPerformURLRequest:(NSURLRequest *)request withURLResponse:(nullable NSURLResponse *)response responseString:(nullable NSString *)string;
 
 @end
 

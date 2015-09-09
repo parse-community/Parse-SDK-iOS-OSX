@@ -32,12 +32,11 @@
 - (void)_taskDidFinish {
     NSData *data = [self.dataOutputStream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
 
-    NSString *resultString = nil;
     id result = nil;
 
     NSError *jsonError = nil;
     if (data) {
-        resultString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        self.responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         result = [NSJSONSerialization JSONObjectWithData:data
                                                  options:0
                                                    error:&jsonError];
@@ -64,7 +63,7 @@
     if (self.response.statusCode >= 200) {
         if (self.response.statusCode < 400) {
             PFCommandResult *commandResult = [PFCommandResult commandResultWithResult:result
-                                                                         resultString:resultString
+                                                                         resultString:self.responseString
                                                                          httpResponse:self.response];
             self.result = commandResult;
         } else if ([result isKindOfClass:[NSDictionary class]]) {
@@ -78,7 +77,7 @@
     }
 
     if (!self.result && !self.error) {
-        self.error = [PFErrorUtilities errorWithCode:kPFErrorInternalServer message:resultString];
+        self.error = [PFErrorUtilities errorWithCode:kPFErrorInternalServer message:self.responseString];
     }
     [super _taskDidFinish];
 }
