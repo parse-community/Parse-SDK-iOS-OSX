@@ -34,10 +34,10 @@
 /// @name Accessors
 ///--------------------------------------
 
-- (BFTask *)getCurrentConfigAsync;
-- (BFTask *)setCurrentConfigAsync:(PFConfig *)config;
+- (BFTask PF_GENERIC(PFConfig *) *)getCurrentConfigAsync;
+- (BFTask PF_GENERIC(PFConfig *) *)setCurrentConfigAsync:(PFConfig *)config;
 
-- (BFTask *)clearCurrentConfigAsync;
-- (BFTask *)clearMemoryCachedCurrentConfigAsync;
+- (BFTask PF_GENERIC(PFVoid) *)clearCurrentConfigAsync;
+- (BFTask PF_GENERIC(PFVoid) *)clearMemoryCachedCurrentConfigAsync;
 
 @end
