@@ -46,7 +46,7 @@ extern NSString *const PFCurrentInstallationPinName;
 
 @property (nonatomic, strong, readonly) PFInstallation *memoryCachedCurrentInstallation;
 
-- (BFTask *)clearCurrentInstallationAsync;
-- (BFTask *)clearMemoryCachedCurrentInstallationAsync;
+- (BFTask PF_GENERIC(PFVoid) *)clearCurrentInstallationAsync;
+- (BFTask PF_GENERIC(PFVoid) *)clearMemoryCachedCurrentInstallationAsync;
 
 @end
