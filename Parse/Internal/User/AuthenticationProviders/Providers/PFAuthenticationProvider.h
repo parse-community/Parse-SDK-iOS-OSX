@@ -13,6 +13,8 @@
 
 #import <Parse/PFConstants.h>
 
+#import "PFMacros.h"
+
 //TODO: (nlutsenko) Update documentation for all these methods.
 
 PF_ASSUME_NONNULL_BEGIN
@@ -34,7 +36,7 @@ PF_ASSUME_NONNULL_BEGIN
 /*!
  Invoked by a PFUser upon logOut. Deauthenticate should be used to clear any state being kept by the provider that is associated with the logged-in user.
  */
-- (BFTask *)deauthenticateInBackground;
+- (BFTask PF_GENERIC(PFVoid)*)deauthenticateInBackground;
 
 /*!
  Upon logging in (or restoring a PFUser from disk), authData is returned from the server, and the PFUser passes that data into this function,
@@ -42,7 +44,7 @@ PF_ASSUME_NONNULL_BEGIN
  can be used immediately, without having to reauthorize).  authData can be nil, in which case the user has been unlinked, and the service should clear its
  internal state.  Returning NO from this function indicates the authData was somehow invalid, and the user should be unlinked from the provider.
  */
-- (BFTask *)restoreAuthenticationInBackgroundWithAuthData:(PF_NULLABLE NSDictionary *)authData;
+- (BFTask PF_GENERIC(PFVoid)*)restoreAuthenticationInBackgroundWithAuthData:(PF_NULLABLE NSDictionary *)authData;
 
 @end
 

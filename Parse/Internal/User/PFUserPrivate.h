@@ -27,17 +27,17 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 ///--------------------------------------
 /// @name Current User
 ///--------------------------------------
-+ (BFTask *)_getCurrentUserSessionTokenAsync;
++ (BFTask PF_GENERIC(NSString *)*)_getCurrentUserSessionTokenAsync;
 + (NSString *)currentSessionToken;
 
 - (void)synchronizeAllAuthData;
 
-- (BFTask *)_handleServiceLoginCommandResult:(PFCommandResult *)result;
+- (BFTask PF_GENERIC(PFUser *)*)_handleServiceLoginCommandResult:(PFCommandResult *)result;
 
 - (void)synchronizeAuthDataWithAuthType:(NSString *)authType;
 
 + (PFUser *)logInLazyUserWithAuthType:(NSString *)authType authData:(NSDictionary *)authData;
-- (BFTask *)resolveLazinessAsync:(BFTask *)toAwait;
+- (BFTask PF_GENERIC(PFUser *)*)resolveLazinessAsync:(BFTask *)toAwait;
 - (void)stripAnonymity;
 - (void)restoreAnonymity:(id)data;
 
@@ -69,7 +69,7 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 
 - (BOOL)_isAuthenticatedWithCurrentUser:(PFUser *)currentUser;
 
-- (BFTask *)_logOutAsync;
+- (BFTask PF_GENERIC(PFVoid) *)_logOutAsync;
 
 ///--------------------------------------
 /// @name Authentication Providers
@@ -79,13 +79,13 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 + (void)registerAuthenticationProvider:(id<PFAuthenticationProvider>)authenticationProvider;
 
 // TODO: (nlutsenko) Add Documentation
-+ (BFTask *)logInWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
++ (BFTask PF_GENERIC(PFUser *)*)logInWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
 
 // TODO: (nlutsenko) Add Documentation
-- (BFTask *)linkWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
+- (BFTask PF_GENERIC(NSNumber *)*)linkWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
 
 // TODO: (nlutsenko) Add Documentation
-- (BFTask *)unlinkWithAuthTypeInBackground:(NSString *)authType;
+- (BFTask PF_GENERIC(NSNumber *)*)unlinkWithAuthTypeInBackground:(NSString *)authType;
 
 // TODO: (nlutsenko) Add Documentation
 - (BOOL)isLinkedWithAuthType:(NSString *)authType;

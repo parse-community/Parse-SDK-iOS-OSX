@@ -46,14 +46,14 @@ typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
 /// @name User
 ///--------------------------------------
 
-- (BFTask *)getCurrentUserAsyncWithOptions:(PFCurrentUserLoadingOptions)options;
+- (BFTask PF_GENERIC(PFUser *) *)getCurrentUserAsyncWithOptions:(PFCurrentUserLoadingOptions)options;
 
-- (BFTask *)logOutCurrentUserAsync;
+- (BFTask PF_GENERIC(PFVoid) *)logOutCurrentUserAsync;
 
 ///--------------------------------------
 /// @name Session Token
 ///--------------------------------------
 
-- (BFTask *)getCurrentUserSessionTokenAsync;
+- (BFTask PF_GENERIC(NSString *) *)getCurrentUserSessionTokenAsync;
 
 @end
