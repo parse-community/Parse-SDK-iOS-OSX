@@ -41,14 +41,14 @@
  the block will be given the result and error of this task.
  @returns A new task that will be finished once the block has run.
  */
-- (BFTask *)thenCallBackOnMainThreadAsync:(void(^)(id result, NSError *error))block;
+- (instancetype)thenCallBackOnMainThreadAsync:(void(^)(id result, NSError *error))block;
 
 /*!
  Identical to thenCallBackOnMainThreadAsync:, except that the result of a successful
  task will be converted to a BOOL using the boolValue method, and that will
  be passed to the block instead of the original result.
  */
-- (BFTask *)thenCallBackOnMainThreadWithBoolValueAsync:(void(^)(BOOL result, NSError *error))block;
+- (instancetype)thenCallBackOnMainThreadWithBoolValueAsync:(void(^)(BOOL result, NSError *error))block;
 
 /*!
  Same as `waitForResult:error withMainThreadWarning:YES`

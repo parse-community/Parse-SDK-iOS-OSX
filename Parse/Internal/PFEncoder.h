@@ -62,6 +62,6 @@
 
 + (instancetype)objectEncoderWithOfflineStore:(PFOfflineStore *)store database:(PFSQLiteDatabase *)database;
 
-- (BFTask *)encodeFinished;
+- (BFTask PF_GENERIC(PFVoid) *)encodeFinished;
 
 @end

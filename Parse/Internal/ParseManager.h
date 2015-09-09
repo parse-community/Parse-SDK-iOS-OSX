@@ -96,6 +96,6 @@ PFInstallationIdentifierStoreProvider>
 /// @name Preloading
 ///--------------------------------------
 
-- (BFTask *)preloadDiskObjectsToMemoryAsync;
+- (BFTask PF_GENERIC(PFVoid)*)preloadDiskObjectsToMemoryAsync;
 
 @end
