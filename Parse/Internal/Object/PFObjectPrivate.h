@@ -18,7 +18,7 @@
 #import "PFMulticastDelegate.h"
 #import "PFObjectControlling.h"
 
-@class BFTask;
+@class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFCurrentUserController;
 @class PFFieldOperation;
 @class PFJSONCacheItem;

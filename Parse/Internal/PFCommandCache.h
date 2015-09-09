@@ -9,9 +9,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
 #import "PFEventuallyQueue.h"
 
-@class BFTask;
 @class PFCommandCacheTestHelper;
 @class PFObject;
 

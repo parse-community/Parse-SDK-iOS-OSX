@@ -39,7 +39,8 @@ extern NSString *const PFQueryOptionKeyMaxDistance;
 extern NSString *const PFQueryOptionKeyBox;
 extern NSString *const PFQueryOptionKeyRegexOptions;
 
-@class BFTask;
+
+@class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFObject;
 
 @interface PFQuery ()

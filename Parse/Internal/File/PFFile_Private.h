@@ -14,8 +14,6 @@
 
 #import "PFFileState.h"
 
-@class BFTask;
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PFFile (Private)
