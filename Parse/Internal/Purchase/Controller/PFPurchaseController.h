@@ -50,11 +50,11 @@
 /// @name Products
 ///--------------------------------------
 
-- (BFTask *)findProductsAsyncWithIdentifiers:(NSSet *)productIdentifiers;
-- (BFTask *)buyProductAsyncWithIdentifier:(NSString *)productIdentifier;
-- (BFTask *)downloadAssetAsyncForTransaction:(SKPaymentTransaction *)transaction
-                           withProgressBlock:(PFProgressBlock)progressBlock
-                                sessionToken:(NSString *)sessionToken;
+- (BFTask PF_GENERIC(PFProductsRequestResult *)*)findProductsAsyncWithIdentifiers:(NSSet *)productIdentifiers;
+- (BFTask PF_GENERIC(PFVoid) *)buyProductAsyncWithIdentifier:(NSString *)productIdentifier;
+- (BFTask PF_GENERIC(NSString *)*)downloadAssetAsyncForTransaction:(SKPaymentTransaction *)transaction
+                                                 withProgressBlock:(PFProgressBlock)progressBlock
+                                                      sessionToken:(NSString *)sessionToken;
 
 - (NSString *)assetContentPathForProductWithIdentifier:(NSString *)identifier fileName:(NSString *)fileName;
 - (BOOL)canPurchase;
