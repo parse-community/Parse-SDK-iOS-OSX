@@ -131,7 +131,10 @@
     sessionDelegate = (id)session;
     
     OCMExpect([delegate urlSession:session willPerformURLRequest:mockedURLRequest]);
-    OCMExpect([delegate urlSession:session didPerformURLRequest:mockedURLRequest withURLResponse:[OCMArg isNotNil]]);
+    OCMExpect([delegate urlSession:session
+              didPerformURLRequest:mockedURLRequest
+                   withURLResponse:[OCMArg isNotNil]
+                    responseString:[OCMArg isNotNil]]);
     
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[session performDataURLRequestAsync:mockedURLRequest forCommand:mockedCommand cancellationToken:nil] continueWithBlock:^id(BFTask *task) {
@@ -222,7 +225,10 @@
     sessionDelegate = (id)session;
     
     OCMExpect([delegate urlSession:session willPerformURLRequest:mockedURLRequest]);
-    OCMExpect([delegate urlSession:session didPerformURLRequest:mockedURLRequest withURLResponse:[OCMArg isNotNil]]);
+    OCMExpect([delegate urlSession:session
+              didPerformURLRequest:mockedURLRequest
+                   withURLResponse:[OCMArg isNotNil]
+                    responseString:nil]);
     
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[session performDataURLRequestAsync:mockedURLRequest
@@ -266,7 +272,10 @@
     sessionDelegate = (id)session;
     
     OCMExpect([delegate urlSession:session willPerformURLRequest:mockedURLRequest]);
-    OCMExpect([delegate urlSession:session didPerformURLRequest:mockedURLRequest withURLResponse:nil]);
+    OCMExpect([delegate urlSession:session
+              didPerformURLRequest:mockedURLRequest
+                   withURLResponse:nil
+                    responseString:[OCMArg isNotNil]]);
     
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[session performDataURLRequestAsync:mockedURLRequest forCommand:mockedCommand cancellationToken:nil]
@@ -367,7 +376,10 @@
     sessionDelegate = (id)session;
     
     OCMExpect([delegate urlSession:session willPerformURLRequest:mockedURLRequest]);
-    OCMExpect([delegate urlSession:session didPerformURLRequest:mockedURLRequest withURLResponse:[OCMArg isNotNil]]);
+    OCMExpect([delegate urlSession:session
+              didPerformURLRequest:mockedURLRequest
+                   withURLResponse:[OCMArg isNotNil]
+                    responseString:[OCMArg isNotNil]]);
     
     __block int lastProgress = 0;
     
@@ -457,7 +469,10 @@
     sessionDelegate = (id)session;
     
     OCMExpect([delegate urlSession:session willPerformURLRequest:mockedURLRequest]);
-    OCMExpect([delegate urlSession:session didPerformURLRequest:mockedURLRequest withURLResponse:[OCMArg isNotNil]]);
+    OCMExpect([delegate urlSession:session
+              didPerformURLRequest:mockedURLRequest
+                   withURLResponse:[OCMArg isNotNil]
+                    responseString:nil]);
     
     __block int lastProgress = 0;
     
@@ -527,7 +542,10 @@
     sessionDelegate = (id)session;
     
     OCMExpect([delegate urlSession:session willPerformURLRequest:mockedURLRequest]);
-    OCMExpect([delegate urlSession:session didPerformURLRequest:mockedURLRequest withURLResponse:[OCMArg isNotNil]]);
+    OCMExpect([delegate urlSession:session
+              didPerformURLRequest:mockedURLRequest
+                   withURLResponse:[OCMArg isNotNil]
+                    responseString:[OCMArg isNotNil]]);
     
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[session performDataURLRequestAsync:mockedURLRequest forCommand:mockedCommand cancellationToken:nil]

@@ -252,19 +252,29 @@
 
 - (void)urlSession:(PFURLSession *)session willPerformURLRequest:(NSURLRequest *)request {
     [[BFExecutor defaultPriorityBackgroundExecutor] execute:^{
-        NSDictionary *userInfo = @{ PFCommandRunnerNotificationURLRequestUserInfoKey : request };
+        NSDictionary *userInfo = ([PFLogger sharedLogger].logLevel == PFLogLevelDebug ?
+                                  @{ PFCommandRunnerNotificationURLRequestUserInfoKey : request } : nil);
         [self.notificationCenter postNotificationName:PFCommandRunnerWillSendURLRequestNotification
                                                object:self
                                              userInfo:userInfo];
     }];
 }
 
-- (void)urlSession:(PFURLSession *)session didPerformURLRequest:(NSURLRequest *)request withURLResponse:(nullable NSURLResponse *)response {
+- (void)urlSession:(PFURLSession *)session
+didPerformURLRequest:(NSURLRequest *)request
+   withURLResponse:(nullable NSURLResponse *)response
+    responseString:(nullable NSString *)responseString {
     [[BFExecutor defaultPriorityBackgroundExecutor] execute:^{
-        NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
-        userInfo[PFCommandRunnerNotificationURLRequestUserInfoKey] = request;
-        if (response) {
-            userInfo[PFCommandRunnerNotificationURLResponseUserInfoKey] = response;
+        NSMutableDictionary *userInfo = nil;
+        if ([PFLogger sharedLogger].logLevel == PFLogLevelDebug) {
+            userInfo = [NSMutableDictionary dictionaryWithObject:request
+                                                          forKey:PFCommandRunnerNotificationURLRequestUserInfoKey];
+            if (response) {
+                userInfo[PFCommandRunnerNotificationURLResponseUserInfoKey] = response;
+            }
+            if (responseString) {
+                userInfo[PFCommandRunnerNotificationURLResponseBodyUserInfoKey] = responseString;
+            }
         }
         [self.notificationCenter postNotificationName:PFCommandRunnerDidReceiveURLResponseNotification
                                                object:self

@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) BFTask *resultTask;
 
 @property (nonatomic, strong, readonly) NSHTTPURLResponse *response;
+@property (nullable, nonatomic, copy, readonly) NSString *responseString;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initForDataTask:(NSURLSessionDataTask *)dataTask

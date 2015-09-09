@@ -177,7 +177,10 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
 
         BFTask *resultTask = [delegate.resultTask continueWithBlock:^id(BFTask *task) {
             @strongify(self);
-            [self.delegate urlSession:self didPerformURLRequest:dataTask.originalRequest withURLResponse:delegate.response];
+            [self.delegate urlSession:self
+                 didPerformURLRequest:dataTask.originalRequest
+                      withURLResponse:delegate.response
+                       responseString:delegate.responseString];
 
             [self _removeDelegateForTaskWithIdentifier:taskIdentifier];
             return task;

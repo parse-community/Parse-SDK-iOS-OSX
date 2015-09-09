@@ -30,3 +30,4 @@ NSString *const PFCommandRunnerWillSendURLRequestNotification = @"PFCommandRunne
 NSString *const PFCommandRunnerDidReceiveURLResponseNotification = @"PFCommandRunnerDidReceiveURLResponseNotification";
 NSString *const PFCommandRunnerNotificationURLRequestUserInfoKey = @"PFCommandRunnerNotificationURLRequestUserInfoKey";
 NSString *const PFCommandRunnerNotificationURLResponseUserInfoKey = @"PFCommandRunnerNotificationURLResponseUserInfoKey";
+NSString *const PFCommandRunnerNotificationURLResponseBodyUserInfoKey = @"PFCommandRunnerNotificationURLResponseBodyUserInfoKey";
