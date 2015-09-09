@@ -59,8 +59,8 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns `BFTask` with result set to `PFCommandResult`.
  */
-- (BFTask *)runCommandAsync:(PFRESTCommand *)command
-                withOptions:(PFCommandRunningOptions)options;
+- (BFTask PF_GENERIC(PFCommandResult *)*)runCommandAsync:(PFRESTCommand *)command
+                                             withOptions:(PFCommandRunningOptions)options;
 
 /*!
  Run command.
@@ -71,25 +71,25 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns `BFTask` with result set to `PFCommandResult`.
  */
-- (BFTask *)runCommandAsync:(PFRESTCommand *)command
-                withOptions:(PFCommandRunningOptions)options
-          cancellationToken:(nullable BFCancellationToken *)cancellationToken;
+- (BFTask PF_GENERIC(PFCommandResult *)*)runCommandAsync:(PFRESTCommand *)command
+                                             withOptions:(PFCommandRunningOptions)options
+                                       cancellationToken:(nullable BFCancellationToken *)cancellationToken;
 
 ///--------------------------------------
 /// @name File Commands
 ///--------------------------------------
 
-- (BFTask *)runFileUploadCommandAsync:(PFRESTCommand *)command
-                      withContentType:(NSString *)contentType
-                contentSourceFilePath:(NSString *)sourceFilePath
-                              options:(PFCommandRunningOptions)options
-                    cancellationToken:(nullable BFCancellationToken *)cancellationToken
-                        progressBlock:(nullable PFProgressBlock)progressBlock;
+- (BFTask PF_GENERIC(id) *)runFileUploadCommandAsync:(PFRESTCommand *)command
+                                     withContentType:(NSString *)contentType
+                               contentSourceFilePath:(NSString *)sourceFilePath
+                                             options:(PFCommandRunningOptions)options
+                                   cancellationToken:(nullable BFCancellationToken *)cancellationToken
+                                       progressBlock:(nullable PFProgressBlock)progressBlock;
 
-- (BFTask *)runFileDownloadCommandAsyncWithFileURL:(NSURL *)url
-                                    targetFilePath:(NSString *)filePath
-                                 cancellationToken:(nullable BFCancellationToken *)cancellationToken
-                                     progressBlock:(nullable PFProgressBlock)progressBlock;
+- (BFTask PF_GENERIC(id) *)runFileDownloadCommandAsyncWithFileURL:(NSURL *)url
+                                                   targetFilePath:(NSString *)filePath
+                                                cancellationToken:(nullable BFCancellationToken *)cancellationToken
+                                                    progressBlock:(nullable PFProgressBlock)progressBlock;
 
 @end
 
