@@ -36,7 +36,6 @@
 
 + (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource;
 
-
 ///--------------------------------------
 /// @name Download
 ///--------------------------------------
@@ -50,9 +49,9 @@
 
  @returns `BFTask` with a result set to `nil`.
  */
-- (BFTask *)downloadFileAsyncWithState:(PFFileState *)fileState
-                     cancellationToken:(BFCancellationToken *)cancellationToken
-                         progressBlock:(PFProgressBlock)progressBlock;
+- (BFTask PF_GENERIC(PFVoid)*)downloadFileAsyncWithState:(PFFileState *)fileState
+                                         cancellationToken:(BFCancellationToken *)cancellationToken
+                                             progressBlock:(PFProgressBlock)progressBlock;
 
 /*!
  Downloads a file asynchronously with a given state and yields a stream to the live download of that file.
@@ -63,9 +62,9 @@
 
  @return `BFTask` with a result set to live `NSInputStream` of the file.
  */
-- (BFTask *)downloadFileStreamAsyncWithState:(PFFileState *)fileState
-                           cancellationToken:(BFCancellationToken *)cancellationToken
-                               progressBlock:(PFProgressBlock)progressBlock;
+- (BFTask PF_GENERIC(NSInputStream *)*)downloadFileStreamAsyncWithState:(PFFileState *)fileState
+                                                      cancellationToken:(BFCancellationToken *)cancellationToken
+                                                          progressBlock:(PFProgressBlock)progressBlock;
 
 ///--------------------------------------
 /// @name Upload
@@ -82,17 +81,17 @@
 
  @returns `BFTask` with a result set to `PFFileState` of uploaded file.
  */
-- (BFTask *)uploadFileAsyncWithState:(PFFileState *)fileState
-                      sourceFilePath:(NSString *)sourceFilePath
-                        sessionToken:(NSString *)sessionToken
-                   cancellationToken:(BFCancellationToken *)cancellationToken
-                       progressBlock:(PFProgressBlock)progressBlock;
+- (BFTask PF_GENERIC(PFFileState *)*)uploadFileAsyncWithState:(PFFileState *)fileState
+                                               sourceFilePath:(NSString *)sourceFilePath
+                                                 sessionToken:(NSString *)sessionToken
+                                            cancellationToken:(BFCancellationToken *)cancellationToken
+                                                progressBlock:(PFProgressBlock)progressBlock;
 
 ///--------------------------------------
 /// @name Cache
 ///--------------------------------------
 
-- (BFTask *)clearFileCacheAsync;
+- (BFTask PF_GENERIC(PFVoid)*)clearFileCacheAsync;
 
 - (NSString *)cachedFilePathForFileState:(PFFileState *)fileState;
 

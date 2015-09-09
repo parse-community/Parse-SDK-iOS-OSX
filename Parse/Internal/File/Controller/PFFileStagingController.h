@@ -45,7 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A task, which yields the path of the staged file on disk.
  */
-- (BFTask *)stageFileAsyncAtPath:(NSString *)filePath name:(NSString *)name uniqueId:(uint64_t)uniqueId;
+- (BFTask PF_GENERIC(NSString *)*)stageFileAsyncAtPath:(NSString *)filePath
+                                                  name:(NSString *)name
+                                              uniqueId:(uint64_t)uniqueId;
 
 /*!
  Creates a file from the specified data and places it into the staging directory based off of the name and unique 
@@ -57,7 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A task, which yields the path of the staged file on disk.
  */
-- (BFTask *)stageFileAsyncWithData:(NSData *)fileData name:(NSString *)name uniqueId:(uint64_t)uniqueId;
+- (BFTask PF_GENERIC(NSString *)*)stageFileAsyncWithData:(NSData *)fileData
+                                                    name:(NSString *)name
+                                                uniqueId:(uint64_t)uniqueId;
 
 /*!
  Get the staged directory path for a file with the specified name and unique ID.
