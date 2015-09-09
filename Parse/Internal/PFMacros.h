@@ -122,4 +122,16 @@ __strong __typeof__(var) var = var ## _weak;
     })                                                                               \
 )
 
+/*!
+ This exists to use along with bolts generic tasks. Instead of returning a BFTask with no generic type, or a generic
+ type of 'NSNull' when there is no usable result from a task, we use the type 'PFVoid', which will always have a value
+ of  'nil'.
+
+ This allows us to more easily descern between methods that have not yet updated the return type of their tasks, as well
+ as provide a more enforced API contract to the caller (as sending any message to PFVoid will result in a compile time
+ error).
+ */
+@class _PFVoid_Nonexistant;
+typedef _PFVoid_Nonexistant *PFVoid;
+
 #endif
