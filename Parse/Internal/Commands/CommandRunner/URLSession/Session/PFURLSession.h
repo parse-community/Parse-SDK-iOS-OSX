@@ -53,20 +53,20 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Network Requests
 ///--------------------------------------
 
-- (BFTask *)performDataURLRequestAsync:(NSURLRequest *)request
-                            forCommand:(PFRESTCommand *)command
-                     cancellationToken:(nullable BFCancellationToken *)cancellationToken;
+- (BFTask PF_GENERIC(id) *)performDataURLRequestAsync:(NSURLRequest *)request
+                                           forCommand:(PFRESTCommand *)command
+                                    cancellationToken:(nullable BFCancellationToken *)cancellationToken;
 
-- (BFTask *)performFileUploadURLRequestAsync:(NSURLRequest *)request
-                                  forCommand:(PFRESTCommand *)command
-                   withContentSourceFilePath:(NSString *)sourceFilePath
-                           cancellationToken:(nullable BFCancellationToken *)cancellationToken
-                               progressBlock:(nullable PFProgressBlock)progressBlock;
+- (BFTask PF_GENERIC(id) *)performFileUploadURLRequestAsync:(NSURLRequest *)request
+                                                 forCommand:(PFRESTCommand *)command
+                                  withContentSourceFilePath:(NSString *)sourceFilePath
+                                          cancellationToken:(nullable BFCancellationToken *)cancellationToken
+                                              progressBlock:(nullable PFProgressBlock)progressBlock;
 
-- (BFTask *)performFileDownloadURLRequestAsync:(NSURLRequest *)request
-                                  toFileAtPath:(NSString *)filePath
-                         withCancellationToken:(nullable BFCancellationToken *)cancellationToken
-                                 progressBlock:(nullable PFProgressBlock)progressBlock;
+- (BFTask PF_GENERIC(id) *)performFileDownloadURLRequestAsync:(NSURLRequest *)request
+                                                 toFileAtPath:(NSString *)filePath
+                                        withCancellationToken:(nullable BFCancellationToken *)cancellationToken
+                                                progressBlock:(nullable PFProgressBlock)progressBlock;
 
 @end
 
