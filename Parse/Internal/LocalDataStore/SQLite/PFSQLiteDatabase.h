@@ -60,17 +60,17 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  @returns A `BFTask` that resolves to `YES` if the database is open.
  */
-- (BFTask *)isOpenAsync;
+- (BFTask PF_GENERIC(NSNumber *)*)isOpenAsync;
 
 /*!
  Opens database. Database is one time use. Open > Close > Open is forbidden.
  */
-- (BFTask *)openAsync;
+- (BFTask PF_GENERIC(PFVoid) *)openAsync;
 
 /*!
  Closes the database connection.
  */
-- (BFTask *)closeAsync;
+- (BFTask PF_GENERIC(PFVoid) *)closeAsync;
 
 ///--------------------------------------
 /// @name Transaction
@@ -79,17 +79,17 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  Begins a database transaction in EXCLUSIVE mode.
  */
-- (BFTask *)beginTransactionAsync;
+- (BFTask PF_GENERIC(PFVoid) *)beginTransactionAsync;
 
 /*!
  Commits running transaction.
  */
-- (BFTask *)commitAsync;
+- (BFTask PF_GENERIC(PFVoid) *)commitAsync;
 
 /*!
  Rollbacks running transaction.
  */
-- (BFTask *)rollbackAsync;
+- (BFTask PF_GENERIC(PFVoid) *)rollbackAsync;
 
 ///--------------------------------------
 /// @name Query Methods
@@ -98,17 +98,17 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  Runs a single SQL statement which return result (SELECT).
  */
-- (BFTask *)executeQueryAsync:(NSString *)sql withArgumentsInArray:(nullable NSArray *)args;
+- (BFTask PF_GENERIC(PFSQLiteDatabaseResult *) *)executeQueryAsync:(NSString *)sql withArgumentsInArray:(nullable NSArray *)args;
 
 /*!
  Runs a single SQL statement, while caching the resulting statement for future use.
  */
-- (BFTask *)executeCachedQueryAsync:(NSString *)sql withArgumentsInArray:(nullable NSArray *)args;
+- (BFTask PF_GENERIC(PFSQLiteDatabaseResult *)*)executeCachedQueryAsync:(NSString *)sql withArgumentsInArray:(nullable NSArray *)args;
 
 /*!
  Runs a single SQL statement which doesn't return result (UPDATE/INSERT/DELETE).
  */
-- (BFTask *)executeSQLAsync:(NSString *)sql withArgumentsInArray:(nullable NSArray *)args;
+- (BFTask PF_GENERIC(PFVoid) *)executeSQLAsync:(NSString *)sql withArgumentsInArray:(nullable NSArray *)args;
 
 @end
 
