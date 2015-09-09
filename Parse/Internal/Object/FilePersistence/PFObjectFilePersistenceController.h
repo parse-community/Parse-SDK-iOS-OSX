@@ -9,9 +9,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFDataProvider.h"
+#import <Parse/PFConstants.h>
 
-@class BFTask;
+#import "PFDataProvider.h"
+#import "PFMacros.h"
+
+@class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFObject;
 
 @interface PFObjectFilePersistenceController : NSObject

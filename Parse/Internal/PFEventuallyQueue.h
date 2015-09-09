@@ -9,10 +9,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
 #import "PFMacros.h"
 #import "PFNetworkCommand.h"
 
-@class BFTask;
+@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class PFEventuallyPin;
 @class PFEventuallyQueueTestHelper;
 @class PFObject;
 @protocol PFCommandRunning;
