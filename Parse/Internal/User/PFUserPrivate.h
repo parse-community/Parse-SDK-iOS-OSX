@@ -11,11 +11,13 @@
 
 #import <Parse/PFUser.h>
 
+#import "PFMacros.h"
+
 extern NSString *const PFUserCurrentUserFileName;
 extern NSString *const PFUserCurrentUserPinName;
 extern NSString *const PFUserCurrentUserKeychainItemName;
 
-@class BFTask;
+@class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFCommandResult;
 @class PFUserController;
 
