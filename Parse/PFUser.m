@@ -891,6 +891,15 @@ static BOOL revocableSessionEnabled_;
     return save;
 }
 
+#pragma mark Linked
+
+- (BOOL)isLinkedWithAuthType:(NSString *)authType {
+    PFParameterAssert(authType, @"Authentication type can't be `nil`.");
+    @synchronized(self.lock) {
+        return [self.linkedServiceNames containsObject:authType];
+    }
+}
+
 #pragma mark Private
 
 + (void)_unregisterAuthenticationProvider:(id<PFAuthenticationProvider>)provider {

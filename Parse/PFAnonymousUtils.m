@@ -42,7 +42,7 @@
 ///--------------------------------------
 
 + (BOOL)isLinkedWithUser:(PFUser *)user {
-    return [user.linkedServiceNames containsObject:[[[self _authenticationProvider] class] authType]];
+    return [user isLinkedWithAuthType:[[[self _authenticationProvider] class] authType]];
 }
 
 ///--------------------------------------

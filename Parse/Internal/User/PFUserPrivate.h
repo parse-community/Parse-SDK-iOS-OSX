@@ -86,6 +86,9 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 // TODO: (nlutsenko) Add Documentation
 - (BFTask *)unlinkWithAuthTypeInBackground:(NSString *)authType;
 
+// TODO: (nlutsenko) Add Documentation
+- (BOOL)isLinkedWithAuthType:(NSString *)authType;
+
 ///--------------------------------------
 /// @name Authentication Providers (Private)
 ///--------------------------------------
