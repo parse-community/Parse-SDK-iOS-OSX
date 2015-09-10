@@ -435,7 +435,7 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
 - (NSString *)url {
     __block NSString *url = nil;
     [self _performDataAccessBlock:^{
-        url = self.state.urlString;
+        url = self.state.secureURLString;
     }];
     return url;
 }
