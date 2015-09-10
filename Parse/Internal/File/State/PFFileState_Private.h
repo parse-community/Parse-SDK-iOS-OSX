@@ -9,10 +9,14 @@
 
 #import "PFFileState.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PFFileState ()
 
 @property (nonatomic, copy, readwrite) NSString *name;
-@property (nonatomic, copy, readwrite) NSString *urlString;
-@property (nonatomic, copy, readwrite) NSString *mimeType;
+@property (nullable, nonatomic, copy, readwrite) NSString *urlString;
+@property (nullable, nonatomic, copy, readwrite) NSString *mimeType;
 
 @end
+
+NS_ASSUME_NONNULL_END
