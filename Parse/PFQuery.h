@@ -558,7 +558,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * PF
 
  @returns The task, that encapsulates the work being done.
  */
-- (BFTask *)getObjectInBackgroundWithId:(NSString *)objectId;
+- (BFTask PF_GENERIC(PFGenericObject) *)getObjectInBackgroundWithId:(NSString *)objectId;
 
 /*!
  @abstract Gets a <PFObject> asynchronously and calls the given block with the result.
@@ -640,7 +640,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * PF
 
  @returns The task, that encapsulates the work being done.
  */
-- (BFTask *)findObjectsInBackground;
+- (BFTask PF_GENERIC(NSArray<PFGenericObject> *)*)findObjectsInBackground;
 
 /*!
  @abstract Finds objects *asynchronously* and calls the given block with the results.
@@ -691,7 +691,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * PF
 
  @returns The task, that encapsulates the work being done.
  */
-- (BFTask *)getFirstObjectInBackground;
+- (BFTask PF_GENERIC(PFGenericObject) *)getFirstObjectInBackground;
 
 /*!
  @abstract Gets an object *asynchronously* and calls the given block with the result.
@@ -743,7 +743,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * PF
 
  @returns The task, that encapsulates the work being done.
  */
-- (BFTask *)countObjectsInBackground;
+- (BFTask PF_GENERIC(NSNumber *)*)countObjectsInBackground;
 
 /*!
  @abstract Counts objects *asynchronously* and calls the given block with the counts.
