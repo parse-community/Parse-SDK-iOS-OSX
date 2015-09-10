@@ -302,7 +302,7 @@ namespace :test do
     podspecs = ['Parse.podspec']
     results = []
     podspecs.each do |podspec|
-      results << system("pod lib lint #{podspec} --verbose")
+      results << system("pod repo update; pod lib lint #{podspec} --verbose")
     end
     results.each do |result|
       unless result
