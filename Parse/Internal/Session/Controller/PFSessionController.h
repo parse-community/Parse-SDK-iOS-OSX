@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Current Session
 ///--------------------------------------
 
-- (BFTask *)getCurrentSessionAsyncWithSessionToken:(nullable NSString *)sessionToken;
+- (BFTask PF_GENERIC(PFSession *)*)getCurrentSessionAsyncWithSessionToken:(nullable NSString *)sessionToken;
 
 @end
 

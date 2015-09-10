@@ -11,7 +11,11 @@
 
 #import "PFCoreDataProvider.h"
 #import "PFDataProvider.h"
+#import "PFMacros.h"
 #import "PFObjectControlling.h"
+
+@class PFUser;
+@class PFCommandResult;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,27 +38,27 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Log In
 ///--------------------------------------
 
-- (BFTask *)logInCurrentUserAsyncWithSessionToken:(NSString *)sessionToken;
-- (BFTask *)logInCurrentUserAsyncWithUsername:(NSString *)username
-                                     password:(NSString *)password
-                             revocableSession:(BOOL)revocableSession;
+- (BFTask PF_GENERIC(PFUser *)*)logInCurrentUserAsyncWithSessionToken:(NSString *)sessionToken;
+- (BFTask PF_GENERIC(PFUser *)*)logInCurrentUserAsyncWithUsername:(NSString *)username
+                                                         password:(NSString *)password
+                                                 revocableSession:(BOOL)revocableSession;
 
 //TODO: (nlutsenko) Move this method into PFUserAuthenticationController after PFUser is decoupled further.
-- (BFTask *)logInCurrentUserAsyncWithAuthType:(NSString *)authType
-                                     authData:(NSDictionary *)authData
-                             revocableSession:(BOOL)revocableSession;
+- (BFTask PF_GENERIC(PFUser *)*)logInCurrentUserAsyncWithAuthType:(NSString *)authType
+                                                         authData:(NSDictionary *)authData
+                                                 revocableSession:(BOOL)revocableSession;
 
 ///--------------------------------------
 /// @name Reset Password
 ///--------------------------------------
 
-- (BFTask *)requestPasswordResetAsyncForEmail:(NSString *)email;
+- (BFTask PF_GENERIC(PFVoid) *)requestPasswordResetAsyncForEmail:(NSString *)email;
 
 ///--------------------------------------
 /// @name Log Out
 ///--------------------------------------
 
-- (BFTask *)logOutUserAsyncWithSessionToken:(NSString *)sessionToken;
+- (BFTask PF_GENERIC(PFVoid) *)logOutUserAsyncWithSessionToken:(NSString *)sessionToken;
 
 @end
 

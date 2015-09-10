@@ -28,24 +28,24 @@ typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
 
 + (BOOL)isApplicationGroupContainerReachableForGroupIdentifier:(NSString *)applicationGroup;
 
-+ (BFTask *)createDirectoryIfNeededAsyncAtPath:(NSString *)path;
-+ (BFTask *)createDirectoryIfNeededAsyncAtPath:(NSString *)path
-                                   withOptions:(PFFileManagerOptions)options
-                                      executor:(BFExecutor *)executor;
++ (BFTask PF_GENERIC(PFVoid) *)createDirectoryIfNeededAsyncAtPath:(NSString *)path;
++ (BFTask PF_GENERIC(PFVoid) *)createDirectoryIfNeededAsyncAtPath:(NSString *)path
+                                                      withOptions:(PFFileManagerOptions)options
+                                                         executor:(BFExecutor *)executor;
 
-+ (BFTask *)writeStringAsync:(NSString *)string toFile:(NSString *)filePath;
-+ (BFTask *)writeDataAsync:(NSData *)data toFile:(NSString *)filePath;
++ (BFTask PF_GENERIC(PFVoid) *)writeStringAsync:(NSString *)string toFile:(NSString *)filePath;
++ (BFTask PF_GENERIC(PFVoid) *)writeDataAsync:(NSData *)data toFile:(NSString *)filePath;
 
-+ (BFTask *)copyItemAsyncAtPath:(NSString *)fromPath toPath:(NSString *)toPath;
-+ (BFTask *)moveItemAsyncAtPath:(NSString *)fromPath toPath:(NSString *)toPath;
++ (BFTask PF_GENERIC(PFVoid) *)copyItemAsyncAtPath:(NSString *)fromPath toPath:(NSString *)toPath;
++ (BFTask PF_GENERIC(PFVoid) *)moveItemAsyncAtPath:(NSString *)fromPath toPath:(NSString *)toPath;
 
-+ (BFTask *)moveContentsOfDirectoryAsyncAtPath:(NSString *)fromPath
-                             toDirectoryAtPath:(NSString *)toPath
-                                      executor:(BFExecutor *)executor;
++ (BFTask PF_GENERIC(PFVoid) *)moveContentsOfDirectoryAsyncAtPath:(NSString *)fromPath
+                                                toDirectoryAtPath:(NSString *)toPath
+                                                         executor:(BFExecutor *)executor;
 
-+ (BFTask *)removeItemAtPathAsync:(NSString *)path;
-+ (BFTask *)removeItemAtPathAsync:(NSString *)path withFileLock:(BOOL)useFileLock;
-+ (BFTask *)removeDirectoryContentsAsyncAtPath:(NSString *)path;
++ (BFTask PF_GENERIC(PFVoid) *)removeItemAtPathAsync:(NSString *)path;
++ (BFTask PF_GENERIC(PFVoid) *)removeItemAtPathAsync:(NSString *)path withFileLock:(BOOL)useFileLock;
++ (BFTask PF_GENERIC(PFVoid) *)removeDirectoryContentsAsyncAtPath:(NSString *)path;
 
 ///--------------------------------------
 /// @name Instance

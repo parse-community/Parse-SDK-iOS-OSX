@@ -33,16 +33,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Authentication
 ///--------------------------------------
 
-- (BFTask *)deauthenticateAsyncWithProviderForAuthType:(NSString *)authType;
+- (BFTask PF_GENERIC(PFVoid) *)deauthenticateAsyncWithProviderForAuthType:(NSString *)authType;
 
-- (BFTask *)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary *)authData
-                           forProviderWithAuthType:(NSString *)authType;
+- (BFTask PF_GENERIC(PFVoid) *)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary *)authData
+                                              forProviderWithAuthType:(NSString *)authType;
 
 ///--------------------------------------
 /// @name Log In
 ///--------------------------------------
 
-- (BFTask *)logInUserAsyncWithAuthType:(NSString *)authType authData:(NSDictionary *)authData;
+- (BFTask PF_GENERIC(PFUser *) *)logInUserAsyncWithAuthType:(NSString *)authType authData:(NSDictionary *)authData;
 
 @end
 

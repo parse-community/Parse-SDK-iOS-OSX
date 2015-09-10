@@ -55,8 +55,9 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 /// @name Running Commands
 ///--------------------------------------
 
-- (BFTask *)enqueueCommandInBackground:(id<PFNetworkCommand>)command;
-- (BFTask *)enqueueCommandInBackground:(id<PFNetworkCommand>)command withObject:(PFObject *)object;
+- (BFTask PF_GENERIC(__kindof PFEventuallyPin *) *)enqueueCommandInBackground:(id<PFNetworkCommand>)command;
+- (BFTask PF_GENERIC(__kindof PFEventuallyPin *) *)enqueueCommandInBackground:(id<PFNetworkCommand>)command
+                                                                   withObject:(PFObject *)object;
 
 ///--------------------------------------
 /// @name Controlling Queue

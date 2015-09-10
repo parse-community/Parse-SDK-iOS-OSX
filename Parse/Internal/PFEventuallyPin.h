@@ -62,15 +62,18 @@ typedef NS_ENUM(NSUInteger, PFEventuallyPinType) {
 /*!
  Wrap given PFObject and PFCommand in a PFEventuallyPin with auto-generated UUID.
  */
-+ (BFTask *)pinEventually:(PFObject *)object forCommand:(id<PFNetworkCommand>)command;
++ (BFTask PF_GENERIC(__kindof PFEventuallyPin *) *)pinEventually:(PFObject *)object
+                                                      forCommand:(id<PFNetworkCommand>)command;
 
 /*!
  Wrap given PFObject and PFCommand in a PFEventuallyPin with given UUID.
  */
-+ (BFTask *)pinEventually:(PFObject *)object forCommand:(id<PFNetworkCommand>)command withUUID:(NSString *)uuid;
++ (BFTask PF_GENERIC(__kindof PFEventuallyPin *) *)pinEventually:(PFObject *)object
+                                                      forCommand:(id<PFNetworkCommand>)command
+                                                        withUUID:(NSString *)uuid;
 
-+ (BFTask *)findAllEventuallyPin;
++ (BFTask PF_GENERIC(NSArray<__kindof PFEventuallyPin *> *) *)findAllEventuallyPin;
 
-+ (BFTask *)findAllEventuallyPinWithExcludeUUIDs:(NSArray *)excludeUUIDs;
++ (BFTask PF_GENERIC(NSArray<__kindof PFEventuallyPin *> *) *)findAllEventuallyPinWithExcludeUUIDs:(NSArray *)excludeUUIDs;
 
 @end
