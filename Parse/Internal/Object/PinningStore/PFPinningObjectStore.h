@@ -9,11 +9,14 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
 #import "PFDataProvider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BFTask;
+@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class PFPin;
 
 @interface PFPinningObjectStore : NSObject
 
