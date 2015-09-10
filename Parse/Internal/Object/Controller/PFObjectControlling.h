@@ -32,9 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns `BFTask` with result set to `PFObject`.
  */
-- (BFTask *)fetchObjectAsync:(PFObject *)object withSessionToken:(nullable NSString *)sessionToken;
+- (BFTask PF_GENERIC(PFObject *)*)fetchObjectAsync:(PFObject *)object withSessionToken:(nullable NSString *)sessionToken;
 
-- (BFTask *)processFetchResultAsync:(NSDictionary *)result forObject:(PFObject *)object;
+- (BFTask PF_GENERIC(PFVoid) *)processFetchResultAsync:(NSDictionary *)result forObject:(PFObject *)object;
 
 ///--------------------------------------
 /// @name Delete
@@ -48,10 +48,10 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns `BFTask` with result set to `nil`.
  */
-- (BFTask *)deleteObjectAsync:(PFObject *)object withSessionToken:(nullable NSString *)sessionToken;
+- (BFTask PF_GENERIC(PFVoid) *)deleteObjectAsync:(PFObject *)object withSessionToken:(nullable NSString *)sessionToken;
 
 //TODO: (nlutsenko) This needs removal, figure out how to kill it.
-- (BFTask *)processDeleteResultAsync:(nullable NSDictionary *)result forObject:(PFObject *)object;
+- (BFTask PF_GENERIC(PFVoid) *)processDeleteResultAsync:(nullable NSDictionary *)result forObject:(PFObject *)object;
 
 @end
 

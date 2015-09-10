@@ -42,7 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns `BFTask` with result set to `NSNumber` with `BOOL` identifying whether the request succeeded.
  */
-- (BFTask *)sendPushNotificationAsyncWithState:(PFPushState *)state sessionToken:(nullable NSString *)sessionToken;
+- (BFTask PF_GENERIC(NSNumber *)*)sendPushNotificationAsyncWithState:(PFPushState *)state
+                                                        sessionToken:(nullable NSString *)sessionToken;
 
 @end
 

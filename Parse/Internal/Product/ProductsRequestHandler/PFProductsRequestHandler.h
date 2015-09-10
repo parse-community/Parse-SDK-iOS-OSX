@@ -32,6 +32,6 @@
 
 - (instancetype)initWithProductsRequest:(SKProductsRequest *)request;
 
-- (BFTask *)findProductsAsync;
+- (BFTask PF_GENERIC(PFProductsRequestResult *) *)findProductsAsync;
 
 @end

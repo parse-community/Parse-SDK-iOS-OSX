@@ -40,7 +40,7 @@
 
  @returns `BFTask` with `PFObject` or `nil` result.
  */
-- (BFTask *)loadPersistentObjectAsyncForKey:(NSString *)key;
+- (BFTask PF_GENERIC(PFObject *)*)loadPersistentObjectAsyncForKey:(NSString *)key;
 
 /*!
  Saves a given object to a file with name.
@@ -50,6 +50,6 @@
 
  @returns `BFTask` with `nil` result.
  */
-- (BFTask *)persistObjectAsync:(PFObject *)object forKey:(NSString *)key;
+- (BFTask PF_GENERIC(PFVoid) *)persistObjectAsync:(PFObject *)object forKey:(NSString *)key;
 
 @end
