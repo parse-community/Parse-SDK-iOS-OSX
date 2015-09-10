@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A task that returns the ACL encapsulated by this controller.
  */
-- (BFTask *)getDefaultACLAsync;
+- (BFTask PF_GENERIC(PFACL *) *)getDefaultACLAsync;
 
 /*!
  Set the new default default ACL to be encapsulated in this controller.
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A task that returns the new (copied) ACL now encapsulated in this controller.
  */
-- (BFTask *)setDefaultACLAsync:(PFACL *)acl withCurrentUserAccess:(BOOL)accessForCurrentUser;
+- (BFTask PF_GENERIC(PFACL *) *)setDefaultACLAsync:(PFACL *)acl withCurrentUserAccess:(BOOL)accessForCurrentUser;
 
 @end
 

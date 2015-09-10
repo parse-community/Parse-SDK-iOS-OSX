@@ -40,8 +40,8 @@
 
  @returns `BFTask` with a result set to a result of Cloud Function.
  */
-- (BFTask *)callCloudCodeFunctionAsync:(NSString *)functionName
-                        withParameters:(NSDictionary *)parameters
-                          sessionToken:(NSString *)sessionToken;
+- (BFTask PF_GENERIC(id) *)callCloudCodeFunctionAsync:(NSString *)functionName
+                                       withParameters:(NSDictionary *)parameters
+                                         sessionToken:(NSString *)sessionToken;
 
 @end
