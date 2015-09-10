@@ -65,15 +65,15 @@ typedef NS_OPTIONS(uint8_t, PFOfflineQueryOption) {
 /*!
  Make sure all of the objects included by the given query get fetched.
  */
-- (BFTask *)fetchIncludesAsyncForResults:(NSArray *)results
-                            ofQueryState:(PFQueryState *)queryState
-                              inDatabase:(PFSQLiteDatabase *)database;
+- (BFTask PF_GENERIC(PFVoid) *)fetchIncludesAsyncForResults:(NSArray *)results
+                                               ofQueryState:(PFQueryState *)queryState
+                                                 inDatabase:(PFSQLiteDatabase *)database;
 
 /*!
  Make sure all of the objects included by the given query get fetched.
  */
-- (BFTask *)fetchIncludesForObjectAsync:(PFObject *)object
-                             queryState:(PFQueryState *)queryState
-                               database:(PFSQLiteDatabase *)database;
+- (BFTask PF_GENERIC(PFVoid) *)fetchIncludesForObjectAsync:(PFObject *)object
+                                                queryState:(PFQueryState *)queryState
+                                                  database:(PFSQLiteDatabase *)database;
 
 @end

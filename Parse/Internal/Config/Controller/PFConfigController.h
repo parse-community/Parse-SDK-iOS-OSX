@@ -43,6 +43,6 @@
 
  @returns `BFTask` with result set to `PFConfig`.
  */
-- (BFTask *)fetchConfigAsyncWithSessionToken:(NSString *)sessionToken;
+- (BFTask PF_GENERIC(PFConfig *) *)fetchConfigAsyncWithSessionToken:(NSString *)sessionToken;
 
 @end

@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return A task, which yields a `PFSQLiteDatabase`, with the open database. 
  When the database is closed, a new database connection can be opened.
  */
-- (BFTask *)openDatabaseWithNameAsync:(NSString *)name;
+- (BFTask PF_GENERIC(PFSQLiteDatabase *) *)openDatabaseWithNameAsync:(NSString *)name;
 
 @end
 
