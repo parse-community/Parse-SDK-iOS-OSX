@@ -58,7 +58,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @param query The installation query to set for this push.
  */
-- (void)setQuery:(PF_NULLABLE  PFQuery *)query;
+- (void)setQuery:(PF_NULLABLE PFQuery *)query;
 
 /*!
  @abstract Sets an alert message for this push notification.
@@ -67,7 +67,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @param message The message to send in this push.
  */
-- (void)setMessage:(PF_NULLABLE  NSString *)message;
+- (void)setMessage:(PF_NULLABLE NSString *)message;
 
 /*!
  @abstract Sets an arbitrary data payload for this push notification.
@@ -78,7 +78,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @param data The data to send in this push.
  */
-- (void)setData:(PF_NULLABLE  NSDictionary *)data;
+- (void)setData:(PF_NULLABLE NSDictionary *)data;
 
 /*!
  @abstract Sets whether this push will go to Android devices.
@@ -157,8 +157,8 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The task, that encapsulates the work being done.
  */
-+ (BFTask *)sendPushMessageToChannelInBackground:(NSString *)channel
-                                     withMessage:(NSString *)message;
++ (BFTask PF_GENERIC(NSNumber *)*)sendPushMessageToChannelInBackground:(NSString *)channel
+                                                           withMessage:(NSString *)message;
 
 /*!
  @abstract *Asynchronously* sends a push message to a channel and calls the given block.
@@ -211,8 +211,8 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The task, that encapsulates the work being done.
  */
-+ (BFTask *)sendPushMessageToQueryInBackground:(PFQuery *)query
-                                   withMessage:(NSString *)message;
++ (BFTask PF_GENERIC(NSNumber *)*)sendPushMessageToQueryInBackground:(PFQuery *)query
+                                                         withMessage:(NSString *)message;
 
 /*!
  @abstract *Asynchronously* sends a push message to a query and calls the given block.
@@ -240,7 +240,7 @@ PF_ASSUME_NONNULL_BEGIN
  @abstract *Asynchronously* send this push message.
  @returns The task, that encapsulates the work being done.
  */
-- (BFTask *)sendPushInBackground;
+- (BFTask PF_GENERIC(NSNumber *)*)sendPushInBackground;
 
 /*!
  @abstract *Asynchronously* send this push message and executes the given callback block.
@@ -288,8 +288,8 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The task, that encapsulates the work being done.
  */
-+ (BFTask *)sendPushDataToChannelInBackground:(NSString *)channel
-                                     withData:(NSDictionary *)data;
++ (BFTask PF_GENERIC(NSNumber *)*)sendPushDataToChannelInBackground:(NSString *)channel
+                                                           withData:(NSDictionary *)data;
 
 /*!
  @abstract Asynchronously sends a push message with arbitrary data to a channel and calls the given block.
@@ -352,8 +352,8 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The task, that encapsulates the work being done.
  */
-+ (BFTask *)sendPushDataToQueryInBackground:(PFQuery *)query
-                                   withData:(NSDictionary *)data;
++ (BFTask PF_GENERIC(NSNumber *)*)sendPushDataToQueryInBackground:(PFQuery *)query
+                                                         withData:(NSDictionary *)data;
 
 /*!
  @abstract *Asynchronously* sends a push message with arbitrary data to a query and calls the given block.
@@ -416,7 +416,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The task, that encapsulates the work being done.
  */
-+ (BFTask *)getSubscribedChannelsInBackground;
++ (BFTask PF_GENERIC(NSSet<NSString *> *)*)getSubscribedChannelsInBackground;
 
 /*!
  @abstract *Asynchronously* get all the channels that this device is subscribed to.
@@ -455,7 +455,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The task, that encapsulates the work being done.
  */
-+ (BFTask *)subscribeToChannelInBackground:(NSString *)channel;
++ (BFTask PF_GENERIC(NSNumber *)*)subscribeToChannelInBackground:(NSString *)channel;
 
 /*!
  @abstract *Asynchronously* subscribes the device to a channel of push notifications and calls the given block.
@@ -500,7 +500,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The task, that encapsulates the work being done.
  */
-+ (BFTask *)unsubscribeFromChannelInBackground:(NSString *)channel;
++ (BFTask PF_GENERIC(NSNumber *)*)unsubscribeFromChannelInBackground:(NSString *)channel;
 
 /*!
  @abstract *Asynchronously* unsubscribes the device from a channel of push notifications and calls the given block.
