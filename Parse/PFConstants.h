@@ -438,8 +438,8 @@ typedef void (^PFProgressBlock)(int percentDone);
 ///--------------------------------------
 
 #if __has_feature(objc_generics) || __has_extension(objc_generics)
-#  define PF_GENERIC(type) <type>
+#  define PF_GENERIC(...) <__VA_ARGS__>
 #else
-#  define PF_GENERIC(type)
+#  define PF_GENERIC(...)
 #  define PFGenericObject PFObject *
 #endif
