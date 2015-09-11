@@ -20,8 +20,8 @@ PF_ASSUME_NONNULL_BEGIN
 typedef void(^PFUserSessionUpgradeResultBlock)(NSError *PF_NULLABLE_S error);
 typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
 
-
 @class PFQuery;
+@protocol PFAuthenticationProvider;
 
 /*!
  The `PFUser` class is a local representation of a user persisted to the Parse Data.
@@ -448,6 +448,70 @@ typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
 + (void)requestPasswordResetForEmailInBackground:(NSString *)email
                                           target:(PF_NULLABLE_S id)target
                                         selector:(PF_NULLABLE_S SEL)selector;
+
+///--------------------------------------
+/// @name Third-party Authentication
+///--------------------------------------
+
+/*!
+ @abstract Registers a tuhrd party authentication provider.
+
+ @note This method shouldn't be invoked directly unless developing a third party authentication provider.
+ @see PFAuthenticationProvider
+
+ @param authenticationProvider The third party authenticaiton provider to be registered.
+ */
++ (void)registerAuthenticationProvider:(id<PFAuthenticationProvider>)authenticationProvider;
+
+/*!
+ @abstract Logs in a user with third party authentication credentials.
+
+ @note This method shouldn't be invoked directly unless developing a third party authentication provider.
+ @see PFAuthenticationProvider
+
+ @param authType The name of the type of third party authenticaiton provider.
+ @param authData The user credentials of the third party authentication provider.
+
+ @returns A `BFTask` that is resolved to `PFUser` when logging in completes.
+ */
++ (BFTask PF_GENERIC(PFUser *) *)logInWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
+
+/*!
+ @abstract Links this user to a third party authentication provider.
+
+ @note This method shouldn't be invoked directly unless developing a third party authentication provider.
+ @see PFAuthenticationProvider
+
+ @param authType The name of the type of third party authenticaiton provider.
+ @param authData The user credentials of the third party authentication provider.
+
+ @returns A `BFTask` that is resolved to `@YES` if linking succeeds.
+ */
+- (BFTask PF_GENERIC(NSNumber *) *)linkWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
+
+/*!
+ @abstract Unlinks this user from a third party authentication provider.
+
+ @note This method shouldn't be invoked directly unless developing a third party authentication provider.
+ @see PFAuthenticationProvider
+
+ @param authType The name of the type of third party authenticaiton provider.
+
+ @returns A `BFTask` that is resolved to `@YES` if unlinking succeeds.
+ */
+- (BFTask PF_GENERIC(NSNumber *) *)unlinkWithAuthTypeInBackground:(NSString *)authType;
+
+/*!
+ @abstract Indicates whether this user is linked with a third party authentication provider of a specific type.
+
+ @note This method shouldn't be invoked directly unless developing a third party authentication provider.
+ @see PFAuthenticationProvider
+
+ @param authType The name of the type of third party authenticaiton provider.
+
+ @returns `YES` if the user is linked with a provider, otherwise `NO`.
+ */
+- (BOOL)isLinkedWithAuthType:(NSString *)authType;
 
 @end
 

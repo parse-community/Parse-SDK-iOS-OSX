@@ -34,6 +34,8 @@
 		810ECC7E1B573D28002944D4 /* PFTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 810ECC791B573D28002944D4 /* PFTestCase.m */; };
 		810ECC7F1B573D28002944D4 /* PFUnitTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 810ECC7C1B573D28002944D4 /* PFUnitTestCase.m */; };
 		810ECC801B573D28002944D4 /* PFUnitTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 810ECC7C1B573D28002944D4 /* PFUnitTestCase.m */; };
+		811083F21BA2580100FC7F65 /* PFAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 811083F11BA2580100FC7F65 /* PFAuthenticationProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		811083F31BA2580100FC7F65 /* PFAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 811083F11BA2580100FC7F65 /* PFAuthenticationProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		811214731B3E1CF10052741B /* PFObjectBatchController.h in Headers */ = {isa = PBXBuildFile; fileRef = 811214711B3E1CF10052741B /* PFObjectBatchController.h */; };
 		811214741B3E1CF10052741B /* PFObjectBatchController.h in Headers */ = {isa = PBXBuildFile; fileRef = 811214711B3E1CF10052741B /* PFObjectBatchController.h */; };
 		811214751B3E1CF10052741B /* PFObjectBatchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811214721B3E1CF10052741B /* PFObjectBatchController.m */; };
@@ -458,8 +460,6 @@
 		8166FCE01B503914003841A2 /* PFAnonymousAuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8166FCD61B503914003841A2 /* PFAnonymousAuthenticationProvider.m */; };
 		8166FCE11B503914003841A2 /* PFAnonymousUtils_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 8166FCD71B503914003841A2 /* PFAnonymousUtils_Private.h */; };
 		8166FCE21B503914003841A2 /* PFAnonymousUtils_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 8166FCD71B503914003841A2 /* PFAnonymousUtils_Private.h */; };
-		8166FCE31B503914003841A2 /* PFAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 8166FCD81B503914003841A2 /* PFAuthenticationProvider.h */; };
-		8166FCE41B503914003841A2 /* PFAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 8166FCD81B503914003841A2 /* PFAuthenticationProvider.h */; };
 		8166FCE81B504083003841A2 /* PFPushManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 8166FCE61B504083003841A2 /* PFPushManager.h */; };
 		8166FCE91B504083003841A2 /* PFPushManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 8166FCE61B504083003841A2 /* PFPushManager.h */; };
 		8166FCEA1B504083003841A2 /* PFPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8166FCE71B504083003841A2 /* PFPushManager.m */; };
@@ -1098,6 +1098,7 @@
 		810ECC791B573D28002944D4 /* PFTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFTestCase.m; sourceTree = "<group>"; };
 		810ECC7B1B573D28002944D4 /* PFUnitTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFUnitTestCase.h; sourceTree = "<group>"; };
 		810ECC7C1B573D28002944D4 /* PFUnitTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFUnitTestCase.m; sourceTree = "<group>"; };
+		811083F11BA2580100FC7F65 /* PFAuthenticationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAuthenticationProvider.h; sourceTree = "<group>"; };
 		811214711B3E1CF10052741B /* PFObjectBatchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFObjectBatchController.h; sourceTree = "<group>"; };
 		811214721B3E1CF10052741B /* PFObjectBatchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFObjectBatchController.m; sourceTree = "<group>"; };
 		81146C7C1A785203001F8473 /* PFRESTObjectCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRESTObjectCommand.h; sourceTree = "<group>"; };
@@ -1322,7 +1323,6 @@
 		8166FCD51B503914003841A2 /* PFAnonymousAuthenticationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAnonymousAuthenticationProvider.h; sourceTree = "<group>"; };
 		8166FCD61B503914003841A2 /* PFAnonymousAuthenticationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAnonymousAuthenticationProvider.m; sourceTree = "<group>"; };
 		8166FCD71B503914003841A2 /* PFAnonymousUtils_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAnonymousUtils_Private.h; sourceTree = "<group>"; };
-		8166FCD81B503914003841A2 /* PFAuthenticationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAuthenticationProvider.h; sourceTree = "<group>"; };
 		8166FCE61B504083003841A2 /* PFPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPushManager.h; sourceTree = "<group>"; };
 		8166FCE71B504083003841A2 /* PFPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPushManager.m; sourceTree = "<group>"; };
 		816AC9B81A3F48250031D94C /* PFApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFApplication.h; sourceTree = "<group>"; };
@@ -1610,6 +1610,7 @@
 				9739513916B9D28E0010B884 /* PFAnalytics.m */,
 				638CBBB415191435004F54E4 /* PFAnonymousUtils.h */,
 				638CBBB515191435004F54E4 /* PFAnonymousUtils.m */,
+				811083F11BA2580100FC7F65 /* PFAuthenticationProvider.h */,
 				805D3D9F15E31241007E8D10 /* PFCloud.h */,
 				805D3DA015E31241007E8D10 /* PFCloud.m */,
 				81EB6632198A7FA600851598 /* PFConfig.h */,
@@ -2459,7 +2460,6 @@
 			isa = PBXGroup;
 			children = (
 				8166FCD41B503914003841A2 /* Anonymous */,
-				8166FCD81B503914003841A2 /* PFAuthenticationProvider.h */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -3138,6 +3138,7 @@
 				810749AE1B74662B00682EEB /* PFURLSessionFileDownloadTaskDelegate.h in Headers */,
 				F5B0B2FC1B449F1D00F3EBC4 /* PFInternalUtils.h in Headers */,
 				F5B0B2FD1B449F1D00F3EBC4 /* PFKeychainStore.h in Headers */,
+				811083F21BA2580100FC7F65 /* PFAuthenticationProvider.h in Headers */,
 				818D58731B5DAAFE00813989 /* PFCommandRunningConstants.h in Headers */,
 				F5B0B2FF1B449F1D00F3EBC4 /* PFMulticastDelegate.h in Headers */,
 				81C6BDF41B4DD32700553A83 /* PFCurrentObjectControlling.h in Headers */,
@@ -3170,7 +3171,6 @@
 				8166FC5E1B503755003841A2 /* PFObjectPrivate.h in Headers */,
 				8166FC831B503794003841A2 /* PFInstallationIdentifierStore.h in Headers */,
 				81BCB4CA1B744626006659CB /* PFURLSessionJSONDataTaskDelegate.h in Headers */,
-				8166FCE31B503914003841A2 /* PFAuthenticationProvider.h in Headers */,
 				814BCDF71B4DF66500007B7F /* PFMutableUserState.h in Headers */,
 				815EE92319F989380076FE5D /* PFRESTConfigCommand.h in Headers */,
 				81C9C9F719FEA89200D514C5 /* PFRESTPushCommand.h in Headers */,
@@ -3363,6 +3363,7 @@
 				F5B0B3461B44A33200F3EBC4 /* PFPushState.h in Headers */,
 				F5B0B3471B44A33200F3EBC4 /* PFPushState_Private.h in Headers */,
 				812B63011B5F30D3009CEAA9 /* PFObjectFileCoder.h in Headers */,
+				811083F31BA2580100FC7F65 /* PFAuthenticationProvider.h in Headers */,
 				F5B0B3481B44A33200F3EBC4 /* PFMutablePushState.h in Headers */,
 				F5B0B3491B44A33200F3EBC4 /* PFPushController.h in Headers */,
 				F5B0B34A1B44A33200F3EBC4 /* PFPushChannelsController.h in Headers */,
@@ -3402,7 +3403,6 @@
 				81C7F4A31AF4220A007B5418 /* PFMutableFileState.h in Headers */,
 				810B7D771A0291FF003C0909 /* PFMacros.h in Headers */,
 				81C6BDEF1B4DB16500553A83 /* PFInstallationConstants.h in Headers */,
-				8166FCE41B503914003841A2 /* PFAuthenticationProvider.h in Headers */,
 				F51535061B57240900C49F56 /* PFACLState.h in Headers */,
 				8166FC9B1B503830003841A2 /* PFSession_Private.h in Headers */,
 				81F0E89619E6F83E00812A88 /* PFGeoPoint.h in Headers */,

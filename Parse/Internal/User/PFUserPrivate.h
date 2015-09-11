@@ -71,26 +71,7 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 - (BFTask *)_logOutAsync;
 
 ///--------------------------------------
-/// @name Authentication Providers
-///--------------------------------------
-
-// TODO: (nlutsenko) Add Documentation
-+ (void)registerAuthenticationProvider:(id<PFAuthenticationProvider>)authenticationProvider;
-
-// TODO: (nlutsenko) Add Documentation
-+ (BFTask *)logInWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
-
-// TODO: (nlutsenko) Add Documentation
-- (BFTask *)linkWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
-
-// TODO: (nlutsenko) Add Documentation
-- (BFTask *)unlinkWithAuthTypeInBackground:(NSString *)authType;
-
-// TODO: (nlutsenko) Add Documentation
-- (BOOL)isLinkedWithAuthType:(NSString *)authType;
-
-///--------------------------------------
-/// @name Authentication Providers (Private)
+/// @name Third-party Authentication (Private)
 ///--------------------------------------
 
 + (void)_unregisterAuthenticationProvider:(id<PFAuthenticationProvider>)provider;
