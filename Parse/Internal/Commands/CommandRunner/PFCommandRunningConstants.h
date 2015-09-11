@@ -33,35 +33,3 @@ extern NSString *const PFCommandHeaderNameSessionToken;
 ///--------------------------------------
 
 extern NSString *const PFCommandParameterNameMethodOverride;
-
-///--------------------------------------
-/// @name Notifications
-///--------------------------------------
-
-/*!
- @abstract The name of the notification that is going to be sent before any URL request is sent.
- */
-extern NSString *const PFCommandRunnerWillSendURLRequestNotification;
-
-/*!
- @abstract The name of the notification that is going to be sent after any URL response is received.
- */
-extern NSString *const PFCommandRunnerDidReceiveURLResponseNotification;
-
-/*!
- @abstract The key of request(NSURLRequest) in the userInfo dictionary of a notification.
- @note This key is populated in userInfo, only of `PFLogLevel` in `PFLogger` is set to `PFLogLevelDebug`.
- */
-extern NSString *const PFCommandRunnerNotificationURLRequestUserInfoKey;
-
-/*!
- @abstract The key of response(NSHTTPURLResponse) in the userInfo dictionary of a notification.
- @note This key is populated in userInfo, only of `PFLogLevel` in `PFLogger` is set to `PFLogLevelDebug`.
- */
-extern NSString *const PFCommandRunnerNotificationURLResponseUserInfoKey;
-
-/*!
- @abstract The key of repsonse body (usually `NSString` with JSON) in the userInfo dictionary of a notification.
- @note This key is populated in userInfo, only of `PFLogLevel` in `PFLogger` is set to `PFLogLevelDebug`.
- */
-extern NSString *const PFCommandRunnerNotificationURLResponseBodyUserInfoKey;
