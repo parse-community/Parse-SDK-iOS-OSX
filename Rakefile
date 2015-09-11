@@ -200,16 +200,15 @@ end
 
 namespace :test do
   desc 'Run iOS Tests'
-  task :ios, :sdk_version do |_, args|
-    sdk_version = args[:sdk_version] || '8.4'
+  task :ios do |_, args|
     task = XCTask::BuildTask.new do |t|
       t.directory = script_folder
       t.workspace = 'Parse.xcworkspace'
 
       t.scheme = 'Parse-iOS'
-      t.sdk = "iphonesimulator#{sdk_version}"
-      t.destinations = ["\"platform=iOS Simulator,OS=#{sdk_version},name=iPhone 4s\"",
-                        "\"platform=iOS Simulator,OS=#{sdk_version},name=iPhone 6 Plus\"",]
+      t.sdk = 'iphonesimulator'
+      t.destinations = ["\"platform=iOS Simulator,OS=9.0,name=iPhone 4s\"",
+                        "\"platform=iOS Simulator,OS=9.0,name=iPhone 6 Plus\"",]
       t.configuration = 'Test'
 
       t.actions = [XCTask::BuildAction::TEST]
@@ -224,14 +223,13 @@ namespace :test do
   end
 
   desc 'Run OS X Tests'
-  task :osx, :sdk_version do |_, args|
-    sdk_version = args[:sdk_version] || '10.10'
+  task :osx do |_, args|
     task = XCTask::BuildTask.new do |t|
       t.directory = script_folder
       t.workspace = 'Parse.xcworkspace'
 
       t.scheme = 'Parse-OSX'
-      t.sdk = "macosx#{sdk_version}"
+      t.sdk = 'macosx'
       t.destinations = ['arch=x86_64']
       t.configuration = 'Test'
 
