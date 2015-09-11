@@ -10,8 +10,7 @@
 #import <Foundation/Foundation.h>
 
 #import <Parse/PFConstants.h>
-
-#import "PFAuthenticationProvider.h"
+#import <Parse/PFAuthenticationProvider.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
