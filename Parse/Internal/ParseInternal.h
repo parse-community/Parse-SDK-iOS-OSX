@@ -12,7 +12,6 @@
 # import <Parse/Parse.h>
 
 #import "PFAssert.h"
-#import "PFAuthenticationProvider.h"
 #import "PFCommandCache.h"
 #import "PFEventuallyQueue.h"
 #import "PFFieldOperation.h"

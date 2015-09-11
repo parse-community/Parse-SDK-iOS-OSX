@@ -11,8 +11,6 @@
 
 #import <Parse/PFUser.h>
 
-#import "PFAuthenticationProvider.h"
-
 extern NSString *const PFUserCurrentUserFileName;
 extern NSString *const PFUserCurrentUserPinName;
 extern NSString *const PFUserCurrentUserKeychainItemName;
