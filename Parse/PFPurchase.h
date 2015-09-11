@@ -17,6 +17,10 @@
 
 PF_ASSUME_NONNULL_BEGIN
 
+typedef void (^PFPurchaseProductObservationBlock)(SKPaymentTransaction *transaction);
+typedef void (^PFPurchaseBuyProductResultBlock)(NSError *PF_NULLABLE_S error);
+typedef void (^PFPurchaseDownloadAssetResultBlock)(NSString *PF_NULLABLE_S filePath, NSError *PF_NULLABLE_S error);
+
 /*!
  `PFPurchase` provides a set of APIs for working with in-app purchases.
 
@@ -35,8 +39,7 @@ PF_ASSUME_NONNULL_BEGIN
  @param productIdentifier the product identifier
  @param block The block to be run when buying a product.
  */
-+ (void)addObserverForProduct:(NSString *)productIdentifier
-                        block:(void(^)(SKPaymentTransaction *transaction))block;
++ (void)addObserverForProduct:(NSString *)productIdentifier block:(PFPurchaseProductObservationBlock)block;
 
 /*!
  @abstract *Asynchronously* initiates the purchase for the product.
@@ -44,7 +47,7 @@ PF_ASSUME_NONNULL_BEGIN
  @param productIdentifier the product identifier
  @param block the completion block.
  */
-+ (void)buyProduct:(NSString *)productIdentifier block:(void(^)(NSError *error))block;
++ (void)buyProduct:(NSString *)productIdentifier block:(PFPurchaseBuyProductResultBlock)block;
 
 /*!
  @abstract *Asynchronously* download the purchased asset, which is stored on Parse's server.
@@ -55,7 +58,7 @@ PF_ASSUME_NONNULL_BEGIN
  @param completion the completion block.
  */
 + (void)downloadAssetForTransaction:(SKPaymentTransaction *)transaction
-                         completion:(void(^)(NSString *filePath, NSError *error))completion;
+                         completion:(PFPurchaseDownloadAssetResultBlock)completion;
 
 /*!
  @abstract *Asynchronously* download the purchased asset, which is stored on Parse's server.
@@ -67,7 +70,7 @@ PF_ASSUME_NONNULL_BEGIN
  @param progress the progress block, which is called multiple times to reveal progress of the download.
  */
 + (void)downloadAssetForTransaction:(SKPaymentTransaction *)transaction
-                         completion:(void(^)(NSString *filePath, NSError *error))completion
+                         completion:(PFPurchaseDownloadAssetResultBlock)completion
                            progress:(PF_NULLABLE PFProgressBlock)progress;
 
 /*!
