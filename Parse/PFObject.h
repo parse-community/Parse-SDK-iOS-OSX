@@ -210,7 +210,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /*!
  @abstract Clears any changes to this object's key that were done after last successful save and sets it back to the
  server state.
- 
+
  @param key The key to revert changes for.
  */
 - (void)revertObjectForKey:(NSString *)key;
@@ -316,7 +316,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-- (BFTask *)saveInBackground;
+- (BFTask PF_GENERIC(NSNumber *)*)saveInBackground;
 
 /*!
  @abstract Saves the `PFObject` *asynchronously* and executes the given callback block.
@@ -354,7 +354,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-- (BFTask *)saveEventually;
+- (BFTask PF_GENERIC(NSNumber *)*)saveEventually;
 
 /*!
  @abstract Saves this object to the server at some unspecified time in the future,
@@ -406,7 +406,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-+ (BFTask *)saveAllInBackground:(PF_NULLABLE NSArray *)objects;
++ (BFTask PF_GENERIC(NSNumber *)*)saveAllInBackground:(PF_NULLABLE NSArray *)objects;
 
 /*!
  @abstract Saves a collection of objects all at once `asynchronously` and executes the block when done.
@@ -460,7 +460,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects The array of objects to delete.
  @returns The task that encapsulates the work being done.
  */
-+ (BFTask *)deleteAllInBackground:(PF_NULLABLE NSArray *)objects;
++ (BFTask PF_GENERIC(NSNumber *)*)deleteAllInBackground:(PF_NULLABLE NSArray *)objects;
 
 /*!
  @abstract Deletes a collection of objects all at once *asynchronously* and executes the block when done.
@@ -569,7 +569,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-- (BFTask *)fetchInBackground;
+- (BFTask PF_GENERIC(__kindof PFObject *)*)fetchInBackground;
 
 /*!
  @abstract Fetches the PFObject *asynchronously* and executes the given callback block.
@@ -596,7 +596,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-- (BFTask *)fetchIfNeededInBackground;
+- (BFTask PF_GENERIC(__kindof PFObject *)*)fetchIfNeededInBackground;
 
 /*!
  @abstract Fetches the `PFObject` data *asynchronously* if <isDataAvailable> is `NO`, then calls the callback block.
@@ -659,7 +659,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-+ (BFTask *)fetchAllInBackground:(PF_NULLABLE NSArray *)objects;
++ (BFTask PF_GENERIC(NSArray<__kindof PFObject *> *)*)fetchAllInBackground:(PF_NULLABLE NSArray PF_GENERIC(PFObject *)*)objects;
 
 /*!
  @abstract Fetches all of the `PFObject` objects with the current data from the server *asynchronously*
@@ -694,7 +694,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-+ (BFTask *)fetchAllIfNeededInBackground:(PF_NULLABLE NSArray *)objects;
++ (BFTask PF_GENERIC(NSArray<__kindof PFObject *> *)*)fetchAllIfNeededInBackground:(PF_NULLABLE NSArray PF_GENERIC(PFObject *)*)objects;
 
 /*!
  @abstract Fetches all of the PFObjects with the current data from the server *asynchronously*
@@ -749,7 +749,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-- (BFTask *)fetchFromLocalDatastoreInBackground;
+- (BFTask PF_GENERIC(__kindof PFObject *)*)fetchFromLocalDatastoreInBackground;
 
 /*!
  @abstract *Asynchronously* loads data from the local datastore into this object,
@@ -785,7 +785,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-- (BFTask *)deleteInBackground;
+- (BFTask PF_GENERIC(NSNumber *)*)deleteInBackground;
 
 /*!
  @abstract Deletes the `PFObject` *asynchronously* and executes the given callback block.
@@ -824,7 +824,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-- (BFTask *)deleteEventually;
+- (BFTask PF_GENERIC(NSNull *)*)deleteEventually;
 
 ///--------------------------------------
 /// @name Dirtiness
@@ -846,7 +846,6 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @returns Returns whether this key has been altered and not saved yet.
  */
 - (BOOL)isDirtyForKey:(NSString *)key;
-
 
 ///--------------------------------------
 /// @name Pinning
@@ -934,7 +933,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see unpinInBackground
  @see PFObjectDefaultPin
  */
-- (BFTask *)pinInBackground;
+- (BFTask PF_GENERIC(NSNumber *)*)pinInBackground;
 
 /*!
  @abstract *Asynchronously* stores the object and every object it points to in the local datastore, recursively,
@@ -967,7 +966,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see unpinInBackgroundWithName:
  */
-- (BFTask *)pinInBackgroundWithName:(NSString *)name;
+- (BFTask PF_GENERIC(NSNumber *)*)pinInBackgroundWithName:(NSString *)name;
 
 /*!
  @abstract *Asynchronously* stores the object and every object it points to in the local datastore, recursively.
@@ -1079,7 +1078,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see unpinAllInBackground:
  @see PFObjectDefaultPin
  */
-+ (BFTask *)pinAllInBackground:(PF_NULLABLE NSArray *)objects;
++ (BFTask PF_GENERIC(NSNumber *)*)pinAllInBackground:(PF_NULLABLE NSArray PF_GENERIC(PFObject *)*)objects;
 
 /*!
  @abstract *Asynchronously* stores the objects and every object they point to in the local datastore, recursively,
@@ -1114,7 +1113,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see unpinAllInBackground:withName:
  */
-+ (BFTask *)pinAllInBackground:(PF_NULLABLE NSArray *)objects withName:(NSString *)name;
++ (BFTask PF_GENERIC(NSNumber *)*)pinAllInBackground:(PF_NULLABLE NSArray *)objects withName:(NSString *)name;
 
 /*!
  @abstract *Asynchronously* stores the objects and every object they point to in the local datastore, recursively.
@@ -1196,7 +1195,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see pinInBackground
  @see PFObjectDefaultPin
  */
-- (BFTask *)unpinInBackground;
+- (BFTask PF_GENERIC(NSNumber *)*)unpinInBackground;
 
 /*!
  @abstract *Asynchronously* removes the object and every object it points to in the local datastore, recursively,
@@ -1219,7 +1218,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see pinInBackgroundWithName:
  */
-- (BFTask *)unpinInBackgroundWithName:(NSString *)name;
+- (BFTask PF_GENERIC(NSNumber *)*)unpinInBackgroundWithName:(NSString *)name;
 
 /*!
  @abstract *Asynchronously* removes the object and every object it points to in the local datastore, recursively.
@@ -1286,7 +1285,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see PFObjectDefaultPin
  */
-+ (BFTask *)unpinAllObjectsInBackground;
++ (BFTask PF_GENERIC(NSNumber *)*)unpinAllObjectsInBackground;
 
 /*!
  @abstract *Asynchronously* removes all objects in the local datastore
@@ -1306,7 +1305,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-+ (BFTask *)unpinAllObjectsInBackgroundWithName:(NSString *)name;
++ (BFTask PF_GENERIC(NSNumber *)*)unpinAllObjectsInBackgroundWithName:(NSString *)name;
 
 /*!
  @abstract *Asynchronously* removes all objects with the specified pin name.
@@ -1382,7 +1381,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see pinAllInBackground:
  @see PFObjectDefaultPin
  */
-+ (BFTask *)unpinAllInBackground:(PF_NULLABLE NSArray *)objects;
++ (BFTask PF_GENERIC(NSNumber *)*)unpinAllInBackground:(PF_NULLABLE NSArray *)objects;
 
 /*!
  @abstract *Asynchronously* removes the objects and every object they point to in the local datastore, recursively,
@@ -1407,7 +1406,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see pinAllInBackground:withName:
  */
-+ (BFTask *)unpinAllInBackground:(PF_NULLABLE NSArray *)objects withName:(NSString *)name;
++ (BFTask PF_GENERIC(NSNumber *)*)unpinAllInBackground:(PF_NULLABLE NSArray *)objects withName:(NSString *)name;
 
 /*!
  @abstract *Asynchronously* removes the objects and every object they point to in the local datastore, recursively.
