@@ -1138,6 +1138,8 @@
 		F55C740D1B631557000EDAFA /* PFURLSessionCommandRunner_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = F55C740B1B631557000EDAFA /* PFURLSessionCommandRunner_Private.h */; };
 		F5732DE11B6712140066DCD5 /* URLSessionDataTaskDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5732DE01B6712140066DCD5 /* URLSessionDataTaskDelegateTests.m */; };
 		F5732DE21B6712140066DCD5 /* URLSessionDataTaskDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5732DE01B6712140066DCD5 /* URLSessionDataTaskDelegateTests.m */; };
+		F57E29B21BA388DD00A2C59D /* FileDataStreamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E29B11BA388DD00A2C59D /* FileDataStreamTests.m */; };
+		F57E29B31BA388DD00A2C59D /* FileDataStreamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E29B11BA388DD00A2C59D /* FileDataStreamTests.m */; };
 		F586B3511B1E3BD70082E3BD /* PFBaseState.m in Sources */ = {isa = PBXBuildFile; fileRef = F586B34F1B1E3BD70082E3BD /* PFBaseState.m */; };
 		F586B3521B1E3BE90082E3BD /* PFBaseState.m in Sources */ = {isa = PBXBuildFile; fileRef = F586B34F1B1E3BD70082E3BD /* PFBaseState.m */; };
 		F589894B1B7427FF008A566B /* AlertViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915CE1B66D44500EFD14F /* AlertViewTests.m */; };
@@ -1200,6 +1202,10 @@
 		F5B0B34A1B44A33200F3EBC4 /* PFPushChannelsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8124C8831B27588800758E00 /* PFPushChannelsController.h */; };
 		F5B0B34B1B44A33200F3EBC4 /* PFPushUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F50C66311B33A708001941A6 /* PFPushUtilities.h */; };
 		F5B0B34C1B44A33200F3EBC4 /* PFRelationState_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E8DE231B2912BC00EEA594 /* PFRelationState_Private.h */; };
+		F5B0C4F41BA248F7000AB0D5 /* PFFileDataStream.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B0C4F21BA248F7000AB0D5 /* PFFileDataStream.h */; };
+		F5B0C4F51BA248F7000AB0D5 /* PFFileDataStream.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B0C4F21BA248F7000AB0D5 /* PFFileDataStream.h */; };
+		F5B0C4F61BA248F7000AB0D5 /* PFFileDataStream.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B0C4F31BA248F7000AB0D5 /* PFFileDataStream.m */; };
+		F5B0C4F71BA248F7000AB0D5 /* PFFileDataStream.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B0C4F31BA248F7000AB0D5 /* PFFileDataStream.m */; };
 		F5C42CC71B34C22100C720D8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 095ACE9913C69BF700566243 /* AudioToolbox.framework */; };
 		F5C42CD41B34F68C00C720D8 /* PFObjectSubclassingController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C42CD21B34F68C00C720D8 /* PFObjectSubclassingController.h */; };
 		F5C42CD51B34F68C00C720D8 /* PFObjectSubclassingController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C42CD21B34F68C00C720D8 /* PFObjectSubclassingController.h */; };
@@ -1839,6 +1845,7 @@
 		F55ABB811B4F3B3200A0ECD5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 		F55C740B1B631557000EDAFA /* PFURLSessionCommandRunner_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFURLSessionCommandRunner_Private.h; sourceTree = "<group>"; };
 		F5732DE01B6712140066DCD5 /* URLSessionDataTaskDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLSessionDataTaskDelegateTests.m; sourceTree = "<group>"; };
+		F57E29B11BA388DD00A2C59D /* FileDataStreamTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDataStreamTests.m; sourceTree = "<group>"; };
 		F586B34E1B1E3BD70082E3BD /* PFBaseState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFBaseState.h; sourceTree = "<group>"; };
 		F586B34F1B1E3BD70082E3BD /* PFBaseState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFBaseState.m; sourceTree = "<group>"; };
 		F5ADB9C51B6C503E002A819E /* TestFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFileManager.h; sourceTree = "<group>"; };
@@ -1847,6 +1854,8 @@
 		F5ADB9CA1B6C5047002A819E /* TestCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCache.m; sourceTree = "<group>"; };
 		F5B0B3121B44A05100F3EBC4 /* PFPaymentTransactionObserver_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPaymentTransactionObserver_Private.h; sourceTree = "<group>"; };
 		F5B0B3141B44A21100F3EBC4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		F5B0C4F21BA248F7000AB0D5 /* PFFileDataStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileDataStream.h; sourceTree = "<group>"; };
+		F5B0C4F31BA248F7000AB0D5 /* PFFileDataStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFileDataStream.m; sourceTree = "<group>"; };
 		F5C42CD21B34F68C00C720D8 /* PFObjectSubclassingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFObjectSubclassingController.h; sourceTree = "<group>"; };
 		F5C42CD31B34F68C00C720D8 /* PFObjectSubclassingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFObjectSubclassingController.m; sourceTree = "<group>"; };
 		F5C42CD81B38761B00C720D8 /* PFObjectSubclassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFObjectSubclassInfo.h; sourceTree = "<group>"; };
@@ -1992,11 +2001,11 @@
 				8166FC9F1B503886003841A2 /* LocalDataStore */,
 				81CB7F6A1B166FC700DC601D /* Object */,
 				81CD664F1B4DA5A70042FC0B /* Installation */,
-				812FC61C1B0FF9E90043C07F /* Purchase */,
 				F5E8DE0F1B290B3700EEA594 /* Relation */,
 				81A2458A1B1E99C6006A6953 /* FieldOperation */,
 				81CB7F891B17957F00DC601D /* Push */,
 				8166FC8B1B5037F4003841A2 /* Product */,
+				812FC61C1B0FF9E90043C07F /* Purchase */,
 				8124C89B1B27BEC900758E00 /* Session */,
 				81EEE1AC1B446D600087AC4D /* User */,
 				814881411B795C63008763BF /* KeyValueCache */,
@@ -2500,6 +2509,7 @@
 				814915F31B66D44500EFD14F /* KeyValueCacheTests.m */,
 				814915F41B66D44500EFD14F /* LocationManagerMobileTests.m */,
 				814915F51B66D44500EFD14F /* LocationManagerTests.m */,
+				F57E29B11BA388DD00A2C59D /* FileDataStreamTests.m */,
 				814915F61B66D44500EFD14F /* ObjectBatchCommandTests.m */,
 				814915F71B66D44500EFD14F /* ObjectBatchControllerTests.m */,
 				814915F81B66D44500EFD14F /* ObjectCommandTests.m */,
@@ -3024,6 +3034,7 @@
 			isa = PBXGroup;
 			children = (
 				8166FC7B1B503787003841A2 /* PFFile_Private.h */,
+				F5B0C4ED1BA24708000AB0D5 /* FileDataStream */,
 				81EB595B1AF46429001EA1FC /* Controller */,
 				81C7F4961AF42187007B5418 /* State */,
 			);
@@ -3387,6 +3398,15 @@
 			path = FileManager;
 			sourceTree = "<group>";
 		};
+		F5B0C4ED1BA24708000AB0D5 /* FileDataStream */ = {
+			isa = PBXGroup;
+			children = (
+				F5B0C4F21BA248F7000AB0D5 /* PFFileDataStream.h */,
+				F5B0C4F31BA248F7000AB0D5 /* PFFileDataStream.m */,
+			);
+			path = FileDataStream;
+			sourceTree = "<group>";
+		};
 		F5C42CCA1B34C76D00C720D8 /* Subclassing */ = {
 			isa = PBXGroup;
 			children = (
@@ -3611,6 +3631,7 @@
 				8124C8731B26B9E700758E00 /* PFPinningObjectStore.h in Headers */,
 				810B7D761A0291FF003C0909 /* PFMacros.h in Headers */,
 				81BBE1351A0062B800622646 /* PFRESTAnalyticsCommand.h in Headers */,
+				F5B0C4F41BA248F7000AB0D5 /* PFFileDataStream.h in Headers */,
 				81CB7FA01B1800E400DC601D /* PFPushController.h in Headers */,
 				815EE93C19FA56D20076FE5D /* PFHTTPURLRequestConstructor.h in Headers */,
 				F51535591B57573700C49F56 /* PFDefaultACLController.h in Headers */,
@@ -3968,6 +3989,7 @@
 				81BCB4CB1B744626006659CB /* PFURLSessionJSONDataTaskDelegate.h in Headers */,
 				F51535051B57240900C49F56 /* PFACLPrivate.h in Headers */,
 				81F0E89119E6F83E00812A88 /* PFAnalytics.h in Headers */,
+				F5B0C4F51BA248F7000AB0D5 /* PFFileDataStream.h in Headers */,
 				81F0E89319E6F83E00812A88 /* PFCloud.h in Headers */,
 				8124C8A01B27BF0900758E00 /* PFSessionController.h in Headers */,
 				814B64121A769EF500213055 /* PFLogger.h in Headers */,
@@ -4467,6 +4489,7 @@
 				81E0335C1B573F3E00B25168 /* PFMockURLResponse.m in Sources */,
 				814916CD1B66D44600EFD14F /* RelationUnitTests.m in Sources */,
 				81E0335A1B573F3E00B25168 /* PFMockURLProtocol.m in Sources */,
+				F57E29B21BA388DD00A2C59D /* FileDataStreamTests.m in Sources */,
 				814916591B66D44600EFD14F /* DeviceTests.m in Sources */,
 				814916DF1B66D44600EFD14F /* UserFileCodingLogicTests.m in Sources */,
 				814916B31B66D44600EFD14F /* PushCommandTests.m in Sources */,
@@ -4577,6 +4600,7 @@
 				814916601B66D44600EFD14F /* FieldOperationDecoderTests.m in Sources */,
 				81E0337F1B57441F00B25168 /* CLLocationManager+TestAdditions.m in Sources */,
 				814916861B66D44600EFD14F /* ObjectFileCoderTests.m in Sources */,
+				F57E29B31BA388DD00A2C59D /* FileDataStreamTests.m in Sources */,
 				8149163A1B66D44500EFD14F /* AnonymousUtilsTests.m in Sources */,
 				81308B721B5781F500FFFF44 /* PFTestSwizzlingUtilities.m in Sources */,
 				814916761B66D44600EFD14F /* KeychainStoreTests.m in Sources */,
@@ -4713,6 +4737,7 @@
 				8124C8861B27588800758E00 /* PFPushChannelsController.m in Sources */,
 				814881621B795CD4008763BF /* PFMultiProcessFileLock.m in Sources */,
 				81C3826819CCAD790066284A /* PFAlertView.m in Sources */,
+				F5B0C4F61BA248F7000AB0D5 /* PFFileDataStream.m in Sources */,
 				811214751B3E1CF10052741B /* PFObjectBatchController.m in Sources */,
 				8166FCDF1B503914003841A2 /* PFAnonymousAuthenticationProvider.m in Sources */,
 				8166FCC21B503886003841A2 /* PFSQLiteDatabaseResult.m in Sources */,
@@ -4876,6 +4901,7 @@
 				F5C8F2C01B1F7E7800CD98E7 /* PFAsyncTaskQueue.m in Sources */,
 				81D0EE9C19B0A2060000AE75 /* PFKeychainStore.m in Sources */,
 				814881671B795CD4008763BF /* PFMultiProcessFileLockController.m in Sources */,
+				F5B0C4F71BA248F7000AB0D5 /* PFFileDataStream.m in Sources */,
 				81068EF41AE0845D00A34D13 /* PFEncoder.m in Sources */,
 				F51535071B57240900C49F56 /* PFACLState.m in Sources */,
 				970110821630B45800AB761E /* PFGeoPoint.m in Sources */,
