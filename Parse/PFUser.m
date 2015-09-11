@@ -812,7 +812,7 @@ static BOOL revocableSessionEnabled_;
 }
 
 ///--------------------------------------
-#pragma mark - Authentication Providers
+#pragma mark - Third-party Authentication
 ///--------------------------------------
 
 + (void)registerAuthenticationProvider:(id<PFAuthenticationProvider>)authenticationProvider {
