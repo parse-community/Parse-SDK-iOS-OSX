@@ -877,18 +877,16 @@ static BOOL revocableSessionEnabled_;
 #pragma mark Unlink
 
 - (BFTask *)unlinkWithAuthTypeInBackground:(NSString *)authType {
-    // TODO: (nlutsenko) Make it fully async.
-    BFTask *save = nil;
-    @synchronized ([self lock]) {
-        if (!self.authData[authType]) {
-            save = [BFTask taskWithResult:@YES];
-        } else {
-            self.authData[authType] = [NSNull null];
-            dirty = YES;
-            save = [self saveInBackground];
+    return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+        @synchronized (self.lock) {
+            if (self.authData[authType]) {
+                self.authData[authType] = [NSNull null];
+                dirty = YES;
+                return [self saveInBackground];
+            }
         }
-    }
-    return save;
+        return @YES;
+    }];
 }
 
 #pragma mark Linked
