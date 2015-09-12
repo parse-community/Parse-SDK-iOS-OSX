@@ -21,13 +21,3 @@ NSString *const PFCommandHeaderNameOSVersion = @"X-Parse-OS-Version";
 NSString *const PFCommandHeaderNameSessionToken = @"X-Parse-Session-Token";
 
 NSString *const PFCommandParameterNameMethodOverride = @"_method";
-
-///--------------------------------------
-#pragma mark - Notifications
-///--------------------------------------
-
-NSString *const PFCommandRunnerWillSendURLRequestNotification = @"PFCommandRunnerWillSendURLRequestNotification";
-NSString *const PFCommandRunnerDidReceiveURLResponseNotification = @"PFCommandRunnerDidReceiveURLResponseNotification";
-NSString *const PFCommandRunnerNotificationURLRequestUserInfoKey = @"PFCommandRunnerNotificationURLRequestUserInfoKey";
-NSString *const PFCommandRunnerNotificationURLResponseUserInfoKey = @"PFCommandRunnerNotificationURLResponseUserInfoKey";
-NSString *const PFCommandRunnerNotificationURLResponseBodyUserInfoKey = @"PFCommandRunnerNotificationURLResponseBodyUserInfoKey";

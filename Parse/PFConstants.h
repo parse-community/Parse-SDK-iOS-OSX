@@ -386,6 +386,39 @@ typedef void (^PFIdResultBlock)(PF_NULLABLE_S id object, NSError *PF_NULLABLE_S 
 typedef void (^PFProgressBlock)(int percentDone);
 
 ///--------------------------------------
+/// @name Network Notifications
+///--------------------------------------
+
+/*!
+ @abstract The name of the notification that is going to be sent before any URL request is sent.
+ */
+extern NSString *const PF_NONNULL_S PFNetworkWillSendURLRequestNotification;
+
+/*!
+ @abstract The name of the notification that is going to be sent after any URL response is received.
+ */
+extern NSString *const PF_NONNULL_S PFNetworkDidReceiveURLResponseNotification;
+
+/*!
+ @abstract The key of request(NSURLRequest) in the userInfo dictionary of a notification.
+ @note This key is populated in userInfo, only if `PFLogLevel` on `Parse` is set to `PFLogLevelDebug`.
+ */
+extern NSString *const PF_NONNULL_S PFNetworkNotificationURLRequestUserInfoKey;
+
+/*!
+ @abstract The key of response(NSHTTPURLResponse) in the userInfo dictionary of a notification.
+ @note This key is populated in userInfo, only if `PFLogLevel` on `Parse` is set to `PFLogLevelDebug`.
+ */
+extern NSString *const PF_NONNULL_S PFNetworkNotificationURLResponseUserInfoKey;
+
+/*!
+ @abstract The key of repsonse body (usually `NSString` with JSON) in the userInfo dictionary of a notification.
+ @note This key is populated in userInfo, only if `PFLogLevel` on `Parse` is set to `PFLogLevelDebug`.
+ */
+extern NSString *const PF_NONNULL_S PFNetworkNotificationURLResponseBodyUserInfoKey;
+
+
+///--------------------------------------
 /// @name Deprecated Macros
 ///--------------------------------------
 
