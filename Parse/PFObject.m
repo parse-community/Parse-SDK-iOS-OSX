@@ -1365,9 +1365,21 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
             if ([key isEqualToString:PFObjectObjectIdRESTKey]) {
                 state.objectId = obj;
             } else if ([key isEqualToString:PFObjectCreatedAtRESTKey]) {
-                [state setCreatedAtFromString:obj];
+                // These dates can be passed in as NSDate or as NSString,
+                // depending on whether they were wrapped inside JSONObject with __type: Date or not.
+                if ([obj isKindOfClass:[NSDate class]]) {
+                    state.createdAt = obj;
+                } else {
+                    [state setCreatedAtFromString:obj];
+                }
             } else if ([key isEqualToString:PFObjectUpdatedAtRESTKey]) {
-                [state setUpdatedAtFromString:obj];
+                // These dates can be passed in as NSDate or as NSString,
+                // depending on whether they were wrapped inside JSONObject with __type: Date or not.
+                if ([obj isKindOfClass:[NSDate class]]) {
+                    state.updatedAt = obj;
+                } else {
+                    [state setUpdatedAtFromString:obj];
+                }
             } else if ([key isEqualToString:PFObjectACLRESTKey]) {
                 PFACL *acl = [PFACL ACLWithDictionary:obj];
                 [state setServerDataObject:acl forKey:key];
