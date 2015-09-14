@@ -11,6 +11,7 @@
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
 #import "PFObjectPrivate.h"
+#import "BFTask+Private.h"
 
 @interface ObjectUnitTests : PFUnitTestCase
 
@@ -195,6 +196,30 @@
         XCTAssertEqual(task.error.code, kPFErrorMissingObjectId);
         [expectation fulfill];
         return nil;
+    }];
+    [self waitForTestExpectations];
+}
+
+#pragma mark DeleteAll
+
+- (void)testDeleteAllWithoutObjects {
+    XCTAssertTrue([PFObject deleteAll:nil]);
+    XCTAssertTrue([PFObject deleteAll:@[]]);
+
+    NSError *error = nil;
+    XCTAssertTrue([PFObject deleteAll:nil error:&error]);
+    XCTAssertNil(error);
+    XCTAssertTrue([PFObject deleteAll:@[] error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertTrue([[[PFObject deleteAllInBackground:nil] waitForResult:nil] boolValue]);
+    XCTAssertTrue([[[PFObject deleteAllInBackground:@[]] waitForResult:nil] boolValue]);
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [PFObject deleteAllInBackground:nil block:^(BOOL succeeded, NSError * _Nullable error) {
+        XCTAssertTrue(succeeded);
+        XCTAssertNil(error);
+        [expectation fulfill];
     }];
     [self waitForTestExpectations];
 }
