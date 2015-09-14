@@ -72,6 +72,6 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 /// @name Third-party Authentication (Private)
 ///--------------------------------------
 
-+ (void)_unregisterAuthenticationProvider:(id<PFAuthenticationProvider>)provider;
++ (void)_unregisterAuthenticationDelegateForAuthType:(NSString *)authType;
 
 @end

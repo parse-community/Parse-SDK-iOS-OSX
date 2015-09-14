@@ -45,16 +45,14 @@
 #pragma mark - Authentication Providers
 ///--------------------------------------
 
-- (void)registerAuthenticationProvider:(id<PFAuthenticationProvider>)provider {
-    PFParameterAssert(provider, @"Authentication provider can't be `nil`.");
-
-    NSString *authType = [[provider class] authType];
+- (void)registerAuthenticationDelegate:(id<PFUserAuthenticationDelegate>)delegate forAuthType:(NSString *)authType {
+    PFParameterAssert(delegate, @"Authentication delegate can't be `nil`.");
     PFParameterAssert(authType, @"Authentication provider's `authType` can't be `nil`.");
-    PFConsistencyAssert(![self authenticationProviderForAuthType:authType],
+    PFConsistencyAssert(![self authenticationDelegateForAuthType:authType],
                         @"Authentication provider already registered for authType `%@`.", authType);
 
     dispatch_sync(_dataAccessQueue, ^{
-        _authenticationProviders[authType] = provider;
+        _authenticationProviders[authType] = delegate;
     });
 
     // TODO: (nlutsenko) Decouple this further.
@@ -63,8 +61,7 @@
     }
 }
 
-- (void)unregisterAuthenticationProvider:(id<PFAuthenticationProvider>)provider {
-    NSString *authType = [[provider class] authType];
+- (void)unregisterAuthenticationDelegateForAuthType:(NSString *)authType {
     if (!authType) {
         return;
     }
@@ -73,12 +70,12 @@
     });
 }
 
-- (id<PFAuthenticationProvider>)authenticationProviderForAuthType:(NSString *)authType {
+- (id<PFUserAuthenticationDelegate>)authenticationDelegateForAuthType:(NSString *)authType {
     if (!authType) {
         return nil;
     }
 
-    __block id<PFAuthenticationProvider> provider = nil;
+    __block id<PFUserAuthenticationDelegate> provider = nil;
     dispatch_sync(_dataAccessQueue, ^{
         provider = _authenticationProviders[authType];
     });
@@ -89,21 +86,19 @@
 #pragma mark - Authentication
 ///--------------------------------------
 
-- (BFTask *)deauthenticateAsyncWithProviderForAuthType:(NSString *)authType {
-    id<PFAuthenticationProvider> provider = [self authenticationProviderForAuthType:authType];
-    if (provider) {
-        return [provider deauthenticateInBackground];
-    }
-    return [BFTask taskWithResult:nil];
+- (BFTask PF_GENERIC(NSNumber *)*)deauthenticateAsyncWithProviderForAuthType:(NSString *)authType {
+    return [self restoreAuthenticationAsyncWithAuthData:nil forProviderWithAuthType:authType];
 }
 
-- (BFTask *)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary *)authData
-                           forProviderWithAuthType:(NSString *)authType {
-    id<PFAuthenticationProvider> provider = [self authenticationProviderForAuthType:authType];
+- (BFTask PF_GENERIC(NSNumber *)*)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary *)authData
+                                                 forProviderWithAuthType:(NSString *)authType {
+    id<PFUserAuthenticationDelegate> provider = [self authenticationDelegateForAuthType:authType];
     if (!provider) {
-        return [BFTask taskWithResult:nil];
+        return [BFTask taskWithResult:@YES];
     }
-    return [provider restoreAuthenticationInBackgroundWithAuthData:authData];
+    return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id {
+        return [BFTask taskWithResult:@([provider restoreAuthenticationWithAuthData:authData])];
+    }];
 }
 
 ///--------------------------------------
@@ -119,8 +114,8 @@
             PFUser *user = currentUser;
             BFTask *resolveLaziness = nil;
             NSDictionary *oldAnonymousData = nil;
-            @synchronized (user.lock) {
-                oldAnonymousData = user.authData[[PFAnonymousAuthenticationProvider authType]];
+            @synchronized(user.lock) {
+                oldAnonymousData = user.authData[PFUserAnonymousAuthenticationType];
 
                 // Replace any anonymity with the new linked authData
                 [user stripAnonymity];
@@ -163,7 +158,6 @@
     return [[PFUser userController] logInCurrentUserAsyncWithAuthType:authType
                                                              authData:authData
                                                      revocableSession:[PFUser _isRevocableSessionEnabled]];
-
 }
 
 @end

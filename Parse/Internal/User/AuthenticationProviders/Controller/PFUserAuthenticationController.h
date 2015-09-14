@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 
 #import <Parse/PFConstants.h>
-#import <Parse/PFAuthenticationProvider.h>
+#import <Parse/PFUserAuthenticationDelegate.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,19 +23,18 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Authentication Providers
 ///--------------------------------------
 
-- (void)registerAuthenticationProvider:(id<PFAuthenticationProvider>)provider;
-- (void)unregisterAuthenticationProvider:(id<PFAuthenticationProvider>)provider;
+- (void)registerAuthenticationDelegate:(id<PFUserAuthenticationDelegate>)delegate forAuthType:(NSString *)authType;
+- (void)unregisterAuthenticationDelegateForAuthType:(NSString *)authType;
 
-- (id<PFAuthenticationProvider>)authenticationProviderForAuthType:(NSString *)authType;
+- (id<PFUserAuthenticationDelegate>)authenticationDelegateForAuthType:(NSString *)authType;
 
 ///--------------------------------------
 /// @name Authentication
 ///--------------------------------------
 
-- (BFTask *)deauthenticateAsyncWithProviderForAuthType:(NSString *)authType;
-
-- (BFTask *)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary *)authData
-                           forProviderWithAuthType:(NSString *)authType;
+- (BFTask PF_GENERIC(NSNumber *) *)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary *)authData
+                                       forProviderWithAuthType:(NSString *)authType;
+- (BFTask PF_GENERIC(NSNumber *) *)deauthenticateAsyncWithProviderForAuthType:(NSString *)authType;
 
 ///--------------------------------------
 /// @name Log In

@@ -60,9 +60,7 @@
 
 - (void)testInitialize {
     id authController = [self mockedUserAuthenticationController];
-    OCMExpect([authController registerAuthenticationProvider:[OCMArg checkWithBlock:^BOOL(id obj) {
-        return [[[obj class] authType] isEqualToString:@"anonymous"];
-    }]]);
+    OCMExpect([authController registerAuthenticationDelegate:[OCMArg isNotNil] forAuthType:@"anonymous"]);
 
     PFAnonymousAuthenticationProvider *provider = [PFAnonymousUtils _authenticationProvider];
     XCTAssertNotNil(provider);
@@ -77,10 +75,8 @@
 
 - (void)testLogInViaTask {
     id authController = [self mockedUserAuthenticationController];
-    OCMStub([authController authenticationProviderForAuthType:@"anonymous"]).andReturn([[PFAnonymousAuthenticationProvider alloc] init]);
-    OCMExpect([authController registerAuthenticationProvider:[OCMArg checkWithBlock:^BOOL(id obj) {
-        return [[[obj class] authType] isEqualToString:@"anonymous"];
-    }]]);
+    OCMStub([authController authenticationDelegateForAuthType:@"anonymous"]).andReturn([[PFAnonymousAuthenticationProvider alloc] init]);
+    OCMExpect([authController registerAuthenticationDelegate:[OCMArg isNotNil] forAuthType:@"anonymous"]);
 
     PFUser *user = [PFUser user];
     OCMExpect([authController logInUserAsyncWithAuthType:@"anonymous" authData:[OCMArg isNotNil]]).andReturn([BFTask taskWithResult:user]);
@@ -97,10 +93,8 @@
 
 - (void)testLogInViaBlock {
     id authController = [self mockedUserAuthenticationController];
-    OCMStub([authController authenticationProviderForAuthType:@"anonymous"]).andReturn([[PFAnonymousAuthenticationProvider alloc] init]);
-    OCMExpect([authController registerAuthenticationProvider:[OCMArg checkWithBlock:^BOOL(id obj) {
-        return [[[obj class] authType] isEqualToString:@"anonymous"];
-    }]]);
+    OCMStub([authController authenticationDelegateForAuthType:@"anonymous"]).andReturn([[PFAnonymousAuthenticationProvider alloc] init]);
+    OCMExpect([authController registerAuthenticationDelegate:[OCMArg isNotNil] forAuthType:@"anonymous"]);
 
     PFUser *user = [PFUser user];
     OCMExpect([authController logInUserAsyncWithAuthType:@"anonymous" authData:[OCMArg isNotNil]]).andReturn([BFTask taskWithResult:user]);
@@ -117,10 +111,8 @@
 
 - (void)testLogInViaTargetSelector {
     id authController = [self mockedUserAuthenticationController];
-    OCMStub([authController authenticationProviderForAuthType:@"anonymous"]).andReturn([[PFAnonymousAuthenticationProvider alloc] init]);
-    OCMExpect([authController registerAuthenticationProvider:[OCMArg checkWithBlock:^BOOL(id obj) {
-        return [[[obj class] authType] isEqualToString:@"anonymous"];
-    }]]);
+    OCMStub([authController authenticationDelegateForAuthType:@"anonymous"]).andReturn([[PFAnonymousAuthenticationProvider alloc] init]);
+    OCMExpect([authController registerAuthenticationDelegate:[OCMArg isNotNil] forAuthType:@"anonymous"]);
 
     PFUser *user = [PFUser user];
     OCMExpect([authController logInUserAsyncWithAuthType:@"anonymous" authData:[OCMArg isNotNil]]).andReturn([BFTask taskWithResult:user]);

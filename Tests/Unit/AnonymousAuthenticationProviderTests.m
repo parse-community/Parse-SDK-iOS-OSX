@@ -32,36 +32,14 @@
     XCTAssertNotEqualObjects(authData, provider.authData);
 }
 
-- (void)testAuthType {
-    XCTAssertEqualObjects([PFAnonymousAuthenticationProvider authType], @"anonymous");
-}
-
-- (void)testDeauthenticateInBackground {
-    PFAnonymousAuthenticationProvider *provider = [[PFAnonymousAuthenticationProvider alloc] init];
-
-    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[provider deauthenticateInBackground] continueWithBlock:^id(BFTask *task) {
-        XCTAssertNil(task.result);
-        XCTAssertFalse(task.faulted);
-        XCTAssertFalse(task.cancelled);
-        [expectation fulfill];
-        return nil;
-    }];
-    [self waitForTestExpectations];
-}
-
 - (void)testRestoreAuthentication {
     PFAnonymousAuthenticationProvider *provider = [[PFAnonymousAuthenticationProvider alloc] init];
-    BFTask *task = [provider restoreAuthenticationInBackgroundWithAuthData:@{ @"id" : @"123" }];
-    [task waitUntilFinished];
-    XCTAssertFalse(task.faulted);
+    XCTAssertTrue([provider restoreAuthenticationWithAuthData:@{ @"id" : @"123" }]);
 }
 
 - (void)testRestoreAuthenticationWithNoData {
     PFAnonymousAuthenticationProvider *provider = [[PFAnonymousAuthenticationProvider alloc] init];
-    BFTask *task = [provider restoreAuthenticationInBackgroundWithAuthData:nil];
-    [task waitUntilFinished];
-    XCTAssertFalse(task.faulted);
+    XCTAssertTrue([provider restoreAuthenticationWithAuthData:nil]);
 }
 
 @end
