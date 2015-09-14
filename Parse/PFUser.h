@@ -21,7 +21,7 @@ typedef void(^PFUserSessionUpgradeResultBlock)(NSError *PF_NULLABLE_S error);
 typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
 
 @class PFQuery;
-@protocol PFAuthenticationProvider;
+@protocol PFUserAuthenticationDelegate;
 
 /*!
  The `PFUser` class is a local representation of a user persisted to the Parse Data.
@@ -32,7 +32,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
  utilities for each social network. See <PFFacebookUtils>, <PFTwitterUtils> and <PFAnonymousUtils> for more information.
  */
 
-@interface PFUser : PFObject<PFSubclassing>
+@interface PFUser : PFObject <PFSubclassing>
 
 ///--------------------------------------
 /// @name Accessing the Current User
@@ -454,60 +454,61 @@ typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
 ///--------------------------------------
 
 /*!
- @abstract Registers a tuhrd party authentication provider.
+ @abstract Registers a third party authentication delegate.
 
- @note This method shouldn't be invoked directly unless developing a third party authentication provider.
- @see PFAuthenticationProvider
+ @note This method shouldn't be invoked directly unless developing a third party authentication library.
+ @see PFUserAuthenticationDelegate
 
- @param authenticationProvider The third party authenticaiton provider to be registered.
+ @param delegate The third party authenticaiton delegate to be registered.
+ @param authType The name of the type of third party authentication source.
  */
-+ (void)registerAuthenticationProvider:(id<PFAuthenticationProvider>)authenticationProvider;
++ (void)registerAuthenticationDelegate:(id<PFUserAuthenticationDelegate>)delegate forAuthType:(NSString *)authType;
 
 /*!
  @abstract Logs in a user with third party authentication credentials.
 
- @note This method shouldn't be invoked directly unless developing a third party authentication provider.
- @see PFAuthenticationProvider
+ @note This method shouldn't be invoked directly unless developing a third party authentication library.
+ @see PFUserAuthenticationDelegate
 
- @param authType The name of the type of third party authenticaiton provider.
- @param authData The user credentials of the third party authentication provider.
+ @param authType The name of the type of third party authentication source.
+ @param authData The user credentials of the third party authentication source.
 
  @returns A `BFTask` that is resolved to `PFUser` when logging in completes.
  */
 + (BFTask PF_GENERIC(PFUser *) *)logInWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
 
 /*!
- @abstract Links this user to a third party authentication provider.
+ @abstract Links this user to a third party authentication library.
 
- @note This method shouldn't be invoked directly unless developing a third party authentication provider.
- @see PFAuthenticationProvider
+ @note This method shouldn't be invoked directly unless developing a third party authentication library.
+ @see PFUserAuthenticationDelegate
 
- @param authType The name of the type of third party authenticaiton provider.
- @param authData The user credentials of the third party authentication provider.
+ @param authType The name of the type of third party authentication source.
+ @param authData The user credentials of the third party authentication source.
 
  @returns A `BFTask` that is resolved to `@YES` if linking succeeds.
  */
 - (BFTask PF_GENERIC(NSNumber *) *)linkWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
 
 /*!
- @abstract Unlinks this user from a third party authentication provider.
+ @abstract Unlinks this user from a third party authentication library.
 
- @note This method shouldn't be invoked directly unless developing a third party authentication provider.
- @see PFAuthenticationProvider
+ @note This method shouldn't be invoked directly unless developing a third party authentication library.
+ @see PFUserAuthenticationDelegate
 
- @param authType The name of the type of third party authenticaiton provider.
+ @param authType The name of the type of third party authentication source.
 
  @returns A `BFTask` that is resolved to `@YES` if unlinking succeeds.
  */
 - (BFTask PF_GENERIC(NSNumber *) *)unlinkWithAuthTypeInBackground:(NSString *)authType;
 
 /*!
- @abstract Indicates whether this user is linked with a third party authentication provider of a specific type.
+ @abstract Indicates whether this user is linked with a third party authentication library of a specific type.
 
- @note This method shouldn't be invoked directly unless developing a third party authentication provider.
- @see PFAuthenticationProvider
+ @note This method shouldn't be invoked directly unless developing a third party authentication library.
+ @see PFUserAuthenticationDelegate
 
- @param authType The name of the type of third party authenticaiton provider.
+ @param authType The name of the type of third party authentication source.
 
  @returns `YES` if the user is linked with a provider, otherwise `NO`.
  */

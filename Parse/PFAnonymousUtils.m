@@ -23,8 +23,7 @@
 
 + (BFTask *)logInInBackground {
     PFAnonymousAuthenticationProvider *provider = [self _authenticationProvider];
-    NSString *authType = [[provider class] authType];
-    return [PFUser logInWithAuthTypeInBackground:authType authData:provider.authData];
+    return [PFUser logInWithAuthTypeInBackground:PFUserAnonymousAuthenticationType authData:provider.authData];
 }
 
 + (void)logInWithBlock:(PFUserResultBlock)block {
@@ -42,7 +41,7 @@
 ///--------------------------------------
 
 + (BOOL)isLinkedWithUser:(PFUser *)user {
-    return [user isLinkedWithAuthType:[[[self _authenticationProvider] class] authType]];
+    return [user isLinkedWithAuthType:PFUserAnonymousAuthenticationType];
 }
 
 ///--------------------------------------
@@ -66,7 +65,7 @@ static PFAnonymousAuthenticationProvider *authenticationProvider_;
         provider = authenticationProvider_;
         if (!provider) {
             provider = [[PFAnonymousAuthenticationProvider alloc] init];
-            [PFUser registerAuthenticationProvider:provider];
+            [PFUser registerAuthenticationDelegate:provider forAuthType:PFUserAnonymousAuthenticationType];
             authenticationProvider_ = provider;
         }
     });
@@ -74,7 +73,7 @@ static PFAnonymousAuthenticationProvider *authenticationProvider_;
 }
 
 + (void)_clearAuthenticationProvider {
-    [PFUser _unregisterAuthenticationProvider:authenticationProvider_];
+    [PFUser _unregisterAuthenticationDelegateForAuthType:PFUserAnonymousAuthenticationType];
     dispatch_sync([self _providerAccessQueue], ^{
         authenticationProvider_ = nil;
     });
@@ -86,7 +85,7 @@ static PFAnonymousAuthenticationProvider *authenticationProvider_;
 
 + (PFUser *)_lazyLogIn {
     PFAnonymousAuthenticationProvider *provider = [self _authenticationProvider];
-    return [PFUser logInLazyUserWithAuthType:[[provider class] authType] authData:provider.authData];
+    return [PFUser logInLazyUserWithAuthType:PFUserAnonymousAuthenticationType authData:provider.authData];
 }
 
 @end

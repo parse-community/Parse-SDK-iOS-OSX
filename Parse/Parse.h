@@ -12,7 +12,6 @@
 #import <Parse/PFACL.h>
 #import <Parse/PFAnalytics.h>
 #import <Parse/PFAnonymousUtils.h>
-#import <Parse/PFAuthenticationProvider.h>
 #import <Parse/PFCloud.h>
 #import <Parse/PFConfig.h>
 #import <Parse/PFConstants.h>
@@ -26,6 +25,7 @@
 #import <Parse/PFSession.h>
 #import <Parse/PFSubclassing.h>
 #import <Parse/PFUser.h>
+#import <Parse/PFUserAuthenticationDelegate.h>
 #import <Parse/PFInstallation.h>
 #import <Parse/PFNullability.h>
 #import <Parse/PFPush.h>
