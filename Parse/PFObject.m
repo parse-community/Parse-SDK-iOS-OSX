@@ -2432,10 +2432,10 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
     return [[[self deleteAllInBackground:objects] waitForResult:error] boolValue];
 }
 
-+ (BFTask *)deleteAllInBackground:(NSArray *)objects {
++ (BFTask PF_GENERIC(NSNumber *) *)deleteAllInBackground:(NSArray *)objects {
     NSArray *deleteObjects = [objects copy]; // Snapshot the objects.
     if (deleteObjects.count == 0) {
-        return [BFTask taskWithResult:objects];
+        return [BFTask PF_GENERIC(NSNumber *) taskWithResult:@YES];
     }
     return [[[[self currentUserController] getCurrentUserSessionTokenAsync] continueWithBlock:^id(BFTask *task) {
         NSString *sessionToken = task.result;
