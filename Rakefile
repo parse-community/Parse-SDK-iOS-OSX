@@ -218,8 +218,6 @@ namespace :test do
       puts 'iOS Tests Failed!'
       exit(1)
     end
-    # Slather if running in Travis
-    `slather` if ENV['TRAVIS']
   end
 
   desc 'Run OS X Tests'
@@ -240,8 +238,6 @@ namespace :test do
       puts 'OS X Tests Failed!'
       exit(1)
     end
-    # Slather if running in Travis
-    `slather` if ENV['TRAVIS']
   end
 
   desc 'Run Deployment Tests'
