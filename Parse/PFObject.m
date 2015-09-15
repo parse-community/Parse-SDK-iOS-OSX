@@ -657,19 +657,12 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
         if (self._state.deleted || dirty || [self _hasChanges]) {
             return YES;
         }
+
         if (considerChildren) {
-            // We only need to consider the currently estimated children here,
-            // because they're the only ones that might need to be saved in a
-            // subsequent call to save, which is the meaning of "dirtiness".
-            __block BOOL retValue = NO;
-            [_estimatedData enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
-                if ([obj isKindOfClass:[PFObject class]] && [obj isDirty]) {
-                    retValue = YES;
-                    *stop = YES;
-                }
-            }];
-            return retValue;
+            NSMutableSet *seen = [NSMutableSet set];
+            return [self _areChildrenDirty:seen];
         }
+
         return NO;
     }
 }
@@ -677,6 +670,32 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 - (void)_setDirty:(BOOL)aDirty {
     @synchronized (lock) {
         dirty = aDirty;
+    }
+}
+
+- (BOOL)_areChildrenDirty:(NSMutableSet *)seenObjects {
+    if ([seenObjects containsObject:self]) {
+        return NO;
+    }
+    [seenObjects addObject:self];
+
+    @synchronized(lock) {
+        [self checkpointAllMutableContainers];
+        if (self._state.deleted || dirty || [self _hasChanges]) {
+            return YES;
+        }
+
+        // We only need to consider the currently estimated children here,
+        // because they're the only ones that might need to be saved in a
+        // subsequent call to save, which is the meaning of "dirtiness".
+        __block BOOL retValue = NO;
+        [_estimatedData enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
+            if ([obj isKindOfClass:[PFObject class]] && [obj _areChildrenDirty:seenObjects]) {
+                retValue = YES;
+                *stop = YES;
+            }
+        }];
+        return retValue;
     }
 }
 
