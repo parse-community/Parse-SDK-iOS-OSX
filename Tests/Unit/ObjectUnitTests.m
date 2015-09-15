@@ -230,8 +230,9 @@
     NSDate *date = [NSDate date];
     NSNumber *number = @0.75;
     PFObject *object = [PFObject _objectFromDictionary:@{ @"yarr" : date,
-                                                          @"score": number }
-                                      defaultClassName:@"Test" completeData:YES];
+                                                          @"score" : number }
+                                      defaultClassName:@"Test"
+                                          completeData:YES];
     object[@"yarr"] = @"yolo";
     [object revert];
     XCTAssertEqualObjects(object[@"yarr"], date);
@@ -243,12 +244,31 @@
     NSNumber *number = @0.75;
     PFObject *object = [PFObject _objectFromDictionary:@{ @"yarr" : date,
                                                           @"score" : @1.0 }
-                                      defaultClassName:@"Test" completeData:YES];
+                                      defaultClassName:@"Test"
+                                          completeData:YES];
     object[@"yarr"] = @"yolo";
     object[@"score"] = number;
     [object revertObjectForKey:@"yarr"];
     XCTAssertEqualObjects(object[@"yarr"], date);
     XCTAssertEqualObjects(object[@"score"], number);
+}
+
+#pragma mark Dirty
+
+- (void)testRecursiveDirty {
+    // A -> B -> A is a supported use-case, but it would crash on older SDK versions.
+    PFObject *objectA = [PFObject objectWithClassName:@"A"];
+    PFObject *objectB = [PFObject objectWithClassName:@"B"];
+
+    [objectA _mergeAfterSaveWithResult:@{ @"objectId" : @"foo",
+                                          @"B" : objectB }
+                               decoder:[PFDecoder objectDecoder]];
+
+    [objectB _mergeAfterSaveWithResult:@{ @"objectId" : @"bar",
+                                          @"A" : objectA }
+                               decoder:[PFDecoder objectDecoder]];
+
+    XCTAssertFalse([objectA isDirty]);
 }
 
 @end
