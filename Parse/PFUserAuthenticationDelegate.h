@@ -9,8 +9,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Bolts/BFTask.h>
-
 #import <Parse/PFConstants.h>
 
 PF_ASSUME_NONNULL_BEGIN
@@ -31,7 +29,7 @@ PF_ASSUME_NONNULL_BEGIN
  @returns `YES` - if the `authData` was succesfully synchronized, 
  or `NO` if user should not longer be associated because of bad `authData`.
  */
-- (BOOL)restoreAuthenticationWithAuthData:(PF_NULLABLE NSDictionary PF_GENERIC(NSString *,NSString *) *)authData;
+- (BOOL)restoreAuthenticationWithAuthData:(PF_NULLABLE NSDictionary PF_GENERIC(NSString *, NSString *) *)authData;
 
 @end
 

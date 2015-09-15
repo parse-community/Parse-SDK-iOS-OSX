@@ -11,7 +11,7 @@
 
 #import <Bolts/BFTask.h>
 
-NSString *const PFUserAnonymousAuthenticationType = @"anonymous";
+NSString *const PFAnonymousUserAuthenticationType = @"anonymous";
 
 @implementation PFAnonymousAuthenticationProvider
 

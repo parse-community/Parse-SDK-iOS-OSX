@@ -20,7 +20,7 @@
 
 @interface PFUserAuthenticationController () {
     dispatch_queue_t _dataAccessQueue;
-    NSMutableDictionary *_authenticationProviders;
+    NSMutableDictionary PF_GENERIC(NSString *, id<PFUserAuthenticationDelegate>) *_authenticationDelegates;
 }
 
 @end
@@ -36,7 +36,7 @@
     if (!self) return nil;
 
     _dataAccessQueue = dispatch_queue_create("com.parse.user.authenticationManager", DISPATCH_QUEUE_SERIAL);
-    _authenticationProviders = [NSMutableDictionary dictionary];
+    _authenticationDelegates = [NSMutableDictionary dictionary];
 
     return self;
 }
@@ -47,16 +47,16 @@
 
 - (void)registerAuthenticationDelegate:(id<PFUserAuthenticationDelegate>)delegate forAuthType:(NSString *)authType {
     PFParameterAssert(delegate, @"Authentication delegate can't be `nil`.");
-    PFParameterAssert(authType, @"Authentication provider's `authType` can't be `nil`.");
+    PFParameterAssert(authType, @"`authType` can't be `nil`.");
     PFConsistencyAssert(![self authenticationDelegateForAuthType:authType],
-                        @"Authentication provider already registered for authType `%@`.", authType);
+                        @"Authentication delegate already registered for authType `%@`.", authType);
 
     dispatch_sync(_dataAccessQueue, ^{
-        _authenticationProviders[authType] = delegate;
+        _authenticationDelegates[authType] = delegate;
     });
 
     // TODO: (nlutsenko) Decouple this further.
-    if (![authType isEqualToString:@"anonymous"]) {
+    if (![authType isEqualToString:PFAnonymousUserAuthenticationType]) {
         [[PFUser currentUser] synchronizeAuthDataWithAuthType:authType];
     }
 }
@@ -66,7 +66,7 @@
         return;
     }
     dispatch_sync(_dataAccessQueue, ^{
-        [_authenticationProviders removeObjectForKey:authType];
+        [_authenticationDelegates removeObjectForKey:authType];
     });
 }
 
@@ -75,23 +75,19 @@
         return nil;
     }
 
-    __block id<PFUserAuthenticationDelegate> provider = nil;
+    __block id<PFUserAuthenticationDelegate> delegate = nil;
     dispatch_sync(_dataAccessQueue, ^{
-        provider = _authenticationProviders[authType];
+        delegate = _authenticationDelegates[authType];
     });
-    return provider;
+    return delegate;
 }
 
 ///--------------------------------------
 #pragma mark - Authentication
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSNumber *)*)deauthenticateAsyncWithProviderForAuthType:(NSString *)authType {
-    return [self restoreAuthenticationAsyncWithAuthData:nil forProviderWithAuthType:authType];
-}
-
 - (BFTask PF_GENERIC(NSNumber *)*)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary *)authData
-                                                 forProviderWithAuthType:(NSString *)authType {
+                                                             forAuthType:(NSString *)authType {
     id<PFUserAuthenticationDelegate> provider = [self authenticationDelegateForAuthType:authType];
     if (!provider) {
         return [BFTask taskWithResult:@YES];
@@ -99,6 +95,10 @@
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id {
         return [BFTask taskWithResult:@([provider restoreAuthenticationWithAuthData:authData])];
     }];
+}
+
+- (BFTask PF_GENERIC(NSNumber *)*)deauthenticateAsyncWithAuthType:(NSString *)authType {
+    return [self restoreAuthenticationAsyncWithAuthData:nil forAuthType:authType];
 }
 
 ///--------------------------------------
@@ -115,7 +115,7 @@
             BFTask *resolveLaziness = nil;
             NSDictionary *oldAnonymousData = nil;
             @synchronized(user.lock) {
-                oldAnonymousData = user.authData[PFUserAnonymousAuthenticationType];
+                oldAnonymousData = user.authData[PFAnonymousUserAuthenticationType];
 
                 // Replace any anonymity with the new linked authData
                 [user stripAnonymity];

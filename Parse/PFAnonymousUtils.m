@@ -23,7 +23,7 @@
 
 + (BFTask *)logInInBackground {
     PFAnonymousAuthenticationProvider *provider = [self _authenticationProvider];
-    return [PFUser logInWithAuthTypeInBackground:PFUserAnonymousAuthenticationType authData:provider.authData];
+    return [PFUser logInWithAuthTypeInBackground:PFAnonymousUserAuthenticationType authData:provider.authData];
 }
 
 + (void)logInWithBlock:(PFUserResultBlock)block {
@@ -41,7 +41,7 @@
 ///--------------------------------------
 
 + (BOOL)isLinkedWithUser:(PFUser *)user {
-    return [user isLinkedWithAuthType:PFUserAnonymousAuthenticationType];
+    return [user isLinkedWithAuthType:PFAnonymousUserAuthenticationType];
 }
 
 ///--------------------------------------
@@ -65,7 +65,7 @@ static PFAnonymousAuthenticationProvider *authenticationProvider_;
         provider = authenticationProvider_;
         if (!provider) {
             provider = [[PFAnonymousAuthenticationProvider alloc] init];
-            [PFUser registerAuthenticationDelegate:provider forAuthType:PFUserAnonymousAuthenticationType];
+            [PFUser registerAuthenticationDelegate:provider forAuthType:PFAnonymousUserAuthenticationType];
             authenticationProvider_ = provider;
         }
     });
@@ -73,7 +73,7 @@ static PFAnonymousAuthenticationProvider *authenticationProvider_;
 }
 
 + (void)_clearAuthenticationProvider {
-    [PFUser _unregisterAuthenticationDelegateForAuthType:PFUserAnonymousAuthenticationType];
+    [PFUser _unregisterAuthenticationDelegateForAuthType:PFAnonymousUserAuthenticationType];
     dispatch_sync([self _providerAccessQueue], ^{
         authenticationProvider_ = nil;
     });
@@ -85,7 +85,7 @@ static PFAnonymousAuthenticationProvider *authenticationProvider_;
 
 + (PFUser *)_lazyLogIn {
     PFAnonymousAuthenticationProvider *provider = [self _authenticationProvider];
-    return [PFUser logInLazyUserWithAuthType:PFUserAnonymousAuthenticationType authData:provider.authData];
+    return [PFUser logInLazyUserWithAuthType:PFAnonymousUserAuthenticationType authData:provider.authData];
 }
 
 @end
