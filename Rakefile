@@ -209,7 +209,9 @@ namespace :test do
       t.sdk = 'iphonesimulator'
       t.destinations = ["\"platform=iOS Simulator,OS=9.0,name=iPhone 4s\"",
                         "\"platform=iOS Simulator,OS=9.0,name=iPhone 6 Plus\"",]
-      t.configuration = 'Test'
+      t.configuration = 'Debug'
+      t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
+                               "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
       t.actions = [XCTask::BuildAction::TEST]
       t.formatter = XCTask::BuildFormatter::XCPRETTY
@@ -229,7 +231,9 @@ namespace :test do
       t.scheme = 'Parse-OSX'
       t.sdk = 'macosx'
       t.destinations = ['arch=x86_64']
-      t.configuration = 'Test'
+      t.configuration = 'Debug'
+      t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
+                               "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
       t.actions = [XCTask::BuildAction::TEST]
       t.formatter = XCTask::BuildFormatter::XCPRETTY
