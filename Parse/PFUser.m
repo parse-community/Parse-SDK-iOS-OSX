@@ -269,7 +269,7 @@ static BOOL revocableSessionEnabled_;
                 [self.linkedServiceNames removeObject:key];
 
                 [[[[self class] authenticationController] restoreAuthenticationAsyncWithAuthData:nil
-                                                                         forProviderWithAuthType:key] waitForResult:nil withMainThreadWarning:NO];
+                                                                                     forAuthType:key] waitForResult:nil withMainThreadWarning:NO];
             }
         }
     }
@@ -366,7 +366,7 @@ static BOOL revocableSessionEnabled_;
 
         NSDictionary *data = self.authData[authType];
         BFTask *restoreTask = [[[self class] authenticationController] restoreAuthenticationAsyncWithAuthData:data
-                                                                                      forProviderWithAuthType:authType];
+                                                                                                  forAuthType:authType];
         [restoreTask waitForResult:nil withMainThreadWarning:NO];
         if (restoreTask.faulted || ![restoreTask.result boolValue]) { // TODO: (nlutsenko) Maybe chain this method?
             [self unlinkWithAuthTypeInBackground:authType];
@@ -432,7 +432,7 @@ static BOOL revocableSessionEnabled_;
 }
 
 - (BFTask *)_logOutAsyncWithAuthType:(NSString *)authType {
-    return [[[self class] authenticationController] deauthenticateAsyncWithProviderForAuthType:authType];
+    return [[[self class] authenticationController] deauthenticateAsyncWithAuthType:authType];
 }
 
 + (instancetype)logInLazyUserWithAuthType:(NSString *)authType authData:(NSDictionary *)authData {
@@ -454,7 +454,7 @@ static BOOL revocableSessionEnabled_;
             // For anonymous users, there may be an objectId.  Setting the userName
             // will have removed the anonymous link and set the value in the authData
             // object to [NSNull null], so we can just treat it like a save operation.
-            if (self.authData[PFUserAnonymousAuthenticationType] == [NSNull null]) {
+            if (self.authData[PFAnonymousUserAuthenticationType] == [NSNull null]) {
                 return [self saveAsync:toAwait];
             }
 
@@ -483,7 +483,7 @@ static BOOL revocableSessionEnabled_;
                 @synchronized ([currentUser lock]) {
                     NSString *oldUsername = [currentUser.username copy];
                     NSString *oldPassword = [currentUser.password copy];
-                    NSArray *oldAnonymousData = currentUser.authData[PFUserAnonymousAuthenticationType];
+                    NSArray *oldAnonymousData = currentUser.authData[PFAnonymousUserAuthenticationType];
 
                     [currentUser checkForChangesToMutableContainers];
 
@@ -553,7 +553,7 @@ static BOOL revocableSessionEnabled_;
 - (void)stripAnonymity {
     @synchronized ([self lock]) {
         if ([PFAnonymousUtils isLinkedWithUser:self]) {
-            NSString *authType = PFUserAnonymousAuthenticationType;
+            NSString *authType = PFAnonymousUserAuthenticationType;
 
             [self.linkedServiceNames removeObject:authType];
 
@@ -570,7 +570,7 @@ static BOOL revocableSessionEnabled_;
 - (void)restoreAnonymity:(id)anonymousData {
     @synchronized ([self lock]) {
         if (anonymousData && anonymousData != [NSNull null]) {
-            NSString *authType = PFUserAnonymousAuthenticationType;
+            NSString *authType = PFAnonymousUserAuthenticationType;
             [self.linkedServiceNames addObject:authType];
             self.authData[authType] = anonymousData;
         }
@@ -852,7 +852,7 @@ static BOOL revocableSessionEnabled_;
                 self.authData[authType] = newAuthData;
                 [self.linkedServiceNames addObject:authType];
 
-                oldAnonymousData = self.authData[PFUserAnonymousAuthenticationType];
+                oldAnonymousData = self.authData[PFAnonymousUserAuthenticationType];
                 [self stripAnonymity];
 
                 dirty = YES;
@@ -1177,7 +1177,7 @@ static BOOL revocableSessionEnabled_;
             // For anonymous users, there may be an objectId.  Setting the userName
             // will have removed the anonymous link and set the value in the authData
             // object to [NSNull null], so we can just treat it like a save operation.
-            if (authData[PFUserAnonymousAuthenticationType] == [NSNull null]) {
+            if (authData[PFAnonymousUserAuthenticationType] == [NSNull null]) {
                 [self saveInBackgroundWithBlock:block];
                 return;
             }
@@ -1207,7 +1207,7 @@ static BOOL revocableSessionEnabled_;
 - (BFTask *)_validateSaveEventuallyAsync {
     if ([self isDirtyForKey:PFUserPasswordRESTKey]) {
         NSError *error = [PFErrorUtilities errorWithCode:kPFErrorOperationForbidden
-                                                message:@"Unable to saveEventually a PFUser with dirty password."];
+                                                 message:@"Unable to saveEventually a PFUser with dirty password."];
         return [BFTask taskWithError:error];
     }
     return [BFTask taskWithResult:nil];

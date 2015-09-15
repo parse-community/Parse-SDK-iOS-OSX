@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern NSString *const PFUserAnonymousAuthenticationType;
+extern NSString *const PFAnonymousUserAuthenticationType;
 
 @interface PFAnonymousAuthenticationProvider : NSObject <PFUserAuthenticationDelegate>
 
