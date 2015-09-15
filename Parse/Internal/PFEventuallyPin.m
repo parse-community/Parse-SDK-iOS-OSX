@@ -158,7 +158,14 @@ NSString *const PFEventuallyPinKeyCommand = @"command";
         pin[PFEventuallyPinKeyCommand] = commandDictionary;
     }
 
-    return [[pin pinInBackgroundWithName:PFEventuallyPinPinName] continueWithBlock:^id(BFTask *task) {
+    // NOTE: This is needed otherwise ARC releases the pins before we have a chance to persist the new ones to disk,
+    // Which means we'd lose any columns on objects in eventually pins not currently in memory.
+    __block NSArray *existingPins = nil;
+    return [[[self findAllEventuallyPin] continueWithSuccessBlock:^id(BFTask *task) {
+        existingPins = task.result;
+        return [pin pinInBackgroundWithName:PFEventuallyPinPinName];
+    }] continueWithSuccessBlock:^id(BFTask *task) {
+        existingPins = nil;
         return pin;
     }];
 }
