@@ -12,7 +12,8 @@
 #import "PFDataProvider.h"
 #import "PFObjectControlling.h"
 
-@class BFTask;
+
+@class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFObject;
 
 NS_ASSUME_NONNULL_BEGIN

@@ -12,7 +12,8 @@
 #import <Parse/PFConstants.h>
 
 @class BFCancellationToken;
-@class BFTask;
+
+@class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFRESTCommand;
 
 NS_ASSUME_NONNULL_BEGIN
