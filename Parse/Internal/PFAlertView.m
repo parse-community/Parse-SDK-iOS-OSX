@@ -31,13 +31,15 @@
                                                                                          message:message
                                                                                   preferredStyle:UIAlertControllerStyleAlert];
 
-        void (^alertActionHandler)(UIAlertAction *) = [^(UIAlertAction *action){
-            // This block intentionally retains alertController, and releases it afterwards.
-            if (action.style == UIAlertActionStyleCancel) {
-                completion(NSNotFound);
-            } else {
-                NSUInteger index = [alertController.actions indexOfObject:action];
-                completion(index - 1);
+        void (^alertActionHandler)(UIAlertAction *) = [^(UIAlertAction *action) {
+            if (completion) {
+                // This block intentionally retains alertController, and releases it afterwards.
+                if (action.style == UIAlertActionStyleCancel) {
+                    completion(NSNotFound);
+                } else {
+                    NSUInteger index = [alertController.actions indexOfObject:action];
+                    completion(index - 1);
+                }
             }
             alertController = nil;
         } copy];
@@ -49,7 +51,7 @@
         for (NSString *buttonTitle in otherButtonTitles) {
             [alertController addAction:[UIAlertAction actionWithTitle:buttonTitle
                                                                 style:UIAlertActionStyleDefault
-                                                            handler:alertActionHandler]];
+                                                              handler:alertActionHandler]];
         }
 
         UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
