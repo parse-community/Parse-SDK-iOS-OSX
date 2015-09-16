@@ -48,18 +48,6 @@
                                             objectId:(NSString *)objectId
                                           isComplete:(BOOL)complete;
 
-///--------------------------------------
-/// @name Validation
-///--------------------------------------
-
-/*!
- Validate the save eventually operation with the current state.
- The result of this task is ignored. The error/cancellation/exception will prevent `saveEventually`.
-
- @returns Task that encapsulates the validtion.
- */
-- (BFTask *)_validateSaveEventuallyAsync;
-
 @optional
 
 ///--------------------------------------
@@ -106,6 +94,21 @@
 - (void)refreshInBackgroundWithTarget:(id)target selector:(SEL)selector;
 
 #endif
+
+///--------------------------------------
+/// @name Validation
+///--------------------------------------
+
+- (BFTask PF_GENERIC(PFVoid) *)_validateFetchAsync NS_REQUIRES_SUPER;
+- (BFTask PF_GENERIC(PFVoid) *)_validateDeleteAsync NS_REQUIRES_SUPER;
+
+/*!
+ Validate the save eventually operation with the current state.
+ The result of this task is ignored. The error/cancellation/exception will prevent `saveEventually`.
+
+ @returns Task that encapsulates the validation.
+ */
+- (BFTask PF_GENERIC(PFVoid) *)_validateSaveEventuallyAsync NS_REQUIRES_SUPER;
 
 ///--------------------------------------
 /// @name Pin
@@ -177,7 +180,6 @@
 ///--------------------------------------
 #pragma mark - Validations
 ///--------------------------------------
-- (void)checkDeleteParams;
 - (void)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser;
 /*!
  Checks if Parse class name could be used to initialize a given instance of PFObject or it's subclass.
