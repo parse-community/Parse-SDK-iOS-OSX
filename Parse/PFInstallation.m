@@ -214,21 +214,6 @@ static NSSet *protectedKeys;
 #pragma mark - PFObject
 ///--------------------------------------
 
-- (BFTask *)saveInBackground {
-    [self _updateAutomaticInfo];
-    return [super saveInBackground];
-}
-
-- (BFTask *)_enqueueSaveEventuallyWithChildren:(BOOL)saveChildren {
-    [self _updateAutomaticInfo];
-    return [super _enqueueSaveEventuallyWithChildren:saveChildren];
-}
-
-- (BFTask *)saveEventually {
-    [self _updateAutomaticInfo];
-    return [super saveEventually];
-}
-
 - (BFTask *)saveAsync:(BFTask *)toAwait {
     return [[super saveAsync:toAwait] continueWithBlock:^id(BFTask *task) {
         // Do not attempt to resave an object if LDS is enabled, since changing objectId is not allowed.
@@ -257,7 +242,7 @@ static NSSet *protectedKeys;
 #pragma mark - Automatic Info
 ///--------------------------------------
 
-- (void)_updateAutomaticInfo {
+- (void)_objectWillSave {
     if ([self _isCurrentInstallation]) {
         @synchronized(self.lock) {
             [self _updateTimeZoneFromDevice];

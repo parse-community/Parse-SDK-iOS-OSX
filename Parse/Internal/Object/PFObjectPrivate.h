@@ -38,6 +38,8 @@
 
 @protocol PFObjectPrivateSubclass <NSObject>
 
+@required
+
 ///--------------------------------------
 /// @name State
 ///--------------------------------------
@@ -57,6 +59,18 @@
  @returns Task that encapsulates the validtion.
  */
 - (BFTask *)_validateSaveEventuallyAsync;
+
+@optional
+
+///--------------------------------------
+/// @name Before Save
+///--------------------------------------
+
+/*!
+ Called before an object is going to be saved. Called in a context of object lock.
+ Subclasses can override this method to do any custom updates before an object gets saved.
+ */
+- (void)_objectWillSave;
 
 @end
 
