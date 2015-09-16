@@ -476,6 +476,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
                         for (PFObject *object in objectBatch) {
                             PFRESTCommand *command = nil;
                             @synchronized ([object lock]) {
+                                [object _objectWillSave];
                                 [object _checkSaveParametersWithCurrentUser:currentUser];
                                 command = [object _constructSaveCommandForChanges:[object unsavedChanges]
                                                                      sessionToken:sessionToken
@@ -1148,6 +1149,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
             return [self _validateSaveEventuallyAsync];
         }] continueWithSuccessBlock:^id(BFTask *task) {
             @synchronized (lock) {
+                [self _objectWillSave];
                 if (![self isDirty:NO]) {
                     return [BFTask taskWithResult:@YES];
                 }
@@ -1484,6 +1486,8 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
                     return [BFTask taskWithResult:@YES];
                 }
 
+                [self _objectWillSave];
+
                 // Snapshot the current set of changes, and push a new changeset into the queue.
                 PFOperationSet *changes = [self unsavedChanges];
 
@@ -1797,6 +1801,12 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
 
 - (BFTask *)_validateSaveEventuallyAsync {
     return [BFTask taskWithResult:nil];
+}
+
+#pragma mark Object Will Save
+
+- (void)_objectWillSave {
+    // Do nothing.
 }
 
 ///--------------------------------------
