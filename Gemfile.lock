@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (4.2.3)
+    activesupport (4.2.4)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -27,13 +27,13 @@ GEM
       activesupport (>= 3.2.15)
       fuzzy_match (~> 2.0.4)
       nap (~> 0.8.0)
-    cocoapods-downloader (0.9.1)
+    cocoapods-downloader (0.9.3)
     cocoapods-plugins (0.4.2)
       nap
     cocoapods-stats (0.5.3)
       nap (~> 0.8)
-    cocoapods-trunk (0.6.1)
-      nap (>= 0.8)
+    cocoapods-trunk (0.6.4)
+      nap (>= 0.8, < 2.0)
       netrc (= 0.7.8)
     cocoapods-try (0.4.5)
     colored (1.2)
@@ -62,7 +62,7 @@ GEM
       activesupport (>= 3)
       claide (~> 0.9.1)
       colored (~> 1.2)
-    xcpretty (0.1.11)
+    xcpretty (0.1.12)
 
 PLATFORMS
   ruby
@@ -77,4 +77,4 @@ DEPENDENCIES
   xcpretty
 
 BUNDLED WITH
-   1.10.5
+   1.10.6
