@@ -167,6 +167,7 @@
 		81BA813D1A49DA1800E65899 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Parse;
 				TargetAttributes = {
@@ -405,6 +406,7 @@
 				81993FC91B69AA950077D6B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81BA81401A49DA1800E65899 /* Build configuration list for PBXProject "ParseStarterProject-Swift" */ = {
 			isa = XCConfigurationList;

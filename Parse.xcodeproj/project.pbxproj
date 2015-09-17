@@ -995,13 +995,6 @@
 			remoteGlobalIDString = 030EF0A714632FD000B04273;
 			remoteInfo = OCMock;
 		};
-		F569F07E1B14DB3C00296F73 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 09D33641139C54930098E916 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F569F07A1B14DB1E00296F73;
-			remoteInfo = "BoltsSDK-iOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -3561,12 +3554,12 @@
 		};
 		F569F07A1B14DB1E00296F73 /* BoltsSDK-iOS */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n$(SRCROOT)/Vendor/Bolts-ObjC/build/ \\\n'Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release'";
+			buildArgumentsString = "";
 			buildConfigurationList = F569F07B1B14DB1E00296F73 /* Build configuration list for PBXLegacyTarget "BoltsSDK-iOS" */;
 			buildPhases = (
 			);
-			buildToolPath = "$(SRCROOT)/Scripts/build_third_party.sh";
-			buildWorkingDirectory = "$(SRCROOT)";
+			buildToolPath = "";
+			buildWorkingDirectory = "";
 			dependencies = (
 			);
 			name = "BoltsSDK-iOS";
@@ -3628,7 +3621,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F569F07F1B14DB3C00296F73 /* PBXTargetDependency */,
 			);
 			name = "Parse-iOS";
 			productName = "Parse-iOS";
@@ -4360,11 +4352,6 @@
 			isa = PBXTargetDependency;
 			name = OCMock;
 			targetProxy = 81AB68C71B7E7F2A0053210E /* PBXContainerItemProxy */;
-		};
-		F569F07F1B14DB3C00296F73 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F569F07A1B14DB1E00296F73 /* BoltsSDK-iOS */;
-			targetProxy = F569F07E1B14DB3C00296F73 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
