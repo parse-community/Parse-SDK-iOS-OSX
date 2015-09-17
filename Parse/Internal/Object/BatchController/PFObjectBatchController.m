@@ -150,7 +150,6 @@
 - (PFRESTCommand *)_deleteCommandForObjects:(NSArray *)objects withSessionToken:(NSString *)sessionToken {
     NSMutableArray *commands = [NSMutableArray arrayWithCapacity:objects.count];
     for (PFObject *object in objects) {
-        [object checkDeleteParams];
         PFRESTCommand *deleteCommand = [PFRESTObjectCommand deleteObjectCommandForObjectState:object._state
                                                                              withSessionToken:sessionToken];
         [commands addObject:deleteCommand];

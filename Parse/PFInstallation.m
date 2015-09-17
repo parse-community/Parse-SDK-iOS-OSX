@@ -27,6 +27,7 @@
 #import "PFPushPrivate.h"
 #import "PFQueryPrivate.h"
 #import "Parse_Private.h"
+#import "PFErrorUtilities.h"
 
 @implementation PFInstallation (Private)
 
@@ -51,9 +52,12 @@ static NSSet *protectedKeys;
     [super removeObjectForKey:PFInstallationKeyDeviceToken];
 }
 
-// Check security on delete.
-- (void)checkDeleteParams {
-    PFConsistencyAssert(NO, @"Installations cannot be deleted.");
+- (BFTask<PFVoid> *)_validateDeleteAsync {
+    return [[super _validateDeleteAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(PFVoid) *task) {
+        NSError *error = [PFErrorUtilities errorWithCode:kPFErrorCommandUnavailable
+                                                 message:@"Installation cannot be deleted"];
+        return [BFTask taskWithError:error];
+    }];
 }
 
 // Validates a class name. We override this to only allow the installation class name.
