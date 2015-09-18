@@ -9,30 +9,14 @@
 
 #import <Foundation/Foundation.h>
 
-/*!
- This enum is being used to distinguish and encode different types of URL Components.
- Things like Path or Query.
-
- @warning It currently lacks support for scheme, login, password, fragment
- Whenever new enum type is added - make sure you add support for it to relevant methods.
- */
-typedef NS_ENUM(uint8_t, PFURLComponentType)
-{
-    PFURLComponentTypePath,
-    PFURLComponentTypeQuery
-};
+NS_ASSUME_NONNULL_BEGIN
 
 @interface PFURLConstructor : NSObject
 
-+ (NSURL *)URLFromBaseURL:(NSURL *)baseURL
-                     path:(NSString *)path;
-+ (NSURL *)URLFromBaseURL:(NSURL *)baseURL
-          queryParameters:(NSDictionary *)queryParameters;
-+ (NSURL *)URLFromBaseURL:(NSURL *)baseURL
-                     path:(NSString *)path
-          queryParameters:(NSDictionary *)queryParameters;
-
-+ (NSString *)stringByAddingPercentEscapesToString:(NSString *)string
-                               forURLComponentType:(PFURLComponentType)type;
++ (NSURL *)URLFromAbsoluteString:(NSString *)string
+                            path:(nullable NSString *)path
+                           query:(nullable NSString *)query;
 
 @end
+
+NS_ASSUME_NONNULL_END
