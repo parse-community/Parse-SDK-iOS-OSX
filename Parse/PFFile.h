@@ -374,6 +374,54 @@ PF_ASSUME_NONNULL_BEGIN
  */
 - (void)getDataInBackgroundWithTarget:(PF_NULLABLE_S id)target selector:(PF_NULLABLE_S SEL)selector;
 
+/*!
+ @abstract *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.
+
+ @note The file path may change between versions of SDK.
+ @note If you overwrite the contents of the file at returned path it will persist those change
+ until the file cache is cleared.
+
+ @returns The task, with the result set to `NSString` representation of a file path.
+ */
+- (BFTask PF_GENERIC(NSString *)*)getFilePathInBackground;
+
+/*!
+ @abstract *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.
+
+ @note The file path may change between versions of SDK.
+ @note If you overwrite the contents of the file at returned path it will persist those change
+ until the file cache is cleared.
+
+ @param progressBlock The block should have the following argument signature: `^(int percentDone)`.
+
+ @returns The task, with the result set to `NSString` representation of a file path.
+ */
+- (BFTask PF_GENERIC(NSString *)*)getFilePathInBackgroundWithProgressBlock:(PF_NULLABLE PFProgressBlock)progressBlock;
+
+/*!
+ @abstract *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.
+
+ @note The file path may change between versions of SDK.
+ @note If you overwrite the contents of the file at returned path it will persist those change
+ until the file cache is cleared.
+
+ @param block The block should have the following argument signature: `^(NSString *filePath, NSError *error)`.
+ */
+- (void)getFilePathInBackgroundWithBlock:(PF_NULLABLE PFFilePathResultBlock)block;
+
+/*!
+ @abstract *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.
+
+ @note The file path may change between versions of SDK.
+ @note If you overwrite the contents of the file at returned path it will persist those change
+ until the file cache is cleared.
+
+ @param block The block should have the following argument signature: `^(NSString *filePath, NSError *error)`.
+ @param progressBlock The block should have the following argument signature: `^(int percentDone)`.
+ */
+- (void)getFilePathInBackgroundWithBlock:(PF_NULLABLE PFFilePathResultBlock)block
+                           progressBlock:(PF_NULLABLE PFProgressBlock)progressBlock;
+
 ///--------------------------------------
 /// @name Interrupting a Transfer
 ///--------------------------------------

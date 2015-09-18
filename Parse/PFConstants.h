@@ -381,6 +381,7 @@ typedef void (^PFSetResultBlock)(NSSet *PF_NULLABLE_S channels, NSError *PF_NULL
 typedef void (^PFUserResultBlock)(PFUser *PF_NULLABLE_S user, NSError *PF_NULLABLE_S error);
 typedef void (^PFDataResultBlock)(NSData *PF_NULLABLE_S data, NSError *PF_NULLABLE_S error);
 typedef void (^PFDataStreamResultBlock)(NSInputStream *PF_NULLABLE_S stream, NSError *PF_NULLABLE_S error);
+typedef void (^PFFilePathResultBlock)(NSString *PF_NULLABLE_S filePath, NSError *PF_NULLABLE_S error);
 typedef void (^PFStringResultBlock)(NSString *PF_NULLABLE_S string, NSError *PF_NULLABLE_S error);
 typedef void (^PFIdResultBlock)(PF_NULLABLE_S id object, NSError *PF_NULLABLE_S error);
 typedef void (^PFProgressBlock)(int percentDone);

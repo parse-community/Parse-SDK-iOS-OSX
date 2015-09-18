@@ -213,6 +213,28 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
     }];
 }
 
+- (BFTask PF_GENERIC(NSString *) *)getFilePathInBackground {
+    return [self getFilePathInBackgroundWithProgressBlock:nil];
+}
+
+- (BFTask PF_GENERIC(NSString *)*)getFilePathInBackgroundWithProgressBlock:(PFProgressBlock)progressBlock {
+    return [[self _downloadAsyncWithProgressBlock:progressBlock] continueWithSuccessBlock:^id(BFTask *task) {
+        if (self.dirty) {
+            return self.stagedFilePath;
+        }
+        return [[[self class] fileController] cachedFilePathForFileState:self.state];
+    }];
+}
+
+- (void)getFilePathInBackgroundWithBlock:(PF_NULLABLE PFFilePathResultBlock)block {
+    [[self getFilePathInBackground] thenCallBackOnMainThreadAsync:block];
+}
+
+- (void)getFilePathInBackgroundWithBlock:(PF_NULLABLE PFFilePathResultBlock)block
+                           progressBlock:(PF_NULLABLE PFProgressBlock)progressBlock {
+    [[self getFilePathInBackgroundWithProgressBlock:progressBlock] thenCallBackOnMainThreadAsync:block];
+}
+
 #pragma mark Interrupting
 
 - (void)cancel {
