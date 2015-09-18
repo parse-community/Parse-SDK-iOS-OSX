@@ -52,7 +52,7 @@ static NSSet *protectedKeys;
     [super removeObjectForKey:PFInstallationKeyDeviceToken];
 }
 
-- (BFTask<PFVoid> *)_validateDeleteAsync {
+- (BFTask PF_GENERIC(PFVoid) *)_validateDeleteAsync {
     return [[super _validateDeleteAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(PFVoid) *task) {
         NSError *error = [PFErrorUtilities errorWithCode:kPFErrorCommandUnavailable
                                                  message:@"Installation cannot be deleted"];
