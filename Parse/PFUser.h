@@ -335,10 +335,10 @@ typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
  and you application's 'Require Revocable Session' setting is turned off on `http://parse.com` app settings.
  After returned `BFTask` completes - <PFSession> class and APIs will be available for use.
 
- @returns An instance of `BFTask` that is completed when
- revocable sessions are enabled and currentUser token is migrated.
+ @returns An instance of `BFTask` that is completed when revocable
+ sessions are enabled and currentUser token is migrated.
  */
-+ (BFTask PF_GENERIC(NSNull *)*)enableRevocableSessionInBackground;
++ (BFTask *)enableRevocableSessionInBackground;
 
 /*!
  @abstract Enables revocable sessions and upgrades the currentUser session token to use revocable session if needed.
@@ -369,7 +369,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
 
  @returns An instance of `BFTask`, that is resolved with `nil` result when logging out completes.
  */
-+ (BFTask PF_GENERIC(NSNull *)*)logOutInBackground;
++ (BFTask *)logOutInBackground;
 
 /*!
  @abstract *Asynchronously* logs out the currently logged in user.
