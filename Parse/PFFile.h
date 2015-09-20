@@ -25,6 +25,9 @@ PF_ASSUME_NONNULL_BEGIN
 /// @name Creating a PFFile
 ///--------------------------------------
 
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 /*!
  @abstract Creates a file with given data. A name will be assigned to it by the server.
 
@@ -118,6 +121,10 @@ PF_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)fileWithData:(NSData *)data contentType:(PF_NULLABLE NSString *)contentType;
 
+///--------------------------------------
+/// @name File Properties
+///--------------------------------------
+
 /*!
  @abstract The name of the file.
 
@@ -132,14 +139,14 @@ PF_ASSUME_NONNULL_BEGIN
  */
 @property (PF_NULLABLE_PROPERTY nonatomic, copy, readonly) NSString *url;
 
-///--------------------------------------
-/// @name Storing Data with Parse
-///--------------------------------------
-
 /*!
  @abstract Whether the file has been uploaded for the first time.
  */
 @property (nonatomic, assign, readonly) BOOL isDirty;
+
+///--------------------------------------
+/// @name Storing Data with Parse
+///--------------------------------------
 
 /*!
  @abstract Saves the file *synchronously*.
