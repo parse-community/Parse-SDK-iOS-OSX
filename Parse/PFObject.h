@@ -824,7 +824,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSNull *)*)deleteEventually;
+- (BFTask PF_GENERIC(NSNumber *)*)deleteEventually;
 
 ///--------------------------------------
 /// @name Dirtiness
