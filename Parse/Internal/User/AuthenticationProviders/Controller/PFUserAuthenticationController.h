@@ -12,12 +12,26 @@
 #import <Parse/PFConstants.h>
 #import <Parse/PFUserAuthenticationDelegate.h>
 
+#import "PFCoreDataProvider.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFUser;
 
 @interface PFUserAuthenticationController : NSObject
+
+@property (nonatomic, weak, readonly) id<PFCurrentUserControllerProvider> dataSource;
+
+///--------------------------------------
+/// @name Init
+///--------------------------------------
+
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
+- (instancetype)initWithDataSource:(id<PFCurrentUserControllerProvider>)dataSource;
++ (instancetype)controllerWithDataSource:(id<PFCurrentUserControllerProvider>)dataSource;
 
 ///--------------------------------------
 /// @name Authentication Providers
