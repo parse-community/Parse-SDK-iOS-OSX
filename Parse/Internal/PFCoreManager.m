@@ -305,7 +305,7 @@
     __block PFUserAuthenticationController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
         if (!_userAuthenticationController) {
-            _userAuthenticationController = [[PFUserAuthenticationController alloc] init];
+            _userAuthenticationController = [PFUserAuthenticationController controllerWithDataSource:self];
         }
         controller = _userAuthenticationController;
     });
