@@ -421,7 +421,7 @@
 - (PFUserController *)userController {
     __block PFUserController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_installationController) {
+        if (!_userController) {
             _userController = [PFUserController controllerWithCommonDataSource:self.dataSource
                                                                 coreDataSource:self];
         }
