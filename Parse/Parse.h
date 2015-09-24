@@ -30,7 +30,7 @@
 #import <Parse/PFNullability.h>
 #import <Parse/PFPush.h>
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS
 
 #import <Parse/PFNetworkActivityIndicatorManager.h>
 #import <Parse/PFProduct.h>
