@@ -416,6 +416,42 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
         }];
 
     wait_next;
+    expectation = [self expectationForSelector:@selector(getFilePathInBackground)];
+    [[file getFilePathInBackground] continueWithBlock:^id(BFTask *task) {
+        NSData *data = [NSData dataWithContentsOfFile:task.result];
+        XCTAssertEqualObjects(data, expectedData);
+        [expectation fulfill];
+        return nil;
+    }];
+
+    wait_next;
+    expectation = [self expectationForSelector:@selector(getFilePathInBackgroundWithProgressBlock:)];
+    [[file getFilePathInBackgroundWithProgressBlock:[self progressValidationBlock]] continueWithBlock:^id(BFTask *task) {
+        NSData *data = [NSData dataWithContentsOfFile:task.result];
+        XCTAssertEqualObjects(data, expectedData);
+        [expectation fulfill];
+        return nil;
+    }];
+
+    wait_next;
+    expectation = [self expectationForSelector:@selector(getFilePathInBackgroundWithBlock:)];
+    [file getFilePathInBackgroundWithBlock:^(NSString *filePath, NSError *error) {
+        XCTAssertNil(error);
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        XCTAssertEqualObjects(data, expectedData);
+        [expectation fulfill];
+    }];
+
+    wait_next;
+    expectation = [self expectationForSelector:@selector(getFilePathInBackgroundWithBlock:progressBlock:)];
+    [file getFilePathInBackgroundWithBlock:^(NSString *filePath, NSError *error) {
+        XCTAssertNil(error);
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        XCTAssertEqualObjects(data, expectedData);
+        [expectation fulfill];
+    } progressBlock:[self progressValidationBlock]];
+
+    wait_next;
 }
 
 - (void)testCancel {
