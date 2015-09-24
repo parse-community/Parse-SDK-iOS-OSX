@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "810155051BB3832700D7C7BD"
-               BuildableName = "Parse-watchOS.framework"
+               BuildableName = "Parse.framework"
                BlueprintName = "Parse-watchOS"
                ReferencedContainer = "container:Parse.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "810155051BB3832700D7C7BD"
-            BuildableName = "Parse-watchOS.framework"
+            BuildableName = "Parse.framework"
             BlueprintName = "Parse-watchOS"
             ReferencedContainer = "container:Parse.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "810155051BB3832700D7C7BD"
-            BuildableName = "Parse-watchOS.framework"
+            BuildableName = "Parse.framework"
             BlueprintName = "Parse-watchOS"
             ReferencedContainer = "container:Parse.xcodeproj">
          </BuildableReference>

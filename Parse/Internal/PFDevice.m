@@ -9,7 +9,11 @@
 
 #import "PFDevice.h"
 
-#if TARGET_OS_IPHONE
+#import <Parse/PFConstants.h>
+
+#if TARGET_OS_WATCH
+#import <WatchKit/WatchKit.h>
+#elif TARGET_OS_IOS
 #import <UIKit/UIKit.h>
 #elif TARGET_OS_MAC
 #import <CoreServices/CoreServices.h>
@@ -59,7 +63,9 @@ static NSString *PFDeviceSysctlByName(NSString *name) {
 - (NSString *)detailedModel {
     NSString *name = PFDeviceSysctlByName(@"hw.machine");
     if (!name) {
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+        name = [WKInterfaceDevice currentDevice].model;
+#elif TARGET_OS_IOS
         name = [UIDevice currentDevice].model;
 #elif TARGET_OS_MAC
         name = @"Mac";
@@ -77,8 +83,14 @@ static NSString *PFDeviceSysctlByName(NSString *name) {
     return version;
 }
 - (NSString *)operatingSystemVersion {
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS
     return [UIDevice currentDevice].systemVersion;
+#elif TARGET_OS_WATCH
+    NSOperatingSystemVersion version = [NSProcessInfo processInfo].operatingSystemVersion;
+    return [NSString stringWithFormat:@"%d.%d.%d",
+            (int)version.majorVersion,
+            (int)version.minorVersion,
+            (int)version.patchVersion];
 #elif TARGET_OS_MAC
     NSProcessInfo *info = [NSProcessInfo processInfo];
     if ([info respondsToSelector:@selector(operatingSystemVersion)]) {
