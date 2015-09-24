@@ -491,3 +491,7 @@ extern NSString *const PF_NONNULL_S PFNetworkNotificationURLResponseBodyUserInfo
 #ifndef TARGET_OS_TV
 #define TARGET_OS_TV 0
 #endif
+
+#ifndef PF_TARGET_OS_OSX
+#  define PF_TARGET_OS_OSX TARGET_OS_MAC && !TARGET_OS_IOS && !TARGET_OS_WATCH && !TARGET_OS_TV
+#endif
