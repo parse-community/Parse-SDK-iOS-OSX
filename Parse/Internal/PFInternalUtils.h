@@ -8,7 +8,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <SystemConfiguration/SCNetworkReachability.h>
 
 #import <Parse/PFConstants.h>
 #import "PFPushPrivate.h"
