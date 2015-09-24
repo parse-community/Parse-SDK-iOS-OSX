@@ -229,7 +229,6 @@
 		810155F41BB3832700D7C7BD /* PFMutableObjectState.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CB7F731B166FF500DC601D /* PFMutableObjectState.h */; };
 		810155F51BB3832700D7C7BD /* PFWeakValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C1EE471AE1EF960031C438 /* PFWeakValue.h */; };
 		810155F61BB3832700D7C7BD /* PFOfflineStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 8166FCA41B503886003841A2 /* PFOfflineStore.h */; };
-		810155F71BB3832700D7C7BD /* PFReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 81329E8C1AE1E8840071EE3E /* PFReachability.h */; };
 		810155F81BB3832700D7C7BD /* PFMutableQueryState.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C7F4A71AF42BD9007B5418 /* PFMutableQueryState.h */; };
 		810155F91BB3832700D7C7BD /* PFPaymentTransactionObserver_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B0B3121B44A05100F3EBC4 /* PFPaymentTransactionObserver_Private.h */; };
 		810155FA1BB3832700D7C7BD /* PFPushState_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CB7F981B17970400DC601D /* PFPushState_Private.h */; };
@@ -3528,7 +3527,6 @@
 				810155F41BB3832700D7C7BD /* PFMutableObjectState.h in Headers */,
 				810155F51BB3832700D7C7BD /* PFWeakValue.h in Headers */,
 				810155F61BB3832700D7C7BD /* PFOfflineStore.h in Headers */,
-				810155F71BB3832700D7C7BD /* PFReachability.h in Headers */,
 				810155F81BB3832700D7C7BD /* PFMutableQueryState.h in Headers */,
 				810155F91BB3832700D7C7BD /* PFPaymentTransactionObserver_Private.h in Headers */,
 				810155FA1BB3832700D7C7BD /* PFPushState_Private.h in Headers */,

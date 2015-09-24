@@ -36,7 +36,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
  Controls whether the queue should monitor network reachability and pause itself when there is no connection.
  Default: `YES`.
  */
-@property (atomic, assign, readonly) BOOL monitorsReachability;
+@property (atomic, assign, readonly) BOOL monitorsReachability PF_WATCH_UNAVAILABLE;
 @property (nonatomic, assign, readonly, getter=isConnected) BOOL connected;
 
 // Gets notifications of various events happening in the command cache, so that tests can be synchronized.

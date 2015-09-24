@@ -483,15 +483,27 @@ extern NSString *const PF_NONNULL_S PFNetworkNotificationURLResponseBodyUserInfo
 ///--------------------------------------
 
 #ifndef TARGET_OS_IOS
-#define TARGET_OS_IOS TARGET_OS_IPHONE
+#  define TARGET_OS_IOS TARGET_OS_IPHONE
 #endif
 #ifndef TARGET_OS_WATCH
-#define TARGET_OS_WATCH 0
+#  define TARGET_OS_WATCH 0
 #endif
 #ifndef TARGET_OS_TV
-#define TARGET_OS_TV 0
+#  define TARGET_OS_TV 0
 #endif
 
 #ifndef PF_TARGET_OS_OSX
 #  define PF_TARGET_OS_OSX TARGET_OS_MAC && !TARGET_OS_IOS && !TARGET_OS_WATCH && !TARGET_OS_TV
+#endif
+
+///--------------------------------------
+/// @name Avaiability Macros
+///--------------------------------------
+
+#ifndef PF_WATCH_UNAVAILABLE
+#  ifdef __WATCHOS_UNAVAILABLE
+#    define PF_WATCH_UNAVAILABLE __WATCHOS_UNAVAILABLE
+#  else
+#    define PF_WATCH_UNAVAILABLE
+#  endif
 #endif
