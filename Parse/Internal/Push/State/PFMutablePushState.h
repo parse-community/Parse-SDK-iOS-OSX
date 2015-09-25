@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PFMutablePushState : PFPushState
+PF_WATCH_UNAVAILABLE @interface PFMutablePushState : PFPushState
 
 @property (nullable, nonatomic, copy, readwrite) NSSet *channels;
 @property (nullable, nonatomic, copy, readwrite) PFQueryState *queryState;

@@ -9,13 +9,15 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
 #import "PFBaseState.h"
 
 @class PFQueryState;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PFPushState : PFBaseState <NSCopying, NSMutableCopying>
+PF_WATCH_UNAVAILABLE @interface PFPushState : PFBaseState <NSCopying, NSMutableCopying>
 
 @property (nullable, nonatomic, copy, readonly) NSSet *channels;
 @property (nullable, nonatomic, copy, readonly) PFQueryState *queryState;
