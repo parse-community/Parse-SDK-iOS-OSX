@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PFInstallationController : NSObject <PFObjectControlling>
+PF_WATCH_UNAVAILABLE @interface PFInstallationController : NSObject <PFObjectControlling>
 
 @property (nonatomic, weak, readonly) id<PFObjectControllerProvider, PFCurrentInstallationControllerProvider> dataSource;
 

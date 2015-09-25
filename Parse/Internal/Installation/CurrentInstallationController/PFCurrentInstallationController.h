@@ -22,7 +22,7 @@ extern NSString *const PFCurrentInstallationPinName;
 @class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFInstallation;
 
-@interface PFCurrentInstallationController : NSObject <PFCurrentObjectControlling>
+PF_WATCH_UNAVAILABLE @interface PFCurrentInstallationController : NSObject <PFCurrentObjectControlling>
 
 @property (nonatomic, weak, readonly) id<PFFileManagerProvider, PFInstallationIdentifierStoreProvider> commonDataSource;
 @property (nonatomic, weak, readonly) id<PFObjectFilePersistenceControllerProvider> coreDataSource;

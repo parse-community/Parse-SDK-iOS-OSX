@@ -17,7 +17,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PFPushChannelsController : NSObject
+PF_WATCH_UNAVAILABLE @interface PFPushChannelsController : NSObject
 
 @property (nonatomic, weak, readonly) id<PFCurrentInstallationControllerProvider> dataSource;
 

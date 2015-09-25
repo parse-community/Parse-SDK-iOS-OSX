@@ -339,6 +339,8 @@
     });
 }
 
+#if !TARGET_OS_WATCH
+
 ///--------------------------------------
 #pragma mark - Current Installation Controller
 ///--------------------------------------
@@ -365,6 +367,8 @@
         _currentInstallationController = controller;
     });
 }
+
+#endif
 
 ///--------------------------------------
 #pragma mark - Current User Controller
@@ -393,6 +397,8 @@
     });
 }
 
+#if !TARGET_OS_WATCH
+
 ///--------------------------------------
 #pragma mark - Installation Controller
 ///--------------------------------------
@@ -413,6 +419,8 @@
         _installationController = installationController;
     });
 }
+
+#endif
 
 ///--------------------------------------
 #pragma mark - User Controller
