@@ -96,9 +96,15 @@
         [self.blockSet addObject:[handler copy]];
     }
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+    if ([self.bundle objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"] != nil) {
+        [self.locationManager requestWhenInUseAuthorization];
+    } else {
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    [self.locationManager requestLocation];
+#elif TARGET_OS_IOS
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
-
         if (self.application.applicationState != UIApplicationStateBackground &&
             [self.bundle objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"] != nil) {
             [self.locationManager requestWhenInUseAuthorization];
@@ -106,9 +112,10 @@
             [self.locationManager requestAlwaysAuthorization];
         }
     }
-#endif
-
     [self.locationManager startUpdatingLocation];
+#elif TARGET_OS_MAC
+    [self.locationManager startUpdatingLocation];
+#endif
 }
 
 ///--------------------------------------
