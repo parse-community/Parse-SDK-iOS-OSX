@@ -293,6 +293,8 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     });
 }
 
+#if !TARGET_OS_WATCH
+
 #pragma mark PushManager
 
 - (PFPushManager *)pushManager {
@@ -311,6 +313,8 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
         _pushManager = pushManager;
     });
 }
+
+#endif
 
 #pragma mark AnalyticsController
 
@@ -368,8 +372,10 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
         @strongify(self);
         [PFUser currentUser];
         [PFConfig currentConfig];
+#if !TARGET_OS_WATCH
         [PFInstallation currentInstallation];
-
+#endif
+        
         [self eventuallyQueue];
 
         return nil;

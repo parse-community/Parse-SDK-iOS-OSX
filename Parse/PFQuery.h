@@ -607,8 +607,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * PF
  @param error Pointer to an NSError that will be set if necessary.
  @result The PFUser if found. Returns nil if the object isn't found, or if there was an error.
  */
-+ (PF_NULLABLE PFUser *)getUserObjectWithId:(NSString *)objectId
-                                      error:(NSError **)error;
++ (PF_NULLABLE PFUser *)getUserObjectWithId:(NSString *)objectId error:(NSError **)error;
 
 /*!
  @deprecated Please use [PFUser query] instead.
