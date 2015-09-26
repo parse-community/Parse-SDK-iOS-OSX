@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PFPushUtilities : NSObject <PFPushInternalUtils>
+PF_WATCH_UNAVAILABLE @interface PFPushUtilities : NSObject <PFPushInternalUtils>
 
 @end
 

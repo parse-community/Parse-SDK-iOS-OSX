@@ -23,7 +23,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  This class is currently for iOS only.
  */
-@interface PFProduct : PFObject<PFSubclassing>
+PF_WATCH_UNAVAILABLE @interface PFProduct : PFObject<PFSubclassing>
 
 ///--------------------------------------
 /// @name Product-specific Properties
