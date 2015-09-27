@@ -134,7 +134,8 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns Returns the task encapsulating the work being done.
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)trackEvent:(NSString *)name dimensions:(PF_NULLABLE NSDictionary *)dimensions;
++ (BFTask PF_GENERIC(NSNumber *)*)trackEvent:(NSString *)name
+                                  dimensions:(PF_NULLABLE NSDictionary PF_GENERIC(NSString *, NSString *)*)dimensions;
 
 /*!
  @abstract Tracks the occurrence of a custom event with additional dimensions. Parse will
@@ -158,7 +159,7 @@ PF_ASSUME_NONNULL_BEGIN
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`
  */
 + (void)trackEventInBackground:(NSString *)name
-                    dimensions:(PF_NULLABLE NSDictionary *)dimensions
+                    dimensions:(PF_NULLABLE NSDictionary PF_GENERIC(NSString *, NSString *)*)dimensions
                          block:(PF_NULLABLE PFBooleanResultBlock)block;
 
 @end
