@@ -4004,7 +4004,7 @@
 /* Begin PBXLegacyTarget section */
 		81493A931A0D3492008D5504 /* BoltsSDK-OSX */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release\"";
+			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos\"";
 			buildConfigurationList = 81493A941A0D3493008D5504 /* Build configuration list for PBXLegacyTarget "BoltsSDK-OSX" */;
 			buildPhases = (
 			);
@@ -4018,7 +4018,7 @@
 		};
 		F569F07A1B14DB1E00296F73 /* BoltsSDK-iOS */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release\"";
+			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos\"";
 			buildConfigurationList = F569F07B1B14DB1E00296F73 /* Build configuration list for PBXLegacyTarget "BoltsSDK-iOS" */;
 			buildPhases = (
 			);
