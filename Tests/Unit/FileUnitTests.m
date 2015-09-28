@@ -193,7 +193,30 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
 
 - (void)testConstructorWithTooLargeData {
     NSMutableData *data = [NSMutableData dataWithLength:(10 * 1048576 + 1)];
-    PFAssertThrowsInvalidArgumentException([PFFile fileWithData:data]);
+
+    NSError *error = nil;
+    PFFile *file = [PFFile fileWithName:@"testFile"
+                                   data:data
+                            contentType:nil
+                                  error:&error];
+
+    XCTAssertNil(file);
+    XCTAssertEqualObjects(NSCocoaErrorDomain, error.domain);
+    XCTAssertEqual(NSFileReadTooLargeError, error.code);
+}
+
+- (void)testConstructorWithNilData {
+    NSMutableData *data = nil;
+
+    NSError *error = nil;
+    PFFile *file = [PFFile fileWithName:@"testFile"
+                                   data:data
+                            contentType:nil
+                                  error:&error];
+
+    XCTAssertNil(file);
+    XCTAssertEqualObjects(NSCocoaErrorDomain, error.domain);
+    XCTAssertEqual(NSFileNoSuchFileError, error.code);
 }
 
 - (void)testUploading {
