@@ -103,7 +103,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * PF
 
  @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
-- (instancetype)selectKeys:(NSArray *)keys;
+- (instancetype)selectKeys:(NSArray PF_GENERIC(NSString *) *)keys;
 
 /*!
  @abstract Add a constraint that requires a particular key exists.
@@ -379,7 +379,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * PF
 
  @returns An instance of `PFQuery` that is the `or` of the passed in queries.
  */
-+ (instancetype)orQueryWithSubqueries:(NSArray *)queries;
++ (instancetype)orQueryWithSubqueries:(NSArray PF_GENERIC(PFQuery *) *)queries;
 
 /*!
  @abstract Adds a constraint that requires that a key's value matches a value in another key
@@ -493,7 +493,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * PF
 
  @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
-- (instancetype)orderBySortDescriptors:(PF_NULLABLE NSArray *)sortDescriptors;
+- (instancetype)orderBySortDescriptors:(PF_NULLABLE NSArray PF_GENERIC(NSSortDescriptor *) *)sortDescriptors;
 
 ///--------------------------------------
 /// @name Getting Objects by ID
