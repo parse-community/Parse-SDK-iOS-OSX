@@ -34,7 +34,7 @@ static Class _pushInternalUtilClass = nil;
 @interface PFPush ()
 
 @property (nonatomic, strong) PFMutablePushState *state;
-@property (nonatomic, strong) PFQuery *query;
+@property (nonatomic, strong) PFQuery PF_GENERIC(PFInstallation *) *query;
 
 @end
 
