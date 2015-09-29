@@ -35,7 +35,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns A new `PFFile`.
  */
-+ (instancetype)fileWithData:(NSData *)data;
++ (PF_NULLABLE instancetype)fileWithData:(NSData *)data;
 
 /*!
  @abstract Creates a file with given data and name.
@@ -47,7 +47,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns A new `PFFile` object.
  */
-+ (instancetype)fileWithName:(PF_NULLABLE NSString *)name data:(NSData *)data;
++ (PF_NULLABLE instancetype)fileWithName:(PF_NULLABLE NSString *)name data:(NSData *)data;
 
 /*!
  @abstract Creates a file with the contents of another file.
@@ -61,7 +61,8 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns A new `PFFile` instance.
  */
-+ (instancetype)fileWithName:(PF_NULLABLE NSString *)name contentsAtPath:(NSString *)path;
++ (PF_NULLABLE instancetype)fileWithName:(PF_NULLABLE NSString *)name
+                          contentsAtPath:(NSString *)path PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract Creates a file with the contents of another file.
@@ -75,7 +76,9 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns A new `PFFile` instance or `nil` if the error occured.
  */
-+ (instancetype)fileWithName:(PF_NULLABLE NSString *)name contentsAtPath:(NSString *)path error:(NSError **)error;
++ (PF_NULLABLE instancetype)fileWithName:(PF_NULLABLE NSString *)name
+                          contentsAtPath:(NSString *)path
+                                   error:(NSError **)error;
 
 /*!
  @abstract Creates a file with given data, name and content type.
@@ -89,9 +92,9 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns A new `PFFile` instance.
  */
-+ (instancetype)fileWithName:(PF_NULLABLE NSString *)name
-                        data:(NSData *)data
-                 contentType:(PF_NULLABLE NSString *)contentType;
++ (PF_NULLABLE instancetype)fileWithName:(PF_NULLABLE NSString *)name
+                                    data:(NSData *)data
+                             contentType:(PF_NULLABLE NSString *)contentType PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract Creates a file with given data, name and content type.
@@ -106,10 +109,10 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns A new `PFFile` instance or `nil` if the error occured.
  */
-+ (instancetype)fileWithName:(PF_NULLABLE NSString *)name
-                        data:(NSData *)data
-                 contentType:(PF_NULLABLE NSString *)contentType
-                       error:(NSError **)error;
++ (PF_NULLABLE instancetype)fileWithName:(PF_NULLABLE NSString *)name
+                                    data:(NSData *)data
+                             contentType:(PF_NULLABLE NSString *)contentType
+                                   error:(NSError **)error;
 
 /*!
  @abstract Creates a file with given data and content type.
