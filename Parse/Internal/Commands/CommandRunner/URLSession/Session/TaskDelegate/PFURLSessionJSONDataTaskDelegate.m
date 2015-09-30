@@ -51,10 +51,15 @@
     if (self.error) {
         NSMutableDictionary *errorDictionary = [NSMutableDictionary dictionary];
         errorDictionary[@"code"] = @(kPFErrorConnectionFailed);
-        errorDictionary[@"error"] = [self.error localizedDescription];
         errorDictionary[@"originalError"] = self.error;
         errorDictionary[NSUnderlyingErrorKey] = self.error;
         errorDictionary[@"temporary"] = @(self.response.statusCode >= 500 || self.response.statusCode < 400);
+
+        NSString *description = [self.error localizedDescription] ?: [self.error localizedFailureReason];
+        if (description) {
+            errorDictionary[@"error"] = description;
+        }
+
         self.error = [PFErrorUtilities errorFromResult:errorDictionary];
         [super _taskDidFinish];
         return;
