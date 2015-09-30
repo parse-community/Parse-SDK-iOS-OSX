@@ -77,10 +77,12 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
 
     if (![fileManager fileExistsAtPath:path isDirectory:&directory] || directory) {
         NSString *message = [NSString stringWithFormat:@"Failed to create PFFile at path '%@': "
-                                                        "file does not exist.", path];
-        *error = [NSError errorWithDomain:NSCocoaErrorDomain
-                                     code:NSFileNoSuchFileError
-                                 userInfo:@{ NSLocalizedDescriptionKey: message }];
+                             "file does not exist.", path];
+        if (error) {
+            *error = [NSError errorWithDomain:NSCocoaErrorDomain
+                                         code:NSFileNoSuchFileError
+                                     userInfo:@{ NSLocalizedDescriptionKey: message }];
+        }
         return nil;
     }
 
@@ -88,10 +90,12 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
     unsigned long long length = [attributes[NSFileSize] unsignedLongValue];
     if (length > PFFileMaxFileSize) {
         NSString *message = [NSString stringWithFormat:@"Failed to create PFFile at path '%@': "
-                                                        "file is larger than %lluMB.", path, (PFFileMaxFileSize >> 20)];
-        *error = [NSError errorWithDomain:NSCocoaErrorDomain
-                                     code:NSFileReadTooLargeError
-                                 userInfo:@{ NSLocalizedDescriptionKey: message }];
+                             "file is larger than %lluMB.", path, (PFFileMaxFileSize >> 20)];
+        if (error) {
+            *error = [NSError errorWithDomain:NSCocoaErrorDomain
+                                         code:NSFileReadTooLargeError
+                                     userInfo:@{ NSLocalizedDescriptionKey: message }];
+        }
         return nil;
     }
 
@@ -117,18 +121,22 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
                        error:(NSError **)error {
     if (!data) {
         NSString *message = @"Cannot create a PFFile with nil data.";
-        *error = [NSError errorWithDomain:NSCocoaErrorDomain
-                                     code:NSFileNoSuchFileError
-                                 userInfo:@{ NSLocalizedDescriptionKey: message }];
+        if (error) {
+            *error = [NSError errorWithDomain:NSCocoaErrorDomain
+                                         code:NSFileNoSuchFileError
+                                     userInfo:@{ NSLocalizedDescriptionKey: message }];
+        }
         return nil;
     }
 
     if ([data length] > PFFileMaxFileSize) {
         NSString *message = [NSString stringWithFormat:@"Failed to create PFFile with data: "
-                                                        "data is larger than %lluMB.", (PFFileMaxFileSize >> 20)];
-        *error = [NSError errorWithDomain:NSCocoaErrorDomain
-                                     code:NSFileReadTooLargeError
-                                 userInfo:@{ NSLocalizedDescriptionKey: message }];
+                             "data is larger than %lluMB.", (PFFileMaxFileSize >> 20)];
+        if (error) {
+            *error = [NSError errorWithDomain:NSCocoaErrorDomain
+                                         code:NSFileReadTooLargeError
+                                     userInfo:@{ NSLocalizedDescriptionKey: message }];
+        }
         return nil;
     }
 
