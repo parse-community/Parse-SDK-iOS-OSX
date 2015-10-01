@@ -7,8 +7,8 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <CoreLocation/CoreLocation.h>
-#import <UIKit/UIKit.h>
+@import CoreLocation;
+@import UIKit;
 
 #import <OCMock/OCMock.h>
 
