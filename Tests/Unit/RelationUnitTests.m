@@ -9,7 +9,7 @@
 
 #import <OCMock/OCMock.h>
 
-#import <libkern/OSAtomic.h>
+@import Darwin.libkern.OSAtomic;
 
 #import "PFDecoder.h"
 #import "PFQueryPrivate.h"
