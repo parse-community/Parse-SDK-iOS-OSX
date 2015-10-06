@@ -9,6 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PFJSONSerialization : NSObject
 
 /*!
@@ -21,7 +23,7 @@
 
  @returns NSData of JSON representing the passed in object.
  */
-+ (NSData *)dataFromJSONObject:(id)object;
++ (nullable NSData *)dataFromJSONObject:(id)object;
 
 /*!
  The object passed in must be one of:
@@ -33,18 +35,31 @@
 
  @returns NSString of JSON representing the passed in object.
  */
-+ (NSString *)stringFromJSONObject:(id)object;
++ (nullable NSString *)stringFromJSONObject:(id)object;
 
 /*!
  Takes a JSON string and returns the NSDictionaries and NSArrays in it.
  You should still call decodeObject if you want Parse types.
  */
-+ (id)JSONObjectFromData:(NSData *)data;
++ (nullable id)JSONObjectFromData:(NSData *)data;
 
 /*!
  Takes a JSON string and returns the NSDictionaries and NSArrays in it.
  You should still call decodeObject if you want Parse types.
  */
-+ (id)JSONObjectFromString:(NSString *)string;
++ (nullable id)JSONObjectFromString:(NSString *)string;
+
+/*!
+ @abstract Takes a file path to json file and returns the NSDictionaries and NSArrays in it.
+
+ @description You should still call decodeObject if you want Parse types.
+
+ @param filePath File path to a file.
+
+ @return Decoded object.
+ */
++ (nullable id)JSONObjectFromFileAtPath:(NSString *)filePath;
 
 @end
+
+NS_ASSUME_NONNULL_END
