@@ -83,6 +83,10 @@ static NSString *containingApplicationBundleIdentifier_;
 #endif
 #endif
 
+#if TARGET_OS_IOS
+    [PFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+#endif
+
     [currentParseManager_ preloadDiskObjectsToMemoryAsync];
 
     [[self parseModulesCollection] parseDidInitializeWithApplicationId:applicationId clientKey:clientKey];
