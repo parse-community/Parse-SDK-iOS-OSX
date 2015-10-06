@@ -18,7 +18,6 @@
 #import "PFConfig.h"
 #import "PFCoreManager.h"
 #import "PFFileManager.h"
-#import "PFInstallation.h"
 #import "PFInstallationIdentifierStore.h"
 #import "PFKeyValueCache.h"
 #import "PFKeychainStore.h"
@@ -28,6 +27,10 @@
 #import "PFPushManager.h"
 #import "PFUser.h"
 #import "PFURLSessionCommandRunner.h"
+
+#if !TARGET_OS_WATCH
+#import "PFInstallation.h"
+#endif
 
 #if TARGET_OS_IOS
 #import "PFPurchaseController.h"

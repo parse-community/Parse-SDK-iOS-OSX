@@ -23,11 +23,13 @@
 #import "PFApplication.h"
 #import "PFKeychainStore.h"
 #import "PFLogging.h"
-#import "PFInstallationPrivate.h"
 #import "PFObjectSubclassingController.h"
 
-#if PARSE_IOS_ONLY
+#if !TARGET_OS_WATCH
+#import "PFInstallationPrivate.h"
+#if TARGET_OS_IOS
 #import "PFProduct+Private.h"
+#endif
 #endif
 
 #import "PFCategoryLoader.h"

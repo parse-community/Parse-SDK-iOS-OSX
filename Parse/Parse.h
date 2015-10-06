@@ -26,9 +26,14 @@
 #import <Parse/PFSubclassing.h>
 #import <Parse/PFUser.h>
 #import <Parse/PFUserAuthenticationDelegate.h>
-#import <Parse/PFInstallation.h>
 #import <Parse/PFNullability.h>
+
+#if !TARGET_OS_WATCH
+
+#import <Parse/PFInstallation.h>
 #import <Parse/PFPush.h>
+
+#endif
 
 #if TARGET_OS_IOS
 
