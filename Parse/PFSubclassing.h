@@ -11,7 +11,7 @@
 
 #import <Parse/PFNullability.h>
 
-@class PFQuery;
+@class PFQuery PF_GENERIC(PFGenericObject : PFObject *);
 
 PF_ASSUME_NONNULL_BEGIN
 

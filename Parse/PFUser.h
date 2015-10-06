@@ -20,7 +20,7 @@ PF_ASSUME_NONNULL_BEGIN
 typedef void(^PFUserSessionUpgradeResultBlock)(NSError *PF_NULLABLE_S error);
 typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
 
-@class PFQuery;
+@class PFQuery PF_GENERIC(PFGenericObject : PFObject *);
 @protocol PFUserAuthenticationDelegate;
 
 /*!
