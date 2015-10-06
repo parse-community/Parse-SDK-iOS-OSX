@@ -12,9 +12,9 @@
 #import <Parse/PFNullability.h>
 #import <Parse/PFObject.h>
 
-PF_ASSUME_NONNULL_BEGIN
+@class PFQuery PF_GENERIC(PFGenericObject : PFObject *);
 
-@class PFQuery;
+PF_ASSUME_NONNULL_BEGIN
 
 /*!
  ### Subclassing Notes
