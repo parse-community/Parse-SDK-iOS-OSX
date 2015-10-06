@@ -354,7 +354,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSNumber *)*)saveEventually;
+- (BFTask PF_GENERIC(NSNumber *)*)saveEventually PF_WATCH_UNAVAILABLE;
 
 /*!
  @abstract Saves this object to the server at some unspecified time in the future,
@@ -374,7 +374,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param callback The block to execute.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`.
  */
-- (void)saveEventually:(PF_NULLABLE PFBooleanResultBlock)callback;
+- (void)saveEventually:(PF_NULLABLE PFBooleanResultBlock)callback PF_WATCH_UNAVAILABLE;
 
 ///--------------------------------------
 /// @name Saving Many Objects
@@ -826,7 +826,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns The task that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSNumber *)*)deleteEventually;
+- (BFTask PF_GENERIC(NSNumber *)*)deleteEventually PF_WATCH_UNAVAILABLE;
 
 ///--------------------------------------
 /// @name Dirtiness
