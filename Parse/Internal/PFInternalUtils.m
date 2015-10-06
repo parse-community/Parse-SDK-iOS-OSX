@@ -34,7 +34,7 @@
 #import "PFMultiProcessFileLockController.h"
 #import "PFHash.h"
 
-#if PARSE_IOS_ONLY
+#if TARGET_OS_IOS
 #import "PFProduct.h"
 #endif
 

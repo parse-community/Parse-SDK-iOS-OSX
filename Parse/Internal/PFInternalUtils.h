@@ -10,7 +10,6 @@
 #import <Foundation/Foundation.h>
 
 #import <Parse/PFConstants.h>
-#import "PFPushPrivate.h"
 
 #import "PFEncoder.h"
 
