@@ -16,10 +16,11 @@ module XCTask
   class FrameworkType
     IOS = 'ios'
     OSX = 'osx'
+    WATCHOS = 'watchos'
 
     def self.verify(type)
-      if type.nil? || (type != IOS && type != OSX)
-        fail "Unknown framework type. Available types: 'ios', 'osx'."
+      if type.nil? || (type != IOS && type != OSX && type != WATCHOS)
+        fail "Unknown framework type. Available types: 'ios', 'osx', 'watchos'."
       end
     end
   end
@@ -64,6 +65,8 @@ module XCTask
         build_ios_framework
       when FrameworkType::OSX
         build_osx_framework
+      when FrameworkType::WATCHOS
+        build_watchos_framework
       end
     end
 
@@ -87,6 +90,31 @@ module XCTask
       result = system(lipo_command)
       unless result
         puts 'Failed to lipo iOS framework.'
+        exit(1)
+      end
+      result
+    end
+
+    def build_watchos_framework
+      framework_paths = []
+      framework_paths << build_framework('watchos')
+      framework_paths << build_framework('watchsimulator')
+      final_path = final_framework_path
+
+      system("rm -rf #{final_path} && cp -R #{framework_paths[0]} #{final_path}")
+
+      binary_name = File.basename(@framework_name, '.framework')
+      system("rm -rf #{final_path}/#{binary_name}")
+
+      lipo_command = 'lipo -create'
+      framework_paths.each do |path|
+        lipo_command += " #{path}/#{binary_name}"
+      end
+      lipo_command += " -o #{final_path}/#{binary_name}"
+
+      result = system(lipo_command)
+      unless result
+        puts 'Failed to lipo watchOS framework.'
         exit(1)
       end
       result
