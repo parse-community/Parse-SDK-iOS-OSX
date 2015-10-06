@@ -61,12 +61,8 @@ static NSString *const PFConfigCurrentConfigFileName_ = @"config";
 - (BFTask *)getCurrentConfigAsync {
     return [BFTask taskFromExecutor:_dataExecutor withBlock:^id{
         if (!_currentConfig) {
-            NSError *error = nil;
-            NSData *jsonData = [NSData dataWithContentsOfFile:self.configFilePath
-                                                      options:NSDataReadingMappedIfSafe
-                                                        error:&error];
-            if (error == nil && [jsonData length] != 0) {
-                NSDictionary *dictionary = [PFJSONSerialization JSONObjectFromData:jsonData];
+            NSDictionary *dictionary = [PFJSONSerialization JSONObjectFromFileAtPath:self.configFilePath];
+            if (dictionary) {
                 NSDictionary *decodedDictionary = [[PFDecoder objectDecoder] decodeObject:dictionary];
                 _currentConfig = [[PFConfig alloc] initWithFetchedConfig:decodedDictionary];
             } else {
