@@ -51,6 +51,13 @@
 
     [stream open];
 
+    NSError *streamError = stream.streamError;
+    // Check if stream failed to open, because there is no such file.
+    if (streamError && [streamError.domain isEqualToString:NSPOSIXErrorDomain] && streamError.code == ENOENT) {
+        [stream close]; // Still close the stream.
+        return nil;
+    }
+
     NSError *error = nil;
     id object = [NSJSONSerialization JSONObjectWithStream:stream options:0 error:&error];
     if (!object || error) {
