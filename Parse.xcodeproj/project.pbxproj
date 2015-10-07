@@ -419,6 +419,7 @@
 		813E769B1B7A9BD000FA3294 /* PFErrorUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 813E76981B7A9BD000FA3294 /* PFErrorUtilities.h */; };
 		813E769C1B7A9BD000FA3294 /* PFErrorUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E76991B7A9BD000FA3294 /* PFErrorUtilities.m */; };
 		813E769D1B7A9BD000FA3294 /* PFErrorUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E76991B7A9BD000FA3294 /* PFErrorUtilities.m */; };
+		81411DFB1BC368B30004BE84 /* PFFileDataStream.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B0C4F31BA248F7000AB0D5 /* PFFileDataStream.m */; };
 		8143E65D1AFC1BA5008C4E06 /* PFOfflineQueryController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8143E65B1AFC1BA5008C4E06 /* PFOfflineQueryController.h */; };
 		8143E65E1AFC1BA5008C4E06 /* PFOfflineQueryController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8143E65B1AFC1BA5008C4E06 /* PFOfflineQueryController.h */; };
 		8143E65F1AFC1BA5008C4E06 /* PFOfflineQueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8143E65C1AFC1BA5008C4E06 /* PFOfflineQueryController.m */; };
@@ -4383,6 +4384,7 @@
 				8101553D1BB3832700D7C7BD /* PFRESTSessionCommand.m in Sources */,
 				8101553E1BB3832700D7C7BD /* PFPropertyInfo.m in Sources */,
 				810155401BB3832700D7C7BD /* PFMutableObjectState.m in Sources */,
+				81411DFB1BC368B30004BE84 /* PFFileDataStream.m in Sources */,
 				810155421BB3832700D7C7BD /* PFQuery.m in Sources */,
 				810155431BB3832700D7C7BD /* PFConfigController.m in Sources */,
 				810155441BB3832700D7C7BD /* PFUserConstants.m in Sources */,
