@@ -77,6 +77,25 @@ namespace :build do
     end
   end
 
+  desc 'Build watchOS framework.'
+  task :watchos do
+    task = XCTask::BuildFrameworkTask.new do |t|
+      t.directory = script_folder
+      t.build_directory = build_folder
+      t.framework_type = XCTask::FrameworkType::WATCHOS
+      t.framework_name = 'Parse.framework'
+
+      t.workspace = 'Parse.xcworkspace'
+      t.scheme = 'Parse-watchOS'
+      t.configuration = 'Release'
+    end
+    result = task.execute
+    unless result
+      puts 'Failed to build watchOS Framework.'
+      exit(1)
+    end
+  end
+
   desc 'Build OS X framework.'
   task :osx do
     task = XCTask::BuildFrameworkTask.new do |t|
@@ -246,6 +265,7 @@ namespace :test do
 
   desc 'Run Deployment Tests'
   task :deployment do |_|
+    Rake::Task['build:watchos'].invoke
     Rake::Task['package:frameworks'].invoke
     Rake::Task['package:starters'].invoke
   end
