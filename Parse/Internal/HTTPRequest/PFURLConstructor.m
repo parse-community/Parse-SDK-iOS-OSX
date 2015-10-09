@@ -21,7 +21,7 @@
                             path:(nullable NSString *)path
                            query:(nullable NSString *)query {
     NSURLComponents *components = [NSURLComponents componentsWithString:string];
-    if (components.path) {
+    if (path) {
         components.path = path;
     }
     if (query) {
