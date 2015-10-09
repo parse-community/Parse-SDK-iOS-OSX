@@ -7,8 +7,8 @@
 # of patent rights can be found in the PATENTS file in the same directory.
 #
 
-require_relative 'Scripts/xctask/build_task'
-require_relative 'Scripts/xctask/build_framework_task'
+require_relative 'Vendor/xctoolchain/Scripts/xctask/build_task'
+require_relative 'Vendor/xctoolchain/Scripts/xctask/build_framework_task'
 
 script_folder = File.expand_path(File.dirname(__FILE__))
 build_folder = File.join(script_folder, 'build')
