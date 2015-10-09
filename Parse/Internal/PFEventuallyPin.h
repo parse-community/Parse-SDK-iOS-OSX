@@ -10,9 +10,8 @@
 #import <Foundation/Foundation.h>
 
 #import <Parse/PFConstants.h>
-
-#import "PFObject.h"
-#import "PFSubclassing.h"
+#import <Parse/PFObject.h>
+#import <Parse/PFSubclassing.h>
 
 @class BFTask PF_GENERIC(__covariant BFGenericType);
 @protocol PFNetworkCommand;
