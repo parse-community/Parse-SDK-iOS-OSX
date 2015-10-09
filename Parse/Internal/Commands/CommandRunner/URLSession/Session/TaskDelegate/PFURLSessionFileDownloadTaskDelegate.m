@@ -80,12 +80,24 @@
         // TODO: (nlutsenko) Unify this with code from PFURLSessionJSONDataTaskDelegate
         NSMutableDictionary *errorDictionary = [NSMutableDictionary dictionary];
         errorDictionary[@"code"] = @(kPFErrorConnectionFailed);
-        errorDictionary[@"error"] = [self.error localizedDescription];
         errorDictionary[@"originalError"] = self.error;
         errorDictionary[NSUnderlyingErrorKey] = self.error;
         errorDictionary[@"temporary"] = @(self.response.statusCode >= 500 || self.response.statusCode < 400);
+
+        NSString *description = self.error.localizedDescription ?: self.error.localizedFailureReason;
+        if (description) {
+            errorDictionary[@"error"] = self.error.localizedDescription;
+        }
+
         self.error = [PFErrorUtilities errorFromResult:errorDictionary];
+    } else {
+        NSInteger statusCode = self.response.statusCode;
+        if (statusCode >= 200 && statusCode < 400) {
+            NSString *description = [NSString stringWithFormat:@"Response status code was unacceptable: %d", (int)statusCode];
+            self.error = [PFErrorUtilities errorWithCode:kPFErrorInternalServer message:description];
+        }
     }
+
     [super _taskDidFinish];
 }
 
