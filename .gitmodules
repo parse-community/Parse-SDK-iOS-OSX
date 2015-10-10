@@ -4,3 +4,6 @@
 [submodule "Vendor/OCMock"]
 	path = Vendor/OCMock
 	url = https://github.com/erikdoe/ocmock.git
+[submodule "Vendor/xctoolchain"]
+	path = Vendor/xctoolchain
+	url = https://github.com/ParsePlatform/xctoolchain.git
