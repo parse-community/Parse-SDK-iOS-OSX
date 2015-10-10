@@ -92,7 +92,7 @@
         self.error = [PFErrorUtilities errorFromResult:errorDictionary];
     } else {
         NSInteger statusCode = self.response.statusCode;
-        if (statusCode >= 200 && statusCode < 400) {
+        if (statusCode < 200 || statusCode >= 400) {
             NSString *description = [NSString stringWithFormat:@"Response status code was unacceptable: %d", (int)statusCode];
             self.error = [PFErrorUtilities errorWithCode:kPFErrorInternalServer message:description];
         }
