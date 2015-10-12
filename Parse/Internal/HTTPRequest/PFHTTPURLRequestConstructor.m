@@ -13,7 +13,7 @@
 #import "PFHTTPRequest.h"
 #import "PFURLConstructor.h"
 
-static NSString *const PFHTTPURLRequestContentTypeJSON = @"application/json; charset=utf8";
+static NSString *const PFHTTPURLRequestContentTypeJSON = @"application/json; charset=utf-8";
 
 @implementation PFHTTPURLRequestConstructor
 
