@@ -220,7 +220,7 @@ PF_ASSUME_NONNULL_BEGIN
 /*!
  @abstract Whether the data is available in memory or needs to be downloaded.
  */
-@property (assign, readonly) BOOL isDataAvailable;
+@property (nonatomic, assign, readonly) BOOL isDataAvailable;
 
 /*!
  @abstract *Synchronously* gets the data from cache if available or fetches its contents from the network.

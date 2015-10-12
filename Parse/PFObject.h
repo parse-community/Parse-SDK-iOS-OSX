@@ -97,7 +97,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /*!
  @abstract The class name of the object.
  */
-@property (strong, readonly) NSString *parseClassName;
+@property (nonatomic, strong, readonly) NSString *parseClassName;
 
 /*!
  @abstract The id of the object.

@@ -16,10 +16,10 @@
 #import "PFFieldOperation.h"
 #import "PFInternalUtils.h"
 
-NSString *const PFOperationSetKeyUUID = @"__uuid";
-NSString *const PFOperationSetKeyIsSaveEventually = @"__isSaveEventually";
-NSString *const PFOperationSetKeyUpdatedAt = @"__updatedAt";
-NSString *const PFOperationSetKeyACL = @"ACL";
+static NSString *const PFOperationSetKeyUUID = @"__uuid";
+static NSString *const PFOperationSetKeyIsSaveEventually = @"__isSaveEventually";
+static NSString *const PFOperationSetKeyUpdatedAt = @"__updatedAt";
+static NSString *const PFOperationSetKeyACL = @"ACL";
 
 @interface PFOperationSet()
 
