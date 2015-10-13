@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F569F07A1B14DB1E00296F73"
-               BuildableName = "BoltsSDK-iOS"
-               BlueprintName = "BoltsSDK-iOS"
+               BlueprintIdentifier = "810155051BB3832700D7C7BD"
+               BuildableName = "Parse.framework"
+               BlueprintName = "Parse-watchOS"
                ReferencedContainer = "container:../../../Parse.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,7 +43,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "81BA81441A49DA1800E65899"
-               BuildableName = "ParseStarterProject-Swift.app"
+               BuildableName = "ParseStarter-Swift.app"
                BlueprintName = "ParseStarter-Swift"
                ReferencedContainer = "container:ParseStarter-Swift.xcodeproj">
             </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "81BA81441A49DA1800E65899"
-            BuildableName = "ParseStarterProject-Swift.app"
+            BuildableName = "ParseStarter-Swift.app"
             BlueprintName = "ParseStarter-Swift"
             ReferencedContainer = "container:ParseStarter-Swift.xcodeproj">
          </BuildableReference>
@@ -84,7 +84,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "81BA81441A49DA1800E65899"
-            BuildableName = "ParseStarterProject-Swift.app"
+            BuildableName = "ParseStarter-Swift.app"
             BlueprintName = "ParseStarter-Swift"
             ReferencedContainer = "container:ParseStarter-Swift.xcodeproj">
          </BuildableReference>
@@ -103,7 +103,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "81BA81441A49DA1800E65899"
-            BuildableName = "ParseStarterProject-Swift.app"
+            BuildableName = "ParseStarter-Swift.app"
             BlueprintName = "ParseStarter-Swift"
             ReferencedContainer = "container:ParseStarter-Swift.xcodeproj">
          </BuildableReference>

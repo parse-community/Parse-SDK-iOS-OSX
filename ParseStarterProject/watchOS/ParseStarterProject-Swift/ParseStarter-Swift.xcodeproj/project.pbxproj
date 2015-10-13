@@ -43,19 +43,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		068C15641BC8F15300820E44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81BA813D1A49DA1800E65899 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81411DCC1BC3658C0004BE84;
+			remoteInfo = ParseStarter;
+		};
 		81411DDB1BC3658D0004BE84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81BA813D1A49DA1800E65899 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 81411DD81BC3658C0004BE84;
 			remoteInfo = "ParseStarter Extension";
-		};
-		81411DE51BC3658D0004BE84 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81BA813D1A49DA1800E65899 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 81411DCC1BC3658C0004BE84;
-			remoteInfo = ParseStarter;
 		};
 		81411DF31BC3685A0004BE84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -107,7 +107,7 @@
 		81411DDE1BC3658D0004BE84 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		81411DE01BC3658D0004BE84 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		81411DE41BC3658D0004BE84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		81411DF11BC3660D0004BE84 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../build/Debug-watchos/Parse.framework"; sourceTree = "<group>"; };
+		81411DF11BC3660D0004BE84 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		81411DF61BC368800004BE84 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		81411DF81BC368800004BE84 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		81411E001BC368D30004BE84 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.0.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
@@ -256,9 +256,9 @@
 			isa = PBXGroup;
 			children = (
 				81411E001BC368D30004BE84 /* libsqlite3.tbd */,
-				81411DF11BC3660D0004BE84 /* Parse.framework */,
 				81411DF51BC368800004BE84 /* iOS */,
 				81411DF71BC368800004BE84 /* watchOS */,
+				81411DF11BC3660D0004BE84 /* Parse.framework */,
 				81BA816C1A49DB6800E65899 /* Parse.framework */,
 				81BA816D1A49DB6800E65899 /* ParseCrashReporting.framework */,
 				81BA816E1A49DB6800E65899 /* ParseFacebookUtils.framework */,
@@ -330,8 +330,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				068C15651BC8F15300820E44 /* PBXTargetDependency */,
 				81993FCD1B69AAE40077D6B9 /* PBXTargetDependency */,
-				81411DE61BC3658D0004BE84 /* PBXTargetDependency */,
 			);
 			name = "ParseStarter-Swift";
 			productName = ParseStarterProject;
@@ -463,15 +463,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		068C15651BC8F15300820E44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81411DCC1BC3658C0004BE84 /* ParseStarter */;
+			targetProxy = 068C15641BC8F15300820E44 /* PBXContainerItemProxy */;
+		};
 		81411DDC1BC3658D0004BE84 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 81411DD81BC3658C0004BE84 /* ParseStarter Extension */;
 			targetProxy = 81411DDB1BC3658D0004BE84 /* PBXContainerItemProxy */;
-		};
-		81411DE61BC3658D0004BE84 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 81411DCC1BC3658C0004BE84 /* ParseStarter */;
-			targetProxy = 81411DE51BC3658D0004BE84 /* PBXContainerItemProxy */;
 		};
 		81411DF41BC3685A0004BE84 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -513,6 +513,7 @@
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BUILT_PRODUCTS_DIR)",
+					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Vendor/watchOS",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -534,6 +535,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BUILT_PRODUCTS_DIR)",
+					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Vendor/watchOS",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
