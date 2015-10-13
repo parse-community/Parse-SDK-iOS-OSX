@@ -24,12 +24,12 @@
 #import "PFSQLiteStatement.h"
 #import "Parse_Private.h"
 
-NSString *const PFSQLiteDatabaseBeginExclusiveOperationCommand = @"BEGIN EXCLUSIVE";
-NSString *const PFSQLiteDatabaseCommitOperationCommand = @"COMMIT";
-NSString *const PFSQLiteDatabaseRollbackOperationCommand = @"ROLLBACK";
+static NSString *const PFSQLiteDatabaseBeginExclusiveOperationCommand = @"BEGIN EXCLUSIVE";
+static NSString *const PFSQLiteDatabaseCommitOperationCommand = @"COMMIT";
+static NSString *const PFSQLiteDatabaseRollbackOperationCommand = @"ROLLBACK";
 
-NSString *const PFSQLiteDatabaseErrorSQLiteDomain = @"SQLite";
-NSString *const PFSQLiteDatabaseErrorPFSQLiteDatabaseDomain = @"PFSQLiteDatabase";
+static NSString *const PFSQLiteDatabaseErrorSQLiteDomain = @"SQLite";
+static NSString *const PFSQLiteDatabaseErrorPFSQLiteDatabaseDomain = @"PFSQLiteDatabase";
 
 int const PFSQLiteDatabaseInvalidArgumenCountErrorCode = 1;
 int const PFSQLiteDatabaseInvalidSQL = 2;

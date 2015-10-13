@@ -57,7 +57,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
 
  @discussion This is only set after a Facebook or Twitter login.
  */
-@property (assign, readonly) BOOL isNew;
+@property (nonatomic, assign, readonly) BOOL isNew;
 
 /*!
  @abstract Whether the user is an authenticated object for the device.

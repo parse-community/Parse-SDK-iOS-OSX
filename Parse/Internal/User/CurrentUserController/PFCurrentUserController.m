@@ -82,9 +82,10 @@
     return [self getCurrentUserAsyncWithOptions:options];
 }
 
-- (BFTask *)saveCurrentObjectAsync:(PFUser *)object {
+- (BFTask *)saveCurrentObjectAsync:(PFObject *)object {
+    PFUser *user = (PFUser *)object;
     return [_dataTaskQueue enqueue:^id(BFTask *task) {
-        return [self _saveCurrentUserAsync:object];
+        return [self _saveCurrentUserAsync:user];
     }];
 }
 

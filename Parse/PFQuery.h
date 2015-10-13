@@ -800,12 +800,12 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * PF
  @see fromPin
  @see fromPinWithName:
  */
-@property (assign, readwrite) PFCachePolicy cachePolicy;
+@property (nonatomic, assign) PFCachePolicy cachePolicy;
 
 /*!
  @abstract The age after which a cached value will be ignored
  */
-@property (assign, readwrite) NSTimeInterval maxCacheAge;
+@property (nonatomic, assign) NSTimeInterval maxCacheAge;
 
 /*!
  @abstract Returns whether there is a cached result for this query.

@@ -20,9 +20,9 @@
 #import "PFObjectPrivate.h"
 #import "PFQueryPrivate.h"
 
-NSString *const PFRelationKeyClassName = @"className";
-NSString *const PFRelationKeyType = @"__type";
-NSString *const PFRelationKeyObjects = @"objects";
+static NSString *const PFRelationKeyClassName = @"className";
+static NSString *const PFRelationKeyType = @"__type";
+static NSString *const PFRelationKeyObjects = @"objects";
 
 @interface PFRelation () {
     //

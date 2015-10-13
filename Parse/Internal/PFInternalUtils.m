@@ -275,11 +275,13 @@ static NSString *parseServer_;
 @implementation PFJSONCacheItem
 
 - (instancetype)initWithObject:(id)object {
-    if (self = [super init]) {
-        NSObject *encoded = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:object];
-        NSData *jsonData = [PFJSONSerialization dataFromJSONObject:encoded];
-        _hashValue = PFMD5HashFromData(jsonData);
-    }
+    self = [super init];
+    if (!self) return nil;
+
+    NSObject *encoded = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:object];
+    NSData *jsonData = [PFJSONSerialization dataFromJSONObject:encoded];
+    _hashValue = PFMD5HashFromData(jsonData);
+
     return self;
 }
 

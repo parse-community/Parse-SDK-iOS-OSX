@@ -85,7 +85,9 @@ NSString *const PFKeychainStoreDefaultService = @"com.parse.sdk";
         @try {
             object = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         }
-        @catch (NSException *exception) {}
+        @catch (NSException *exception) {
+            PFLogDebug(PFLoggingTagCommon, @"Failed to unarchive data from keychain: %@", exception);
+        }
 
         return object;
     }

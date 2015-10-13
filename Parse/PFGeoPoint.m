@@ -8,6 +8,7 @@
  */
 
 #import "PFGeoPoint.h"
+#import "PFGeoPointPrivate.h"
 
 #import <math.h>
 

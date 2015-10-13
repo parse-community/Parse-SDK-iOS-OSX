@@ -31,19 +31,19 @@
 
 typedef BFTask *(^PFOfflineStoreDatabaseExecutionBlock)(PFSQLiteDatabase *database);
 
-NSString *const PFOfflineStoreDatabaseName = @"ParseOfflineStore";
+static NSString *const PFOfflineStoreDatabaseName = @"ParseOfflineStore";
 
-NSString *const PFOfflineStoreTableOfObjects = @"ParseObjects";
-NSString *const PFOfflineStoreKeyOfClassName = @"className";
-NSString *const PFOfflineStoreKeyOfIsDeletingEventually = @"isDeletingEventually";
-NSString *const PFOfflineStoreKeyOfJSON = @"json";
-NSString *const PFOfflineStoreKeyOfObjectId = @"objectId";
-NSString *const PFOfflineStoreKeyOfUUID = @"uuid";
+static NSString *const PFOfflineStoreTableOfObjects = @"ParseObjects";
+static NSString *const PFOfflineStoreKeyOfClassName = @"className";
+static NSString *const PFOfflineStoreKeyOfIsDeletingEventually = @"isDeletingEventually";
+static NSString *const PFOfflineStoreKeyOfJSON = @"json";
+static NSString *const PFOfflineStoreKeyOfObjectId = @"objectId";
+static NSString *const PFOfflineStoreKeyOfUUID = @"uuid";
 
-NSString *const PFOfflineStoreTableOfDependencies = @"Dependencies";
-NSString *const PFOfflineStoreKeyOfKey = @"key";
+static NSString *const PFOfflineStoreTableOfDependencies = @"Dependencies";
+static NSString *const PFOfflineStoreKeyOfKey = @"key";
 
-int const PFOfflineStoreMaximumSQLVariablesCount = 999;
+static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 
 @interface PFOfflineStore ()
 

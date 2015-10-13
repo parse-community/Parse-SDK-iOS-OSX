@@ -8,6 +8,7 @@
  */
 
 #import "PFConfig.h"
+#import "PFConfig_Private.h"
 
 #import "BFTask+Private.h"
 #import "PFConfigController.h"
