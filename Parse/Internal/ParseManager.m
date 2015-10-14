@@ -24,11 +24,11 @@
 #import "PFLogging.h"
 #import "PFMultiProcessFileLockController.h"
 #import "PFPinningEventuallyQueue.h"
-#import "PFPushManager.h"
 #import "PFUser.h"
 #import "PFURLSessionCommandRunner.h"
 
 #if !TARGET_OS_WATCH
+#import "PFPushManager.h"
 #import "PFInstallation.h"
 #endif
 
