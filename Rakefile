@@ -334,8 +334,10 @@ namespace :test do
   task :podspecs do |_|
     podspecs = ['Parse.podspec']
     results = []
+    system("pod repo update --silent")
     podspecs.each do |podspec|
-      results << system("pod repo update; pod lib lint #{podspec} --verbose")
+      results << system("pod lib lint #{podspec}")
+      results << system("pod lib lint #{podspec} --use-libraries")
     end
     results.each do |result|
       unless result
