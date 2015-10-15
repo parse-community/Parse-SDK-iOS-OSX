@@ -1234,13 +1234,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		810155071BB3832700D7C7BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 09D33641139C54930098E916 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F569F07A1B14DB1E00296F73;
-			remoteInfo = "BoltsSDK-iOS";
-		};
 		811167461B8402DA003CB026 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 09D33641139C54930098E916 /* Project object */;
@@ -1254,6 +1247,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 81C3821B19CCA89E0066284A;
 			remoteInfo = "Parse-iOS";
+		};
+		812F31FE1BCF414D00FCBCD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09D33641139C54930098E916 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 812F31F71BCF40AA00FCBCD4;
+			remoteInfo = "Bolts-watchOS";
 		};
 		81493A991A0D3CE3008D5504 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1454,6 +1454,9 @@
 		812B62FF1B5F30D3009CEAA9 /* PFObjectFileCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFObjectFileCoder.m; sourceTree = "<group>"; };
 		812B7AB61AF2FA4800D15FF5 /* PFQueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFQueryController.h; sourceTree = "<group>"; };
 		812B7AB71AF2FA4800D15FF5 /* PFQueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFQueryController.m; sourceTree = "<group>"; };
+		812F31FB1BCF40DC00FCBCD4 /* Bolts-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Bolts-iOS.xcconfig"; sourceTree = "<group>"; };
+		812F31FC1BCF40DC00FCBCD4 /* Bolts-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Bolts-OSX.xcconfig"; sourceTree = "<group>"; };
+		812F31FD1BCF40DC00FCBCD4 /* Bolts-watchOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Bolts-watchOS.xcconfig"; sourceTree = "<group>"; };
 		812FC61E1B0FF9FA0043C07F /* PFPurchaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPurchaseController.h; sourceTree = "<group>"; };
 		812FC61F1B0FF9FA0043C07F /* PFPurchaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPurchaseController.m; sourceTree = "<group>"; };
 		81308B6B1B5781F500FFFF44 /* PFTestSwizzledMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFTestSwizzledMethod.h; sourceTree = "<group>"; };
@@ -1827,8 +1830,6 @@
 		F51D06361B793A110044539E /* PFSQLiteDatabase_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFSQLiteDatabase_Private.h; sourceTree = "<group>"; };
 		F5556A141B66F36000410837 /* URLSessionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLSessionTests.m; sourceTree = "<group>"; };
 		F5556A171B66F47900410837 /* PFURLSession_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFURLSession_Private.h; sourceTree = "<group>"; };
-		F55ABB511B4F39DA00A0ECD5 /* BoltsSDK-iOS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "BoltsSDK-iOS.xcconfig"; sourceTree = "<group>"; };
-		F55ABB521B4F39DA00A0ECD5 /* BoltsSDK-OSX.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "BoltsSDK-OSX.xcconfig"; sourceTree = "<group>"; };
 		F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Parse-iOS.xcconfig"; sourceTree = "<group>"; };
 		F55ABB541B4F39DA00A0ECD5 /* Parse-OSX.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Parse-OSX.xcconfig"; sourceTree = "<group>"; };
 		F55ABB591B4F39DA00A0ECD5 /* ParseUnitTests-iOS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "ParseUnitTests-iOS.xcconfig"; sourceTree = "<group>"; };
@@ -3333,8 +3334,9 @@
 				810154FE1BB382F800D7C7BD /* Parse-watchOS.xcconfig */,
 				F55ABB591B4F39DA00A0ECD5 /* ParseUnitTests-iOS.xcconfig */,
 				F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-OSX.xcconfig */,
-				F55ABB511B4F39DA00A0ECD5 /* BoltsSDK-iOS.xcconfig */,
-				F55ABB521B4F39DA00A0ECD5 /* BoltsSDK-OSX.xcconfig */,
+				812F31FB1BCF40DC00FCBCD4 /* Bolts-iOS.xcconfig */,
+				812F31FC1BCF40DC00FCBCD4 /* Bolts-OSX.xcconfig */,
+				812F31FD1BCF40DC00FCBCD4 /* Bolts-watchOS.xcconfig */,
 				F55ABB5B1B4F39DA00A0ECD5 /* Shared */,
 			);
 			path = Configurations;
@@ -4025,31 +4027,45 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
-		81493A931A0D3492008D5504 /* BoltsSDK-OSX */ = {
+		812F31F71BCF40AA00FCBCD4 /* Bolts-watchOS */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos\"";
-			buildConfigurationList = 81493A941A0D3493008D5504 /* Build configuration list for PBXLegacyTarget "BoltsSDK-OSX" */;
+			buildConfigurationList = 812F31F81BCF40AA00FCBCD4 /* Build configuration list for PBXLegacyTarget "Bolts-watchOS" */;
 			buildPhases = (
 			);
 			buildToolPath = "$(SRCROOT)/Scripts/build_third_party.rb";
 			buildWorkingDirectory = "$(SRCROOT)";
 			dependencies = (
 			);
-			name = "BoltsSDK-OSX";
+			name = "Bolts-watchOS";
 			passBuildSettingsInEnvironment = 0;
 			productName = BoltsSDK;
 		};
-		F569F07A1B14DB1E00296F73 /* BoltsSDK-iOS */ = {
+		81493A931A0D3492008D5504 /* Bolts-OSX */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos\"";
-			buildConfigurationList = F569F07B1B14DB1E00296F73 /* Build configuration list for PBXLegacyTarget "BoltsSDK-iOS" */;
+			buildConfigurationList = 81493A941A0D3493008D5504 /* Build configuration list for PBXLegacyTarget "Bolts-OSX" */;
 			buildPhases = (
 			);
 			buildToolPath = "$(SRCROOT)/Scripts/build_third_party.rb";
 			buildWorkingDirectory = "$(SRCROOT)";
 			dependencies = (
 			);
-			name = "BoltsSDK-iOS";
+			name = "Bolts-OSX";
+			passBuildSettingsInEnvironment = 0;
+			productName = BoltsSDK;
+		};
+		F569F07A1B14DB1E00296F73 /* Bolts-iOS */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos\"";
+			buildConfigurationList = F569F07B1B14DB1E00296F73 /* Build configuration list for PBXLegacyTarget "Bolts-iOS" */;
+			buildPhases = (
+			);
+			buildToolPath = "$(SRCROOT)/Scripts/build_third_party.rb";
+			buildWorkingDirectory = "$(SRCROOT)";
+			dependencies = (
+			);
+			name = "Bolts-iOS";
 			passBuildSettingsInEnvironment = 0;
 			productName = BoltsSDK;
 		};
@@ -4069,7 +4085,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				810155061BB3832700D7C7BD /* PBXTargetDependency */,
+				812F31FF1BCF414D00FCBCD4 /* PBXTargetDependency */,
 			);
 			name = "Parse-watchOS";
 			productName = "Parse-iOS";
@@ -4197,8 +4213,9 @@
 				97010FAB1630B18F00AB761E /* Parse-OSX */,
 				81C09F501AF97A490043B49C /* ParseUnitTests-OSX */,
 				810155051BB3832700D7C7BD /* Parse-watchOS */,
-				F569F07A1B14DB1E00296F73 /* BoltsSDK-iOS */,
-				81493A931A0D3492008D5504 /* BoltsSDK-OSX */,
+				F569F07A1B14DB1E00296F73 /* Bolts-iOS */,
+				81493A931A0D3492008D5504 /* Bolts-OSX */,
+				812F31F71BCF40AA00FCBCD4 /* Bolts-watchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -5007,11 +5024,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		810155061BB3832700D7C7BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F569F07A1B14DB1E00296F73 /* BoltsSDK-iOS */;
-			targetProxy = 810155071BB3832700D7C7BD /* PBXContainerItemProxy */;
-		};
 		811167471B8402DA003CB026 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 97010FAB1630B18F00AB761E /* Parse-OSX */;
@@ -5022,9 +5034,14 @@
 			target = 81C3821B19CCA89E0066284A /* Parse-iOS */;
 			targetProxy = 8111674B1B8402DF003CB026 /* PBXContainerItemProxy */;
 		};
+		812F31FF1BCF414D00FCBCD4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 812F31F71BCF40AA00FCBCD4 /* Bolts-watchOS */;
+			targetProxy = 812F31FE1BCF414D00FCBCD4 /* PBXContainerItemProxy */;
+		};
 		81493A9A1A0D3CE3008D5504 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 81493A931A0D3492008D5504 /* BoltsSDK-OSX */;
+			target = 81493A931A0D3492008D5504 /* Bolts-OSX */;
 			targetProxy = 81493A991A0D3CE3008D5504 /* PBXContainerItemProxy */;
 		};
 		81AB68C81B7E7F2A0053210E /* PBXTargetDependency */ = {
@@ -5034,7 +5051,7 @@
 		};
 		F569F07F1B14DB3C00296F73 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F569F07A1B14DB1E00296F73 /* BoltsSDK-iOS */;
+			target = F569F07A1B14DB1E00296F73 /* Bolts-iOS */;
 			targetProxy = F569F07E1B14DB3C00296F73 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -5079,16 +5096,32 @@
 			};
 			name = Release;
 		};
+		812F31F91BCF40AA00FCBCD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 812F31FD1BCF40DC00FCBCD4 /* Bolts-watchOS.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		812F31FA1BCF40AA00FCBCD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 812F31FD1BCF40DC00FCBCD4 /* Bolts-watchOS.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		81493A951A0D3493008D5504 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F55ABB521B4F39DA00A0ECD5 /* BoltsSDK-OSX.xcconfig */;
+			baseConfigurationReference = 812F31FC1BCF40DC00FCBCD4 /* Bolts-OSX.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
 		81493A961A0D3493008D5504 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F55ABB521B4F39DA00A0ECD5 /* BoltsSDK-OSX.xcconfig */;
+			baseConfigurationReference = 812F31FC1BCF40DC00FCBCD4 /* Bolts-OSX.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
@@ -5151,14 +5184,14 @@
 		};
 		F569F07C1B14DB1E00296F73 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F55ABB511B4F39DA00A0ECD5 /* BoltsSDK-iOS.xcconfig */;
+			baseConfigurationReference = 812F31FB1BCF40DC00FCBCD4 /* Bolts-iOS.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
 		F569F07D1B14DB1E00296F73 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F55ABB511B4F39DA00A0ECD5 /* BoltsSDK-iOS.xcconfig */;
+			baseConfigurationReference = 812F31FB1BCF40DC00FCBCD4 /* Bolts-iOS.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
@@ -5184,7 +5217,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		81493A941A0D3493008D5504 /* Build configuration list for PBXLegacyTarget "BoltsSDK-OSX" */ = {
+		812F31F81BCF40AA00FCBCD4 /* Build configuration list for PBXLegacyTarget "Bolts-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				812F31F91BCF40AA00FCBCD4 /* Debug */,
+				812F31FA1BCF40AA00FCBCD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81493A941A0D3493008D5504 /* Build configuration list for PBXLegacyTarget "Bolts-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				81493A951A0D3493008D5504 /* Debug */,
@@ -5229,7 +5271,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F569F07B1B14DB1E00296F73 /* Build configuration list for PBXLegacyTarget "BoltsSDK-iOS" */ = {
+		F569F07B1B14DB1E00296F73 /* Build configuration list for PBXLegacyTarget "Bolts-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F569F07C1B14DB1E00296F73 /* Debug */,
