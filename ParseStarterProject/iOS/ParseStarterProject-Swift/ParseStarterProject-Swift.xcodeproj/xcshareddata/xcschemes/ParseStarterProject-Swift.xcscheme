@@ -28,20 +28,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F569F07A1B14DB1E00296F73"
-               BuildableName = "BoltsSDK-iOS"
-               BlueprintName = "BoltsSDK-iOS"
-               ReferencedContainer = "container:../../../Parse.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "81BA81441A49DA1800E65899"
                BuildableName = "ParseStarterProject-Swift.app"
                BlueprintName = "ParseStarterProject-Swift"
