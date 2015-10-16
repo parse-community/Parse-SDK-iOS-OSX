@@ -650,7 +650,8 @@ static BOOL revocableSessionEnabled_;
 - (NSDictionary *)RESTDictionaryWithObjectEncoder:(PFEncoder *)objectEncoder
                                 operationSetUUIDs:(NSArray **)operationSetUUIDs
                                             state:(PFObjectState *)state
-                                operationSetQueue:(NSArray *)queue {
+                                operationSetQueue:(NSArray *)queue
+                               deletingEventually:(BOOL)isDeletingEventually {
     @synchronized (self.lock) {
         NSMutableArray *cleanQueue = [queue mutableCopy];
         [queue enumerateObjectsUsingBlock:^(PFOperationSet *operationSet, NSUInteger idx, BOOL *stop) {
@@ -665,7 +666,8 @@ static BOOL revocableSessionEnabled_;
         return [super RESTDictionaryWithObjectEncoder:objectEncoder
                                     operationSetUUIDs:operationSetUUIDs
                                                 state:state
-                                    operationSetQueue:cleanQueue];
+                                    operationSetQueue:cleanQueue
+                                   deletingEventually:isDeletingEventually];
     }
 }
 
