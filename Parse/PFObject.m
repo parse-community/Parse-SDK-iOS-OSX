@@ -958,25 +958,33 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
  */
 - (NSDictionary *)RESTDictionaryWithObjectEncoder:(PFEncoder *)objectEncoder
                                 operationSetUUIDs:(NSArray **)operationSetUUIDs {
+    NSArray *operationQueue = nil;
+    PFObjectState *state = nil;
+    BOOL deleting = NO;
     @synchronized (lock) {
         [self checkForChangesToMutableContainers];
-        PFObjectState *state = self._state;
-        return [self RESTDictionaryWithObjectEncoder:objectEncoder
-                                   operationSetUUIDs:operationSetUUIDs
-                                               state:state
-                                   operationSetQueue:operationSetQueue];
+        state = self._state;
+        operationQueue = [[NSArray alloc] initWithArray:operationSetQueue copyItems:YES];
+        deleting = _deletingEventually;
     }
+
+    return [self RESTDictionaryWithObjectEncoder:objectEncoder
+                               operationSetUUIDs:operationSetUUIDs
+                                           state:state
+                               operationSetQueue:operationQueue
+                              deletingEventually:deleting];
 }
 
 - (NSDictionary *)RESTDictionaryWithObjectEncoder:(PFEncoder *)objectEncoder
                                 operationSetUUIDs:(NSArray **)operationSetUUIDs
                                             state:(PFObjectState *)state
-                                operationSetQueue:(NSArray *)queue {
+                                operationSetQueue:(NSArray *)queue
+                               deletingEventually:(BOOL)isDeletingEventually {
     NSMutableDictionary *result = [[state dictionaryRepresentationWithObjectEncoder:objectEncoder] mutableCopy];
     result[PFObjectClassNameRESTKey] = state.parseClassName;
     result[PFObjectCompleteRESTKey] = @(state.complete);
 
-    result[PFObjectIsDeletingEventuallyRESTKey] = @(_deletingEventually);
+    result[PFObjectIsDeletingEventuallyRESTKey] = @(isDeletingEventually);
 
     // TODO (hallucinogen): based on some note from Android's toRest, we'll need to put this
     // stuff somewhere else
