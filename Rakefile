@@ -22,8 +22,9 @@ module Constants
 
   PARSE_CONSTANTS_HEADER = File.join(script_folder, 'Parse', 'PFConstants.h')
   PLISTS = [
-    File.join(script_folder, 'Parse', 'Resources', 'Framework.plist'),
-    File.join(script_folder, 'Parse', 'Resources', 'FrameworkOSX.plist'),
+    File.join(script_folder, 'Parse', 'Resources', 'Parse-iOS.Info.plist'),
+    File.join(script_folder, 'Parse', 'Resources', 'Parse-OSX.Info.plist'),
+    File.join(script_folder, 'Parse', 'Resources', 'Parse-watchOS.Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),

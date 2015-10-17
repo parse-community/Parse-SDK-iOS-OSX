@@ -1355,7 +1355,7 @@
 		095ACE9913C69BF700566243 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		09809FB11434F98C00EC3E74 /* PFInternalUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PFInternalUtils.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		09809FB21434F98C00EC3E74 /* PFInternalUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PFInternalUtils.m; sourceTree = "<group>"; };
-		09809FB91434F98C00EC3E74 /* Framework.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Framework.plist; sourceTree = "<group>"; };
+		09809FB91434F98C00EC3E74 /* Parse-iOS.Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Parse-iOS.Info.plist"; sourceTree = "<group>"; };
 		09B119F614880776002B5594 /* PFGeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGeoPoint.h; sourceTree = "<group>"; };
 		09B119F714880776002B5594 /* PFGeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGeoPoint.m; sourceTree = "<group>"; };
 		09B119FB1488429D002B5594 /* PFGeoPointPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGeoPointPrivate.h; sourceTree = "<group>"; };
@@ -1457,6 +1457,7 @@
 		812F31FB1BCF40DC00FCBCD4 /* Bolts-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Bolts-iOS.xcconfig"; sourceTree = "<group>"; };
 		812F31FC1BCF40DC00FCBCD4 /* Bolts-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Bolts-OSX.xcconfig"; sourceTree = "<group>"; };
 		812F31FD1BCF40DC00FCBCD4 /* Bolts-watchOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Bolts-watchOS.xcconfig"; sourceTree = "<group>"; };
+		812F31DD1BCF3F7000FCBCD4 /* Parse-watchOS.Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Parse-watchOS.Info.plist"; sourceTree = "<group>"; };
 		812FC61E1B0FF9FA0043C07F /* PFPurchaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPurchaseController.h; sourceTree = "<group>"; };
 		812FC61F1B0FF9FA0043C07F /* PFPurchaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPurchaseController.m; sourceTree = "<group>"; };
 		81308B6B1B5781F500FFFF44 /* PFTestSwizzledMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFTestSwizzledMethod.h; sourceTree = "<group>"; };
@@ -1805,7 +1806,7 @@
 		9739513816B9D28E0010B884 /* PFAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAnalytics.h; sourceTree = "<group>"; };
 		9739513916B9D28E0010B884 /* PFAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAnalytics.m; sourceTree = "<group>"; };
 		97A3EA0C161FB6A9007A96B2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		97AA93B816780B7600445C2D /* FrameworkOSX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FrameworkOSX.plist; sourceTree = "<group>"; };
+		97AA93B816780B7600445C2D /* Parse-OSX.Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Parse-OSX.Info.plist"; sourceTree = "<group>"; };
 		97DE045016321428007154E8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		97DE045916321492007154E8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		97DE045B163214C0007154E8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -2070,8 +2071,9 @@
 		09809FB81434F98C00EC3E74 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				09809FB91434F98C00EC3E74 /* Framework.plist */,
-				97AA93B816780B7600445C2D /* FrameworkOSX.plist */,
+				09809FB91434F98C00EC3E74 /* Parse-iOS.Info.plist */,
+				97AA93B816780B7600445C2D /* Parse-OSX.Info.plist */,
+				812F31DD1BCF3F7000FCBCD4 /* Parse-watchOS.Info.plist */,
 				8139B12C1A7BF559002BEF84 /* third_party_licenses.txt */,
 				81E7BE011B82B931007ACDD8 /* Parse.strings */,
 			);

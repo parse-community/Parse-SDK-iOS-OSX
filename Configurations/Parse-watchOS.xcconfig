@@ -20,4 +20,4 @@ OTHER_LDFLAGS = $(inherited) -ObjC
 
 FRAMEWORK_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR) $(VENDOR_DIR)/Bolts-ObjC/build/watchOS/
 
-INFOPLIST_FILE = $(PARSE_DIR)/Parse/Resources/Framework-watchOS.plist
+INFOPLIST_FILE = $(PROJECT_DIR)/Parse/Resources/Parse-watchOS.Info.plist
