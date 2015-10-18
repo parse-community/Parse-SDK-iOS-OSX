@@ -332,7 +332,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
  @abstract Enables revocable sessions and migrates the currentUser session token to use revocable session if needed.
 
  @discussion This method is required if you want to use <PFSession> APIs
- and you application's 'Require Revocable Session' setting is turned off on `http://parse.com` app settings.
+ and your application's 'Require Revocable Session' setting is turned off on `http://parse.com` app settings.
  After returned `BFTask` completes - <PFSession> class and APIs will be available for use.
 
  @returns An instance of `BFTask` that is completed when revocable
