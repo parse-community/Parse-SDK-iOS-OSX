@@ -1808,10 +1808,10 @@
 		812B62FF1B5F30D3009CEAA9 /* PFObjectFileCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFObjectFileCoder.m; sourceTree = "<group>"; };
 		812B7AB61AF2FA4800D15FF5 /* PFQueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFQueryController.h; sourceTree = "<group>"; };
 		812B7AB71AF2FA4800D15FF5 /* PFQueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFQueryController.m; sourceTree = "<group>"; };
+		812F31DD1BCF3F7000FCBCD4 /* Parse-watchOS.Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Parse-watchOS.Info.plist"; sourceTree = "<group>"; };
 		812F31FB1BCF40DC00FCBCD4 /* Bolts-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Bolts-iOS.xcconfig"; sourceTree = "<group>"; };
 		812F31FC1BCF40DC00FCBCD4 /* Bolts-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Bolts-OSX.xcconfig"; sourceTree = "<group>"; };
 		812F31FD1BCF40DC00FCBCD4 /* Bolts-watchOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Bolts-watchOS.xcconfig"; sourceTree = "<group>"; };
-		812F31DD1BCF3F7000FCBCD4 /* Parse-watchOS.Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Parse-watchOS.Info.plist"; sourceTree = "<group>"; };
 		812FC61E1B0FF9FA0043C07F /* PFPurchaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPurchaseController.h; sourceTree = "<group>"; };
 		812FC61F1B0FF9FA0043C07F /* PFPurchaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPurchaseController.m; sourceTree = "<group>"; };
 		81308B6B1B5781F500FFFF44 /* PFTestSwizzledMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFTestSwizzledMethod.h; sourceTree = "<group>"; };
@@ -1959,7 +1959,7 @@
 		815EE93F19FA5A390076FE5D /* PFHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFHTTPRequest.h; sourceTree = "<group>"; };
 		815EE94419FAD12F0076FE5D /* PFRESTQueryCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRESTQueryCommand.h; sourceTree = "<group>"; };
 		815EE94519FAD12F0076FE5D /* PFRESTQueryCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFRESTQueryCommand.m; sourceTree = "<group>"; };
-		815F24151BD04D150054659F /* Parse-tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Parse-tvOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		815F24151BD04D150054659F /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		815F24171BD04D310054659F /* Parse-tvOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Parse-tvOS.xcconfig"; sourceTree = "<group>"; };
 		815F24181BD04D480054659F /* Parse-tvOS.Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Parse-tvOS.Info.plist"; sourceTree = "<group>"; };
 		815F24191BD04DB70054659F /* Bolts-tvOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Bolts-tvOS.xcconfig"; sourceTree = "<group>"; };
@@ -2477,7 +2477,7 @@
 				816F449B1A8E8933009CDB32 /* ParseUnitTests-iOS.xctest */,
 				81C09F861AF97A490043B49C /* ParseUnitTests-OSX.xctest */,
 				810156691BB3832700D7C7BD /* Parse.framework */,
-				815F24151BD04D150054659F /* Parse-tvOS.framework */,
+				815F24151BD04D150054659F /* Parse.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4698,7 +4698,7 @@
 			);
 			name = "Parse-tvOS";
 			productName = "Parse-iOS";
-			productReference = 815F24151BD04D150054659F /* Parse-tvOS.framework */;
+			productReference = 815F24151BD04D150054659F /* Parse.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		816F441B1A8E8933009CDB32 /* ParseUnitTests-iOS */ = {
@@ -5924,8 +5924,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 815F24171BD04D310054659F /* Parse-tvOS.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = "Parse-iOS copy-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
@@ -5933,8 +5931,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 815F24171BD04D310054659F /* Parse-tvOS.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = "Parse-iOS copy-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
