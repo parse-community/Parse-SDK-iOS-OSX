@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "815F22AF1BD04D150054659F"
-               BuildableName = "Parse-tvOS.framework"
+               BuildableName = "Parse.framework"
                BlueprintName = "Parse-tvOS"
                ReferencedContainer = "container:Parse.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "815F22AF1BD04D150054659F"
-            BuildableName = "Parse-tvOS.framework"
+            BuildableName = "Parse.framework"
             BlueprintName = "Parse-tvOS"
             ReferencedContainer = "container:Parse.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "815F22AF1BD04D150054659F"
-            BuildableName = "Parse-tvOS.framework"
+            BuildableName = "Parse.framework"
             BlueprintName = "Parse-tvOS"
             ReferencedContainer = "container:Parse.xcodeproj">
          </BuildableReference>
