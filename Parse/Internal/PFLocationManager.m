@@ -96,12 +96,22 @@
         [self.blockSet addObject:[handler copy]];
     }
 
+    //
+    // Abandon hope all ye who enter here.
+    // Apparently, the CLLocationManager API is different for iOS/OSX/watchOS/tvOS up to the point,
+    // where encapsulating pieces together just makes much more sense
+    // than hard to human-parse compiled out pieces of the code.
+    // This looks duplicated, slightly, but very much intentional.
+    //
 #if TARGET_OS_WATCH
     if ([self.bundle objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"] != nil) {
         [self.locationManager requestWhenInUseAuthorization];
     } else {
         [self.locationManager requestAlwaysAuthorization];
     }
+    [self.locationManager requestLocation];
+#elif TARGET_OS_TV
+    [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager requestLocation];
 #elif TARGET_OS_IOS
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
@@ -113,7 +123,7 @@
         }
     }
     [self.locationManager startUpdatingLocation];
-#elif TARGET_OS_MAC
+#elif PF_TARGET_OS_OSX
     [self.locationManager startUpdatingLocation];
 #endif
 }
