@@ -979,12 +979,12 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
                                 operationSetUUIDs:(NSArray **)operationSetUUIDs
                                             state:(PFObjectState *)state
                                 operationSetQueue:(NSArray *)queue
-                          deletingEventuallyCount:(NSUInteger)deleteingEventuallyCount {
+                          deletingEventuallyCount:(NSUInteger)deletingEventuallyCount {
     NSMutableDictionary *result = [[state dictionaryRepresentationWithObjectEncoder:objectEncoder] mutableCopy];
     result[PFObjectClassNameRESTKey] = state.parseClassName;
     result[PFObjectCompleteRESTKey] = @(state.complete);
 
-    result[PFObjectIsDeletingEventuallyRESTKey] = @(deleteingEventuallyCount);
+    result[PFObjectIsDeletingEventuallyRESTKey] = @(deletingEventuallyCount);
 
     // TODO (hallucinogen): based on some note from Android's toRest, we'll need to put this
     // stuff somewhere else

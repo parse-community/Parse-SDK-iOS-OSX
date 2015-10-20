@@ -652,23 +652,21 @@ static BOOL revocableSessionEnabled_;
                                             state:(PFObjectState *)state
                                 operationSetQueue:(NSArray *)queue
                           deletingEventuallyCount:(NSUInteger)deletingEventuallyCount {
-    @synchronized (self.lock) {
-        NSMutableArray *cleanQueue = [queue mutableCopy];
-        [queue enumerateObjectsUsingBlock:^(PFOperationSet *operationSet, NSUInteger idx, BOOL *stop) {
-            // Remove operations for `password` field, to not let it persist to LDS.
-            if (operationSet[PFUserPasswordRESTKey]) {
-                operationSet = [operationSet copy];
-                [operationSet removeObjectForKey:PFUserPasswordRESTKey];
+    NSMutableArray *cleanQueue = [queue mutableCopy];
+    [queue enumerateObjectsUsingBlock:^(PFOperationSet *operationSet, NSUInteger idx, BOOL *stop) {
+        // Remove operations for `password` field, to not let it persist to LDS.
+        if (operationSet[PFUserPasswordRESTKey]) {
+            operationSet = [operationSet copy];
+            [operationSet removeObjectForKey:PFUserPasswordRESTKey];
 
-                cleanQueue[idx] = operationSet;
-            }
-        }];
-        return [super RESTDictionaryWithObjectEncoder:objectEncoder
-                                    operationSetUUIDs:operationSetUUIDs
-                                                state:state
-                                    operationSetQueue:cleanQueue
-                              deletingEventuallyCount:deletingEventuallyCount];
-    }
+            cleanQueue[idx] = operationSet;
+        }
+    }];
+    return [super RESTDictionaryWithObjectEncoder:objectEncoder
+                                operationSetUUIDs:operationSetUUIDs
+                                            state:state
+                                operationSetQueue:cleanQueue
+                          deletingEventuallyCount:deletingEventuallyCount];
 }
 
 ///--------------------------------------
