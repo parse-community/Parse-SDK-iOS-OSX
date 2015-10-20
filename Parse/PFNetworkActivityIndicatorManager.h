@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import <Parse/PFConstants.h>
 #import <Parse/PFNullability.h>
 
 PF_ASSUME_NONNULL_BEGIN
@@ -22,7 +23,7 @@ PF_ASSUME_NONNULL_BEGIN
  The number of active requests is incremented or decremented like a stack or a semaphore,
  the activity indicator will animate, as long as the number is greater than zero.
  */
-@interface PFNetworkActivityIndicatorManager : NSObject
+PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFNetworkActivityIndicatorManager : NSObject
 
 /*!
  A Boolean value indicating whether the manager is enabled.
