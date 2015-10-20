@@ -13,9 +13,9 @@
 
 #if TARGET_OS_WATCH
 #import <WatchKit/WatchKit.h>
-#elif TARGET_OS_IOS
+#elif TARGET_OS_IOS || TARGET_OS_TV
 #import <UIKit/UIKit.h>
-#elif TARGET_OS_MAC
+#elif PF_TARGET_OS_OSX
 #import <CoreServices/CoreServices.h>
 #endif
 
@@ -85,13 +85,13 @@ static NSString *PFDeviceSysctlByName(NSString *name) {
 - (NSString *)operatingSystemVersion {
 #if TARGET_OS_IOS
     return [UIDevice currentDevice].systemVersion;
-#elif TARGET_OS_WATCH
+#elif TARGET_OS_WATCH || TARGET_OS_TV
     NSOperatingSystemVersion version = [NSProcessInfo processInfo].operatingSystemVersion;
     return [NSString stringWithFormat:@"%d.%d.%d",
             (int)version.majorVersion,
             (int)version.minorVersion,
             (int)version.patchVersion];
-#elif TARGET_OS_MAC
+#elif PF_TARGET_OS_OSX
     NSProcessInfo *info = [NSProcessInfo processInfo];
     if ([info respondsToSelector:@selector(operatingSystemVersion)]) {
         NSOperatingSystemVersion version = info.operatingSystemVersion;
