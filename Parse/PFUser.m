@@ -651,7 +651,7 @@ static BOOL revocableSessionEnabled_;
                                 operationSetUUIDs:(NSArray **)operationSetUUIDs
                                             state:(PFObjectState *)state
                                 operationSetQueue:(NSArray *)queue
-                               deletingEventually:(BOOL)isDeletingEventually {
+                          deletingEventuallyCount:(NSUInteger)deletingEventuallyCount {
     @synchronized (self.lock) {
         NSMutableArray *cleanQueue = [queue mutableCopy];
         [queue enumerateObjectsUsingBlock:^(PFOperationSet *operationSet, NSUInteger idx, BOOL *stop) {
@@ -667,7 +667,7 @@ static BOOL revocableSessionEnabled_;
                                     operationSetUUIDs:operationSetUUIDs
                                                 state:state
                                     operationSetQueue:cleanQueue
-                                   deletingEventually:isDeletingEventually];
+                              deletingEventuallyCount:deletingEventuallyCount];
     }
 }
 
