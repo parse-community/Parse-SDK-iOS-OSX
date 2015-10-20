@@ -221,7 +221,7 @@
                                 operationSetUUIDs:(NSArray **)operationSetUUIDs
                                             state:(PFObjectState *)state
                                 operationSetQueue:(NSArray *)queue
-                               deletingEventually:(BOOL)isDeletingEventually;
+                          deletingEventuallyCount:(NSUInteger)deletingEventuallyCount;
 
 - (void)mergeFromRESTDictionary:(NSDictionary *)object
                     withDecoder:(PFDecoder *)decoder;

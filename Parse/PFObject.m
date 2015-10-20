@@ -109,7 +109,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
     NSMutableSet *_availableKeys; // TODO: (nlutsenko) Maybe decouple this further.
 
     // TODO (grantland): Derive this off the EventuallyPins as opposed to +/- count.
-    int _deletingEventually;
+    NSUInteger _deletingEventuallyCount;
 
     // A dictionary that maps id (objects) => PFJSONCache
     NSMutableDictionary *hashedObjectsCache;
@@ -960,31 +960,31 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
                                 operationSetUUIDs:(NSArray **)operationSetUUIDs {
     NSArray *operationQueue = nil;
     PFObjectState *state = nil;
-    BOOL deleting = NO;
+    NSUInteger deletingEventuallyCount = 0;
     @synchronized (lock) {
         [self checkForChangesToMutableContainers];
         state = self._state;
         operationQueue = [[NSArray alloc] initWithArray:operationSetQueue copyItems:YES];
-        deleting = _deletingEventually;
+        deletingEventuallyCount = _deletingEventuallyCount;
     }
 
     return [self RESTDictionaryWithObjectEncoder:objectEncoder
                                operationSetUUIDs:operationSetUUIDs
                                            state:state
                                operationSetQueue:operationQueue
-                              deletingEventually:deleting];
+                         deletingEventuallyCount:deletingEventuallyCount];
 }
 
 - (NSDictionary *)RESTDictionaryWithObjectEncoder:(PFEncoder *)objectEncoder
                                 operationSetUUIDs:(NSArray **)operationSetUUIDs
                                             state:(PFObjectState *)state
                                 operationSetQueue:(NSArray *)queue
-                               deletingEventually:(BOOL)isDeletingEventually {
+                          deletingEventuallyCount:(NSUInteger)deleteingEventuallyCount {
     NSMutableDictionary *result = [[state dictionaryRepresentationWithObjectEncoder:objectEncoder] mutableCopy];
     result[PFObjectClassNameRESTKey] = state.parseClassName;
     result[PFObjectCompleteRESTKey] = @(state.complete);
 
-    result[PFObjectIsDeletingEventuallyRESTKey] = @(isDeletingEventually);
+    result[PFObjectIsDeletingEventuallyRESTKey] = @(deleteingEventuallyCount);
 
     // TODO (hallucinogen): based on some note from Android's toRest, we'll need to put this
     // stuff somewhere else
@@ -1076,7 +1076,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
                 return;
             }
             if ([key isEqualToString:PFObjectIsDeletingEventuallyRESTKey]) {
-                _deletingEventually = [obj intValue];
+                _deletingEventuallyCount = [obj unsignedIntegerValue];
                 return;
             }
 
@@ -2030,7 +2030,7 @@ static BOOL PFObjectValueIsKindOfMutableContainerClass(id object) {
             return [self _validateDeleteAsync];
         }] continueWithSuccessBlock:^id(BFTask *task) {
             @synchronized (lock) {
-                _deletingEventually += 1;
+                _deletingEventuallyCount += 1;
 
                 PFOfflineStore *store = [Parse _currentManager].offlineStore;
                 BFTask *updateDataTask = store ? [store updateDataForObjectAsync:self] : [BFTask taskWithResult:nil];
