@@ -19,7 +19,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-PF_WATCH_UNAVAILABLE @interface PFPushManager : NSObject
+PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushManager : NSObject
 
 @property (nonatomic, weak, readonly) id<PFCommandRunnerProvider> commonDataSource;
 @property (nonatomic, weak, readonly) id<PFCurrentInstallationControllerProvider> coreDataSource;

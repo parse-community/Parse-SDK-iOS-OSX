@@ -732,7 +732,6 @@
 		815F22E71BD04D150054659F /* PFRESTQueryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 815EE94519FAD12F0076FE5D /* PFRESTQueryCommand.m */; };
 		815F22E81BD04D150054659F /* PFRESTSessionCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 8121457C1AA4A808000B23F5 /* PFRESTSessionCommand.m */; };
 		815F22E91BD04D150054659F /* PFPropertyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8148814D1B795CAC008763BF /* PFPropertyInfo.m */; };
-		815F22EA1BD04D150054659F /* PFPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 0925ABF213D791770095FEFA /* PFPush.m */; };
 		815F22EB1BD04D150054659F /* PFMutableObjectState.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CB7F741B166FF500DC601D /* PFMutableObjectState.m */; };
 		815F22ED1BD04D150054659F /* PFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 0925ABF413D791770095FEFA /* PFQuery.m */; };
 		815F22EE1BD04D150054659F /* PFConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BF4AB51B0BF3E500A3D75B /* PFConfigController.m */; };
@@ -753,7 +752,6 @@
 		815F22FD1BD04D150054659F /* PFRESTConfigCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 815EE92219F989380076FE5D /* PFRESTConfigCommand.m */; };
 		815F22FE1BD04D150054659F /* PFQueryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C7F48A1AF4110B007B5418 /* PFQueryUtilities.m */; };
 		815F22FF1BD04D150054659F /* PFPaymentTransactionObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8166FCCA1B5038B7003841A2 /* PFPaymentTransactionObserver.m */; };
-		815F23001BD04D150054659F /* PFRESTPushCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C9C9F619FEA89200D514C5 /* PFRESTPushCommand.m */; };
 		815F23011BD04D150054659F /* PFOfflineObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8166FC6A1B50376D003841A2 /* PFOfflineObjectController.m */; };
 		815F23021BD04D150054659F /* PFKeychainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EE9819B0A2060000AE75 /* PFKeychainStore.m */; };
 		815F23041BD04D150054659F /* PFQueryState.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C7F4AA1AF42BD9007B5418 /* PFQueryState.m */; };
@@ -894,7 +892,6 @@
 		815F23901BD04D150054659F /* PFURLSessionJSONDataTaskDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 81BCB4C01B744626006659CB /* PFURLSessionJSONDataTaskDelegate.h */; };
 		815F23911BD04D150054659F /* PFMutableUserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 814BCDF51B4DF66500007B7F /* PFMutableUserState.h */; };
 		815F23921BD04D150054659F /* PFRESTConfigCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 815EE92119F989380076FE5D /* PFRESTConfigCommand.h */; };
-		815F23931BD04D150054659F /* PFRESTPushCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C9C9F519FEA89200D514C5 /* PFRESTPushCommand.h */; };
 		815F23941BD04D150054659F /* PFObjectFileCodingLogic.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E7A2231B6042BD006CB680 /* PFObjectFileCodingLogic.h */; };
 		815F23951BD04D150054659F /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 81068EEF1AE0845D00A34D13 /* PFEncoder.h */; };
 		815F23961BD04D150054659F /* PFQueryController.h in Headers */ = {isa = PBXBuildFile; fileRef = 812B7AB61AF2FA4800D15FF5 /* PFQueryController.h */; };
@@ -4055,7 +4052,6 @@
 				815F23901BD04D150054659F /* PFURLSessionJSONDataTaskDelegate.h in Headers */,
 				815F23911BD04D150054659F /* PFMutableUserState.h in Headers */,
 				815F23921BD04D150054659F /* PFRESTConfigCommand.h in Headers */,
-				815F23931BD04D150054659F /* PFRESTPushCommand.h in Headers */,
 				815F23941BD04D150054659F /* PFObjectFileCodingLogic.h in Headers */,
 				815F23951BD04D150054659F /* PFEncoder.h in Headers */,
 				815F23961BD04D150054659F /* PFQueryController.h in Headers */,
@@ -5149,7 +5145,6 @@
 				815F22E71BD04D150054659F /* PFRESTQueryCommand.m in Sources */,
 				815F22E81BD04D150054659F /* PFRESTSessionCommand.m in Sources */,
 				815F22E91BD04D150054659F /* PFPropertyInfo.m in Sources */,
-				815F22EA1BD04D150054659F /* PFPush.m in Sources */,
 				815F22EB1BD04D150054659F /* PFMutableObjectState.m in Sources */,
 				815F22ED1BD04D150054659F /* PFQuery.m in Sources */,
 				815F22EE1BD04D150054659F /* PFConfigController.m in Sources */,
@@ -5170,7 +5165,6 @@
 				815F22FD1BD04D150054659F /* PFRESTConfigCommand.m in Sources */,
 				815F22FE1BD04D150054659F /* PFQueryUtilities.m in Sources */,
 				815F22FF1BD04D150054659F /* PFPaymentTransactionObserver.m in Sources */,
-				815F23001BD04D150054659F /* PFRESTPushCommand.m in Sources */,
 				815F23011BD04D150054659F /* PFOfflineObjectController.m in Sources */,
 				815F23021BD04D150054659F /* PFKeychainStore.m in Sources */,
 				815F23041BD04D150054659F /* PFQueryState.m in Sources */,

@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-PF_WATCH_UNAVAILABLE @interface PFRESTPushCommand : PFRESTCommand
+PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFRESTPushCommand : PFRESTCommand
 
 + (instancetype)sendPushCommandWithPushState:(PFPushState *)state
                                 sessionToken:(nullable NSString *)sessionToken;
