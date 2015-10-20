@@ -68,7 +68,9 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 @synthesize keyValueCache = _keyValueCache;
 @synthesize coreManager = _coreManager;
 @synthesize analyticsController = _analyticsController;
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
 @synthesize pushManager = _pushManager;
+#endif
 #if TARGET_OS_IOS
 @synthesize purchaseController = _purchaseController;
 #endif
@@ -296,7 +298,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     });
 }
 
-#if !TARGET_OS_WATCH
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
 
 #pragma mark PushManager
 

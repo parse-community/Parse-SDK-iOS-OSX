@@ -38,7 +38,10 @@ PFInstallationIdentifierStoreProvider>
 @property (nonatomic, copy, readonly) NSString *containingApplicationIdentifier;
 
 @property (nonatomic, strong, readonly) PFCoreManager *coreManager;
+
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
 @property (nonatomic, strong) PFPushManager *pushManager;
+#endif
 
 @property (nonatomic, strong) PFAnalyticsController *analyticsController;
 

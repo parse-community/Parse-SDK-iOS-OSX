@@ -507,3 +507,11 @@ extern NSString *const PF_NONNULL_S PFNetworkNotificationURLResponseBodyUserInfo
 #    define PF_WATCH_UNAVAILABLE
 #  endif
 #endif
+
+#ifndef PF_TV_UNAVAILABLE
+#  ifdef __TVOS_PROHIBITED
+#    define PF_TV_UNAVAILABLE __TVOS_PROHIBITED
+#  else
+#    define PF_TV_UNAVAILABLE
+#  endif
+#endif

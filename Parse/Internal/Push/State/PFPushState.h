@@ -17,7 +17,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-PF_WATCH_UNAVAILABLE @interface PFPushState : PFBaseState <NSCopying, NSMutableCopying>
+PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushState : PFBaseState <NSCopying, NSMutableCopying>
 
 @property (nullable, nonatomic, copy, readonly) NSSet *channels;
 @property (nullable, nonatomic, copy, readonly) PFQueryState *queryState;
