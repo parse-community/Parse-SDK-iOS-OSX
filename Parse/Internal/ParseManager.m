@@ -377,7 +377,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
         @strongify(self);
         [PFUser currentUser];
         [PFConfig currentConfig];
-#if !TARGET_OS_WATCH
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
         [PFInstallation currentInstallation];
 #endif
         

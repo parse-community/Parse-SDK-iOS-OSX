@@ -342,7 +342,7 @@
     });
 }
 
-#if !TARGET_OS_WATCH
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
 
 ///--------------------------------------
 #pragma mark - Current Installation Controller
@@ -400,7 +400,7 @@
     });
 }
 
-#if !TARGET_OS_WATCH
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
 
 ///--------------------------------------
 #pragma mark - Installation Controller
