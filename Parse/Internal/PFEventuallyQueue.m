@@ -21,8 +21,11 @@
 #import "PFLogging.h"
 #import "PFMacros.h"
 #import "PFRESTCommand.h"
-#import "PFReachability.h"
 #import "PFTaskQueue.h"
+
+#if !TARGET_OS_WATCH
+#import "PFReachability.h"
+#endif
 
 NSUInteger const PFEventuallyQueueDefaultMaxAttemptsCount = 5;
 NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;

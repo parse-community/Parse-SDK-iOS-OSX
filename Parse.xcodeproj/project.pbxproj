@@ -27,7 +27,6 @@
 		8101551A1BB3832700D7C7BD /* PFUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81ABC0FD1B5427EC00BA9009 /* PFUserController.m */; };
 		8101551B1BB3832700D7C7BD /* PFAsyncTaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C8F2BF1B1F7E6B00CD98E7 /* PFAsyncTaskQueue.m */; };
 		8101551C1BB3832700D7C7BD /* PFCommandCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FDDCB14E1B1BD00A77007 /* PFCommandCache.m */; };
-		8101551D1BB3832700D7C7BD /* PFMutablePushState.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CB7F931B1795CF00DC601D /* PFMutablePushState.m */; };
 		8101551E1BB3832700D7C7BD /* PFObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8166FC6C1B50376D003841A2 /* PFObjectController.m */; };
 		8101551F1BB3832700D7C7BD /* PFCategoryLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8103FA36198FC190000BAE3F /* PFCategoryLoader.m */; };
 		810155201BB3832700D7C7BD /* PFUserAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8166FCD21B503914003841A2 /* PFUserAuthenticationController.m */; };
@@ -261,7 +260,6 @@
 		8101562A1BB3832700D7C7BD /* PFKeyValueCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 814881421B795C63008763BF /* PFKeyValueCache.h */; };
 		8101562C1BB3832700D7C7BD /* PFSessionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8124C89D1B27BF0900758E00 /* PFSessionController.h */; };
 		8101562D1BB3832700D7C7BD /* PFRole.h in Headers */ = {isa = PBXBuildFile; fileRef = 63723F6D1565A085007A1A73 /* PFRole.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8101562E1BB3832700D7C7BD /* PFMutablePushState.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CB7F921B1795CF00DC601D /* PFMutablePushState.h */; };
 		810156301BB3832700D7C7BD /* PFSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 812145751AA4A4C1000B23F5 /* PFSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		810156311BB3832700D7C7BD /* PFEventuallyPin.h in Headers */ = {isa = PBXBuildFile; fileRef = 91115EF71A097AF30092D1C9 /* PFEventuallyPin.h */; };
 		810156321BB3832700D7C7BD /* PFPinningEventuallyQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 91DF24941A09BAF100CFC7D4 /* PFPinningEventuallyQueue.h */; };
@@ -700,7 +698,6 @@
 		815F22C41BD04D150054659F /* PFUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81ABC0FD1B5427EC00BA9009 /* PFUserController.m */; };
 		815F22C51BD04D150054659F /* PFAsyncTaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C8F2BF1B1F7E6B00CD98E7 /* PFAsyncTaskQueue.m */; };
 		815F22C61BD04D150054659F /* PFCommandCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FDDCB14E1B1BD00A77007 /* PFCommandCache.m */; };
-		815F22C71BD04D150054659F /* PFMutablePushState.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CB7F931B1795CF00DC601D /* PFMutablePushState.m */; };
 		815F22C81BD04D150054659F /* PFObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8166FC6C1B50376D003841A2 /* PFObjectController.m */; };
 		815F22C91BD04D150054659F /* PFCategoryLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8103FA36198FC190000BAE3F /* PFCategoryLoader.m */; };
 		815F22CA1BD04D150054659F /* PFUserAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8166FCD21B503914003841A2 /* PFUserAuthenticationController.m */; };
@@ -951,7 +948,6 @@
 		815F23D61BD04D150054659F /* PFKeyValueCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 814881421B795C63008763BF /* PFKeyValueCache.h */; };
 		815F23D81BD04D150054659F /* PFSessionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8124C89D1B27BF0900758E00 /* PFSessionController.h */; };
 		815F23D91BD04D150054659F /* PFRole.h in Headers */ = {isa = PBXBuildFile; fileRef = 63723F6D1565A085007A1A73 /* PFRole.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		815F23DA1BD04D150054659F /* PFMutablePushState.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CB7F921B1795CF00DC601D /* PFMutablePushState.h */; };
 		815F23DC1BD04D150054659F /* PFSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 812145751AA4A4C1000B23F5 /* PFSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		815F23DD1BD04D150054659F /* PFEventuallyPin.h in Headers */ = {isa = PBXBuildFile; fileRef = 91115EF71A097AF30092D1C9 /* PFEventuallyPin.h */; };
 		815F23DE1BD04D150054659F /* PFPinningEventuallyQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 91DF24941A09BAF100CFC7D4 /* PFPinningEventuallyQueue.h */; };
@@ -3916,7 +3912,6 @@
 				8101562A1BB3832700D7C7BD /* PFKeyValueCache.h in Headers */,
 				8101562C1BB3832700D7C7BD /* PFSessionController.h in Headers */,
 				8101562D1BB3832700D7C7BD /* PFRole.h in Headers */,
-				8101562E1BB3832700D7C7BD /* PFMutablePushState.h in Headers */,
 				810156301BB3832700D7C7BD /* PFSession.h in Headers */,
 				810156311BB3832700D7C7BD /* PFEventuallyPin.h in Headers */,
 				810156321BB3832700D7C7BD /* PFPinningEventuallyQueue.h in Headers */,
@@ -4106,7 +4101,6 @@
 				815F23D61BD04D150054659F /* PFKeyValueCache.h in Headers */,
 				815F23D81BD04D150054659F /* PFSessionController.h in Headers */,
 				815F23D91BD04D150054659F /* PFRole.h in Headers */,
-				815F23DA1BD04D150054659F /* PFMutablePushState.h in Headers */,
 				815F23DC1BD04D150054659F /* PFSession.h in Headers */,
 				815F23DD1BD04D150054659F /* PFEventuallyPin.h in Headers */,
 				815F23DE1BD04D150054659F /* PFPinningEventuallyQueue.h in Headers */,
@@ -4962,7 +4956,6 @@
 				8101551A1BB3832700D7C7BD /* PFUserController.m in Sources */,
 				8101551B1BB3832700D7C7BD /* PFAsyncTaskQueue.m in Sources */,
 				8101551C1BB3832700D7C7BD /* PFCommandCache.m in Sources */,
-				8101551D1BB3832700D7C7BD /* PFMutablePushState.m in Sources */,
 				8101551E1BB3832700D7C7BD /* PFObjectController.m in Sources */,
 				8101551F1BB3832700D7C7BD /* PFCategoryLoader.m in Sources */,
 				810155201BB3832700D7C7BD /* PFUserAuthenticationController.m in Sources */,
@@ -5099,7 +5092,6 @@
 				815F22C41BD04D150054659F /* PFUserController.m in Sources */,
 				815F22C51BD04D150054659F /* PFAsyncTaskQueue.m in Sources */,
 				815F22C61BD04D150054659F /* PFCommandCache.m in Sources */,
-				815F22C71BD04D150054659F /* PFMutablePushState.m in Sources */,
 				815F22C81BD04D150054659F /* PFObjectController.m in Sources */,
 				815F22C91BD04D150054659F /* PFCategoryLoader.m in Sources */,
 				815F22CA1BD04D150054659F /* PFUserAuthenticationController.m in Sources */,
