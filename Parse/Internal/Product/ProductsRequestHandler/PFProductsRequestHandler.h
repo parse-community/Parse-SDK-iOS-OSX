@@ -12,6 +12,8 @@
 
 #import <Parse/PFConstants.h>
 
+PF_WATCH_UNAVAILABLE_WARNING
+
 @class BFTask PF_GENERIC(__covariant BFGenericType);
 
 PF_WATCH_UNAVAILABLE @interface PFProductsRequestResult : NSObject

@@ -508,10 +508,26 @@ extern NSString *const PF_NONNULL_S PFNetworkNotificationURLResponseBodyUserInfo
 #  endif
 #endif
 
+#ifndef PF_WATCH_UNAVAILABLE_WARNING
+#  if TARGET_OS_WATCH
+#    define PF_WATCH_UNAVAILABLE_WARNING _Pragma("GCC warning \"This file is unavailable on watchOS.\"")
+#  else
+#    define PF_WATCH_UNAVAILABLE_WARNING
+#  endif
+#endif
+
 #ifndef PF_TV_UNAVAILABLE
 #  ifdef __TVOS_PROHIBITED
 #    define PF_TV_UNAVAILABLE __TVOS_PROHIBITED
 #  else
 #    define PF_TV_UNAVAILABLE
+#  endif
+#endif
+
+#ifndef PF_TV_UNAVAILABLE_WARNING
+#  if TARGET_OS_TV
+#    define PF_TV_UNAVAILABLE_WARNING _Pragma("GCC warning \"This file is unavailable on tvOS.\"")
+#  else
+#    define PF_TV_UNAVAILABLE_WARNING
 #  endif
 #endif

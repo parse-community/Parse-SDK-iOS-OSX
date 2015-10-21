@@ -12,6 +12,8 @@
 
 #import <Parse/PFConstants.h>
 
+PF_WATCH_UNAVAILABLE_WARNING
+
 /*!
  * The PFPaymentTransactionObserver listens to the payment queue, processes a payment by running business logic,
  * and completes the transaction. It's a complex interaction and best explained as follows:

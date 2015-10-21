@@ -14,6 +14,8 @@
 #import <Parse/PFConstants.h>
 #import <Parse/PFInstallation.h>
 
+PF_WATCH_UNAVAILABLE_WARNING
+
 @class PFQuery PF_GENERIC(PFGenericObject : PFObject *);
 
 PF_ASSUME_NONNULL_BEGIN

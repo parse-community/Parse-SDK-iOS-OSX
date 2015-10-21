@@ -14,6 +14,8 @@
 #import "PFCoreDataProvider.h"
 #import "PFDataProvider.h"
 
+PF_WATCH_UNAVAILABLE_WARNING
+
 @class PFPushChannelsController;
 @class PFPushController;
 

@@ -13,6 +13,8 @@
 
 #import "PFCoreDataProvider.h"
 
+PF_WATCH_UNAVAILABLE_WARNING
+
 @class BFTask PF_GENERIC(__covariant BFGenericType);
 
 NS_ASSUME_NONNULL_BEGIN

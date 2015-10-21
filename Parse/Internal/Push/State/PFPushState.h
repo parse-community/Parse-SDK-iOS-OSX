@@ -13,6 +13,8 @@
 
 #import "PFBaseState.h"
 
+PF_WATCH_UNAVAILABLE_WARNING
+
 @class PFQueryState;
 
 NS_ASSUME_NONNULL_BEGIN
