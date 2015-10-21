@@ -14,6 +14,7 @@
 #import <Parse/PFConstants.h>
 #import <Parse/PFInstallation.h>
 
+PF_TV_UNAVAILABLE_WARNING
 PF_WATCH_UNAVAILABLE_WARNING
 
 @class PFQuery PF_GENERIC(PFGenericObject : PFObject *);
