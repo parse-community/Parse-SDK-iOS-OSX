@@ -78,7 +78,7 @@ static NSString *containingApplicationBundleIdentifier_;
     [subclassingController registerSubclass:[PFRole class]];
     [subclassingController registerSubclass:[PFPin class]];
     [subclassingController registerSubclass:[PFEventuallyPin class]];
-#if !TARGET_OS_WATCH
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
     [subclassingController registerSubclass:[PFInstallation class]];
 #if TARGET_OS_IOS
     [subclassingController registerSubclass:[PFProduct class]];
