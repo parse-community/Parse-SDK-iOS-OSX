@@ -722,7 +722,6 @@
 		815F22DD1BD04D150054659F /* PFFieldOperationDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A245921B1E99EA006A6953 /* PFFieldOperationDecoder.m */; };
 		815F22DE1BD04D150054659F /* PFObjectState.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CB7F6E1B166FE500DC601D /* PFObjectState.m */; };
 		815F22DF1BD04D150054659F /* PFKeyValueCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 814881431B795C63008763BF /* PFKeyValueCache.m */; };
-		815F22E01BD04D150054659F /* PFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DEF08A199D555800D86A21 /* PFNetworkActivityIndicatorManager.m */; };
 		815F22E11BD04D150054659F /* PFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0925ABEE13D791770095FEFA /* PFObject.m */; };
 		815F22E21BD04D150054659F /* PFFileStagingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50E486D1B83ED270055094D /* PFFileStagingController.m */; };
 		815F22E31BD04D150054659F /* PFSQLiteDatabaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F51D06331B792CF10044539E /* PFSQLiteDatabaseController.m */; };
@@ -917,7 +916,6 @@
 		815F23B01BD04D150054659F /* PFFileState_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C7F49D1AF421FF007B5418 /* PFFileState_Private.h */; };
 		815F23B11BD04D150054659F /* PFCachedQueryController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8143E6611AFC1C7D008C4E06 /* PFCachedQueryController.h */; };
 		815F23B21BD04D150054659F /* PFMutableACLState.h in Headers */ = {isa = PBXBuildFile; fileRef = F51534FB1B571E9100C49F56 /* PFMutableACLState.h */; };
-		815F23B31BD04D150054659F /* PFNetworkActivityIndicatorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 81DEF089199D555800D86A21 /* PFNetworkActivityIndicatorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		815F23B41BD04D150054659F /* PFObjectController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 8166FC6D1B50376D003841A2 /* PFObjectController_Private.h */; };
 		815F23B51BD04D150054659F /* PFEventuallyQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 91DF24901A09BA7600CFC7D4 /* PFEventuallyQueue.h */; };
 		815F23B61BD04D150054659F /* PFRESTUserCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 81AFE0E51A1FDB7900AB6CB3 /* PFRESTUserCommand.h */; };
@@ -4073,7 +4071,6 @@
 				815F23B01BD04D150054659F /* PFFileState_Private.h in Headers */,
 				815F23B11BD04D150054659F /* PFCachedQueryController.h in Headers */,
 				815F23B21BD04D150054659F /* PFMutableACLState.h in Headers */,
-				815F23B31BD04D150054659F /* PFNetworkActivityIndicatorManager.h in Headers */,
 				815F23B41BD04D150054659F /* PFObjectController_Private.h in Headers */,
 				815F23B51BD04D150054659F /* PFEventuallyQueue.h in Headers */,
 				815F23B61BD04D150054659F /* PFRESTUserCommand.h in Headers */,
@@ -5124,7 +5121,6 @@
 				815F22DD1BD04D150054659F /* PFFieldOperationDecoder.m in Sources */,
 				815F22DE1BD04D150054659F /* PFObjectState.m in Sources */,
 				815F22DF1BD04D150054659F /* PFKeyValueCache.m in Sources */,
-				815F22E01BD04D150054659F /* PFNetworkActivityIndicatorManager.m in Sources */,
 				815F22E11BD04D150054659F /* PFObject.m in Sources */,
 				815F22E21BD04D150054659F /* PFFileStagingController.m in Sources */,
 				815F22E31BD04D150054659F /* PFSQLiteDatabaseController.m in Sources */,

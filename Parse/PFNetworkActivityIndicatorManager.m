@@ -9,8 +9,6 @@
 
 #import "PFNetworkActivityIndicatorManager.h"
 
-#import <Parse/PFConstants.h>
-
 #import "PFApplication.h"
 #import "PFCommandRunningConstants.h"
 
