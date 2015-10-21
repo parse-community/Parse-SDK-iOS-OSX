@@ -14,6 +14,8 @@
 #import <Parse/PFObject.h>
 #import <Parse/PFSubclassing.h>
 
+PF_WATCH_UNAVAILABLE_WARNING
+
 PF_ASSUME_NONNULL_BEGIN
 
 /*!

@@ -27,7 +27,7 @@
 #import "PFUser.h"
 #import "PFURLSessionCommandRunner.h"
 
-#if !TARGET_OS_WATCH
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
 #import "PFPushManager.h"
 #import "PFInstallation.h"
 #endif

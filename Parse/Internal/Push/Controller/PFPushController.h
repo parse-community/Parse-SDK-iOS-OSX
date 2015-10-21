@@ -11,6 +11,9 @@
 
 #import <Parse/PFConstants.h>
 
+PF_TV_UNAVAILABLE_WARNING
+PF_WATCH_UNAVAILABLE_WARNING
+
 @class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFPushState;
 @protocol PFCommandRunning;

@@ -16,6 +16,8 @@
 #import "PFDataProvider.h"
 #import "PFMacros.h"
 
+PF_WATCH_UNAVAILABLE_WARNING
+
 extern NSString *const PFCurrentInstallationFileName;
 extern NSString *const PFCurrentInstallationPinName;
 
