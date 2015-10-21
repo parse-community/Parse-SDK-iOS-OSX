@@ -28,16 +28,21 @@
 #import <Parse/PFUserAuthenticationDelegate.h>
 #import <Parse/PFNullability.h>
 
-#if !TARGET_OS_WATCH
+#if TARGET_OS_IOS
+
+#import <Parse/PFInstallation.h>
+#import <Parse/PFNetworkActivityIndicatorManager.h>
+#import <Parse/PFPush.h>
+#import <Parse/PFProduct.h>
+#import <Parse/PFPurchase.h>
+
+#elif PF_TARGET_OS_OSX
 
 #import <Parse/PFInstallation.h>
 #import <Parse/PFPush.h>
 
-#endif
+#elif TARGET_OS_TV
 
-#if TARGET_OS_IOS
-
-#import <Parse/PFNetworkActivityIndicatorManager.h>
 #import <Parse/PFProduct.h>
 #import <Parse/PFPurchase.h>
 
