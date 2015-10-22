@@ -19,4 +19,4 @@ FRAMEWORK_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR) $(VENDOR_DIR)/Bolts-
 
 INFOPLIST_FILE = $(PROJECT_DIR)/Parse/Resources/Parse-iOS.Info.plist
 
-OTHER_CFLAGS[sdk=iphoneos9.0] = $(inherited) -fembed-bitcode
+OTHER_CFLAGS[sdk=iphoneos9.*] = $(inherited) -fembed-bitcode
