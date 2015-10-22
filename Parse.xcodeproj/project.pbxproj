@@ -4738,7 +4738,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Parse Inc.";
 				TargetAttributes = {
 					81493A931A0D3492008D5504 = {
