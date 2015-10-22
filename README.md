@@ -90,7 +90,7 @@ of patent rights can be found in the PATENTS file in the same directory.
  [build-status-svg]: https://travis-ci.org/ParsePlatform/Parse-SDK-iOS-OSX.svg
  [build-status-link]: https://travis-ci.org/ParsePlatform/Parse-SDK-iOS-OSX/branches
 
- [coverage-status-svg]: https://codecov.io/github/ParsePlatform/Parse-SDK-iOS-OSX/coverage.svg?branch=master
+ [coverage-status-svg]: https://img.shields.io/codecov/c/github/ParsePlatform/Parse-SDK-iOS-OSX/master.svg
  [coverage-status-link]: https://codecov.io/github/ParsePlatform/Parse-SDK-iOS-OSX?branch=master
 
  [license-svg]: https://img.shields.io/badge/license-BSD-lightgrey.svg
