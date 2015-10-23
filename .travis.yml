@@ -14,6 +14,10 @@ env:
     - TEST_TYPE=deployment
     - TEST_TYPE=starters
     - TEST_TYPE=podspecs
+git:
+  submodules: false
+before_install:
+  - git submodule update --init --recursive
 install:
 - |
   if [ -n "$TEST_TYPE" ]; then
