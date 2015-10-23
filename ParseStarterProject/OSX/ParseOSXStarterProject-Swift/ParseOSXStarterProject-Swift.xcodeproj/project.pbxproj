@@ -22,7 +22,6 @@
 
 /* Begin PBXBuildFile section */
 		8129E46E1B841A5C00309634 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8129E46D1B841A5C00309634 /* Parse.framework */; };
-		8129E46F1B841AEE00309634 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8129E46D1B841A5C00309634 /* Parse.framework */; };
 		8129E4701B841AEE00309634 /* Parse.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8129E46D1B841A5C00309634 /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		814C3AD21B69887B00E307BB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 814C3ACE1B69887B00E307BB /* MainMenu.xib */; };
 		814C3AD31B69887B00E307BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 814C3AD01B69887B00E307BB /* Images.xcassets */; };
@@ -71,7 +70,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8129E46E1B841A5C00309634 /* Parse.framework in Frameworks */,
-				8129E46F1B841AEE00309634 /* Parse.framework in Frameworks */,
 				81CC85DA1A49F3D70076DE19 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,7 +151,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Parse;
 				TargetAttributes = {
 					81993FD51B69AC760077D6B9 = {

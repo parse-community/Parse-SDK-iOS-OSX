@@ -220,7 +220,7 @@
 		978816B2163F1D6F00C613D2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Parse;
 				TargetAttributes = {
 					81993FCE1B69ABA70077D6B9 = {
