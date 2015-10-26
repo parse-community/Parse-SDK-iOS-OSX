@@ -9,6 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Parse+Bolts.h"
+
 #import "PFACL.h"
 #import "PFAnalytics.h"
 #import "PFAnonymousUtils.h"
