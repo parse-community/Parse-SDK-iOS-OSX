@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Bolts/Bolts-umbrella.h>
+#import "Bolts.h"
 
 #import "PFConstants.h"
 #import "PFNullability.h"
