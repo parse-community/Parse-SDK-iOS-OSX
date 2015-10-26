@@ -9,10 +9,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Bolts/BFTask.h>
+#import "Bolts.h"
 
-#import <Parse/PFObject.h>
-#import <Parse/PFSubclassing.h>
+#import "PFObject.h"
+#import "PFSubclassing.h"
 
 PF_ASSUME_NONNULL_BEGIN
 

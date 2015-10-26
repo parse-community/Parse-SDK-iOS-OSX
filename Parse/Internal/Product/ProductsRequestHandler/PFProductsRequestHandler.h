@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import <StoreKit/StoreKit.h>
 
-#import <Parse/PFConstants.h>
+#import "PFConstants.h"
 
 PF_WATCH_UNAVAILABLE_WARNING
 

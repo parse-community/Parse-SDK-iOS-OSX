@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFConstants.h>
+#import "PFConstants.h"
 
 PF_ASSUME_NONNULL_BEGIN
 

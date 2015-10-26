@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFNullability.h>
+#import "PFNullability.h"
 
 PF_ASSUME_NONNULL_BEGIN
 

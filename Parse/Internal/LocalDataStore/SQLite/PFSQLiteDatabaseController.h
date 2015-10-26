@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFConstants.h>
+#import "PFConstants.h"
 
 @class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFFileManager;

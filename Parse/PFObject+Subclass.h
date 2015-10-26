@@ -9,8 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFNullability.h>
-#import <Parse/PFObject.h>
+#import "PFNullability.h"
+#import "PFObject.h"
 
 @class PFQuery PF_GENERIC(PFGenericObject : PFObject *);
 

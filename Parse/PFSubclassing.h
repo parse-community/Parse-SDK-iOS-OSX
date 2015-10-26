@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFNullability.h>
+#import "PFNullability.h"
 
 @class PFQuery PF_GENERIC(PFGenericObject : PFObject *);
 
