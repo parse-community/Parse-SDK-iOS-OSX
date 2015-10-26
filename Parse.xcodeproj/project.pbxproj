@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49CBAC331BDE7AB10080A1D4 /* Bolts.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CBAC321BDE7AB10080A1D4 /* Bolts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49CBAC341BDE7AB10080A1D4 /* Bolts.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CBAC321BDE7AB10080A1D4 /* Bolts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49CBAC351BDE7AB10080A1D4 /* Bolts.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CBAC321BDE7AB10080A1D4 /* Bolts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49CBAC361BDE7AB10080A1D4 /* Bolts.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CBAC321BDE7AB10080A1D4 /* Bolts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7CBC8DA116D594F800AEC66D /* PFTaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF213BB16D41D980065CF1A /* PFTaskQueue.m */; };
 		8101550A1BB3832700D7C7BD /* PFWeakValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1EE481AE1EF960031C438 /* PFWeakValue.m */; };
 		8101550B1BB3832700D7C7BD /* PFUserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 814BCDF01B4DF63600007B7F /* PFUserState.m */; };
@@ -1692,6 +1696,7 @@
 		498C29FE1551DC450034BB80 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		499E425515B6409000A2C28E /* PFProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFProduct.h; sourceTree = "<group>"; };
 		499E425615B6409000A2C28E /* PFProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFProduct.m; sourceTree = "<group>"; };
+		49CBAC321BDE7AB10080A1D4 /* Bolts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bolts.h; sourceTree = "<group>"; };
 		49FDE2EC158C138F00126F64 /* PFPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPurchase.h; sourceTree = "<group>"; };
 		49FDE2ED158C138F00126F64 /* PFPurchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPurchase.m; sourceTree = "<group>"; };
 		63723F6D1565A085007A1A73 /* PFRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRole.h; sourceTree = "<group>"; };
@@ -2270,6 +2275,7 @@
 			children = (
 				09809FAE1434F98C00EC3E74 /* Internal */,
 				09809FB81434F98C00EC3E74 /* Resources */,
+				49CBAC321BDE7AB10080A1D4 /* Bolts.h */,
 				09EEA12D1434FB1F00E3A3FA /* Parse.h */,
 				09EEA12E1434FB1F00E3A3FA /* Parse.m */,
 				64C47802147336C70092082F /* PFACL.h */,
@@ -3788,6 +3794,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49CBAC361BDE7AB10080A1D4 /* Bolts.h in Headers */,
 				8101559F1BB3832700D7C7BD /* PFPinningObjectStore.h in Headers */,
 				810155A01BB3832700D7C7BD /* PFMacros.h in Headers */,
 				810155A11BB3832700D7C7BD /* PFRESTAnalyticsCommand.h in Headers */,
@@ -3967,6 +3974,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49CBAC351BDE7AB10080A1D4 /* Bolts.h in Headers */,
 				815F234A1BD04D150054659F /* PFPinningObjectStore.h in Headers */,
 				815F234B1BD04D150054659F /* PFMacros.h in Headers */,
 				815F234C1BD04D150054659F /* PFRESTAnalyticsCommand.h in Headers */,
@@ -4157,6 +4165,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49CBAC331BDE7AB10080A1D4 /* Bolts.h in Headers */,
 				8124C8731B26B9E700758E00 /* PFPinningObjectStore.h in Headers */,
 				810B7D761A0291FF003C0909 /* PFMacros.h in Headers */,
 				81BBE1351A0062B800622646 /* PFRESTAnalyticsCommand.h in Headers */,
@@ -4361,6 +4370,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49CBAC341BDE7AB10080A1D4 /* Bolts.h in Headers */,
 				81F0E89919E6F83E00812A88 /* PFRelation.h in Headers */,
 				81BCB4C51B744626006659CB /* PFURLSessionDataTaskDelegate.h in Headers */,
 				81C9CA0719FECF5F00D514C5 /* PFRESTFileCommand.h in Headers */,
