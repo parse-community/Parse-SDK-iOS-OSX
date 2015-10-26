@@ -9,9 +9,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFNullability.h>
-#import <Parse/PFObject.h>
-#import <Parse/PFQuery.h>
+#import "PFNullability.h"
+#import "PFObject.h"
+#import "PFQuery.h"
 
 PF_ASSUME_NONNULL_BEGIN
 

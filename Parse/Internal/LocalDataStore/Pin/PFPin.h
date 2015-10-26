@@ -9,8 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFObject.h>
-#import <Parse/PFSubclassing.h>
+#import "PFObject.h"
+#import "PFSubclassing.h"
 
 extern NSString *const PFPinKeyName;
 extern NSString *const PFPinKeyObjects;

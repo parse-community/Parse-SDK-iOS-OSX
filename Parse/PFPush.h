@@ -9,10 +9,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Bolts/BFTask.h>
+#import "Parse+Bolts.h"
 
-#import <Parse/PFConstants.h>
-#import <Parse/PFInstallation.h>
+#import "PFConstants.h"
+#import "PFInstallation.h"
 
 PF_TV_UNAVAILABLE_WARNING
 PF_WATCH_UNAVAILABLE_WARNING

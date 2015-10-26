@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFInstallation.h>
+#import "PFInstallation.h"
 
 @interface PFInstallation (Private)
 

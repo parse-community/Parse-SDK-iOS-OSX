@@ -9,8 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFConstants.h>
-#import <Parse/PFFile.h>
+#import "PFConstants.h"
+#import "PFFile.h"
 
 #import "PFFileState.h"
 

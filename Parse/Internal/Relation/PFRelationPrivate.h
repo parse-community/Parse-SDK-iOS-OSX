@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFRelation.h>
+#import "PFRelation.h"
 
 @class PFDecoder;
 

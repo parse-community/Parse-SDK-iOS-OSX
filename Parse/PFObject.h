@@ -9,10 +9,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Bolts/BFTask.h>
+#import "Parse+Bolts.h"
 
-#import <Parse/PFACL.h>
-#import <Parse/PFConstants.h>
+#import "PFACL.h"
+#import "PFConstants.h"
 
 PF_ASSUME_NONNULL_BEGIN
 

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49CBAC441BDE8EF60080A1D4 /* Parse+Bolts.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CBAC431BDE8EF60080A1D4 /* Parse+Bolts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49CBAC451BDE8EF60080A1D4 /* Parse+Bolts.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CBAC431BDE8EF60080A1D4 /* Parse+Bolts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49CBAC461BDE8EF60080A1D4 /* Parse+Bolts.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CBAC431BDE8EF60080A1D4 /* Parse+Bolts.h */; };
+		49CBAC471BDE8EF60080A1D4 /* Parse+Bolts.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CBAC431BDE8EF60080A1D4 /* Parse+Bolts.h */; };
 		7CBC8DA116D594F800AEC66D /* PFTaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF213BB16D41D980065CF1A /* PFTaskQueue.m */; };
 		8101550A1BB3832700D7C7BD /* PFWeakValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1EE481AE1EF960031C438 /* PFWeakValue.m */; };
 		8101550B1BB3832700D7C7BD /* PFUserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 814BCDF01B4DF63600007B7F /* PFUserState.m */; };
@@ -1692,6 +1696,7 @@
 		498C29FE1551DC450034BB80 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		499E425515B6409000A2C28E /* PFProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFProduct.h; sourceTree = "<group>"; };
 		499E425615B6409000A2C28E /* PFProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFProduct.m; sourceTree = "<group>"; };
+		49CBAC431BDE8EF60080A1D4 /* Parse+Bolts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Parse+Bolts.h"; sourceTree = "<group>"; };
 		49FDE2EC158C138F00126F64 /* PFPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPurchase.h; sourceTree = "<group>"; };
 		49FDE2ED158C138F00126F64 /* PFPurchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPurchase.m; sourceTree = "<group>"; };
 		63723F6D1565A085007A1A73 /* PFRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRole.h; sourceTree = "<group>"; };
@@ -2272,6 +2277,7 @@
 				09809FB81434F98C00EC3E74 /* Resources */,
 				09EEA12D1434FB1F00E3A3FA /* Parse.h */,
 				09EEA12E1434FB1F00E3A3FA /* Parse.m */,
+				49CBAC431BDE8EF60080A1D4 /* Parse+Bolts.h */,
 				64C47802147336C70092082F /* PFACL.h */,
 				64C47803147336C70092082F /* PFACL.m */,
 				9739513816B9D28E0010B884 /* PFAnalytics.h */,
@@ -3822,6 +3828,7 @@
 				810155C21BB3832700D7C7BD /* PFInternalUtils.h in Headers */,
 				810155C31BB3832700D7C7BD /* PFKeychainStore.h in Headers */,
 				810155C41BB3832700D7C7BD /* PFUserAuthenticationDelegate.h in Headers */,
+				49CBAC471BDE8EF60080A1D4 /* Parse+Bolts.h in Headers */,
 				810155C51BB3832700D7C7BD /* PFCommandRunningConstants.h in Headers */,
 				810155C61BB3832700D7C7BD /* PFMulticastDelegate.h in Headers */,
 				810155C71BB3832700D7C7BD /* PFCurrentObjectControlling.h in Headers */,
@@ -3980,6 +3987,7 @@
 				815F23561BD04D150054659F /* PFAnalytics.h in Headers */,
 				815F23571BD04D150054659F /* PFPush.h in Headers */,
 				815F23581BD04D150054659F /* PFSQLiteDatabaseController.h in Headers */,
+				49CBAC461BDE8EF60080A1D4 /* Parse+Bolts.h in Headers */,
 				815F23591BD04D150054659F /* PFRESTFileCommand.h in Headers */,
 				815F235A1BD04D150054659F /* PFObjectState_Private.h in Headers */,
 				815F235B1BD04D150054659F /* PFBase64Encoder.h in Headers */,
@@ -4164,6 +4172,7 @@
 				81CB7FA01B1800E400DC601D /* PFPushController.h in Headers */,
 				815EE93C19FA56D20076FE5D /* PFHTTPURLRequestConstructor.h in Headers */,
 				F51535591B57573700C49F56 /* PFDefaultACLController.h in Headers */,
+				49CBAC441BDE8EF60080A1D4 /* Parse+Bolts.h in Headers */,
 				818AAA7019D36B1C00FC1B3C /* PFACL.h in Headers */,
 				F51534FF1B571E9100C49F56 /* PFACLPrivate.h in Headers */,
 				8124C8851B27588800758E00 /* PFPushChannelsController.h in Headers */,
@@ -4478,6 +4487,7 @@
 				8148814A1B795C63008763BF /* PFKeyValueCache_Private.h in Headers */,
 				81D843CA1B012FBA007CEBCB /* PFCloudCodeController.h in Headers */,
 				81068EBC1ADE462500A34D13 /* Parse_Private.h in Headers */,
+				49CBAC451BDE8EF60080A1D4 /* Parse+Bolts.h in Headers */,
 				812B02971B5DE3EE003846EE /* PFURLSession.h in Headers */,
 				8103FA38198FC190000BAE3F /* BFTask+Private.h in Headers */,
 				F55C740D1B631557000EDAFA /* PFURLSessionCommandRunner_Private.h in Headers */,

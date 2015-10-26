@@ -7,18 +7,8 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <Foundation/Foundation.h>
-
-#import "PFSession.h"
-
-@class PFSessionController;
-
-@interface PFSession ()
-
-///--------------------------------------
-/// @name Session Controller
-///--------------------------------------
-
-+ (PFSessionController *)sessionController;
-
-@end
+#if __has_include(<Bolts/Bolts-umbrella.h>)
+#	import <Bolts/Bolts-umbrella.h>
+#else
+#	import <Bolts/Bolts.h>
+#endif

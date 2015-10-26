@@ -9,9 +9,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFNullability.h>
-#import <Parse/PFObject.h>
-#import <Parse/PFSubclassing.h>
+#import "PFNullability.h"
+#import "PFObject.h"
+#import "PFSubclassing.h"
 
 PF_WATCH_UNAVAILABLE_WARNING
 

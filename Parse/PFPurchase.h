@@ -10,8 +10,8 @@
 #import <Foundation/Foundation.h>
 #import <StoreKit/StoreKit.h>
 
-#import <Parse/PFConstants.h>
-#import <Parse/PFNullability.h>
+#import "PFConstants.h"
+#import "PFNullability.h"
 
 @class PFProduct;
 
