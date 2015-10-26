@@ -9,8 +9,6 @@
 
 #import "PFTestSwizzlingUtilities.h"
 
-#import <objc/runtime.h>
-
 @implementation PFTestSwizzlingUtilities
 
 + (PFTestSwizzledMethod *)swizzleMethod:(SEL)originalSelector

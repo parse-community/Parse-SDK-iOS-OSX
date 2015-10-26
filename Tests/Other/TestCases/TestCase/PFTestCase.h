@@ -9,7 +9,7 @@
 
 #import <OCMock/OCMock.h>
 
-#import <XCTest/XCTest.h>
+@import XCTest;
 
 @interface PFTestCase : XCTestCase
 
