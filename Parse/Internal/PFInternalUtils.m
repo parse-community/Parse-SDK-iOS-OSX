@@ -269,32 +269,3 @@ static NSString *parseServer_;
 }
 
 @end
-
-// A PFJSONCacheItem is a pairing of a json string with its hash value.
-// This is used by our mutable container checking.
-@implementation PFJSONCacheItem
-
-- (instancetype)initWithObject:(id)object {
-    self = [super init];
-    if (!self) return nil;
-
-    NSObject *encoded = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:object];
-    NSData *jsonData = [PFJSONSerialization dataFromJSONObject:encoded];
-    _hashValue = PFMD5HashFromData(jsonData);
-
-    return self;
-}
-
-- (BOOL)isEqual:(id)otherCache {
-    if (![otherCache isKindOfClass:[PFJSONCacheItem class]]) {
-        return NO;
-    }
-
-    return [self.hashValue isEqualToString:[otherCache hashValue]];
-}
-
-+ (PFJSONCacheItem *)cacheFromObject:(id)object {
-    return [[PFJSONCacheItem alloc] initWithObject:object];
-}
-
-@end
