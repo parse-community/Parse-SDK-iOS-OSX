@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Bolts.h"
+#import "Parse+Bolts.h"
 
 #import "PFConstants.h"
 
