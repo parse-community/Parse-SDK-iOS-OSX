@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <CoreLocation/CoreLocation.h>
+@import CoreLocation;
 
 #define CL_DEFAULT_LATITUDE 37.7937
 #define CL_DEFAULT_LONGITUDE -122.3967
