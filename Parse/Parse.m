@@ -80,9 +80,9 @@ static NSString *containingApplicationBundleIdentifier_;
     [subclassingController registerSubclass:[PFEventuallyPin class]];
 #if !TARGET_OS_WATCH && !TARGET_OS_TV
     [subclassingController registerSubclass:[PFInstallation class]];
-#if TARGET_OS_IOS
-    [subclassingController registerSubclass:[PFProduct class]];
 #endif
+#if TARGET_OS_IOS || TARGET_OS_TV
+    [subclassingController registerSubclass:[PFProduct class]];
 #endif
 
 #if TARGET_OS_IOS
