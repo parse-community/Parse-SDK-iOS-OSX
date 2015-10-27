@@ -882,14 +882,19 @@ static BOOL revocableSessionEnabled_;
             return [[self saveAsync:nil] continueAsyncWithBlock:^id(BFTask *task) {
                 if (task.result) {
                     [self synchronizeAuthDataWithAuthType:authType];
-                } else {
-                    @synchronized (self.lock) {
-                        [self.authData removeObjectForKey:authType];
-                        [self.linkedServiceNames removeObject:authType];
-                        [self restoreAnonymity:oldAnonymousData];
-                    }
+                    return task;
                 }
-                return task;
+
+                @synchronized (self.lock) {
+                    [self.authData removeObjectForKey:authType];
+                    [self.linkedServiceNames removeObject:authType];
+                    [self restoreAnonymity:oldAnonymousData];
+                }
+                // Save the user to disk in case of failure, since we want the latest succeeded data persistent.
+                PFCurrentUserController *controller = [[self class] currentUserController];
+                return [[controller saveCurrentObjectAsync:self] continueWithBlock:^id(BFTask *_) {
+                    return task; // Roll-forward the result of a save to network, not local save.
+                }];
             }];
         }];
     }];
