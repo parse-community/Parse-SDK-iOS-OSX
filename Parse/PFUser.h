@@ -17,8 +17,8 @@
 
 PF_ASSUME_NONNULL_BEGIN
 
-typedef void(^PFUserSessionUpgradeResultBlock)(NSError *PF_NULLABLE_S error);
-typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
+typedef void (^PFUserSessionUpgradeResultBlock)(NSError *PF_NULLABLE_S error);
+typedef void (^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
 
 @class PFQuery PF_GENERIC(PFGenericObject : PFObject *);
 @protocol PFUserAuthenticationDelegate;
@@ -475,7 +475,8 @@ typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
 
  @returns A `BFTask` that is resolved to `PFUser` when logging in completes.
  */
-+ (BFTask PF_GENERIC(PFUser *) *)logInWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
++ (BFTask PF_GENERIC(PFUser *)*)logInWithAuthTypeInBackground:(NSString *)authType
+                                                     authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;
 
 /*!
  @abstract Links this user to a third party authentication library.
@@ -488,7 +489,8 @@ typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
 
  @returns A `BFTask` that is resolved to `@YES` if linking succeeds.
  */
-- (BFTask PF_GENERIC(NSNumber *) *)linkWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
+- (BFTask PF_GENERIC(NSNumber *)*)linkWithAuthTypeInBackground:(NSString *)authType
+                                                      authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;
 
 /*!
  @abstract Unlinks this user from a third party authentication library.
@@ -500,7 +502,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *PF_NULLABLE_S error);
 
  @returns A `BFTask` that is resolved to `@YES` if unlinking succeeds.
  */
-- (BFTask PF_GENERIC(NSNumber *) *)unlinkWithAuthTypeInBackground:(NSString *)authType;
+- (BFTask PF_GENERIC(NSNumber *)*)unlinkWithAuthTypeInBackground:(NSString *)authType;
 
 /*!
  @abstract Indicates whether this user is linked with a third party authentication library of a specific type.
