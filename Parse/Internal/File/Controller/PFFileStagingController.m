@@ -51,8 +51,7 @@ static NSString *const PFFileStagingControllerDirectoryName_ = @"PFFileStaging";
 ///--------------------------------------
 
 - (NSString *)stagedFilesDirectoryPath {
-    NSString *folderPath = [self.dataSource.fileManager parseLocalSandboxDataDirectoryPath];
-    return [folderPath stringByAppendingPathComponent:PFFileStagingControllerDirectoryName_];
+    return [self.dataSource.fileManager parseCacheItemPathForPathComponent:PFFileStagingControllerDirectoryName_];
 }
 
 ///--------------------------------------
@@ -89,7 +88,7 @@ static NSString *const PFFileStagingControllerDirectoryName_ = @"PFFileStaging";
 - (BFTask *)_clearStagedFilesAsync {
     return [_taskQueue enqueue:^id(BFTask *task) {
         NSString *stagedFilesDirectoryPath = [self stagedFilesDirectoryPath];
-        return [PFFileManager removeItemAtPathAsync:stagedFilesDirectoryPath];
+        return [PFFileManager removeItemAtPathAsync:stagedFilesDirectoryPath withFileLock:NO];
     }];
 }
 
