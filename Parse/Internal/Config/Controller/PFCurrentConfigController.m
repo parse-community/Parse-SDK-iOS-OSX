@@ -38,20 +38,20 @@ static NSString *const PFConfigCurrentConfigFileName_ = @"config";
     PFNotDesignatedInitializer();
 }
 
-- (instancetype)initWithFileManager:(PFFileManager *)fileManager {
+- (instancetype)initWithDataSource:(id<PFFileManagerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
 
     _dataQueue = dispatch_queue_create("com.parse.config.current", DISPATCH_QUEUE_SERIAL);
     _dataExecutor = [BFExecutor executorWithDispatchQueue:_dataQueue];
 
-    _fileManager = fileManager;
+    _dataSource = dataSource;
 
     return self;
 }
 
-+ (instancetype)controllerWithFileManager:(PFFileManager *)fileManager {
-    return [[self alloc] initWithFileManager:fileManager];
++ (instancetype)controllerWithDataSource:(id<PFFileManagerProvider>)dataSource {
+    return [[self alloc] initWithDataSource:dataSource];
 }
 
 ///--------------------------------------
@@ -103,7 +103,7 @@ static NSString *const PFConfigCurrentConfigFileName_ = @"config";
 }
 
 - (NSString *)configFilePath {
-    return [self.fileManager parseDataItemPathForPathComponent:PFConfigCurrentConfigFileName_];
+    return [self.dataSource.fileManager parseDataItemPathForPathComponent:PFConfigCurrentConfigFileName_];
 }
 
 @end

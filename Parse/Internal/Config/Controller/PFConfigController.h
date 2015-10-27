@@ -11,16 +11,15 @@
 
 #import <Parse/PFConstants.h>
 
+#import "PFDataProvider.h"
+
 @class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFConfig;
 @class PFCurrentConfigController;
-@class PFFileManager;
-@protocol PFCommandRunning;
 
 @interface PFConfigController : NSObject
 
-@property (nonatomic, strong, readonly) PFFileManager *fileManager;
-@property (nonatomic, strong, readonly) id<PFCommandRunning> commandRunner;
+@property (nonatomic, weak, readonly) id<PFFileManagerProvider,PFCommandRunnerProvider> dataSource;
 
 @property (nonatomic, strong, readonly) PFCurrentConfigController *currentConfigController;
 
@@ -29,8 +28,7 @@
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithFileManager:(PFFileManager *)fileManager
-                      commandRunner:(id<PFCommandRunning>)commandRunner NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDataSource:(id<PFFileManagerProvider, PFCommandRunnerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 
 ///--------------------------------------
 /// @name Fetch

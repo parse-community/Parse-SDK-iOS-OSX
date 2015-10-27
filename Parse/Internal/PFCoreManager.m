@@ -179,9 +179,7 @@
     __block PFConfigController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
         if (!_configController) {
-            id<PFCoreManagerDataSource> dataSource = self.dataSource;
-            _configController = [[PFConfigController alloc] initWithFileManager:dataSource.fileManager
-                                                                  commandRunner:dataSource.commandRunner];
+            _configController = [[PFConfigController alloc] initWithDataSource:self.dataSource];
         }
         controller = _configController;
     });

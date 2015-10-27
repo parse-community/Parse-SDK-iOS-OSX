@@ -30,38 +30,31 @@
 ///--------------------------------------
 
 - (void)testConstructor {
-    id mockedFileManager = PFClassMock([PFFileManager class]);
-    id mockedCommandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
+    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
 
-    PFConfigController *controller = [[PFConfigController alloc] initWithFileManager:mockedFileManager
-                                                                       commandRunner:mockedCommandRunner];
-
+    PFConfigController *controller = [[PFConfigController alloc] initWithDataSource:dataSource];
     XCTAssertNotNil(controller);
-    XCTAssertEqual(mockedFileManager, controller.fileManager);
-    XCTAssertEqual(mockedCommandRunner, controller.commandRunner);
+    XCTAssertEqual(dataSource, (id)controller.dataSource);
 }
 
 - (void)testCurrentConfigController {
-    id fileManager = PFClassMock([PFFileManager class]);
-    id commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
+    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
 
-    PFConfigController *configController = [[PFConfigController alloc] initWithFileManager:fileManager
-                                                                             commandRunner:commandRunner];
+    PFConfigController *configController = [[PFConfigController alloc] initWithDataSource:dataSource];
 
     XCTAssertNotNil([configController currentConfigController]);
 }
 
 - (void)testFetch {
-    id fileManager = PFClassMock([PFFileManager class]);;
-
     id commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
     [commandRunner mockCommandResult:@{ @"params" : @{@"testKey" : @"testValue"} }
               forCommandsPassingTest:^BOOL(id obj) {
                   return YES;
               }];
+    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
+    OCMStub([dataSource commandRunner]).andReturn(commandRunner);
 
-    PFConfigController *configController = [[PFConfigController alloc] initWithFileManager:fileManager
-                                                                             commandRunner:commandRunner];
+    PFConfigController *configController = [[PFConfigController alloc] initWithDataSource:dataSource];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
 
