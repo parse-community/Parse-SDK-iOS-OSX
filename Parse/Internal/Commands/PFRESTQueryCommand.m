@@ -106,11 +106,15 @@
     if ([order length]) {
         parameters[@"order"] = order;
     }
-    if (selectedKeys != nil) {
-        parameters[@"keys"] = [[selectedKeys allObjects] componentsJoinedByString:@","];
+    if (selectedKeys) {
+        NSArray *sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"SELF" ascending:YES selector:@selector(compare:)] ];
+        NSArray *keysArray = [selectedKeys sortedArrayUsingDescriptors:sortDescriptors];
+        parameters[@"keys"] = [keysArray componentsJoinedByString:@","];
     }
     if ([includedKeys count] > 0) {
-        parameters[@"include"] = [[includedKeys allObjects] componentsJoinedByString:@","];
+        NSArray *sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"SELF" ascending:YES selector:@selector(compare:)] ];
+        NSArray *keysArray = [includedKeys sortedArrayUsingDescriptors:sortDescriptors];
+        parameters[@"include"] = [keysArray componentsJoinedByString:@","];
     }
     if (limit >= 0) {
         parameters[@"limit"] = [NSString stringWithFormat:@"%d", (int)limit];
