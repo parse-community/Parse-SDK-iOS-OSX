@@ -29,15 +29,15 @@
 ///--------------------------------------
 
 - (void)testConstructors {
-    id runnerMock = PFStrictProtocolMock(@protocol(PFCommandRunning));
+    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
 
-    PFCloudCodeController *controller = [[PFCloudCodeController alloc] initWithCommandRunner:runnerMock];
+    PFCloudCodeController *controller = [[PFCloudCodeController alloc] initWithDataSource:dataSource];
     XCTAssertNotNil(controller);
-    XCTAssertEqual(controller.commandRunner, runnerMock);
+    XCTAssertEqual(controller.dataSource, dataSource);
 
-    controller = [PFCloudCodeController controllerWithCommandRunner:runnerMock];
+    controller = [PFCloudCodeController controllerWithDataSource:dataSource];
     XCTAssertNotNil(controller);
-    XCTAssertEqual(controller.commandRunner, runnerMock);
+    XCTAssertEqual(controller.dataSource, dataSource);
 }
 
 - (void)testCallCloudFunctionParameters {
@@ -51,8 +51,10 @@
 
         return YES;
     }];
+    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
+    OCMStub([dataSource commandRunner]).andReturn(runner);
 
-    PFCloudCodeController *controller = [[PFCloudCodeController alloc] initWithCommandRunner:runner];
+    PFCloudCodeController *controller = [[PFCloudCodeController alloc] initWithDataSource:dataSource];
     [[controller callCloudCodeFunctionAsync:@"yarr"
                              withParameters:@{ @"a" : @1 }
                                sessionToken:@"yolo"] waitUntilFinished];
@@ -65,8 +67,10 @@
     [runner mockCommandResult:nil forCommandsPassingTest:^BOOL(id obj) {
         return obj != nil;
     }];
+    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
+    OCMStub([dataSource commandRunner]).andReturn(runner);
 
-    PFCloudCodeController *controller = [[PFCloudCodeController alloc] initWithCommandRunner:runner];
+    PFCloudCodeController *controller = [PFCloudCodeController controllerWithDataSource:dataSource];
 
     XCTestExpectation *nilResultExpectation = [self currentSelectorTestExpectation];
     [[controller callCloudCodeFunctionAsync:@"a"
@@ -84,7 +88,10 @@
     [runner mockCommandResult:@{ @"result" : @"yarr" } forCommandsPassingTest:^BOOL(id obj) {
         return YES;
     }];
-    PFCloudCodeController *controller = [[PFCloudCodeController alloc] initWithCommandRunner:runner];
+    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
+    OCMStub([dataSource commandRunner]).andReturn(runner);
+
+    PFCloudCodeController *controller = [PFCloudCodeController controllerWithDataSource:dataSource];
 
     XCTestExpectation *resultExpectation = [self expectationWithDescription:@"proper result"];
     [[controller callCloudCodeFunctionAsync:@"a"

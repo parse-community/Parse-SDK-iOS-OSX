@@ -158,7 +158,7 @@
     __block PFCloudCodeController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
         if (!_cloudCodeController) {
-            _cloudCodeController = [[PFCloudCodeController alloc] initWithCommandRunner:self.dataSource.commandRunner];
+            _cloudCodeController = [[PFCloudCodeController alloc] initWithDataSource:self.dataSource];
         }
         controller = _cloudCodeController;
     });

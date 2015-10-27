@@ -28,17 +28,17 @@
     PFNotDesignatedInitializer();
 }
 
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner {
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
 
-    _commandRunner = commandRunner;
+    _dataSource = dataSource;
 
     return self;
 }
 
-+ (instancetype)controllerWithCommandRunner:(id<PFCommandRunning>)commandRunner {
-    return [[self alloc] initWithCommandRunner:commandRunner];
++ (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider>)dataSource {
+    return [[self alloc] initWithDataSource:dataSource];
 }
 
 ///--------------------------------------
@@ -55,7 +55,7 @@
         PFRESTCloudCommand *command = [PFRESTCloudCommand commandForFunction:functionName
                                                               withParameters:encodedParameters
                                                                 sessionToken:sessionToken];
-        return [self.commandRunner runCommandAsync:command withOptions:PFCommandRunningOptionRetryIfFailed];
+        return [self.dataSource.commandRunner runCommandAsync:command withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessBlock:^id(BFTask *task) {
         return ((PFCommandResult *)(task.result)).result[@"result"];
     }] continueWithSuccessBlock:^id(BFTask *task) {
