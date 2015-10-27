@@ -9,9 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFNullability.h>
-
-PF_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN
 
 @class PFRole;
 @class PFUser;
@@ -257,8 +255,8 @@ PF_ASSUME_NONNULL_BEGIN
  - If `NO`, the provided `acl` will be used without modification.
  - If `acl` is `nil`, this value is ignored.
  */
-+ (void)setDefaultACL:(PF_NULLABLE PFACL *)acl withAccessForCurrentUser:(BOOL)currentUserAccess;
++ (void)setDefaultACL:(nullable PFACL *)acl withAccessForCurrentUser:(BOOL)currentUserAccess;
 
 @end
 
-PF_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END

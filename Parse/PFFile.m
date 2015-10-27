@@ -263,12 +263,12 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
     }];
 }
 
-- (void)getFilePathInBackgroundWithBlock:(PF_NULLABLE PFFilePathResultBlock)block {
+- (void)getFilePathInBackgroundWithBlock:(nullable PFFilePathResultBlock)block {
     [[self getFilePathInBackground] thenCallBackOnMainThreadAsync:block];
 }
 
-- (void)getFilePathInBackgroundWithBlock:(PF_NULLABLE PFFilePathResultBlock)block
-                           progressBlock:(PF_NULLABLE PFProgressBlock)progressBlock {
+- (void)getFilePathInBackgroundWithBlock:(nullable PFFilePathResultBlock)block
+                           progressBlock:(nullable PFProgressBlock)progressBlock {
     [[self getFilePathInBackgroundWithProgressBlock:progressBlock] thenCallBackOnMainThreadAsync:block];
 }
 

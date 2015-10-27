@@ -9,8 +9,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFNullability.h>
-
 @class PFObject;
 @class PFUser;
 
@@ -29,7 +27,7 @@ extern NSInteger const PARSE_API_VERSION;
 #define PARSE_IOS_ONLY (TARGET_OS_IPHONE)
 #define PARSE_OSX_ONLY (TARGET_OS_MAC && !(TARGET_OS_IPHONE))
 
-extern NSString *const PF_NONNULL_S kPFDeviceType;
+extern NSString *const __nonnull kPFDeviceType;
 
 #if PARSE_IOS_ONLY
 #import <UIKit/UIKit.h>
@@ -41,7 +39,7 @@ extern NSString *const PF_NONNULL_S kPFDeviceType;
 /// @name Server
 ///--------------------------------------
 
-extern NSString *const PF_NONNULL_S kPFParseServer;
+extern NSString *const __nonnull kPFParseServer;
 
 ///--------------------------------------
 /// @name Cache Policies
@@ -137,7 +135,7 @@ typedef NS_ENUM(uint8_t, PFLogLevel) {
 /// @name Errors
 ///--------------------------------------
 
-extern NSString *const PF_NONNULL_S PFParseErrorDomain;
+extern NSString *const __nonnull PFParseErrorDomain;
 
 /*!
  `PFErrorCode` enum contains all custom error codes that are used as `code` for `NSError` for callbacks on all classes.
@@ -373,17 +371,17 @@ typedef NS_ENUM(NSInteger, PFErrorCode) {
 /// @name Blocks
 ///--------------------------------------
 
-typedef void (^PFBooleanResultBlock)(BOOL succeeded, NSError *PF_NULLABLE_S error);
-typedef void (^PFIntegerResultBlock)(int number, NSError *PF_NULLABLE_S error);
-typedef void (^PFArrayResultBlock)(NSArray *PF_NULLABLE_S objects, NSError *PF_NULLABLE_S error);
-typedef void (^PFObjectResultBlock)(PFObject *PF_NULLABLE_S object,  NSError *PF_NULLABLE_S error);
-typedef void (^PFSetResultBlock)(NSSet *PF_NULLABLE_S channels, NSError *PF_NULLABLE_S error);
-typedef void (^PFUserResultBlock)(PFUser *PF_NULLABLE_S user, NSError *PF_NULLABLE_S error);
-typedef void (^PFDataResultBlock)(NSData *PF_NULLABLE_S data, NSError *PF_NULLABLE_S error);
-typedef void (^PFDataStreamResultBlock)(NSInputStream *PF_NULLABLE_S stream, NSError *PF_NULLABLE_S error);
-typedef void (^PFFilePathResultBlock)(NSString *PF_NULLABLE_S filePath, NSError *PF_NULLABLE_S error);
-typedef void (^PFStringResultBlock)(NSString *PF_NULLABLE_S string, NSError *PF_NULLABLE_S error);
-typedef void (^PFIdResultBlock)(PF_NULLABLE_S id object, NSError *PF_NULLABLE_S error);
+typedef void (^PFBooleanResultBlock)(BOOL succeeded, NSError *__nullable error);
+typedef void (^PFIntegerResultBlock)(int number, NSError *__nullable error);
+typedef void (^PFArrayResultBlock)(NSArray *__nullable objects, NSError *__nullable error);
+typedef void (^PFObjectResultBlock)(PFObject *__nullable object,  NSError *__nullable error);
+typedef void (^PFSetResultBlock)(NSSet *__nullable channels, NSError *__nullable error);
+typedef void (^PFUserResultBlock)(PFUser *__nullable user, NSError *__nullable error);
+typedef void (^PFDataResultBlock)(NSData *__nullable data, NSError *__nullable error);
+typedef void (^PFDataStreamResultBlock)(NSInputStream *__nullable stream, NSError *__nullable error);
+typedef void (^PFFilePathResultBlock)(NSString *__nullable filePath, NSError *__nullable error);
+typedef void (^PFStringResultBlock)(NSString *__nullable string, NSError *__nullable error);
+typedef void (^PFIdResultBlock)(__nullable id object, NSError *__nullable error);
 typedef void (^PFProgressBlock)(int percentDone);
 
 ///--------------------------------------
@@ -393,30 +391,30 @@ typedef void (^PFProgressBlock)(int percentDone);
 /*!
  @abstract The name of the notification that is going to be sent before any URL request is sent.
  */
-extern NSString *const PF_NONNULL_S PFNetworkWillSendURLRequestNotification;
+extern NSString *const __nonnull PFNetworkWillSendURLRequestNotification;
 
 /*!
  @abstract The name of the notification that is going to be sent after any URL response is received.
  */
-extern NSString *const PF_NONNULL_S PFNetworkDidReceiveURLResponseNotification;
+extern NSString *const __nonnull PFNetworkDidReceiveURLResponseNotification;
 
 /*!
  @abstract The key of request(NSURLRequest) in the userInfo dictionary of a notification.
  @note This key is populated in userInfo, only if `PFLogLevel` on `Parse` is set to `PFLogLevelDebug`.
  */
-extern NSString *const PF_NONNULL_S PFNetworkNotificationURLRequestUserInfoKey;
+extern NSString *const __nonnull PFNetworkNotificationURLRequestUserInfoKey;
 
 /*!
  @abstract The key of response(NSHTTPURLResponse) in the userInfo dictionary of a notification.
  @note This key is populated in userInfo, only if `PFLogLevel` on `Parse` is set to `PFLogLevelDebug`.
  */
-extern NSString *const PF_NONNULL_S PFNetworkNotificationURLResponseUserInfoKey;
+extern NSString *const __nonnull PFNetworkNotificationURLResponseUserInfoKey;
 
 /*!
  @abstract The key of repsonse body (usually `NSString` with JSON) in the userInfo dictionary of a notification.
  @note This key is populated in userInfo, only if `PFLogLevel` on `Parse` is set to `PFLogLevelDebug`.
  */
-extern NSString *const PF_NONNULL_S PFNetworkNotificationURLResponseBodyUserInfoKey;
+extern NSString *const __nonnull PFNetworkNotificationURLResponseBodyUserInfoKey;
 
 
 ///--------------------------------------

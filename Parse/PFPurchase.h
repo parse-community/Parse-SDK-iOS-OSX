@@ -11,15 +11,14 @@
 #import <StoreKit/StoreKit.h>
 
 #import <Parse/PFConstants.h>
-#import <Parse/PFNullability.h>
 
 @class PFProduct;
 
-PF_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^PFPurchaseProductObservationBlock)(SKPaymentTransaction *transaction);
-typedef void (^PFPurchaseBuyProductResultBlock)(NSError *PF_NULLABLE_S error);
-typedef void (^PFPurchaseDownloadAssetResultBlock)(NSString *PF_NULLABLE_S filePath, NSError *PF_NULLABLE_S error);
+typedef void (^PFPurchaseBuyProductResultBlock)(NSError *__nullable error);
+typedef void (^PFPurchaseDownloadAssetResultBlock)(NSString *__nullable filePath, NSError *__nullable error);
 
 /*!
  `PFPurchase` provides a set of APIs for working with in-app purchases.
@@ -71,7 +70,7 @@ typedef void (^PFPurchaseDownloadAssetResultBlock)(NSString *PF_NULLABLE_S fileP
  */
 + (void)downloadAssetForTransaction:(SKPaymentTransaction *)transaction
                          completion:(PFPurchaseDownloadAssetResultBlock)completion
-                           progress:(PF_NULLABLE PFProgressBlock)progress;
+                           progress:(nullable PFProgressBlock)progress;
 
 /*!
  @abstract *Asynchronously* restore completed transactions for the current user.
@@ -91,8 +90,8 @@ typedef void (^PFPurchaseDownloadAssetResultBlock)(NSString *PF_NULLABLE_S fileP
 
  @warning This method will return `nil`, if the purchase wasn't verified or if the asset was not downloaded.
  */
-+ (PF_NULLABLE NSString *)assetContentPathForProduct:(PFProduct *)product;
++ (nullable NSString *)assetContentPathForProduct:(PFProduct *)product;
 
 @end
 
-PF_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END
