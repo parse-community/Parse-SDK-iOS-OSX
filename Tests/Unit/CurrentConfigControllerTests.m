@@ -55,12 +55,15 @@
 ///--------------------------------------
 
 - (void)testConstructor {
-    id mockedFileManager = PFClassMock([PFFileManager class]);
+    id dataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
 
-    PFCurrentConfigController *controller = [[PFCurrentConfigController alloc] initWithFileManager:mockedFileManager];
-
+    PFCurrentConfigController *controller = [[PFCurrentConfigController alloc] initWithDataSource:dataSource];
     XCTAssertNotNil(controller);
-    XCTAssertEqual(controller.fileManager, mockedFileManager);
+    XCTAssertEqual((id)controller.dataSource, dataSource);
+
+    controller = [PFCurrentConfigController controllerWithDataSource:dataSource];
+    XCTAssertNotNil(controller);
+    XCTAssertEqual((id)controller.dataSource, dataSource);
 }
 
 - (void)testGetCurrentConfig {
@@ -79,7 +82,10 @@
     XCTAssertNil(error);
 
     PFFileManager *fileManager = [self mockedFileManagerWithConfigPath:configPath];
-    PFCurrentConfigController *currentController = [PFCurrentConfigController controllerWithFileManager:fileManager];
+    id dataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
+    OCMStub([dataSource fileManager]).andReturn(fileManager);
+
+    PFCurrentConfigController *currentController = [PFCurrentConfigController controllerWithDataSource:dataSource];
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
 
     [[currentController getCurrentConfigAsync] continueWithBlock:^id(BFTask *task) {
@@ -99,7 +105,10 @@
     PFConfig *testConfig = [[PFConfig alloc] initWithFetchedConfig:[self testConfigDictionary]];
 
     PFFileManager *fileManager = [self mockedFileManagerWithConfigPath:configPath];
-    PFCurrentConfigController *currentController = [PFCurrentConfigController controllerWithFileManager:fileManager];
+    id dataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
+    OCMStub([dataSource fileManager]).andReturn(fileManager);
+
+    PFCurrentConfigController *currentController = [PFCurrentConfigController controllerWithDataSource:dataSource];
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
 
     [[currentController setCurrentConfigAsync:testConfig] continueWithBlock:^id(BFTask *task) {
@@ -125,7 +134,10 @@
     PFConfig *testConfig = [[PFConfig alloc] initWithFetchedConfig:[self testConfigDictionary]];
 
     PFFileManager *fileManager = [self mockedFileManagerWithConfigPath:configPath];
-    PFCurrentConfigController *currentController = [PFCurrentConfigController controllerWithFileManager:fileManager];
+    id dataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
+    OCMStub([dataSource fileManager]).andReturn(fileManager);
+
+    PFCurrentConfigController *currentController = [PFCurrentConfigController controllerWithDataSource:dataSource];
     XCTestExpectation *saveExpectation = [self expectationWithDescription:@"Save"];
 
     [[currentController setCurrentConfigAsync:testConfig] continueWithBlock:^id(BFTask *task) {
@@ -157,7 +169,10 @@
     PFConfig *testConfig = [[PFConfig alloc] initWithFetchedConfig:[self testConfigDictionary]];
 
     PFFileManager *fileManager = [self mockedFileManagerWithConfigPath:configPath];
-    PFCurrentConfigController *currentController = [PFCurrentConfigController controllerWithFileManager:fileManager];
+    id dataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
+    OCMStub([dataSource fileManager]).andReturn(fileManager);
+
+    PFCurrentConfigController *currentController = [PFCurrentConfigController controllerWithDataSource:dataSource];
     XCTestExpectation *saveExpectation = [self expectationWithDescription:@"Save"];
 
     [[currentController setCurrentConfigAsync:testConfig] continueWithBlock:^id(BFTask *task) {
