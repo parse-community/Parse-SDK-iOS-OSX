@@ -11,7 +11,7 @@
 
 #import <Parse/PFConstants.h>
 
-PF_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN
 
 /*!
  Provides a general interface for delegation of third party authentication with <PFUser>s.
@@ -29,8 +29,8 @@ PF_ASSUME_NONNULL_BEGIN
  @returns `YES` - if the `authData` was succesfully synchronized,
  or `NO` if user should not longer be associated because of bad `authData`.
  */
-- (BOOL)restoreAuthenticationWithAuthData:(PF_NULLABLE NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;
+- (BOOL)restoreAuthenticationWithAuthData:(nullable NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;
 
 @end
 
-PF_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END

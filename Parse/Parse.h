@@ -26,7 +26,6 @@
 #import <Parse/PFSubclassing.h>
 #import <Parse/PFUser.h>
 #import <Parse/PFUserAuthenticationDelegate.h>
-#import <Parse/PFNullability.h>
 
 #if TARGET_OS_IOS
 
@@ -48,7 +47,7 @@
 
 #endif
 
-PF_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN
 
 /*!
  The `Parse` class contains static functions that handle global configuration for the Parse framework.
@@ -197,4 +196,4 @@ PF_ASSUME_NONNULL_BEGIN
 
 @end
 
-PF_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END

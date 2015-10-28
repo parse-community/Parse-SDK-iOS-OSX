@@ -9,13 +9,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFNullability.h>
 #import <Parse/PFObject.h>
 #import <Parse/PFSubclassing.h>
 
 PF_WATCH_UNAVAILABLE_WARNING
 
-PF_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN
 
 /*!
  A Parse Framework Installation Object that is a local representation of an
@@ -69,7 +68,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSu
 /*!
  @abstract The device token for the `PFInstallation`.
  */
-@property (PF_NULLABLE_PROPERTY nonatomic, copy) NSString *deviceToken;
+@property (nullable, nonatomic, copy) NSString *deviceToken;
 
 /*!
  @abstract The badge for the `PFInstallation`.
@@ -79,19 +78,19 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSu
 /*!
  @abstract The name of the time zone for the `PFInstallation`.
  */
-@property (PF_NULLABLE_PROPERTY nonatomic, copy, readonly) NSString *timeZone;
+@property (nullable, nonatomic, copy, readonly) NSString *timeZone;
 
 /*!
  @abstract The channels for the `PFInstallation`.
  */
-@property (PF_NULLABLE_PROPERTY nonatomic, copy) NSArray *channels;
+@property (nullable, nonatomic, copy) NSArray *channels;
 
 /*!
  @abstract Sets the device token string property from an `NSData`-encoded token.
 
  @param deviceTokenData A token that identifies the device.
  */
-- (void)setDeviceTokenFromData:(PF_NULLABLE NSData *)deviceTokenData;
+- (void)setDeviceTokenFromData:(nullable NSData *)deviceTokenData;
 
 ///--------------------------------------
 /// @name Querying for Installations
@@ -108,8 +107,8 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSu
 
  You can add additional query conditions, but one of the above must appear as a top-level `AND` clause in the query.
  */
-+ (PF_NULLABLE PFQuery *)query;
++ (nullable PFQuery *)query;
 
 @end
 
-PF_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END
