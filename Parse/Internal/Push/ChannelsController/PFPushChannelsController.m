@@ -14,6 +14,7 @@
 #import "PFCurrentInstallationController.h"
 #import "PFErrorUtilities.h"
 #import "PFInstallation.h"
+#import "PFInstallationConstants.h"
 
 @interface PFPushChannelsController ()
 
@@ -56,7 +57,7 @@
                                     ? (BFTask *)[installation fetchInBackground]
                                     : (BFTask *)[installation saveInBackground]);
 
-        return [installationTask continueWithSuccessBlock:^id(BFTask *task) {
+        return [installationTask continueWithSuccessBlock:^id(BFTask *_) {
             return [NSSet setWithArray:installation.channels];
         }];
     }];
@@ -70,11 +71,11 @@
     return [[self _getCurrentObjectAsync] continueWithSuccessBlock:^id(BFTask *task) {
         PFInstallation *installation = task.result;
         if ([installation.channels containsObject:name] &&
-            ![installation isDirtyForKey:@"channels"]) {
+            ![installation isDirtyForKey:PFInstallationKeyChannels]) {
             return @YES;
         }
 
-        [installation addUniqueObject:name forKey:@"channels"];
+        [installation addUniqueObject:name forKey:PFInstallationKeyChannels];
         return [installation saveInBackground];
     }];
 }
@@ -84,10 +85,10 @@
         PFInstallation *installation = task.result;
         if (name.length != 0 &&
             ![installation.channels containsObject:name] &&
-            ![installation isDirtyForKey:@"channels"]) {
+            ![installation isDirtyForKey:PFInstallationKeyChannels]) {
             return @YES;
         }
-        [installation removeObject:name forKey:@"channels"];
+        [installation removeObject:name forKey:PFInstallationKeyChannels];
         return [installation saveInBackground];
     }];
 }
