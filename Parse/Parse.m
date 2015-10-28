@@ -25,11 +25,8 @@
 #import "PFLogging.h"
 #import "PFObjectSubclassingController.h"
 
-#if !TARGET_OS_WATCH
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
 #import "PFInstallationPrivate.h"
-#if TARGET_OS_IOS
-#import "PFProduct+Private.h"
-#endif
 #endif
 
 #import "PFCategoryLoader.h"
