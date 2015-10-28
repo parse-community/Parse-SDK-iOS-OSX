@@ -27,8 +27,8 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushManager : NSObject
 @property (nonatomic, weak, readonly) id<PFCommandRunnerProvider> commonDataSource;
 @property (nonatomic, weak, readonly) id<PFCurrentInstallationControllerProvider> coreDataSource;
 
-@property (nonatomic, strong) PFPushController *pushController;
-@property (nonatomic, strong) PFPushChannelsController *channelsController;
+@property (null_resettable, nonatomic, strong) PFPushController *pushController;
+@property (null_resettable, nonatomic, strong) PFPushChannelsController *channelsController;
 
 ///--------------------------------------
 /// @name Init
