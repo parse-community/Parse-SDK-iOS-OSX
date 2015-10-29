@@ -25,6 +25,7 @@
 
 @interface ParseManager : NSObject <PFCommandRunnerProvider,
 PFFileManagerProvider,
+PFPersistenceControllerProvider,
 PFOfflineStoreProvider,
 PFEventuallyQueueProvider,
 PFKeychainStoreProvider,

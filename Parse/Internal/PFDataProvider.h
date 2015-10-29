@@ -28,6 +28,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@class PFPersistenceController;
+
+@protocol PFPersistenceControllerProvider <NSObject>
+
+@property (nonatomic, strong, readonly) PFPersistenceController *persistenceController;
+
+@end
+
 @class PFOfflineStore;
 
 @protocol PFOfflineStoreProvider <NSObject>
