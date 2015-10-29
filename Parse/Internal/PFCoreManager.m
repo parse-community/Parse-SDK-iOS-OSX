@@ -29,7 +29,7 @@
 #import "PFUserAuthenticationController.h"
 #import "PFUserController.h"
 
-#if !TARGET_OS_WATCH
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
 #import "PFCurrentInstallationController.h"
 #import "PFInstallationController.h"
 #endif
@@ -57,10 +57,14 @@
 @synthesize pinningObjectStore = _pinningObjectStore;
 @synthesize userAuthenticationController = _userAuthenticationController;
 @synthesize sessionController = _sessionController;
-@synthesize currentInstallationController = _currentInstallationController;
 @synthesize currentUserController = _currentUserController;
 @synthesize userController = _userController;
+
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
+@synthesize currentInstallationController = _currentInstallationController;
 @synthesize installationController = _installationController;
+#endif
+
 
 ///--------------------------------------
 #pragma mark - Init

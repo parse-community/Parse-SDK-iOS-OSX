@@ -45,10 +45,13 @@ PFObjectFilePersistenceControllerProvider,
 PFPinningObjectStoreProvider,
 PFObjectLocalIdStoreProvider,
 PFUserAuthenticationControllerProvider,
-PFCurrentInstallationControllerProvider,
-PFCurrentUserControllerProvider,
+#if !TARGET_OS_TV && !TARGET_OS_WATCH
 PFInstallationControllerProvider,
-PFUserControllerProvider>
+PFCurrentInstallationControllerProvider,
+#endif
+PFCurrentUserControllerProvider,
+PFUserControllerProvider
+>
 
 @property (nonatomic, weak, readonly) id<PFCoreManagerDataSource> dataSource;
 
