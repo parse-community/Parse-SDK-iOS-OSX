@@ -107,12 +107,12 @@
         parameters[@"order"] = order;
     }
     if (selectedKeys) {
-        NSArray *sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"SELF" ascending:YES selector:@selector(compare:)] ];
+        NSArray *sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES selector:@selector(compare:)] ];
         NSArray *keysArray = [selectedKeys sortedArrayUsingDescriptors:sortDescriptors];
         parameters[@"keys"] = [keysArray componentsJoinedByString:@","];
     }
     if ([includedKeys count] > 0) {
-        NSArray *sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"SELF" ascending:YES selector:@selector(compare:)] ];
+        NSArray *sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES selector:@selector(compare:)] ];
         NSArray *keysArray = [includedKeys sortedArrayUsingDescriptors:sortDescriptors];
         parameters[@"include"] = [keysArray componentsJoinedByString:@","];
     }
