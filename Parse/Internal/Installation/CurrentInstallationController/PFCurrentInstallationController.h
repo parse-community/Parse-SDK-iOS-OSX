@@ -16,6 +16,7 @@
 #import "PFDataProvider.h"
 #import "PFMacros.h"
 
+PF_TV_UNAVAILABLE_WARNING
 PF_WATCH_UNAVAILABLE_WARNING
 
 extern NSString *const PFCurrentInstallationFileName;
