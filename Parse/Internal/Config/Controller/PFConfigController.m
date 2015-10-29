@@ -18,8 +18,7 @@
 #import "PFDecoder.h"
 #import "PFRESTConfigCommand.h"
 
-@interface PFConfigController ()
-{
+@interface PFConfigController () {
     dispatch_queue_t _dataAccessQueue;
     dispatch_queue_t _networkQueue;
     BFExecutor *_networkExecutor;
@@ -39,7 +38,7 @@
     PFNotDesignatedInitializer();
 }
 
-- (instancetype)initWithDataSource:(id<PFFileManagerProvider,PFCommandRunnerProvider>)dataSource {
+- (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider, PFCommandRunnerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
 
@@ -59,7 +58,7 @@
 
 - (BFTask *)fetchConfigAsyncWithSessionToken:(NSString *)sessionToken {
     @weakify(self);
-    return [BFTask taskFromExecutor:_networkExecutor withBlock:^id{
+    return [BFTask taskFromExecutor:_networkExecutor withBlock:^id {
         @strongify(self);
         PFRESTCommand *command = [PFRESTConfigCommand configFetchCommandWithSessionToken:sessionToken];
         return [[[self.dataSource.commandRunner runCommandAsync:command
