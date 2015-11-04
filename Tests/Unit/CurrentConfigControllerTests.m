@@ -11,12 +11,14 @@
 
 @import Bolts.BFTask;
 
+#import "BFTask+Private.h"
 #import "PFCommandResult.h"
 #import "PFConfig.h"
 #import "PFConfig_Private.h"
 #import "PFCurrentConfigController.h"
-#import "PFFileManager.h"
+#import "PFPersistenceController.h"
 #import "PFTestCase.h"
+#import "PFJSONSerialization.h"
 
 @interface CurrentConfigControllerTests : PFTestCase
 
@@ -32,22 +34,20 @@
     return @{ @"params" : @{@"testKey" : @"testValue"} };
 }
 
-- (PFFileManager *)mockedFileManagerWithConfigPath:(NSString *)path {
-    id fileManager = PFPartialMock([[PFFileManager alloc] initWithApplicationIdentifier:OCMOCK_ANY
-                                                             applicationGroupIdentifier:@"com.parse.test"]);
-
-    OCMStub([fileManager parseDataItemPathForPathComponent:OCMOCK_ANY]).andReturn(path);
-
-    return fileManager;
+- (PFPersistenceController *)mockedPersistenceController {
+    id controller = PFStrictClassMock([PFPersistenceController class]);
+    id group = PFStrictProtocolMock(@protocol(PFPersistenceGroup));
+    OCMStub([controller getPersistenceGroupAsync]).andReturn([BFTask taskWithResult:group]);
+    return controller;
 }
 
-- (NSString *)configPathForSelector:(SEL)cmd {
-    NSString *configPath = [[NSTemporaryDirectory() stringByAppendingPathComponent:NSStringFromSelector(cmd)]
-                            stringByAppendingPathExtension:@"config"];
-
-    [[NSFileManager defaultManager] removeItemAtPath:configPath error:NULL];
-
-    return configPath;
+- (PFPersistenceController *)mockedPersistenceControllerWithConfigDictionary:(NSDictionary *)dictionary {
+    id controller = [self mockedPersistenceController];
+    id group = [[controller getPersistenceGroupAsync] waitForResult:nil];
+    NSData *jsonData = [PFJSONSerialization dataFromJSONObject:dictionary];
+    BFTask *task = [BFTask taskWithResult:jsonData];
+    OCMStub([group getDataAsyncForKey:@"config"]).andReturn(task);
+    return controller;
 }
 
 ///--------------------------------------
@@ -55,7 +55,7 @@
 ///--------------------------------------
 
 - (void)testConstructor {
-    id dataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
+    id dataSource = PFStrictProtocolMock(@protocol(PFPersistenceControllerProvider));
 
     PFCurrentConfigController *controller = [[PFCurrentConfigController alloc] initWithDataSource:dataSource];
     XCTAssertNotNil(controller);
@@ -67,23 +67,9 @@
 }
 
 - (void)testGetCurrentConfig {
-    NSString *configPath = [self configPathForSelector:_cmd];
-
-    NSOutputStream *outputStream = [NSOutputStream outputStreamToFileAtPath:configPath append:NO];
-    [outputStream open];
-
-    NSError *error = nil;
-    [NSJSONSerialization writeJSONObject:[self testConfigDictionary]
-                                toStream:outputStream
-                                 options:0
-                                   error:&error];
-
-    [outputStream close];
-    XCTAssertNil(error);
-
-    PFFileManager *fileManager = [self mockedFileManagerWithConfigPath:configPath];
-    id dataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
-    OCMStub([dataSource fileManager]).andReturn(fileManager);
+    id dataSource = PFStrictProtocolMock(@protocol(PFPersistenceControllerProvider));
+    PFPersistenceController *controller = [self mockedPersistenceControllerWithConfigDictionary:[self testConfigDictionary]];
+    OCMStub([dataSource persistenceController]).andReturn(controller);
 
     PFCurrentConfigController *currentController = [PFCurrentConfigController controllerWithDataSource:dataSource];
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
@@ -101,91 +87,93 @@
 }
 
 - (void)testSetCurrentConfig {
-    NSString *configPath = [self configPathForSelector:_cmd];
+    id dataSource = PFStrictProtocolMock(@protocol(PFPersistenceControllerProvider));
+    PFPersistenceController *controller = [self mockedPersistenceController];
+    OCMStub([dataSource persistenceController]).andReturn(controller);
+
     PFConfig *testConfig = [[PFConfig alloc] initWithFetchedConfig:[self testConfigDictionary]];
-
-    PFFileManager *fileManager = [self mockedFileManagerWithConfigPath:configPath];
-    id dataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
-    OCMStub([dataSource fileManager]).andReturn(fileManager);
-
     PFCurrentConfigController *currentController = [PFCurrentConfigController controllerWithDataSource:dataSource];
-    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
 
+    id group = [[controller getPersistenceGroupAsync] waitForResult:nil];
+    OCMExpect([group setDataAsync:[OCMArg checkWithBlock:^BOOL(id obj) {
+        NSDictionary *dictionary = [PFJSONSerialization JSONObjectFromData:obj];
+        return [dictionary isEqual:[self testConfigDictionary]];
+    }] forKey:@"config"]).andReturn([BFTask taskWithResult:nil]);
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[currentController setCurrentConfigAsync:testConfig] continueWithBlock:^id(BFTask *task) {
         XCTAssertFalse(task.faulted);
         [expectation fulfill];
 
         return nil;
     }];
-
     [self waitForTestExpectations];
 
-    NSData *data = [NSData dataWithContentsOfFile:configPath];
-    XCTAssertNotNil(data);
-
-    NSDictionary *contentsOfFile = [NSJSONSerialization JSONObjectWithData:data
-                                                                   options:0
-                                                                     error:NULL];
-    XCTAssertEqualObjects(contentsOfFile, [self testConfigDictionary]);
+    OCMVerifyAll(group);
 }
 
 - (void)testClearCurrentConfig {
-    NSString *configPath = [self configPathForSelector:_cmd];
+    id dataSource = PFStrictProtocolMock(@protocol(PFPersistenceControllerProvider));
+    PFPersistenceController *controller = [self mockedPersistenceController];
+    OCMStub([dataSource persistenceController]).andReturn(controller);
+
     PFConfig *testConfig = [[PFConfig alloc] initWithFetchedConfig:[self testConfigDictionary]];
 
-    PFFileManager *fileManager = [self mockedFileManagerWithConfigPath:configPath];
-    id dataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
-    OCMStub([dataSource fileManager]).andReturn(fileManager);
-
     PFCurrentConfigController *currentController = [PFCurrentConfigController controllerWithDataSource:dataSource];
-    XCTestExpectation *saveExpectation = [self expectationWithDescription:@"Save"];
 
+    id group = [[controller getPersistenceGroupAsync] waitForResult:nil];
+    OCMExpect([group setDataAsync:[OCMArg checkWithBlock:^BOOL(id obj) {
+        NSDictionary *dictionary = [PFJSONSerialization JSONObjectFromData:obj];
+        return [dictionary isEqual:[self testConfigDictionary]];
+    }] forKey:@"config"]).andReturn([BFTask taskWithResult:nil]);
+
+    XCTestExpectation *saveExpectation = [self expectationWithDescription:@"Save"];
     [[currentController setCurrentConfigAsync:testConfig] continueWithBlock:^id(BFTask *task) {
         XCTAssertFalse(task.faulted);
         [saveExpectation fulfill];
 
         return nil;
     }];
-
     [self waitForTestExpectations];
 
-    XCTestExpectation *clearExpectation = [self expectationWithDescription:@"Clear"];
+    OCMExpect([group removeDataAsyncForKey:@"config"]).andReturn([BFTask taskWithResult:nil]);
 
+    XCTestExpectation *clearExpectation = [self expectationWithDescription:@"Clear"];
     [[currentController clearCurrentConfigAsync] continueWithBlock:^id(BFTask *task) {
         XCTAssertFalse(task.faulted);
         [clearExpectation fulfill];
-
         return nil;
     }];
-
     [self waitForTestExpectations];
 
-    NSData *data = [NSData dataWithContentsOfFile:configPath];
-    XCTAssertNil(data);
+    OCMVerifyAll(group);
 }
 
 - (void)testClearMemoryCachedCurrentConfig {
-    NSString *configPath = [self configPathForSelector:_cmd];
+    id dataSource = PFStrictProtocolMock(@protocol(PFPersistenceControllerProvider));
+    PFPersistenceController *controller = [self mockedPersistenceController];
+    OCMStub([dataSource persistenceController]).andReturn(controller);
+
     PFConfig *testConfig = [[PFConfig alloc] initWithFetchedConfig:[self testConfigDictionary]];
 
-    PFFileManager *fileManager = [self mockedFileManagerWithConfigPath:configPath];
-    id dataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
-    OCMStub([dataSource fileManager]).andReturn(fileManager);
-
     PFCurrentConfigController *currentController = [PFCurrentConfigController controllerWithDataSource:dataSource];
-    XCTestExpectation *saveExpectation = [self expectationWithDescription:@"Save"];
 
+    id group = [[controller getPersistenceGroupAsync] waitForResult:nil];
+    OCMExpect([group setDataAsync:[OCMArg checkWithBlock:^BOOL(id obj) {
+        NSDictionary *dictionary = [PFJSONSerialization JSONObjectFromData:obj];
+        return [dictionary isEqual:[self testConfigDictionary]];
+    }] forKey:@"config"]).andReturn([BFTask taskWithResult:nil]);
+
+    XCTestExpectation *saveExpectation = [self expectationWithDescription:@"Save"];
     [[currentController setCurrentConfigAsync:testConfig] continueWithBlock:^id(BFTask *task) {
         XCTAssertFalse(task.faulted);
         [saveExpectation fulfill];
 
         return nil;
     }];
-
     [self waitForTestExpectations];
 
     XCTestExpectation *clearExpectation = [self expectationWithDescription:@"Clear"];
-
     [[currentController clearMemoryCachedCurrentConfigAsync] continueWithBlock:^id(BFTask *task) {
         XCTAssertFalse(task.faulted);
         [clearExpectation fulfill];
@@ -195,11 +183,7 @@
 
     [self waitForTestExpectations];
 
-    NSData *data = [NSData dataWithContentsOfFile:configPath];
-    XCTAssertNotNil(data);
-
-    // Ideally here we would check to ensure that we re-read from the path. However, you cannot re-stub
-    // the same method using OCMock (Ugh), so for now just assume that it properly removed the current config.
+    OCMVerifyAll(group);
 }
 
 @end

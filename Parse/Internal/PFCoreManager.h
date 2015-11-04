@@ -22,7 +22,8 @@ PFKeychainStoreProvider,
 PFFileManagerProvider,
 PFOfflineStoreProvider,
 PFKeyValueCacheProvider,
-PFInstallationIdentifierStoreProvider>
+PFInstallationIdentifierStoreProvider,
+PFPersistenceControllerProvider>
 
 @property (nonatomic, strong, readonly) PFInstallationIdentifierStore *installationIdentifierStore;
 

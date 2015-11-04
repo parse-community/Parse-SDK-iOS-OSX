@@ -19,7 +19,7 @@
 
 @interface PFConfigController : NSObject
 
-@property (nonatomic, weak, readonly) id<PFFileManagerProvider,PFCommandRunnerProvider> dataSource;
+@property (nonatomic, weak, readonly) id<PFPersistenceControllerProvider, PFCommandRunnerProvider> dataSource;
 
 @property (nonatomic, strong, readonly) PFCurrentConfigController *currentConfigController;
 
@@ -28,7 +28,7 @@
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithDataSource:(id<PFFileManagerProvider, PFCommandRunnerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider, PFCommandRunnerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 
 ///--------------------------------------
 /// @name Fetch
