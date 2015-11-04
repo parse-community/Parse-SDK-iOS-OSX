@@ -25,24 +25,27 @@
 
 static NSString *PFDeviceSysctlByName(NSString *name) {
     const char *charName = [name UTF8String];
+    NSString *string = nil;
+    size_t size = 0;
+    char *answer = NULL;
 
-    size_t size;
-    if (sysctlbyname(charName, NULL, &size, NULL, 0) < 0) {
-      return nil;
-    }
-    char *answer = (char*)malloc(size);
+    do {
+        if (sysctlbyname(charName, NULL, &size, NULL, 0) != 0) {
+            break;
+        }
+        answer = (char*)malloc(size);
 
-    if (answer == NULL) {
-        return nil;
-    }
+        if (answer == NULL) {
+            break;
+        }
 
-    if (sysctlbyname(charName, answer, &size, NULL, 0) < 0) {
-      free(answer);
-      return nil;
-    }
-    NSString *string = [NSString stringWithUTF8String:answer];
+        if (sysctlbyname(charName, answer, &size, NULL, 0) != 0) {
+            break;
+        }
+        string = [[NSString alloc] initWithBytes:answer length:size encoding:NSASCIIStringEncoding];
+    } while(0);
+
     free(answer);
-
     return string;
 }
 
