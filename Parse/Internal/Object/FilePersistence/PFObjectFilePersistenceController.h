@@ -19,15 +19,15 @@
 
 @interface PFObjectFilePersistenceController : NSObject
 
-@property (nonatomic, weak, readonly) id<PFFileManagerProvider> dataSource;
+@property (nonatomic, weak, readonly) id<PFPersistenceControllerProvider> dataSource;
 
 ///--------------------------------------
 /// @name Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithDataSource:(id<PFFileManagerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
-+ (instancetype)controllerWithDataSource:(id<PFFileManagerProvider>)dataSource;
+- (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
++ (instancetype)controllerWithDataSource:(id<PFPersistenceControllerProvider>)dataSource;
 
 ///--------------------------------------
 /// @name Objects
