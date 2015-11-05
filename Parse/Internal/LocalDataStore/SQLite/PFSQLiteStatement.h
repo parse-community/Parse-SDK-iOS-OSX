@@ -18,9 +18,10 @@ typedef struct sqlite3_stmt sqlite3_stmt;
 
 @interface PFSQLiteStatement : NSObject
 
-@property (atomic, assign, readonly) sqlite3_stmt *sqliteStatement;
+@property (nonatomic, assign, readonly) sqlite3_stmt *sqliteStatement;
+@property (nonatomic, strong, readonly) dispatch_queue_t databaseQueue;
 
-- (instancetype)initWithStatement:(sqlite3_stmt *)stmt;
+- (instancetype)initWithStatement:(sqlite3_stmt *)stmt queue:(dispatch_queue_t)databaseQueue;
 
 - (BOOL)close;
 - (BOOL)reset;

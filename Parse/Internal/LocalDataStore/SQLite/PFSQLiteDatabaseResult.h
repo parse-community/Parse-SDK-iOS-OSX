@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PFSQLiteDatabaseResult : NSObject
 
-- (instancetype)initWithStatement:(PFSQLiteStatement *)statement;
+- (instancetype)initWithStatement:(PFSQLiteStatement *)statement queue:(dispatch_queue_t)queue;
 
 /*!
  Move current result to next row. Returns true if next result exists. False if current result

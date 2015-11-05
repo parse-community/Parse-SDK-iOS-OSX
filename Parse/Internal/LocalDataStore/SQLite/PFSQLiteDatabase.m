@@ -23,6 +23,7 @@
 #import "PFSQLiteDatabaseResult.h"
 #import "PFSQLiteStatement.h"
 #import "Parse_Private.h"
+#import "PFThreadsafety.h"
 
 static NSString *const PFSQLiteDatabaseBeginExclusiveOperationCommand = @"BEGIN EXCLUSIVE";
 static NSString *const PFSQLiteDatabaseCommitOperationCommand = @"COMMIT";
@@ -67,8 +68,16 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
 
     _databaseClosedTaskCompletionSource = [[BFTaskCompletionSource alloc] init];
     _databasePath = [path copy];
-    _databaseQueue = dispatch_queue_create("com.parse.sqlite.db.queue", DISPATCH_QUEUE_SERIAL);
-    _databaseExecutor = [BFExecutor executorWithDispatchQueue:_databaseQueue];
+
+    _databaseQueue = PFThreadsafetyCreateQueueForObject(self);
+    _databaseExecutor = [BFExecutor executorWithBlock:^(dispatch_block_t block) {
+        // Execute asynchrounously on the proper queue.
+        // Seems a bit backwards, but we don't have PFThreadsafetySafeDispatchAsync.
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            PFThreadsafetySafeDispatchSync(_databaseQueue, block);
+        });
+    }];
+
     _cachedStatements = [[NSMutableDictionary alloc] init];
 
     return self;
@@ -178,7 +187,7 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
             sqlite3_finalize(sqliteStatement);
             return [BFTask taskWithError:[self _errorWithErrorCode:resultCode]];
         }
-        statement = [[PFSQLiteStatement alloc] initWithStatement:sqliteStatement];
+        statement = [[PFSQLiteStatement alloc] initWithStatement:sqliteStatement queue:_databaseQueue];
 
         if (enableCaching) {
             [self _cacheStatement:statement forQuery:sql];
@@ -206,7 +215,7 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
         [self _bindObject:args[idx] toColumn:(idx + 1) inStatement:statement];
     }
 
-    PFSQLiteDatabaseResult *result = [[PFSQLiteDatabaseResult alloc] initWithStatement:statement];
+    PFSQLiteDatabaseResult *result = [[PFSQLiteDatabaseResult alloc] initWithStatement:statement queue:_databaseQueue];
     return [BFTask taskWithResult:result];
 }
 

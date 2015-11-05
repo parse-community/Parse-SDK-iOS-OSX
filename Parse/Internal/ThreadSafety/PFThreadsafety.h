@@ -11,3 +11,11 @@
 
 extern dispatch_queue_t PFThreadsafetyCreateQueueForObject(id object);
 extern void PFThreadsafetySafeDispatchSync(dispatch_queue_t queue, dispatch_block_t block);
+
+
+// PFThreadsafetySafeDispatchSync, but with a return type.
+#define PFThreadSafetyPerform(queue, block) ({                      \
+    __block typeof((block())) result;                              \
+    PFThreadsafetySafeDispatchSync(queue, ^{ result = block(); }); \
+    result;                                                        \
+})
