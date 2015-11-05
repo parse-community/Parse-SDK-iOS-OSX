@@ -9,6 +9,7 @@
 
 #import "PFCommandURLRequestConstructor.h"
 
+#import "BFTask+Private.h"
 #import "PFAssert.h"
 #import "PFCommandRunningConstants.h"
 #import "PFDevice.h"
@@ -47,58 +48,62 @@
 #pragma mark - Data
 ///--------------------------------------
 
-- (NSURLRequest *)dataURLRequestForCommand:(PFRESTCommand *)command {
-    NSURL *url = [PFURLConstructor URLFromAbsoluteString:[PFInternalUtils parseServerURLString]
-                                                    path:[NSString stringWithFormat:@"/1/%@", command.httpPath]
-                                                   query:nil];
-    NSDictionary *headers = [self _URLRequestHeadersForCommand:command];
+- (BFTask PF_GENERIC(NSURLRequest *)*)getDataURLRequestAsyncForCommand:(PFRESTCommand *)command {
+    return (BFTask *)[[self _getURLRequestHeadersAsyncForCommand:command] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSDictionary *)*task) {
+        NSURL *url = [PFURLConstructor URLFromAbsoluteString:[PFInternalUtils parseServerURLString]
+                                                        path:[NSString stringWithFormat:@"/1/%@", command.httpPath]
+                                                       query:nil];
+        NSDictionary *headers = task.result;
 
-    NSString *requestMethod = command.httpMethod;
-    NSDictionary *requestParameters = nil;
-    if (command.parameters) {
-        NSDictionary *parameters = nil;
+        NSString *requestMethod = command.httpMethod;
+        NSDictionary *requestParameters = nil;
+        if (command.parameters) {
+            NSDictionary *parameters = nil;
 
-        // The request URI may be too long to include parameters in the URI.
-        // To avoid this problem we send the parameters in a POST request json-encoded body
-        // and add a custom parameter that overrides the method in a request.
-        if ([requestMethod isEqualToString:PFHTTPRequestMethodGET] ||
-            [requestMethod isEqualToString:PFHTTPRequestMethodHEAD] ||
-            [requestMethod isEqualToString:PFHTTPRequestMethodDELETE]) {
-            NSMutableDictionary *mutableParameters = [command.parameters mutableCopy];
-            mutableParameters[PFCommandParameterNameMethodOverride] = command.httpMethod;
+            // The request URI may be too long to include parameters in the URI.
+            // To avoid this problem we send the parameters in a POST request json-encoded body
+            // and add a custom parameter that overrides the method in a request.
+            if ([requestMethod isEqualToString:PFHTTPRequestMethodGET] ||
+                [requestMethod isEqualToString:PFHTTPRequestMethodHEAD] ||
+                [requestMethod isEqualToString:PFHTTPRequestMethodDELETE]) {
+                NSMutableDictionary *mutableParameters = [command.parameters mutableCopy];
+                mutableParameters[PFCommandParameterNameMethodOverride] = command.httpMethod;
 
-            requestMethod = PFHTTPRequestMethodPOST;
-            parameters = [mutableParameters copy];
-        } else {
-            parameters = command.parameters;
+                requestMethod = PFHTTPRequestMethodPOST;
+                parameters = [mutableParameters copy];
+            } else {
+                parameters = command.parameters;
+            }
+            requestParameters = [[PFPointerObjectEncoder objectEncoder] encodeObject:parameters];
         }
-        requestParameters = [[PFPointerObjectEncoder objectEncoder] encodeObject:parameters];
-    }
 
-    return [PFHTTPURLRequestConstructor urlRequestWithURL:url
-                                               httpMethod:requestMethod
-                                              httpHeaders:headers
-                                               parameters:requestParameters];
+        return [PFHTTPURLRequestConstructor urlRequestWithURL:url
+                                                   httpMethod:requestMethod
+                                                  httpHeaders:headers
+                                                   parameters:requestParameters];
+    }];
 }
 
 ///--------------------------------------
 #pragma mark - File
 ///--------------------------------------
 
-- (NSURLRequest *)fileUploadURLRequestForCommand:(PFRESTCommand *)command
-                                 withContentType:(NSString *)contentType
-                           contentSourceFilePath:(NSString *)contentFilePath {
-    NSMutableURLRequest *request = [[self dataURLRequestForCommand:command] mutableCopy];
+- (BFTask PF_GENERIC(NSURLRequest *)*)getFileUploadURLRequestAsyncForCommand:(PFRESTCommand *)command
+                                                             withContentType:(NSString *)contentType
+                                                       contentSourceFilePath:(NSString *)contentFilePath {
+    return [[self getDataURLRequestAsyncForCommand:command] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSURLRequest *)*task) {
+        NSMutableURLRequest *request = [task.result mutableCopy];
 
-    if (contentType) {
-        [request setValue:contentType forHTTPHeaderField:PFHTTPRequestHeaderNameContentType];
-    }
+        if (contentType) {
+            [request setValue:contentType forHTTPHeaderField:PFHTTPRequestHeaderNameContentType];
+        }
 
-    //TODO (nlutsenko): Check for error here.
-    NSNumber *fileSize = [PFInternalUtils fileSizeOfFileAtPath:contentFilePath error:nil];
-    [request setValue:[fileSize stringValue] forHTTPHeaderField:PFHTTPRequestHeaderNameContentLength];
+        //TODO (nlutsenko): Check for error here.
+        NSNumber *fileSize = [PFInternalUtils fileSizeOfFileAtPath:contentFilePath error:nil];
+        [request setValue:[fileSize stringValue] forHTTPHeaderField:PFHTTPRequestHeaderNameContentLength];
 
-    return request;
+        return request;
+    }];
 }
 
 ///--------------------------------------
@@ -135,15 +140,18 @@
     return [mutableHeaders copy];
 }
 
-- (NSDictionary *)_URLRequestHeadersForCommand:(PFRESTCommand *)command {
-    NSMutableDictionary *headers = [NSMutableDictionary dictionary];
-    [headers addEntriesFromDictionary:command.additionalRequestHeaders];
-    PFInstallationIdentifierStore *installationIdentifierStore = self.dataSource.installationIdentifierStore;
-    headers[PFCommandHeaderNameInstallationId] = installationIdentifierStore.installationIdentifier;
-    if (command.sessionToken) {
-        headers[PFCommandHeaderNameSessionToken] = command.sessionToken;
-    }
-    return [headers copy];
+- (BFTask PF_GENERIC(NSDictionary *)*)_getURLRequestHeadersAsyncForCommand:(PFRESTCommand *)command {
+    return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id {
+        NSMutableDictionary *headers = [NSMutableDictionary dictionary];
+        [headers addEntriesFromDictionary:command.additionalRequestHeaders];
+        if (command.sessionToken) {
+            headers[PFCommandHeaderNameSessionToken] = command.sessionToken;
+        }
+        return [[self.dataSource.installationIdentifierStore getInstallationIdentifierAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSString *)*task) {
+            headers[PFCommandHeaderNameInstallationId] = task.result;
+            return [headers copy];
+        }];
+    }];
 }
 
 @end

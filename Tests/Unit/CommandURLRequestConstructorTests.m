@@ -9,6 +9,7 @@
 
 #import <OCMock/OCMock.h>
 
+#import "BFTask+Private.h"
 #import "PFCommandRunningConstants.h"
 #import "PFCommandURLRequestConstructor.h"
 #import "PFHTTPRequest.h"
@@ -30,7 +31,7 @@
     id providerMock = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
     id storeMock = PFStrictClassMock([PFInstallationIdentifierStore class]);
     OCMStub([providerMock installationIdentifierStore]).andReturn(storeMock);
-    OCMStub([storeMock installationIdentifier]).andReturn(identifier);
+    OCMStub([storeMock getInstallationIdentifierAsync]).andReturn([BFTask taskWithResult:identifier]);
     return providerMock;
 }
 
@@ -58,7 +59,8 @@
                                                      parameters:@{ @"a" : @"b" }
                                                    sessionToken:@"yarr"];
     command.additionalRequestHeaders = @{ @"CustomHeader" : @"CustomValue" };
-    NSURLRequest *request = [constructor dataURLRequestForCommand:command];
+
+    NSURLRequest *request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     XCTAssertTrue([[request.URL absoluteString] containsString:@"/1/yolo"]);
     XCTAssertEqualObjects(request.allHTTPHeaderFields, (@{ PFCommandHeaderNameInstallationId : @"installationId",
                                                            PFCommandHeaderNameSessionToken : @"yarr",
@@ -76,28 +78,28 @@
                                                      httpMethod:PFHTTPRequestMethodGET
                                                      parameters:@{ @"a" : @"b" }
                                                    sessionToken:@"yarr"];
-    NSURLRequest *request = [constructor dataURLRequestForCommand:command];
+    NSURLRequest *request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
 
     command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                       httpMethod:PFHTTPRequestMethodHEAD
                                       parameters:@{ @"a" : @"b" }
                                     sessionToken:@"yarr"];
-    request = [constructor dataURLRequestForCommand:command];
+    request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
 
     command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                       httpMethod:PFHTTPRequestMethodGET
                                       parameters:@{ @"a" : @"b" }
                                     sessionToken:@"yarr"];
-    request = [constructor dataURLRequestForCommand:command];
+    request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
 
     command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                       httpMethod:PFHTTPRequestMethodGET
                                       parameters:nil
                                     sessionToken:@"yarr"];
-    request = [constructor dataURLRequestForCommand:command];
+    request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     XCTAssertEqualObjects(request.HTTPMethod, @"GET");
 }
 
@@ -109,7 +111,7 @@
                                                      httpMethod:PFHTTPRequestMethodPOST
                                                      parameters:@{ @"a" : @100500 }
                                                    sessionToken:@"yarr"];
-    NSURLRequest *request = [constructor dataURLRequestForCommand:command];
+    NSURLRequest *request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     id json = [NSJSONSerialization JSONObjectWithData:request.HTTPBody options:0 error:nil];
     XCTAssertNotNil(json);
     XCTAssertEqualObjects(json, @{ @"a" : @100500 });
@@ -123,9 +125,9 @@
                                                      httpMethod:PFHTTPRequestMethodPOST
                                                      parameters:@{ @"a" : @100500 }
                                                    sessionToken:@"yarr"];
-    NSURLRequest *request = [constructor fileUploadURLRequestForCommand:command
-                                                        withContentType:@"boom"
-                                                  contentSourceFilePath:@"/dev/null"];
+    NSURLRequest *request = [[constructor getFileUploadURLRequestAsyncForCommand:command
+                                                                 withContentType:@"boom"
+                                                           contentSourceFilePath:@"/dev/null"] waitForResult:nil];
     XCTAssertNotNil(request);
     XCTAssertEqualObjects(request.allHTTPHeaderFields[PFHTTPRequestHeaderNameContentType], @"boom");
 }
