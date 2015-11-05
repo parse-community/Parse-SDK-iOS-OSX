@@ -236,6 +236,17 @@ PF_ASSUME_NONNULL_BEGIN
 - (BOOL)getWriteAccessForRole:(PFRole *)role;
 
 /*!
+ @abstract Retrun list of the users that can read or write this object.
+ 
+ @discussion return array will NOT include the public access("*") as an item. 
+ So, do not use the count of return array for accessibility check.
+
+ @returns 'NSArray' contains list of userID of the user who has read, write or both permissions.
+
+ */
+- (NSArray *)listAccessibleUsers;
+
+/*!
  @abstract Set whether users belonging to the given role are allowed to write this object.
 
  @discussion The role must already be saved on the server and

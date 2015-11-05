@@ -317,6 +317,27 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
     return self.state.permissions;
 }
 
+- (NSArray *)listAccessibleUsers
+{
+    NSMutableArray *list = [NSMutableArray new];
+
+    [self.state.permissions enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([PFACLPublicKey_ isEqualToString:(NSString *)key]) {
+            // Exclude public access key
+            return;
+        }
+
+        if ( [self getReadAccessForUserId:key] == NO && [self getWriteAccessForUserId:key] == NO ){
+            // If user does not have both read and write permission then not included in the list.
+            return;
+        }
+
+        [list addObject:key];
+    }];
+
+    return list;
+}
+
 ///--------------------------------------
 #pragma mark - NSObject
 ///--------------------------------------
