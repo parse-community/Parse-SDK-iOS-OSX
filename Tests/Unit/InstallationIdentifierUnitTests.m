@@ -56,4 +56,13 @@
     XCTAssertNotEqualObjects(first, fourth, @"clearing from disk should cause a new installationId");
 }
 
+- (void)testInstallationIdentifierThreadSafe {
+    PFInstallationIdentifierStore *store = [Parse _currentManager].installationIdentifierStore;
+    [store clearInstallationIdentifier];
+    dispatch_apply(100, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(size_t iteration) {
+        [store installationIdentifier];
+        [store clearInstallationIdentifier];
+    });
+}
+
 @end
