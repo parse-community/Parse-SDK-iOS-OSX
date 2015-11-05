@@ -11,20 +11,25 @@
 
 #import "PFBaseState.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PFFileState : PFBaseState <PFBaseStateSubclass, NSCopying, NSMutableCopying>
 
 @property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, copy, readonly) NSString *urlString;
+@property (nullable, nonatomic, copy, readonly) NSString *urlString;
+@property (nullable, nonatomic, copy, readonly) NSString *secureURLString;
 
-@property (nonatomic, copy, readonly) NSString *mimeType;
+@property (nullable, nonatomic, copy, readonly) NSString *mimeType;
 
 ///--------------------------------------
 /// @name Init
 ///--------------------------------------
 
 - (instancetype)initWithState:(PFFileState *)state;
-- (instancetype)initWithName:(NSString *)name
-                   urlString:(NSString *)urlString
-                    mimeType:(NSString *)mimeType;
+- (instancetype)initWithName:(nullable NSString *)name
+                   urlString:(nullable NSString *)urlString
+                    mimeType:(nullable NSString *)mimeType;
 
 @end
+
+NS_ASSUME_NONNULL_END

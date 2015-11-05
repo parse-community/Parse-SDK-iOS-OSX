@@ -30,6 +30,12 @@
 #import "PFURLConstructor.h"
 #import "PFURLSession.h"
 
+@interface PFURLSessionCommandRunner () <PFURLSessionDelegate>
+
+@property (nonatomic, strong) NSNotificationCenter *notificationCenter;
+
+@end
+
 @implementation PFURLSessionCommandRunner
 
 @synthesize applicationId = _applicationId;
@@ -49,11 +55,12 @@
                          clientKey:(NSString *)clientKey {
     NSURLSessionConfiguration *configuration = [[self class] _urlSessionConfigurationForApplicationId:applicationId
                                                                                             clientKey:clientKey];
-    PFURLSession *session = [PFURLSession sessionWithConfiguration:configuration];
+    PFURLSession *session = [PFURLSession sessionWithConfiguration:configuration delegate:self];
     PFCommandURLRequestConstructor *constructor = [PFCommandURLRequestConstructor constructorWithDataSource:dataSource];
     self = [self initWithDataSource:dataSource
                             session:session
-                 requestConstructor:constructor];
+                 requestConstructor:constructor
+                 notificationCenter:[NSNotificationCenter defaultCenter]];
     if (!self) return nil;
 
     _applicationId = [applicationId copy];
@@ -64,7 +71,8 @@
 
 - (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                            session:(PFURLSession *)session
-                requestConstructor:(PFCommandURLRequestConstructor *)requestConstructor {
+                requestConstructor:(PFCommandURLRequestConstructor *)requestConstructor
+                notificationCenter:(NSNotificationCenter *)notificationCenter {
     self = [super init];
     if (!self) return nil;
 
@@ -72,6 +80,7 @@
 
     _requestConstructor = requestConstructor;
     _session = session;
+    _notificationCenter = notificationCenter;
 
     return self;
 }
@@ -103,14 +112,14 @@
 #pragma mark - Data Commands
 ///--------------------------------------
 
-- (BFTask *)runCommandAsync:(PFRESTCommand *)command withOptions:(PFCommandRunningOptions)options {
+- (BFTask PF_GENERIC(PFCommandResult *)*)runCommandAsync:(PFRESTCommand *)command withOptions:(PFCommandRunningOptions)options {
     return [self runCommandAsync:command withOptions:options cancellationToken:nil];
 }
 
-- (BFTask *)runCommandAsync:(PFRESTCommand *)command
-                withOptions:(PFCommandRunningOptions)options
-          cancellationToken:(BFCancellationToken *)cancellationToken {
-    return [self _performCommandRunningBlock:^id{
+- (BFTask PF_GENERIC(PFCommandResult *)*)runCommandAsync:(PFRESTCommand *)command
+                                             withOptions:(PFCommandRunningOptions)options
+                                       cancellationToken:(BFCancellationToken *)cancellationToken {
+    return [self _performCommandRunningBlock:^id {
         [command resolveLocalIds];
         NSURLRequest *request = [self.requestConstructor dataURLRequestForCommand:command];
         return [_session performDataURLRequestAsync:request forCommand:command cancellationToken:cancellationToken];
@@ -121,14 +130,14 @@
 #pragma mark - File Commands
 ///--------------------------------------
 
-- (BFTask *)runFileUploadCommandAsync:(PFRESTCommand *)command
-                      withContentType:(NSString *)contentType
-                contentSourceFilePath:(NSString *)sourceFilePath
-                              options:(PFCommandRunningOptions)options
-                    cancellationToken:(nullable BFCancellationToken *)cancellationToken
-                        progressBlock:(nullable PFProgressBlock)progressBlock {
+- (BFTask PF_GENERIC(PFCommandResult *)*)runFileUploadCommandAsync:(PFRESTCommand *)command
+                                                   withContentType:(NSString *)contentType
+                                             contentSourceFilePath:(NSString *)sourceFilePath
+                                                           options:(PFCommandRunningOptions)options
+                                                 cancellationToken:(nullable BFCancellationToken *)cancellationToken
+                                                     progressBlock:(nullable PFProgressBlock)progressBlock {
     @weakify(self);
-    return [self _performCommandRunningBlock:^id{
+    return [self _performCommandRunningBlock:^id {
         @strongify(self);
 
         [command resolveLocalIds];
@@ -144,17 +153,18 @@
     } withOptions:options cancellationToken:cancellationToken];
 }
 
-- (BFTask *)runFileDownloadCommandAsyncWithFileURL:(NSURL *)url
-                                    targetFilePath:(NSString *)filePath
-                                 cancellationToken:(nullable BFCancellationToken *)cancellationToken
-                                     progressBlock:(nullable PFProgressBlock)progressBlock {
-    return [self _performCommandRunningBlock:^id{
+- (BFTask PF_GENERIC(PFCommandResult *)*)runFileDownloadCommandAsyncWithFileURL:(NSURL *)url
+                                                                 targetFilePath:(NSString *)filePath
+                                                              cancellationToken:(nullable BFCancellationToken *)cancellationToken
+                                                                  progressBlock:(nullable PFProgressBlock)progressBlock {
+    return [self _performCommandRunningBlock:^id {
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         return [_session performFileDownloadURLRequestAsync:request
                                                toFileAtPath:filePath
                                       withCancellationToken:cancellationToken
                                               progressBlock:progressBlock];
-    } withOptions:PFCommandRunningOptionRetryIfFailed cancellationToken:cancellationToken];
+    } withOptions:PFCommandRunningOptionRetryIfFailed
+                           cancellationToken:cancellationToken];
 }
 
 ///--------------------------------------
@@ -235,6 +245,42 @@
     configuration.HTTPAdditionalHeaders = headers;
 
     return configuration;
+}
+
+///--------------------------------------
+#pragma mark - PFURLSessionDelegate
+///--------------------------------------
+
+- (void)urlSession:(PFURLSession *)session willPerformURLRequest:(NSURLRequest *)request {
+    [[BFExecutor defaultPriorityBackgroundExecutor] execute:^{
+        NSDictionary *userInfo = ([PFLogger sharedLogger].logLevel == PFLogLevelDebug ?
+                                  @{ PFNetworkNotificationURLRequestUserInfoKey : request } : nil);
+        [self.notificationCenter postNotificationName:PFNetworkWillSendURLRequestNotification
+                                               object:self
+                                             userInfo:userInfo];
+    }];
+}
+
+- (void)urlSession:(PFURLSession *)session
+didPerformURLRequest:(NSURLRequest *)request
+   withURLResponse:(nullable NSURLResponse *)response
+    responseString:(nullable NSString *)responseString {
+    [[BFExecutor defaultPriorityBackgroundExecutor] execute:^{
+        NSMutableDictionary *userInfo = nil;
+        if ([PFLogger sharedLogger].logLevel == PFLogLevelDebug) {
+            userInfo = [NSMutableDictionary dictionaryWithObject:request
+                                                          forKey:PFNetworkNotificationURLRequestUserInfoKey];
+            if (response) {
+                userInfo[PFNetworkNotificationURLResponseUserInfoKey] = response;
+            }
+            if (responseString) {
+                userInfo[PFNetworkNotificationURLResponseBodyUserInfoKey] = responseString;
+            }
+        }
+        [self.notificationCenter postNotificationName:PFNetworkDidReceiveURLResponseNotification
+                                               object:self
+                                             userInfo:userInfo];
+    }];
 }
 
 @end

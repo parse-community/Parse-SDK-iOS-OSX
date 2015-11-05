@@ -9,9 +9,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFDataProvider.h"
+#import <Parse/PFConstants.h>
 
-@class BFTask;
+#import "PFDataProvider.h"
+#import "PFMacros.h"
+
+@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class PFObject;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,10 +38,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask *)fetchObjectsAsync:(nullable NSArray *)objects withSessionToken:(nullable NSString *)sessionToken;
 
 ///--------------------------------------
+/// @name Delete
+///--------------------------------------
+
+- (BFTask *)deleteObjectsAsync:(nullable NSArray *)objects withSessionToken:(nullable NSString *)sessionToken;
+
+///--------------------------------------
 /// @name Utilities
 ///--------------------------------------
 
 + (nullable NSArray *)uniqueObjectsArrayFromArray:(nullable NSArray *)objects omitObjectsWithData:(BOOL)omitFetched;
++ (NSArray *)uniqueObjectsArrayFromArray:(NSArray *)objects usingFilter:(BOOL (^)(PFObject *object))filter;
 
 @end
 

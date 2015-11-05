@@ -9,9 +9,13 @@
 
 #import "PFDevice.h"
 
-#if TARGET_OS_IPHONE
+#import <Parse/PFConstants.h>
+
+#if TARGET_OS_WATCH
+#import <WatchKit/WatchKit.h>
+#elif TARGET_OS_IOS || TARGET_OS_TV
 #import <UIKit/UIKit.h>
-#elif TARGET_OS_MAC
+#elif PF_TARGET_OS_OSX
 #import <CoreServices/CoreServices.h>
 #endif
 
@@ -23,14 +27,19 @@ static NSString *PFDeviceSysctlByName(NSString *name) {
     const char *charName = [name UTF8String];
 
     size_t size;
-    sysctlbyname(charName, NULL, &size, NULL, 0);
+    if (sysctlbyname(charName, NULL, &size, NULL, 0) < 0) {
+      return nil;
+    }
     char *answer = (char*)malloc(size);
 
     if (answer == NULL) {
         return nil;
     }
 
-    sysctlbyname(charName, answer, &size, NULL, 0);
+    if (sysctlbyname(charName, answer, &size, NULL, 0) < 0) {
+      free(answer);
+      return nil;
+    }
     NSString *string = [NSString stringWithUTF8String:answer];
     free(answer);
 
@@ -59,7 +68,9 @@ static NSString *PFDeviceSysctlByName(NSString *name) {
 - (NSString *)detailedModel {
     NSString *name = PFDeviceSysctlByName(@"hw.machine");
     if (!name) {
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+        name = [WKInterfaceDevice currentDevice].model;
+#elif TARGET_OS_IOS
         name = [UIDevice currentDevice].model;
 #elif TARGET_OS_MAC
         name = @"Mac";
@@ -77,9 +88,15 @@ static NSString *PFDeviceSysctlByName(NSString *name) {
     return version;
 }
 - (NSString *)operatingSystemVersion {
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS
     return [UIDevice currentDevice].systemVersion;
-#elif TARGET_OS_MAC
+#elif TARGET_OS_WATCH || TARGET_OS_TV
+    NSOperatingSystemVersion version = [NSProcessInfo processInfo].operatingSystemVersion;
+    return [NSString stringWithFormat:@"%d.%d.%d",
+            (int)version.majorVersion,
+            (int)version.minorVersion,
+            (int)version.patchVersion];
+#elif PF_TARGET_OS_OSX
     NSProcessInfo *info = [NSProcessInfo processInfo];
     if ([info respondsToSelector:@selector(operatingSystemVersion)]) {
         NSOperatingSystemVersion version = info.operatingSystemVersion;

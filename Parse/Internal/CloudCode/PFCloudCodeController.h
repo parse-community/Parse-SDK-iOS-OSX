@@ -9,21 +9,23 @@
 
 #import <Foundation/Foundation.h>
 
-@class BFTask;
-@protocol PFCommandRunning;
+#import <Parse/PFConstants.h>
+#import "PFDataProvider.h"
+
+@class BFTask PF_GENERIC(__covariant BFGenericType);
 
 @interface PFCloudCodeController : NSObject
 
-@property (nonatomic, strong, readonly) id<PFCommandRunning> commandRunner;
+@property (nonatomic, strong, readonly) id<PFCommandRunnerProvider> dataSource;
 
 ///--------------------------------------
 /// @name Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 
-+ (instancetype)controllerWithCommandRunner:(id<PFCommandRunning>)commandRunner;
++ (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider>)dataSource;
 
 ///--------------------------------------
 /// @name Cloud Functions

@@ -26,6 +26,8 @@
 		814C3ADF1B6988E300E307BB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 814C3ADA1B6988E300E307BB /* MainMenu.xib */; };
 		815E9D8C196C6B0800F648E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 817AD67D196B026F0014C796 /* Bolts.framework */; };
 		815E9D8D196C6B1A00F648E4 /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 817AD67D196B026F0014C796 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		8160DBDA1B8418BE0030ABD9 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8160DBD91B8418BE0030ABD9 /* Parse.framework */; };
+		8160DBDB1B84191F0030ABD9 /* Parse.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8160DBD91B8418BE0030ABD9 /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		974268D81651F09E00F2BC57 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 974268D01651F09E00F2BC57 /* CFNetwork.framework */; };
 		974268D91651F09E00F2BC57 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 974268D11651F09E00F2BC57 /* CoreGraphics.framework */; };
 		974268DA1651F09E00F2BC57 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 974268D21651F09E00F2BC57 /* CoreLocation.framework */; };
@@ -37,8 +39,6 @@
 		978816C0163F1D6F00C613D2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978816BF163F1D6F00C613D2 /* Cocoa.framework */; };
 		978816CC163F1D6F00C613D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 978816CB163F1D6F00C613D2 /* main.m */; };
 		978816D3163F1D6F00C613D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 978816D2163F1D6F00C613D2 /* AppDelegate.m */; };
-		97DFCF92166FF5FB0094BE60 /* ParseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97DFCF91166FF5FB0094BE60 /* ParseOSX.framework */; };
-		97DFCF93166FF5FC0094BE60 /* ParseOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 97DFCF91166FF5FB0094BE60 /* ParseOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		97F7357D165B6AF000C4B72A /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F7357C165B6AF000C4B72A /* ApplicationServices.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,8 +59,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				97DFCF93166FF5FC0094BE60 /* ParseOSX.framework in CopyFiles */,
 				815E9D8D196C6B1A00F648E4 /* Bolts.framework in CopyFiles */,
+				8160DBDB1B84191F0030ABD9 /* Parse.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +71,7 @@
 		814C3AD91B6988E300E307BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		814C3ADB1B6988E300E307BB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		814C3ADC1B6988E300E307BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8160DBD91B8418BE0030ABD9 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		817AD67D196B026F0014C796 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		974268D01651F09E00F2BC57 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		974268D11651F09E00F2BC57 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -88,7 +89,6 @@
 		978816CB163F1D6F00C613D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		978816D1163F1D6F00C613D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		978816D2163F1D6F00C613D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		97DFCF91166FF5FB0094BE60 /* ParseOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseOSX.framework; sourceTree = "<group>"; };
 		97F7357C165B6AF000C4B72A /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -97,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8160DBDA1B8418BE0030ABD9 /* Parse.framework in Frameworks */,
 				97F7357D165B6AF000C4B72A /* ApplicationServices.framework in Frameworks */,
 				974268D81651F09E00F2BC57 /* CFNetwork.framework in Frameworks */,
 				974268D91651F09E00F2BC57 /* CoreGraphics.framework in Frameworks */,
@@ -108,7 +109,6 @@
 				974268DF1651F09E00F2BC57 /* SystemConfiguration.framework in Frameworks */,
 				978816C0163F1D6F00C613D2 /* Cocoa.framework in Frameworks */,
 				815E9D8C196C6B0800F648E4 /* Bolts.framework in Frameworks */,
-				97DFCF92166FF5FB0094BE60 /* ParseOSX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,8 +146,8 @@
 		978816BE163F1D6F00C613D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8160DBD91B8418BE0030ABD9 /* Parse.framework */,
 				817AD67D196B026F0014C796 /* Bolts.framework */,
-				97DFCF91166FF5FB0094BE60 /* ParseOSX.framework */,
 				978816BF163F1D6F00C613D2 /* Cocoa.framework */,
 				97F7357C165B6AF000C4B72A /* ApplicationServices.framework */,
 				974268D01651F09E00F2BC57 /* CFNetwork.framework */,
@@ -220,7 +220,7 @@
 		978816B2163F1D6F00C613D2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Parse;
 				TargetAttributes = {
 					81993FCE1B69ABA70077D6B9 = {
@@ -271,7 +271,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ ! -d \"Bolts.framework\" ]]; then\n  cp -R ../../../Vendor/Bolts-ObjC/build/osx/Bolts.framework .\nfi\n\nrm -rf ParseOSX.framework\ncp -R $BUILT_PRODUCTS_DIR/ParseOSX.framework .\n";
+			shellScript = "if [[ ! -d \"Bolts.framework\" ]]; then\n  cp -R ../../../Vendor/Bolts-ObjC/build/osx/Bolts.framework .\nfi\n\nrm -rf Parse.framework\ncp -R $BUILT_PRODUCTS_DIR/Parse.framework .\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

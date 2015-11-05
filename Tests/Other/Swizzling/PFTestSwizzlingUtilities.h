@@ -7,13 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 #import <Parse/PFConstants.h>
-#else
-#import <ParseOSX/PFConstants.h>
-#endif
 
 #import "PFTestSwizzledMethod.h"
 

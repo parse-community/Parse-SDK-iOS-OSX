@@ -10,11 +10,7 @@
 #ifndef Parse_PFLogging_h
 #define Parse_PFLogging_h
 
-#if TARGET_OS_IPHONE
 # import <Parse/PFConstants.h>
-#else
-# import <ParseOSX/PFConstants.h>
-#endif
 
 #import "PFLogger.h"
 

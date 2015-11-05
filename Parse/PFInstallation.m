@@ -27,6 +27,7 @@
 #import "PFPushPrivate.h"
 #import "PFQueryPrivate.h"
 #import "Parse_Private.h"
+#import "PFErrorUtilities.h"
 
 @implementation PFInstallation (Private)
 
@@ -38,6 +39,7 @@ static NSSet *protectedKeys;
         protectedKeys = PF_SET(PFInstallationKeyDeviceType,
                                PFInstallationKeyInstallationId,
                                PFInstallationKeyTimeZone,
+                               PFInstallationKeyLocaleIdentifier,
                                PFInstallationKeyParseVersion,
                                PFInstallationKeyAppVersion,
                                PFInstallationKeyAppName,
@@ -50,9 +52,12 @@ static NSSet *protectedKeys;
     [super removeObjectForKey:PFInstallationKeyDeviceToken];
 }
 
-// Check security on delete.
-- (void)checkDeleteParams {
-    PFConsistencyAssert(NO, @"Installations cannot be deleted.");
+- (BFTask PF_GENERIC(PFVoid) *)_validateDeleteAsync {
+    return [[super _validateDeleteAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(PFVoid) *task) {
+        NSError *error = [PFErrorUtilities errorWithCode:kPFErrorCommandUnavailable
+                                                 message:@"Installation cannot be deleted"];
+        return [BFTask taskWithError:error];
+    }];
 }
 
 // Validates a class name. We override this to only allow the installation class name.
@@ -199,6 +204,12 @@ static NSSet *protectedKeys;
     [self _setObject:timeZone forKey:PFInstallationKeyTimeZone onlyIfDifferent:YES];
 }
 
+- (void)setLocaleIdentifier:(NSString *)localeIdentifier {
+    [self _setObject:localeIdentifier
+              forKey:PFInstallationKeyLocaleIdentifier
+     onlyIfDifferent:YES];
+}
+
 - (void)setChannels:(NSArray *)channels {
     [self _setObject:channels forKey:PFInstallationKeyChannels onlyIfDifferent:YES];
 }
@@ -206,21 +217,6 @@ static NSSet *protectedKeys;
 ///--------------------------------------
 #pragma mark - PFObject
 ///--------------------------------------
-
-- (BFTask *)saveInBackground {
-    [self _updateAutomaticInfo];
-    return [super saveInBackground];
-}
-
-- (BFTask *)_enqueueSaveEventuallyWithChildren:(BOOL)saveChildren {
-    [self _updateAutomaticInfo];
-    return [super _enqueueSaveEventuallyWithChildren:saveChildren];
-}
-
-- (BFTask *)saveEventually {
-    [self _updateAutomaticInfo];
-    return [super saveEventually];
-}
 
 - (BFTask *)saveAsync:(BFTask *)toAwait {
     return [[super saveAsync:toAwait] continueWithBlock:^id(BFTask *task) {
@@ -250,12 +246,13 @@ static NSSet *protectedKeys;
 #pragma mark - Automatic Info
 ///--------------------------------------
 
-- (void)_updateAutomaticInfo {
+- (void)_objectWillSave {
     if ([self _isCurrentInstallation]) {
         @synchronized(self.lock) {
             [self _updateTimeZoneFromDevice];
             [self _updateBadgeFromDevice];
             [self _updateVersionInfoFromDevice];
+            [self _updateLocaleIdentifierFromDevice];
         }
     }
 }
@@ -298,6 +295,39 @@ static NSSet *protectedKeys;
     }
     if (![self[PFInstallationKeyParseVersion] isEqualToString:PARSE_VERSION]) {
         [super setObject:PARSE_VERSION forKey:PFInstallationKeyParseVersion];
+    }
+}
+
+/*!
+ @abstract Save localeIdentifier in the following format: [language code]-[COUNTRY CODE].
+
+ @discussion The language codes are two-letter lowercase ISO language codes (such as "en") as defined by
+ <a href="http://en.wikipedia.org/wiki/ISO_639-1">ISO 639-1</a>.
+ The country codes are two-letter uppercase ISO country codes (such as "US") as defined by
+ <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">ISO 3166-1</a>.
+
+ Many iOS locale identifiers don't contain the country code -> inconsistencies with Android/Windows Phone.
+ */
+- (void)_updateLocaleIdentifierFromDevice {
+    NSLocale *currentLocale = [NSLocale currentLocale];
+    NSString *language = [currentLocale objectForKey:NSLocaleLanguageCode];
+    NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
+
+    if (language.length == 0) {
+        return;
+    }
+
+    NSString *localeIdentifier = nil;
+    if (countryCode.length > 0) {
+        localeIdentifier = [NSString stringWithFormat:@"%@-%@", language, countryCode];
+    } else {
+        localeIdentifier = language;
+    }
+
+    NSString *currentLocaleIdentifier = self[PFInstallationKeyLocaleIdentifier];
+    if (localeIdentifier.length > 0 && ![localeIdentifier isEqualToString:currentLocaleIdentifier]) {
+        // Call into super to avoid checking on protected keys.
+        [super setObject:localeIdentifier forKey:PFInstallationKeyLocaleIdentifier];
     }
 }
 

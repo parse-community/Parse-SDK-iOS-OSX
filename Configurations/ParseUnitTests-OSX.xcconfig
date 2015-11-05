@@ -16,7 +16,7 @@ PRODUCT_MODULE_NAME = ParseUnitTests
 INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/ParseUnitTests-OSX-Info.plist
 LD_RUNPATH_SEARCH_PATHS = $(inherited) @loader_path/../Frameworks
 
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(VENDOR_DIR)/Bolts-ObjC/build/osx $(BUILT_PRODUCTS_DIR)/../Release$(EFFECTIVE_PLATFORM_NAME)
+FRAMEWORK_SEARCH_PATHS = $(inherited) $(VENDOR_DIR)/Bolts-ObjC/build/osx
 
 HEADER_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR)
 USER_HEADER_SEARCH_PATHS = $(inherited) $(PARSE_DIR)/Parse/Internal/**

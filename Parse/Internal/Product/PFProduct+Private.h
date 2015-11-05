@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "PFProduct.h"
+#import <Parse/PFProduct.h>
 
 typedef enum {
     PFProductDownloadStateStart,

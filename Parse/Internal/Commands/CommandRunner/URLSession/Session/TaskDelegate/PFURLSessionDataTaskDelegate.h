@@ -9,8 +9,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
 @class BFCancellationToken;
-@class BFTask;
+
+@class BFTask PF_GENERIC(__covariant BFGenericType);
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) NSURLSessionDataTask *dataTask;
 @property (nonatomic, strong, readonly) BFTask *resultTask;
+
+@property (nonatomic, strong, readonly) NSHTTPURLResponse *response;
+@property (nullable, nonatomic, copy, readonly) NSString *responseString;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initForDataTask:(NSURLSessionDataTask *)dataTask

@@ -13,6 +13,14 @@
 #import "PFMutableFileState.h"
 #import "PFPropertyInfo.h"
 
+static NSString *const _PFFileStateSecureDomain = @"files.parsetfss.com";
+
+@interface PFFileState ()
+
+@property (nonatomic, copy, readwrite) NSString *secureURLString;
+
+@end
+
 @implementation PFFileState
 
 ///--------------------------------------
@@ -44,6 +52,43 @@
     _mimeType = [mimeType copy];
 
     return self;
+}
+
+///--------------------------------------
+#pragma mark - Accessors
+///--------------------------------------
+
+- (void)setUrlString:(NSString *)urlString {
+    if (self.urlString != urlString) {
+        _urlString = [urlString copy];
+        _secureURLString = nil; // Invalidate variable cache
+    }
+}
+
+- (NSString *)secureURLString {
+    if (_secureURLString) {
+        return _secureURLString;
+    }
+
+    if (!self.urlString) {
+        return nil;
+    }
+
+    NSURLComponents *components = [NSURLComponents componentsWithString:self.urlString];
+    if (!components) {
+        return self.urlString;
+    }
+
+    NSString *scheme = [components scheme];
+    if (![scheme isEqualToString:@"http"]) {
+        return self.urlString;
+    }
+
+    if ([[components host] isEqualToString:_PFFileStateSecureDomain]) {
+        components.scheme = @"https";
+    }
+    _secureURLString = [[components URL] absoluteString];
+    return _secureURLString;
 }
 
 ///--------------------------------------

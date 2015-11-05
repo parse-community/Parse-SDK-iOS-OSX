@@ -177,6 +177,7 @@
         }
         case PFEventuallyPinTypeDelete:
             return [eventuallyPin.object _currentDeleteCommandWithSessionToken:eventuallyPin.sessionToken];
+        case PFEventuallyPinTypeCommand:
         default:
             break;
     }
@@ -236,7 +237,6 @@
                 }];
                 break;
             }
-
             case PFEventuallyPinTypeDelete: {
                 task = [task continueWithBlock:^id(BFTask *task) {
                     PFObject *object = eventuallyPin.object;
@@ -245,8 +245,9 @@
                 }];
                 break;
             }
-
-            default:break;
+            case PFEventuallyPinTypeCommand:
+            default:
+                break;
         }
 
         return task;

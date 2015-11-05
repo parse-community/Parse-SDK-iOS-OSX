@@ -34,7 +34,7 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)initWithCommonDataSource:(id<PFCommandRunnerProvider, PFOfflineStoreProvider>)dataSource {
+- (instancetype)initWithCommonDataSource:(id<PFCommandRunnerProvider>)dataSource {
     PFNotDesignatedInitializer();
 }
 

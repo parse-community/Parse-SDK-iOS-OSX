@@ -9,9 +9,9 @@
 
 #import <OCMock/OCMock.h>
 
-#import <Bolts/BFCancellationTokenSource.h>
-#import <Bolts/BFTask.h>
-#import <Bolts/BFTaskCompletionSource.h>
+@import Bolts.BFCancellationTokenSource;
+@import Bolts.BFTask;
+@import Bolts.BFTaskCompletionSource;
 
 #import "PFCommandResult.h"
 #import "PFCommandRunning.h"
@@ -54,7 +54,10 @@
     OCMStub([mockedDataSource commandRunner]).andReturn(mockedCommandRunner);
 
     id mockedFileManager = PFStrictClassMock([PFFileManager class]);
+
     OCMStub([mockedDataSource fileManager]).andReturn(mockedFileManager);
+    OCMStub([mockedFileManager parseLocalSandboxDataDirectoryPath]).andReturn([self temporaryDirectory]);
+
     return mockedDataSource;
 }
 
@@ -65,16 +68,13 @@
 - (void)setUp {
     [super setUp];
 
-    [[NSFileManager defaultManager] createDirectoryAtPath:[self temporaryDirectory]
-                              withIntermediateDirectories:YES
-                                               attributes:nil
-                                                    error:NULL];
+    [[PFFileManager createDirectoryIfNeededAsyncAtPath:[self temporaryDirectory]] waitUntilFinished];
 }
 
 - (void)tearDown {
-    [[NSFileManager defaultManager] removeItemAtPath:[self temporaryDirectory] error:NULL];
-
     [super tearDown];
+
+    [[PFFileManager removeItemAtPathAsync:[self temporaryDirectory]] waitUntilFinished];
 }
 
 ///--------------------------------------
@@ -105,7 +105,14 @@
 
     id mockedCommandRunner = [mockedDataSource commandRunner];
     OCMStub([mockedCommandRunner runFileDownloadCommandAsyncWithFileURL:tempPath
-                                                         targetFilePath:[OCMArg isNotNil]
+                                                         targetFilePath:[OCMArg checkWithBlock:^BOOL(id obj) {
+        NSString *path = obj;
+        if (!path) {
+            return NO;
+        }
+        [[NSData data] writeToFile:path atomically:YES];
+        return YES;
+    }]
                                                       cancellationToken:nil
                                                           progressBlock:[OCMArg checkWithBlock:^BOOL(id obj) {
         PFProgressBlock block = obj;
@@ -160,7 +167,14 @@
 
     id mockedCommandRunner = [mockedDataSource commandRunner];
     OCMStub([mockedCommandRunner runFileDownloadCommandAsyncWithFileURL:tempPath
-                                                         targetFilePath:[OCMArg isNotNil]
+                                                         targetFilePath:[OCMArg checkWithBlock:^BOOL(id obj) {
+        NSString *path = obj;
+        if (!path) {
+            return NO;
+        }
+        [[NSData data] writeToFile:path atomically:YES];
+        return YES;
+    }]
                                                       cancellationToken:nil
                                                           progressBlock:[OCMArg checkWithBlock:^BOOL(id obj) {
         progressBlock = obj;
@@ -490,6 +504,7 @@
     NSString *downloadsPath = [temporaryPath stringByAppendingPathComponent:@"downloads"];
 
     OCMStub([mockedDataSource fileManager]).andReturn(mockedFileManager);
+    OCMStub([mockedFileManager parseLocalSandboxDataDirectoryPath]).andReturn(temporaryPath);
     OCMStub([mockedFileManager parseCacheItemPathForPathComponent:@"PFFileCache"]).andReturn(downloadsPath);
 
     PFFileController *fileController = [PFFileController controllerWithDataSource:mockedDataSource];
@@ -502,21 +517,6 @@
     }];
 
     [self waitForTestExpectations];
-}
-
-- (void)testStagedDirectoryPath {
-    id mockedDataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
-    id mockedFileManager = PFStrictClassMock([PFFileManager class]);
-
-    NSString *temporaryPath = [self temporaryDirectory];
-
-    OCMStub([mockedDataSource fileManager]).andReturn(mockedFileManager);
-    OCMStub([mockedFileManager parseLocalSandboxDataDirectoryPath]).andReturn(temporaryPath);
-
-    PFFileController *fileController = [PFFileController controllerWithDataSource:mockedDataSource];
-
-    XCTAssertEqualObjects([temporaryPath stringByAppendingPathComponent:@"PFFileStaging"],
-                          [fileController stagedFilesDirectoryPath]);
 }
 
 @end

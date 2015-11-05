@@ -52,15 +52,11 @@
 
 - (BFTask *)fetchObjectAsync:(PFObject *)object withSessionToken:(NSString *)sessionToken {
     @weakify(self);
-    return [[[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+    return [[[[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+        return [object _validateFetchAsync];
+    }] continueWithSuccessBlock:^id(BFTask *task) {
         @strongify(self);
-        PFObjectState *state = [object._state copy];
-        if (!state.objectId) {
-            NSError *error = [PFErrorUtilities errorWithCode:kPFErrorMissingObjectId
-                                                     message:@"Can't fetch an object that hasn't been saved to the server."];
-            return [BFTask taskWithError:error];
-        }
-        PFRESTCommand *command = [PFRESTObjectCommand fetchObjectCommandForObjectState:state
+        PFRESTCommand *command = [PFRESTObjectCommand fetchObjectCommandForObjectState:[object._state copy]
                                                                       withSessionToken:sessionToken];
         return [self _runFetchCommand:command forObject:object];
     }] continueWithSuccessBlock:^id(BFTask *task) {
@@ -89,7 +85,9 @@
 
 - (BFTask *)deleteObjectAsync:(PFObject *)object withSessionToken:(nullable NSString *)sessionToken {
     @weakify(self);
-    return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+    return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+        return [object _validateDeleteAsync];
+    }] continueWithSuccessBlock:^id(BFTask *task) {
         @strongify(self);
         PFObjectState *state = [object._state copy];
         if (!state.objectId) {

@@ -9,9 +9,9 @@
 
 #import "PFApplication.h"
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS || TARGET_OS_TV
 #import <UIKit/UIKit.h>
-#else
+#elif PF_TARGET_OS_OSX
 #import <AppKit/AppKit.h>
 #endif
 
@@ -47,9 +47,11 @@
 }
 
 - (NSInteger)iconBadgeNumber {
-#if TARGET_OS_IPHONE
-    return [UIApplication sharedApplication].applicationIconBadgeNumber;
-#else
+#if TARGET_OS_WATCH || TARGET_OS_TV
+    return 0;
+#elif TARGET_OS_IOS
+    return self.systemApplication.applicationIconBadgeNumber;
+#elif PF_TARGET_OS_OSX
     // Make sure not to use `NSApp` here, because it doesn't work sometimes,
     // `NSApplication +sharedApplication` does though.
     NSString *badgeLabel = [[NSApplication sharedApplication] dockTile].badgeLabel;
@@ -71,12 +73,21 @@
 
 - (void)setIconBadgeNumber:(NSInteger)iconBadgeNumber {
     if (self.iconBadgeNumber != iconBadgeNumber) {
-#if TARGET_OS_IPHONE
-        [UIApplication sharedApplication].applicationIconBadgeNumber = iconBadgeNumber;
-#else
+#if TARGET_OS_IOS
+        self.systemApplication.applicationIconBadgeNumber = iconBadgeNumber;
+#elif PF_TARGET_OS_OSX
         [[NSApplication sharedApplication] dockTile].badgeLabel = [@(iconBadgeNumber) stringValue];
 #endif
     }
+}
+
+- (UIApplication *)systemApplication {
+#if TARGET_OS_WATCH
+    return nil;
+#else
+    // Workaround to make `sharedApplication` still be called even if compiling for App Extensions or WatchKit apps.
+    return [UIApplication performSelector:@selector(sharedApplication)];
+#endif
 }
 
 @end

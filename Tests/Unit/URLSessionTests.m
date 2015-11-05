@@ -9,8 +9,8 @@
 
 #import <OCMock/OCMock.h>
 
-#import <Bolts/BFCancellationTokenSource.h>
-#import <Bolts/BFTask.h>
+@import Bolts.BFCancellationTokenSource;
+@import Bolts.BFTask;
 
 #import "PFCommandResult.h"
 #import "PFMacros.h"
@@ -25,6 +25,7 @@
 @interface MockedSessionTask : NSObject
 
 @property (atomic, assign) NSUInteger taskIdentifier;
+@property (nonatomic, strong) NSURLRequest *originalRequest;
 
 @property (nonatomic, strong) void (^resumeBlock)();
 @property (nonatomic, strong) void (^cancelBlock)();
@@ -62,21 +63,30 @@
 - (void)testConstructors {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *URLSession = [NSURLSession sharedSession];
-
-    PFURLSession *session = [[PFURLSession alloc] initWithConfiguration:configuration];
+    id delegate = PFStrictProtocolMock(@protocol(PFURLSessionDelegate));
+    
+    PFURLSession *session = [[PFURLSession alloc] initWithConfiguration:configuration
+                                                               delegate:delegate];
     XCTAssertNotNil(session);
+    XCTAssertEqual((id)session.delegate, delegate);
     [session invalidateAndCancel];
-
-    session = [PFURLSession sessionWithConfiguration:configuration];
+    
+    session = [PFURLSession sessionWithConfiguration:configuration
+                                            delegate:delegate];
     XCTAssertNotNil(session);
+    XCTAssertEqual((id)session.delegate, delegate);
     [session invalidateAndCancel];
-
-    session = [[PFURLSession alloc] initWithURLSession:URLSession];
+    
+    session = [[PFURLSession alloc] initWithURLSession:URLSession
+                                              delegate:delegate];
     XCTAssertNotNil(URLSession);
-
-    session = [PFURLSession sessionWithURLSession:URLSession];
+    XCTAssertEqual((id)session.delegate, delegate);
+    
+    session = [PFURLSession sessionWithURLSession:URLSession
+                                         delegate:delegate];
     XCTAssertNotNil(session);
-
+    XCTAssertEqual((id)session.delegate, delegate);
+    
     PFAssertThrowsInconsistencyException([PFURLSession new]);
 }
 
@@ -85,25 +95,26 @@
     NSURLRequest *mockedURLRequest = PFStrictClassMock([NSURLRequest class]);
     PFRESTCommand *mockedCommand = PFStrictClassMock([PFRESTCommand class]);
     NSArray *mocks = @[ mockedURLSession, mockedURLRequest, mockedCommand ];
-
+    
     MockedSessionTask *mockedDataTask = [[MockedSessionTask alloc] init];
-
+    mockedDataTask.originalRequest = mockedURLRequest;
+    
     __block id<NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate> sessionDelegate = nil;
-
+    
     OCMExpect([mockedURLSession dataTaskWithRequest:mockedURLRequest]).andReturn(mockedDataTask);
-
+    
     mockedDataTask.taskIdentifier = 1337;
-
+    
     @weakify(mockedDataTask);
     mockedDataTask.resumeBlock = ^{
         @strongify(mockedDataTask);
-
+        
         NSData *dataRecieved = [@"{ \"foo\": \"bar\" }" dataUsingEncoding:NSUTF8StringEncoding];
-        NSURLResponse *response = [[NSURLResponse alloc] initWithURL:[NSURL URLWithString:@"http://foo.bar"]
-                                                            MIMEType:@"application/json"
-                                               expectedContentLength:dataRecieved.length
-                                                    textEncodingName:@"UTF-8"];
-
+        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:@"http://foo.bar"]
+                                                                  statusCode:200
+                                                                 HTTPVersion:@"HTTP/1.1"
+                                                                headerFields:nil];
+        
         [sessionDelegate URLSession:mockedURLSession
                            dataTask:(id)mockedDataTask
                  didReceiveResponse:response
@@ -111,13 +122,20 @@
                       XCTAssertEqual(disposition, NSURLSessionResponseAllow);
                   }];
         [sessionDelegate URLSession:mockedURLSession dataTask:(id)mockedDataTask didReceiveData:dataRecieved];
-
+        
         [sessionDelegate URLSession:mockedURLSession task:(id)mockedDataTask didCompleteWithError:nil];
     };
-
-    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession];
+    
+    id delegate = PFStrictProtocolMock(@protocol(PFURLSessionDelegate));
+    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession delegate:delegate];
     sessionDelegate = (id)session;
-
+    
+    OCMExpect([delegate urlSession:session willPerformURLRequest:mockedURLRequest]);
+    OCMExpect([delegate urlSession:session
+              didPerformURLRequest:mockedURLRequest
+                   withURLResponse:[OCMArg isNotNil]
+                    responseString:[OCMArg isNotNil]]);
+    
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[session performDataURLRequestAsync:mockedURLRequest forCommand:mockedCommand cancellationToken:nil] continueWithBlock:^id(BFTask *task) {
         PFCommandResult *actualResult = task.result;
@@ -126,8 +144,9 @@
         return nil;
     }];
     [self waitForTestExpectations];
-
+    
     OCMVerifyAll((id)mockedURLSession);
+    OCMVerifyAll(delegate);
     [mocks makeObjectsPerformSelector:@selector(stopMocking)];
 }
 
@@ -135,13 +154,14 @@
     NSURLSession *mockedURLSession = PFStrictClassMock([NSURLSession class]);
     NSURLRequest *mockedURLRequest = PFStrictClassMock([NSURLRequest class]);
     PFRESTCommand *mockedCommand = PFStrictClassMock([PFRESTCommand class]);
+    id delegate = PFStrictProtocolMock(@protocol(PFURLSessionDelegate));
     NSArray *mocks = @[ mockedURLSession, mockedURLRequest, mockedCommand ];
-
+    
     BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
-    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession];
-
+    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession delegate:delegate];
+    
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-
+    
     [cancellationTokenSource cancel];
     [[session performDataURLRequestAsync:mockedURLRequest
                               forCommand:mockedCommand
@@ -160,26 +180,27 @@
     NSURLRequest *mockedURLRequest = PFStrictClassMock([NSURLRequest class]);
     PFRESTCommand *mockedCommand = PFStrictClassMock([PFRESTCommand class]);
     NSArray *mocks = @[ mockedURLSession, mockedURLRequest, mockedCommand ];
-
+    
     MockedSessionTask *mockedDataTask = [[MockedSessionTask alloc] init];
-
+    mockedDataTask.originalRequest = mockedURLRequest;
+    
     BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
     __block id<NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate> sessionDelegate = nil;
-
+    
     OCMExpect([mockedURLSession dataTaskWithRequest:mockedURLRequest]).andReturn(mockedDataTask);
-
+    
     mockedDataTask.taskIdentifier = 1337;
-
+    
     @weakify(mockedDataTask);
     mockedDataTask.resumeBlock = ^{
         @strongify(mockedDataTask);
-
+        
         NSData *dataRecieved = [@"{ \"foo\": \"bar\" }" dataUsingEncoding:NSUTF8StringEncoding];
         NSURLResponse *response = [[NSURLResponse alloc] initWithURL:[NSURL URLWithString:@"http://foo.bar"]
                                                             MIMEType:@"application/json"
                                                expectedContentLength:dataRecieved.length
                                                     textEncodingName:@"UTF-8"];
-
+        
         [sessionDelegate URLSession:mockedURLSession
                            dataTask:(id)mockedDataTask
                  didReceiveResponse:response
@@ -188,20 +209,27 @@
                   }];
         [sessionDelegate URLSession:mockedURLSession dataTask:(id)mockedDataTask didReceiveData:dataRecieved];
         [cancellationTokenSource cancel];
-
+        
         [sessionDelegate URLSession:mockedURLSession
                                task:(id)mockedDataTask
                didCompleteWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCancelled userInfo:nil]];
     };
-
+    
     XCTestExpectation *cancelExpectation = [self expectationWithDescription:@"cancel"];
     mockedDataTask.cancelBlock = ^{
         [cancelExpectation fulfill];
     };
-
-    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession];
+    
+    id delegate = PFStrictProtocolMock(@protocol(PFURLSessionDelegate));
+    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession delegate:delegate];
     sessionDelegate = (id)session;
-
+    
+    OCMExpect([delegate urlSession:session willPerformURLRequest:mockedURLRequest]);
+    OCMExpect([delegate urlSession:session
+              didPerformURLRequest:mockedURLRequest
+                   withURLResponse:[OCMArg isNotNil]
+                    responseString:nil]);
+    
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[session performDataURLRequestAsync:mockedURLRequest
                               forCommand:mockedCommand
@@ -211,8 +239,9 @@
         return nil;
     }];
     [self waitForTestExpectations];
-
+    
     OCMVerifyAll((id)mockedURLSession);
+    OCMVerifyAll(delegate);
     [mocks makeObjectsPerformSelector:@selector(stopMocking)];
 }
 
@@ -221,35 +250,45 @@
     NSURLRequest *mockedURLRequest = PFStrictClassMock([NSURLRequest class]);
     PFRESTCommand *mockedCommand = PFStrictClassMock([PFRESTCommand class]);
     NSArray *mocks = @[ mockedURLSession, mockedURLRequest, mockedCommand ];
-
+    
     MockedSessionTask *mockedDataTask = [[MockedSessionTask alloc] init];
-
+    mockedDataTask.originalRequest = mockedURLRequest;
+    
     NSError *expectedError = [NSError errorWithDomain:PFParseErrorDomain code:1337 userInfo:nil];
     __block id<NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate> sessionDelegate = nil;
-
+    
     OCMExpect([mockedURLSession dataTaskWithRequest:mockedURLRequest]).andReturn(mockedDataTask);
-
+    
     mockedDataTask.taskIdentifier = 1337;
-
+    
     @weakify(mockedDataTask);
     mockedDataTask.resumeBlock = ^{
         @strongify(mockedDataTask);
         [sessionDelegate URLSession:mockedURLSession task:(id)mockedDataTask didCompleteWithError:expectedError];
     };
-
-    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession];
+    
+    id delegate = PFStrictProtocolMock(@protocol(PFURLSessionDelegate));
+    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession delegate:delegate];
     sessionDelegate = (id)session;
-
+    
+    OCMExpect([delegate urlSession:session willPerformURLRequest:mockedURLRequest]);
+    OCMExpect([delegate urlSession:session
+              didPerformURLRequest:mockedURLRequest
+                   withURLResponse:nil
+                    responseString:[OCMArg isNotNil]]);
+    
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[session performDataURLRequestAsync:mockedURLRequest forCommand:mockedCommand cancellationToken:nil]
      continueWithBlock:^id(BFTask *task) {
          XCTAssertEqualObjects(expectedError, task.error.userInfo[@"originalError"]);
+         XCTAssertEqualObjects(expectedError, task.error.userInfo[NSUnderlyingErrorKey]);
          [expectation fulfill];
          return nil;
      }];
     [self waitForTestExpectations];
-
+    
     OCMVerifyAll((id)mockedURLSession);
+    OCMVerifyAll(delegate);
     [mocks makeObjectsPerformSelector:@selector(stopMocking)];
 }
 
@@ -258,12 +297,13 @@
     NSURLRequest *mockedURLRequest = PFStrictClassMock([NSURLRequest class]);
     PFRESTCommand *mockedCommand = PFStrictClassMock([PFRESTCommand class]);
     NSArray *mocks = @[ mockedURLSession, mockedURLRequest, mockedCommand ];
-
+    
     BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
     NSString *exampleFile = @"file.txt";
-
-    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession];
-
+    
+    id delegate = PFStrictProtocolMock(@protocol(PFURLSessionDelegate));
+    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession delegate:delegate];
+    
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [cancellationTokenSource cancel];
     [[session performFileUploadURLRequestAsync:mockedURLRequest
@@ -287,25 +327,26 @@
     NSURLRequest *mockedURLRequest = PFStrictClassMock([NSURLRequest class]);
     PFRESTCommand *mockedCommand = PFStrictClassMock([PFRESTCommand class]);
     NSArray *mocks = @[ mockedURLSession, mockedURLRequest, mockedCommand ];
-
+    
     MockedSessionTask *mockedUploadTask = [[MockedSessionTask alloc] init];
-
+    mockedUploadTask.originalRequest = mockedURLRequest;
+    
     NSString *exampleFile = @"file.txt";
     __block id<NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate> sessionDelegate = nil;
-
+    
     OCMExpect([mockedURLSession uploadTaskWithRequest:mockedURLRequest fromFile:[NSURL fileURLWithPath:exampleFile]]).andReturn(mockedUploadTask);
-
+    
     mockedUploadTask.taskIdentifier = 1337;
-
+    
     @weakify(mockedUploadTask);
     mockedUploadTask.resumeBlock = ^{
         @strongify(mockedUploadTask);
         NSData *dataToSend = [@"{ \"foo\": \"bar\" }" dataUsingEncoding:NSUTF8StringEncoding];
-        NSURLResponse *response = [[NSURLResponse alloc] initWithURL:[NSURL URLWithString:@"http://foo.bar"]
-                                                            MIMEType:@"application/json"
-                                               expectedContentLength:dataToSend.length
-                                                    textEncodingName:@"UTF-8"];
-
+        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:@"http://foo.bar"]
+                                                                  statusCode:200
+                                                                 HTTPVersion:@"HTTP/1.1"
+                                                                headerFields:nil];
+        
         for (NSUInteger progress = 0; progress < dataToSend.length; progress++) {
             [sessionDelegate URLSession:mockedURLSession
                                    task:(id)mockedUploadTask
@@ -313,28 +354,35 @@
                          totalBytesSent:progress
                totalBytesExpectedToSend:dataToSend.length];
         }
-
+        
         [sessionDelegate URLSession:mockedURLSession
                            dataTask:(id)mockedUploadTask
                  didReceiveResponse:response
                   completionHandler:^(NSURLSessionResponseDisposition disposition) {
                       XCTAssertEqual(disposition, NSURLSessionResponseAllow);
                   }];
-
+        
         [sessionDelegate URLSession:mockedURLSession
                            dataTask:(id)mockedUploadTask
                      didReceiveData:dataToSend];
-
+        
         [sessionDelegate URLSession:mockedURLSession
                                task:(id)mockedUploadTask
                didCompleteWithError:nil];
     };
-
-    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession];
+    
+    id delegate = PFStrictProtocolMock(@protocol(PFURLSessionDelegate));
+    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession delegate:delegate];
     sessionDelegate = (id)session;
-
+    
+    OCMExpect([delegate urlSession:session willPerformURLRequest:mockedURLRequest]);
+    OCMExpect([delegate urlSession:session
+              didPerformURLRequest:mockedURLRequest
+                   withURLResponse:[OCMArg isNotNil]
+                    responseString:[OCMArg isNotNil]]);
+    
     __block int lastProgress = 0;
-
+    
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[session performFileUploadURLRequestAsync:mockedURLRequest
                                     forCommand:mockedCommand
@@ -351,8 +399,9 @@
          return nil;
      }];
     [self waitForTestExpectations];
-
+    
     OCMVerifyAll((id)mockedURLSession);
+    OCMVerifyAll(delegate);
     [mocks makeObjectsPerformSelector:@selector(stopMocking)];
 }
 
@@ -362,27 +411,28 @@
     NSURLRequest *mockedURLRequest = PFStrictClassMock([NSURLRequest class]);
     PFRESTCommand *mockedCommand = PFStrictClassMock([PFRESTCommand class]);
     NSArray *mocks = @[ mockedURLSession, mockedURLRequest, mockedCommand ];
-
+    
     MockedSessionTask *mockedUploadTask = [[MockedSessionTask alloc] init];
-
+    mockedUploadTask.originalRequest = mockedURLRequest;
+    
     BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
     NSString *exampleFile = @"file.txt";
     __block id<NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate> sessionDelegate = nil;
-
+    
     OCMExpect([mockedURLSession uploadTaskWithRequest:mockedURLRequest fromFile:[NSURL fileURLWithPath:exampleFile]]).andReturn(mockedUploadTask);
-
+    
     mockedUploadTask.taskIdentifier = 1337;
-
+    
     @weakify(mockedUploadTask);
     mockedUploadTask.resumeBlock = ^{
         @strongify(mockedUploadTask);
-
+        
         NSData *dataToSend = [@"{ \"foo\": \"bar\" }" dataUsingEncoding:NSUTF8StringEncoding];
         NSURLResponse *response = [[NSURLResponse alloc] initWithURL:[NSURL URLWithString:@"http://foo.bar"]
                                                             MIMEType:@"application/json"
                                                expectedContentLength:dataToSend.length
                                                     textEncodingName:@"UTF-8"];
-
+        
         for (NSUInteger progress = 0; progress < dataToSend.length; progress++) {
             [sessionDelegate URLSession:mockedURLSession
                                    task:(id)mockedUploadTask
@@ -390,35 +440,42 @@
                          totalBytesSent:progress
                totalBytesExpectedToSend:dataToSend.length];
         }
-
+        
         [sessionDelegate URLSession:mockedURLSession
                            dataTask:(id)mockedUploadTask
                  didReceiveResponse:response
                   completionHandler:^(NSURLSessionResponseDisposition disposition) {
                       XCTAssertEqual(disposition, NSURLSessionResponseAllow);
                   }];
-
+        
         [sessionDelegate URLSession:mockedURLSession
                            dataTask:(id)mockedUploadTask
                      didReceiveData:dataToSend];
-
+        
         [cancellationTokenSource cancel];
-
+        
         [sessionDelegate URLSession:mockedURLSession
                                task:(id)mockedUploadTask
                didCompleteWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCancelled userInfo:nil]];
     };
-
+    
     XCTestExpectation *cancelExpectation = [self expectationWithDescription:@"cancel"];
     mockedUploadTask.cancelBlock = ^{
         [cancelExpectation fulfill];
     };
-
-    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession];
+    
+    id delegate = PFProtocolMock(@protocol(PFURLSessionDelegate));
+    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession delegate:delegate];
     sessionDelegate = (id)session;
-
+    
+    OCMExpect([delegate urlSession:session willPerformURLRequest:mockedURLRequest]);
+    OCMExpect([delegate urlSession:session
+              didPerformURLRequest:mockedURLRequest
+                   withURLResponse:[OCMArg isNotNil]
+                    responseString:nil]);
+    
     __block int lastProgress = 0;
-
+    
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[session performFileUploadURLRequestAsync:mockedURLRequest
                                     forCommand:mockedCommand
@@ -434,8 +491,9 @@
          return nil;
      }];
     [self waitForTestExpectations];
-
+    
     OCMVerifyAll((id)mockedURLSession);
+    OCMVerifyAll(delegate);
     [mocks makeObjectsPerformSelector:@selector(stopMocking)];
 }
 
@@ -444,26 +502,26 @@
     NSURLRequest *mockedURLRequest = PFStrictClassMock([NSURLRequest class]);
     PFRESTCommand *mockedCommand = PFStrictClassMock([PFRESTCommand class]);
     NSArray *mocks = @[ mockedURLSession, mockedURLRequest, mockedCommand ];
-
+    
     MockedSessionTask *mockedDataTask = [[MockedSessionTask alloc] init];
-
+    mockedDataTask.originalRequest = mockedURLRequest;
+    
     __block id<NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate> sessionDelegate = nil;
-
+    
     OCMStub([mockedURLSession dataTaskWithRequest:mockedURLRequest]).andReturn(mockedDataTask);
-
+    
     mockedDataTask.taskIdentifier = 1337;
     @weakify(mockedDataTask);
     mockedDataTask.resumeBlock = ^{
         @strongify(mockedDataTask);
         NSData *dataRecieved = [@"{ \"foo\": \"bar\" }" dataUsingEncoding:NSUTF8StringEncoding];
-        NSURLResponse *response = [[NSURLResponse alloc] initWithURL:[NSURL URLWithString:@"http://foo.bar"]
-                                                            MIMEType:@"application/json"
-                                               expectedContentLength:dataRecieved.length
-                                                    textEncodingName:@"UTF-8"];
-
-        NSCachedURLResponse *cachedResponse =
-        [[NSCachedURLResponse alloc] initWithResponse:response data:dataRecieved];
-
+        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:@"http://foo.bar"]
+                                                                  statusCode:200
+                                                                 HTTPVersion:@"HTTP/1.1"
+                                                                headerFields:nil];
+        NSCachedURLResponse *cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response
+                                                                                       data:dataRecieved];
+        
         [sessionDelegate URLSession:mockedURLSession
                            dataTask:(id)mockedDataTask
                  didReceiveResponse:response
@@ -472,16 +530,23 @@
                   }];
         [sessionDelegate URLSession:mockedURLSession dataTask:(id)mockedDataTask didReceiveData:dataRecieved];
         [sessionDelegate URLSession:mockedURLSession task:(id)mockedDataTask didCompleteWithError:nil];
-
+        
         [sessionDelegate URLSession:mockedURLSession
                            dataTask:(id)mockedDataTask
                   willCacheResponse:cachedResponse
                   completionHandler:^(NSCachedURLResponse *cached) { XCTAssertNil(cached); }];
     };
-
-    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession];
+    
+    id delegate = PFProtocolMock(@protocol(PFURLSessionDelegate));
+    PFURLSession *session = [PFURLSession sessionWithURLSession:mockedURLSession delegate:delegate];
     sessionDelegate = (id)session;
-
+    
+    OCMExpect([delegate urlSession:session willPerformURLRequest:mockedURLRequest]);
+    OCMExpect([delegate urlSession:session
+              didPerformURLRequest:mockedURLRequest
+                   withURLResponse:[OCMArg isNotNil]
+                    responseString:[OCMArg isNotNil]]);
+    
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[session performDataURLRequestAsync:mockedURLRequest forCommand:mockedCommand cancellationToken:nil]
      continueWithBlock:^id(BFTask *task) {
@@ -490,13 +555,16 @@
          return nil;
      }];
     [self waitForTestExpectations];
-
+    
     OCMVerifyAll((id)mockedURLSession);
+    OCMVerifyAll(delegate);
     [mocks makeObjectsPerformSelector:@selector(stopMocking)];
 }
 
 - (void)testInvalidate {
-    PFURLSession *session = [PFURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    id delegate = PFStrictProtocolMock(@protocol(PFURLSessionDelegate));
+    PFURLSession *session = [PFURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                          delegate:delegate];
     XCTAssertNoThrow([session invalidateAndCancel]); // lol?
 }
 

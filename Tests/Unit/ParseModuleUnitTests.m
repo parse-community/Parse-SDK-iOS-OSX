@@ -41,7 +41,7 @@
     // Spin the run loop, as the delegate messages are being called on the main thread
     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
 
-    XCTAssertTrue(module.didInitializeCalled, @"Did initialize method should be called on a module.");
+    XCTAssertTrue(module.didInitializeCalled);
 }
 
 - (void)testWeakModuleReference {
@@ -53,7 +53,7 @@
     }
 
     [collection parseDidInitializeWithApplicationId:nil clientKey:nil];
-    XCTAssertEqual([collection modulesCount], 0, @"Module should be removed from the collection.");
+    XCTAssertEqual([collection modulesCount], 0);
 }
 
 - (void)testModuleRemove {
@@ -69,7 +69,7 @@
 
     XCTAssertTrue([collection containsModule:moduleB]);
     XCTAssertFalse([collection containsModule:moduleA]);
-    XCTAssertEqual([collection modulesCount], 1, @"Module should be removed from the collection");
+    XCTAssertEqual([collection modulesCount], 1);
 }
 
 - (void)testNilModule {

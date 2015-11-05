@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFACL.h"
+#import <Parse/PFACL.h>
 
 @class PFUser;
 

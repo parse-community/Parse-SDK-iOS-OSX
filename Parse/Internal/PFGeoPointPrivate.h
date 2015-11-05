@@ -9,11 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
 # import <Parse/PFGeoPoint.h>
-#else
-# import <ParseOSX/PFGeoPoint.h>
-#endif
 
 extern const double EARTH_RADIUS_MILES;
 extern const double EARTH_RADIUS_KILOMETERS;
@@ -32,6 +28,6 @@ extern const double EARTH_RADIUS_KILOMETERS;
 /*!
  Creates an GeoPoint from its encoded format.
  */
-+ (PFGeoPoint *)geoPointWithDictionary:(NSDictionary *)dictionary;
++ (instancetype)geoPointWithDictionary:(NSDictionary *)dictionary;
 
 @end

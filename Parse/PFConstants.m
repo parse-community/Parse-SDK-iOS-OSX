@@ -20,3 +20,13 @@ NSString *const kPFDeviceType                = @"osx";
 NSString *const kPFParseServer               = @"https://api.parse.com";
 
 NSString *const PFParseErrorDomain = @"Parse";
+
+///--------------------------------------
+#pragma mark - Network Notifications
+///--------------------------------------
+
+NSString *const PFNetworkWillSendURLRequestNotification = @"PFNetworkWillSendURLRequestNotification";
+NSString *const PFNetworkDidReceiveURLResponseNotification = @"PFNetworkDidReceiveURLResponseNotification";
+NSString *const PFNetworkNotificationURLRequestUserInfoKey = @"PFNetworkNotificationURLRequestUserInfoKey";
+NSString *const PFNetworkNotificationURLResponseUserInfoKey = @"PFNetworkNotificationURLResponseUserInfoKey";
+NSString *const PFNetworkNotificationURLResponseBodyUserInfoKey = @"PFNetworkNotificationURLResponseBodyUserInfoKey";

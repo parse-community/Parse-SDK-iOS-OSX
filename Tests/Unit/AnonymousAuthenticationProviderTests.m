@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <Bolts/BFTask.h>
+@import Bolts.BFTask;
 
 #import "PFAnonymousAuthenticationProvider.h"
 #import "PFTestCase.h"
@@ -30,38 +30,6 @@
     XCTAssertNotNil(authData);
     XCTAssertNotNil(authData[@"id"]);
     XCTAssertNotEqualObjects(authData, provider.authData);
-}
-
-- (void)testAuthType {
-    XCTAssertEqualObjects([PFAnonymousAuthenticationProvider authType], @"anonymous");
-}
-
-- (void)testAuthenticateAsync {
-    PFAnonymousAuthenticationProvider *provider = [[PFAnonymousAuthenticationProvider alloc] init];
-
-    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[provider authenticateAsync] continueWithBlock:^id(BFTask *task) {
-        NSDictionary *authData = task.result;
-        XCTAssertNotNil(authData);
-        XCTAssertNotNil(authData[@"id"]);
-        [expectation fulfill];
-        return nil;
-    }];
-    [self waitForTestExpectations];
-}
-
-- (void)testDeauthenticateAsync {
-    PFAnonymousAuthenticationProvider *provider = [[PFAnonymousAuthenticationProvider alloc] init];
-
-    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[provider deauthenticateAsync] continueWithBlock:^id(BFTask *task) {
-        XCTAssertNil(task.result);
-        XCTAssertFalse(task.faulted);
-        XCTAssertFalse(task.cancelled);
-        [expectation fulfill];
-        return nil;
-    }];
-    [self waitForTestExpectations];
 }
 
 - (void)testRestoreAuthentication {

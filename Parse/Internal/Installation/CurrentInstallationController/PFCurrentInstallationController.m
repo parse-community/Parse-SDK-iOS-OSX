@@ -78,7 +78,7 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
 - (BFTask *)getCurrentObjectAsync {
     @weakify(self);
     return [_dataTaskQueue enqueue:^BFTask *(BFTask *unused) {
-        return [[[BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id(BFTask *task) {
+        return [[[BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id {
             @strongify(self);
             if (self.currentInstallation) {
                 return self.currentInstallation;
@@ -141,7 +141,9 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
     }];
 }
 
-- (BFTask *)saveCurrentObjectAsync:(PFInstallation *)installation {
+- (BFTask *)saveCurrentObjectAsync:(PFObject *)object {
+    PFInstallation *installation = (PFInstallation *)object;
+
     @weakify(self);
     return [_dataTaskQueue enqueue:^BFTask *(BFTask *unused) {
         @strongify(self);

@@ -34,8 +34,7 @@
 #import "PFMultiProcessFileLockController.h"
 #import "PFHash.h"
 
-#if PARSE_IOS_ONLY
-#import "PFNetworkActivityIndicatorManager.h"
+#if TARGET_OS_IOS
 #import "PFProduct.h"
 #endif
 
@@ -46,10 +45,6 @@ static NSString *parseServer_;
 + (void)initialize {
     if (self == [PFInternalUtils class]) {
         [self setParseServer:kPFParseServer];
-
-#if PARSE_IOS_ONLY
-        [PFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-#endif
     }
 }
 
@@ -271,33 +266,6 @@ static NSString *parseServer_;
     }
     return [NSString stringWithFormat:format,
             args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]];
-}
-
-@end
-
-// A PFJSONCacheItem is a pairing of a json string with its hash value.
-// This is used by our mutable container checking.
-@implementation PFJSONCacheItem
-
-- (instancetype)initWithObject:(id)object {
-    if (self = [super init]) {
-        NSObject *encoded = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:object];
-        NSData *jsonData = [PFJSONSerialization dataFromJSONObject:encoded];
-        _hashValue = PFMD5HashFromData(jsonData);
-    }
-    return self;
-}
-
-- (BOOL)isEqual:(id)otherCache {
-    if (![otherCache isKindOfClass:[PFJSONCacheItem class]]) {
-        return NO;
-    }
-
-    return [self.hashValue isEqualToString:[otherCache hashValue]];
-}
-
-+ (PFJSONCacheItem *)cacheFromObject:(id)object {
-    return [[PFJSONCacheItem alloc] initWithObject:object];
 }
 
 @end

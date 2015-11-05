@@ -9,22 +9,25 @@
 
 #import <Foundation/Foundation.h>
 
-@class BFTask;
+#import <Parse/PFConstants.h>
+
+#import "PFDataProvider.h"
+
+@class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFConfig;
-@class PFFileManager;
 
 @interface PFCurrentConfigController : NSObject
 
-@property (nonatomic, strong, readonly) PFFileManager *fileManager;
+@property (nonatomic, weak, readonly) id<PFPersistenceControllerProvider> dataSource;
 
 ///--------------------------------------
 /// @name Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithFileManager:(PFFileManager *)fileManager NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 
-+ (instancetype)controllerWithFileManager:(PFFileManager *)fileManager;
++ (instancetype)controllerWithDataSource:(id<PFPersistenceControllerProvider>)dataSource;
 
 ///--------------------------------------
 /// @name Accessors

@@ -10,6 +10,7 @@
 #import "PFNetworkActivityIndicatorManager.h"
 
 #import "PFApplication.h"
+#import "PFCommandRunningConstants.h"
 
 static NSTimeInterval const PFNetworkActivityIndicatorVisibilityDelay = 0.17;
 
@@ -49,10 +50,20 @@ static NSTimeInterval const PFNetworkActivityIndicatorVisibilityDelay = 0.17;
     _networkActivityAccessQueue = dispatch_queue_create("com.parse.networkActivityIndicatorManager",
                                                         DISPATCH_QUEUE_SERIAL);
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_handleWillSendURLRequestNotification:)
+                                                 name:PFNetworkWillSendURLRequestNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_handleDidReceiveURLResponseNotification:)
+                                                 name:PFNetworkDidReceiveURLResponseNotification
+                                               object:nil];
+
     return self;
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_activityIndicatorVisibilityTimer invalidate];
 }
 
@@ -131,10 +142,22 @@ static NSTimeInterval const PFNetworkActivityIndicatorVisibilityDelay = 0.17;
     }
 }
 
-- (void)_updateNetworkActivityIndicatorVisibility {
+- (void)_updateNetworkActivityIndicatorVisibility NS_EXTENSION_UNAVAILABLE_IOS("") {
     if (![PFApplication currentApplication].extensionEnvironment) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:self.networkActivityIndicatorVisible];
     }
+}
+
+///--------------------------------------
+#pragma mark - Command Running
+///--------------------------------------
+
+- (void)_handleWillSendURLRequestNotification:(NSNotification *)notification {
+    [self incrementActivityCount];
+}
+
+- (void)_handleDidReceiveURLResponseNotification:(NSNotification *)notification {
+    [self decrementActivityCount];
 }
 
 @end

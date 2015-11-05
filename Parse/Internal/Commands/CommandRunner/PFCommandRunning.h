@@ -9,15 +9,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFDataProvider.h"
-#if TARGET_OS_IPHONE
 #import <Parse/PFConstants.h>
-#else
-#import <ParseOSX/PFConstants.h>
-#endif
+
+#import "PFDataProvider.h"
 
 @class BFCancellationToken;
-@class BFTask;
+@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class PFCommandResult;
 @class PFRESTCommand;
 @protocol PFNetworkCommand;
 

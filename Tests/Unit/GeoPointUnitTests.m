@@ -7,12 +7,11 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <CoreLocation/CoreLocation.h>
+@import CoreLocation.CLLocation;
 
 #import "PFGeoPoint.h"
 #import "PFGeoPointPrivate.h"
 #import "PFTestCase.h"
-
 
 @interface GeoPointUnitTests : PFTestCase
 

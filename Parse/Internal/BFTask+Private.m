@@ -12,11 +12,7 @@
 #import <Bolts/BFExecutor.h>
 #import <Bolts/BFTaskCompletionSource.h>
 
-#if TARGET_OS_IPHONE
-#import <Parse/PFLogging.h>
-#else
-#import <ParseOSX/PFLogging.h>
-#endif
+#import "PFLogging.h"
 
 @implementation BFExecutor (Background)
 

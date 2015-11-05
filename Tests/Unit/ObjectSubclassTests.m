@@ -94,6 +94,22 @@
 }
 @end
 
+@interface StateClass : PFObject<PFSubclassing>
+
+@property (nonatomic, copy) NSString *state;
+
+@end
+
+@implementation StateClass
+
+@dynamic state;
+
++ (NSString *)parseClassName {
+    return @"State";
+}
+
+@end
+
 ///--------------------------------------
 #pragma mark - ObjectSubclassTests
 ///--------------------------------------
@@ -131,12 +147,12 @@
 
 - (void)testSubclassConstructor {
     PFObject *theFlash = [PFObject objectWithClassName:@"Person"];
-    XCTAssertFalse([theFlash isKindOfClass:[TheFlash class]], @"We're living the past.");
+    XCTAssertFalse([theFlash isKindOfClass:[TheFlash class]]);
 
     [TheFlash registerSubclass];
     theFlash = [PFObject objectWithClassName:@"Person"];
-    XCTAssertTrue([theFlash isKindOfClass:[TheFlash class]], @"In the future, everyone is the Flash.");
-    XCTAssertEqualObjects(@"The Flash", [(TheFlash*)theFlash flashName], @"The Flash's name should be The Flash, duh.");
+    XCTAssertTrue([theFlash isKindOfClass:[TheFlash class]]);
+    XCTAssertEqualObjects(@"The Flash", [(TheFlash*)theFlash flashName]);
 }
 
 - (void)testSubclassesMustHaveTheirParentsParseClassName {
@@ -146,8 +162,7 @@
 
 - (void)testDirtyPointerDetection {
     [ClassWithDirtyingConstructor registerSubclass];
-    XCTAssertThrows([ClassWithDirtyingConstructor objectWithoutDataWithObjectId:@"NotUsed"],
-                    @"ClassWithDirtyingConstructor has an invalid init method");
+    XCTAssertThrows([ClassWithDirtyingConstructor objectWithoutDataWithObjectId:@"NotUsed"]);
     [PFObject unregisterSubclass:[ClassWithDirtyingConstructor class]];
 }
 
@@ -168,6 +183,15 @@
 
     PFObject *theFlash = [PFObject objectWithClassName:@"Person"];
     PFAssertIsKindOfClass(theFlash, [TheFlash class]);
+}
+
+- (void)testStateIsSubclassable {
+    [StateClass registerSubclass];
+    StateClass *stateClass = [StateClass object];
+    XCTAssertNil(stateClass.state);
+
+    stateClass.state = @"StateString!";
+    XCTAssertEqualObjects(stateClass.state, @"StateString!");
 }
 
 @end

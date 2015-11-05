@@ -165,6 +165,31 @@
     XCTAssertEqualObjects(object.objectId, @"123");
 }
 
+- (void)testDecodingObjectsWithDates {
+    PFDecoder *decoder = [[PFDecoder alloc] init];
+
+    NSDictionary *decoded = [decoder decodeObject:@{ @"object" : @{@"__type" : @"Object",
+                                                                   @"className" : @"Yolo",
+                                                                   @"objectId" : @"123",
+                                                                   @"updatedAt" : @"1970-01-01T00:00:01.000Z",
+                                                                   @"createdAt" : @"1970-01-01T00:00:02.000Z"} }];
+    PFObject *object = decoded[@"object"];
+
+    XCTAssertEqualObjects(object.updatedAt, [NSDate dateWithTimeIntervalSince1970:1.0]);
+    XCTAssertEqualObjects(object.createdAt, [NSDate dateWithTimeIntervalSince1970:2.0]);
+
+    decoded = [decoder decodeObject:@{ @"object" : @{@"__type" : @"Object",
+                                                     @"className" : @"Yolo",
+                                                     @"objectId" : @"123",
+                                                     @"updatedAt" : @{@"__type" : @"Date",
+                                                                      @"iso" : @"1970-01-01T00:00:01.000Z"},
+                                                     @"createdAt" : @{@"__type" : @"Date",
+                                                                      @"iso" : @"1970-01-01T00:00:02.000Z"}} }];
+    object = decoded[@"object"];
+    XCTAssertEqualObjects(object.updatedAt, [NSDate dateWithTimeIntervalSince1970:1.0]);
+    XCTAssertEqualObjects(object.createdAt, [NSDate dateWithTimeIntervalSince1970:2.0]);
+}
+
 - (void)testDecodingUnknownType {
     PFDecoder *decoder = [[PFDecoder alloc] init];
 

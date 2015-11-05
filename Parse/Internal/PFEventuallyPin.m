@@ -22,13 +22,13 @@
 
 NSString *const PFEventuallyPinPinName = @"_eventuallyPin";
 
-NSString *const PFEventuallyPinKeyUUID = @"uuid";
-NSString *const PFEventuallyPinKeyTime = @"time";
-NSString *const PFEventuallyPinKeyType = @"type";
-NSString *const PFEventuallyPinKeyObject = @"object";
-NSString *const PFEventuallyPinKeyOperationSetUUID = @"operationSetUUID";
-NSString *const PFEventuallyPinKeySessionToken = @"sessionToken";
-NSString *const PFEventuallyPinKeyCommand = @"command";
+static NSString *const PFEventuallyPinKeyUUID = @"uuid";
+static NSString *const PFEventuallyPinKeyTime = @"time";
+static NSString *const PFEventuallyPinKeyType = @"type";
+static NSString *const PFEventuallyPinKeyObject = @"object";
+static NSString *const PFEventuallyPinKeyOperationSetUUID = @"operationSetUUID";
+static NSString *const PFEventuallyPinKeySessionToken = @"sessionToken";
+static NSString *const PFEventuallyPinKeyCommand = @"command";
 
 @implementation PFEventuallyPin
 
@@ -158,7 +158,14 @@ NSString *const PFEventuallyPinKeyCommand = @"command";
         pin[PFEventuallyPinKeyCommand] = commandDictionary;
     }
 
-    return [[pin pinInBackgroundWithName:PFEventuallyPinPinName] continueWithBlock:^id(BFTask *task) {
+    // NOTE: This is needed otherwise ARC releases the pins before we have a chance to persist the new ones to disk,
+    // Which means we'd lose any columns on objects in eventually pins not currently in memory.
+    __block NSArray *existingPins = nil;
+    return [[[self findAllEventuallyPin] continueWithSuccessBlock:^id(BFTask *task) {
+        existingPins = task.result;
+        return [pin pinInBackgroundWithName:PFEventuallyPinPinName];
+    }] continueWithSuccessBlock:^id(BFTask *task) {
+        existingPins = nil;
         return pin;
     }];
 }

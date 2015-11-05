@@ -62,7 +62,7 @@
     XCTAssertTrue([[request.URL absoluteString] containsString:@"/1/yolo"]);
     XCTAssertEqualObjects(request.allHTTPHeaderFields, (@{ PFCommandHeaderNameInstallationId : @"installationId",
                                                            PFCommandHeaderNameSessionToken : @"yarr",
-                                                           PFHTTPRequestHeaderNameContentType : @"application/json; charset=utf8",
+                                                           PFHTTPRequestHeaderNameContentType : @"application/json; charset=utf-8",
                                                            @"CustomHeader" : @"CustomValue" }));
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
     XCTAssertNotNil(request.HTTPBody);

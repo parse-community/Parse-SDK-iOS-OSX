@@ -9,7 +9,7 @@
 
 #import "PFTestSwizzledMethod.h"
 
-#import <objc/runtime.h>
+@import ObjectiveC.runtime;
 
 @interface PFTestSwizzledMethod ()
 

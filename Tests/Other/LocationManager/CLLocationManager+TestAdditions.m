@@ -79,13 +79,7 @@ static BOOL mockingEnabled = NO;
     } else if (returnLocation) {
         CLLocation *fakeLocation = [[CLLocation alloc] initWithLatitude:CL_DEFAULT_LATITUDE
                                                               longitude:CL_DEFAULT_LONGITUDE];
-#if PARSE_IOS_ONLY
-        [self.delegate locationManager:self didUpdateLocations:[NSArray arrayWithObject:fakeLocation]];
-#else
-        CLLocation *emptyLocation = [[CLLocation alloc] initWithLatitude:CL_DEFAULT_LATITUDE
-                                                               longitude:CL_DEFAULT_LONGITUDE];
-        [self.delegate locationManager:self didUpdateToLocation:fakeLocation fromLocation:emptyLocation];
-#endif
+        [self.delegate locationManager:self didUpdateLocations:@[ fakeLocation ]];
     }
 }
 

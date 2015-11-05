@@ -9,14 +9,18 @@
 
 #import <Foundation/Foundation.h>
 
-@class BFTask;
+#import <Parse/PFConstants.h>
+
+#import "PFMacros.h"
+
+@class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFObject;
 @class PFOfflineStore;
 @class PFQueryState;
 @class PFSQLiteDatabase;
 @class PFUser;
 
-typedef BFTask *(^PFConstraintMatcherBlock)(PFObject *object, PFSQLiteDatabase *database);
+typedef BFTask PF_GENERIC(NSNumber *)* (^PFConstraintMatcherBlock)(PFObject *object, PFSQLiteDatabase *database);
 
 typedef NS_OPTIONS(uint8_t, PFOfflineQueryOption) {
     PFOfflineQueryOptionOrder = 1 << 0,

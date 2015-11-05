@@ -10,6 +10,8 @@
 #import "PFObject.h"
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
+#import "PFObjectPrivate.h"
+#import "BFTask+Private.h"
 
 @interface ObjectUnitTests : PFUnitTestCase
 
@@ -69,20 +71,19 @@
                                        @"object" : object };
     PFObject *object2 = [PFObject objectWithClassName:@"Test" dictionary:validDictionary];
     XCTAssertNotNil(object2);
-    XCTAssertEqualObjects(string, object2[@"string"], @"'string' should be set via constructor");
-    XCTAssertEqualObjects(number, object2[@"number"], @"'number' should be set via constructor");
-    XCTAssertEqualObjects(date, object2[@"date"], @"'date' should be set via constructor");
-    XCTAssertEqualObjects(object, object2[@"object"], @"'object' should be set via constructor");
-    XCTAssertEqualObjects(null, object2[@"null"], @"'null' should be set via constructor");
-    XCTAssertEqualObjects(data, object2[@"data"], @"'data' should be set via constructor");
+    XCTAssertEqualObjects(string, object2[@"string"]);
+    XCTAssertEqualObjects(number, object2[@"number"]);
+    XCTAssertEqualObjects(date, object2[@"date"]);
+    XCTAssertEqualObjects(object, object2[@"object"]);
+    XCTAssertEqualObjects(null, object2[@"null"]);
+    XCTAssertEqualObjects(data, object2[@"data"]);
 
     validDictionary = @{ @"array" : @[ object, object2 ],
                          @"dictionary" : @{@"bar" : date, @"score" : number} };
     PFObject *object3 = [PFObject objectWithClassName:@"Stuff" dictionary:validDictionary];
     XCTAssertNotNil(object3);
-    XCTAssertEqualObjects(validDictionary[@"array"], object3[@"array"], @"'array' should be set via constructor");
-    XCTAssertEqualObjects(validDictionary[@"dictionary"], object3[@"dictionary"],
-                         @"'dictionary' should be set via constructor");
+    XCTAssertEqualObjects(validDictionary[@"array"], object3[@"array"]);
+    XCTAssertEqualObjects(validDictionary[@"dictionary"], object3[@"dictionary"]);
 
     // Dictionary constructor relise on constraints enforced by PFObject -setObject:forKey:
     NSDictionary *invalidDictionary = @{ @"1" : @"2",
@@ -181,6 +182,93 @@
     [object setValue:@"yolo" forKey:@"yarr"];
     XCTAssertEqualObjects(object[@"yarr"], @"yolo");
     XCTAssertEqualObjects([object valueForKey:@"yarr"], @"yolo");
+}
+
+#pragma mark Fetch
+
+- (void)testFetchObjectWithoutObjectIdError {
+    PFObject *object = [PFObject objectWithClassName:@"Test"];
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[object fetchInBackground] continueWithBlock:^id(BFTask *task) {
+        XCTAssertNotNil(task.error);
+        XCTAssertEqualObjects(task.error.domain, PFParseErrorDomain);
+        XCTAssertEqual(task.error.code, kPFErrorMissingObjectId);
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
+}
+
+#pragma mark DeleteAll
+
+- (void)testDeleteAllWithoutObjects {
+    XCTAssertTrue([PFObject deleteAll:nil]);
+    XCTAssertTrue([PFObject deleteAll:@[]]);
+
+    NSError *error = nil;
+    XCTAssertTrue([PFObject deleteAll:nil error:&error]);
+    XCTAssertNil(error);
+    XCTAssertTrue([PFObject deleteAll:@[] error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertTrue([[[PFObject deleteAllInBackground:nil] waitForResult:nil] boolValue]);
+    XCTAssertTrue([[[PFObject deleteAllInBackground:@[]] waitForResult:nil] boolValue]);
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [PFObject deleteAllInBackground:nil block:^(BOOL succeeded, NSError * _Nullable error) {
+        XCTAssertTrue(succeeded);
+        XCTAssertNil(error);
+        [expectation fulfill];
+    }];
+    [self waitForTestExpectations];
+}
+
+#pragma mark Revert
+
+- (void)testRevert {
+    NSDate *date = [NSDate date];
+    NSNumber *number = @0.75;
+    PFObject *object = [PFObject _objectFromDictionary:@{ @"yarr" : date,
+                                                          @"score" : number }
+                                      defaultClassName:@"Test"
+                                          completeData:YES];
+    object[@"yarr"] = @"yolo";
+    [object revert];
+    XCTAssertEqualObjects(object[@"yarr"], date);
+    XCTAssertEqualObjects(object[@"score"], number);
+}
+
+- (void)testRevertObjectForKey {
+    NSDate *date = [NSDate date];
+    NSNumber *number = @0.75;
+    PFObject *object = [PFObject _objectFromDictionary:@{ @"yarr" : date,
+                                                          @"score" : @1.0 }
+                                      defaultClassName:@"Test"
+                                          completeData:YES];
+    object[@"yarr"] = @"yolo";
+    object[@"score"] = number;
+    [object revertObjectForKey:@"yarr"];
+    XCTAssertEqualObjects(object[@"yarr"], date);
+    XCTAssertEqualObjects(object[@"score"], number);
+}
+
+#pragma mark Dirty
+
+- (void)testRecursiveDirty {
+    // A -> B -> A is a supported use-case, but it would crash on older SDK versions.
+    PFObject *objectA = [PFObject objectWithClassName:@"A"];
+    PFObject *objectB = [PFObject objectWithClassName:@"B"];
+
+    [objectA _mergeAfterSaveWithResult:@{ @"objectId" : @"foo",
+                                          @"B" : objectB }
+                               decoder:[PFDecoder objectDecoder]];
+
+    [objectB _mergeAfterSaveWithResult:@{ @"objectId" : @"bar",
+                                          @"A" : objectA }
+                               decoder:[PFDecoder objectDecoder]];
+
+    XCTAssertFalse([objectA isDirty]);
 }
 
 @end

@@ -9,13 +9,18 @@
 
 #import <Foundation/Foundation.h>
 
-@class BFTask;
+#import <Parse/PFConstants.h>
+
+PF_TV_UNAVAILABLE_WARNING
+PF_WATCH_UNAVAILABLE_WARNING
+
+@class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFPushState;
 @protocol PFCommandRunning;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PFPushController : NSObject
+PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushController : NSObject
 
 @property (nonatomic, strong, readonly) id<PFCommandRunning> commandRunner;
 

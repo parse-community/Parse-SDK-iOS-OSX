@@ -8,6 +8,7 @@
  */
 
 #import "PFQuery.h"
+#import "PFQueryPrivate.h"
 
 #import <Bolts/BFCancellationTokenSource.h>
 #import <Bolts/BFTask.h>
@@ -550,6 +551,7 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
             [NSException raise:NSInternalInconsistencyException
                         format:@"LIKE is not supported by PFQuery."];
         }
+        case NSBetweenPredicateOperatorType:
         default: {
             [NSException raise:NSInternalInconsistencyException
                         format:@"This comparison predicate is not supported. (%zd)", predicate.predicateOperatorType];
@@ -614,6 +616,7 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
                 }
                 return [self orQueryWithSubqueries:subqueries];
             }
+            case NSNotPredicateType:
             default: {
                 // This should never happen.
                 [NSException raise:NSInternalInconsistencyException
@@ -798,7 +801,7 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     return [self _findObjectsAsyncForQueryState:state after:nil];
 }
 
-- (void)findObjectsInBackgroundWithBlock:(PFArrayResultBlock)block {
+- (void)findObjectsInBackgroundWithBlock:(PFQueryArrayResultBlock)block {
     @synchronized (self) {
         if (!self.state.queriesLocalDatastore && self.state.cachePolicy == kPFCachePolicyCacheThenNetwork) {
             PFQueryState *cacheQueryState = [self _queryStateCopyWithCachePolicy:kPFCachePolicyCacheOnly];
@@ -842,6 +845,9 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
                                                                         user:user];
     }] continueWithBlock:^id(BFTask *task) {
         @strongify(self);
+        if (!self) {
+            return task;
+        }
         @synchronized (self) {
             if (_cancellationTokenSource == cancellationTokenSource) {
                 _cancellationTokenSource = nil;

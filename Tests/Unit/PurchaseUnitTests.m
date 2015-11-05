@@ -9,7 +9,7 @@
 
 #import <OCMock/OCMock.h>
 
-#import <Bolts/BFTask.h>
+@import Bolts.BFTask;
 
 #import "PFCommandRunning.h"
 #import "PFFileManager.h"
@@ -34,9 +34,11 @@
 - (PFPurchaseController *)mockedPurchaseController {
     id<PFCommandRunning> commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
     PFFileManager *fileManager = PFStrictClassMock([PFFileManager class]);
+    id bundle = PFStrictClassMock([NSBundle class]);
 
     PFPurchaseController *purchaseController = PFPartialMock([[PFPurchaseController alloc] initWithCommandRunner:commandRunner
-                                                                                                      fileManager:fileManager]);
+                                                                                                     fileManager:fileManager
+                                                                                                          bundle:bundle]);
 
     SKPaymentQueue *paymentQueue = PFClassMock([SKPaymentQueue class]);
     purchaseController.paymentQueue = paymentQueue;
@@ -153,13 +155,15 @@
     PFPurchaseController *mockedPurchaseController = [self mockedPurchaseController];
     [Parse _currentManager].purchaseController = mockedPurchaseController;
 
+    PFProduct *product = [PFProduct object];
+
     NSString *somePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
 
     OCMStub([mockedPurchaseController assetContentPathForProductWithIdentifier:OCMOCK_ANY
                                                                       fileName:OCMOCK_ANY]).andReturn(somePath);
 
 
-    XCTAssertNil([PFPurchase assetContentPathForProduct:nil]);
+    XCTAssertNil([PFPurchase assetContentPathForProduct:product]);
 
     NSError *error;
     [@"" writeToFile:somePath atomically:YES
@@ -167,7 +171,7 @@
                error:&error];
 
     XCTAssertNil(error);
-    XCTAssertNotNil([PFPurchase assetContentPathForProduct:nil]);
+    XCTAssertNotNil([PFPurchase assetContentPathForProduct:product]);
 }
 
 @end

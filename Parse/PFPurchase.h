@@ -14,6 +14,12 @@
 
 @class PFProduct;
 
+NS_ASSUME_NONNULL_BEGIN
+
+typedef void (^PFPurchaseProductObservationBlock)(SKPaymentTransaction *transaction);
+typedef void (^PFPurchaseBuyProductResultBlock)(NSError *__nullable error);
+typedef void (^PFPurchaseDownloadAssetResultBlock)(NSString *__nullable filePath, NSError *__nullable error);
+
 /*!
  `PFPurchase` provides a set of APIs for working with in-app purchases.
 
@@ -32,8 +38,7 @@
  @param productIdentifier the product identifier
  @param block The block to be run when buying a product.
  */
-+ (void)addObserverForProduct:(NSString *)productIdentifier
-                        block:(void(^)(SKPaymentTransaction *transaction))block;
++ (void)addObserverForProduct:(NSString *)productIdentifier block:(PFPurchaseProductObservationBlock)block;
 
 /*!
  @abstract *Asynchronously* initiates the purchase for the product.
@@ -41,7 +46,7 @@
  @param productIdentifier the product identifier
  @param block the completion block.
  */
-+ (void)buyProduct:(NSString *)productIdentifier block:(void(^)(NSError *error))block;
++ (void)buyProduct:(NSString *)productIdentifier block:(PFPurchaseBuyProductResultBlock)block;
 
 /*!
  @abstract *Asynchronously* download the purchased asset, which is stored on Parse's server.
@@ -52,7 +57,7 @@
  @param completion the completion block.
  */
 + (void)downloadAssetForTransaction:(SKPaymentTransaction *)transaction
-                         completion:(void(^)(NSString *filePath, NSError *error))completion;
+                         completion:(PFPurchaseDownloadAssetResultBlock)completion;
 
 /*!
  @abstract *Asynchronously* download the purchased asset, which is stored on Parse's server.
@@ -64,8 +69,8 @@
  @param progress the progress block, which is called multiple times to reveal progress of the download.
  */
 + (void)downloadAssetForTransaction:(SKPaymentTransaction *)transaction
-                         completion:(void(^)(NSString *filePath, NSError *error))completion
-                           progress:(PFProgressBlock)progress;
+                         completion:(PFPurchaseDownloadAssetResultBlock)completion
+                           progress:(nullable PFProgressBlock)progress;
 
 /*!
  @abstract *Asynchronously* restore completed transactions for the current user.
@@ -85,6 +90,8 @@
 
  @warning This method will return `nil`, if the purchase wasn't verified or if the asset was not downloaded.
  */
-+ (NSString *)assetContentPathForProduct:(PFProduct *)product;
++ (nullable NSString *)assetContentPathForProduct:(PFProduct *)product;
 
 @end
+
+NS_ASSUME_NONNULL_END

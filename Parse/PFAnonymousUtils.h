@@ -9,15 +9,12 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
+#import <Bolts/BFTask.h>
+
 #import <Parse/PFConstants.h>
 #import <Parse/PFUser.h>
-#else
-#import <ParseOSX/PFConstants.h>
-#import <ParseOSX/PFUser.h>
-#endif
 
-PF_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN
 
 /*!
  Provides utility functions for working with Anonymously logged-in users.
@@ -48,7 +45,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The task, that encapsulates the work being done.
  */
-+ (BFTask *)logInInBackground;
++ (BFTask PF_GENERIC(PFUser *)*)logInInBackground;
 
 /*!
  @abstract Creates an anonymous user.
@@ -56,7 +53,7 @@ PF_ASSUME_NONNULL_BEGIN
  @param block The block to execute when anonymous user creation is complete.
  It should have the following argument signature: `^(PFUser *user, NSError *error)`.
  */
-+ (void)logInWithBlock:(PF_NULLABLE PFUserResultBlock)block;
++ (void)logInWithBlock:(nullable PFUserResultBlock)block;
 
 /*
  @abstract Creates an anonymous user.
@@ -65,7 +62,7 @@ PF_ASSUME_NONNULL_BEGIN
  @param selector The selector that will be called when the asynchronous request is complete.
  It should have the following signature: `(void)callbackWithUser:(PFUser *)user error:(NSError *)error`.
  */
-+ (void)logInWithTarget:(PF_NULLABLE_S id)target selector:(PF_NULLABLE_S SEL)selector;
++ (void)logInWithTarget:(__nullable id)target selector:(__nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Determining Whether a User is Anonymous
@@ -78,8 +75,8 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns `YES` if the user is anonymous. `NO` if the user is not the current user or is not anonymous.
  */
-+ (BOOL)isLinkedWithUser:(PF_NULLABLE PFUser *)user;
++ (BOOL)isLinkedWithUser:(nullable PFUser *)user;
 
 @end
 
-PF_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END

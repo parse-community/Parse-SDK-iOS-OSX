@@ -9,8 +9,7 @@
 
 import Cocoa
 
-import Bolts
-import ParseOSX
+import Parse
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -55,19 +54,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
             if succeeded {
-                println("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.");
+                print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n");
             } else {
-                println("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.", error)
+                print("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.\n", error)
             }
         }
     }
 
     func application(application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println("application:didFailToRegisterForRemoteNotificationsWithError: %@", error)
+        print("application:didFailToRegisterForRemoteNotificationsWithError: %@\n", error)
     }
 
-    func application(application: NSApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
-    }
-
+    // ****************************************************************************
+    // Uncomment these lines to track Push Notifications open rate in Analytics.
+    //
+    //  Swift 1.2
+    //    func application(application: NSApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    //        PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+    //    }
+    //
+    //  Swift 2.0
+    //    func application(application: NSApplication, didReceiveRemoteNotification userInfo: [String : AnyObject]) {
+    //        PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+    //    }
 }

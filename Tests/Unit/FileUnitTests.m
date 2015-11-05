@@ -9,12 +9,12 @@
 
 #import <OCMock/OCMock.h>
 
-#import <Bolts/BFTask.h>
+@import Bolts.BFTask;
 
 #import "PFCoreManager.h"
-#import "PFFile.h"
 #import "PFFileController.h"
 #import "PFFileManager.h"
+#import "PFFileStagingController.h"
 #import "PFFileState.h"
 #import "PFFile_Private.h"
 #import "PFUnitTestCase.h"
@@ -93,11 +93,19 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
 
 - (PFFileController *)mockedFileController {
     id mockedFileController = PFStrictClassMock([PFFileController class]);
+    id mockedFileStagingController = PFStrictClassMock([PFFileStagingController class]);
 
     NSString *stagedDirectory = [self sampleStagingPath];
+    NSString *sampleFile = [stagedDirectory stringByAppendingPathComponent:@"stagedFile.dat"];
     [self clearStagingAndTemporaryFiles];
 
-    OCMStub([mockedFileController stagedFilesDirectoryPath]).andReturn(stagedDirectory);
+    OCMStub([mockedFileController fileStagingController]).andReturn(mockedFileStagingController);
+    OCMStub([[mockedFileStagingController ignoringNonObjectArgs] stageFileAsyncWithData:OCMOCK_ANY
+                                                                                   name:OCMOCK_ANY
+                                                                               uniqueId:0]).andReturn([BFTask taskWithResult:sampleFile]);
+    OCMStub([[mockedFileStagingController ignoringNonObjectArgs] stageFileAsyncAtPath:OCMOCK_ANY
+                                                                                 name:OCMOCK_ANY
+                                                                             uniqueId:0]).andReturn([BFTask taskWithResult:sampleFile]);
 
     return mockedFileController;
 }
@@ -184,7 +192,30 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
 
 - (void)testConstructorWithTooLargeData {
     NSMutableData *data = [NSMutableData dataWithLength:(10 * 1048576 + 1)];
-    PFAssertThrowsInvalidArgumentException([PFFile fileWithData:data]);
+
+    NSError *error = nil;
+    PFFile *file = [PFFile fileWithName:@"testFile"
+                                   data:data
+                            contentType:nil
+                                  error:&error];
+
+    XCTAssertNil(file);
+    XCTAssertEqualObjects(NSCocoaErrorDomain, error.domain);
+    XCTAssertEqual(NSFileReadTooLargeError, error.code);
+}
+
+- (void)testConstructorWithNilData {
+    NSMutableData *data = nil;
+
+    NSError *error = nil;
+    PFFile *file = [PFFile fileWithName:@"testFile"
+                                   data:data
+                            contentType:nil
+                                  error:&error];
+
+    XCTAssertNil(file);
+    XCTAssertEqualObjects(NSCocoaErrorDomain, error.domain);
+    XCTAssertEqual(NSFileNoSuchFileError, error.code);
 }
 
 - (void)testUploading {
@@ -405,6 +436,42 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
             [expectation fulfill];
             return nil;
         }];
+
+    wait_next;
+    expectation = [self expectationForSelector:@selector(getFilePathInBackground)];
+    [[file getFilePathInBackground] continueWithBlock:^id(BFTask *task) {
+        NSData *data = [NSData dataWithContentsOfFile:task.result];
+        XCTAssertEqualObjects(data, expectedData);
+        [expectation fulfill];
+        return nil;
+    }];
+
+    wait_next;
+    expectation = [self expectationForSelector:@selector(getFilePathInBackgroundWithProgressBlock:)];
+    [[file getFilePathInBackgroundWithProgressBlock:[self progressValidationBlock]] continueWithBlock:^id(BFTask *task) {
+        NSData *data = [NSData dataWithContentsOfFile:task.result];
+        XCTAssertEqualObjects(data, expectedData);
+        [expectation fulfill];
+        return nil;
+    }];
+
+    wait_next;
+    expectation = [self expectationForSelector:@selector(getFilePathInBackgroundWithBlock:)];
+    [file getFilePathInBackgroundWithBlock:^(NSString *filePath, NSError *error) {
+        XCTAssertNil(error);
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        XCTAssertEqualObjects(data, expectedData);
+        [expectation fulfill];
+    }];
+
+    wait_next;
+    expectation = [self expectationForSelector:@selector(getFilePathInBackgroundWithBlock:progressBlock:)];
+    [file getFilePathInBackgroundWithBlock:^(NSString *filePath, NSError *error) {
+        XCTAssertNil(error);
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        XCTAssertEqualObjects(data, expectedData);
+        [expectation fulfill];
+    } progressBlock:[self progressValidationBlock]];
 
     wait_next;
 }

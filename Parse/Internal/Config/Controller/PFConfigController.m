@@ -18,8 +18,7 @@
 #import "PFDecoder.h"
 #import "PFRESTConfigCommand.h"
 
-@interface PFConfigController ()
-{
+@interface PFConfigController () {
     dispatch_queue_t _dataAccessQueue;
     dispatch_queue_t _networkQueue;
     BFExecutor *_networkExecutor;
@@ -39,13 +38,11 @@
     PFNotDesignatedInitializer();
 }
 
-- (instancetype)initWithFileManager:(PFFileManager *)fileManager
-                      commandRunner:(id<PFCommandRunning>)commandRunner {
+- (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider, PFCommandRunnerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
 
-    _fileManager = fileManager;
-    _commandRunner = commandRunner;
+    _dataSource = dataSource;
 
     _dataAccessQueue = dispatch_queue_create("com.parse.config.access", DISPATCH_QUEUE_SERIAL);
 
@@ -61,11 +58,11 @@
 
 - (BFTask *)fetchConfigAsyncWithSessionToken:(NSString *)sessionToken {
     @weakify(self);
-    return [BFTask taskFromExecutor:_networkExecutor withBlock:^id{
+    return [BFTask taskFromExecutor:_networkExecutor withBlock:^id {
         @strongify(self);
         PFRESTCommand *command = [PFRESTConfigCommand configFetchCommandWithSessionToken:sessionToken];
-        return [[[self.commandRunner runCommandAsync:command
-                                         withOptions:PFCommandRunningOptionRetryIfFailed]
+        return [[[self.dataSource.commandRunner runCommandAsync:command
+                                                    withOptions:PFCommandRunningOptionRetryIfFailed]
                  continueWithSuccessBlock:^id(BFTask *task) {
                      PFCommandResult *result = task.result;
                      NSDictionary *fetchedConfig = [[PFDecoder objectDecoder] decodeObject:result.result];
@@ -85,7 +82,7 @@
     __block PFCurrentConfigController *controller = nil;
     dispatch_sync(_dataAccessQueue, ^{
         if (!_currentConfigController) {
-            _currentConfigController = [[PFCurrentConfigController alloc] initWithFileManager:self.fileManager];
+            _currentConfigController = [[PFCurrentConfigController alloc] initWithDataSource:self.dataSource];
         }
         controller = _currentConfigController;
     });

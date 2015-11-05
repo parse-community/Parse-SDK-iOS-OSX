@@ -9,8 +9,8 @@
 
 #import <OCMock/OCMock.h>
 
-#import <Bolts/BFCancellationTokenSource.h>
-#import <Bolts/BFTask.h>
+@import Bolts.BFCancellationTokenSource;
+@import Bolts.BFTask;
 
 #import "PFCommandResult.h"
 #import "PFTestCase.h"
@@ -98,10 +98,10 @@
     NSData *chunkA = [@"{ \"foo\" :" dataUsingEncoding:NSUTF8StringEncoding];
     NSData *chunkB = [@" \"bar\" }" dataUsingEncoding:NSUTF8StringEncoding];
 
-    NSURLResponse *urlResponse = [[NSURLResponse alloc] initWithURL:[NSURL URLWithString:@"http://foo.bar"]
-                                                           MIMEType:@"application/json"
-                                              expectedContentLength:chunkA.length + chunkB.length
-                                                   textEncodingName:@"UTF-8"];
+    NSHTTPURLResponse *urlResponse = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:@"http://foo.bar"]
+                                                                 statusCode:200
+                                                                HTTPVersion:@"HTTP/1.1"
+                                                               headerFields:nil];
 
     for (int progress = 1; progress <= 10; progress++) {
         [delegate URLSession:mockedSession
@@ -145,10 +145,10 @@
     NSData *chunkA = [@"{ \"foo\" :" dataUsingEncoding:NSUTF8StringEncoding];
     NSData *chunkB = [@" \"bar\" }" dataUsingEncoding:NSUTF8StringEncoding];
 
-    NSURLResponse *urlResponse = [[NSURLResponse alloc] initWithURL:[NSURL URLWithString:@"http://foo.bar"]
-                                                           MIMEType:@"application/json"
-                                              expectedContentLength:chunkA.length + chunkB.length
-                                                   textEncodingName:@"UTF-8"];
+    NSHTTPURLResponse *urlResponse = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:@"http://foo.bar"]
+                                                                 statusCode:200
+                                                                HTTPVersion:@"HTTP/1.1"
+                                                               headerFields:nil];
 
     [delegate URLSession:mockedSession
                     task:mockedTask
@@ -205,6 +205,7 @@ totalBytesExpectedToSend:5];
     [delegate URLSession:mockedSession task:mockedTask didCompleteWithError:expectedError];
 
     XCTAssertEqualObjects(delegate.resultTask.error.userInfo[@"originalError"], expectedError);
+    XCTAssertEqualObjects(delegate.resultTask.error.userInfo[NSUnderlyingErrorKey], expectedError);
 }
 
 - (void)testJSONError {

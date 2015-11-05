@@ -62,9 +62,24 @@ static inline NSString *stringByCapitalizingFirstCharacter(NSString *string) {
         _ivar = class_getInstanceVariable(kls, [safeStringWithPropertyAttributeValue(objcProperty, "V") UTF8String]);
         if (_ivar) break;
 
-        // If we implement a property in a subclass with a different type then the parent, but rely upon the parent's
-        // implementation, we will have to attempt to infer the variable name...
-        // TODO: (richardross): Walk the superclass tree for the synthesized value?
+        // Walk the superclass heirarchy for the property definition. Because property attributes are not inherited
+        // (but property definitions *are*), we must be careful to ensure that the variable was never actually
+        // implemented and synthesized in a superclass. Note if the same property is synthesized in multiple classes
+        // with different iVars, we take the class furthest from the root class as the 'source of truth'.
+        Class superClass = class_getSuperclass(kls);
+        while (superClass) {
+            objc_property_t superProperty = class_getProperty(superClass, [_name UTF8String]);
+            if (!superProperty) break;
+
+            _ivar = class_getInstanceVariable(superClass, [safeStringWithPropertyAttributeValue(superProperty, "V") UTF8String]);
+            if (_ivar) break;
+
+            superClass = class_getSuperclass(superClass);
+        }
+
+        if (_ivar) break;
+
+        // Attempt to infer the variable name.
         _ivar = class_getInstanceVariable(kls, [[@"_" stringByAppendingString:_name] UTF8String]);
         if (_ivar) break;
 
@@ -86,11 +101,19 @@ static inline NSString *stringByCapitalizingFirstCharacter(NSString *string) {
     _setterSelector = NSSelectorFromString(propertySetter);
 
     if (_associationType == PFPropertyInfoAssociationTypeDefault) {
-        // TODO: (richardross) Check if the property is weak as well.
         BOOL isCopy = safeStringWithPropertyAttributeValue(objcProperty, "C") != nil;
-        _associationType = (_object ? (isCopy ? PFPropertyInfoAssociationTypeCopy
-                                              : PFPropertyInfoAssociationTypeStrong)
-                                    : PFPropertyInfoAssociationTypeAssign);
+        BOOL isWeak = safeStringWithPropertyAttributeValue(objcProperty, "W") != nil;
+        BOOL isRetain = safeStringWithPropertyAttributeValue(objcProperty, "&") != nil;
+
+        if (isWeak) {
+            _associationType = PFPropertyInfoAssociationTypeWeak;
+        } else if (isCopy) {
+            _associationType = PFPropertyInfoAssociationTypeCopy;
+        } else if (isRetain) {
+            _associationType = PFPropertyInfoAssociationTypeStrong;
+        } else {
+            _associationType = PFPropertyInfoAssociationTypeAssign;
+        }
     }
 
     return self;

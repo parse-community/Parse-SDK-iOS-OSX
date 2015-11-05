@@ -34,7 +34,7 @@ static Class _pushInternalUtilClass = nil;
 @interface PFPush ()
 
 @property (nonatomic, strong) PFMutablePushState *state;
-@property (nonatomic, strong) PFQuery *query;
+@property (nonatomic, strong) PFQuery PF_GENERIC(PFInstallation *) *query;
 
 @end
 
@@ -398,8 +398,8 @@ static Class _pushInternalUtilClass = nil;
             NSDictionary *alertDict = alert;
             NSString *locKey = alertDict[@"loc-key"];
             if (locKey) {
-                message = [PFInternalUtils _stringWithFormat:NSLocalizedString(locKey, nil)
-                                                   arguments:alertDict[@"loc-args"]];
+                NSString *format = [[NSBundle mainBundle] localizedStringForKey:locKey value:@"" table:nil];
+                message = [PFInternalUtils _stringWithFormat:format arguments:alertDict[@"loc-args"]];
             }
         }
         if (message) {
@@ -415,12 +415,15 @@ static Class _pushInternalUtilClass = nil;
 
     NSString *soundName = aps[@"sound"];
 
-    if (soundName.length == 0 || [soundName isEqualToString:@"default"]) {
-        [[self pushInternalUtilClass] playVibrate];
-    } else {
-        [[self pushInternalUtilClass] playAudioWithName:soundName];
+    // Vibrate or play sound only if `sound` is specified.
+    if ([soundName isKindOfClass:[NSString class]] && soundName.length != 0) {
+        // Vibrate if the sound is `default`, otherwise - play the sound name.
+        if ([soundName isEqualToString:@"default"]) {
+            [[self pushInternalUtilClass] playVibrate];
+        } else {
+            [[self pushInternalUtilClass] playAudioWithName:soundName];
+        }
     }
-
 }
 #endif
 
