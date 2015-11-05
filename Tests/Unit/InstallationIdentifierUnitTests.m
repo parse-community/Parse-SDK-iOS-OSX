@@ -10,6 +10,7 @@
 #import "PFInstallationIdentifierStore_Private.h"
 #import "PFTestCase.h"
 #import "Parse_Private.h"
+#import "BFTask+Private.h"
 
 @interface InstallationIdentifierUnitTests : PFTestCase
 
@@ -23,7 +24,7 @@
 
 - (void)tearDown {
     [[Parse _currentManager] clearEventuallyQueue];
-    [[Parse _currentManager].installationIdentifierStore clearInstallationIdentifier];
+    [[[Parse _currentManager].installationIdentifierStore clearInstallationIdentifierAsync] waitForResult:nil];
     [Parse _clearCurrentManager];
 
     [super tearDown];
@@ -36,23 +37,39 @@
 - (void)testNewInstallationIdentifierIsLowercase {
     [Parse setApplicationId:@"b" clientKey:@"c"];
     PFInstallationIdentifierStore *store = [Parse _currentManager].installationIdentifierStore;
-    NSString *installationId = store.installationIdentifier;
-    XCTAssertEqualObjects(installationId, [installationId lowercaseString]);
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[store getInstallationIdentifierAsync] continueWithSuccessBlock:^id(BFTask<NSString *> *task) {
+        NSString *installationId = task.result;
+        XCTAssertNotNil(installationId);
+        XCTAssertNotEqual(installationId.length, 0);
+        XCTAssertEqualObjects(installationId, [installationId lowercaseString]);
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
 }
 
 - (void)testCachedInstallationId {
     [Parse setApplicationId:@"b" clientKey:@"c"];
     PFInstallationIdentifierStore *store = [Parse _currentManager].installationIdentifierStore;
 
-    [store _clearCachedInstallationIdentifier];
-    NSString *first = [store.installationIdentifier copy];
-    NSString *second = [store.installationIdentifier copy];
+    [[store _clearCachedInstallationIdentifierAsync] waitForResult:nil];
+
+    NSString *first = [[[store getInstallationIdentifierAsync] waitForResult:nil] copy];
+    NSString *second = [[[store getInstallationIdentifierAsync] waitForResult:nil] copy];
+    XCTAssertNotNil(first);
+    XCTAssertNotNil(second);
     XCTAssertEqualObjects(first, second, @"installationId should be the same on different calls");
-    [store _clearCachedInstallationIdentifier];
-    NSString *third = [store.installationIdentifier copy];
+
+    [[store _clearCachedInstallationIdentifierAsync] waitForResult:nil];
+
+    NSString *third = [[[store getInstallationIdentifierAsync] waitForResult:nil] copy];
     XCTAssertEqualObjects(first, third, @"installationId should be the same after clearing cache");
-    [store clearInstallationIdentifier];
-    NSString *fourth = store.installationIdentifier;
+
+    [[store clearInstallationIdentifierAsync] waitForResult:nil];
+
+    NSString *fourth = [[[store getInstallationIdentifierAsync] waitForResult:nil] copy];
     XCTAssertNotEqualObjects(first, fourth, @"clearing from disk should cause a new installationId");
 }
 
