@@ -278,9 +278,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
                 [self.keychainStore removeAllObjects];
                 [self.keyValueCache removeAllObjects];
             }
-            NSArray *tasks = @[ [group removeAllDataAsync],
-                                [PFFileManager removeItemAtPathAsync:[self.fileManager parseDataDirectoryPath_DEPRECATED]] ];
-            return [[BFTask taskForCompletionOfAllTasks:tasks] continueWithSuccessBlock:^id(BFTask *task) {
+            return [[group removeAllDataAsync] continueWithSuccessBlock:^id(BFTask *task) {
                 NSData *applicationIdData = [self.applicationId dataUsingEncoding:NSUTF8StringEncoding];
                 return [group setDataAsync:applicationIdData forKey:_ParseApplicationIdFileName];
             }];

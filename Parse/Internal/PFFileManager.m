@@ -290,43 +290,8 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
 #endif
 }
 
-- (NSString *)parseDataDirectoryPath_DEPRECATED {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
-    NSString *parseDirPath = [documentsDirectory stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
-
-    // If this old directory is still on disk, but empty, delete it.
-    if ([[NSFileManager defaultManager] fileExistsAtPath:parseDirPath]) {
-        NSError *error = nil;
-        NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:parseDirPath error:&error];
-        if (error == nil && [contents count] == 0) {
-            [[NSFileManager defaultManager] removeItemAtPath:parseDirPath error:nil];
-        }
-    }
-
-    return parseDirPath;
-}
-
 - (NSString *)parseDataItemPathForPathComponent:(NSString *)pathComponent {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-
-    NSString *currentLocation = [[self parseDefaultDataDirectoryPath] stringByAppendingPathComponent:pathComponent];
-    if (![fileManager fileExistsAtPath:currentLocation]) {
-        NSString *deprecatedDir = [self parseDataDirectoryPath_DEPRECATED];
-        NSString *deprecatedLocation = [deprecatedDir stringByAppendingPathComponent:pathComponent];
-        if ([fileManager fileExistsAtPath:deprecatedLocation]) {
-            [fileManager moveItemAtPath:deprecatedLocation toPath:currentLocation error:nil];
-            // If the deprecated dir is still on disk, delete it.
-            if ([fileManager fileExistsAtPath:deprecatedDir]) {
-                NSError *error = nil;
-                NSArray *contents = [fileManager contentsOfDirectoryAtPath:deprecatedDir error:&error];
-                if (!error && [contents count] == 0) {
-                    [fileManager removeItemAtPath:deprecatedDir error:nil];
-                }
-            }
-        }
-    }
-    return currentLocation;
+    return [[self parseDefaultDataDirectoryPath] stringByAppendingPathComponent:pathComponent];
 }
 
 - (NSString *)parseCacheItemPathForPathComponent:(NSString *)component {

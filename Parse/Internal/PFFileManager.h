@@ -63,7 +63,6 @@ typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
  */
 - (NSString *)parseDefaultDataDirectoryPath;
 - (NSString *)parseLocalSandboxDataDirectoryPath;
-- (NSString *)parseDataDirectoryPath_DEPRECATED;
 
 /*!
  The path including directories that we save data to for a given filename.
