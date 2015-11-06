@@ -278,9 +278,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
                 [self.keychainStore removeAllObjects];
                 [self.keyValueCache removeAllObjects];
             }
-            NSArray *tasks = @[ [group removeAllDataAsync],
-                                [PFFileManager removeItemAtPathAsync:[self.fileManager parseDataDirectoryPath_DEPRECATED]] ];
-            return [[BFTask taskForCompletionOfAllTasks:tasks] continueWithSuccessBlock:^id(BFTask *task) {
+            return [[group removeAllDataAsync] continueWithSuccessBlock:^id(BFTask *task) {
                 NSData *applicationIdData = [self.applicationId dataUsingEncoding:NSUTF8StringEncoding];
                 return [group setDataAsync:applicationIdData forKey:_ParseApplicationIdFileName];
             }];
@@ -299,7 +297,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     __block PFInstallationIdentifierStore *store = nil;
     dispatch_sync(_installationIdentifierStoreAccessQueue, ^{
         if (!_installationIdentifierStore) {
-            _installationIdentifierStore = [[PFInstallationIdentifierStore alloc] initWithFileManager:self.fileManager];
+            _installationIdentifierStore = [[PFInstallationIdentifierStore alloc] initWithDataSource:self];
         }
         store = _installationIdentifierStore;
     });
@@ -406,9 +404,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     __block PFPurchaseController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
         if (!_purchaseController) {
-            _purchaseController = [PFPurchaseController controllerWithCommandRunner:self.commandRunner
-                                                                        fileManager:self.fileManager
-                                                                             bundle:[NSBundle mainBundle]];
+            _purchaseController = [PFPurchaseController controllerWithDataSource:self bundle:[NSBundle mainBundle]];
         }
         controller = _purchaseController;
     });

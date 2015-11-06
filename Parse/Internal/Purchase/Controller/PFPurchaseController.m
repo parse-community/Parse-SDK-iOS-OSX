@@ -42,27 +42,20 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                          fileManager:(PFFileManager *)fileManager
-                               bundle:(NSBundle *)bundle {
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource
+                            bundle:(NSBundle *)bundle {
     self = [super init];
     if (!self) return nil;
 
-    _commandRunner = commandRunner;
-    _fileManager = fileManager;
+    _dataSource = dataSource;
     _bundle = bundle;
 
     return self;
 }
 
-+ (instancetype)controllerWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                                fileManager:(PFFileManager *)fileManager
-                                     bundle:(NSBundle *)bundle {
-    return [[self alloc] initWithCommandRunner:commandRunner fileManager:fileManager bundle:bundle];
++ (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource
+                                  bundle:(NSBundle *)bundle {
+    return [[self alloc] initWithDataSource:dataSource bundle:bundle];
 }
 
 ///--------------------------------------
@@ -169,7 +162,7 @@
                                                      httpMethod:PFHTTPRequestMethodPOST
                                                      parameters:params
                                                    sessionToken:sessionToken];
-    BFTask *task = [self.commandRunner runCommandAsync:command withOptions:PFCommandRunningOptionRetryIfFailed];
+    BFTask *task = [self.dataSource.commandRunner runCommandAsync:command withOptions:PFCommandRunningOptionRetryIfFailed];
     @weakify(self);
     return [task continueWithSuccessBlock:^id(BFTask *task) {
         @strongify(self);
@@ -210,7 +203,7 @@
 
 - (NSString *)assetContentPathForProductWithIdentifier:(NSString *)identifier fileName:(NSString *)fileName {
     // We store files locally at (ParsePrivateDir)/(ProductIdentifier)/filename
-    NSString *filePath = [self.fileManager parseDataItemPathForPathComponent:identifier];
+    NSString *filePath = [self.dataSource.fileManager parseDataItemPathForPathComponent:identifier];
     filePath = [filePath stringByAppendingPathComponent:fileName];
     return filePath;
 }

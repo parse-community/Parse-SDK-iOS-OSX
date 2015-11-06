@@ -106,7 +106,8 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
             }
 
             PFInstallation *installation = task.result;
-            NSString *installationId = self.installationIdentifierStore.installationIdentifier;
+            //TODO: (nlutsenko) Make it not terrible aka actually use task chaining here.
+            NSString *installationId = [[self.installationIdentifierStore getInstallationIdentifierAsync] waitForResult:nil];
             installationId = [installationId  lowercaseString];
             if (!installation || ![installationId isEqualToString:installation.installationId]) {
                 // If there's no installation object, or the object's installation

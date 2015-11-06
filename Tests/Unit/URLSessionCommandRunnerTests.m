@@ -63,7 +63,7 @@
 
     OCMStub([mockedCommand resolveLocalIds]);
 
-    OCMStub([mockedRequestConstructor dataURLRequestForCommand:mockedCommand]).andReturn(urlRequest);
+    OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
     [OCMExpect([mockedSession performDataURLRequestAsync:urlRequest
                                               forCommand:mockedCommand
                                        cancellationToken:nil]) andReturn:[BFTask taskWithResult:mockedCommandResult]];
@@ -133,7 +133,7 @@
     __block int performDataURLRequestCount = 0;
 
     OCMStub([mockedCommand resolveLocalIds]);
-    OCMStub([mockedRequestConstructor dataURLRequestForCommand:mockedCommand]).andReturn(urlRequest);
+    OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
 
     [OCMStub([mockedSession performDataURLRequestAsync:urlRequest
                                             forCommand:mockedCommand
@@ -183,9 +183,9 @@
 
     OCMStub([mockedCommand resolveLocalIds]);
 
-    OCMExpect([mockedRequestConstructor fileUploadURLRequestForCommand:mockedCommand
-                                                       withContentType:@"content-type"
-                                                 contentSourceFilePath:@"content-path"]).andReturn(urlRequest);
+    OCMExpect([mockedRequestConstructor getFileUploadURLRequestAsyncForCommand:mockedCommand
+                                                               withContentType:@"content-type"
+                                                         contentSourceFilePath:@"content-path"]).andReturn([BFTask taskWithResult:urlRequest]);
 
     [OCMExpect([mockedSession performFileUploadURLRequestAsync:urlRequest
                                                     forCommand:mockedCommand
@@ -230,7 +230,7 @@
 
     OCMExpect([mockedCommand resolveLocalIds]);
 
-    OCMStub([mockedRequestConstructor dataURLRequestForCommand:mockedCommand]).andReturn(urlRequest);
+    OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
     [OCMStub([mockedSession performDataURLRequestAsync:urlRequest
                                             forCommand:mockedCommand
                                      cancellationToken:nil]) andReturn:[BFTask taskWithResult:mockedCommandResult]];

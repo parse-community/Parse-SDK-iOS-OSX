@@ -13,7 +13,6 @@
 
 #import "PFCoreManager.h"
 #import "PFFileController.h"
-#import "PFFileManager.h"
 #import "PFFileStagingController.h"
 #import "PFFileState.h"
 #import "PFFile_Private.h"

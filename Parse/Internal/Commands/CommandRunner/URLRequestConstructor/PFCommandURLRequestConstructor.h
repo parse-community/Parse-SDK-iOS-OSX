@@ -9,8 +9,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
 #import "PFDataProvider.h"
 
+@class BFTask PF_GENERIC(BFGenericType);
 @class PFRESTCommand;
 
 @interface PFCommandURLRequestConstructor : NSObject
@@ -29,15 +32,15 @@
 /// @name Data
 ///--------------------------------------
 
-- (NSURLRequest *)dataURLRequestForCommand:(PFRESTCommand *)command;
+- (BFTask PF_GENERIC(NSURLRequest *)*)getDataURLRequestAsyncForCommand:(PFRESTCommand *)command;
 
 ///--------------------------------------
 /// @name File Upload
 ///--------------------------------------
 
-- (NSURLRequest *)fileUploadURLRequestForCommand:(PFRESTCommand *)command
-                                 withContentType:(NSString *)contentType
-                           contentSourceFilePath:(NSString *)contentFilePath;
+- (BFTask PF_GENERIC(NSURLRequest *)*)getFileUploadURLRequestAsyncForCommand:(PFRESTCommand *)command
+                                                             withContentType:(NSString *)contentType
+                                                       contentSourceFilePath:(NSString *)contentFilePath;
 
 ///--------------------------------------
 /// @name Headers
