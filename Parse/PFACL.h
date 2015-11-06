@@ -235,10 +235,10 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion return array will NOT include the public access("*") as an item. 
  So, do not use the count of return array for accessibility check.
 
- @returns 'NSArray' contains list of userID of the user who has read, write or both permissions.
+ @returns 'NSSet' contains list of userID of the user who has read, write or both permissions.
 
  */
-- (NSArray *)listAccessibleUsers;
+- (NSSet *)listAccessibleUsers;
 
 /*!
  @abstract Set whether users belonging to the given role are allowed to write this object.

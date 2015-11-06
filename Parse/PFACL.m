@@ -318,7 +318,7 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
     return self.state.permissions;
 }
 
-- (NSArray *)listAccessibleUsers {
+- (NSSet *)listAccessibleUsers {
     NSMutableSet *idList = [[NSMutableSet alloc] initWithCapacity:[self.state.permissions count]];
 
     NSInteger aclPublicKeyLength = [PFACLPublicKey_ length];
@@ -341,7 +341,7 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
         [idList addObject:userId];
     }
 
-    return [idList allObjects];
+    return idList;
 }
 
 ///--------------------------------------
