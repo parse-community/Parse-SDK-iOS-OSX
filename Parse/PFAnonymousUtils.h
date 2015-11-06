@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param selector The selector that will be called when the asynchronous request is complete.
  It should have the following signature: `(void)callbackWithUser:(PFUser *)user error:(NSError *)error`.
  */
-+ (void)logInWithTarget:(__nullable id)target selector:(__nullable SEL)selector;
++ (void)logInWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Determining Whether a User is Anonymous

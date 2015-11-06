@@ -484,8 +484,8 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  `[result boolValue]` will tell you whether the call succeeded or not.
  */
 + (void)subscribeToChannelInBackground:(NSString *)channel
-                                target:(__nullable id)target
-                              selector:(__nullable SEL)selector;
+                                target:(nullable id)target
+                              selector:(nullable SEL)selector;
 
 /*!
  @abstract *Synchronously* unsubscribes the device to a channel of push notifications.
@@ -527,8 +527,8 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  `[result boolValue]` will tell you whether the call succeeded or not.
  */
 + (void)unsubscribeFromChannelInBackground:(NSString *)channel
-                                    target:(__nullable id)target
-                                  selector:(__nullable SEL)selector;
+                                    target:(nullable id)target
+                                  selector:(nullable SEL)selector;
 
 @end
 

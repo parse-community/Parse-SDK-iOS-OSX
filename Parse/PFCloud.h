@@ -28,8 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @returns The response from the cloud function.
  */
-+ (__nullable id)callFunction:(NSString *)function
-                  withParameters:(nullable NSDictionary *)parameters PF_SWIFT_UNAVAILABLE;
++ (nullable id)callFunction:(NSString *)function withParameters:(nullable NSDictionary *)parameters PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract Calls the given cloud function *synchronously* with the parameters provided and
@@ -42,9 +41,9 @@ NS_ASSUME_NONNULL_BEGIN
  @returns The response from the cloud function.
  This result could be a `NSDictionary`, an `NSArray`, `NSNumber` or `NSString`.
  */
-+ (__nullable id)callFunction:(NSString *)function
-                  withParameters:(nullable NSDictionary *)parameters
-                           error:(NSError **)error;
++ (nullable id)callFunction:(NSString *)function
+             withParameters:(nullable NSDictionary *)parameters
+                      error:(NSError **)error;
 
 /*!
  @abstract Calls the given cloud function *asynchronously* with the parameters provided.
@@ -83,8 +82,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)callFunctionInBackground:(NSString *)function
                   withParameters:(nullable NSDictionary *)parameters
-                          target:(__nullable id)target
-                        selector:(__nullable SEL)selector;
+                          target:(nullable id)target
+                        selector:(nullable SEL)selector;
 
 @end
 
