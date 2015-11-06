@@ -14,12 +14,15 @@
 #import "PFCommandRunning.h"
 #import "PFFileManager.h"
 #import "PFPaymentTransactionObserver_Private.h"
-#import "PFPurchase.h"
 #import "PFPurchaseController.h"
 #import "PFTestSKPaymentTransaction.h"
 #import "PFTestSKProduct.h"
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
+
+@protocol PurchaseControllerDataSource <PFCommandRunnerProvider, PFFileManagerProvider>
+
+@end
 
 @interface PurchaseUnitTests : PFUnitTestCase
 
@@ -32,13 +35,14 @@
 ///--------------------------------------
 
 - (PFPurchaseController *)mockedPurchaseController {
-    id<PFCommandRunning> commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
-    PFFileManager *fileManager = PFStrictClassMock([PFFileManager class]);
+    id dataSource = PFStrictProtocolMock(@protocol(PurchaseControllerDataSource));
+    id commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
+    OCMStub([dataSource commandRunner]).andReturn(commandRunner);
+    id fileManager = PFStrictClassMock([PFFileManager class]);
+    OCMStub([dataSource fileManager]).andReturn(fileManager);
     id bundle = PFStrictClassMock([NSBundle class]);
 
-    PFPurchaseController *purchaseController = PFPartialMock([[PFPurchaseController alloc] initWithCommandRunner:commandRunner
-                                                                                                     fileManager:fileManager
-                                                                                                          bundle:bundle]);
+    PFPurchaseController *purchaseController = PFPartialMock([PFPurchaseController controllerWithDataSource:dataSource bundle:bundle]);
 
     SKPaymentQueue *paymentQueue = PFClassMock([SKPaymentQueue class]);
     purchaseController.paymentQueue = paymentQueue;
