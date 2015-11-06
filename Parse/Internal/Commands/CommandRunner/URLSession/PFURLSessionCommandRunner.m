@@ -121,8 +121,9 @@
                                        cancellationToken:(BFCancellationToken *)cancellationToken {
     return [self _performCommandRunningBlock:^id {
         [command resolveLocalIds];
-        NSURLRequest *request = [self.requestConstructor dataURLRequestForCommand:command];
-        return [_session performDataURLRequestAsync:request forCommand:command cancellationToken:cancellationToken];
+        return [[self.requestConstructor getDataURLRequestAsyncForCommand:command] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSURLRequest *)*task) {
+            return [_session performDataURLRequestAsync:task.result forCommand:command cancellationToken:cancellationToken];
+        }];
     } withOptions:options cancellationToken:cancellationToken];
 }
 
@@ -141,15 +142,15 @@
         @strongify(self);
 
         [command resolveLocalIds];
-        NSURLRequest *request = [self.requestConstructor fileUploadURLRequestForCommand:command
-                                                                        withContentType:contentType
-                                                                  contentSourceFilePath:sourceFilePath];
-        return [_session performFileUploadURLRequestAsync:request
-                                               forCommand:command
-                                withContentSourceFilePath:sourceFilePath
-                                        cancellationToken:cancellationToken
-                                            progressBlock:progressBlock];
-
+        return [[self.requestConstructor getFileUploadURLRequestAsyncForCommand:command
+                                                               withContentType:contentType
+                                                          contentSourceFilePath:sourceFilePath] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSURLRequest *)*task) {
+            return [_session performFileUploadURLRequestAsync:task.result
+                                                   forCommand:command
+                                    withContentSourceFilePath:sourceFilePath
+                                            cancellationToken:cancellationToken
+                                                progressBlock:progressBlock];
+        }];
     } withOptions:options cancellationToken:cancellationToken];
 }
 

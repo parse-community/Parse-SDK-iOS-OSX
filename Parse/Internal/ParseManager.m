@@ -297,7 +297,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     __block PFInstallationIdentifierStore *store = nil;
     dispatch_sync(_installationIdentifierStoreAccessQueue, ^{
         if (!_installationIdentifierStore) {
-            _installationIdentifierStore = [[PFInstallationIdentifierStore alloc] initWithFileManager:self.fileManager];
+            _installationIdentifierStore = [[PFInstallationIdentifierStore alloc] initWithDataSource:self];
         }
         store = _installationIdentifierStore;
     });

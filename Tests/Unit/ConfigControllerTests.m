@@ -16,7 +16,6 @@
 #import "PFCommandRunning.h"
 #import "PFConfig.h"
 #import "PFConfigController.h"
-#import "PFFileManager.h"
 #import "PFTestCase.h"
 
 @interface ConfigControllerTests : PFTestCase

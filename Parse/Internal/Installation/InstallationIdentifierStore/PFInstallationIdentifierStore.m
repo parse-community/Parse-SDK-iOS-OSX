@@ -16,16 +16,16 @@
 #import "PFMacros.h"
 #import "PFMultiProcessFileLockController.h"
 #import "Parse_Private.h"
+#import "PFAsyncTaskQueue.h"
+#import "PFPersistenceController.h"
 
 static NSString *const PFInstallationIdentifierFileName = @"installationId";
 
 @interface PFInstallationIdentifierStore () {
-    dispatch_queue_t _synchronizationQueue;
-    PFFileManager *_fileManager;
+    PFAsyncTaskQueue *_taskQueue;
 }
 
-@property (nonatomic, copy, readwrite) NSString *installationIdentifier;
-@property (nonatomic, copy, readonly) NSString *installationIdentifierFilePath;
+@property (nonatomic, copy) NSString *installationIdentifier;
 
 @end
 
@@ -41,14 +41,12 @@ static NSString *const PFInstallationIdentifierFileName = @"installationId";
     PFNotDesignatedInitializer();
 }
 
-- (instancetype)initWithFileManager:(PFFileManager *)fileManager {
+- (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
 
-    _synchronizationQueue = dispatch_queue_create("com.parse.installationIdentifier", DISPATCH_QUEUE_SERIAL);
-    PFMarkDispatchQueue(_synchronizationQueue);
-
-    _fileManager = fileManager;
+    _dataSource = dataSource;
+    _taskQueue = [[PFAsyncTaskQueue alloc] init];
 
     return self;
 }
@@ -57,62 +55,68 @@ static NSString *const PFInstallationIdentifierFileName = @"installationId";
 #pragma mark - Accessors
 ///--------------------------------------
 
-- (NSString *)installationIdentifier {
-    __block NSString *identifier = nil;
-    dispatch_sync(_synchronizationQueue, ^{
-        if (!_installationIdentifier) {
-            [self _loadInstallationIdentifier];
+- (BFTask PF_GENERIC(NSString *)*)getInstallationIdentifierAsync {
+    return [_taskQueue enqueue:^id(BFTask *_) {
+        if (!self.installationIdentifier) {
+            return [self _loadInstallationIdentifierAsync];
         }
-
-        identifier = _installationIdentifier;
-    });
-    return identifier;
+        return self.installationIdentifier;
+    }];
 }
 
-- (void)setInstallationIdentifier:(NSString *)installationIdentifier {
-    PFAssertIsOnDispatchQueue(_synchronizationQueue);
-    if (_installationIdentifier != installationIdentifier) {
-        _installationIdentifier = [installationIdentifier copy];
-    }
-}
-
-- (void)clearInstallationIdentifier {
-    dispatch_sync(_synchronizationQueue, ^{
-        NSString *filePath = self.installationIdentifierFilePath;
-        [[PFFileManager removeItemAtPathAsync:filePath] waitForResult:nil withMainThreadWarning:NO];
-
+- (BFTask *)clearInstallationIdentifierAsync {
+    return [_taskQueue enqueue:^id(BFTask *_) {
         self.installationIdentifier = nil;
-    });
+        return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(id<PFPersistenceGroup>)*task) {
+            id<PFPersistenceGroup> group = task.result;
+            return [[[group beginLockedContentAccessAsyncToDataForKey:PFInstallationIdentifierFileName] continueWithSuccessBlock:^id(BFTask *_) {
+                return [group removeDataAsyncForKey:PFInstallationIdentifierFileName];
+            }] continueWithBlock:^id(BFTask *task) {
+                return [group endLockedContentAccessAsyncToDataForKey:PFInstallationIdentifierFileName];
+            }];
+        }];
+    }];
+}
+
+- (BFTask *)_clearCachedInstallationIdentifierAsync {
+    return [_taskQueue enqueue:^id(BFTask *_) {
+        self.installationIdentifier = nil;
+        return nil;
+    }];
 }
 
 ///--------------------------------------
 #pragma mark - Disk Operations
 ///--------------------------------------
 
-- (void)_loadInstallationIdentifier {
-    PFAssertIsOnDispatchQueue(_synchronizationQueue);
-
-    NSString *filePath = self.installationIdentifierFilePath;
-    [[PFMultiProcessFileLockController sharedController] beginLockedContentAccessForFileAtPath:filePath];
-
-    NSString *identifier = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    if (!identifier) {
-        identifier = [[[NSUUID UUID] UUIDString] lowercaseString];
-        [[PFFileManager writeStringAsync:identifier toFile:filePath] waitForResult:nil withMainThreadWarning:NO];
-    }
-    self.installationIdentifier = identifier;
-
-    [[PFMultiProcessFileLockController sharedController] endLockedContentAccessForFileAtPath:filePath];
+- (BFTask PF_GENERIC(NSString *)*)_loadInstallationIdentifierAsync {
+    return (BFTask PF_GENERIC(NSString *)*)[[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(id<PFPersistenceGroup>)*task) {
+        id<PFPersistenceGroup> group = task.result;
+        return [[[[group beginLockedContentAccessAsyncToDataForKey:PFInstallationIdentifierFileName] continueWithSuccessBlock:^id(BFTask *_) {
+            return [group getDataAsyncForKey:PFInstallationIdentifierFileName];
+        }] continueWithSuccessBlock:^id(BFTask *task) {
+            NSData *data = task.result;
+            NSString *installationId = nil;
+            if (data) {
+                installationId = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                if (installationId) {
+                    self.installationIdentifier = installationId;
+                    return installationId;
+                }
+            }
+            installationId = [[[NSUUID UUID] UUIDString] lowercaseString];
+            return [[group setDataAsync:[installationId dataUsingEncoding:NSUTF8StringEncoding]
+                                forKey:PFInstallationIdentifierFileName] continueWithSuccessResult:installationId];
+        }] continueWithBlock:^id(BFTask PF_GENERIC(NSString *)*task) {
+            [group endLockedContentAccessAsyncToDataForKey:PFInstallationIdentifierFileName];
+            self.installationIdentifier = task.result;
+            return self.installationIdentifier;
+        }];
+    }];
 }
 
-- (void)_clearCachedInstallationIdentifier {
-    dispatch_sync(_synchronizationQueue, ^{
-        self.installationIdentifier = nil;
-    });
-}
-
-- (NSString *)installationIdentifierFilePath {
-    return [_fileManager parseDataItemPathForPathComponent:PFInstallationIdentifierFileName];
+- (BFTask PF_GENERIC(id<PFPersistenceGroup>)*)_getPersistenceGroupAsync {
+    return [self.dataSource.persistenceController getPersistenceGroupAsync];
 }
 
 @end
