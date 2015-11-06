@@ -75,10 +75,10 @@
 
 - (void)testInstallationIdentifierThreadSafe {
     PFInstallationIdentifierStore *store = [Parse _currentManager].installationIdentifierStore;
-    [store clearInstallationIdentifier];
+    [[store clearInstallationIdentifierAsync] waitForResult:nil];
     dispatch_apply(100, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(size_t iteration) {
-        [store installationIdentifier];
-        [store clearInstallationIdentifier];
+        [store getInstallationIdentifierAsync];
+        [store clearInstallationIdentifierAsync];
     });
 }
 
