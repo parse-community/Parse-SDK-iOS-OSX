@@ -318,25 +318,30 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
     return self.state.permissions;
 }
 
-- (NSArray *)listAccessibleUsers
-{
-    NSMutableArray *list = [NSMutableArray new];
+- (NSArray *)listAccessibleUsers {
+    NSMutableSet *idList = [[NSMutableSet alloc] initWithCapacity:[self.state.permissions count]];
 
-    [self.state.permissions enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        if ([PFACLPublicKey_ isEqualToString:(NSString *)key]) {
-            // Exclude public access key
-            return;
+    NSInteger aclPublicKeyLength = [PFACLPublicKey_ length];
+    NSDictionary *userPermission = nil;
+    for (NSString *userId in self.state.permissions) {
+        userPermission = self.state.permissions[userId];
+
+        // Check permissions
+        if (![userPermission[@"read"] boolValue] && ![userPermission[@"write"] boolValue]) {
+            // user have no access
+            continue;
         }
 
-        if ( [self getReadAccessForUserId:key] == NO && [self getWriteAccessForUserId:key] == NO ){
-            // If user does not have both read and write permission then not included in the list.
-            return;
+        // Check userId is not the PFACLPublicKey_
+        if ([userId length] == aclPublicKeyLength) {
+            // Expecting PFACLPublicKey_ is "*" and userId is 10 characters or longer
+            continue;
         }
 
-        [list addObject:key];
-    }];
+        [idList addObject:userId];
+    }
 
-    return list;
+    return [idList allObjects];
 }
 
 ///--------------------------------------
