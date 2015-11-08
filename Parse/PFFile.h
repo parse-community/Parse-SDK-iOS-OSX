@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
  @returns A new `PFFile` instance.
  */
 + (nullable instancetype)fileWithName:(nullable NSString *)name
-                          contentsAtPath:(NSString *)path PF_SWIFT_UNAVAILABLE;
+                       contentsAtPath:(NSString *)path PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract Creates a file with the contents of another file.
@@ -77,8 +77,8 @@ NS_ASSUME_NONNULL_BEGIN
  @returns A new `PFFile` instance or `nil` if the error occured.
  */
 + (nullable instancetype)fileWithName:(nullable NSString *)name
-                          contentsAtPath:(NSString *)path
-                                   error:(NSError **)error;
+                       contentsAtPath:(NSString *)path
+                                error:(NSError **)error;
 
 /*!
  @abstract Creates a file with given data, name and content type.
@@ -93,8 +93,8 @@ NS_ASSUME_NONNULL_BEGIN
  @returns A new `PFFile` instance.
  */
 + (nullable instancetype)fileWithName:(nullable NSString *)name
-                                    data:(NSData *)data
-                             contentType:(nullable NSString *)contentType PF_SWIFT_UNAVAILABLE;
+                                 data:(NSData *)data
+                          contentType:(nullable NSString *)contentType PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract Creates a file with given data, name and content type.
@@ -110,9 +110,9 @@ NS_ASSUME_NONNULL_BEGIN
  @returns A new `PFFile` instance or `nil` if the error occured.
  */
 + (nullable instancetype)fileWithName:(nullable NSString *)name
-                                    data:(NSData *)data
-                             contentType:(nullable NSString *)contentType
-                                   error:(NSError **)error;
+                                 data:(NSData *)data
+                          contentType:(nullable NSString *)contentType
+                                error:(NSError **)error;
 
 /*!
  @abstract Creates a file with given data and content type.
@@ -211,7 +211,7 @@ NS_ASSUME_NONNULL_BEGIN
  `error` will be `nil` on success and set if there was an error.
  `[result boolValue]` will tell you whether the call succeeded or not.
  */
-- (void)saveInBackgroundWithTarget:(__nullable id)target selector:(__nullable SEL)selector;
+- (void)saveInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Getting Data from Parse
@@ -382,7 +382,7 @@ NS_ASSUME_NONNULL_BEGIN
  It should have the following signature: `(void)callbackWithResult:(NSData *)result error:(NSError *)error`.
  `error` will be `nil` on success and set if there was an error.
  */
-- (void)getDataInBackgroundWithTarget:(__nullable id)target selector:(__nullable SEL)selector;
+- (void)getDataInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 /*!
  @abstract *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.

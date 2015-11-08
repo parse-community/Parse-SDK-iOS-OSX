@@ -136,7 +136,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param key The key for which to return the corresponding value.
  */
-- (__nullable id)objectForKey:(NSString *)key;
+- (nullable id)objectForKey:(NSString *)key;
 
 /*!
  @abstract Sets the object associated with a given key.
@@ -168,7 +168,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see objectForKey:
  */
-- (__nullable id)objectForKeyedSubscript:(NSString *)key;
+- (nullable id)objectForKeyedSubscript:(NSString *)key;
 
 /*!
  @abstract Returns the value associated with a given key.
@@ -335,7 +335,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  `error` will be `nil` on success and set if there was an error.
  `[result boolValue]` will tell you whether the call succeeded or not.
  */
-- (void)saveInBackgroundWithTarget:(__nullable id)target selector:(__nullable SEL)selector;
+- (void)saveInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 /*!
  @abstract Saves this object to the server at some unspecified time in the future,
@@ -429,8 +429,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  `[result boolValue]` will tell you whether the call succeeded or not.
  */
 + (void)saveAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
-                     target:(__nullable id)target
-                   selector:(__nullable SEL)selector;
+                     target:(nullable id)target
+                   selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Deleting Many Objects
@@ -483,8 +483,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  `[result boolValue]` will tell you whether the call succeeded or not.
  */
 + (void)deleteAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
-                       target:(__nullable id)target
-                     selector:(__nullable SEL)selector;
+                       target:(nullable id)target
+                     selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Getting an Object
@@ -536,8 +536,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @deprecated Please use `fetchInBackgroundWithTarget:selector:` instead.
  */
-- (void)refreshInBackgroundWithTarget:(__nullable id)target
-                             selector:(__nullable SEL)selector PARSE_DEPRECATED("Please use `fetchInBackgroundWithTarget:selector:` instead.");
+- (void)refreshInBackgroundWithTarget:(nullable id)target
+                             selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `fetchInBackgroundWithTarget:selector:` instead.");
 
 #endif
 
@@ -588,7 +588,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  `error` will be `nil` on success and set if there was an error.
  `refreshedObject` will be the `PFObject` with the refreshed data.
  */
-- (void)fetchInBackgroundWithTarget:(__nullable id)target selector:(__nullable SEL)selector;
+- (void)fetchInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 /*!
  @abstract Fetches the `PFObject` data *asynchronously* if isDataAvailable is `NO`,
@@ -615,7 +615,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  `error` will be `nil` on success and set if there was an error.
  `refreshedObject` will be the `PFObject` with the refreshed data.
  */
-- (void)fetchIfNeededInBackgroundWithTarget:(__nullable id)target selector:(__nullable SEL)selector;
+- (void)fetchIfNeededInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Getting Many Objects
@@ -636,7 +636,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param error Pointer to an `NSError` that will be set if necessary.
  */
 + (nullable NSArray PF_GENERIC(__kindof PFObject *)*)fetchAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects
-                                                           error:(NSError **)error;
+                                                        error:(NSError **)error;
 
 /*!
  @abstract *Synchronously* fetches all of the `PFObject` objects with the current data from the server.
@@ -652,7 +652,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param error Pointer to an `NSError` that will be set if necessary.
  */
 + (nullable NSArray PF_GENERIC(__kindof PFObject *)*)fetchAllIfNeeded:(nullable NSArray PF_GENERIC(PFObject *)*)objects
-                                                                   error:(NSError **)error;
+                                                                error:(NSError **)error;
 
 /*!
  @abstract Fetches all of the `PFObject` objects with the current data from the server *asynchronously*.
@@ -686,8 +686,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  `fetchedObjects` will the array of `PFObject` objects that were fetched.
  */
 + (void)fetchAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
-                      target:(__nullable id)target
-                    selector:(__nullable SEL)selector;
+                      target:(nullable id)target
+                    selector:(nullable SEL)selector;
 
 /*!
  @abstract Fetches all of the `PFObject` objects with the current data from the server *asynchronously*.
@@ -721,8 +721,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  `fetchedObjects` will the array of `PFObject` objects that were fetched.
  */
 + (void)fetchAllIfNeededInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
-                              target:(__nullable id)target
-                            selector:(__nullable SEL)selector;
+                              target:(nullable id)target
+                            selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Fetching From Local Datastore
@@ -806,8 +806,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  `error` will be `nil` on success and set if there was an error.
  `[result boolValue]` will tell you whether the call succeeded or not.
  */
-- (void)deleteInBackgroundWithTarget:(__nullable id)target
-                            selector:(__nullable SEL)selector;
+- (void)deleteInBackgroundWithTarget:(nullable id)target
+                            selector:(nullable SEL)selector;
 
 /*!
  @abstract Deletes this object from the server at some unspecified time in the future,

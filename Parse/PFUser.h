@@ -170,7 +170,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  `error` will be `nil` on success and set if there was an error.
  `[result boolValue]` will tell you whether the call succeeded or not.
  */
-- (void)signUpInBackgroundWithTarget:(__nullable id)target selector:(__nullable SEL)selector;
+- (void)signUpInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Logging In
@@ -189,7 +189,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  If login failed for either wrong password or wrong username, returns `nil`.
  */
 + (nullable instancetype)logInWithUsername:(NSString *)username
-                                     password:(NSString *)password PF_SWIFT_UNAVAILABLE;
+                                  password:(NSString *)password PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract Makes a *synchronous* request to login a user with specified credentials.
@@ -205,8 +205,8 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  If login failed for either wrong password or wrong username, returns `nil`.
  */
 + (nullable instancetype)logInWithUsername:(NSString *)username
-                                     password:(NSString *)password
-                                        error:(NSError **)error;
+                                  password:(NSString *)password
+                                     error:(NSError **)error;
 
 /*!
  @abstract Makes an *asynchronous* request to login a user with specified credentials.
@@ -236,8 +236,8 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 + (void)logInWithUsernameInBackground:(NSString *)username
                              password:(NSString *)password
-                               target:(__nullable id)target
-                             selector:(__nullable SEL)selector;
+                               target:(nullable id)target
+                             selector:(nullable SEL)selector;
 
 /*!
  @abstract Makes an *asynchronous* request to log in a user with specified credentials.

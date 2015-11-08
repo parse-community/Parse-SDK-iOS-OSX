@@ -508,7 +508,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @returns The <PFObject> if found. Returns `nil` if the object isn't found, or if there was an error.
  */
 + (nullable PFGenericObject)getObjectOfClass:(NSString *)objectClass
-                                       objectId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
+                                    objectId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
 
 /*!
  @abstract Returns a <PFObject> with a given class and id and sets an error if necessary.
@@ -520,8 +520,8 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @returns The <PFObject> if found. Returns `nil` if the object isn't found, or if there was an `error`.
  */
 + (nullable PFGenericObject)getObjectOfClass:(NSString *)objectClass
-                                       objectId:(NSString *)objectId
-                                          error:(NSError **)error;
+                                    objectId:(NSString *)objectId
+                                       error:(NSError **)error;
 
 /*!
  @abstract Returns a <PFObject> with the given id.
@@ -585,8 +585,8 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  Result will be `nil` if error is set and vice versa.
  */
 - (void)getObjectInBackgroundWithId:(NSString *)objectId
-                             target:(__nullable id)target
-                           selector:(__nullable SEL)selector;
+                             target:(nullable id)target
+                           selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Getting User Objects
@@ -657,7 +657,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  It should have the following signature: `(void)callbackWithResult:(id)result error:(NSError *)error`.
  Result will be `nil` if error is set and vice versa.
  */
-- (void)findObjectsInBackgroundWithTarget:(__nullable id)target selector:(__nullable SEL)selector;
+- (void)findObjectsInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Getting the First Match in a Query
@@ -715,7 +715,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  `result` will be `nil` if `error` is set OR no object was found matching the query.
  `error` will be `nil` if `result` is set OR if the query succeeded, but found no results.
  */
-- (void)getFirstObjectInBackgroundWithTarget:(__nullable id)target selector:(__nullable SEL)selector;
+- (void)getFirstObjectInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Counting the Matches in a Query
@@ -759,7 +759,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param selector The selector to call.
  It should have the following signature: `(void)callbackWithResult:(NSNumber *)result error:(NSError *)error`.
  */
-- (void)countObjectsInBackgroundWithTarget:(__nullable id)target selector:(__nullable SEL)selector;
+- (void)countObjectsInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Cancelling a Query

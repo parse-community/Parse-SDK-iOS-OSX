@@ -84,7 +84,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 
  @returns The value associated with `key`, or `nil` if there is no such value.
  */
-- (__nullable id)objectForKey:(NSString *)key;
+- (nullable id)objectForKey:(NSString *)key;
 
 /*!
  @abstract Returns the object associated with a given key.
@@ -98,7 +98,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 
  @returns The value associated with `key`, or `nil` if there is no such value.
  */
-- (__nullable id)objectForKeyedSubscript:(NSString *)keyedSubscript;
+- (nullable id)objectForKeyedSubscript:(NSString *)keyedSubscript;
 
 @end
 
