@@ -84,14 +84,14 @@ NS_ASSUME_NONNULL_BEGIN
  @abstract Enable pinning in your application. This must be called before your application can use
  pinning. The recommended way is to call this method before `setApplicationId:clientKey:`.
  */
-+ (void)enableLocalDatastore;
++ (void)enableLocalDatastore PF_TV_UNAVAILABLE;
 
 /*!
  @abstract Flag that indicates whether Local Datastore is enabled.
 
  @returns `YES` if Local Datastore is enabled, otherwise `NO`.
  */
-+ (BOOL)isLocalDatastoreEnabled;
++ (BOOL)isLocalDatastoreEnabled PF_TV_UNAVAILABLE;
 
 ///--------------------------------------
 /// @name Enabling Extensions Data Sharing
