@@ -1217,6 +1217,23 @@
     XCTAssertTrue(query.state.shouldIgnoreACLs);
 }
 
+- (void)testIgnoreACLsOnNetworkQuery {
+    [[Parse _currentManager] clearEventuallyQueue];
+    [Parse _clearCurrentManager];
+    [Parse enableLocalDatastore];
+    [Parse setApplicationId:@"a" clientKey:@"b"];
+
+    PFQuery *query = [[PFQuery queryWithClassName:@"TestObject"] ignoreACLs];
+    PFAssertThrowsInconsistencyException([query findObjectsInBackground]);
+    PFAssertThrowsInconsistencyException([query findObjectsInBackgroundWithBlock:nil]);
+    PFAssertThrowsInconsistencyException([query countObjectsInBackground]);
+    PFAssertThrowsInconsistencyException([query countObjectsInBackgroundWithBlock:nil]);
+    PFAssertThrowsInconsistencyException([query getObjectInBackgroundWithId:@"1234"]);
+    PFAssertThrowsInconsistencyException([query getObjectInBackgroundWithId:@"1234" block:nil]);
+    PFAssertThrowsInconsistencyException([query getFirstObjectInBackground]);
+    PFAssertThrowsInconsistencyException([query getFirstObjectInBackgroundWithBlock:nil]);
+}
+
 #pragma mark Copying
 
 - (void)testNSCopying {

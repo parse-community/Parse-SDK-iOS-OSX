@@ -134,7 +134,7 @@
     XCTAssertTrue([pushA isEqual:pushB]);
     XCTAssertEqual([pushA hash], [pushB hash]);
 
-    NSDictionary *payload = @{ @"foo": @"bar" };
+    NSDictionary *payload = @{ @"foo" : @"bar" };
     [pushA setData:payload];
     XCTAssertFalse([pushA isEqual:pushB]);
 
@@ -176,7 +176,7 @@
     [pushB expireAfterTimeInterval:interval];
     XCTAssertEqual([pushA hash], [pushB hash]);
 
-    NSDictionary *payload = @{ @"foo": @"bar" };
+    NSDictionary *payload = @{ @"foo" : @"bar" };
     [pushA setData:payload];
     [pushB setData:payload];
     XCTAssertEqual([pushA hash], [pushB hash]);
@@ -579,6 +579,58 @@
     [push setPushToAndroid:YES];
 
 #pragma clang diagnostic pop
+}
+
+- (void)testSetQueryAndChannelFails {
+    PFQuery *query = [PFInstallation query];
+    NSArray *channels = @[ @"foo", @"bar" ];
+
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:query];
+    PFAssertThrowsInvalidArgumentException([push setChannel:@"foo"]);
+
+    push = [[PFPush alloc] init];
+    [push setQuery:query];
+    PFAssertThrowsInvalidArgumentException([push setChannels:channels]);
+
+    push = [[PFPush alloc] init];
+    [push setChannels:channels];
+    PFAssertThrowsInvalidArgumentException([push setQuery:query]);
+
+    push = [[PFPush alloc] init];
+    [push setChannel:@"foo"];
+    PFAssertThrowsInvalidArgumentException([push setQuery:query]);
+}
+
+- (void)testPushWithLimitQueryFails {
+    PFQuery *query = [PFInstallation query];
+    query.limit = 10;
+
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:query];
+    [push setMessage:@"hello this is a test"];
+    PFAssertThrowsInvalidArgumentException([push sendPush:nil]);
+}
+
+- (void)testPushWithOrderQueryFails {
+    PFQuery *query = [PFInstallation query];
+    [query orderByAscending:@"deviceToken"];
+
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:query];
+    [push setMessage:@"hello this is a test"];
+    PFAssertThrowsInvalidArgumentException([push sendPush:nil]);
+}
+
+- (void)testPushWithSkipQueryFails {
+    PFQuery *query = [PFInstallation query];
+    [query whereKey:@"deviceType" equalTo:@"ios"];
+    query.skip = 10;
+
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:query];
+    [push setMessage:@"hello this is a test"];
+    PFAssertThrowsInvalidArgumentException([push sendPush:nil]);
 }
 
 @end
