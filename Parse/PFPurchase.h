@@ -46,7 +46,7 @@ typedef void (^PFPurchaseDownloadAssetResultBlock)(NSString *__nullable filePath
  @param productIdentifier the product identifier
  @param block the completion block.
  */
-+ (void)buyProduct:(NSString *)productIdentifier block:(PFPurchaseBuyProductResultBlock)block;
++ (void)buyProduct:(NSString *)productIdentifier block:(nullable PFPurchaseBuyProductResultBlock)block;
 
 /*!
  @abstract *Asynchronously* download the purchased asset, which is stored on Parse's server.
