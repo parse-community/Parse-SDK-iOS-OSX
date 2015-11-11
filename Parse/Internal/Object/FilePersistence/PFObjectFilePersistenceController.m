@@ -58,7 +58,10 @@
             return nil;
         }] continueWithBlock:^id(BFTask *task) {
             return [group endLockedContentAccessAsyncToDataForKey:key];
-        }] continueWithSuccessResult:object];
+        }] continueWithSuccessBlock:^id(BFTask *task) {
+            // Finalize everything with object pointer.
+            return object;
+        }];
     }];
 }
 
