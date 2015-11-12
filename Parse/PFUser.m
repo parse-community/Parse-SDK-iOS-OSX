@@ -170,7 +170,7 @@ static BOOL revocableSessionEnabled_;
                                      withObjectEncoder:(PFEncoder *)encoder {
     @synchronized([self lock]) {
         NSMutableDictionary *serialized = [super _convertToDictionaryForSaving:changes withObjectEncoder:encoder];
-        if ([self.authData count] > 0) {
+        if (self.authData.count > 0) {
             serialized[PFUserAuthDataRESTKey] = [self.authData copy];
         }
         return serialized;
@@ -283,7 +283,7 @@ static BOOL revocableSessionEnabled_;
 - (void)cleanUpAuthData {
     @synchronized([self lock]) {
         for (NSString *key in [self.authData copy]) {
-            id linkData = [self.authData objectForKey:key];
+            id linkData = self.authData[key];
             if (!linkData || linkData == [NSNull null]) {
                 [self.authData removeObjectForKey:key];
                 [self.linkedServiceNames removeObject:key];
@@ -357,7 +357,7 @@ static BOOL revocableSessionEnabled_;
             [self.linkedServiceNames removeAllObjects];
             [newAuthData enumerateKeysAndObjectsUsingBlock:^(id key, id linkData, BOOL *stop) {
                 if (linkData != [NSNull null]) {
-                    [self.authData setObject:linkData forKey:key];
+                    self.authData[key] = linkData;
                     [self.linkedServiceNames addObject:key];
                     [self synchronizeAuthDataWithAuthType:key];
                 } else {
@@ -435,7 +435,7 @@ static BOOL revocableSessionEnabled_;
                 }];
             }
 
-            if ([result.httpResponse statusCode] == 201) {
+            if (result.httpResponse.statusCode == 201) {
                 return [self _handleServiceLoginCommandResult:result];
             } else {
                 // Otherwise, treat this as a fresh login, and switch the current user to the new user.
@@ -460,7 +460,7 @@ static BOOL revocableSessionEnabled_;
     @synchronized([user lock]) {
         [user setIsCurrentUser:YES];
         user.isLazy = YES;
-        [user.authData setObject:authData forKey:authType];
+        user.authData[authType] = authData;
         [user.linkedServiceNames addObject:authType];
     }
     return user;
@@ -509,7 +509,7 @@ static BOOL revocableSessionEnabled_;
                     [operationSetQueue removeAllObjects];
                     [operationSetQueue addObject:[[PFOperationSet alloc] init]];
                     for (NSString *key in selfOperations) {
-                        [currentUser setObject:[selfOperations objectForKey:key] forKey:key];
+                        currentUser[key] = selfOperations[key];
                     }
 
                     currentUser->dirty = YES;
@@ -603,7 +603,7 @@ static BOOL revocableSessionEnabled_;
                                      objectEncoder:(PFEncoder *)encoder {
     // If we are curent user - use the latest available session token, as it might have been changed since
     // this command was enqueued.
-    if ([self isCurrentUser]) {
+    if (self.isCurrentUser) {
         token = self.sessionToken;
     }
     return [super _constructSaveCommandForChanges:changes
@@ -1115,12 +1115,12 @@ static BOOL revocableSessionEnabled_;
 }
 
 - (BFTask *)fetchAsync:(BFTask *)toAwait {
-    if ([self isLazy]) {
+    if (self.isLazy) {
         return [BFTask taskWithResult:@YES];
     }
 
     return [[super fetchAsync:toAwait] continueAsyncWithSuccessBlock:^id(BFTask *fetchAsyncTask) {
-        if ([self isCurrentUser]) {
+        if (self.isCurrentUser) {
             [self cleanUpAuthData];
             PFCurrentUserController *controller = [[self class] currentUserController];
             return [[controller saveCurrentObjectAsync:self] continueAsyncWithBlock:^id(BFTask *task) {
