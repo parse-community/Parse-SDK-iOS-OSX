@@ -1163,7 +1163,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     @synchronized (lock) {
         [_estimatedData applyFieldOperation:operation forKey:key];
 
-        PFFieldOperation *oldOperation = [[self unsavedChanges] objectForKey:key];
+        PFFieldOperation *oldOperation = [self unsavedChanges][key];
         PFFieldOperation *newOperation = [operation mergeWithPrevious:oldOperation];
         [[self unsavedChanges] setObject:newOperation forKey:key];
         [_availableKeys addObject:key];
@@ -1969,7 +1969,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (BOOL)isDirtyForKey:(NSString *)key {
     @synchronized (lock) {
-        return !![[self unsavedChanges] objectForKey:key];
+        return [self unsavedChanges][key] != nil;
     }
 }
 
@@ -2190,7 +2190,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (void)removeObjectForKey:(NSString *)key {
     @synchronized (lock) {
-        if ([self objectForKey:key]) {
+        if (self[key]) {
             PFDeleteOperation *operation = [[PFDeleteOperation alloc] init];
             [self performOperation:operation forKey:key];
         }

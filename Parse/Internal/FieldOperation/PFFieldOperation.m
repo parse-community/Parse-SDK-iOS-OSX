@@ -420,7 +420,7 @@
 + (instancetype)removeRelationToObjects:(NSArray *)targets {
     PFRelationOperation *operation = [[self alloc] init];
     if (targets.count > 0) {
-        operation.targetClass = [[targets objectAtIndex:0] parseClassName];
+        operation.targetClass = [targets[0] parseClassName];
     }
 
     for (PFObject *target in targets) {

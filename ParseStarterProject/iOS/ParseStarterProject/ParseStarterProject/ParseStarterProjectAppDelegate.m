@@ -63,7 +63,7 @@
         // In that case, we skip tracking here to avoid double counting the app-open.
         BOOL preBackgroundPush = ![application respondsToSelector:@selector(backgroundRefreshStatus)];
         BOOL oldPushHandlerOnly = ![self respondsToSelector:@selector(application:didReceiveRemoteNotification:fetchCompletionHandler:)];
-        BOOL noPushPayload = ![launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        BOOL noPushPayload = !launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
         if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
             [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
         }

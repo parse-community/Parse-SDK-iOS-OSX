@@ -142,7 +142,7 @@
 
     NSDictionary *parsed = [PFJSONSerialization JSONObjectFromString:json];
     object = [[PFDecoder objectDecoder] decodeObject:parsed];
-    long long actual = [[object objectForKey:@"hugeNumber"] longLongValue];
+    long long actual = [object[@"hugeNumber"] longLongValue];
     XCTAssertEqual(expected, actual, @"The number should be parsed correctly.");
 }
 

@@ -168,7 +168,7 @@ static NSString *parseServer_;
     for (NSString *key in keys) {
         [string appendFormat:@"%@:", key];
 
-        id value = [dictionary objectForKey:key];
+        id value = dictionary[key];
         [self appendObject:value toString:string];
 
         [string appendString:@","];

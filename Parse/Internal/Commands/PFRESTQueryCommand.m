@@ -157,7 +157,7 @@
                     if ([queryDict count] > 0) {
                         [newArray addObject:queryDict];
                     } else {
-                        [newArray addObject:[NSDictionary dictionary]];
+                        [newArray addObject:@{}];
                     }
                 }
                 whereData[key] = newArray;
