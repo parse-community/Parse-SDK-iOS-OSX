@@ -96,7 +96,7 @@ NSString *const PFConfigParametersRESTKey = @"params";
 #pragma mark Equality Testing
 
 - (NSUInteger)hash {
-    return [_parametersDictionary hash];
+    return _parametersDictionary.hash;
 }
 
 - (BOOL)isEqual:(id)object {
@@ -104,8 +104,8 @@ NSString *const PFConfigParametersRESTKey = @"params";
         PFConfig *other = object;
 
         // Compare pointers first, to account for nil dictionary
-        return self.parametersDictionary == other.parametersDictionary ||
-            [self.parametersDictionary isEqual:other.parametersDictionary];
+        return (self.parametersDictionary == other.parametersDictionary ||
+                [self.parametersDictionary isEqual:other.parametersDictionary]);
     }
 
     return NO;

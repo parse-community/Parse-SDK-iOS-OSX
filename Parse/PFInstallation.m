@@ -276,7 +276,7 @@ static NSSet *protectedKeys;
 }
 
 - (void)_updateVersionInfoFromDevice {
-    NSDictionary *appInfo = [[NSBundle mainBundle] infoDictionary];
+    NSDictionary *appInfo = [NSBundle mainBundle].infoDictionary;
     NSString *appName = appInfo[(__bridge NSString *)kCFBundleNameKey];
     NSString *appVersion = appInfo[(__bridge NSString *)kCFBundleVersionKey];
     NSString *appIdentifier = appInfo[(__bridge NSString *)kCFBundleIdentifierKey];

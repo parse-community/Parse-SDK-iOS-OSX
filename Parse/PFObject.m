@@ -401,7 +401,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     // TODO: (nlutsenko) Get rid of this once we allow localIds in batches.
     NSArray *remaining = [uniqueObjects allObjects];
     NSMutableArray *finished = [NSMutableArray array];
-    while ([remaining count] > 0) {
+    while (remaining.count > 0) {
         // Partition the objects into two sets: those that can be save immediately,
         // and those that rely on other objects to be created first.
         NSMutableArray *current = [NSMutableArray array];
@@ -429,7 +429,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         // This has to happen separately from everything else because there [PFUser save]
         // is special-cased to work for lazy users, but new users can't be created by
         // PFMultiCommand's regular save.
-        if ([currentUser isLazy] && [current containsObject:currentUser]) {
+        if (currentUser.isLazy && [current containsObject:currentUser]) {
             task = [task continueAsyncWithSuccessBlock:^id(BFTask *task) {
                 return [currentUser saveInBackground];
             }];
@@ -447,12 +447,12 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             // and execute them concurrently with a wrapper task for all of them.
             NSArray *objectBatches = [PFInternalUtils arrayBySplittingArray:current
                                             withMaximumComponentsPerSegment:PFRESTObjectBatchCommandSubcommandsLimit];
-            NSMutableArray *tasks = [NSMutableArray arrayWithCapacity:[objectBatches count]];
+            NSMutableArray *tasks = [NSMutableArray arrayWithCapacity:objectBatches.count];
 
             for (NSArray *objectBatch in objectBatches) {
                 BFTask *batchTask = [self _enqueue:^BFTask *(BFTask *toAwait) {
                     return [toAwait continueAsyncWithBlock:^id(BFTask *task) {
-                        NSMutableArray *commands = [NSMutableArray arrayWithCapacity:[objectBatch count]];
+                        NSMutableArray *commands = [NSMutableArray arrayWithCapacity:objectBatch.count];
                         for (PFObject *object in objectBatch) {
                             PFRESTCommand *command = nil;
                             @synchronized ([object lock]) {
@@ -472,7 +472,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                                 continueAsyncWithBlock:^id(BFTask *commandRunnerTask) {
                                     NSArray *results = [commandRunnerTask.result result];
 
-                                    NSMutableArray *handleSaveTasks = [NSMutableArray arrayWithCapacity:[objectBatch count]];
+                                    NSMutableArray *handleSaveTasks = [NSMutableArray arrayWithCapacity:objectBatch.count];
 
                                     __block NSError *error = task.error;
                                     [objectBatch enumerateObjectsUsingBlock:^(PFObject *object, NSUInteger idx, BOOL *stop) {
@@ -565,10 +565,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         // Remove object from the queue of objects to save as this method should only save children.
         [uniqueObjects removeObject:object];
 
-        NSArray *remaining = [uniqueObjects allObjects];
+        NSArray *remaining = uniqueObjects.allObjects;
         NSMutableArray *finished = [NSMutableArray array];
         NSMutableArray *enqueueTasks = [NSMutableArray array];
-        while ([remaining count] > 0) {
+        while (remaining.count > 0) {
             // Partition the objects into two sets: those that can be save immediately,
             // and those that rely on other objects to be created first.
             NSMutableArray *current = [NSMutableArray array];
@@ -600,7 +600,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             // Unfortunately, ACLs with lazy users still cannot be saved, because the ACL does
             // does not get updated after the user save completes.
             // TODO: (nlutsenko) Make the ACL update after the user is saved.
-            if ([currentUser isLazy] && [current containsObject:currentUser]) {
+            if (currentUser.isLazy && [current containsObject:currentUser]) {
                 [enqueueTasks addObject:[currentUser _enqueueSaveEventuallyWithChildren:NO]];
                 [finished addObject:currentUser];
                 [current removeObject:currentUser];
@@ -941,7 +941,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             if ([key isEqualToString:PFObjectOperationsRESTKey]) {
                 PFOperationSet *remoteOperationSet = nil;
                 NSArray *operations = (NSArray *)obj;
-                if ([operations count] > 0) {
+                if (operations.count > 0) {
                     // Add and enqueue any saveEventually operations, roll forward any other
                     // operations sets (operations sets here are generally failed/incomplete saves).
                     PFOperationSet *current = nil;
@@ -957,7 +957,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                             // Check if queue already contains this operation set and discard it if does
                             if (![self _containsOperationSet:operationSet]) {
                                 // Insert the `saveEventually` operationSet before the last operation set at all times.
-                                NSUInteger index = ([operationSetQueue count] == 0 ? 0 : [operationSetQueue count] - 1);
+                                NSUInteger index = (operationSetQueue.count == 0 ? 0 : operationSetQueue.count - 1);
                                 [operationSetQueue insertObject:operationSet atIndex:index];
                                 [self _enqueueSaveEventuallyOperationAsync:operationSet];
                             }
@@ -1187,7 +1187,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
  */
 - (PFOperationSet *)unsavedChanges {
     @synchronized (lock) {
-        return [operationSetQueue lastObject];
+        return operationSetQueue.lastObject;
     }
 }
 
@@ -1207,7 +1207,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 - (BOOL)_hasOutstandingOperations {
     @synchronized (lock) {
         // > 1 since 1 is unsaved changes.
-        return [operationSetQueue count] > 1;
+        return operationSetQueue.count > 1;
     }
 }
 
@@ -1254,9 +1254,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         PFMutableObjectState *state = [self._state mutableCopy];
 
         NSMutableDictionary *removedDictionary = [NSMutableDictionary dictionaryWithDictionary:state.serverData];
-        [removedDictionary removeObjectsForKeys:[result allKeys]];
+        [removedDictionary removeObjectsForKeys:result.allKeys];
 
-        NSArray *removedKeys = [removedDictionary allKeys];
+        NSArray *removedKeys = removedDictionary.allKeys;
         [state removeServerDataObjectsForKeys:removedKeys];
         [_availableKeys minusSet:[NSSet setWithArray:removedKeys]];
 
@@ -1321,7 +1321,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             state.updatedAt = state.createdAt;
         }
         self._state = state;
-        [_availableKeys addObjectsFromArray:[result allKeys]];
+        [_availableKeys addObjectsFromArray:result.allKeys];
 
         dirty = NO;
     }
@@ -1969,7 +1969,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (BOOL)isDirtyForKey:(NSString *)key {
     @synchronized (lock) {
-        return [self unsavedChanges][key] != nil;
+        return ([self unsavedChanges][key] != nil);
     }
 }
 
@@ -2200,12 +2200,12 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 - (void)revert {
     @synchronized (self.lock) {
         if (self.dirty) {
-            NSMutableSet *persistentKeys = [NSMutableSet setWithArray:[self._state.serverData allKeys]];
+            NSMutableSet *persistentKeys = [NSMutableSet setWithArray:self._state.serverData.allKeys];
 
             PFOperationSet *unsavedChanges = [self unsavedChanges];
             for (PFOperationSet *operationSet in operationSetQueue) {
                 if (operationSet != unsavedChanges) {
-                    [persistentKeys addObjectsFromArray:[operationSet.keyEnumerator allObjects]];
+                    [persistentKeys addObjectsFromArray:operationSet.keyEnumerator.allObjects];
                 }
             }
 
@@ -2301,7 +2301,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (NSArray *)allKeys {
     @synchronized (lock) {
-        return [_estimatedData allKeys];
+        return _estimatedData.allKeys;
     }
 }
 
@@ -2321,7 +2321,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 - (NSString *)_recursiveDescription {
     @synchronized (lock) {
         return [NSString stringWithFormat:@"%@ %@",
-                [self _flatDescription], [_estimatedData.dictionaryRepresentation description]];
+                [self _flatDescription], _estimatedData.dictionaryRepresentation.description];
     }
 }
 
@@ -2435,13 +2435,13 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }
 
     // Convert the method signature *back* into a objc type string (sidenote, why isn't this a built in?).
-    NSMutableString *typeString = [NSMutableString stringWithFormat:@"%s", [signature methodReturnType]];
-    for (NSUInteger argumentIndex = 0; argumentIndex < [signature numberOfArguments]; argumentIndex++) {
+    NSMutableString *typeString = [NSMutableString stringWithFormat:@"%s", signature.methodReturnType];
+    for (NSUInteger argumentIndex = 0; argumentIndex < signature.numberOfArguments; argumentIndex++) {
         [typeString appendFormat:@"%s", [signature getArgumentTypeAtIndex:argumentIndex]];
     }
 
     // TODO: (richardross) Support stret return here (will need to introspect the method signature to do so).
-    class_addMethod(self, sel, _objc_msgForward, [typeString UTF8String]);
+    class_addMethod(self, sel, _objc_msgForward, typeString.UTF8String);
 
     return YES;
 }

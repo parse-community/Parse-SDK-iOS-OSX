@@ -41,9 +41,9 @@
     // returned for all requests.
     [CLLocationManager setReturnLocation:NO];
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
-        XCTAssertEqualWithAccuracy([geoPoint latitude], CL_DEFAULT_LATITUDE, 0.00001,
+        XCTAssertEqualWithAccuracy(geoPoint.latitude, CL_DEFAULT_LATITUDE, 0.00001,
                                    @"Current location should have been set to fakeLocation");
-        XCTAssertEqualWithAccuracy([geoPoint longitude], CL_DEFAULT_LONGITUDE, 0.00001,
+        XCTAssertEqualWithAccuracy(geoPoint.longitude, CL_DEFAULT_LONGITUDE, 0.00001,
                                    @"Current location should have been set to fakeLocation");
         XCTAssertNil(error, @"No error should have been found");
         if (geoPoint) {
