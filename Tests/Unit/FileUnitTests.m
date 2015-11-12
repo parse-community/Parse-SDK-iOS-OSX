@@ -141,28 +141,28 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
     XCTAssertTrue(file.dirty);
-    XCTAssertTrue(file.isDataAvailable);
+    XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithData:[NSData data] contentType:@"content-type"];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
     XCTAssertTrue(file.dirty);
-    XCTAssertTrue(file.isDataAvailable);
+    XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithName:@"name" data:[NSData data]];
     XCTAssertEqualObjects(file.name, @"name");
     XCTAssertNil(file.url);
     XCTAssertTrue(file.dirty);
-    XCTAssertTrue(file.isDataAvailable);
+    XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithName:nil contentsAtPath:[self sampleFilePath]];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
     XCTAssertTrue(file.dirty);
-    XCTAssertTrue(file.isDataAvailable);
+    XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     NSError *error = nil;
@@ -171,14 +171,14 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
     XCTAssertTrue(file.dirty);
-    XCTAssertTrue(file.isDataAvailable);
+    XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithName:nil data:[NSData data] contentType:@"content-type"];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
     XCTAssertTrue(file.dirty);
-    XCTAssertTrue(file.isDataAvailable);
+    XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithName:nil data:[NSData data] contentType:@"content-type" error:&error];
@@ -186,7 +186,7 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
     XCTAssertTrue(file.dirty);
-    XCTAssertTrue(file.isDataAvailable);
+    XCTAssertTrue(file.dataAvailable);
 }
 
 - (void)testConstructorWithTooLargeData {
