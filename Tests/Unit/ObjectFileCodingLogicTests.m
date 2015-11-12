@@ -40,7 +40,7 @@
     XCTAssertNotNil(object);
     XCTAssertEqualObjects(object.objectId, @"100500");
     XCTAssertEqualObjects(object[@"slogan"], @"yarr");
-    XCTAssertTrue(object.isDataAvailable);
+    XCTAssertTrue(object.dataAvailable);
 }
 
 - (void)testUpdateObjectWithLegacyKeys {
@@ -60,12 +60,12 @@
     XCTAssertEqualObjects(object.createdAt, [[PFDateFormatter sharedFormatter] dateFromString:dictionary[@"created_at"]]);
     XCTAssertEqualObjects(object.updatedAt, [[PFDateFormatter sharedFormatter] dateFromString:dictionary[@"updated_at"]]);
     XCTAssertEqualObjects(object[@"a"], @"b");
-    XCTAssertTrue(object.isDataAvailable);
+    XCTAssertTrue(object.dataAvailable);
 
     PFObject *pointer = object[@"yarr"];
     XCTAssertEqualObjects(pointer.parseClassName, @"Pirate");
     XCTAssertEqualObjects(pointer.objectId, @"pff");
-    XCTAssertFalse(pointer.isDataAvailable);
+    XCTAssertFalse(pointer.dataAvailable);
 }
 
 @end

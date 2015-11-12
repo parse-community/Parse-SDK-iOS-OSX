@@ -43,7 +43,7 @@
     XCTAssertNotNil(user);
     XCTAssertEqualObjects(user.objectId, @"100500");
     XCTAssertEqualObjects(user[@"slogan"], @"yarr");
-    XCTAssertTrue(user.isDataAvailable);
+    XCTAssertTrue(user.dataAvailable);
 
     XCTAssertEqualObjects(user.authData, @{ @"a" : @"b" });
     XCTAssertEqualObjects(user.linkedServiceNames, [NSSet setWithObject:@"a"]);
@@ -61,7 +61,7 @@
     [logic updateObject:user fromDictionary:dictionary usingDecoder:[PFDecoder objectDecoder]];
 
     XCTAssertNotNil(user);
-    XCTAssertTrue(user.isDataAvailable);
+    XCTAssertTrue(user.dataAvailable);
 
     XCTAssertEqualObjects(user.authData, @{ @"a" : @"b" });
     XCTAssertEqualObjects(user.linkedServiceNames, [NSSet setWithObject:@"a"]);

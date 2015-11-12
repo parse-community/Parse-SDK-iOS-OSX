@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  @abstract Creates a reference to an existing PFObject for use in creating associations between PFObjects.
 
- @discussion Calling <[PFObject isDataAvailable]> on this object will return `NO`
+ @discussion Calling <PFObject.dataAvailable> on this object will return `NO`
  until <[PFObject fetchIfNeeded]> has been called. No network request will be made.
  A default implementation is provided by PFObject which should always be sufficient.
 

@@ -190,7 +190,7 @@
     NSString *className = [objects.firstObject parseClassName];
     for (PFObject *object in objects) {
         @synchronized (object.lock) {
-            if (omitFetched && [object isDataAvailable]) {
+            if (omitFetched && object.dataAvailable) {
                 continue;
             }
 
