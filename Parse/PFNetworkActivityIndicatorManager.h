@@ -50,7 +50,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFNetworkActivityIndicatorMana
 
  @returns The systemwide network activity indicator manager.
  */
-+ (instancetype)sharedManager;
++ (PFNetworkActivityIndicatorManager *)sharedManager;
 
 /*!
  @abstract Increments the number of active network requests.
