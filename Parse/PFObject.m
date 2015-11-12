@@ -2199,7 +2199,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (void)revert {
     @synchronized (self.lock) {
-        if ([self isDirty]) {
+        if (self.dirty) {
             NSMutableSet *persistentKeys = [NSMutableSet setWithArray:[self._state.serverData allKeys]];
 
             PFOperationSet *unsavedChanges = [self unsavedChanges];

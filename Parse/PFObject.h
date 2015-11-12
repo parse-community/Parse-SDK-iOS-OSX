@@ -838,7 +838,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns Returns whether this object has been altered and not saved yet.
  */
-- (BOOL)isDirty;
+@property (nonatomic, assign, readonly, getter=isDirty) BOOL dirty;
 
 /*!
  @abstract Get whether a value associated with a key has been added/updated/removed and not saved yet.
