@@ -11,7 +11,6 @@
 
 #import "BFTask+Private.h"
 #import "PFAsyncTaskQueue.h"
-#import "PFFileManager.h"
 #import "PFInstallationIdentifierStore.h"
 #import "PFInstallationPrivate.h"
 #import "PFMacros.h"
@@ -48,7 +47,7 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
 ///--------------------------------------
 
 - (instancetype)initWithStorageType:(PFCurrentObjectStorageType)storageType
-                   commonDataSource:(id<PFFileManagerProvider, PFInstallationIdentifierStoreProvider>)commonDataSource
+                   commonDataSource:(id<PFInstallationIdentifierStoreProvider>)commonDataSource
                      coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource {
     self = [super init];
     if (!self) return nil;
@@ -64,7 +63,7 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
 }
 
 + (instancetype)controllerWithStorageType:(PFCurrentObjectStorageType)storageType
-                         commonDataSource:(id<PFFileManagerProvider, PFInstallationIdentifierStoreProvider>)commonDataSource
+                         commonDataSource:(id<PFInstallationIdentifierStoreProvider>)commonDataSource
                            coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource {
     return [[self alloc] initWithStorageType:storageType
                             commonDataSource:commonDataSource
@@ -183,8 +182,7 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
             [tasks addObject:unpinTask];
         }
 
-        NSString *path = [self.fileManager parseDataItemPathForPathComponent:PFCurrentInstallationFileName];
-        BFTask *fileTask = [PFFileManager removeItemAtPathAsync:path];
+        BFTask *fileTask = [self.coreDataSource.objectFilePersistenceController removePersistentObjectAsyncForKey:PFCurrentInstallationFileName];
         [tasks addObject:fileTask];
 
         return [BFTask taskForCompletionOfAllTasks:tasks];
@@ -246,10 +244,6 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
 ///--------------------------------------
 #pragma mark - Accessors
 ///--------------------------------------
-
-- (PFFileManager *)fileManager {
-    return self.commonDataSource.fileManager;
-}
 
 - (PFObjectFilePersistenceController *)objectFilePersistenceController {
     return self.coreDataSource.objectFilePersistenceController;
