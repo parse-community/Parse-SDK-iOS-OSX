@@ -25,7 +25,7 @@ typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
 
 @interface PFCurrentUserController : NSObject <PFCurrentObjectControlling>
 
-@property (nonatomic, weak, readonly) id<PFKeychainStoreProvider, PFFileManagerProvider> commonDataSource;
+@property (nonatomic, weak, readonly) id<PFKeychainStoreProvider> commonDataSource;
 @property (nonatomic, weak, readonly) id<PFObjectFilePersistenceControllerProvider> coreDataSource;
 
 @property (atomic, assign) BOOL automaticUsersEnabled;
@@ -36,10 +36,10 @@ typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithStorageType:(PFCurrentObjectStorageType)storageType
-                   commonDataSource:(id<PFKeychainStoreProvider, PFFileManagerProvider>)commonDataSource
+                   commonDataSource:(id<PFKeychainStoreProvider>)commonDataSource
                      coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource NS_DESIGNATED_INITIALIZER;
 + (instancetype)controllerWithStorageType:(PFCurrentObjectStorageType)storageType
-                         commonDataSource:(id<PFKeychainStoreProvider, PFFileManagerProvider>)commonDataSource
+                         commonDataSource:(id<PFKeychainStoreProvider>)commonDataSource
                            coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource;
 
 ///--------------------------------------
