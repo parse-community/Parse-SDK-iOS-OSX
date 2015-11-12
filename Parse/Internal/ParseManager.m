@@ -38,6 +38,10 @@
 #import "PFProduct.h"
 #endif
 
+#if TARGET_OS_TV
+#import "PFMemoryEventuallyQueue.h"
+#endif
+
 static NSString *const _ParseApplicationIdFileName = @"applicationId";
 
 @interface ParseManager () <PFCoreManagerDataSource>
@@ -165,6 +169,11 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 - (PFEventuallyQueue *)eventuallyQueue {
     __block PFEventuallyQueue *queue = nil;
     dispatch_sync(_eventuallyQueueAccessQueue, ^{
+#if TARGET_OS_TV
+        if (!_eventuallyQueue) {
+            _eventuallyQueue = [PFMemoryEventuallyQueue newDefaultMemoryEventuallyQueueWithCommandRunner:self.commandRunner];
+        }
+#else
         if (!_eventuallyQueue ||
             (self.offlineStoreLoaded && [_eventuallyQueue isKindOfClass:[PFCommandCache class]]) ||
             (!self.offlineStoreLoaded && [_eventuallyQueue isKindOfClass:[PFPinningEventuallyQueue class]])) {
@@ -184,6 +193,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
                 [commandCache removeAllCommands];
             }
         }
+#endif
         queue = _eventuallyQueue;
     });
     return queue;
