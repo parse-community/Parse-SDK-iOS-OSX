@@ -268,7 +268,7 @@
                                           @"A" : objectA }
                                decoder:[PFDecoder objectDecoder]];
 
-    XCTAssertFalse([objectA isDirty]);
+    XCTAssertFalse(objectA.dirty);
 }
 
 @end

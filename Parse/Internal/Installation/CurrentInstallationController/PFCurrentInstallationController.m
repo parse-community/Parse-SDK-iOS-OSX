@@ -90,7 +90,7 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
                         // If there is no objectId, but there is some data
                         // it means that the data wasn't yet saved to the server
                         // so we should mark everything as dirty
-                        if (!installation.objectId && [[installation allKeys] count]) {
+                        if (!installation.objectId && installation.allKeys.count) {
                             [installation _markAllFieldsDirty];
                         }
                     }

@@ -133,7 +133,7 @@ typedef BOOL (^PFSubQueryMatcherBlock)(id object, NSArray *results);
         PFObject *object = (PFObject *)container;
 
         // The object needs to have been fetched already if we are going to sort by one of its field.
-        PFParameterAssert(object.isDataAvailable, @"Bad key %@", key);
+        PFParameterAssert(object.dataAvailable, @"Bad key %@", key);
 
         // Handle special keys for PFObject.
         if ([key isEqualToString:@"objectId"]) {

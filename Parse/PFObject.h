@@ -125,7 +125,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @discussion This does not include `createdAt`, `updatedAt`, `authData`, or `objectId`.
  It does include things like username and ACL.
  */
-- (NSArray PF_GENERIC(NSString *)*)allKeys;
+@property (nonatomic, copy, readonly) NSArray PF_GENERIC(NSString *)*allKeys;
 
 ///--------------------------------------
 /// @name Accessors
@@ -495,7 +495,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns `YES` if the PFObject is new or has been fetched or refreshed, otherwise `NO`.
  */
-- (BOOL)isDataAvailable;
+@property (nonatomic, assign, readonly, getter=isDataAvailable) BOOL dataAvailable;
 
 #if PARSE_IOS_ONLY
 
@@ -838,7 +838,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns Returns whether this object has been altered and not saved yet.
  */
-- (BOOL)isDirty;
+@property (nonatomic, assign, readonly, getter=isDirty) BOOL dirty;
 
 /*!
  @abstract Get whether a value associated with a key has been added/updated/removed and not saved yet.

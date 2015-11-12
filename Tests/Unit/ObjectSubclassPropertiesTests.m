@@ -287,9 +287,9 @@
 - (void)testObjectPropertiesAreRemovedWhenNilled {
     PFTestObject *object = [[PFTestObject alloc] initWithClassName:@"Test"];
     object.stringCopyProperty = @"Hello, world!";
-    XCTAssertTrue([[object allKeys] containsObject:@"stringCopyProperty"]);
+    XCTAssertTrue([object.allKeys containsObject:@"stringCopyProperty"]);
     object.stringCopyProperty = nil;
-    XCTAssertFalse([[object allKeys] containsObject:@"stringCopyProperty"]);
+    XCTAssertFalse([object.allKeys containsObject:@"stringCopyProperty"]);
 }
 
 // I'm not so sure the mutator is a good idea, but it'd be good to ensure that at least the
@@ -297,10 +297,10 @@
 - (void)testObjectPropertiesDontChokeOnNSNull {
     PFTestObject *object = [[PFTestObject alloc] initWithClassName:@"Test"];
     object.stringCopyProperty = (NSString *)[NSNull null];
-    XCTAssertTrue([[object allKeys] containsObject:@"stringCopyProperty"]);
+    XCTAssertTrue([object.allKeys containsObject:@"stringCopyProperty"]);
     XCTAssertEqual((NSString *)nil, object.stringCopyProperty);
     object.stringCopyProperty = nil;
-    XCTAssertFalse([[object allKeys] containsObject:@"stringCopyProperty"]);
+    XCTAssertFalse([object.allKeys containsObject:@"stringCopyProperty"]);
 }
 
 - (void)testBoxedPropertiesDontChokeOnNSNull {

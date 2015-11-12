@@ -709,7 +709,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }
 
     @synchronized (lock) {
-        if ([self isDataAvailable]) {
+        if (self.dataAvailable) {
             return YES;
         }
         return [_availableKeys containsObject:key];
@@ -1563,7 +1563,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             if ([obj isKindOfClass:[PFObject class]]) {
                 PFObject *object = obj;
                 NSString *objectId = object.objectId;
-                if (objectId && [object isDataAvailable]) {
+                if (objectId && object.dataAvailable) {
                     fetchedObjects[objectId] = object;
                 }
             }
@@ -2035,7 +2035,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 }
 
 - (BFTask *)fetchIfNeededInBackground {
-    if ([self isDataAvailable]) {
+    if (self.dataAvailable) {
         return [BFTask taskWithResult:self];
     }
     return [self fetchInBackground];
@@ -2199,7 +2199,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (void)revert {
     @synchronized (self.lock) {
-        if ([self isDirty]) {
+        if (self.dirty) {
             NSMutableSet *persistentKeys = [NSMutableSet setWithArray:[self._state.serverData allKeys]];
 
             PFOperationSet *unsavedChanges = [self unsavedChanges];

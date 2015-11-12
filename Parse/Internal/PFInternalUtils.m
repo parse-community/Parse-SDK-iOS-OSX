@@ -202,7 +202,7 @@ static NSString *parseServer_;
         }
         [seen addObject:object];
 
-        for (NSString *key in [(PFObject *)object allKeys]) {
+        for (NSString *key in ((PFObject *)object).allKeys) {
             [self traverseObject:object[key] usingBlock:block seenObjects:seen];
         }
 

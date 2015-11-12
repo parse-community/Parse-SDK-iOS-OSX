@@ -85,7 +85,7 @@
     [self waitForTestExpectations];
 
     XCTAssertEqualObjects(object[@"a"], @"b");
-    XCTAssertTrue([object isDataAvailable]);
+    XCTAssertTrue(object.dataAvailable);
     OCMVerifyAll(commandRunner);
 }
 
@@ -128,7 +128,7 @@
     [self waitForTestExpectations];
 
     XCTAssertEqualObjects(object[@"a"], @"b");
-    XCTAssertTrue([object isDataAvailable]);
+    XCTAssertTrue(object.dataAvailable);
     OCMVerifyAll(commandRunner);
 }
 
