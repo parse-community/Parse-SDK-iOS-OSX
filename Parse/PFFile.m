@@ -37,7 +37,6 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
 
 @property (nonatomic, strong, readwrite) PFFileState *state;
 @property (nonatomic, copy, readonly) NSString *stagedFilePath;
-@property (nonatomic, assign, readonly, getter=isDirty) BOOL dirty;
 
 //
 // Private
