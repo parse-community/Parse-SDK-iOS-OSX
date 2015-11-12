@@ -125,7 +125,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @discussion This does not include `createdAt`, `updatedAt`, `authData`, or `objectId`.
  It does include things like username and ACL.
  */
-- (NSArray PF_GENERIC(NSString *)*)allKeys;
+@property (nonatomic, copy, readonly) NSArray PF_GENERIC(NSString *)*allKeys;
 
 ///--------------------------------------
 /// @name Accessors
