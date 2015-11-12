@@ -140,28 +140,28 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     PFFile *file = [PFFile fileWithData:[NSData data]];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
+    XCTAssertTrue(file.dirty);
     XCTAssertTrue(file.isDataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithData:[NSData data] contentType:@"content-type"];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
+    XCTAssertTrue(file.dirty);
     XCTAssertTrue(file.isDataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithName:@"name" data:[NSData data]];
     XCTAssertEqualObjects(file.name, @"name");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
+    XCTAssertTrue(file.dirty);
     XCTAssertTrue(file.isDataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithName:nil contentsAtPath:[self sampleFilePath]];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
+    XCTAssertTrue(file.dirty);
     XCTAssertTrue(file.isDataAvailable);
 
     [self clearStagingAndTemporaryFiles];
@@ -170,14 +170,14 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     XCTAssertNil(error);
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
+    XCTAssertTrue(file.dirty);
     XCTAssertTrue(file.isDataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithName:nil data:[NSData data] contentType:@"content-type"];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
+    XCTAssertTrue(file.dirty);
     XCTAssertTrue(file.isDataAvailable);
 
     [self clearStagingAndTemporaryFiles];
@@ -185,7 +185,7 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     XCTAssertNil(error);
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
+    XCTAssertTrue(file.dirty);
     XCTAssertTrue(file.isDataAvailable);
 }
 
