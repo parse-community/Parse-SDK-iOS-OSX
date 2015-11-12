@@ -495,7 +495,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @returns `YES` if the PFObject is new or has been fetched or refreshed, otherwise `NO`.
  */
-- (BOOL)isDataAvailable;
+@property (nonatomic, assign, readonly, getter=isDataAvailable) BOOL dataAvailable;
 
 #if PARSE_IOS_ONLY
 
