@@ -112,7 +112,7 @@
         // Make sure it success
         XCTAssertNil(task.error);
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"one", @"two", @3, @4.4, nil]];
+                    withArgumentsInArray:@[ @"one", @"two", @3, @4.4 ]];
     }] continueWithBlock:^id(BFTask *task) {
         return [database executeCachedQueryAsync:@"SELECT * FROM test" withArgumentsInArray:nil];
     }] continueWithBlock:^id(BFTask *task) {
@@ -144,7 +144,7 @@
         XCTAssertFalse([result next]);
 
         return [database executeSQLAsync:@"UPDATE test SET a = ?, c = ? WHERE c = ?"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"onenew", @5, @3, nil]];
+                    withArgumentsInArray:@[ @"onenew", @5, @3 ]];
     }] continueWithBlock:^id(BFTask *task) {
         // Make sure there's nothing wrong
         XCTAssertNil(task.error);
@@ -163,7 +163,7 @@
         XCTAssertFalse([result next]);
 
         return [database executeSQLAsync:@"DELETE FROM test WHERE c = ?"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@5, nil]];
+                    withArgumentsInArray:@[ @5 ]];
     }] continueWithBlock:^id(BFTask *task) {
         // Make sure there's nothing wrong
         XCTAssertNil(task.error);
@@ -190,7 +190,7 @@
         return [database beginTransactionAsync];
     }] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"one", @"two", @3, @4.4, nil]];
+                    withArgumentsInArray:@[ @"one", @"two", @3, @4.4 ]];
     }] continueWithBlock:^id(BFTask *task) {
         return [database executeCachedQueryAsync:@"SELECT * FROM test" withArgumentsInArray:nil];
     }] continueWithBlock:^id(BFTask *task) {
@@ -226,7 +226,7 @@
         return [database beginTransactionAsync];
     }] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"oneone", @"twotwo", @33, @44.44, nil]];
+                    withArgumentsInArray:@[ @"oneone", @"twotwo", @33, @44.44 ]];
     }] continueWithBlock:^id(BFTask *task) {
         return [database executeCachedQueryAsync:@"SELECT * FROM test" withArgumentsInArray:nil];
     }] continueWithBlock:^id(BFTask *task) {
@@ -260,7 +260,7 @@
         return [database beginTransactionAsync];
     }] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"oneone", @"twotwo", @33, @44.44, nil]];
+                    withArgumentsInArray:@[ @"oneone", @"twotwo", @33, @44.44 ]];
     }] continueWithBlock:^id(BFTask *task) {
         return [database executeCachedQueryAsync:@"SELECT * FROM test" withArgumentsInArray:nil];
     }] continueWithBlock:^id(BFTask *task) {
@@ -286,7 +286,7 @@
     [[[[[[[database openAsync] continueWithBlock:^id(BFTask *task) {
         XCTAssertNil(task.error);
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"oneone", @"twotwo", @33, @44.44, nil]];
+                    withArgumentsInArray:@[ @"oneone", @"twotwo", @33, @44.44 ]];
     }] continueWithBlock:^id(BFTask *task) {
         XCTAssertNil(task.error);
         return [database executeCachedQueryAsync:@"SELECT * FROM test" withArgumentsInArray:nil];
@@ -325,11 +325,11 @@
 - (void)testOperationOnNonExistentTable {
     [[[[[[[self createDatabaseAsync] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO testFake (a, b, c, d) VALUES (?, ?, ?, ?)"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"one", @"two", @3, @4.4, nil]];
+                    withArgumentsInArray:@[ @"one", @"two", @3, @4.4 ]];
     }]  continueWithBlock:^id(BFTask *task) {
         XCTAssertNotNil(task.error);
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"one", @"two", @3, @4.4, nil]];
+                    withArgumentsInArray:@[ @"one", @"two", @3, @4.4 ]];
     }] continueWithBlock:^id(BFTask *task) {
         XCTAssertNil(task.error);
         return [database executeCachedQueryAsync:@"SELECT * FROM testFake" withArgumentsInArray:nil];
@@ -354,10 +354,10 @@
 - (void)testQuery {
     [[[[[[[[[self createDatabaseAsync] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"one", @"two", @3, @4.4, nil]];
+                    withArgumentsInArray:@[ @"one", @"two", @3, @4.4 ]];
     }] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"oneone", @"twotwo", @33, @44.44, nil]];
+                    withArgumentsInArray:@[ @"oneone", @"twotwo", @33, @44.44 ]];
     }] continueWithBlock:^id(BFTask *task) {
         return [database executeCachedQueryAsync:@"SELECT * FROM test" withArgumentsInArray:nil];
     }] continueWithBlock:^id(BFTask *task) {
@@ -372,7 +372,7 @@
         XCTAssertFalse(nextResult);
 
         return [database executeCachedQueryAsync:@"SELECT * FROM test WHERE c = ?"
-                      withArgumentsInArray:[NSArray arrayWithObjects:@3, nil]];
+                      withArgumentsInArray:@[ @3 ]];
     }] continueWithBlock:^id(BFTask *task) {
         // Check result
         PFSQLiteDatabaseResult *result = task.result;
@@ -389,10 +389,10 @@
         XCTAssertFalse(nextResult);
 
         return [database executeSQLAsync:@"UPDATE test SET a = ?, c = ? WHERE c = ?"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"onenew", @5, @3, nil]];
+                    withArgumentsInArray:@[ @"onenew", @5, @3 ]];
     }] continueWithBlock:^id(BFTask *task) {
         return [database executeCachedQueryAsync:@"SELECT * FROM test WHERE c = ?"
-                      withArgumentsInArray:[NSArray arrayWithObjects:@5, nil]];
+                      withArgumentsInArray:@[ @5 ]];
     }] continueWithBlock:^id(BFTask *task) {
         // Check result
         PFSQLiteDatabaseResult *result = task.result;
@@ -416,10 +416,10 @@
 - (void)testCursorAndOperationOnDifferentThread {
     BFTask *taskWithCursor = [[[[[self createDatabaseAsync] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"one", @"two", @3, @4.4, nil]];
+                    withArgumentsInArray:@[ @"one", @"two", @3, @4.4 ]];
     }] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"oneone", @"twotwo", @33, @44.44, nil]];
+                    withArgumentsInArray:@[ @"oneone", @"twotwo", @33, @44.44 ]];
     }] continueWithBlock:^id(BFTask *task) {
         return [database executeCachedQueryAsync:@"SELECT * FROM test" withArgumentsInArray:nil];
     }] continueWithExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id(BFTask *task) {
@@ -471,7 +471,7 @@
 - (void)testInvalidArgumentCount {
     [[[[self createDatabaseAsync] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?)"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"one", @"two", @3, @4.4, nil]];
+                    withArgumentsInArray:@[ @"one", @"two", @3, @4.4 ]];
     }] continueWithBlock:^id(BFTask *task) {
         XCTAssertNotNil(task.error);
         XCTAssertEqual(PFSQLiteDatabaseInvalidArgumenCountErrorCode, [task.error.userInfo[@"code"] integerValue]);
@@ -482,7 +482,7 @@
 - (void)testInvalidSQL {
     [[[[[self createDatabaseAsync] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
-                    withArgumentsInArray:[NSArray arrayWithObjects:@"one", @"two", @3, @4.4, nil]];
+                    withArgumentsInArray:@[ @"one", @"two", @3, @4.4 ]];
     }] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"SELECT * FROM test" withArgumentsInArray:nil];
     }] continueWithBlock:^id(BFTask *task) {

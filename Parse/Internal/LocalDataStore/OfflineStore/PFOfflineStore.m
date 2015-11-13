@@ -181,7 +181,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                 NSString *query = [NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE %@ = ?;",
                                    PFOfflineStoreKeyOfJSON, PFOfflineStoreTableOfObjects, PFOfflineStoreKeyOfUUID];
                 return [database executeQueryAsync:query
-                              withArgumentsInArray:[NSArray arrayWithObjects:uuid, nil]];
+                              withArgumentsInArray:@[ uuid ]];
             }] continueWithSuccessBlock:^id(BFTask *task) {
                 PFSQLiteDatabaseResult *result = task.result;
                 if (![result next]) {

@@ -29,9 +29,9 @@
 }
 
 + (NSError *)errorFromResult:(NSDictionary *)result shouldLog:(BOOL)shouldLog {
-    NSInteger errorCode = [[result objectForKey:@"code"] integerValue];
+    NSInteger errorCode = [result[@"code"] integerValue];
 
-    NSString *errorExplanation = [result objectForKey:@"error"];
+    NSString *errorExplanation = result[@"error"];
 
     if (shouldLog) {
         PFLogError(PFLoggingTagCommon,

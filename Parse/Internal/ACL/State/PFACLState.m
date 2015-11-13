@@ -32,7 +32,7 @@
     self = [super init];
     if (!self) return nil;
 
-    _permissions = [NSDictionary dictionary];
+    _permissions = @{};
     _shared = NO;
 
     return self;

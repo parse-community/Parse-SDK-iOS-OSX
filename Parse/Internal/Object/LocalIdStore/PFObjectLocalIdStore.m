@@ -154,7 +154,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
     // If there's an objectId in memory, make sure it matches the one in the
     // file. This is in case the id was retained on disk *after* it was resolved.
     if (!entry.objectId) {
-        NSString *objectId = [_inMemoryCache objectForKey:localId];
+        NSString *objectId = _inMemoryCache[localId];
         if (objectId) {
             entry.objectId = objectId;
             if (entry.referenceCount > 0) {
@@ -250,7 +250,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
  */
 - (NSString *)objectIdForLocalId:(NSString *)localId {
     @synchronized (_lock) {
-        NSString *objectId = [_inMemoryCache objectForKey:localId];
+        NSString *objectId = _inMemoryCache[localId];
         if (objectId) {
             return objectId;
         }
