@@ -42,7 +42,11 @@ static NSString *PFDeviceSysctlByName(NSString *name) {
         if (sysctlbyname(charName, answer, &size, NULL, 0) != 0) {
             break;
         }
-        string = [[NSString alloc] initWithBytes:answer length:size encoding:NSASCIIStringEncoding];
+
+        // We need to check if the string is null-terminated or not.
+        // Documentation is silent on this fact, but in practice it actually is usually null-terminated.
+        size_t length = size - (answer[size - 1] == '\0');
+        string = [[NSString alloc] initWithBytes:answer length:length encoding:NSASCIIStringEncoding];
     } while(0);
 
     free(answer);
