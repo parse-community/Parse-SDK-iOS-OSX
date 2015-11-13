@@ -13,6 +13,7 @@
 #import <Parse/PFObject.h>
 #import <Parse/PFSubclassing.h>
 
+PF_OSX_UNAVAILABLE_WARNING
 PF_WATCH_UNAVAILABLE_WARNING
 
 NS_ASSUME_NONNULL_BEGIN
@@ -24,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  This class is currently for iOS only.
  */
-PF_WATCH_UNAVAILABLE @interface PFProduct : PFObject<PFSubclassing>
+PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFProduct : PFObject<PFSubclassing>
 
 ///--------------------------------------
 /// @name Product-specific Properties
