@@ -654,6 +654,8 @@
 		815960A21ABCA3B30069EBCC /* PFFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 8159609F1ABCA3B30069EBCC /* PFFileManager.h */; };
 		815960A31ABCA3B30069EBCC /* PFFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 815960A01ABCA3B30069EBCC /* PFFileManager.m */; };
 		815960A41ABCA3B30069EBCC /* PFFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 815960A01ABCA3B30069EBCC /* PFFileManager.m */; };
+		815CC4411BF533EF00FBF8D3 /* PFMemoryEventuallyQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 815CC43F1BF533EF00FBF8D3 /* PFMemoryEventuallyQueue.h */; };
+		815CC4421BF533EF00FBF8D3 /* PFMemoryEventuallyQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 815CC4401BF533EF00FBF8D3 /* PFMemoryEventuallyQueue.m */; };
 		815E764D1BDF168A00E1DF8E /* PFPersistenceController.h in Headers */ = {isa = PBXBuildFile; fileRef = 815E764B1BDF168A00E1DF8E /* PFPersistenceController.h */; };
 		815E764E1BDF168A00E1DF8E /* PFPersistenceController.h in Headers */ = {isa = PBXBuildFile; fileRef = 815E764B1BDF168A00E1DF8E /* PFPersistenceController.h */; };
 		815E764F1BDF168A00E1DF8E /* PFPersistenceController.h in Headers */ = {isa = PBXBuildFile; fileRef = 815E764B1BDF168A00E1DF8E /* PFPersistenceController.h */; };
@@ -1939,6 +1941,8 @@
 		815618FF1A1F79AC0076504A /* PFDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFDateFormatter.m; sourceTree = "<group>"; };
 		8159609F1ABCA3B30069EBCC /* PFFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileManager.h; sourceTree = "<group>"; };
 		815960A01ABCA3B30069EBCC /* PFFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFileManager.m; sourceTree = "<group>"; };
+		815CC43F1BF533EF00FBF8D3 /* PFMemoryEventuallyQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMemoryEventuallyQueue.h; sourceTree = "<group>"; };
+		815CC4401BF533EF00FBF8D3 /* PFMemoryEventuallyQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMemoryEventuallyQueue.m; sourceTree = "<group>"; };
 		815E764B1BDF168A00E1DF8E /* PFPersistenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPersistenceController.h; sourceTree = "<group>"; };
 		815E764C1BDF168A00E1DF8E /* PFPersistenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPersistenceController.m; sourceTree = "<group>"; };
 		815EE8EE19F976D50076FE5D /* PFRESTCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRESTCommand.h; sourceTree = "<group>"; };
@@ -2504,6 +2508,8 @@
 			children = (
 				81EDD4BC1B59A6D8002F69C0 /* CommandRunner */,
 				8119C9961A76E28F0085B516 /* PFNetworkCommand.h */,
+				815CC43F1BF533EF00FBF8D3 /* PFMemoryEventuallyQueue.h */,
+				815CC4401BF533EF00FBF8D3 /* PFMemoryEventuallyQueue.m */,
 				7C1FDDCA14E1B1BD00A77007 /* PFCommandCache.h */,
 				7C1FDDCB14E1B1BD00A77007 /* PFCommandCache.m */,
 				913B9F2C1A311FF40040247C /* PFCommandCache_Private.h */,
@@ -4176,6 +4182,7 @@
 				815F23E91BD04D150054659F /* PFMutableRelationState.h in Headers */,
 				815F23EA1BD04D150054659F /* PFSession_Private.h in Headers */,
 				815F23EB1BD04D150054659F /* PFObjectEstimatedData.h in Headers */,
+				815CC4411BF533EF00FBF8D3 /* PFMemoryEventuallyQueue.h in Headers */,
 				815F23EC1BD04D150054659F /* PFObjectFilePersistenceController.h in Headers */,
 				815F23ED1BD04D150054659F /* PFInstallationConstants.h in Headers */,
 				815F23EE1BD04D150054659F /* PFUserPrivate.h in Headers */,
@@ -5142,6 +5149,7 @@
 			files = (
 				815F22B41BD04D150054659F /* PFWeakValue.m in Sources */,
 				815F22B51BD04D150054659F /* PFUserState.m in Sources */,
+				815CC4421BF533EF00FBF8D3 /* PFMemoryEventuallyQueue.m in Sources */,
 				815F22B61BD04D150054659F /* PFCommandURLRequestConstructor.m in Sources */,
 				815F22B71BD04D150054659F /* PFCoreManager.m in Sources */,
 				815F22B81BD04D150054659F /* PFURLSessionUploadTaskDelegate.m in Sources */,

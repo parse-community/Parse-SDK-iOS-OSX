@@ -498,6 +498,38 @@ extern NSString *const __nonnull PFNetworkNotificationURLResponseBodyUserInfoKey
 /// @name Avaiability Macros
 ///--------------------------------------
 
+#ifndef PF_IOS_UNAVAILABLE
+#  ifdef __IOS_UNAVILABLE
+#    define PF_IOS_UNAVAILABLE __IOS_UNAVAILABLE
+#  else
+#    define PF_IOS_UNAVAILABLE
+#  endif
+#endif
+
+#ifndef PF_IOS_UNAVAILABLE_WARNING
+#  if TARGET_OS_IOS
+#    define PF_IOS_UNAVAILABLE_WARNING _Pragma("GCC warning \"This file is unavailable on iOS.\"")
+#  else
+#    define PF_IOS_UNAVAILABLE_WARNING
+#  endif
+#endif
+
+#ifndef PF_OSX_UNAVAILABLE
+#  if PF_TARGET_OS_OSX
+#    define PF_OSX_UNAVAILABLE __OSX_UNAVAILABLE
+#  else
+#    define PF_OSX_UNAVAILABLE
+#  endif
+#endif
+
+#ifndef PF_OSX_UNAVAILABLE_WARNING
+#  if PF_TARGET_OS_OSX
+#    define PF_OSX_UNAVAILABLE_WARNING _Pragma("GCC warning \"This file is unavailable on OS X.\"")
+#  else
+#    define PF_OSX_UNAVAILABLE_WARNING
+#  endif
+#endif
+
 #ifndef PF_WATCH_UNAVAILABLE
 #  ifdef __WATCHOS_UNAVAILABLE
 #    define PF_WATCH_UNAVAILABLE __WATCHOS_UNAVAILABLE
