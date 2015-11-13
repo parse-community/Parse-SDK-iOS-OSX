@@ -145,7 +145,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  @abstract Whether the file has been uploaded for the first time.
  */
-@property (nonatomic, assign, readonly) BOOL isDirty;
+@property (nonatomic, assign, readonly, getter=isDirty) BOOL dirty;
 
 ///--------------------------------------
 /// @name Storing Data with Parse
@@ -220,7 +220,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  @abstract Whether the data is available in memory or needs to be downloaded.
  */
-@property (nonatomic, assign, readonly) BOOL isDataAvailable;
+@property (nonatomic, assign, readonly, getter=isDataAvailable) BOOL dataAvailable;
 
 /*!
  @abstract *Synchronously* gets the data from cache if available or fetches its contents from the network.

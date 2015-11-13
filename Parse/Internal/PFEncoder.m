@@ -47,7 +47,7 @@
                  };
 
     } else if ([object isKindOfClass:[PFFile class]]) {
-        if (((PFFile *)object).isDirty) {
+        if (((PFFile *)object).dirty) {
             // TODO: (nlutsenko) Figure out what to do with things like an unsaved file
             // in a mutable container, where we don't normally want to allow serializing
             // such a thing inside an object.

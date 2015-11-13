@@ -37,7 +37,6 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
 
 @property (nonatomic, strong, readwrite) PFFileState *state;
 @property (nonatomic, copy, readonly) NSString *stagedFilePath;
-@property (nonatomic, assign, readonly, getter=isDirty) BOOL dirty;
 
 //
 // Private
@@ -389,7 +388,7 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
     @weakify(self);
     return [self.taskQueue enqueue:^id(BFTask *task) {
         @strongify(self);
-        if (self.isDataAvailable) {
+        if (self.dataAvailable) {
             [self _performProgressBlockAsync:progressBlock withProgress:100];
             return [BFTask taskWithResult:nil];
         }
@@ -418,7 +417,7 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
     @weakify(self);
     return [self.taskQueue enqueue:^id(BFTask *task) {
         @strongify(self);
-        if (self.isDataAvailable) {
+        if (self.dataAvailable) {
             [self _performProgressBlockAsync:progressBlock withProgress:100];
             return [self _cachedDataStream];
         }
