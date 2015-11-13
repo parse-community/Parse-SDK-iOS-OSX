@@ -53,7 +53,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  @param channels The array of channels to set for this push.
  Each channel name must start with a letter and contain only letters, numbers, dashes, and underscores.
  */
-- (void)setChannels:(nullable NSArray PF_GENERIC(NSString *) *)channels;
+- (void)setChannels:(nullable NSArray PF_GENERIC(NSString *)*)channels;
 
 /*!
  @abstract Sets an installation query to which this push notification will be sent.
@@ -62,7 +62,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  @param query The installation query to set for this push.
  */
-- (void)setQuery:(nullable PFQuery PF_GENERIC(PFInstallation *) *)query;
+- (void)setQuery:(nullable PFQuery PF_GENERIC(PFInstallation *)*)query;
 
 /*!
  @abstract Sets an alert message for this push notification.
@@ -203,7 +203,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  @returns Returns whether the send succeeded.
  */
-+ (BOOL)sendPushMessageToQuery:(PFQuery PF_GENERIC(PFInstallation *) *)query
++ (BOOL)sendPushMessageToQuery:(PFQuery PF_GENERIC(PFInstallation *)*)query
                    withMessage:(NSString *)message
                          error:(NSError **)error;
 
@@ -215,7 +215,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  @returns The task, that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)sendPushMessageToQueryInBackground:(PFQuery PF_GENERIC(PFInstallation *) *)query
++ (BFTask PF_GENERIC(NSNumber *)*)sendPushMessageToQueryInBackground:(PFQuery PF_GENERIC(PFInstallation *)*)query
                                                          withMessage:(NSString *)message;
 
 /*!
@@ -227,7 +227,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  @param block The block to execute.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`
  */
-+ (void)sendPushMessageToQueryInBackground:(PFQuery PF_GENERIC(PFInstallation *) *)query
++ (void)sendPushMessageToQueryInBackground:(PFQuery PF_GENERIC(PFInstallation *)*)query
                                withMessage:(NSString *)message
                                      block:(nullable PFBooleanResultBlock)block;
 
@@ -341,7 +341,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  @returns Returns whether the send succeeded.
  */
-+ (BOOL)sendPushDataToQuery:(PFQuery PF_GENERIC(PFInstallation *) *)query
++ (BOOL)sendPushDataToQuery:(PFQuery PF_GENERIC(PFInstallation *)*)query
                    withData:(NSDictionary *)data
                       error:(NSError **)error;
 
@@ -356,7 +356,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  @returns The task, that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)sendPushDataToQueryInBackground:(PFQuery PF_GENERIC(PFInstallation *) *)query
++ (BFTask PF_GENERIC(NSNumber *)*)sendPushDataToQueryInBackground:(PFQuery PF_GENERIC(PFInstallation *)*)query
                                                          withData:(NSDictionary *)data;
 
 /*!
@@ -370,7 +370,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  @param block The block to execute.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`.
  */
-+ (void)sendPushDataToQueryInBackground:(PFQuery PF_GENERIC(PFInstallation *) *)query
++ (void)sendPushDataToQueryInBackground:(PFQuery PF_GENERIC(PFInstallation *)*)query
                                withData:(NSDictionary *)data
                                   block:(nullable PFBooleanResultBlock)block;
 

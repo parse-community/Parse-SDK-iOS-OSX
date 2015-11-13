@@ -23,8 +23,8 @@
     PFGeoPoint *point = [PFGeoPoint geoPoint];
 
     // Check default values
-    XCTAssertEqualWithAccuracy([point latitude], 0.0, 0.00001, @"Latitude should be 0.0");
-    XCTAssertEqualWithAccuracy([point longitude], 0.0, 0.00001, @"Longitude should be 0.0");
+    XCTAssertEqualWithAccuracy(point.latitude, 0.0, 0.00001, @"Latitude should be 0.0");
+    XCTAssertEqualWithAccuracy(point.longitude, 0.0, 0.00001, @"Longitude should be 0.0");
 }
 
 - (void)testGeoPointFromLocation {

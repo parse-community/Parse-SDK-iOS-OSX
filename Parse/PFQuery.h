@@ -103,7 +103,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
-- (instancetype)selectKeys:(NSArray PF_GENERIC(NSString *) *)keys;
+- (instancetype)selectKeys:(NSArray PF_GENERIC(NSString *)*)keys;
 
 /*!
  @abstract Add a constraint that requires a particular key exists.
@@ -379,7 +379,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @returns An instance of `PFQuery` that is the `or` of the passed in queries.
  */
-+ (instancetype)orQueryWithSubqueries:(NSArray PF_GENERIC(PFQuery *) *)queries;
++ (instancetype)orQueryWithSubqueries:(NSArray PF_GENERIC(PFQuery *)*)queries;
 
 /*!
  @abstract Adds a constraint that requires that a key's value matches a value in another key
@@ -493,7 +493,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
-- (instancetype)orderBySortDescriptors:(nullable NSArray PF_GENERIC(NSSortDescriptor *) *)sortDescriptors;
+- (instancetype)orderBySortDescriptors:(nullable NSArray PF_GENERIC(NSSortDescriptor *)*)sortDescriptors;
 
 ///--------------------------------------
 /// @name Getting Objects by ID
@@ -571,7 +571,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  The block should have the following argument signature: `^(NSArray *object, NSError *error)`
  */
 - (void)getObjectInBackgroundWithId:(NSString *)objectId
-                              block:(nullable void(^)(PFGenericObject __nullable object, NSError *__nullable error))block;
+                              block:(nullable void (^)(PFGenericObject __nullable object, NSError *__nullable error))block;
 
 /*
  @abstract Gets a <PFObject> asynchronously.
@@ -702,7 +702,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  `result` will be `nil` if `error` is set OR no object was found matching the query.
  `error` will be `nil` if `result` is set OR if the query succeeded, but found no results.
  */
-- (void)getFirstObjectInBackgroundWithBlock:(nullable void(^)(PFGenericObject __nullable object, NSError *__nullable error))block;
+- (void)getFirstObjectInBackgroundWithBlock:(nullable void (^)(PFGenericObject __nullable object, NSError *__nullable error))block;
 
 /*
  @abstract Gets an object *asynchronously* and calls the given callback with the results.
