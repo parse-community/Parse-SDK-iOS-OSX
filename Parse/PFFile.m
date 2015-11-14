@@ -340,10 +340,9 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
     }
 
     PFFileController *controller = [[self class] fileController];
-    NSString *sourceFilePath = self.stagedFilePath;
     @weakify(self);
     return [[[controller uploadFileAsyncWithState:[self _fileState]
-                                   sourceFilePath:sourceFilePath
+                                   sourceFilePath:self.stagedFilePath
                                      sessionToken:sessionToken
                                 cancellationToken:cancellationToken
                                     progressBlock:progressBlock] continueWithSuccessBlock:^id(BFTask *task) {
@@ -441,11 +440,17 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
 
 - (NSData *)_cachedData {
     NSString *filePath = (self.dirty ? self.stagedFilePath : [self _cachedFilePath]);
+    if (!filePath) {
+        return nil;
+    }
     return [NSData dataWithContentsOfFile:filePath options:NSDataReadingMappedIfSafe error:NULL];
 }
 
 - (NSInputStream *)_cachedDataStream {
     NSString *filePath = (self.dirty ? self.stagedFilePath : [[[self class] fileController] cachedFilePathForFileState:self.state]);
+    if (!filePath) {
+        return nil;
+    }
     return [NSInputStream inputStreamWithFileAtPath:filePath];
 }
 
@@ -504,7 +509,8 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
 - (BOOL)isDataAvailable {
     __block BOOL available = NO;
     [self _performDataAccessBlock:^{
-        available = self.dirty || [[NSFileManager defaultManager] fileExistsAtPath:[self _cachedFilePath]];
+        available = ((self.dirty && self.stagedFilePath) ||
+                     (self.url && [[NSFileManager defaultManager] fileExistsAtPath:[self _cachedFilePath]]));
     }];
     return available;
 }
