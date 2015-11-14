@@ -49,5 +49,5 @@ Pod::Spec.new do |s|
 
   s.libraries        = 'z', 'sqlite3'
 
-  s.dependency 'Bolts/Tasks', '>= 1.4.0'
+  s.dependency 'Bolts/Tasks', '~> 1.5'
 end
