@@ -23,6 +23,7 @@
 #import "PFHash.h"
 #import "PFMacros.h"
 #import "PFRESTFileCommand.h"
+#import "PFErrorUtilities.h"
 
 static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
 
@@ -89,6 +90,11 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
                          progressBlock:(PFProgressBlock)progressBlock {
     if (cancellationToken.cancellationRequested) {
         return [BFTask cancelledTask];
+    }
+    if (!fileState.secureURLString) {
+        NSError *error = [PFErrorUtilities errorWithCode:kPFErrorUnsavedFile
+                                                 message:@"Can't download a file that doesn't exist on the server or locally."];
+        return [BFTask taskWithError:error];
     }
 
     @weakify(self);
@@ -208,13 +214,17 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
                         sessionToken:(NSString *)sessionToken
                    cancellationToken:(BFCancellationToken *)cancellationToken
                        progressBlock:(PFProgressBlock)progressBlock {
-    PFRESTFileCommand *command = [PFRESTFileCommand uploadCommandForFileWithName:fileState.name
-                                                                    sessionToken:sessionToken];
-
-    @weakify(self);
     if (cancellationToken.cancellationRequested) {
         return [BFTask cancelledTask];
     }
+    if (!sourceFilePath) {
+        NSError *error = [PFErrorUtilities errorWithCode:kPFErrorUnsavedFile
+                                                 message:@"Can't upload a file that doesn't exist locally."];
+        return [BFTask taskWithError:error];
+    }
+
+    PFRESTFileCommand *command = [PFRESTFileCommand uploadCommandForFileWithName:fileState.name sessionToken:sessionToken];
+    @weakify(self);
     return [[[self.dataSource.commandRunner runFileUploadCommandAsync:command
                                                       withContentType:fileState.mimeType
                                                 contentSourceFilePath:sourceFilePath
