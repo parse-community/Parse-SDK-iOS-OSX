@@ -1473,6 +1473,8 @@
 		F515355A1B57573700C49F56 /* PFDefaultACLController.h in Headers */ = {isa = PBXBuildFile; fileRef = F51535571B57573700C49F56 /* PFDefaultACLController.h */; };
 		F515355B1B57573700C49F56 /* PFDefaultACLController.m in Sources */ = {isa = PBXBuildFile; fileRef = F51535581B57573700C49F56 /* PFDefaultACLController.m */; };
 		F515355C1B57573700C49F56 /* PFDefaultACLController.m in Sources */ = {isa = PBXBuildFile; fileRef = F51535581B57573700C49F56 /* PFDefaultACLController.m */; };
+		F5198B001C1B74B700CC6D61 /* ParseClientConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5198AF81C1B744200CC6D61 /* ParseClientConfigurationTests.m */; };
+		F5198B011C1B74B800CC6D61 /* ParseClientConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5198AF81C1B744200CC6D61 /* ParseClientConfigurationTests.m */; };
 		F51D06341B792CF10044539E /* PFSQLiteDatabaseController.h in Headers */ = {isa = PBXBuildFile; fileRef = F51D06321B792CF10044539E /* PFSQLiteDatabaseController.h */; };
 		F51D06351B792CF10044539E /* PFSQLiteDatabaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F51D06331B792CF10044539E /* PFSQLiteDatabaseController.m */; };
 		F51D06371B793A110044539E /* PFSQLiteDatabase_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = F51D06361B793A110044539E /* PFSQLiteDatabase_Private.h */; };
@@ -1551,6 +1553,14 @@
 		F5B0C4F51BA248F7000AB0D5 /* PFFileDataStream.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B0C4F21BA248F7000AB0D5 /* PFFileDataStream.h */; };
 		F5B0C4F61BA248F7000AB0D5 /* PFFileDataStream.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B0C4F31BA248F7000AB0D5 /* PFFileDataStream.m */; };
 		F5B0C4F71BA248F7000AB0D5 /* PFFileDataStream.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B0C4F31BA248F7000AB0D5 /* PFFileDataStream.m */; };
+		F5B64D8B1BFA646C0038F3CB /* ParseClientConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B64D891BFA646C0038F3CB /* ParseClientConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5B64D8C1BFA646C0038F3CB /* ParseClientConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B64D891BFA646C0038F3CB /* ParseClientConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5B64D8D1BFA646C0038F3CB /* ParseClientConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B64D891BFA646C0038F3CB /* ParseClientConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5B64D8E1BFA646C0038F3CB /* ParseClientConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B64D891BFA646C0038F3CB /* ParseClientConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5B64D8F1BFA646C0038F3CB /* ParseClientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B64D8A1BFA646C0038F3CB /* ParseClientConfiguration.m */; };
+		F5B64D901BFA646C0038F3CB /* ParseClientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B64D8A1BFA646C0038F3CB /* ParseClientConfiguration.m */; };
+		F5B64D911BFA646C0038F3CB /* ParseClientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B64D8A1BFA646C0038F3CB /* ParseClientConfiguration.m */; };
+		F5B64D921BFA646C0038F3CB /* ParseClientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B64D8A1BFA646C0038F3CB /* ParseClientConfiguration.m */; };
 		F5C42CC71B34C22100C720D8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 095ACE9913C69BF700566243 /* AudioToolbox.framework */; };
 		F5C42CD41B34F68C00C720D8 /* PFObjectSubclassingController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C42CD21B34F68C00C720D8 /* PFObjectSubclassingController.h */; };
 		F5C42CD51B34F68C00C720D8 /* PFObjectSubclassingController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C42CD21B34F68C00C720D8 /* PFObjectSubclassingController.h */; };
@@ -2191,11 +2201,13 @@
 		F51534FC1B571E9100C49F56 /* PFMutableACLState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMutableACLState.m; sourceTree = "<group>"; };
 		F51535571B57573700C49F56 /* PFDefaultACLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFDefaultACLController.h; sourceTree = "<group>"; };
 		F51535581B57573700C49F56 /* PFDefaultACLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFDefaultACLController.m; sourceTree = "<group>"; };
+		F5198AF81C1B744200CC6D61 /* ParseClientConfigurationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseClientConfigurationTests.m; sourceTree = "<group>"; };
 		F51D06321B792CF10044539E /* PFSQLiteDatabaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFSQLiteDatabaseController.h; sourceTree = "<group>"; };
 		F51D06331B792CF10044539E /* PFSQLiteDatabaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFSQLiteDatabaseController.m; sourceTree = "<group>"; };
 		F51D06361B793A110044539E /* PFSQLiteDatabase_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFSQLiteDatabase_Private.h; sourceTree = "<group>"; };
 		F5556A141B66F36000410837 /* URLSessionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLSessionTests.m; sourceTree = "<group>"; };
 		F5556A171B66F47900410837 /* PFURLSession_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFURLSession_Private.h; sourceTree = "<group>"; };
+		F556643F1C10F37E006DEC12 /* ParseClientConfiguration_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParseClientConfiguration_Private.h; sourceTree = "<group>"; };
 		F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Parse-iOS.xcconfig"; sourceTree = "<group>"; };
 		F55ABB541B4F39DA00A0ECD5 /* Parse-OSX.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Parse-OSX.xcconfig"; sourceTree = "<group>"; };
 		F55ABB591B4F39DA00A0ECD5 /* ParseUnitTests-iOS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "ParseUnitTests-iOS.xcconfig"; sourceTree = "<group>"; };
@@ -2224,6 +2236,8 @@
 		F5B0B3141B44A21100F3EBC4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		F5B0C4F21BA248F7000AB0D5 /* PFFileDataStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileDataStream.h; sourceTree = "<group>"; };
 		F5B0C4F31BA248F7000AB0D5 /* PFFileDataStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFileDataStream.m; sourceTree = "<group>"; };
+		F5B64D891BFA646C0038F3CB /* ParseClientConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseClientConfiguration.h; sourceTree = "<group>"; };
+		F5B64D8A1BFA646C0038F3CB /* ParseClientConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseClientConfiguration.m; sourceTree = "<group>"; };
 		F5C42CD21B34F68C00C720D8 /* PFObjectSubclassingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFObjectSubclassingController.h; sourceTree = "<group>"; };
 		F5C42CD31B34F68C00C720D8 /* PFObjectSubclassingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFObjectSubclassingController.m; sourceTree = "<group>"; };
 		F5C42CD81B38761B00C720D8 /* PFObjectSubclassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFObjectSubclassInfo.h; sourceTree = "<group>"; };
@@ -2311,6 +2325,8 @@
 				09809FB81434F98C00EC3E74 /* Resources */,
 				09EEA12D1434FB1F00E3A3FA /* Parse.h */,
 				09EEA12E1434FB1F00E3A3FA /* Parse.m */,
+				F5B64D891BFA646C0038F3CB /* ParseClientConfiguration.h */,
+				F5B64D8A1BFA646C0038F3CB /* ParseClientConfiguration.m */,
 				64C47802147336C70092082F /* PFACL.h */,
 				64C47803147336C70092082F /* PFACL.m */,
 				9739513816B9D28E0010B884 /* PFAnalytics.h */,
@@ -2398,6 +2414,7 @@
 				81E2D5AF19DDAAB5009053A1 /* PFAssert.h */,
 				816AC9B81A3F48250031D94C /* PFApplication.h */,
 				816AC9B91A3F48250031D94C /* PFApplication.m */,
+				F556643F1C10F37E006DEC12 /* ParseClientConfiguration_Private.h */,
 				81068EEF1AE0845D00A34D13 /* PFEncoder.h */,
 				81068EF01AE0845D00A34D13 /* PFEncoder.m */,
 				919311D519AE5EB20008FF12 /* PFDecoder.h */,
@@ -2910,6 +2927,7 @@
 				814916051B66D44500EFD14F /* OfflineQueryControllerTests.m */,
 				814916061B66D44500EFD14F /* OfflineQueryLogicUnitTests.m */,
 				814916071B66D44500EFD14F /* OperationSetUnitTests.m */,
+				F5198AF81C1B744200CC6D61 /* ParseClientConfigurationTests.m */,
 				814916081B66D44500EFD14F /* ParseModuleUnitTests.m */,
 				814916091B66D44500EFD14F /* ParseSetupUnitTests.m */,
 				8149160A1B66D44500EFD14F /* PinningObjectStoreTests.m */,
@@ -4015,6 +4033,7 @@
 				810156501BB3832700D7C7BD /* PFSubclassing.h in Headers */,
 				810156511BB3832700D7C7BD /* PFObjectBatchController.h in Headers */,
 				810156521BB3832700D7C7BD /* PFAnalyticsUtilities.h in Headers */,
+				F5B64D8E1BFA646C0038F3CB /* ParseClientConfiguration.h in Headers */,
 				810156531BB3832700D7C7BD /* PFObject+Subclass.h in Headers */,
 				810156541BB3832700D7C7BD /* PFUserState_Private.h in Headers */,
 				810156551BB3832700D7C7BD /* PFAnonymousAuthenticationProvider.h in Headers */,
@@ -4219,6 +4238,7 @@
 				815F24091BD04D150054659F /* PFOfflineQueryController.h in Headers */,
 				815F240A1BD04D150054659F /* PFUser.h in Headers */,
 				815F240B1BD04D150054659F /* PFSQLiteDatabase_Private.h in Headers */,
+				F5B64D8D1BFA646C0038F3CB /* ParseClientConfiguration.h in Headers */,
 				815F240C1BD04D150054659F /* PFACLState.h in Headers */,
 				815F240D1BD04D150054659F /* PFCurrentConfigController.h in Headers */,
 			);
@@ -4232,6 +4252,7 @@
 				810B7D761A0291FF003C0909 /* PFMacros.h in Headers */,
 				815E764D1BDF168A00E1DF8E /* PFPersistenceController.h in Headers */,
 				81BBE1351A0062B800622646 /* PFRESTAnalyticsCommand.h in Headers */,
+				F5B64D8B1BFA646C0038F3CB /* ParseClientConfiguration.h in Headers */,
 				F5B0C4F41BA248F7000AB0D5 /* PFFileDataStream.h in Headers */,
 				81CB7FA01B1800E400DC601D /* PFPushController.h in Headers */,
 				815EE93C19FA56D20076FE5D /* PFHTTPURLRequestConstructor.h in Headers */,
@@ -4617,6 +4638,7 @@
 				F5556A191B66F47900410837 /* PFURLSession_Private.h in Headers */,
 				8148815A1B795CAC008763BF /* PFPropertyInfo_Private.h in Headers */,
 				81C9C9F819FEA89200D514C5 /* PFRESTPushCommand.h in Headers */,
+				F5B64D8C1BFA646C0038F3CB /* ParseClientConfiguration.h in Headers */,
 				81C7F49A1AF42187007B5418 /* PFFileState.h in Headers */,
 				81CB7F761B166FF500DC601D /* PFMutableObjectState.h in Headers */,
 				8166FCC51B503886003841A2 /* PFSQLiteStatement.h in Headers */,
@@ -5056,6 +5078,7 @@
 				810155371BB3832700D7C7BD /* PFFileStagingController.m in Sources */,
 				810155381BB3832700D7C7BD /* PFSQLiteDatabaseController.m in Sources */,
 				815E76541BDF168A00E1DF8E /* PFPersistenceController.m in Sources */,
+				F5B64D921BFA646C0038F3CB /* ParseClientConfiguration.m in Sources */,
 				810155391BB3832700D7C7BD /* PFFileManager.m in Sources */,
 				8101553B1BB3832700D7C7BD /* PFPinningEventuallyQueue.m in Sources */,
 				8101553C1BB3832700D7C7BD /* PFRESTQueryCommand.m in Sources */,
@@ -5262,6 +5285,7 @@
 				815F23261BD04D150054659F /* PFHTTPURLRequestConstructor.m in Sources */,
 				815F23271BD04D150054659F /* PFObjectUtilities.m in Sources */,
 				815F23281BD04D150054659F /* PFURLSessionJSONDataTaskDelegate.m in Sources */,
+				F5B64D911BFA646C0038F3CB /* ParseClientConfiguration.m in Sources */,
 				815F23291BD04D150054659F /* PFObjectEstimatedData.m in Sources */,
 				815F232A1BD04D150054659F /* PFConfig.m in Sources */,
 				815F232B1BD04D150054659F /* PFMultiProcessFileLockController.m in Sources */,
@@ -5378,6 +5402,7 @@
 				814916D31B66D44600EFD14F /* SessionUnitTests.m in Sources */,
 				81E0337E1B57441F00B25168 /* CLLocationManager+TestAdditions.m in Sources */,
 				814916471B66D44600EFD14F /* CommandUnitTests.m in Sources */,
+				F5198B001C1B74B700CC6D61 /* ParseClientConfigurationTests.m in Sources */,
 				814916611B66D44600EFD14F /* FieldOperationTests.m in Sources */,
 				814916A11B66D44600EFD14F /* ParseModuleUnitTests.m in Sources */,
 				814916951B66D44600EFD14F /* ObjectSubclassTests.m in Sources */,
@@ -5439,6 +5464,7 @@
 				8149168A1B66D44600EFD14F /* ObjectLocalIdStoreTests.m in Sources */,
 				814916A61B66D44600EFD14F /* PinningObjectStoreTests.m in Sources */,
 				814916501B66D44600EFD14F /* ConfigUnitTests.m in Sources */,
+				F5198B011C1B74B800CC6D61 /* ParseClientConfigurationTests.m in Sources */,
 				814916E01B66D44600EFD14F /* UserFileCodingLogicTests.m in Sources */,
 				814916D41B66D44600EFD14F /* SessionUnitTests.m in Sources */,
 				811AAF191B72D7E400B1AC1F /* ObjectFilePersistenceControllerTests.m in Sources */,
@@ -5558,6 +5584,7 @@
 				8166FC751B50376D003841A2 /* PFObjectController.m in Sources */,
 				81C3826A19CCAD7F0066284A /* PFCategoryLoader.m in Sources */,
 				8166FCDB1B503914003841A2 /* PFUserAuthenticationController.m in Sources */,
+				F5B64D8F1BFA646C0038F3CB /* ParseClientConfiguration.m in Sources */,
 				F5E8DE1B1B29100000EEA594 /* PFRelationState.m in Sources */,
 				8127148A1AE6F1270076AE8D /* ParseManager.m in Sources */,
 				81CB7F901B1795C000DC601D /* PFPushState.m in Sources */,
@@ -5710,6 +5737,7 @@
 				8166FC661B50375D003841A2 /* PFOperationSet.m in Sources */,
 				81C7F4B31AF42BD9007B5418 /* PFQueryState.m in Sources */,
 				81BF4ABF1B0BF64B00A3D75B /* PFCurrentConfigController.m in Sources */,
+				F5B64D901BFA646C0038F3CB /* ParseClientConfiguration.m in Sources */,
 				811214761B3E1CF10052741B /* PFObjectBatchController.m in Sources */,
 				81986CA51A412277007B8860 /* PFApplication.m in Sources */,
 				81A715A71B423A4100A504FC /* PFObjectUtilities.m in Sources */,
