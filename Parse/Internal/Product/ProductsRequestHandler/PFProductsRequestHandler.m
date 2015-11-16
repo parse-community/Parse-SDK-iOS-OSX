@@ -43,6 +43,8 @@
     self = [super init];
     if (!self) return nil;
 
+    _taskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
+
     _productsRequest = request;
     _productsRequest.delegate = self;
 
@@ -63,8 +65,9 @@
 ///--------------------------------------
 
 - (BFTask *)findProductsAsync {
-    _taskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
-    [_productsRequest start];
+    if (!_taskCompletionSource.task.completed) {
+        [_productsRequest start];
+    }
     return _taskCompletionSource.task;
 }
 
@@ -73,20 +76,22 @@
 ///--------------------------------------
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
+    _productsRequest.delegate = nil;
+
     PFProductsRequestResult *result = [[PFProductsRequestResult alloc] initWithProductsResponse:response];
     [self.taskCompletionSource trySetResult:result];
 }
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
-    [self.taskCompletionSource trySetError:error];
-
     // according to documentation, this method does not call requestDidFinish
-    request.delegate = nil;
+    _productsRequest.delegate = nil;
+
+    [self.taskCompletionSource trySetError:error];
 }
 
 - (void)requestDidFinish:(SKRequest *)request {
     // the documentation assures that this is the point safe to get rid of the request
-    request.delegate = nil;
+    _productsRequest.delegate = nil;
 }
 
 @end
