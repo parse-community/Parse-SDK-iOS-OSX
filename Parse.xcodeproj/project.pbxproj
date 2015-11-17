@@ -834,7 +834,6 @@
 		815F23541BD04D150054659F /* PFDataProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 81A245F11B1FB188006A6953 /* PFDataProvider.h */; };
 		815F23551BD04D150054659F /* PFConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EB6632198A7FA600851598 /* PFConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		815F23561BD04D150054659F /* PFAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9739513816B9D28E0010B884 /* PFAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		815F23571BD04D150054659F /* PFPush.h in Headers */ = {isa = PBXBuildFile; fileRef = 0925ABF113D791770095FEFA /* PFPush.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		815F23581BD04D150054659F /* PFSQLiteDatabaseController.h in Headers */ = {isa = PBXBuildFile; fileRef = F51D06321B792CF10044539E /* PFSQLiteDatabaseController.h */; };
 		815F23591BD04D150054659F /* PFRESTFileCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C9CA0419FECF5F00D514C5 /* PFRESTFileCommand.h */; };
 		815F235A1BD04D150054659F /* PFObjectState_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CB7F791B16710D00DC601D /* PFObjectState_Private.h */; };
@@ -4039,7 +4038,6 @@
 				815F23541BD04D150054659F /* PFDataProvider.h in Headers */,
 				815F23551BD04D150054659F /* PFConfig.h in Headers */,
 				815F23561BD04D150054659F /* PFAnalytics.h in Headers */,
-				815F23571BD04D150054659F /* PFPush.h in Headers */,
 				815F23581BD04D150054659F /* PFSQLiteDatabaseController.h in Headers */,
 				815F23591BD04D150054659F /* PFRESTFileCommand.h in Headers */,
 				815F235A1BD04D150054659F /* PFObjectState_Private.h in Headers */,
