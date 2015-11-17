@@ -4626,7 +4626,7 @@
 /* Begin PBXLegacyTarget section */
 		812F31F71BCF40AA00FCBCD4 /* Bolts-watchOS */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos\"";
+			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\"";
 			buildConfigurationList = 812F31F81BCF40AA00FCBCD4 /* Build configuration list for PBXLegacyTarget "Bolts-watchOS" */;
 			buildPhases = (
 			);
@@ -4640,7 +4640,7 @@
 		};
 		81493A931A0D3492008D5504 /* Bolts-OSX */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos\"";
+			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\"";
 			buildConfigurationList = 81493A941A0D3493008D5504 /* Build configuration list for PBXLegacyTarget "Bolts-OSX" */;
 			buildPhases = (
 			);
@@ -4668,7 +4668,7 @@
 		};
 		F569F07A1B14DB1E00296F73 /* Bolts-iOS */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos\"";
+			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\"";
 			buildConfigurationList = F569F07B1B14DB1E00296F73 /* Build configuration list for PBXLegacyTarget "Bolts-iOS" */;
 			buildPhases = (
 			);
