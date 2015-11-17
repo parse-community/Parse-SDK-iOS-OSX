@@ -41,5 +41,12 @@
             location = "group:ParseStarterProject/watchOS/ParseStarterProject-Swift/ParseStarter-Swift.xcodeproj">
          </FileRef>
       </Group>
+      <Group
+         location = "container:"
+         name = "tvOS">
+         <FileRef
+            location = "group:ParseStarterProject/tvOS/ParseStarterProject-Swift/ParseStarter-Swift.xcodeproj">
+         </FileRef>
+      </Group>
    </Group>
 </Workspace>
