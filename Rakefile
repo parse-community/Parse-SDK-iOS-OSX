@@ -299,6 +299,7 @@ namespace :test do
     osx_schemes = ['ParseOSXStarterProject',
                    'ParseOSXStarterProject-Swift']
     watchos_schemes = ['ParseWatchStarter-watchOS']
+    tvos_schemes = ['ParseStarter-tvOS']
 
     ios_schemes.each do |scheme|
       task = XCTask::BuildTask.new do |t|
@@ -336,6 +337,20 @@ namespace :test do
         t.scheme = scheme
         t.configuration = 'Debug'
         t.destinations = ["\"platform=iOS Simulator,OS=9.1,name=iPhone 6s\"",]
+
+        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+      results << task.execute
+    end
+    tvos_schemes.each do |scheme|
+      task = XCTask::BuildTask.new do |t|
+        t.directory = script_folder
+        t.workspace = 'Parse.xcworkspace'
+
+        t.scheme = scheme
+        t.configuration = 'Debug'
+        t.destinations = ["\"platform=tvOS Simulator,OS=9.0,name=Apple TV 1080p\"",]
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
