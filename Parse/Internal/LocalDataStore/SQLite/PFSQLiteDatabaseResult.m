@@ -73,7 +73,7 @@
 }
 
 - (BOOL)boolForColumnIndex:(int)columnIndex {
-    return PFThreadSafetyPerform(_databaseQueue, ^{
+    return PFThreadSafetyPerform(_databaseQueue, ^BOOL{
         return ([self intForColumnIndex:columnIndex] != 0);
     });
 }
@@ -159,7 +159,7 @@
 }
 
 - (BOOL)columnIndexIsNull:(int)columnIndex {
-    return PFThreadSafetyPerform(_databaseQueue, ^{
+    return PFThreadSafetyPerform(_databaseQueue, ^BOOL{
         return (sqlite3_column_type([self.statement sqliteStatement], columnIndex) == SQLITE_NULL);
     });
 }
