@@ -115,6 +115,25 @@ namespace :build do
       exit(1)
     end
   end
+
+  desc 'Build tvOS framework.'
+  task :tvos do
+    task = XCTask::BuildFrameworkTask.new do |t|
+      t.directory = script_folder
+      t.build_directory = build_folder
+      t.framework_type = XCTask::FrameworkType::TVOS
+      t.framework_name = 'Parse.framework'
+
+      t.workspace = 'Parse.xcworkspace'
+      t.scheme = 'Parse-tvOS'
+      t.configuration = 'Release'
+    end
+    result = task.execute
+    unless result
+      puts 'Failed to build tvOS Framework.'
+      exit(1)
+    end
+  end
 end
 
 namespace :package do
@@ -267,6 +286,7 @@ namespace :test do
   desc 'Run Deployment Tests'
   task :deployment do |_|
     Rake::Task['build:watchos'].invoke
+    Rake::Task['build:tvos'].invoke
     Rake::Task['package:frameworks'].invoke
     Rake::Task['package:starters'].invoke
   end
