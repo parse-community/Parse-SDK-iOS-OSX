@@ -84,7 +84,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSu
 /*!
  @abstract The channels for the `PFInstallation`.
  */
-@property (nullable, nonatomic, copy) NSArray *channels;
+@property (nullable, nonatomic, copy) NSArray PF_GENERIC(NSString *)*channels;
 
 /*!
  @abstract Sets the device token string property from an `NSData`-encoded token.
