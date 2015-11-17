@@ -210,7 +210,7 @@ static NSSet *protectedKeys;
      onlyIfDifferent:YES];
 }
 
-- (void)setChannels:(NSArray *)channels {
+- (void)setChannels:(NSArray PF_GENERIC(NSString *)*)channels {
     [self _setObject:channels forKey:PFInstallationKeyChannels onlyIfDifferent:YES];
 }
 
