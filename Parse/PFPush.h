@@ -413,7 +413,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  @returns Returns an `NSSet` containing all the channel names this device is subscribed to.
  */
-+ (nullable NSSet *)getSubscribedChannels:(NSError **)error;
++ (nullable NSSet PF_GENERIC(NSString *)*)getSubscribedChannels:(NSError **)error;
 
 /*!
  @abstract *Asynchronously* get all the channels that this device is subscribed to.
@@ -437,8 +437,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  It should have the following signature: `(void)callbackWithResult:(NSSet *)result error:(NSError *)error`.
  `error` will be `nil` on success and set if there was an error.
  */
-+ (void)getSubscribedChannelsInBackgroundWithTarget:(id)target
-                                           selector:(SEL)selector;
++ (void)getSubscribedChannelsInBackgroundWithTarget:(id)target selector:(SEL)selector;
 
 /*!
  @abstract *Synchrnously* subscribes the device to a channel of push notifications.

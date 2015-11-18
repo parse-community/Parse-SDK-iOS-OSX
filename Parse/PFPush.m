@@ -316,11 +316,11 @@ static Class _pushInternalUtilClass = nil;
 
 #pragma mark Get
 
-+ (NSSet *)getSubscribedChannels:(NSError **)error {
++ (NSSet PF_GENERIC(NSString *)*)getSubscribedChannels:(NSError **)error {
     return [[self getSubscribedChannelsInBackground] waitForResult:error];
 }
 
-+ (BFTask *)getSubscribedChannelsInBackground {
++ (BFTask PF_GENERIC(NSSet<NSString *> *)*)getSubscribedChannelsInBackground {
     return [[self channelsController] getSubscribedChannelsAsync];
 }
 

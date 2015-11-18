@@ -36,7 +36,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushChannelsController : NSO
 /// @name Get
 ///--------------------------------------
 
-- (BFTask *)getSubscribedChannelsAsync;
+- (BFTask PF_GENERIC(NSSet<NSString *> *)*)getSubscribedChannelsAsync;
 
 ///--------------------------------------
 /// @name Subscribe
