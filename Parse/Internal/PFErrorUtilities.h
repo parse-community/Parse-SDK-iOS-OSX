@@ -22,10 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param code    Parse Error Code
  @param message Error description
 
- @return Instance of `NSError` or `nil`.
+ @return `NSError` instance.
  */
-+ (nullable NSError *)errorWithCode:(NSInteger)code message:(NSString *)message;
-+ (nullable NSError *)errorWithCode:(NSInteger)code message:(NSString *)message shouldLog:(BOOL)shouldLog;
++ (NSError *)errorWithCode:(NSInteger)code message:(NSString *)message;
++ (NSError *)errorWithCode:(NSInteger)code message:(NSString *)message shouldLog:(BOOL)shouldLog;
 
 /*!
  Construct an error object from a result dictionary the API returned.
@@ -35,10 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param result Network command result.
 
- @return Instance of `NSError` or `nil`.
+ @return `NSError` instance.
  */
-+ (nullable NSError *)errorFromResult:(NSDictionary *)result;
-+ (nullable NSError *)errorFromResult:(NSDictionary *)result shouldLog:(BOOL)shouldLog;
++ (NSError *)errorFromResult:(NSDictionary *)result;
++ (NSError *)errorFromResult:(NSDictionary *)result shouldLog:(BOOL)shouldLog;
 
 @end
 
