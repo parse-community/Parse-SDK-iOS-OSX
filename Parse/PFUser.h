@@ -65,7 +65,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  @discussion An authenticated `PFUser` is one that is obtained via a <signUp> or <logIn> method.
  An authenticated object is required in order to save (with altered values) or delete it.
  */
-@property (nonatomic, assign, readonly, getter=isAuthenticated) BOOL isAuthenticated;
+@property (nonatomic, assign, readonly, getter=isAuthenticated) BOOL authenticated;
 
 ///--------------------------------------
 /// @name Creating a New User

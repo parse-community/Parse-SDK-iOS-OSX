@@ -96,7 +96,7 @@ static BOOL revocableSessionEnabled_;
 
 - (BFTask PF_GENERIC(PFVoid) *)_validateDeleteAsync {
     return [[super _validateDeleteAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(PFVoid) *task) {
-        if (!self.isAuthenticated) {
+        if (!self.authenticated) {
             NSError *error = [PFErrorUtilities errorWithCode:kPFErrorUserCannotBeAlteredWithoutSession
                                                      message:@"User cannot be deleted unless they have been authenticated."];
             return [BFTask taskWithError:error];
