@@ -80,7 +80,7 @@
 #pragma mark - Mutating
 ///--------------------------------------
 
-- (instancetype)copyByMutatingWithBlock:(PFACLStateMutationBlock)mutationsBlock {
+- (PFACLState *)copyByMutatingWithBlock:(PFACLStateMutationBlock)mutationsBlock {
     return [[PFACLState alloc] initWithState:self mutatingBlock:mutationsBlock];
 }
 
