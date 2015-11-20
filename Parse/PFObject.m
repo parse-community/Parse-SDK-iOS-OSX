@@ -686,9 +686,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 - (void)setHasBeenFetched:(BOOL)fetched {
     @synchronized (lock) {
         if (self._state.complete != fetched) {
-            PFMutableObjectState *state = [_pfinternal_state mutableCopy];
-            state.complete = fetched;
-            self._state = state;
+            self._state = [self._state copyByMutatingWithBlock:^(PFMutableObjectState *state) {
+                state.complete = fetched;
+            }];
         }
     }
 }
@@ -696,9 +696,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 - (void)_setDeleted:(BOOL)deleted {
     @synchronized (lock) {
         if (self._state.deleted != deleted) {
-            PFMutableObjectState *state = [_pfinternal_state mutableCopy];
-            state.deleted = deleted;
-            self._state = state;
+            self._state = [self._state copyByMutatingWithBlock:^(PFMutableObjectState *state) {
+                state.deleted = deleted;
+            }];
         }
     }
 }
@@ -1225,12 +1225,12 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             return self;
         }
 
-        PFMutableObjectState *state = [self._state mutableCopy];
-        state.objectId = other.objectId;
-        state.createdAt = other.createdAt;
-        state.updatedAt = other.updatedAt;
-        state.serverData = [other._state.serverData mutableCopy];
-        self._state = state;
+        self._state = [self._state copyByMutatingWithBlock:^(PFMutableObjectState *state) {
+            state.objectId = other.objectId;
+            state.createdAt = other.createdAt;
+            state.updatedAt = other.updatedAt;
+            state.serverData = [other._state.serverData mutableCopy];
+        }];
 
         dirty = NO;
 
@@ -1251,16 +1251,14 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (void)removeOldKeysAfterFetch:(NSDictionary *)result {
     @synchronized (lock) {
-        PFMutableObjectState *state = [self._state mutableCopy];
+        self._state = [self._state copyByMutatingWithBlock:^(PFMutableObjectState *state) {
+            NSMutableDictionary *removedDictionary = [NSMutableDictionary dictionaryWithDictionary:state.serverData];
+            [removedDictionary removeObjectsForKeys:result.allKeys];
 
-        NSMutableDictionary *removedDictionary = [NSMutableDictionary dictionaryWithDictionary:state.serverData];
-        [removedDictionary removeObjectsForKeys:result.allKeys];
-
-        NSArray *removedKeys = removedDictionary.allKeys;
-        [state removeServerDataObjectsForKeys:removedKeys];
-        [_availableKeys minusSet:[NSSet setWithArray:removedKeys]];
-
-        self._state = state;
+            NSArray *removedKeys = removedDictionary.allKeys;
+            [state removeServerDataObjectsForKeys:removedKeys];
+            [_availableKeys minusSet:[NSSet setWithArray:removedKeys]];
+        }];
     }
 }
 
@@ -1274,9 +1272,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             PFOperationSet *operationsForNextSave = operationSetQueue[0];
             [operationsForNextSave mergeOperationSet:operationsBeforeSave];
         } else {
-            PFMutableObjectState *state = [self._state mutableCopy];
-            [state applyOperationSet:operationsBeforeSave];
-            self._state = state;
+            self._state = [self._state copyByMutatingWithBlock:^(PFMutableObjectState *state) {
+                [state applyOperationSet:operationsBeforeSave];
+            }];
 
             [self _mergeFromServerWithResult:result decoder:decoder completeData:NO];
             [self rebuildEstimatedData];
@@ -1286,41 +1284,40 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (void)_mergeFromServerWithResult:(NSDictionary *)result decoder:(PFDecoder *)decoder completeData:(BOOL)completeData {
     @synchronized (lock) {
-        PFMutableObjectState *state = [self._state mutableCopy];
+        self._state = [self._state copyByMutatingWithBlock:^(PFMutableObjectState *state) {
+            // If the server's data is complete, consider this object to be fetched.
+            state.complete |= completeData;
 
-        // If the server's data is complete, consider this object to be fetched.
-        state.complete |= completeData;
-
-        [result enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            if ([key isEqualToString:PFObjectObjectIdRESTKey]) {
-                state.objectId = obj;
-            } else if ([key isEqualToString:PFObjectCreatedAtRESTKey]) {
-                // These dates can be passed in as NSDate or as NSString,
-                // depending on whether they were wrapped inside JSONObject with __type: Date or not.
-                if ([obj isKindOfClass:[NSDate class]]) {
-                    state.createdAt = obj;
+            [result enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                if ([key isEqualToString:PFObjectObjectIdRESTKey]) {
+                    state.objectId = obj;
+                } else if ([key isEqualToString:PFObjectCreatedAtRESTKey]) {
+                    // These dates can be passed in as NSDate or as NSString,
+                    // depending on whether they were wrapped inside JSONObject with __type: Date or not.
+                    if ([obj isKindOfClass:[NSDate class]]) {
+                        state.createdAt = obj;
+                    } else {
+                        [state setCreatedAtFromString:obj];
+                    }
+                } else if ([key isEqualToString:PFObjectUpdatedAtRESTKey]) {
+                    // These dates can be passed in as NSDate or as NSString,
+                    // depending on whether they were wrapped inside JSONObject with __type: Date or not.
+                    if ([obj isKindOfClass:[NSDate class]]) {
+                        state.updatedAt = obj;
+                    } else {
+                        [state setUpdatedAtFromString:obj];
+                    }
+                } else if ([key isEqualToString:PFObjectACLRESTKey]) {
+                    PFACL *acl = [PFACL ACLWithDictionary:obj];
+                    [state setServerDataObject:acl forKey:key];
                 } else {
-                    [state setCreatedAtFromString:obj];
+                    [state setServerDataObject:[decoder decodeObject:obj] forKey:key];
                 }
-            } else if ([key isEqualToString:PFObjectUpdatedAtRESTKey]) {
-                // These dates can be passed in as NSDate or as NSString,
-                // depending on whether they were wrapped inside JSONObject with __type: Date or not.
-                if ([obj isKindOfClass:[NSDate class]]) {
-                    state.updatedAt = obj;
-                } else {
-                    [state setUpdatedAtFromString:obj];
-                }
-            } else if ([key isEqualToString:PFObjectACLRESTKey]) {
-                PFACL *acl = [PFACL ACLWithDictionary:obj];
-                [state setServerDataObject:acl forKey:key];
-            } else {
-                [state setServerDataObject:[decoder decodeObject:obj] forKey:key];
+            }];
+            if (state.updatedAt == nil && state.createdAt != nil) {
+                state.updatedAt = state.createdAt;
             }
         }];
-        if (state.updatedAt == nil && state.createdAt != nil) {
-            state.updatedAt = state.createdAt;
-        }
-        self._state = state;
         [_availableKeys addObjectsFromArray:result.allKeys];
 
         dirty = NO;
@@ -1764,9 +1761,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
         dirty = YES;
 
-        PFMutableObjectState *state = [self._state mutableCopy];
-        state.objectId = objectId;
-        _pfinternal_state = state;
+        // Use ivar directly to avoid going through the custom setter.
+        _pfinternal_state = [self._state copyByMutatingWithBlock:^(PFMutableObjectState *state) {
+            state.objectId = objectId;
+        }];
 
         [self _notifyObjectIdChangedFrom:oldObjectId toObjectId:objectId];
     }
