@@ -758,7 +758,7 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
             return [BFTask taskWithError:[PFQueryUtilities objectNotFoundError]];
         }
 
-        return [BFTask taskWithResult:objects.lastObject];
+        return objects.lastObject;
     }];
 }
 
@@ -904,7 +904,7 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
             return [BFTask taskWithError:[PFQueryUtilities objectNotFoundError]];
         }
 
-        return [BFTask taskWithResult:objects.lastObject];
+        return objects.lastObject;
     }];
 }
 

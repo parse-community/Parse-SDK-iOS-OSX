@@ -10,6 +10,7 @@
 #import "PFOfflineQueryLogic.h"
 
 #import <Bolts/BFTask.h>
+#import <Bolts/BFExecutor.h>
 
 #import "PFACL.h"
 #import "PFAssert.h"
@@ -695,7 +696,7 @@ greaterThanOrEqualTo:(id)constraint {
         rest = [[parts subarrayWithRange:range] componentsJoinedByString:@"."];
     }
 
-    return [[[BFTask taskWithResult:nil] continueWithBlock:^id(BFTask *task) {
+    return [[BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         if ([container isKindOfClass:[PFObject class]]) {
             BFTask *fetchTask = [self fetchIncludeAsync:nil container:container database:database];
             return [fetchTask continueWithSuccessBlock:^id(BFTask *task) {
