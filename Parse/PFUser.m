@@ -240,7 +240,7 @@ static BOOL revocableSessionEnabled_;
                         return self;
                     }];
                 }
-                return [BFTask taskWithResult:self];
+                return self;
             }
         }];
     }];
@@ -699,7 +699,7 @@ static BOOL revocableSessionEnabled_;
 
         // Bail-out early if session token is already revocable.
         if ([PFSessionUtilities isSessionTokenRevocable:sessionToken]) {
-            return [BFTask taskWithResult:currentUser];
+            return currentUser;
         }
         return [currentUser _upgradeToRevocableSessionInBackground];
     }];
@@ -718,7 +718,7 @@ static BOOL revocableSessionEnabled_;
 
             // Check session token here as well, to make sure we didn't upgrade the token in between.
             if ([PFSessionUtilities isSessionTokenRevocable:token]) {
-                return [BFTask taskWithResult:self];
+                return self;
             }
 
             PFRESTCommand *command = [PFRESTUserCommand upgradeToRevocableSessionCommandWithSessionToken:token];

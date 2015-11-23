@@ -124,7 +124,7 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
         }
 
         self.database = db;
-        return [BFTask taskWithResult:nil];
+        return nil;
     }];
 }
 
@@ -242,7 +242,7 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
 
             switch (sqliteResultCode) {
                 case SQLITE_DONE: {
-                    return [BFTask taskWithResult:nil];
+                    return nil;
                 }
                 case SQLITE_ROW: {
                     NSError *error = [self _errorWithErrorCode:PFSQLiteDatabaseInvalidSQL

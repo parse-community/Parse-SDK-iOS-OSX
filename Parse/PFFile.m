@@ -321,7 +321,7 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
             return [self.taskQueue enqueue:^id(BFTask *task) {
                 if (!self.dirty) {
                     [self _performProgressBlockAsync:progressBlock withProgress:100];
-                    return [BFTask taskWithResult:nil];
+                    return nil;
                 }
 
                 return [self _uploadFileAsyncWithSessionToken:sessionToken
@@ -388,7 +388,7 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
         @strongify(self);
         if (self.dataAvailable) {
             [self _performProgressBlockAsync:progressBlock withProgress:100];
-            return [BFTask taskWithResult:nil];
+            return nil;
         }
 
         PFFileController *controller = [[self class] fileController];

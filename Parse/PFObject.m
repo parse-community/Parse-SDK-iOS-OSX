@@ -1070,7 +1070,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             @synchronized (lock) {
                 [self _objectWillSave];
                 if (![self isDirty:NO]) {
-                    return [BFTask taskWithResult:@YES];
+                    return @YES;
                 }
             }
 
@@ -1332,11 +1332,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 // to add special actions after operations.
 
 - (BFTask *)handleSaveResultAsync:(NSDictionary *)result {
-    BFTask *task = [BFTask taskWithResult:nil];
-
     NSDictionary *fetchedObjects = [self _collectFetchedObjects];
 
-    [task continueWithBlock:^id(BFTask *task) {
+    BFTask *task = [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         PFKnownParseObjectDecoder *decoder = [PFKnownParseObjectDecoder decoderWithFetchedObjects:fetchedObjects];
         @synchronized (self.lock) {
             // TODO (hallucinogen): t5611821 we need to make mergeAfterSave that accepts decoder and operationBeforeSave
@@ -1357,7 +1355,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             if (self.saveDelegate) {
                 [self.saveDelegate invoke:self error:nil];
             }
-            return [BFTask taskWithResult:@(!!result)];
+            return @(result != nil);
         }
     }];
 }
@@ -1388,7 +1386,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         }] continueWithBlock:^id(BFTask *task) {
             @synchronized (lock) {
                 if (![self isDirty:YES]) {
-                    return [BFTask taskWithResult:@YES];
+                    return @YES;
                 }
 
                 [self _objectWillSave];

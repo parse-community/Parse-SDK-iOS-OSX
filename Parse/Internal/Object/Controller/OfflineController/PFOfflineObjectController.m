@@ -57,7 +57,7 @@
             // Catch CACHE_MISS and ignore it.
             if ([task.error.domain isEqualToString:PFParseErrorDomain] &&
                 task.error.code == kPFErrorCacheMiss) {
-                return [BFTask taskWithResult:nil];
+                return nil;
             }
             return task;
         }];

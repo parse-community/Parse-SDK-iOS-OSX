@@ -101,7 +101,7 @@
         return [BFTask taskWithResult:@YES];
     }
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id {
-        return [BFTask taskWithResult:@([provider restoreAuthenticationWithAuthData:authData])];
+        return @([provider restoreAuthenticationWithAuthData:authData]);
     }];
 }
 
@@ -159,7 +159,7 @@
                     }
                 }
 
-                return [BFTask taskWithResult:currentUser];
+                return currentUser;
             }];
         }
     }

@@ -257,7 +257,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
             }
         }
 
-        return [BFTask taskWithResult:nil];
+        return nil;
     }];
 }
 

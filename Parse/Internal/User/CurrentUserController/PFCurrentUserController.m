@@ -224,10 +224,9 @@
         task = [[query findObjectsInBackground] continueWithSuccessBlock:^id(BFTask *task) {
             NSArray *results = task.result;
             if ([results count] == 1) {
-                return [BFTask taskWithResult:results.firstObject];
+                return results.firstObject;
             } else if ([results count] != 0) {
-                return [[PFObject unpinAllObjectsInBackgroundWithName:PFUserCurrentUserPinName]
-                        continueWithSuccessResult:nil];
+                return [[PFObject unpinAllObjectsInBackgroundWithName:PFUserCurrentUserPinName] continueWithSuccessResult:nil];
             }
 
             // Backward compatibility if we previously have non-LDS currentUser.

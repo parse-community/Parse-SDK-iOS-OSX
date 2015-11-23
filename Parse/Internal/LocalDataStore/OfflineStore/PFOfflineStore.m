@@ -143,14 +143,14 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
             // The object has been fetched from offline store, so any data that's in there
             // is already reflected in the in-memory version. There's nothing more to do.
             return [fetchTask continueWithBlock:^id(BFTask *task) {
-                return [BFTask taskWithResult:[task.result weakObject]];
+                return [task.result weakObject];
             }];
         }
 
         // Put a placeholder so that anyone else who attempts to fetch this object will just
         // wait for this call to finish doing it.
         [self.fetchedObjects setObject:[tcs.task continueWithBlock:^id(BFTask *task) {
-            return [BFTask taskWithResult:[PFWeakValue valueWithWeakObject:task.result]];
+            return [PFWeakValue valueWithWeakObject:task.result];
         }] forKey:object];
         uuidTask = [self.objectToUUIDMap objectForKey:object];
     }
@@ -277,7 +277,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         return [[BFTask taskForCompletionOfAllTasks:objectValues] continueWithSuccessBlock:^id(BFTask *task) {
             PFDecoder *decoder = [PFOfflineDecoder decoderWithOfflineObjects:offlineObjects];
             [object mergeFromRESTDictionary:parsedJson withDecoder:decoder];
-            return [BFTask taskWithResult:nil];
+            return nil;
         }];
     }] continueWithBlock:^id(BFTask *task) {
         if (task.isCancelled) {
@@ -353,7 +353,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         NSString *uuid = task.result;
         if (uuid == nil) {
             // The root object was never stored in offline store, so nothing unpin.
-            return [BFTask taskWithResult:nil];
+            return nil;
         }
 
         // Delete all objects locally corresponding to the key we're trying to use in case it was
@@ -531,14 +531,14 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                 return [self fetchObjectLocallyAsync:object database:database];
             }] continueWithSuccessBlock:^id(BFTask *task) {
                 if (!object.dataAvailable) {
-                    return [BFTask taskWithResult:@NO];
+                    return @NO;
                 }
                 return matcherBlock(object, database);
             }] continueWithSuccessBlock:^id(BFTask *task) {
                 if ([task.result boolValue]) {
                     [mutableResults addObject:object];
                 }
-                return [BFTask taskWithResult:nil];
+                return nil;
             }];
         }
         [result close];
@@ -588,9 +588,9 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         if (task.error != nil) {
             // Catch CACHE_MISS errors and ignore them.
             if (task.error.code == kPFErrorCacheMiss) {
-                return [BFTask taskWithResult:nil];
+                return nil;
             }
-            return [BFTask taskWithResult:[task.result weakObject]];
+            return [task.result weakObject];
         }
 
         return [self _performDatabaseTransactionAsyncWithBlock:^BFTask *(PFSQLiteDatabase *database) {
@@ -751,7 +751,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         NSString *uuid = task.result;
         if (!uuid) {
             // The root object was never stored in the offline store, so nothing to unpin.
-            return [BFTask taskWithResult:nil];
+            return nil;
         }
         return [self _unpinKeyAsync:uuid];
     }];
@@ -798,7 +798,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                 }
             }
         }
-        return [BFTask taskWithResult:nil];
+        return nil;
     }];
 }
 
@@ -861,7 +861,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     [[database executeSQLAsync:query
           withArgumentsInArray:@[ newUUID, [object parseClassName]]] continueWithSuccessBlock:^id(BFTask *task) {
         [tcs setResult:newUUID];
-        return [BFTask taskWithResult:nil];
+        return nil;
     }];
 
     return tcs.task;
