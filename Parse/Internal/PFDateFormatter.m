@@ -10,21 +10,19 @@
 #import "PFDateFormatter.h"
 
 #import <sqlite3.h>
+#import <sys/time.h>
 
 @interface PFDateFormatter () {
     dispatch_queue_t _synchronizationQueue;
 
     sqlite3 *_sqliteDatabase;
     sqlite3_stmt *_stringToDateStatement;
+    sqlite3_stmt *_dateToStringStatement;
 }
-
-@property (nonatomic, strong, readonly) NSDateFormatter *preciseDateFormatter;
 
 @end
 
 @implementation PFDateFormatter
-
-@synthesize preciseDateFormatter = _preciseDateFormatter;
 
 ///--------------------------------------
 #pragma mark - Init
@@ -52,27 +50,19 @@
                        -1,
                        &_stringToDateStatement,
                        NULL);
+    sqlite3_prepare_v2(_sqliteDatabase,
+                       "SELECT strftime('%Y-%m-%dT%H:%M:%fZ', ?, 'unixepoch');",
+                       -1,
+                       &_dateToStringStatement,
+                       NULL);
 
     return self;
 }
 
 - (void)dealloc {
     sqlite3_finalize(_stringToDateStatement);
+    sqlite3_finalize(_dateToStringStatement);
     sqlite3_close(_sqliteDatabase);
-}
-
-///--------------------------------------
-#pragma mark - Date Formatters
-///--------------------------------------
-
-- (NSDateFormatter *)preciseDateFormatter {
-    if (!_preciseDateFormatter) {
-        _preciseDateFormatter = [[NSDateFormatter alloc] init];
-        _preciseDateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
-        _preciseDateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
-        _preciseDateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-    }
-    return _preciseDateFormatter;
 }
 
 ///--------------------------------------
@@ -81,8 +71,16 @@
 
 - (NSString *)preciseStringFromDate:(NSDate *)date {
     __block NSString *string = nil;
+    NSTimeInterval interval = [date timeIntervalSince1970];
     dispatch_sync(_synchronizationQueue, ^{
-        string = [self.preciseDateFormatter stringFromDate:date];
+        sqlite3_bind_double(_dateToStringStatement, 1, interval);
+
+        if (sqlite3_step(_dateToStringStatement) == SQLITE_ROW) {
+            const char *sqliteString = (const char *)sqlite3_column_text(_dateToStringStatement, 0);
+            string = [NSString stringWithUTF8String:sqliteString];
+        }
+
+        sqlite3_reset(_dateToStringStatement);
     });
     return string;
 }
