@@ -78,6 +78,24 @@ namespace :build do
     end
   end
 
+  desc 'Build iOS Dynamic framework.'
+  task :ios_dynamic do
+    task = XCTask::BuildFrameworkTask.new do |t|
+      t.directory = script_folder
+      t.build_directory = build_folder
+      t.framework_type = XCTask::FrameworkType::IOS
+      t.framework_name = 'Parse.framework'
+      t.workspace = 'Parse.xcworkspace'
+      t.scheme = 'Parse-iOS-Dynamic'
+      t.configuration = 'Release'
+    end
+    result = task.execute
+    unless result
+      puts 'Failed to build iOS Framework.'
+      exit(1)
+    end
+  end
+
   desc 'Build watchOS framework.'
   task :watchos do
     task = XCTask::BuildFrameworkTask.new do |t|
@@ -138,6 +156,7 @@ end
 
 namespace :package do
   package_ios_name = 'Parse-iOS.zip'
+  package_ios_dynamic_name = 'Parse-iOS-Dynamic.zip'
   package_osx_name = 'Parse-OSX.zip'
   package_starter_ios_name = 'ParseStarterProject-iOS.zip'
   package_starter_osx_name = 'ParseStarterProject-OSX.zip'
@@ -159,6 +178,13 @@ namespace :package do
     make_package(release_folder,
                  [ios_framework_path, bolts_path],
                  package_ios_name)
+
+    Rake::Task['build:ios_dynamic'].invoke
+    bolts_path = File.join(build_folder, 'Bolts.framework')
+    ios_framework_path = File.join(build_folder, 'Parse.framework')
+    make_package(release_folder,
+                 [ios_framework_path, bolts_path],
+                 package_ios_dynamic_name)
 
     ## Build OS X Framework
     Rake::Task['build:osx'].invoke
