@@ -520,30 +520,34 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
             @strongify(self);
             PFConstraintMatcherBlock matcherBlock = [self.offlineQueryLogic createMatcherForQueryState:queryState user:user];
 
-            BFTask *checkAllObjectsTask = [BFTask taskWithResult:nil];
-            for (NSString *uuid in task.result) {
-                __block PFObject *object = nil;
-
-                checkAllObjectsTask = [[[[checkAllObjectsTask continueWithSuccessBlock:^id(BFTask *task) {
-                    return [self _getPointerAsyncWithUUID:uuid database:database];
-                }] continueWithSuccessBlock:^id(BFTask *task) {
-                    object = task.result;
-                    return [self fetchObjectLocallyAsync:object database:database];
-                }] continueWithSuccessBlock:^id(BFTask *task) {
-                    if (!object.dataAvailable) {
-                        return @NO;
+            BFTask *checkAllTask = [BFTask taskWithResult:nil];
+            NSArray *uuidBatches = [PFInternalUtils arrayBySplittingArray:task.result withMaximumComponentsPerSegment:64];
+            for (NSArray *uuids in uuidBatches) {
+                checkAllTask = [[checkAllTask continueWithSuccessBlock:^id(BFTask *_) {
+                    return [self _getObjectPointersAsyncWithUUIDs:uuids fromDatabase:database];
+                }] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSArray<PFObject *> *)*task) {
+                    BFTask *checkBatchTask = [BFTask taskWithResult:nil];
+                    for (PFObject *object in task.result) {
+                        checkBatchTask = [[[checkBatchTask continueWithSuccessBlock:^id(BFTask *_) {
+                            return [self fetchObjectLocallyAsync:object database:database];
+                        }] continueWithSuccessBlock:^id(BFTask *_) {
+                            if (!object.dataAvailable) {
+                                return nil;
+                            }
+                            return matcherBlock(object, database);
+                        }] continueWithSuccessBlock:^id(BFTask *task) {
+                            if ([task.result boolValue]) {
+                                [mutableResults addObject:object];
+                            }
+                            return nil;
+                        }];
                     }
-                    return matcherBlock(object, database);
-                }] continueWithSuccessBlock:^id(BFTask *task) {
-                    if ([task.result boolValue]) {
-                        [mutableResults addObject:object];
-                    }
-                    return nil;
+                    return checkBatchTask;
                 }];
             }
-            return checkAllObjectsTask;
+            return checkAllTask;
         }];
-    }] continueWithSuccessBlock:^id(BFTask *task) {
+    }] continueWithSuccessBlock:^id(BFTask *_) {
         @strongify(self);
 
         // Sort, Apply Skip and Limit
@@ -561,7 +565,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                                                                             ofQueryState:queryState
                                                                               inDatabase:database];
 
-        return [fetchIncludesTask continueWithSuccessBlock:^id(BFTask *task) {
+        return [fetchIncludesTask continueWithSuccessBlock:^id(BFTask *_) {
             return results;
         }];
     }];
