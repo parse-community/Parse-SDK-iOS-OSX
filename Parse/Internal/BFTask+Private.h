@@ -25,6 +25,9 @@
 - (instancetype)continueAsyncWithBlock:(BFContinuationBlock)block;
 - (instancetype)continueAsyncWithSuccessBlock:(BFContinuationBlock)block;
 
+- (BFTask *)continueImmediatelyWithBlock:(BFContinuationBlock)block;
+- (BFTask *)continueImmediatelyWithSuccessBlock:(BFContinuationBlock)block;
+
 - (instancetype)continueWithResult:(id)result;
 - (instancetype)continueWithSuccessResult:(id)result;
 
