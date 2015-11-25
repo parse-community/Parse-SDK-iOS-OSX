@@ -867,6 +867,8 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     return tcs.task;
 }
 
+#pragma mark Pointers
+
 /*!
  Gets an unfetched pointer to an object in the database, based on its uuid. The object may or may
  not be in memory, but it must be in database. If it is already in memory, the instance will be
@@ -877,8 +879,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
  @param database    The database instance to retrieve from.
  @returns The object with that UUID.
  */
-- (BFTask *)_getPointerAsyncWithUUID:(NSString *)uuid
-                            database:(PFSQLiteDatabase *)database {
+- (BFTask *)_getPointerAsyncWithUUID:(NSString *)uuid database:(PFSQLiteDatabase *)database {
     @synchronized (self.lock) {
         PFObject *existing = [self.UUIDToObjectMap objectForKey:uuid];
         if (existing) {
@@ -905,23 +906,69 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 
         return nil;
     }] continueWithSuccessBlock:^id(BFTask *_) {
-        PFObject *pointer = nil;
-        @synchronized (self.lock) {
-            pointer = [self.UUIDToObjectMap objectForKey:uuid];
-            if (!pointer) {
-                pointer = [PFObject objectWithoutDataWithClassName:className objectId:objectId];
-
-                // If it doesn't have objectId, we don't really need the UUID, and this simplifies some
-                // other logic elsewhere if we only update the map for new objects.
-                if (!objectId) {
-                    [self.UUIDToObjectMap setObject:pointer forKey:uuid];
-                    [self.objectToUUIDMap setObject:[BFTask taskWithResult:uuid] forKey:pointer];
-                }
-            }
-        }
-        return pointer;
+        return [self _getOrCreateInMemoryPointerForObjectWithUUID:uuid parseClassName:className objectId:objectId];
     }];
 }
+
+- (BFTask PF_GENERIC(NSArray<PFObject *> *)*)_getObjectPointersAsyncWithUUIDs:(NSArray PF_GENERIC(NSString *)*)uuids
+                                                                 fromDatabase:(PFSQLiteDatabase *)database {
+    NSMutableArray PF_GENERIC(PFObject *)*objects = [NSMutableArray array];
+    NSMutableArray PF_GENERIC(NSString *)*missingUUIDs = [NSMutableArray array];
+    @synchronized(self.lock) {
+        for (NSString *uuid in uuids) {
+            PFObject *object = [self.UUIDToObjectMap objectForKey:uuid];
+            if (object) {
+                [objects addObject:object];
+            } else {
+                [missingUUIDs addObject:uuid];
+            }
+        }
+    }
+    NSString *queryString = [NSString stringWithFormat:@"SELECT %@, %@, %@ FROM %@ WHERE %@ IN ('%@');",
+                             PFOfflineStoreKeyOfUUID, PFOfflineStoreKeyOfObjectId, PFOfflineStoreKeyOfClassName,
+                             PFOfflineStoreTableOfObjects, PFOfflineStoreKeyOfUUID,
+                             [missingUUIDs componentsJoinedByString:@"','"]];
+    NSMutableArray PF_GENERIC(BFTask <PFObject *>*)*fetchPointersTasks = [NSMutableArray arrayWithCapacity:missingUUIDs.count];
+    return [[database executeQueryAsync:queryString withArgumentsInArray:nil block:^id(PFSQLiteDatabaseResult *result) {
+        while ([result next]) {
+            NSString *uuid = [result stringForColumnIndex:0];
+            NSString *objectId = [result stringForColumnIndex:1];
+            NSString *parseClassName = [result stringForColumnIndex:2];
+            BFTask *task = [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+                return [self _getOrCreateInMemoryPointerForObjectWithUUID:uuid parseClassName:parseClassName objectId:objectId];
+            }];
+            [fetchPointersTasks addObject:task];
+        }
+        return [BFTask taskForCompletionOfAllTasks:fetchPointersTasks];
+    }] continueWithSuccessBlock:^id(BFTask *_) {
+        for (BFTask PF_GENERIC(PFObject *)*task in fetchPointersTasks) {
+            [objects addObject:task.result];
+        }
+        return objects;
+    }];
+}
+
+- (BFTask PF_GENERIC(PFObject *)*)_getOrCreateInMemoryPointerForObjectWithUUID:(NSString *)uuid
+                                                                parseClassName:(NSString *)parseClassName
+                                                                      objectId:(NSString *)objectId {
+    PFObject *pointer = nil;
+    @synchronized (self.lock) {
+        pointer = [self.UUIDToObjectMap objectForKey:uuid];
+        if (!pointer) {
+            pointer = [PFObject objectWithoutDataWithClassName:parseClassName objectId:objectId];
+
+            // If it doesn't have objectId, we don't really need the UUID, and this simplifies some
+            // other logic elsewhere if we only update the map for new objects.
+            if (!objectId) {
+                [self.UUIDToObjectMap setObject:pointer forKey:uuid];
+                [self.objectToUUIDMap setObject:[BFTask taskWithResult:uuid] forKey:pointer];
+            }
+        }
+    }
+    return [BFTask taskWithResult:pointer];
+}
+
+#pragma mark Else
 
 - (PFObject *)getOrCreateObjectWithoutDataWithClassName:(NSString *)className
                                                objectId:(NSString *)objectId {
