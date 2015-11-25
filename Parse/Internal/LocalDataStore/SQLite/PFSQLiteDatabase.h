@@ -100,7 +100,6 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  Runs a single SQL statement which return result (SELECT).
  */
-- (BFTask *)executeQueryAsync:(NSString *)sql withArgumentsInArray:(nullable NSArray *)args;
 - (BFTask *)executeQueryAsync:(NSString *)query withArgumentsInArray:(nullable NSArray *)args block:(PFSQLiteDatabaseQueryBlock)block;
 
 /*!

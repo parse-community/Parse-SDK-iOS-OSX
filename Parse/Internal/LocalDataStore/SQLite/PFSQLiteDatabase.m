@@ -237,12 +237,6 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
     }];
 }
 
-- (BFTask *)executeQueryAsync:(NSString *)sql withArgumentsInArray:(NSArray *)args {
-    return [BFTask taskFromExecutor:_databaseExecutor withBlock:^id {
-        return [self _executeQueryAsync:sql withArgumentsInArray:args cachingEnabled:NO];
-    }];
-}
-
 - (BFTask *)executeSQLAsync:(NSString *)sql withArgumentsInArray:(NSArray *)args {
     return [BFTask taskFromExecutor:_databaseExecutor withBlock:^id {
         return [[self _executeQueryAsync:sql
