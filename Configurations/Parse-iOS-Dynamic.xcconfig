@@ -6,44 +6,18 @@
 // LICENSE file in the root directory of this source tree. An additional grant
 // of patent rights can be found in the PATENTS file in the same directory.
 //
-
+#include "Shared/Platform/iOS.xcconfig"
 #include "Shared/Product/Framework.xcconfig"
+#include "Configurations/Parse-iOS.xcconfig"
+#include "Configurations/Framework-iOS-Dynamic.xcconfig"
 
-PRODUCT_NAME                    = Parse
-IPHONEOS_DEPLOYMENT_TARGET      = 8.0
+
+// Force SDKROOT to the passed var
+SDKROOT = $(SDKROOT)
 // This silence a warning
-
 SDKROOT[sdk=macos*] = iphoneos
-SDKROOT[sdk=iphoneos*]          = iphoneos
-SDKROOT[sdk=iphonesimulator*]   = iphonesimulator
-
-MACH_O_TYPE                     = mh_dylib
-
-ENABLE_BITCODE               = NO
-ENABLE_BITCODE[sdk=iphoneos*]               = YES
-ENABLE_BITCODE[sdk=iphonesimulator*]        = YES
-DEFINES_MODULE = YES
-
-SUPPORTED_PLATFORMS                    = iphonesimulator iphoneos
-
-VALID_ARCHS[sdk=iphoneos*]             = arm64 armv7 armv7s
-VALID_ARCHS[sdk=iphonesimulator*]      = i386 x86_64
-
-ARCHS[sdk=iphoneos*] = arm64 armv7 armv7s
-ARCHS[sdk=iphonesimulator*]      = i386 x86_64
 
 // Breaks the build if intherited $(BUILD_PRODUCTS_DIR)
 FRAMEWORK_SEARCH_PATHS = $PARSE_DIR/build
 
-// Dynamic linking uses different default copy paths
-LD_RUNPATH_SEARCH_PATHS[sdk=iphoneos*]         = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-LD_RUNPATH_SEARCH_PATHS[sdk=iphonesimulator*]  = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-
-DYLIB_INSTALL_NAME_BASE         = @rpath
-
 OTHER_LDFLAGS                   = $(inherited) '-dynamiclib' '-lsqlite3'
-CLANG_MODULES_AUTOLINK          = YES
-
-ONLY_ACTIVE_ARCH                = NO
-
-INFOPLIST_FILE = $(PROJECT_DIR)/$(PRODUCT_NAME)/Resources/Parse-iOS.Info.plist

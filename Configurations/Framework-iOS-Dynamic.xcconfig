@@ -7,7 +7,8 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 
-#include "Configurations/Framework-iOS-Dynamic.xcconfig"
+// Common configuration for iOS-Dynamic frameworks
+
 
 SUPPORTED_PLATFORMS                    = iphonesimulator iphoneos
 VALID_ARCHS[sdk=iphoneos*]             = arm64 armv7 armv7s

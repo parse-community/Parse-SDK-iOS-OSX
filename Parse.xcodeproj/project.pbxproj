@@ -1728,6 +1728,7 @@
 		49FDE2ED158C138F00126F64 /* PFPurchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPurchase.m; sourceTree = "<group>"; };
 		4A26C3B61C053AEE00E5F505 /* Parse-iOS-Dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Parse-iOS-Dynamic.xcconfig"; sourceTree = "<group>"; };
 		4A8E7F291C06458F00E8AF28 /* Bolts-iOS-Dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Bolts-iOS-Dynamic.xcconfig"; sourceTree = "<group>"; };
+		4A9C0E851C0B7DDE009DC60E /* Framework-iOS-Dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-iOS-Dynamic.xcconfig"; sourceTree = "<group>"; };
 		63723F6D1565A085007A1A73 /* PFRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRole.h; sourceTree = "<group>"; };
 		63723F6E1565A085007A1A73 /* PFRole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFRole.m; sourceTree = "<group>"; };
 		638CBBB415191435004F54E4 /* PFAnonymousUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAnonymousUtils.h; sourceTree = "<group>"; };
@@ -3732,6 +3733,7 @@
 		F55ABB501B4F39DA00A0ECD5 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
+				4A9C0E851C0B7DDE009DC60E /* Framework-iOS-Dynamic.xcconfig */,
 				F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */,
 				4A26C3B61C053AEE00E5F505 /* Parse-iOS-Dynamic.xcconfig */,
 				F55ABB541B4F39DA00A0ECD5 /* Parse-OSX.xcconfig */,
