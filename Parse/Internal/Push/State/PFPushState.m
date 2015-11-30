@@ -12,6 +12,7 @@
 
 #import "PFMutablePushState.h"
 #import "PFQueryState.h"
+#import "PFAssert.h"
 
 @implementation PFPushState
 
@@ -20,13 +21,12 @@
 ///--------------------------------------
 
 + (NSDictionary *)propertyAttributes {
-    return @{
-        @"channels": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-        @"queryState": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-        @"expirationDate": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeStrong],
-        @"expirationTimeInterval": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeStrong],
-        @"payload": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy]
-    };
+    return @{ @"channels": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+              @"queryState": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+              @"expirationDate": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeStrong],
+              @"expirationTimeInterval": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeStrong],
+              @"pushDate": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeStrong],
+              @"payload": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy] };
 }
 
 ///--------------------------------------
@@ -39,6 +39,19 @@
 
 + (instancetype)stateWithState:(PFPushState *)state {
     return [super stateWithState:state];
+}
+
+///--------------------------------------
+#pragma mark - NSCopying
+///--------------------------------------
+
+- (void)setPushDate:(NSDate *)pushDate {
+    if (self.pushDate != pushDate) {
+        NSTimeInterval interval = [pushDate timeIntervalSinceNow];
+        PFParameterAssert(interval > 0, @"Can't set the scheduled push time in the past.");
+        PFParameterAssert(interval <= 60 * 24 * 14, @"Can't set the schedule push time more than two weeks from now.");
+        _pushDate = pushDate;
+    }
 }
 
 ///--------------------------------------
