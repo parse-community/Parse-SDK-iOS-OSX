@@ -177,7 +177,7 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
 #pragma mark - Query Methods
 ///--------------------------------------
 
-- (BFTask *)_executeQueryAsync:(NSString *)sql withArgumentsInArray:(NSArray *)args cachingEnabled:(BOOL)enableCaching {
+- (BFTask PF_GENERIC(PFSQLiteDatabaseResult *)*)_executeQueryAsync:(NSString *)sql withArgumentsInArray:(NSArray *)args cachingEnabled:(BOOL)enableCaching {
     int resultCode = 0;
     PFSQLiteStatement *statement = enableCaching ? [self _cachedStatementForQuery:sql] : nil;
     if (!statement) {
@@ -225,9 +225,15 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
     }];
 }
 
-- (BFTask *)executeQueryAsync:(NSString *)sql withArgumentsInArray:(NSArray *)args {
+- (BFTask *)executeQueryAsync:(NSString *)query withArgumentsInArray:(nullable NSArray *)args block:(PFSQLiteDatabaseQueryBlock)block {
     return [BFTask taskFromExecutor:_databaseExecutor withBlock:^id {
-        return [self _executeQueryAsync:sql withArgumentsInArray:args cachingEnabled:NO];
+        BFTask PF_GENERIC(PFSQLiteDatabaseResult *)*task = [self _executeQueryAsync:query withArgumentsInArray:args cachingEnabled:NO];
+        return [[task continueImmediatelyWithSuccessBlock:^id(BFTask PF_GENERIC(PFSQLiteDatabaseResult *)*task) {
+            return block(task.result);
+        }] continueImmediatelyWithBlock:^id(BFTask *resultTask) {
+            [task.result close];
+            return resultTask;
+        }];
     }];
 }
 

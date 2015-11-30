@@ -17,6 +17,8 @@
 @class PFFileManager;
 @class PFSQLiteDatabaseResult;
 
+typedef id __nullable(^PFSQLiteDatabaseQueryBlock)(PFSQLiteDatabaseResult *__nonnull result);
+
 /*!
  Argument count given in executeSQLAsync or executeQueryAsync is invalid.
  */
@@ -98,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  Runs a single SQL statement which return result (SELECT).
  */
-- (BFTask *)executeQueryAsync:(NSString *)sql withArgumentsInArray:(nullable NSArray *)args;
+- (BFTask *)executeQueryAsync:(NSString *)query withArgumentsInArray:(nullable NSArray *)args block:(PFSQLiteDatabaseQueryBlock)block;
 
 /*!
  Runs a single SQL statement, while caching the resulting statement for future use.
