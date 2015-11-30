@@ -114,6 +114,14 @@ static Class _pushInternalUtilClass = nil;
     self.state.expirationTimeInterval = nil;
 }
 
+- (void)setPushDate:(NSDate *)pushDate {
+    self.state.pushDate = pushDate;
+}
+
+- (NSDate *)pushDate {
+    return self.state.pushDate;
+}
+
 - (void)setData:(NSDictionary *)data {
     self.state.payload = data;
 }

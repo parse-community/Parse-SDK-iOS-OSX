@@ -20,7 +20,8 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFMutablePushState : PFPushSta
 @property (nullable, nonatomic, copy, readwrite) PFQueryState *queryState;
 
 @property (nullable, nonatomic, strong, readwrite) NSDate *expirationDate;
-@property (nullable, nonatomic, copy, readwrite) NSNumber *expirationTimeInterval;
+@property (nullable, nonatomic, strong, readwrite) NSNumber *expirationTimeInterval;
+@property (nullable, nonatomic, strong, readwrite) NSDate *pushDate;
 
 @property (nullable, nonatomic, copy, readwrite) NSDictionary *payload;
 

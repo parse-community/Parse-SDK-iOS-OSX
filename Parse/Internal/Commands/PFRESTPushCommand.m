@@ -43,6 +43,10 @@
         parameters[@"expiration_interval"] = state.expirationTimeInterval;
     }
 
+    if (state.pushDate) {
+        parameters[@"push_time"] = [[PFDateFormatter sharedFormatter] preciseStringFromDate:state.pushDate];
+    }
+
     // TODO (nlutsenko): Probably we need an assert here, as there is no reason to send push without message
     if (state.payload) {
         parameters[@"data"] = state.payload;

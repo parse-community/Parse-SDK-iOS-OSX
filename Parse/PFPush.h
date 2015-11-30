@@ -134,6 +134,15 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  */
 - (void)clearExpiration;
 
+/*!
+ @abstract Date at which to send this push notification. 
+ 
+ @discussion Push notificaitons with this date will be delivered at the local time matching the <PFInstallation.timeZone>.
+ 
+ @warning The date cannot be in the past, and can be up to two weeks in the future.
+ */
+@property (nullable, nonatomic, strong) NSDate *pushDate;
+
 ///--------------------------------------
 /// @name Sending Push Notifications
 ///--------------------------------------
