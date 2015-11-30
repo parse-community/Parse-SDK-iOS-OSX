@@ -113,10 +113,14 @@
 + (NSDictionary *)defaultURLRequestHeadersForApplicationId:(NSString *)applicationId
                                                  clientKey:(NSString *)clientKey
                                                     bundle:(NSBundle *)bundle {
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS
     NSString *versionPrefix = @"i";
-#else
+#elif PF_TARGET_OS_OSX
     NSString *versionPrefix = @"osx";
+#elif TARGET_OS_TV
+    NSString *versionPrefix = @"apple-tv";
+#elif TARGET_OS_WATCH
+    NSString *versionPrefix = @"apple-watch";
 #endif
 
     NSMutableDictionary *mutableHeaders = [NSMutableDictionary dictionary];
