@@ -88,7 +88,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 /**
  Runs a PFQueryState against the store's contents.
 
- @returns The objects that match the query's constraint.
+ @return The objects that match the query's constraint.
  */
 - (BFTask *)findAsyncForQueryState:(PFQueryState *)queryState
                               user:(PFUser *)user
@@ -97,7 +97,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 /**
  Runs a PFQueryState against the store's contents.
 
- @returns The count of objects that match the query's constraint.
+ @return The count of objects that match the query's constraint.
  */
 - (BFTask *)countAsyncForQueryState:(PFQueryState *)queryState
                                user:(PFUser *)user
@@ -106,7 +106,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 /**
  Runs a PFQueryState against the store's contents.
 
- @returns The objects that match the query's constraint.
+ @return The objects that match the query's constraint.
  */
 - (BFTask *)findAsyncForQueryState:(PFQueryState *)queryState
                               user:(PFUser *)user
@@ -123,7 +123,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
  @param isCount     YES if we're doing count.
  @param database    The PFSQLiteDatabase
 
- @returns The objects that match the query's constraint.
+ @return The objects that match the query's constraint.
  */
 - (BFTask *)findAsyncForQueryState:(PFQueryState *)queryState
                               user:(PFUser *)user
@@ -171,7 +171,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 /**
  This should only be called from `PFObject.objectWithoutDataWithClassName`.
 
- @returns an object from OfflineStore cache. If nil is returned the object is not found in the cache.
+ @return an object from OfflineStore cache. If nil is returned the object is not found in the cache.
  */
 - (PFObject *)getOrCreateObjectWithoutDataWithClassName:(NSString *)className
                                                objectId:(NSString *)objectId;

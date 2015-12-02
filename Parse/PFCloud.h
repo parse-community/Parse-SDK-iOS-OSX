@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param function The function name to call.
  @param parameters The parameters to send to the function.
 
- @returns The response from the cloud function.
+ @return The response from the cloud function.
  */
 + (nullable id)callFunction:(NSString *)function withParameters:(nullable NSDictionary *)parameters PF_SWIFT_UNAVAILABLE;
 
@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param parameters The parameters to send to the function.
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns The response from the cloud function.
+ @return The response from the cloud function.
  This result could be a `NSDictionary`, an `NSArray`, `NSNumber` or `NSString`.
  */
 + (nullable id)callFunction:(NSString *)function
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param function The function name to call.
  @param parameters The parameters to send to the function.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(id) *)callFunctionInBackground:(NSString *)function
                                      withParameters:(nullable NSDictionary *)parameters;

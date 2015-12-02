@@ -40,7 +40,7 @@
  @param payload      The Remote Notification payload.
  @param sessionToken Current user session token.
 
- @returns `BFTask` with result set to `@YES`.
+ @return `BFTask` with result set to `@YES`.
  */
 - (BFTask *)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(NSDictionary *)payload
                                                      sessionToken:(NSString *)sessionToken;
@@ -52,7 +52,7 @@
  @param dimensions   `NSDictionary` of information by which to segment this event.
  @param sessionToken Current user session token.
 
- @returns `BFTask` with result set to `@YES`.
+ @return `BFTask` with result set to `@YES`.
  */
 - (BFTask *)trackEventAsyncWithName:(NSString *)name
                          dimensions:(NSDictionary *)dimensions

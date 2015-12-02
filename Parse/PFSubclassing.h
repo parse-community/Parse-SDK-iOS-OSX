@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
  object of a registered subclass instead if one is known.
  A default implementation is provided by <PFObject> which should always be sufficient.
 
- @returns Returns the object that is instantiated.
+ @return Returns the object that is instantiated.
  */
 + (instancetype)object;
 
@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param objectId The object id for the referenced object.
 
- @returns A new <PFObject> without data.
+ @return A new <PFObject> without data.
  */
 + (instancetype)objectWithoutDataWithObjectId:(nullable NSString *)objectId;
 
@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param predicate The predicate to create conditions from.
 
- @returns An instance of <PFQuery>.
+ @return An instance of <PFQuery>.
 
  @see [PFQuery queryWithClassName:predicate:]
  */

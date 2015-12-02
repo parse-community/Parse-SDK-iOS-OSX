@@ -42,7 +42,7 @@
  the block will never be called. If the task had an exception, the exception
  will be throw on the main thread instead of running the block. Otherwise,
  the block will be given the result and error of this task.
- @returns A new task that will be finished once the block has run.
+ @return A new task that will be finished once the block has run.
  */
 - (BFTask *)thenCallBackOnMainThreadAsync:(void(^)(id result, NSError *error))block;
 

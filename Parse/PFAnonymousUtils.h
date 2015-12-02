@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Creates an anonymous user asynchronously and sets as a result to `BFTask`.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(PFUser *)*)logInInBackground;
 
@@ -73,7 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param user <PFUser> object to check for anonymity. The user must be logged in on this device.
 
- @returns `YES` if the user is anonymous. `NO` if the user is not the current user or is not anonymous.
+ @return `YES` if the user is anonymous. `NO` if the user is not the current user or is not anonymous.
  */
 + (BOOL)isLinkedWithUser:(nullable PFUser *)user;
 

@@ -48,7 +48,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFNetworkActivityIndicatorMana
 /**
  Returns the shared network activity indicator manager object for the system.
 
- @returns The systemwide network activity indicator manager.
+ @return The systemwide network activity indicator manager.
  */
 + (PFNetworkActivityIndicatorManager *)sharedManager;
 

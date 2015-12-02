@@ -52,7 +52,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param newClassName A class name can be any alphanumeric string that begins with a letter.
  It represents an object in your app, like a 'User' or a 'Document'.
 
- @returns Returns the object that is instantiated with the given class name.
+ @return Returns the object that is instantiated with the given class name.
  */
 - (instancetype)initWithClassName:(NSString *)newClassName;
 
@@ -62,7 +62,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param className A class name can be any alphanumeric string that begins with a letter.
  It represents an object in your app, like a 'User' or a 'Document'.
 
- @returns Returns the object that is instantiated with the given class name.
+ @return Returns the object that is instantiated with the given class name.
  */
 + (instancetype)objectWithClassName:(NSString *)className;
 
@@ -73,7 +73,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param className The object's class.
  @param dictionary An `NSDictionary` of keys and objects to set on the new `PFObject`.
 
- @returns A PFObject with the given class name and set with the given data.
+ @return A PFObject with the given class name and set with the given data.
  */
 + (instancetype)objectWithClassName:(NSString *)className dictionary:(nullable NSDictionary PF_GENERIC(NSString *, id)*)dictionary;
 
@@ -86,7 +86,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param className The object's class.
  @param objectId The object id for the referenced object.
 
- @returns A `PFObject` instance without data.
+ @return A `PFObject` instance without data.
  */
 + (instancetype)objectWithoutDataWithClassName:(NSString *)className objectId:(nullable NSString *)objectId;
 
@@ -298,7 +298,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  *Synchronously* saves the `PFObject`.
 
- @returns Returns whether the save succeeded.
+ @return Returns whether the save succeeded.
  */
 - (BOOL)save PF_SWIFT_UNAVAILABLE;
 
@@ -307,14 +307,14 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param error Pointer to an NSError that will be set if necessary.
 
- @returns Returns whether the save succeeded.
+ @return Returns whether the save succeeded.
  */
 - (BOOL)save:(NSError **)error;
 
 /**
  Saves the `PFObject` *asynchronously*.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(NSNumber *)*)saveInBackground;
 
@@ -352,7 +352,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  will cause old saves to be silently discarded until the connection can be re-established, and the queued objects
  can be saved.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(NSNumber *)*)saveEventually PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE;
 
@@ -385,7 +385,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param objects The array of objects to save.
 
- @returns Returns whether the save succeeded.
+ @return Returns whether the save succeeded.
  */
 + (BOOL)saveAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects PF_SWIFT_UNAVAILABLE;
 
@@ -395,7 +395,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects The array of objects to save.
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the save succeeded.
+ @return Returns whether the save succeeded.
  */
 + (BOOL)saveAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects error:(NSError **)error;
 
@@ -404,7 +404,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param objects The array of objects to save.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)saveAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects;
 
@@ -441,7 +441,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param objects The array of objects to delete.
 
- @returns Returns whether the delete succeeded.
+ @return Returns whether the delete succeeded.
  */
 + (BOOL)deleteAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects PF_SWIFT_UNAVAILABLE;
 
@@ -451,14 +451,14 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects The array of objects to delete.
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the delete succeeded.
+ @return Returns whether the delete succeeded.
  */
 + (BOOL)deleteAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects error:(NSError **)error;
 
 /**
  Deletes a collection of objects all at once asynchronously.
  @param objects The array of objects to delete.
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)deleteAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects;
 
@@ -493,7 +493,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  Gets whether the `PFObject` has been fetched.
 
- @returns `YES` if the PFObject is new or has been fetched or refreshed, otherwise `NO`.
+ @return `YES` if the PFObject is new or has been fetched or refreshed, otherwise `NO`.
  */
 @property (nonatomic, assign, readonly, getter=isDataAvailable) BOOL dataAvailable;
 
@@ -567,7 +567,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  Fetches the `PFObject` *asynchronously* and sets it as a result for the task.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(__kindof PFObject *)*)fetchInBackground;
 
@@ -594,7 +594,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  Fetches the `PFObject` data *asynchronously* if isDataAvailable is `NO`,
  then sets it as a result for the task.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(__kindof PFObject *)*)fetchIfNeededInBackground;
 
@@ -659,7 +659,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param objects The list of objects to fetch.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(NSArray<__kindof PFObject *> *)*)fetchAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects;
 
@@ -694,7 +694,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param objects The list of objects to fetch.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(NSArray<__kindof PFObject *> *)*)fetchAllIfNeededInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects;
 
@@ -749,7 +749,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Asynchronously* loads data from the local datastore into this object,
  if it has not been fetched from the server already.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(__kindof PFObject *)*)fetchFromLocalDatastoreInBackground;
 
@@ -769,7 +769,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  *Synchronously* deletes the `PFObject`.
 
- @returns Returns whether the delete succeeded.
+ @return Returns whether the delete succeeded.
  */
 - (BOOL)delete PF_SWIFT_UNAVAILABLE;
 
@@ -778,14 +778,14 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the delete succeeded.
+ @return Returns whether the delete succeeded.
  */
 - (BOOL)delete:(NSError **)error;
 
 /**
  Deletes the `PFObject` *asynchronously*.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(NSNumber *)*)deleteInBackground;
 
@@ -824,7 +824,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  to be sent, subsequent calls to <saveEventually> or <deleteEventually> will cause old requests to be silently discarded
  until the connection can be re-established, and the queued requests can go through.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(NSNumber *)*)deleteEventually PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE;
 
@@ -836,7 +836,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  Gets whether any key-value pair in this object (or its children)
  has been added/updated/removed and not saved yet.
 
- @returns Returns whether this object has been altered and not saved yet.
+ @return Returns whether this object has been altered and not saved yet.
  */
 @property (nonatomic, assign, readonly, getter=isDirty) BOOL dirty;
 
@@ -845,7 +845,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param key The key to check for
 
- @returns Returns whether this key has been altered and not saved yet.
+ @return Returns whether this key has been altered and not saved yet.
  */
 - (BOOL)isDirtyForKey:(NSString *)key;
 
@@ -862,7 +862,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
 
- @returns Returns whether the pin succeeded.
+ @return Returns whether the pin succeeded.
 
  @see unpin:
  @see PFObjectDefaultPin
@@ -880,7 +880,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the pin succeeded.
+ @return Returns whether the pin succeeded.
 
  @see unpin:
  @see PFObjectDefaultPin
@@ -897,7 +897,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param name The name of the pin.
 
- @returns Returns whether the pin succeeded.
+ @return Returns whether the pin succeeded.
 
  @see unpinWithName:
  */
@@ -914,7 +914,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param name    The name of the pin.
  @param error   Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the pin succeeded.
+ @return Returns whether the pin succeeded.
 
  @see unpinWithName:
  */
@@ -930,7 +930,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
 
  @see unpinInBackground
  @see PFObjectDefaultPin
@@ -964,7 +964,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param name The name of the pin.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
 
  @see unpinInBackgroundWithName:
  */
@@ -1001,7 +1001,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param objects The objects to be pinned.
 
- @returns Returns whether the pin succeeded.
+ @return Returns whether the pin succeeded.
 
  @see unpinAll:
  @see PFObjectDefaultPin
@@ -1020,7 +1020,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects The objects to be pinned.
  @param error   Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the pin succeeded.
+ @return Returns whether the pin succeeded.
 
  @see unpinAll:error:
  @see PFObjectDefaultPin
@@ -1038,7 +1038,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects The objects to be pinned.
  @param name    The name of the pin.
 
- @returns Returns whether the pin succeeded.
+ @return Returns whether the pin succeeded.
 
  @see unpinAll:withName:
  */
@@ -1056,7 +1056,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param name    The name of the pin.
  @param error   Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the pin succeeded.
+ @return Returns whether the pin succeeded.
 
  @see unpinAll:withName:error:
  */
@@ -1075,7 +1075,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param objects The objects to be pinned.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
 
  @see unpinAllInBackground:
  @see PFObjectDefaultPin
@@ -1111,7 +1111,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects     The objects to be pinned.
  @param name        The name of the pin.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
 
  @see unpinAllInBackground:withName:
  */
@@ -1144,7 +1144,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Synchronously* removes the object and every object it points to in the local datastore, recursively,
  using a default pin name: `PFObjectDefaultPin`.
 
- @returns Returns whether the unpin succeeded.
+ @return Returns whether the unpin succeeded.
 
  @see pin:
  @see PFObjectDefaultPin
@@ -1157,7 +1157,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the unpin succeeded.
+ @return Returns whether the unpin succeeded.
 
  @see pin:
  @see PFObjectDefaultPin
@@ -1169,7 +1169,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param name The name of the pin.
 
- @returns Returns whether the unpin succeeded.
+ @return Returns whether the unpin succeeded.
 
  @see pinWithName:
  */
@@ -1181,7 +1181,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param name    The name of the pin.
  @param error   Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the unpin succeeded.
+ @return Returns whether the unpin succeeded.
 
  @see pinWithName:error:
  */
@@ -1192,7 +1192,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Asynchronously* removes the object and every object it points to in the local datastore, recursively,
  using a default pin name: `PFObjectDefaultPin`.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
 
  @see pinInBackground
  @see PFObjectDefaultPin
@@ -1216,7 +1216,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param name The name of the pin.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
 
  @see pinInBackgroundWithName:
  */
@@ -1241,7 +1241,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Synchronously* removes all objects in the local datastore
  using a default pin name: `PFObjectDefaultPin`.
 
- @returns Returns whether the unpin succeeded.
+ @return Returns whether the unpin succeeded.
 
  @see PFObjectDefaultPin
  */
@@ -1253,7 +1253,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param error   Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the unpin succeeded.
+ @return Returns whether the unpin succeeded.
 
  @see PFObjectDefaultPin
  */
@@ -1264,7 +1264,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param name    The name of the pin.
 
- @returns Returns whether the unpin succeeded.
+ @return Returns whether the unpin succeeded.
  */
 + (BOOL)unpinAllObjectsWithName:(NSString *)name PF_SWIFT_UNAVAILABLE;
 
@@ -1274,7 +1274,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param name    The name of the pin.
  @param error   Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the unpin succeeded.
+ @return Returns whether the unpin succeeded.
  */
 + (BOOL)unpinAllObjectsWithName:(NSString *)name
                           error:(NSError **)error;
@@ -1283,7 +1283,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Asynchronously* removes all objects in the local datastore
  using a default pin name: `PFObjectDefaultPin`.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
 
  @see PFObjectDefaultPin
  */
@@ -1305,7 +1305,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param name    The name of the pin.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)unpinAllObjectsInBackgroundWithName:(NSString *)name;
 
@@ -1324,7 +1324,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param objects The objects.
 
- @returns Returns whether the unpin succeeded.
+ @return Returns whether the unpin succeeded.
 
  @see pinAll:
  @see PFObjectDefaultPin
@@ -1338,7 +1338,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects The objects.
  @param error   Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the unpin succeeded.
+ @return Returns whether the unpin succeeded.
 
  @see pinAll:error:
  @see PFObjectDefaultPin
@@ -1351,7 +1351,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects The objects.
  @param name    The name of the pin.
 
- @returns Returns whether the unpin succeeded.
+ @return Returns whether the unpin succeeded.
 
  @see pinAll:withName:
  */
@@ -1364,7 +1364,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param name    The name of the pin.
  @param error   Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the unpin succeeded.
+ @return Returns whether the unpin succeeded.
 
  @see pinAll:withName:error:
  */
@@ -1378,7 +1378,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param objects The objects.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
 
  @see pinAllInBackground:
  @see PFObjectDefaultPin
@@ -1404,7 +1404,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects The objects.
  @param name    The name of the pin.
 
- @returns The task that encapsulates the work being done.
+ @return The task that encapsulates the work being done.
 
  @see pinAllInBackground:withName:
  */

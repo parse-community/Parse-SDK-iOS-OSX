@@ -50,7 +50,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
  @param command    Command that was run.
  @param identifier Unique identifier of the command
  @param resultTask Task that represents the result of running a command.
- @returns A continuation task in case the EventuallyQueue need to do something.
+ @return A continuation task in case the EventuallyQueue need to do something.
  Typically this will return back given resultTask.
  */
 - (BFTask *)_didFinishRunningCommand:(id<PFNetworkCommand>)command
@@ -96,7 +96,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
  This method is triggered on batch processing of the queue.
  It will capture the identifiers and use them to execute commands.
 
- @returns An array of identifiers of all commands that are pending sorted by the order they're enqueued.
+ @return An array of identifiers of all commands that are pending sorted by the order they're enqueued.
  */
 - (NSArray *)_pendingCommandIdentifiers;
 
@@ -106,7 +106,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
  @param identifier An identifier of a command, that was in array returned by <_pendingCommandIdentifiers>
  @param error      Pointer to `NSError *` that should be set if the method failed to construct/retrieve a command.
 
- @returns A command that needs to be run, or `nil` if there was an error.
+ @return A command that needs to be run, or `nil` if there was an error.
  */
 - (id<PFNetworkCommand>)_commandWithIdentifier:(NSString *)identifier error:(NSError **)error;
 
@@ -121,7 +121,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
  @param command              Command that needs to be enqueued
  @param object               The object on which the command is run against.
  @param identifier           Unique identifier used to represent a command.
- @returns Task that is resolved when the command is complete enqueueing.
+ @return Task that is resolved when the command is complete enqueueing.
  */
 - (BFTask *)_enqueueCommandInBackground:(id<PFNetworkCommand>)command
                                  object:(PFObject *)object

@@ -62,7 +62,7 @@ PFInstallationIdentifierStoreProvider>
  @param applicationId                   ApplicationId of Parse app.
  @param clientKey                       ClientKey of Parse app.
 
- @returns `ParseManager` instance.
+ @return `ParseManager` instance.
  */
 - (instancetype)initWithApplicationId:(NSString *)applicationId
                             clientKey:(NSString *)clientKey NS_DESIGNATED_INITIALIZER;

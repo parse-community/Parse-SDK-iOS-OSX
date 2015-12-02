@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Flag that indicates whether Local Datastore is enabled.
 
- @returns `YES` if Local Datastore is enabled, otherwise `NO`.
+ @return `YES` if Local Datastore is enabled, otherwise `NO`.
  */
 + (BOOL)isLocalDatastoreEnabled PF_TV_UNAVAILABLE;
 
@@ -127,14 +127,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Application Group Identifier for Data Sharing
 
- @returns `NSString` value if data sharing is enabled, otherwise `nil`.
+ @return `NSString` value if data sharing is enabled, otherwise `nil`.
  */
 + (NSString *)applicationGroupIdentifierForDataSharing PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
 
 /**
  Containing application bundle identifier.
 
- @returns `NSString` value if data sharing is enabled, otherwise `nil`.
+ @return `NSString` value if data sharing is enabled, otherwise `nil`.
  */
 + (NSString *)containingApplicationBundleIdentifierForDataSharing PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
 
@@ -189,7 +189,7 @@ NS_ASSUME_NONNULL_BEGIN
  - If running inside an app that was downloaded from iOS App Store - it is set to <PFLogLevelNone>
  - All other cases - it is set to <PFLogLevelWarning>
 
- @returns A <PFLogLevel> value.
+ @return A <PFLogLevel> value.
  @see PFLogLevel
  */
 + (PFLogLevel)logLevel;

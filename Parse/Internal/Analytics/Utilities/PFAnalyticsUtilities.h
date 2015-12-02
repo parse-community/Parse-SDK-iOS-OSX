@@ -21,7 +21,7 @@
 
  @param payload `alert` value from a push notification.
 
- @returns md5 identifier.
+ @return md5 identifier.
  */
 + (NSString *)md5DigestFromPushPayload:(id)payload;
 

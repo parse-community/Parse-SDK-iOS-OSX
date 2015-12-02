@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
  launched, if any. This value can be found as a parameter to various
  `UIApplicationDelegate` methods, and can be empty or `nil`.
 
- @returns Returns the task encapsulating the work being done.
+ @return Returns the task encapsulating the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)trackAppOpenedWithLaunchOptions:(nullable NSDictionary *)launchOptions;
 
@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
  or as a parameter to `application:didReceiveRemoteNotification:`.
  This can be empty or `nil`.
 
- @returns Returns the task encapsulating the work being done.
+ @return Returns the task encapsulating the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)trackAppOpenedWithRemoteNotificationPayload:(nullable NSDictionary *)userInfo;
 
@@ -98,7 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param name The name of the custom event to report to Parse as having happened.
 
- @returns Returns the task encapsulating the work being done.
+ @return Returns the task encapsulating the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)trackEvent:(NSString *)name;
 
@@ -132,7 +132,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param name The name of the custom event to report to Parse as having happened.
  @param dimensions The `NSDictionary` of information by which to segment this event.
 
- @returns Returns the task encapsulating the work being done.
+ @return Returns the task encapsulating the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)trackEvent:(NSString *)name
                                   dimensions:(nullable NSDictionary PF_GENERIC(NSString *, NSString *)*)dimensions;

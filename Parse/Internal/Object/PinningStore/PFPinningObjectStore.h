@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param name Pin Name.
 
- @returns `BFTask` with `PFPin` result if pinning succeeds.
+ @return `BFTask` with `PFPin` result if pinning succeeds.
  */
 - (BFTask *)fetchPinAsyncWithName:(NSString *)name;
 
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param name            Pin Name.
  @param includeChildren Whether children of `objects` should be pinned as well.
 
- @returns `BFTask` with `@YES` result.
+ @return `BFTask` with `@YES` result.
  */
 - (BFTask *)pinObjectsAsync:(nullable NSArray *)objects
                 withPinName:(NSString *)name
@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param objects Objects to unpin.
  @param name    Pin name.
 
- @returns `BFTask` with `@YES` result.
+ @return `BFTask` with `@YES` result.
  */
 - (BFTask *)unpinObjectsAsync:(nullable NSArray *)objects withPinName:(NSString *)name;
 
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param name Pin name.
 
- @returns `BFTask` with `YES` result.
+ @return `BFTask` with `YES` result.
  */
 - (BFTask *)unpinAllObjectsAsyncWithPinName:(NSString *)name;
 

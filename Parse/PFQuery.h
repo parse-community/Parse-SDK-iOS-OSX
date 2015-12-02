@@ -45,7 +45,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param className The class to query on.
 
- @returns A `PFQuery` object.
+ @return A `PFQuery` object.
  */
 + (instancetype)queryWithClassName:(NSString *)className;
 
@@ -90,7 +90,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param key The key to load child <PFObject>s for.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)includeKey:(NSString *)key;
 
@@ -101,7 +101,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param keys The keys to include in the result.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)selectKeys:(NSArray PF_GENERIC(NSString *)*)keys;
 
@@ -110,7 +110,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param key The key that should exist.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKeyExists:(NSString *)key;
 
@@ -119,7 +119,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param key The key that should not exist.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKeyDoesNotExist:(NSString *)key;
 
@@ -129,7 +129,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key to be constrained.
  @param object The object that must be equalled.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key equalTo:(id)object;
 
@@ -139,7 +139,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key to be constrained.
  @param object The object that provides an upper bound.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key lessThan:(id)object;
 
@@ -150,7 +150,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key to be constrained.
  @param object The object that must be equalled.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key lessThanOrEqualTo:(id)object;
 
@@ -161,7 +161,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key to be constrained.
  @param object The object that must be equalled.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key greaterThan:(id)object;
 
@@ -172,7 +172,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key to be constrained.
  @param object The object that must be equalled.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key greaterThanOrEqualTo:(id)object;
 
@@ -183,7 +183,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key to be constrained.
  @param object The object that must not be equalled.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key notEqualTo:(id)object;
 
@@ -194,7 +194,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key to be constrained.
  @param array The possible values for the key's object.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key containedIn:(NSArray *)array;
 
@@ -205,7 +205,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key to be constrained.
  @param array The list of values the key's object should not be.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key notContainedIn:(NSArray *)array;
 
@@ -216,7 +216,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key to be constrained.
  @param array The array of values to search for.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key containsAllObjectsInArray:(NSArray *)array;
 
@@ -234,7 +234,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key to be constrained.
  @param geopoint The reference point represented as a <PFGeoPoint>.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key nearGeoPoint:(PFGeoPoint *)geopoint;
 
@@ -249,7 +249,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param geopoint The reference point represented as a <PFGeoPoint>.
  @param maxDistance Maximum distance in miles.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key
             nearGeoPoint:(PFGeoPoint *)geopoint
@@ -266,7 +266,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param geopoint The reference point represented as a <PFGeoPoint>.
  @param maxDistance Maximum distance in kilometers.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key
             nearGeoPoint:(PFGeoPoint *)geopoint
@@ -281,7 +281,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param geopoint The reference point as a <PFGeoPoint>.
  @param maxDistance Maximum distance in radians.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key
             nearGeoPoint:(PFGeoPoint *)geopoint
@@ -295,7 +295,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param southwest The lower-left inclusive corner of the box.
  @param northeast The upper-right inclusive corner of the box.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key withinGeoBoxFromSouthwest:(PFGeoPoint *)southwest toNortheast:(PFGeoPoint *)northeast;
 
@@ -311,7 +311,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key that the string to match is stored in.
  @param regex The regular expression pattern to match.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key matchesRegex:(NSString *)regex;
 
@@ -326,7 +326,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  - `i` - Case insensitive search
  - `m` - Search across multiple lines of input
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key
             matchesRegex:(NSString *)regex
@@ -340,7 +340,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key that the string to match is stored in.
  @param substring The substring that the value must contain.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key containsString:(nullable NSString *)substring;
 
@@ -352,7 +352,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key that the string to match is stored in.
  @param prefix The substring that the value must start with.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key hasPrefix:(nullable NSString *)prefix;
 
@@ -364,7 +364,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key that the string to match is stored in.
  @param suffix The substring that the value must end with.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key hasSuffix:(nullable NSString *)suffix;
 
@@ -377,7 +377,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param queries The list of queries to or together.
 
- @returns An instance of `PFQuery` that is the `or` of the passed in queries.
+ @return An instance of `PFQuery` that is the `or` of the passed in queries.
  */
 + (instancetype)orQueryWithSubqueries:(NSArray PF_GENERIC(PFQuery *)*)queries;
 
@@ -389,7 +389,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param otherKey The key in objects in the returned by the sub query whose value should match.
  @param query The query to run.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key
               matchesKey:(NSString *)otherKey
@@ -403,7 +403,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param otherKey The key in objects in the returned by the sub query whose value should match.
  @param query The query to run.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key
          doesNotMatchKey:(NSString *)otherKey
@@ -417,7 +417,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key that the value is stored in
  @param query The query the value should match
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key matchesQuery:(PFQuery *)query;
 
@@ -429,7 +429,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param key The key that the value is stored in
  @param query The query the value should not match
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key doesNotMatchQuery:(PFQuery *)query;
 
@@ -442,7 +442,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param key The key to order by.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)orderByAscending:(NSString *)key;
 
@@ -460,7 +460,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param key The key to order by.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)orderByDescending:(NSString *)key;
 
@@ -480,7 +480,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param sortDescriptor The `NSSortDescriptor` to use to sort the results of the query.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)orderBySortDescriptor:(NSSortDescriptor *)sortDescriptor;
 
@@ -491,7 +491,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param sortDescriptors An array of `NSSortDescriptor` objects to use to sort the results of the query.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)orderBySortDescriptors:(nullable NSArray PF_GENERIC(NSSortDescriptor *)*)sortDescriptors;
 
@@ -505,7 +505,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param objectClass The class name for the object that is being requested.
  @param objectId The id of the object that is being requested.
 
- @returns The <PFObject> if found. Returns `nil` if the object isn't found, or if there was an error.
+ @return The <PFObject> if found. Returns `nil` if the object isn't found, or if there was an error.
  */
 + (nullable PFGenericObject)getObjectOfClass:(NSString *)objectClass
                                     objectId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
@@ -517,7 +517,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param objectId The id of the object that is being requested.
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns The <PFObject> if found. Returns `nil` if the object isn't found, or if there was an `error`.
+ @return The <PFObject> if found. Returns `nil` if the object isn't found, or if there was an `error`.
  */
 + (nullable PFGenericObject)getObjectOfClass:(NSString *)objectClass
                                     objectId:(NSString *)objectId
@@ -531,7 +531,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param objectId The id of the object that is being requested.
 
- @returns The <PFObject> if found. Returns nil if the object isn't found, or if there was an error.
+ @return The <PFObject> if found. Returns nil if the object isn't found, or if there was an error.
  */
 - (nullable PFGenericObject)getObjectWithId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
 
@@ -544,7 +544,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param objectId The id of the object that is being requested.
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns The <PFObject> if found. Returns nil if the object isn't found, or if there was an error.
+ @return The <PFObject> if found. Returns nil if the object isn't found, or if there was an error.
  */
 - (nullable PFGenericObject)getObjectWithId:(NSString *)objectId error:(NSError **)error;
 
@@ -556,7 +556,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param objectId The id of the object that is being requested.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(PFGenericObject) *)getObjectInBackgroundWithId:(NSString *)objectId;
 
@@ -597,7 +597,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param objectId The id of the object that is being requested.
 
- @returns The PFUser if found. Returns nil if the object isn't found, or if there was an error.
+ @return The PFUser if found. Returns nil if the object isn't found, or if there was an error.
  */
 + (nullable PFUser *)getUserObjectWithId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
 
@@ -621,7 +621,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /**
  Finds objects *synchronously* based on the constructed query.
 
- @returns Returns an array of <PFObject> objects that were found.
+ @return Returns an array of <PFObject> objects that were found.
  */
 - (nullable NSArray PF_GENERIC(PFGenericObject) *)findObjects PF_SWIFT_UNAVAILABLE;
 
@@ -630,14 +630,14 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns an array of <PFObject> objects that were found.
+ @return Returns an array of <PFObject> objects that were found.
  */
 - (nullable NSArray PF_GENERIC(PFGenericObject) *)findObjects:(NSError **)error;
 
 /**
  Finds objects *asynchronously* and sets the `NSArray` of <PFObject> objects as a result of the task.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(NSArray<PFGenericObject> *)*)findObjectsInBackground;
 
@@ -668,7 +668,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @warning This method mutates the query. It will reset the limit to `1`.
 
- @returns Returns a <PFObject>, or `nil` if none was found.
+ @return Returns a <PFObject>, or `nil` if none was found.
  */
 - (nullable PFGenericObject)getFirstObject PF_SWIFT_UNAVAILABLE;
 
@@ -679,7 +679,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns a <PFObject>, or `nil` if none was found.
+ @return Returns a <PFObject>, or `nil` if none was found.
  */
 - (nullable PFGenericObject)getFirstObject:(NSError **)error;
 
@@ -688,7 +688,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @warning This method mutates the query. It will reset the limit to `1`.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(PFGenericObject) *)getFirstObjectInBackground;
 
@@ -724,7 +724,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /**
  Counts objects *synchronously* based on the constructed query.
 
- @returns Returns the number of <PFObject> objects that match the query, or `-1` if there is an error.
+ @return Returns the number of <PFObject> objects that match the query, or `-1` if there is an error.
  */
 - (NSInteger)countObjects PF_SWIFT_UNAVAILABLE;
 
@@ -733,14 +733,14 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns the number of <PFObject> objects that match the query, or `-1` if there is an error.
+ @return Returns the number of <PFObject> objects that match the query, or `-1` if there is an error.
  */
 - (NSInteger)countObjects:(NSError **)error;
 
 /**
  Counts objects *asynchronously* and sets `NSNumber` with count as a result of the task.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(NSNumber *)*)countObjectsInBackground;
 
@@ -833,7 +833,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @warning Requires Local Datastore to be enabled.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
 
  @see cachePolicy
  */
@@ -844,7 +844,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @warning Requires Local Datastore to be enabled.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
 
  @see PFObjectDefaultPin
  @see cachePolicy
@@ -858,7 +858,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param name The pinned group.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
 
  @see PFObjectDefaultPin
  @see cachePolicy
@@ -872,7 +872,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @warning Requires Local Datastore to be enabled.
 
- @returns The same instance of `PFQuery` as the receiver. This allows method chaining.
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)ignoreACLs;
 

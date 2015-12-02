@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Creates an ACL with no permissions granted.
 
- @returns Returns a new `PFACL`.
+ @return Returns a new `PFACL`.
  */
 + (instancetype)ACL;
 
@@ -73,7 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param userId The <[PFObject objectId]> of the user for which to retrive access.
 
- @returns `YES` if the user with this `objectId` has *explicit* read access, otherwise `NO`.
+ @return `YES` if the user with this `objectId` has *explicit* read access, otherwise `NO`.
  */
 - (BOOL)getReadAccessForUserId:(NSString *)userId;
 
@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param userId The <[PFObject objectId]> of the user for which to retrive access.
 
- @returns `YES` if the user with this `objectId` has *explicit* write access, otherwise `NO`.
+ @return `YES` if the user with this `objectId` has *explicit* write access, otherwise `NO`.
  */
 - (BOOL)getWriteAccessForUserId:(NSString *)userId;
 
@@ -111,7 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param user The user for which to retrive access.
 
- @returns `YES` if the user has *explicit* read access, otherwise `NO`.
+ @return `YES` if the user has *explicit* read access, otherwise `NO`.
  */
 - (BOOL)getReadAccessForUser:(PFUser *)user;
 
@@ -130,7 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param user The user for which to retrive access.
 
- @returns `YES` if the user has *explicit* write access, otherwise `NO`.
+ @return `YES` if the user has *explicit* write access, otherwise `NO`.
  */
 - (BOOL)getWriteAccessForUser:(PFUser *)user;
 
@@ -144,7 +144,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param name The name of the role.
 
- @returns `YES` if the role has read access, otherwise `NO`.
+ @return `YES` if the role has read access, otherwise `NO`.
  */
 - (BOOL)getReadAccessForRoleWithName:(NSString *)name;
 
@@ -162,7 +162,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param name The name of the role.
 
- @returns `YES` if the role has read access, otherwise `NO`.
+ @return `YES` if the role has read access, otherwise `NO`.
  */
 - (BOOL)getWriteAccessForRoleWithName:(NSString *)name;
 
@@ -183,7 +183,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param role The name of the role.
 
- @returns `YES` if the role has read access, otherwise `NO`.
+ @return `YES` if the role has read access, otherwise `NO`.
  */
 - (BOOL)getReadAccessForRole:(PFRole *)role;
 
@@ -207,7 +207,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param role The name of the role.
 
- @returns `YES` if the role has write access, otherwise `NO`.
+ @return `YES` if the role has write access, otherwise `NO`.
  */
 - (BOOL)getWriteAccessForRole:(PFRole *)role;
 

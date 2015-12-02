@@ -24,7 +24,7 @@ typedef uint8_t PFLoggingTag;
 /**
 A shared instance of `PFLogger` that should be used for all logging.
 
-@returns An shared singleton instance of `PFLogger`.
+@return An shared singleton instance of `PFLogger`.
 */
 + (instancetype)sharedLogger; //TODO: (nlutsenko) Convert to use an instance everywhere instead of a shared singleton.
 

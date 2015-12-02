@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param authData The auth data for the provider. This value may be `nil` when unlinking an account.
 
- @returns `YES` - if the `authData` was succesfully synchronized,
+ @return `YES` - if the `authData` was succesfully synchronized,
  or `NO` if user should not longer be associated because of bad `authData`.
  */
 - (BOOL)restoreAuthenticationWithAuthData:(nullable NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;

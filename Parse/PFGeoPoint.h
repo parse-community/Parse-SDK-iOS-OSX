@@ -31,7 +31,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 /**
  Create a PFGeoPoint object. Latitude and longitude are set to `0.0`.
 
- @returns Returns a new `PFGeoPoint`.
+ @return Returns a new `PFGeoPoint`.
  */
 + (instancetype)geoPoint;
 
@@ -40,7 +40,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 
  @param location Instace of `CLLocation`, with set latitude and longitude.
 
- @returns Returns a new PFGeoPoint at specified location.
+ @return Returns a new PFGeoPoint at specified location.
  */
 + (instancetype)geoPointWithLocation:(nullable CLLocation *)location;
 
@@ -50,7 +50,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
  @param latitude Latitude of point in degrees.
  @param longitude Longitude of point in degrees.
 
- @returns New point object with specified latitude and longitude.
+ @return New point object with specified latitude and longitude.
  */
 + (instancetype)geoPointWithLatitude:(double)latitude longitude:(double)longitude;
 
@@ -85,7 +85,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 
  @param point `PFGeoPoint` that represents the location of other point.
 
- @returns Distance in radians between the receiver and `point`.
+ @return Distance in radians between the receiver and `point`.
  */
 - (double)distanceInRadiansTo:(nullable PFGeoPoint *)point;
 
@@ -94,7 +94,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 
  @param point `PFGeoPoint` that represents the location of other point.
 
- @returns Distance in miles between the receiver and `point`.
+ @return Distance in miles between the receiver and `point`.
  */
 - (double)distanceInMilesTo:(nullable PFGeoPoint *)point;
 
@@ -103,7 +103,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 
  @param point `PFGeoPoint` that represents the location of other point.
 
- @returns Distance in kilometers between the receiver and `point`.
+ @return Distance in kilometers between the receiver and `point`.
  */
 - (double)distanceInKilometersTo:(nullable PFGeoPoint *)point;
 

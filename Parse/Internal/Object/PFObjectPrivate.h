@@ -70,7 +70,7 @@
 @interface PFObject ()
 
 /**
- @returns Current object state.
+ @return Current object state.
  */
 @property (nonatomic, copy) PFObjectState *_state;
 @property (nonatomic, copy) NSMutableSet *_availableKeys;
@@ -106,7 +106,7 @@
  Validate the save eventually operation with the current state.
  The result of this task is ignored. The error/cancellation/exception will prevent `saveEventually`.
 
- @returns Task that encapsulates the validation.
+ @return Task that encapsulates the validation.
  */
 - (BFTask PF_GENERIC(PFVoid) *)_validateSaveEventuallyAsync NS_REQUIRES_SUPER;
 

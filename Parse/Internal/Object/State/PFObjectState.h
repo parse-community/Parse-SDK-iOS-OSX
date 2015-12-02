@@ -57,7 +57,7 @@ typedef void(^PFObjectStateMutationBlock)(PFMutableObjectState *state);
 
  @param objectEncoder Encoder to use to encode custom objects.
 
- @returns `NSDictionary` instance representing object state.
+ @return `NSDictionary` instance representing object state.
  */
 - (NSDictionary *)dictionaryRepresentationWithObjectEncoder:(PFEncoder *)objectEncoder NS_REQUIRES_SUPER;
 

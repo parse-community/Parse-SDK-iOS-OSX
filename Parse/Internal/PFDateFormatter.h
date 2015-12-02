@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param date `NSDate` to convert.
 
- @returns Formatted `NSString` representation.
+ @return Formatted `NSString` representation.
  */
 - (NSString *)preciseStringFromDate:(NSDate *)date;
 
@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param string `NSString` representation to convert.
 
- @returns `NSDate` incapsulating the date.
+ @return `NSDate` incapsulating the date.
  */
 - (NSDate *)dateFromString:(NSString *)string;
 

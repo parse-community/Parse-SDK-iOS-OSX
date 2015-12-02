@@ -135,7 +135,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
  @param taskStart - A block that is called when all of the objects are ready.
  It can return a promise that all of the queues will then wait on.
  @param objects - The objects that this operation affects.
- @returns - Returns a promise that is fulfilled once the promise returned by the
+ @return - Returns a promise that is fulfilled once the promise returned by the
  block is fulfilled.
  */
 + (BFTask *)_enqueue:(BFTask *(^)(BFTask *toAwait))taskStart forObjects:(NSArray *)objects {
@@ -1058,7 +1058,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 /**
  Enqueues saveEventually operation asynchronously.
 
- @returns A task which result is a saveEventually task.
+ @return A task which result is a saveEventually task.
  */
 - (BFTask *)_enqueueSaveEventuallyWithChildren:(BOOL)saveChildren {
     return [_eventuallyTaskQueue enqueue:^BFTask *(BFTask *toAwait) {
@@ -1192,7 +1192,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 }
 
 /**
- @returns YES if there's unsaved changes in this object. This complements ivar `dirty` for `isDirty` check.
+ @return YES if there's unsaved changes in this object. This complements ivar `dirty` for `isDirty` check.
  */
 - (BOOL)_hasChanges {
     @synchronized (lock) {
@@ -1201,7 +1201,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 }
 
 /**
- @returns YES if this PFObject has operations in operationSetQueue that haven't been completed yet,
+ @return YES if this PFObject has operations in operationSetQueue that haven't been completed yet,
  NO if there are no operations in the operationSetQueue.
  */
 - (BOOL)_hasOutstandingOperations {

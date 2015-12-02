@@ -881,7 +881,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 
  @param uuid        The UUID of the object to retrieve.
  @param database    The database instance to retrieve from.
- @returns The object with that UUID.
+ @return The object with that UUID.
  */
 - (BFTask *)_getPointerAsyncWithUUID:(NSString *)uuid database:(PFSQLiteDatabase *)database {
     @synchronized (self.lock) {

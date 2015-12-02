@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  * NSArray
  * NSNull
 
- @returns NSData of JSON representing the passed in object.
+ @return NSData of JSON representing the passed in object.
  */
 + (nullable NSData *)dataFromJSONObject:(id)object;
 
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  * NSArray
  * NSNull
 
- @returns NSString of JSON representing the passed in object.
+ @return NSString of JSON representing the passed in object.
  */
 + (nullable NSString *)stringFromJSONObject:(id)object;
 

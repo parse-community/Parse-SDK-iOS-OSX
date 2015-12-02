@@ -31,7 +31,7 @@
  that can be converted to JSON and sent to Parse as part of a save operation.
 
  @param objectEncoder encoder that will be used to encode the object.
- @returns An object to be jsonified.
+ @return An object to be jsonified.
  */
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder;
 
@@ -45,7 +45,7 @@
  [{delete} mergeWithPrevious:{add "foo"}] -> {delete}
 
  @param previous The most recent operation on the field, or nil if none.
- @returns A new PFFieldOperation or self.
+ @return A new PFFieldOperation or self.
  */
 - (PFFieldOperation *)mergeWithPrevious:(PFFieldOperation *)previous;
 
@@ -60,7 +60,7 @@
  @param oldValue The previous value for the field.
  @param key The key that this value is for.
 
- @returns The new value for the field.
+ @return The new value for the field.
  */
 - (id)applyToValue:(id)oldValue forKey:(NSString *)key;
 

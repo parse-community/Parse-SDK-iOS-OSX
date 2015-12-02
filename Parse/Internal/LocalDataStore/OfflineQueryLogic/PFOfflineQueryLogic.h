@@ -37,12 +37,12 @@ typedef NS_OPTIONS(uint8_t, PFOfflineQueryOption) {
 - (instancetype)initWithOfflineStore:(PFOfflineStore *)offlineStore;
 
 /**
- @returns YES iff the object is visible based on its read ACL and the given user objectId.
+ @return YES iff the object is visible based on its read ACL and the given user objectId.
  */
 + (BOOL)userHasReadAccess:(PFUser *)user ofObject:(PFObject *)object;
 
 /**
- @returns YES iff the object is visible based on its read ACL and the given user objectId.
+ @return YES iff the object is visible based on its read ACL and the given user objectId.
  */
 + (BOOL)userHasWriteAccess:(PFUser *)user ofObject:(PFObject *)object;
 
@@ -56,7 +56,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineQueryOption) {
 /**
  Sort given array with given `PFQuery` constraint.
 
- @returns sorted result.
+ @return sorted result.
  */
 - (NSArray *)resultsByApplyingOptions:(PFOfflineQueryOption)options
                          ofQueryState:(PFQueryState *)queryState

@@ -48,7 +48,7 @@
  @param cancellationToken Cancellation token.
  @param progressBlock     Progress block to call (optional).
 
- @returns `BFTask` with a result set to `nil`.
+ @return `BFTask` with a result set to `nil`.
  */
 - (BFTask *)downloadFileAsyncWithState:(PFFileState *)fileState
                      cancellationToken:(BFCancellationToken *)cancellationToken
@@ -80,7 +80,7 @@
  @param cancellationToken Cancellation token.
  @param progressBlock     Progress block to call (optional).
 
- @returns `BFTask` with a result set to `PFFileState` of uploaded file.
+ @return `BFTask` with a result set to `PFFileState` of uploaded file.
  */
 - (BFTask *)uploadFileAsyncWithState:(PFFileState *)fileState
                       sourceFilePath:(NSString *)sourceFilePath

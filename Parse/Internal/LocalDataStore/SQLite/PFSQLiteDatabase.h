@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @returns A `BFTask` that resolves to `YES` if the database is open.
+ @return A `BFTask` that resolves to `YES` if the database is open.
  */
 - (BFTask *)isOpenAsync;
 

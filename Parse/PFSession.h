@@ -35,7 +35,7 @@ typedef void(^PFSessionResultBlock)(PFSession *__nullable session, NSError *__nu
 /**
  *Asynchronously* fetches a `PFSession` object related to the current user.
 
- @returns A task that is `completed` with an instance of `PFSession` class or is `faulted` if the operation fails.
+ @return A task that is `completed` with an instance of `PFSession` class or is `faulted` if the operation fails.
  */
 + (BFTask PF_GENERIC(PFSession *)*)getCurrentSessionInBackground;
 

@@ -34,7 +34,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 
  If there was no config fetched - this method will return an empty instance of `PFConfig`.
 
- @returns Current, last fetched instance of PFConfig.
+ @return Current, last fetched instance of PFConfig.
  */
 + (PFConfig *)currentConfig;
 
@@ -45,7 +45,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 /**
  Gets the `PFConfig` object *synchronously* from the server.
 
- @returns Instance of `PFConfig` if the operation succeeded, otherwise `nil`.
+ @return Instance of `PFConfig` if the operation succeeded, otherwise `nil`.
  */
 + (nullable PFConfig *)getConfig PF_SWIFT_UNAVAILABLE;
 
@@ -54,14 +54,14 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Instance of PFConfig if the operation succeeded, otherwise `nil`.
+ @return Instance of PFConfig if the operation succeeded, otherwise `nil`.
  */
 + (nullable PFConfig *)getConfig:(NSError **)error;
 
 /**
  Gets the `PFConfig` *asynchronously* and sets it as a result of a task.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(PFConfig *)*)getConfigInBackground;
 
@@ -82,7 +82,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 
  @param key The key for which to return the corresponding configuration value.
 
- @returns The value associated with `key`, or `nil` if there is no such value.
+ @return The value associated with `key`, or `nil` if there is no such value.
  */
 - (nullable id)objectForKey:(NSString *)key;
 
@@ -96,7 +96,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 
  @param keyedSubscript The keyed subscript for which to return the corresponding configuration value.
 
- @returns The value associated with `key`, or `nil` if there is no such value.
+ @return The value associated with `key`, or `nil` if there is no such value.
  */
 - (nullable id)objectForKeyedSubscript:(NSString *)keyedSubscript;
 

@@ -38,7 +38,7 @@
 
  @param key File name to use.
 
- @returns `BFTask` with `PFObject` or `nil` result.
+ @return `BFTask` with `PFObject` or `nil` result.
  */
 - (BFTask PF_GENERIC(PFObject *)*)loadPersistentObjectAsyncForKey:(NSString *)key;
 
@@ -48,7 +48,7 @@
  @param object Object to save.
  @param key    File name to use.
 
- @returns `BFTask` with `nil` result.
+ @return `BFTask` with `nil` result.
  */
 - (BFTask *)persistObjectAsync:(PFObject *)object forKey:(NSString *)key;
 

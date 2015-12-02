@@ -38,7 +38,7 @@
  @param parameters   Parameters to pass. (can't be nil).
  @param sessionToken Session token to use.
 
- @returns `BFTask` with a result set to a result of Cloud Function.
+ @return `BFTask` with a result set to a result of Cloud Function.
  */
 - (BFTask *)callCloudCodeFunctionAsync:(NSString *)functionName
                         withParameters:(NSDictionary *)parameters

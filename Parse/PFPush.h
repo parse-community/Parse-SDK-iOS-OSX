@@ -155,7 +155,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  @param message The message to send.
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the send succeeded.
+ @return Returns whether the send succeeded.
  */
 + (BOOL)sendPushMessageToChannel:(NSString *)channel
                      withMessage:(NSString *)message
@@ -168,7 +168,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  a letter and contain only letters, numbers, dashes, and underscores.
  @param message The message to send.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)sendPushMessageToChannelInBackground:(NSString *)channel
                                                            withMessage:(NSString *)message;
@@ -210,7 +210,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  @param message The message to send.
  @param error Pointer to an NSError that will be set if necessary.
 
- @returns Returns whether the send succeeded.
+ @return Returns whether the send succeeded.
  */
 + (BOOL)sendPushMessageToQuery:(PFQuery PF_GENERIC(PFInstallation *)*)query
                    withMessage:(NSString *)message
@@ -222,7 +222,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  @param query The query to send to. The query must be a <PFInstallation> query created with <[PFInstallation query]>.
  @param message The message to send.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)sendPushMessageToQueryInBackground:(PFQuery PF_GENERIC(PFInstallation *)*)query
                                                          withMessage:(NSString *)message;
@@ -245,13 +245,13 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the send succeeded.
+ @return Returns whether the send succeeded.
  */
 - (BOOL)sendPush:(NSError **)error;
 
 /**
  *Asynchronously* send this push message.
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(NSNumber *)*)sendPushInBackground;
 
@@ -284,7 +284,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  @param data The data to send.
  @param error Pointer to an NSError that will be set if necessary.
 
- @returns Returns whether the send succeeded.
+ @return Returns whether the send succeeded.
  */
 + (BOOL)sendPushDataToChannel:(NSString *)channel
                      withData:(NSDictionary *)data
@@ -299,7 +299,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  a letter and contain only letters, numbers, dashes, and underscores.
  @param data The data to send.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)sendPushDataToChannelInBackground:(NSString *)channel
                                                            withData:(NSDictionary *)data;
@@ -348,7 +348,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  @param data The data to send.
  @param error Pointer to an NSError that will be set if necessary.
 
- @returns Returns whether the send succeeded.
+ @return Returns whether the send succeeded.
  */
 + (BOOL)sendPushDataToQuery:(PFQuery PF_GENERIC(PFInstallation *)*)query
                    withData:(NSDictionary *)data
@@ -363,7 +363,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  created with <[PFInstallation query]>.
  @param data The data to send.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)sendPushDataToQueryInBackground:(PFQuery PF_GENERIC(PFInstallation *)*)query
                                                          withData:(NSDictionary *)data;
@@ -420,14 +420,14 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns an `NSSet` containing all the channel names this device is subscribed to.
+ @return Returns an `NSSet` containing all the channel names this device is subscribed to.
  */
 + (nullable NSSet PF_GENERIC(NSString *)*)getSubscribedChannels:(NSError **)error;
 
 /**
  *Asynchronously* get all the channels that this device is subscribed to.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(NSSet<NSString *> *)*)getSubscribedChannelsInBackground;
 
@@ -455,7 +455,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  a letter and contain only letters, numbers, dashes, and underscores.
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the subscribe succeeded.
+ @return Returns whether the subscribe succeeded.
  */
 + (BOOL)subscribeToChannel:(NSString *)channel error:(NSError **)error;
 
@@ -465,7 +465,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  @param channel The channel to subscribe to. The channel name must start with
  a letter and contain only letters, numbers, dashes, and underscores.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)subscribeToChannelInBackground:(NSString *)channel;
 
@@ -501,7 +501,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  @param channel The channel to unsubscribe from.
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @returns Returns whether the unsubscribe succeeded.
+ @return Returns whether the unsubscribe succeeded.
  */
 + (BOOL)unsubscribeFromChannel:(NSString *)channel error:(NSError **)error;
 
@@ -510,7 +510,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  @param channel The channel to unsubscribe from.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)unsubscribeFromChannelInBackground:(NSString *)channel;
 

@@ -41,7 +41,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /**
  Gets the currently logged in user from disk and returns an instance of it.
 
- @returns Returns a `PFUser` that is the currently logged in user. If there is none, returns `nil`.
+ @return Returns a `PFUser` that is the currently logged in user. If there is none, returns `nil`.
  */
 + (nullable instancetype)currentUser;
 
@@ -74,7 +74,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /**
  Creates a new `PFUser` object.
 
- @returns Returns a new `PFUser` object.
+ @return Returns a new `PFUser` object.
  */
 + (instancetype)user;
 
@@ -115,7 +115,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @warning Make sure that password and username are set before calling this method.
 
- @returns Returns `YES` if the sign up was successful, otherwise `NO`.
+ @return Returns `YES` if the sign up was successful, otherwise `NO`.
  */
 - (BOOL)signUp PF_SWIFT_UNAVAILABLE;
 
@@ -128,7 +128,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @param error Error object to set on error.
 
- @returns Returns whether the sign up was successful.
+ @return Returns whether the sign up was successful.
  */
 - (BOOL)signUp:(NSError **)error;
 
@@ -139,7 +139,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @warning Make sure that password and username are set before calling this method.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(NSNumber *)*)signUpInBackground;
 
@@ -183,7 +183,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  @param username The username of the user.
  @param password The password of the user.
 
- @returns Returns an instance of the `PFUser` on success.
+ @return Returns an instance of the `PFUser` on success.
  If login failed for either wrong password or wrong username, returns `nil`.
  */
 + (nullable instancetype)logInWithUsername:(NSString *)username
@@ -199,7 +199,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  @param password The password of the user.
  @param error The error object to set on error.
 
- @returns Returns an instance of the `PFUser` on success.
+ @return Returns an instance of the `PFUser` on success.
  If login failed for either wrong password or wrong username, returns `nil`.
  */
 + (nullable instancetype)logInWithUsername:(NSString *)username
@@ -215,7 +215,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  @param username The username of the user.
  @param password The password of the user.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(__kindof PFUser *)*)logInWithUsernameInBackground:(NSString *)username
                                                               password:(NSString *)password;
@@ -264,7 +264,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @param sessionToken The session token for the user.
 
- @returns Returns an instance of the `PFUser` on success.
+ @return Returns an instance of the `PFUser` on success.
  If becoming a user fails due to incorrect token, it returns `nil`.
  */
 + (nullable instancetype)become:(NSString *)sessionToken PF_SWIFT_UNAVAILABLE;
@@ -278,7 +278,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  @param sessionToken The session token for the user.
  @param error The error object to set on error.
 
- @returns Returns an instance of the `PFUser` on success.
+ @return Returns an instance of the `PFUser` on success.
  If becoming a user fails due to incorrect token, it returns `nil`.
  */
 + (nullable instancetype)become:(NSString *)sessionToken error:(NSError **)error;
@@ -291,7 +291,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @param sessionToken The session token for the user.
 
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(__kindof PFUser *)*)becomeInBackground:(NSString *)sessionToken;
 
@@ -333,7 +333,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  and your application's 'Require Revocable Session' setting is turned off on `http://parse.com` app settings.
  After returned `BFTask` completes - <PFSession> class and APIs will be available for use.
 
- @returns An instance of `BFTask` that is completed when revocable
+ @return An instance of `BFTask` that is completed when revocable
  sessions are enabled and currentUser token is migrated.
  */
 + (BFTask *)enableRevocableSessionInBackground;
@@ -365,7 +365,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  and all future calls to <currentUser> will return `nil`. This is preferrable to using <logOut>,
  unless your code is already running from a background thread.
 
- @returns An instance of `BFTask`, that is resolved with `nil` result when logging out completes.
+ @return An instance of `BFTask`, that is resolved with `nil` result when logging out completes.
  */
 + (BFTask *)logOutInBackground;
 
@@ -392,7 +392,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @param email Email of the account to send a reset password request.
 
- @returns Returns `YES` if the reset email request is successful. `NO` - if no account was found for the email address.
+ @return Returns `YES` if the reset email request is successful. `NO` - if no account was found for the email address.
  */
 + (BOOL)requestPasswordResetForEmail:(NSString *)email PF_SWIFT_UNAVAILABLE;
 
@@ -404,7 +404,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @param email Email of the account to send a reset password request.
  @param error Error object to set on error.
- @returns Returns `YES` if the reset email request is successful. `NO` - if no account was found for the email address.
+ @return Returns `YES` if the reset email request is successful. `NO` - if no account was found for the email address.
  */
 + (BOOL)requestPasswordResetForEmail:(NSString *)email error:(NSError **)error;
 
@@ -413,7 +413,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  error object. If a user account exists with that email, an email will be sent to
  that address with instructions on how to reset their password.
  @param email Email of the account to send a reset password request.
- @returns The task, that encapsulates the work being done.
+ @return The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(NSNumber *)*)requestPasswordResetForEmailInBackground:(NSString *)email;
 
@@ -471,7 +471,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  @param authType The name of the type of third party authentication source.
  @param authData The user credentials of the third party authentication source.
 
- @returns A `BFTask` that is resolved to `PFUser` when logging in completes.
+ @return A `BFTask` that is resolved to `PFUser` when logging in completes.
  */
 + (BFTask PF_GENERIC(PFUser *)*)logInWithAuthTypeInBackground:(NSString *)authType
                                                      authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;
@@ -485,7 +485,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  @param authType The name of the type of third party authentication source.
  @param authData The user credentials of the third party authentication source.
 
- @returns A `BFTask` that is resolved to `@YES` if linking succeeds.
+ @return A `BFTask` that is resolved to `@YES` if linking succeeds.
  */
 - (BFTask PF_GENERIC(NSNumber *)*)linkWithAuthTypeInBackground:(NSString *)authType
                                                       authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;
@@ -498,7 +498,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @param authType The name of the type of third party authentication source.
 
- @returns A `BFTask` that is resolved to `@YES` if unlinking succeeds.
+ @return A `BFTask` that is resolved to `@YES` if unlinking succeeds.
  */
 - (BFTask PF_GENERIC(NSNumber *)*)unlinkWithAuthTypeInBackground:(NSString *)authType;
 
@@ -510,7 +510,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @param authType The name of the type of third party authentication source.
 
- @returns `YES` if the user is linked with a provider, otherwise `NO`.
+ @return `YES` if the user is linked with a provider, otherwise `NO`.
  */
 - (BOOL)isLinkedWithAuthType:(NSString *)authType;
 

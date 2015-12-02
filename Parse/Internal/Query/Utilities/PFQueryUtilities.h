@@ -29,7 +29,7 @@
 
  @param string String to convert from.
 
- @returns Query regex string from a string.
+ @return Query regex string from a string.
  */
 + (NSString *)regexStringForString:(NSString *)string;
 
