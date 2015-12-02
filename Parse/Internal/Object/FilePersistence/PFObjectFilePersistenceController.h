@@ -33,7 +33,7 @@
 /// @name Objects
 ///--------------------------------------
 
-/*!
+/**
  Loads and creates a PFObject from file.
 
  @param key File name to use.
@@ -42,7 +42,7 @@
  */
 - (BFTask PF_GENERIC(PFObject *)*)loadPersistentObjectAsyncForKey:(NSString *)key;
 
-/*!
+/**
  Saves a given object to a file with name.
 
  @param object Object to save.
@@ -52,7 +52,7 @@
  */
 - (BFTask *)persistObjectAsync:(PFObject *)object forKey:(NSString *)key;
 
-/*!
+/**
  Removes a given object.
 
  @param key Key to use.

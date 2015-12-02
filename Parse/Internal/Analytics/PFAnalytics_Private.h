@@ -9,7 +9,7 @@
 
 #import <Parse/PFAnalytics.h>
 
-/*!
+/**
  Predefined events - AppOpened, CrashReport
  Coming soon - Log, ...
  */

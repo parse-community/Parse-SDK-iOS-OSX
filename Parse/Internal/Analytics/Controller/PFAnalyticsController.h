@@ -32,7 +32,7 @@
 /// @name Track Event
 ///--------------------------------------
 
-/*!
+/**
  @abstract Tracks this application being launched. If this happened as the result of the
  user opening a push notification, this method sends along information to
  correlate this open with that push.
@@ -45,7 +45,7 @@
 - (BFTask *)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(NSDictionary *)payload
                                                      sessionToken:(NSString *)sessionToken;
 
-/*!
+/**
  @abstract Tracks the occurrence of a custom event with additional dimensions.
 
  @param name         Event name.

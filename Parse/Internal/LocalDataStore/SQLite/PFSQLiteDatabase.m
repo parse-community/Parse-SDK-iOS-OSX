@@ -44,12 +44,12 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
     NSMutableDictionary *_cachedStatements;
 }
 
-/*!
+/**
  Database instance
  */
 @property (nonatomic, assign) sqlite3 *database;
 
-/*!
+/**
  Database path
  */
 @property (nonatomic, copy) NSString *databasePath;
@@ -265,7 +265,7 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
     }];
 }
 
-/*!
+/**
  bindObject will bind any object supported by PFSQLiteDatabase to query statement.
  Note: sqlite3 query index binding is one-based, while querying result is zero-based.
  */
@@ -317,7 +317,7 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
 #pragma mark - Errors
 ///--------------------------------------
 
-/*!
+/**
  Generates SQLite error. The details of the error code can be seen in: www.sqlite.org/c3ref/errcode.html
  */
 - (NSError *)_errorWithErrorCode:(int)errorCode {
@@ -331,7 +331,7 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
                               domain:PFSQLiteDatabaseErrorSQLiteDomain];
 }
 
-/*!
+/**
  Generates SQLite/PFSQLiteDatabase error.
  */
 - (NSError *)_errorWithErrorCode:(int)errorCode

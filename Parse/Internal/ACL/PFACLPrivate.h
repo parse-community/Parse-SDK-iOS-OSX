@@ -27,7 +27,7 @@
  */
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
-/*!
+/**
  Creates an ACL from its encoded format.
  */
 + (instancetype)ACLWithDictionary:(NSDictionary *)dictionary;

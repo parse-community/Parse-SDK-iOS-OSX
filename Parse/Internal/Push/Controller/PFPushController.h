@@ -37,7 +37,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushController : NSObject
 /// @name Sending Push
 ///--------------------------------------
 
-/*!
+/**
  Requests push notification to be sent for a given state.
 
  @param state        State to use to send notifications.

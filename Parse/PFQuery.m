@@ -59,7 +59,7 @@ NSString *const PFQueryOptionKeyMaxDistance = @"$maxDistance";
 NSString *const PFQueryOptionKeyBox = @"$box";
 NSString *const PFQueryOptionKeyRegexOptions = @"$options";
 
-/*!
+/**
  Checks if an object can be used as value for query equality clauses.
  */
 static void PFQueryAssertValidEqualityClauseClass(id object) {
@@ -79,7 +79,7 @@ static void PFQueryAssertValidEqualityClauseClass(id object) {
     PFParameterAssert(NO, @"Cannot do a comparison query for type: %@", [object class]);
 }
 
-/*!
+/**
  Checks if an object can be used as value for query ordering clauses.
  */
 static void PFQueryAssertValidOrderingClauseClass(id object) {
@@ -559,7 +559,7 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     }
 }
 
-/*!
+/**
  Creates a PFQuery with the constraints given by predicate.
  This method assumes the predicate has already been normalized.
  */
@@ -1054,7 +1054,7 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
 #pragma mark - Check Pinning Status
 ///--------------------------------------
 
-/*!
+/**
  If `enabled` is YES, raise an exception if OfflineStore is not enabled. If `enabled` is NO, raise
  an exception if OfflineStore is enabled.
  */

@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Staging
 ///--------------------------------------
 
-/*!
+/**
  Moves a file from the specified path to the staging directory based off of the name and unique ID passed in.
 
  @param filePath The source path to stage
@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BFTask *)stageFileAsyncAtPath:(NSString *)filePath name:(NSString *)name uniqueId:(uint64_t)uniqueId;
 
-/*!
+/**
  Creates a file from the specified data and places it into the staging directory based off of the name and unique 
  ID passed in.
 
@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BFTask *)stageFileAsyncWithData:(NSData *)fileData name:(NSString *)name uniqueId:(uint64_t)uniqueId;
 
-/*!
+/**
  Get the staged directory path for a file with the specified name and unique ID.
 
  @param name     The name of the staged file

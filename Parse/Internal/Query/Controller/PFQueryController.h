@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Find
 ///--------------------------------------
 
-/*!
+/**
  Finds objects from network or LDS for any given query state.
  Supports cancellation and ACLed changes for a specific user.
 
@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Count
 ///--------------------------------------
 
-/*!
+/**
  Counts objects from network or LDS for any given query state.
  Supports cancellation and ACLed changes for a specific user.
 
@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PFQueryControllerSubclass <NSObject>
 
-/*!
+/**
  Implementation should run a command on a network runner.
 
  @param command           Command to run.

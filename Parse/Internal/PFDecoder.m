@@ -135,7 +135,7 @@
 
 @interface PFOfflineDecoder ()
 
-/*!
+/**
  A map of UUID to Task that will be finished once the given PFObject is loaded.
  The Tasks should all be finished before decode is called.
  */

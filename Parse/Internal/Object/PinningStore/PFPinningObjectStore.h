@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Pin
 ///--------------------------------------
 
-/*!
+/**
  Gets pin with name equals to given name.
 
  @param name Pin Name.
@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BFTask *)fetchPinAsyncWithName:(NSString *)name;
 
-/*!
+/**
  Pins given objects to the pin. Creates new pin if the pin with such name is not found.
 
  @param objects         Array of `PFObject`s to pin.
@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Unpin
 ///--------------------------------------
 
-/*!
+/**
  Unpins given array of objects from the pin.
 
  @param objects Objects to unpin.
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BFTask *)unpinObjectsAsync:(nullable NSArray *)objects withPinName:(NSString *)name;
 
-/*!
+/**
  Unpins all objects from the pin.
 
  @param name Pin name.

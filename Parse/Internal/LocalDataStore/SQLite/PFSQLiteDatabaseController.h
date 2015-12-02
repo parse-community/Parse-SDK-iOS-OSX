@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Opening
 ///--------------------------------------
 
-/*!
+/**
  @abstract Asynchronously opens a database connection to the database with the name specified.
  @note Only one database can be actively open at a time.
 

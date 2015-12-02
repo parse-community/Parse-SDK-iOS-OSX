@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*!
+/**
  ### Subclassing Notes
 
  Developers can subclass `PFObject` for a more native object-oriented class structure.
@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Methods for Subclasses
 ///--------------------------------------
 
-/*!
+/**
  @abstract Creates an instance of the registered subclass with this class's <parseClassName>.
 
  @discussion This helps a subclass ensure that it can be subclassed itself.
@@ -73,7 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)object;
 
-/*!
+/**
  @abstract Creates a reference to an existing `PFObject` for use in creating associations between `PFObjects`.
 
  @discussion Calling <isDataAvailable> on this object will return `NO` until <fetchIfNeeded> or <fetch> has been called.
@@ -87,7 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)objectWithoutDataWithObjectId:(nullable NSString *)objectId;
 
-/*!
+/**
  @abstract Registers an Objective-C class for Parse to use for representing a given Parse class.
 
  @discussion Once this is called on a `PFObject` subclass, any `PFObject` Parse creates with a class name
@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)registerSubclass;
 
-/*!
+/**
  @abstract Returns a query for objects of type <parseClassName>.
 
  @discussion This method can only be called on subclasses which conform to <PFSubclassing>.
@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable PFQuery *)query;
 
-/*!
+/**
  @abstract Returns a query for objects of type <parseClassName> with a given predicate.
 
  @discussion A default implementation is provided by <PFObject> which should always be sufficient.

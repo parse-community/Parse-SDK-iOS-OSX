@@ -18,7 +18,7 @@
 #pragma mark - PFFieldOperation
 ///--------------------------------------
 
-/*!
+/**
  A PFFieldOperation represents a modification to a value in a PFObject.
  For example, setting, deleting, or incrementing a value are all different
  kinds of PFFieldOperations. PFFieldOperations themselves can be considered
@@ -26,7 +26,7 @@
  */
 @interface PFFieldOperation : NSObject
 
-/*!
+/**
  Converts the PFFieldOperation to a data structure (typically an NSDictionary)
  that can be converted to JSON and sent to Parse as part of a save operation.
 
@@ -35,7 +35,7 @@
  */
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder;
 
-/*!
+/**
  Returns a field operation that is composed of a previous operation followed by
  this operation. This will not mutate either operation. However, it may return
  self if the current operation is not affected by previous changes. For example:
@@ -49,7 +49,7 @@
  */
 - (PFFieldOperation *)mergeWithPrevious:(PFFieldOperation *)previous;
 
-/*!
+/**
  Returns a new estimated value based on a previous value and this operation. This
  value is not intended to be sent to Parse, but it used locally on the client to
  inspect the most likely current value for a field.
@@ -70,7 +70,7 @@
 #pragma mark - Independent Operations
 ///--------------------------------------
 
-/*!
+/**
  An operation where a field is set to a given value regardless of
  its previous value.
  */
@@ -84,7 +84,7 @@
 
 @end
 
-/*!
+/**
  An operation where a field is deleted from the object.
  */
 @interface PFDeleteOperation : PFFieldOperation
@@ -97,7 +97,7 @@
 #pragma mark - Numeric Operations
 ///--------------------------------------
 
-/*!
+/**
  An operation that increases a numeric field's value by a given amount.
  */
 @interface PFIncrementOperation : PFFieldOperation
@@ -114,7 +114,7 @@
 #pragma mark - Array Operations
 ///--------------------------------------
 
-/*!
+/**
  An operation that adds a new element to an array field.
  */
 @interface PFAddOperation : PFFieldOperation
@@ -125,7 +125,7 @@
 
 @end
 
-/*!
+/**
  An operation that adds a new element to an array field,
  only if it wasn't already present.
  */
@@ -137,7 +137,7 @@
 
 @end
 
-/*!
+/**
  An operation that removes every instance of an element from
  an array field.
  */
@@ -153,7 +153,7 @@
 #pragma mark - Relation Operations
 ///--------------------------------------
 
-/*!
+/**
  An operation where a PFRelation's value is modified.
  */
 @interface PFRelationOperation : PFFieldOperation

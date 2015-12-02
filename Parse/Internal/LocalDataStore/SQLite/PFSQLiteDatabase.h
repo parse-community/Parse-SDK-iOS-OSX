@@ -19,22 +19,22 @@
 
 typedef id __nullable(^PFSQLiteDatabaseQueryBlock)(PFSQLiteDatabaseResult *__nonnull result);
 
-/*!
+/**
  Argument count given in executeSQLAsync or executeQueryAsync is invalid.
  */
 extern int const PFSQLiteDatabaseInvalidArgumenCountErrorCode;
 
-/*!
+/**
  Method `executeSQL` cannot execute SELECT. Use `executeQuery` instead.
  */
 extern int const PFSQLiteDatabaseInvalidSQL;
 
-/*!
+/**
  Database is opened already.
  */
 extern int const PFSQLiteDatabaseDatabaseAlreadyOpened;
 
-/*!
+/**
  Database is closed already.
  */
 extern int const PFSQLiteDatabaseDatabaseAlreadyClosed;
@@ -59,17 +59,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Connection
 ///--------------------------------------
 
-/*!
+/**
  @returns A `BFTask` that resolves to `YES` if the database is open.
  */
 - (BFTask *)isOpenAsync;
 
-/*!
+/**
  Opens database. Database is one time use. Open > Close > Open is forbidden.
  */
 - (BFTask *)openAsync;
 
-/*!
+/**
  Closes the database connection.
  */
 - (BFTask *)closeAsync;
@@ -78,17 +78,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Transaction
 ///--------------------------------------
 
-/*!
+/**
  Begins a database transaction in EXCLUSIVE mode.
  */
 - (BFTask *)beginTransactionAsync;
 
-/*!
+/**
  Commits running transaction.
  */
 - (BFTask *)commitAsync;
 
-/*!
+/**
  Rollbacks running transaction.
  */
 - (BFTask *)rollbackAsync;
@@ -97,17 +97,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Query Methods
 ///--------------------------------------
 
-/*!
+/**
  Runs a single SQL statement which return result (SELECT).
  */
 - (BFTask *)executeQueryAsync:(NSString *)query withArgumentsInArray:(nullable NSArray *)args block:(PFSQLiteDatabaseQueryBlock)block;
 
-/*!
+/**
  Runs a single SQL statement, while caching the resulting statement for future use.
  */
 - (BFTask *)executeCachedQueryAsync:(NSString *)sql withArgumentsInArray:(nullable NSArray *)args;
 
-/*!
+/**
  Runs a single SQL statement which doesn't return result (UPDATE/INSERT/DELETE).
  */
 - (BFTask *)executeSQLAsync:(NSString *)sql withArgumentsInArray:(nullable NSArray *)args;

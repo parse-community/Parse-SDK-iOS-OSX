@@ -54,7 +54,7 @@
 /// @name Before Save
 ///--------------------------------------
 
-/*!
+/**
  Called before an object is going to be saved. Called in a context of object lock.
  Subclasses can override this method to do any custom updates before an object gets saved.
  */
@@ -69,7 +69,7 @@
 // Extension for property methods.
 @interface PFObject ()
 
-/*!
+/**
  @returns Current object state.
  */
 @property (nonatomic, copy) PFObjectState *_state;
@@ -102,7 +102,7 @@
 - (BFTask PF_GENERIC(PFVoid) *)_validateFetchAsync NS_REQUIRES_SUPER;
 - (BFTask PF_GENERIC(PFVoid) *)_validateDeleteAsync NS_REQUIRES_SUPER;
 
-/*!
+/**
  Validate the save eventually operation with the current state.
  The result of this task is ignored. The error/cancellation/exception will prevent `saveEventually`.
 
@@ -131,12 +131,12 @@
 
 @interface PFObject (Private)
 
-/*!
+/**
  Returns the object that should be used to synchronize all internal data access.
  */
 - (NSObject *)lock;
 
-/*!
+/**
  Blocks until all outstanding operations have completed.
  */
 - (void)waitUntilFinished;
@@ -147,7 +147,7 @@
 #pragma mark - Static methods for Subclassing
 ///--------------------------------------
 
-/*!
+/**
  Unregisters a class registered using registerSubclass:
  If we ever expose thsi method publicly, we must change the underlying implementation
  to have stack behavior. Currently unregistering a custom class for a built-in will
@@ -181,7 +181,7 @@
 #pragma mark - Validations
 ///--------------------------------------
 - (void)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser;
-/*!
+/**
  Checks if Parse class name could be used to initialize a given instance of PFObject or it's subclass.
  */
 + (void)_assertValidInstanceClassName:(NSString *)className;
@@ -281,7 +281,7 @@
 #pragma mark - Subclass Helpers
 ///--------------------------------------
 
-/*!
+/**
  This method is called by -[PFObject init]; changes made to the object during this
  method will not mark the object as dirty. PFObject uses this method to to apply the
  default ACL; subclasses which override this method shold be sure to call the super
@@ -289,7 +289,7 @@
  */
 - (void)setDefaultValues;
 
-/*!
+/**
  This method allows subclasses to determine whether a default ACL should be applied
  to new instances.
  */

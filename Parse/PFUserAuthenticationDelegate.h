@@ -13,12 +13,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*!
+/**
  Provides a general interface for delegation of third party authentication with <PFUser>s.
  */
 @protocol PFUserAuthenticationDelegate <NSObject>
 
-/*!
+/**
  @abstract Called when restoring third party authentication credentials that have been serialized,
  such as session keys, user id, etc.
 

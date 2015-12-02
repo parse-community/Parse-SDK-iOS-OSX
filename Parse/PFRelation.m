@@ -207,7 +207,7 @@ static NSString *const PFRelationKeyObjects = @"objects";
              };
 }
 
-/*!
+/**
  Returns true if and only if this object was ever known to be in the relation.
  This is used for offline caching.
  */

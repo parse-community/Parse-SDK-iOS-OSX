@@ -298,7 +298,7 @@ static NSSet *protectedKeys;
     }
 }
 
-/*!
+/**
  @abstract Save localeIdentifier in the following format: [language code]-[COUNTRY CODE].
 
  @discussion The language codes are two-letter lowercase ISO language codes (such as "en") as defined by

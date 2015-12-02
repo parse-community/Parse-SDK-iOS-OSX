@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Fetch
 ///--------------------------------------
 
-/*!
+/**
  Fetches an object asynchronously.
 
  @param object       Object to fetch.
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Delete
 ///--------------------------------------
 
-/*!
+/**
  Deletes an object asynchronously.
 
  @param object       Object to fetch.

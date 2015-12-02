@@ -23,7 +23,7 @@
     return [self _hoistCommonPredicates:[self _normalizeToDNF:predicate]];
 }
 
-/*!
+/**
  Traverses over all of the subpredicates in the given predicate, calling the given blocks to
  transform any instances of NSPredicate.
  */
@@ -60,7 +60,7 @@
     return nil;
 }
 
-/*!
+/**
  Returns a predicate that is the negation of the input predicate, or throws on error.
  */
 + (NSPredicate *)_negatePredicate:(NSPredicate *)predicate {
@@ -159,7 +159,7 @@
                  }];
 }
 
-/*!
+/**
  Returns a version of the given predicate that contains no NSNotPredicateType compound predicates.
  This greatly simplifies the diversity of predicates we have to handle later in the pipeline.
  */
@@ -184,7 +184,7 @@
                  } comparisonBlock:nil];
 }
 
-/*!
+/**
  Returns a version of the given predicate that contains no NSBetweenPredicateOperatorType predicates.
  (A BETWEEN {C, D}) gets converted to (A >= C AND A <= D).
  */
@@ -233,7 +233,7 @@
                }];
 }
 
-/*!
+/**
  Returns a version of the given predicate that contains no Yoda conditions.
  A Yoda condition is one where there's a constant on the LHS, such as (3 <= X).
  The predicate returned by this method will instead have (X >= 3).
@@ -299,7 +299,7 @@
                }];
 }
 
-/*!
+/**
  Returns a version of the given predicate converted to disjunctive normal form (DNF).
  Unlike normalizeToDNF:error:, this method only accepts compound predicates, and assumes that
  removeNegation:error: has already been applied to the given predicate.
@@ -395,7 +395,7 @@
     return nil;
 }
 
-/*!
+/**
  Throws an exception if any comparison predicate inside this predicate has any modifiers, such as ANY, EVERY, etc.
  */
 + (void)assertNoPredicateModifiers:(NSPredicate *)predicate {
@@ -409,7 +409,7 @@
         }];
 }
 
-/*!
+/**
  Returns a version of the given predicate converted to disjunctive normal form (DNF),
  known colloqially as an "or of ands", the only form of query that PFQuery accepts.
  */
@@ -435,7 +435,7 @@
     return [self asOrOfAnds:(NSCompoundPredicate *)predicate];
 }
 
-/*!
+/**
  Takes a predicate like ((A AND B) OR (A AND C)) and rewrites it as the more efficient (A AND (B OR C)).
  Assumes the input predicate is already in DNF.
  // TODO: (nlutsenko): Move this logic into the server and remove it from here.
@@ -508,7 +508,7 @@
 #pragma mark - Regex
 ///--------------------------------------
 
-/*!
+/**
  This is used to create a regex string to match the input string. By using Q and E flags to match, we can do this
  without requiring super expensive rewrites, but me must be careful to escape existing \E flags in the input string.
  By replacing it with `\E\\E\Q`, the regex engine will end the old literal block, put in the user's `\E` string, and

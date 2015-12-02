@@ -15,7 +15,7 @@
 PF_OSX_UNAVAILABLE_WARNING
 PF_WATCH_UNAVAILABLE_WARNING
 
-/*!
+/**
  * The PFPaymentTransactionObserver listens to the payment queue, processes a payment by running business logic,
  * and completes the transaction. It's a complex interaction and best explained as follows:
  * 1) an observer object is created and added to the payment queue, typically before IAP happens (but not necessarily),

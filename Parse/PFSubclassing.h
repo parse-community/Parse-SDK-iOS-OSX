@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*!
+/**
  If a subclass of <PFObject> conforms to `PFSubclassing` and calls <registerSubclass>,
  Parse framework will be able to use that class as the native class for a Parse cloud object.
 
@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @protocol PFSubclassing
 
-/*!
+/**
  @abstract Constructs an object of the most specific class known to implement <parseClassName>.
 
  @discussion This method takes care to help <PFObject> subclasses be subclassed themselves.
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)object;
 
-/*!
+/**
  @abstract Creates a reference to an existing PFObject for use in creating associations between PFObjects.
 
  @discussion Calling <PFObject.dataAvailable> on this object will return `NO`
@@ -48,19 +48,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)objectWithoutDataWithObjectId:(nullable NSString *)objectId;
 
-/*!
+/**
  @abstract The name of the class as seen in the REST API.
  */
 + (NSString *)parseClassName;
 
-/*!
+/**
  @abstract Create a query which returns objects of this type.
 
  @discussion A default implementation is provided by <PFObject> which should always be sufficient.
  */
 + (nullable PFQuery *)query;
 
-/*!
+/**
  @abstract Returns a query for objects of this type with a given predicate.
 
  @discussion A default implementation is provided by <PFObject> which should always be sufficient.
@@ -73,7 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable PFQuery *)queryWithPredicate:(nullable NSPredicate *)predicate;
 
-/*!
+/**
  @abstract Lets Parse know this class should be used to instantiate all objects with class type <parseClassName>.
 
  @warning This method must be called before <[Parse setApplicationId:clientKey:]>

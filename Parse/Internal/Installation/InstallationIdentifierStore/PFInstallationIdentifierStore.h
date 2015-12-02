@@ -30,7 +30,7 @@
 /// @name Accessors
 ///--------------------------------------
 
-/*!
+/**
  Returns a cached installationId or creates a new one, saves it to disk and returns it.
  */
 - (BFTask PF_GENERIC(NSString *)*)getInstallationIdentifierAsync;
@@ -39,7 +39,7 @@
 /// @name Clear
 ///--------------------------------------
 
-/*!
+/**
  Clears installation identifier on disk and in-memory.
  */
 - (BFTask *)clearInstallationIdentifierAsync;

@@ -17,19 +17,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithStatement:(PFSQLiteStatement *)statement queue:(dispatch_queue_t)queue;
 
-/*!
+/**
  Move current result to next row. Returns true if next result exists. False if current result
  is the end of result set.
  */
 - (BOOL)next;
 
-/*!
+/**
  Move the current result to next row, and returns the raw SQLite return code for the cursor.
  Useful for detecting end of cursor vs. error.
  */
 - (int)step;
 
-/*!
+/**
  Closes the database result.
  */
 - (BOOL)close;

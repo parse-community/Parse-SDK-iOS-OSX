@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Data Commands
 ///--------------------------------------
 
-/*!
+/**
  Run command.
 
  @param command   Command to run.
@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask *)runCommandAsync:(PFRESTCommand *)command
                 withOptions:(PFCommandRunningOptions)options;
 
-/*!
+/**
  Run command.
 
  @param command           Command to run.

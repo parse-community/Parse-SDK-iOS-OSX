@@ -31,7 +31,7 @@
 /// @name Cloud Functions
 ///--------------------------------------
 
-/*!
+/**
  Calls a Cloud Code function and returns a result of it's execution.
 
  @param functionName Function name to call.

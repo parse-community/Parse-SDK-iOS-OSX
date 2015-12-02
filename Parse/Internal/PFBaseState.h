@@ -31,7 +31,7 @@ typedef NS_ENUM(uint8_t, PFPropertyInfoAssociationType) {
 
 @protocol PFBaseStateSubclass <NSObject>
 
-/*!
+/**
  This is the list of properties that should be used automatically for the methods implemented by PFBaseState.
 
  It should be a dictionary in the format of @{ @"<#property name#>": [PFPropertyAttributes attributes] }
@@ -43,7 +43,7 @@ typedef NS_ENUM(uint8_t, PFPropertyInfoAssociationType) {
 
 @end
 
-/*!
+/**
  Shared base class for all state objects.
  Implements -init, -description, -debugDescription, -hash, -isEqual:, -compareTo:, etc. for you.
  */
@@ -54,7 +54,7 @@ typedef NS_ENUM(uint8_t, PFPropertyInfoAssociationType) {
 
 - (NSComparisonResult)compare:(PFBaseState *)other;
 
-/*!
+/**
  Returns a dictionary representation of this object.
 
  Essentially, it takes the values for the keys of this object, and stuffs them in the dictionary.

@@ -295,7 +295,7 @@ static BOOL revocableSessionEnabled_;
     }
 }
 
-/*!
+/**
  Copies special PFUser fields from another user.
  */
 - (PFObject *)mergeFromObject:(PFUser *)other {

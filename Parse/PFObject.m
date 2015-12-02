@@ -58,7 +58,7 @@
 #import "ParseInternal.h"
 #import "Parse_Private.h"
 
-/*!
+/**
  Checks if an object can be used as a value for PFObject.
  */
 static void PFObjectAssertValueIsKindOfValidClass(id object) {
@@ -113,14 +113,14 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self subclassingController] unregisterSubclass:subclass];
 }
 
-/*!
+/**
  Returns the object that should be used to synchronize all internal data access.
  */
 - (NSObject *)lock {
     return lock;
 }
 
-/*!
+/**
  Blocks until all outstanding operations have completed.
  */
 - (void)waitUntilFinished {
@@ -129,7 +129,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }] waitForResult:nil];
 }
 
-/*!
+/**
  For operations that need to be put into multiple objects queues, like saveAll
  and fetchAll, this method does the nasty work.
  @param taskStart - A block that is called when all of the objects are ready.
@@ -193,7 +193,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Children helpers
 ///--------------------------------------
 
-/*!
+/**
  Finds all of the objects that are reachable from child, including child itself,
  and adds them to the given mutable array.  It traverses arrays and json objects.
  @param node  An kind object to search for children.
@@ -725,7 +725,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return;
 }
 
-/*!
+/**
  Checks if Parse class name could be used to initialize a given instance of PFObject or it's subclass.
  */
 + (void)_assertValidInstanceClassName:(NSString *)className {
@@ -792,7 +792,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return result;
 }
 
-/*!
+/**
  Creates a PFObject from a dictionary object.
 
  @param dictionary Undecoded dictionary.
@@ -815,7 +815,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return object;
 }
 
-/*!
+/**
  When the app was previously a non-LDS app and want to enable LDS, currentUser and currentInstallation
  will be discarded if we don't migrate them. This is a helper method to migrate user/installation
  from disk to pin.
@@ -828,7 +828,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return [self _migrateObjectInBackgroundFromFile:fileName toPin:pinName usingMigrationBlock:nil];
 }
 
-/*!
+/**
  When the app was previously a non-LDS app and want to enable LDS, currentUser and currentInstallation
  will be discarded if we don't migrate them. This is a helper method to migrate user/installation
  from disk to pin.
@@ -873,7 +873,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - REST operations
 ///--------------------------------------
 
-/*!
+/**
  Encodes parse object into NSDictionary suitable for persisting into LDS.
  */
 - (NSDictionary *)RESTDictionaryWithObjectEncoder:(PFEncoder *)objectEncoder
@@ -1055,7 +1055,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Eventually Helper
 ///--------------------------------------
 
-/*!
+/**
  Enqueues saveEventually operation asynchronously.
 
  @returns A task which result is a saveEventually task.
@@ -1118,7 +1118,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 }
 
 
-/*!
+/**
  Enqueues the saveEventually PFOperationSet in PFObject taskQueue
  */
 - (BFTask *)_enqueueSaveEventuallyOperationAsync:(PFOperationSet *)operationSet {
@@ -1155,7 +1155,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }
 }
 
-/*!
+/**
  performOperation:forKey: is like setObject:forKey, but instead of just taking a
  new value, it takes a PFFieldOperation that modifies the value.
  */
@@ -1182,7 +1182,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return NO;
 }
 
-/*!
+/**
  Returns the set of PFFieldOperations that will be sent in the next save.
  */
 - (PFOperationSet *)unsavedChanges {
@@ -1191,7 +1191,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }
 }
 
-/*!
+/**
  @returns YES if there's unsaved changes in this object. This complements ivar `dirty` for `isDirty` check.
  */
 - (BOOL)_hasChanges {
@@ -1200,7 +1200,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }
 }
 
-/*!
+/**
  @returns YES if this PFObject has operations in operationSetQueue that haven't been completed yet,
  NO if there are no operations in the operationSetQueue.
  */

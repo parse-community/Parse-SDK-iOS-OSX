@@ -49,7 +49,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*!
+/**
  The `Parse` class contains static functions that handle global configuration for the Parse framework.
  */
 @interface Parse : NSObject
@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Connecting to Parse
 ///--------------------------------------
 
-/*!
+/**
  @abstract Sets the applicationId and clientKey of your application.
 
  @param applicationId The application id of your Parse application.
@@ -66,12 +66,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey;
 
-/*!
+/**
  @abstract The current application id that was used to configure Parse framework.
  */
 + (NSString *)getApplicationId;
 
-/*!
+/**
  @abstract The current client key that was used to configure Parse framework.
  */
 + (NSString *)getClientKey;
@@ -80,13 +80,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Enabling Local Datastore
 ///--------------------------------------
 
-/*!
+/**
  @abstract Enable pinning in your application. This must be called before your application can use
  pinning. The recommended way is to call this method before `setApplicationId:clientKey:`.
  */
 + (void)enableLocalDatastore PF_TV_UNAVAILABLE;
 
-/*!
+/**
  @abstract Flag that indicates whether Local Datastore is enabled.
 
  @returns `YES` if Local Datastore is enabled, otherwise `NO`.
@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Enabling Extensions Data Sharing
 ///--------------------------------------
 
-/*!
+/**
  @abstract Enables data sharing with an application group identifier.
 
  @discussion After enabling - Local Datastore, `currentUser`, `currentInstallation` and all eventually commands
@@ -109,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)enableDataSharingWithApplicationGroupIdentifier:(NSString *)groupIdentifier PF_EXTENSION_UNAVAILABLE("Use `enableDataSharingWithApplicationGroupIdentifier:containingApplication:`.") PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
 
-/*!
+/**
  @abstract Enables data sharing with an application group identifier.
 
  @discussion After enabling - Local Datastore, `currentUser`, `currentInstallation` and all eventually commands
@@ -124,14 +124,14 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)enableDataSharingWithApplicationGroupIdentifier:(NSString *)groupIdentifier
                                   containingApplication:(NSString *)bundleIdentifier PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
 
-/*!
+/**
  @abstract Application Group Identifier for Data Sharing
 
  @returns `NSString` value if data sharing is enabled, otherwise `nil`.
  */
 + (NSString *)applicationGroupIdentifierForDataSharing PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
 
-/*!
+/**
  @abstract Containing application bundle identifier.
 
  @returns `NSString` value if data sharing is enabled, otherwise `nil`.
@@ -144,7 +144,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Configuring UI Settings
 ///--------------------------------------
 
-/*!
+/**
  @abstract Set whether to show offline messages when using a Parse view or view controller related classes.
 
  @param enabled Whether a `UIAlertView` should be shown when the device is offline
@@ -154,7 +154,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)offlineMessagesEnabled:(BOOL)enabled PARSE_DEPRECATED("This method is deprecated and has no effect.");
 
-/*!
+/**
  @abstract Set whether to show an error message when using a Parse view or view controller related classes
  and a Parse error was generated via a query.
 
@@ -170,7 +170,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Logging
 ///--------------------------------------
 
-/*!
+/**
  @abstract Sets the level of logging to display.
 
  @discussion By default:
@@ -182,7 +182,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)setLogLevel:(PFLogLevel)logLevel;
 
-/*!
+/**
  @abstract Log level that will be displayed.
 
  @discussion By default:

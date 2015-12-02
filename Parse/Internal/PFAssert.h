@@ -12,7 +12,7 @@
 #ifndef Parse_PFAssert_h
 #define Parse_PFAssert_h
 
-/*!
+/**
  Raises an `NSInvalidArgumentException` if the `condition` does not pass.
  Use `description` to supply the way to fix the exception.
  */
@@ -24,7 +24,7 @@
         } \
     } while(0)
 
-/*!
+/**
  Raises an `NSRangeException` if the `condition` does not pass.
  Use `description` to supply the way to fix the exception.
  */
@@ -36,7 +36,7 @@
     } \
 } while(0)
 
-/*!
+/**
  Raises an `NSInternalInconsistencyException` if the `condition` does not pass.
  Use `description` to supply the way to fix the exception.
  */
@@ -48,7 +48,7 @@
         } \
     } while(0)
 
-/*!
+/**
  Always raises `NSInternalInconsistencyException` with details
  about the method used and class that received the message
  */
@@ -61,7 +61,7 @@ do { \
     return nil; \
 } while (0)
 
-/*!
+/**
  Raises `NSInternalInconsistencyException` if current thread is not main thread.
  */
 #define PFAssertMainThread() \
@@ -69,7 +69,7 @@ do { \
     PFConsistencyAssert([NSThread isMainThread], @"This method must be called on the main thread."); \
 } while (0)
 
-/*!
+/**
  Raises `NSInternalInconsistencyException` if current thread is not the required one.
  */
 #define PFAssertIsOnThread(thread) \
@@ -78,7 +78,7 @@ do { \
                         @"This method must be called only on thread: %@.", thread); \
 } while (0)
 
-/*!
+/**
  Raises `NSInternalInconsistencyException` if the current queue
  is not the same as the queue provided.
  Make sure you mark the queue first via `PFMarkDispatchQueue`

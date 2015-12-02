@@ -23,7 +23,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 @class PFQuery PF_GENERIC(PFGenericObject : PFObject *);
 @protocol PFUserAuthenticationDelegate;
 
-/*!
+/**
  The `PFUser` class is a local representation of a user persisted to the Parse Data.
  This class is a subclass of a <PFObject>, and retains the same functionality of a <PFObject>,
  but also extends it with various user specific methods, like authentication, signing up, and validation uniqueness.
@@ -38,28 +38,28 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /// @name Accessing the Current User
 ///--------------------------------------
 
-/*!
+/**
  @abstract Gets the currently logged in user from disk and returns an instance of it.
 
  @returns Returns a `PFUser` that is the currently logged in user. If there is none, returns `nil`.
  */
 + (nullable instancetype)currentUser;
 
-/*!
+/**
  @abstract The session token for the `PFUser`.
 
  @discussion This is set by the server upon successful authentication.
  */
 @property (nullable, nonatomic, copy, readonly) NSString *sessionToken;
 
-/*!
+/**
  @abstract Whether the `PFUser` was just created from a request.
 
  @discussion This is only set after a Facebook or Twitter login.
  */
 @property (nonatomic, assign, readonly) BOOL isNew;
 
-/*!
+/**
  @abstract Whether the user is an authenticated object for the device.
 
  @discussion An authenticated `PFUser` is one that is obtained via a <signUp> or <logIn> method.
@@ -71,14 +71,14 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /// @name Creating a New User
 ///--------------------------------------
 
-/*!
+/**
  @abstract Creates a new `PFUser` object.
 
  @returns Returns a new `PFUser` object.
  */
 + (instancetype)user;
 
-/*!
+/**
  @abstract Enables automatic creation of anonymous users.
 
  @discussion After calling this method, <currentUser> will always have a value.
@@ -90,7 +90,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 + (void)enableAutomaticUser;
 
-/*!
+/**
  @abstract The username for the `PFUser`.
  */
 @property (nullable, nonatomic, strong) NSString *username;
@@ -103,12 +103,12 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 @property (nullable, nonatomic, strong) NSString *password;
 
-/*!
+/**
  @abstract The email for the `PFUser`.
  */
 @property (nullable, nonatomic, strong) NSString *email;
 
-/*!
+/**
  @abstract Signs up the user *synchronously*.
 
  @discussion This will also enforce that the username isn't already taken.
@@ -119,7 +119,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 - (BOOL)signUp PF_SWIFT_UNAVAILABLE;
 
-/*!
+/**
  @abstract Signs up the user *synchronously*.
 
  @discussion This will also enforce that the username isn't already taken.
@@ -132,7 +132,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 - (BOOL)signUp:(NSError **)error;
 
-/*!
+/**
  @abstract Signs up the user *asynchronously*.
 
  @discussion This will also enforce that the username isn't already taken.
@@ -143,7 +143,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 - (BFTask PF_GENERIC(NSNumber *)*)signUpInBackground;
 
-/*!
+/**
  @abstract Signs up the user *asynchronously*.
 
  @discussion This will also enforce that the username isn't already taken.
@@ -155,7 +155,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 - (void)signUpInBackgroundWithBlock:(nullable PFBooleanResultBlock)block;
 
-/*!
+/**
  @abstract Signs up the user *asynchronously*.
 
  @discussion This will also enforce that the username isn't already taken.
@@ -174,7 +174,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /// @name Logging In
 ///--------------------------------------
 
-/*!
+/**
  @abstract Makes a *synchronous* request to login a user with specified credentials.
 
  @discussion Returns an instance of the successfully logged in `PFUser`.
@@ -189,7 +189,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 + (nullable instancetype)logInWithUsername:(NSString *)username
                                   password:(NSString *)password PF_SWIFT_UNAVAILABLE;
 
-/*!
+/**
  @abstract Makes a *synchronous* request to login a user with specified credentials.
 
  @discussion Returns an instance of the successfully logged in `PFUser`.
@@ -206,7 +206,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
                                   password:(NSString *)password
                                      error:(NSError **)error;
 
-/*!
+/**
  @abstract Makes an *asynchronous* request to login a user with specified credentials.
 
  @discussion Returns an instance of the successfully logged in `PFUser`.
@@ -220,7 +220,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 + (BFTask PF_GENERIC(__kindof PFUser *)*)logInWithUsernameInBackground:(NSString *)username
                                                               password:(NSString *)password;
 
-/*!
+/**
  @abstract Makes an *asynchronous* request to login a user with specified credentials.
 
  @discussion Returns an instance of the successfully logged in `PFUser`.
@@ -237,7 +237,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
                                target:(nullable id)target
                              selector:(nullable SEL)selector;
 
-/*!
+/**
  @abstract Makes an *asynchronous* request to log in a user with specified credentials.
 
  @discussion Returns an instance of the successfully logged in `PFUser`.
@@ -256,7 +256,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /// @name Becoming a User
 ///--------------------------------------
 
-/*!
+/**
  @abstract Makes a *synchronous* request to become a user with the given session token.
 
  @discussion Returns an instance of the successfully logged in `PFUser`.
@@ -269,7 +269,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 + (nullable instancetype)become:(NSString *)sessionToken PF_SWIFT_UNAVAILABLE;
 
-/*!
+/**
  @abstract Makes a *synchronous* request to become a user with the given session token.
 
  @discussion Returns an instance of the successfully logged in `PFUser`.
@@ -283,7 +283,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 + (nullable instancetype)become:(NSString *)sessionToken error:(NSError **)error;
 
-/*!
+/**
  @abstract Makes an *asynchronous* request to become a user with the given session token.
 
  @discussion Returns an instance of the successfully logged in `PFUser`.
@@ -295,7 +295,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 + (BFTask PF_GENERIC(__kindof PFUser *)*)becomeInBackground:(NSString *)sessionToken;
 
-/*!
+/**
  @abstract Makes an *asynchronous* request to become a user with the given session token.
 
  @discussion Returns an instance of the successfully logged in `PFUser`. This also caches the user locally
@@ -307,7 +307,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 + (void)becomeInBackground:(NSString *)sessionToken block:(nullable PFUserResultBlock)block;
 
-/*!
+/**
  @abstract Makes an *asynchronous* request to become a user with the given session token.
 
  @discussion Returns an instance of the successfully logged in `PFUser`. This also caches the user locally
@@ -326,7 +326,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /// @name Revocable Session
 ///--------------------------------------
 
-/*!
+/**
  @abstract Enables revocable sessions and migrates the currentUser session token to use revocable session if needed.
 
  @discussion This method is required if you want to use <PFSession> APIs
@@ -338,7 +338,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 + (BFTask *)enableRevocableSessionInBackground;
 
-/*!
+/**
  @abstract Enables revocable sessions and upgrades the currentUser session token to use revocable session if needed.
 
  @discussion This method is required if you want to use <PFSession> APIs
@@ -353,12 +353,12 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /// @name Logging Out
 ///--------------------------------------
 
-/*!
+/**
  @abstract *Synchronously* logs out the currently logged in user on disk.
  */
 + (void)logOut;
 
-/*!
+/**
  @abstract *Asynchronously* logs out the currently logged in user.
 
  @discussion This will also remove the session from disk, log out of linked services
@@ -369,7 +369,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 + (BFTask *)logOutInBackground;
 
-/*!
+/**
  @abstract *Asynchronously* logs out the currently logged in user.
 
  @discussion This will also remove the session from disk, log out of linked services
@@ -384,7 +384,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /// @name Requesting a Password Reset
 ///--------------------------------------
 
-/*!
+/**
  @abstract *Synchronously* Send a password reset request for a specified email.
 
  @discussion If a user account exists with that email, an email will be sent to that address
@@ -396,7 +396,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 + (BOOL)requestPasswordResetForEmail:(NSString *)email PF_SWIFT_UNAVAILABLE;
 
-/*!
+/**
  @abstract *Synchronously* send a password reset request for a specified email and sets an error object.
 
  @discussion If a user account exists with that email, an email will be sent to that address
@@ -408,7 +408,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 + (BOOL)requestPasswordResetForEmail:(NSString *)email error:(NSError **)error;
 
-/*!
+/**
  @abstract Send a password reset request asynchronously for a specified email and sets an
  error object. If a user account exists with that email, an email will be sent to
  that address with instructions on how to reset their password.
@@ -417,7 +417,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 + (BFTask PF_GENERIC(NSNumber *)*)requestPasswordResetForEmailInBackground:(NSString *)email;
 
-/*!
+/**
  @abstract Send a password reset request *asynchronously* for a specified email.
 
  @discussion If a user account exists with that email, an email will be sent to that address
@@ -430,7 +430,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 + (void)requestPasswordResetForEmailInBackground:(NSString *)email
                                            block:(nullable PFBooleanResultBlock)block;
 
-/*!
+/**
  @abstract Send a password reset request *asynchronously* for a specified email and sets an error object.
 
  @discussion If a user account exists with that email, an email will be sent to that address
@@ -451,7 +451,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /// @name Third-party Authentication
 ///--------------------------------------
 
-/*!
+/**
  @abstract Registers a third party authentication delegate.
 
  @note This method shouldn't be invoked directly unless developing a third party authentication library.
@@ -462,7 +462,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 + (void)registerAuthenticationDelegate:(id<PFUserAuthenticationDelegate>)delegate forAuthType:(NSString *)authType;
 
-/*!
+/**
  @abstract Logs in a user with third party authentication credentials.
 
  @note This method shouldn't be invoked directly unless developing a third party authentication library.
@@ -476,7 +476,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 + (BFTask PF_GENERIC(PFUser *)*)logInWithAuthTypeInBackground:(NSString *)authType
                                                      authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;
 
-/*!
+/**
  @abstract Links this user to a third party authentication library.
 
  @note This method shouldn't be invoked directly unless developing a third party authentication library.
@@ -490,7 +490,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 - (BFTask PF_GENERIC(NSNumber *)*)linkWithAuthTypeInBackground:(NSString *)authType
                                                       authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;
 
-/*!
+/**
  @abstract Unlinks this user from a third party authentication library.
 
  @note This method shouldn't be invoked directly unless developing a third party authentication library.
@@ -502,7 +502,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 - (BFTask PF_GENERIC(NSNumber *)*)unlinkWithAuthTypeInBackground:(NSString *)authType;
 
-/*!
+/**
  @abstract Indicates whether this user is linked with a third party authentication library of a specific type.
 
  @note This method shouldn't be invoked directly unless developing a third party authentication library.

@@ -17,7 +17,7 @@ extern NSString *const PFAnonymousUserAuthenticationType;
 
 @interface PFAnonymousAuthenticationProvider : NSObject <PFUserAuthenticationDelegate>
 
-/*!
+/**
  Gets auth data with a fresh UUID.
  */
 @property (nonatomic, copy, readonly) NSDictionary *authData;

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *__nullable error);
 
-/*!
+/**
  `PFGeoPoint` may be used to embed a latitude / longitude point as the value for a key in a <PFObject>.
  It could be used to perform queries in a geospatial manner using <[PFQuery whereKey:nearGeoPoint:]>.
 
@@ -28,14 +28,14 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 /// @name Creating a Geo Point
 ///--------------------------------------
 
-/*!
+/**
  @abstract Create a PFGeoPoint object. Latitude and longitude are set to `0.0`.
 
  @returns Returns a new `PFGeoPoint`.
  */
 + (instancetype)geoPoint;
 
-/*!
+/**
  @abstract Creates a new `PFGeoPoint` object for the given `CLLocation`, set to the location's coordinates.
 
  @param location Instace of `CLLocation`, with set latitude and longitude.
@@ -44,7 +44,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
  */
 + (instancetype)geoPointWithLocation:(nullable CLLocation *)location;
 
-/*!
+/**
  @abstract Create a new `PFGeoPoint` object with the specified latitude and longitude.
 
  @param latitude Latitude of point in degrees.
@@ -54,7 +54,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
  */
 + (instancetype)geoPointWithLatitude:(double)latitude longitude:(double)longitude;
 
-/*!
+/**
  @abstract Fetches the current device location and executes a block with a new `PFGeoPoint` object.
 
  @param resultBlock A block which takes the newly created `PFGeoPoint` as an argument.
@@ -66,12 +66,12 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 /// @name Controlling Position
 ///--------------------------------------
 
-/*!
+/**
  @abstract Latitude of point in degrees. Valid range is from `-90.0` to `90.0`.
  */
 @property (nonatomic, assign) double latitude;
 
-/*!
+/**
  @abstract Longitude of point in degrees. Valid range is from `-180.0` to `180.0`.
  */
 @property (nonatomic, assign) double longitude;
@@ -80,7 +80,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 /// @name Calculating Distance
 ///--------------------------------------
 
-/*!
+/**
  @abstract Get distance in radians from this point to specified point.
 
  @param point `PFGeoPoint` that represents the location of other point.
@@ -89,7 +89,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
  */
 - (double)distanceInRadiansTo:(nullable PFGeoPoint *)point;
 
-/*!
+/**
  @abstract Get distance in miles from this point to specified point.
 
  @param point `PFGeoPoint` that represents the location of other point.
@@ -98,7 +98,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
  */
 - (double)distanceInMilesTo:(nullable PFGeoPoint *)point;
 
-/*!
+/**
  @abstract Get distance in kilometers from this point to specified point.
 
  @param point `PFGeoPoint` that represents the location of other point.

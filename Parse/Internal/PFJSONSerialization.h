@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PFJSONSerialization : NSObject
 
-/*!
+/**
  The object passed in must be one of:
  * NSString
  * NSNumber
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSData *)dataFromJSONObject:(id)object;
 
-/*!
+/**
  The object passed in must be one of:
  * NSString
  * NSNumber
@@ -37,19 +37,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSString *)stringFromJSONObject:(id)object;
 
-/*!
+/**
  Takes a JSON string and returns the NSDictionaries and NSArrays in it.
  You should still call decodeObject if you want Parse types.
  */
 + (nullable id)JSONObjectFromData:(NSData *)data;
 
-/*!
+/**
  Takes a JSON string and returns the NSDictionaries and NSArrays in it.
  You should still call decodeObject if you want Parse types.
  */
 + (nullable id)JSONObjectFromString:(NSString *)string;
 
-/*!
+/**
  @abstract Takes a file path to json file and returns the NSDictionaries and NSArrays in it.
 
  @description You should still call decodeObject if you want Parse types.

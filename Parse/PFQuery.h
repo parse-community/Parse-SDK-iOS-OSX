@@ -18,7 +18,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*!
+/**
  The `PFQuery` class defines a query that is used to query for <PFObject>s.
  */
 @interface PFQuery PF_GENERIC(PFGenericObject : PFObject *) : NSObject<NSCopying>
@@ -33,14 +33,14 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Creating a Query for a Class
 ///--------------------------------------
 
-/*!
+/**
  @abstract Initializes the query with a class name.
 
  @param className The class name.
  */
 - (instancetype)initWithClassName:(NSString *)className;
 
-/*!
+/**
  @abstract Returns a `PFQuery` for a given class.
 
  @param className The class to query on.
@@ -49,7 +49,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 + (instancetype)queryWithClassName:(NSString *)className;
 
-/*!
+/**
  @abstract Creates a PFQuery with the constraints given by predicate.
 
  @discussion The following types of predicates are supported:
@@ -73,7 +73,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 + (instancetype)queryWithClassName:(NSString *)className predicate:(nullable NSPredicate *)predicate;
 
-/*!
+/**
  The class name to query for.
  */
 @property (nonatomic, strong) NSString *parseClassName;
@@ -82,7 +82,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Adding Basic Constraints
 ///--------------------------------------
 
-/*!
+/**
  @abstract Make the query include PFObjects that have a reference stored at the provided key.
 
  @discussion This has an effect similar to a join.  You can use dot notation to specify which fields in
@@ -94,7 +94,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)includeKey:(NSString *)key;
 
-/*!
+/**
  @abstract Make the query restrict the fields of the returned <PFObject>s to include only the provided keys.
 
  @discussion If this is called multiple times, then all of the keys specified in each of the calls will be included.
@@ -105,7 +105,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)selectKeys:(NSArray PF_GENERIC(NSString *)*)keys;
 
-/*!
+/**
  @abstract Add a constraint that requires a particular key exists.
 
  @param key The key that should exist.
@@ -114,7 +114,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKeyExists:(NSString *)key;
 
-/*!
+/**
  @abstract Add a constraint that requires a key not exist.
 
  @param key The key that should not exist.
@@ -123,7 +123,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKeyDoesNotExist:(NSString *)key;
 
-/*!
+/**
  @abstract Add a constraint to the query that requires a particular key's object to be equal to the provided object.
 
  @param key The key to be constrained.
@@ -133,7 +133,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKey:(NSString *)key equalTo:(id)object;
 
-/*!
+/**
  @abstract Add a constraint to the query that requires a particular key's object to be less than the provided object.
 
  @param key The key to be constrained.
@@ -143,7 +143,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKey:(NSString *)key lessThan:(id)object;
 
-/*!
+/**
  @abstract Add a constraint to the query that requires a particular key's object
  to be less than or equal to the provided object.
 
@@ -154,7 +154,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKey:(NSString *)key lessThanOrEqualTo:(id)object;
 
-/*!
+/**
  @abstract Add a constraint to the query that requires a particular key's object
  to be greater than the provided object.
 
@@ -165,7 +165,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKey:(NSString *)key greaterThan:(id)object;
 
-/*!
+/**
  @abstract Add a constraint to the query that requires a particular key's
  object to be greater than or equal to the provided object.
 
@@ -176,7 +176,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKey:(NSString *)key greaterThanOrEqualTo:(id)object;
 
-/*!
+/**
  @abstract Add a constraint to the query that requires a particular key's object
  to be not equal to the provided object.
 
@@ -187,7 +187,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKey:(NSString *)key notEqualTo:(id)object;
 
-/*!
+/**
  @abstract Add a constraint to the query that requires a particular key's object
  to be contained in the provided array.
 
@@ -198,7 +198,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKey:(NSString *)key containedIn:(NSArray *)array;
 
-/*!
+/**
  @abstract Add a constraint to the query that requires a particular key's object
  not be contained in the provided array.
 
@@ -209,7 +209,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKey:(NSString *)key notContainedIn:(NSArray *)array;
 
-/*!
+/**
  @abstract Add a constraint to the query that requires a particular key's array
  contains every element of the provided array.
 
@@ -224,7 +224,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Adding Location Constraints
 ///--------------------------------------
 
-/*!
+/**
  @abstract Add a constraint to the query that requires a particular key's coordinates (specified via <PFGeoPoint>)
  be near a reference point.
 
@@ -238,7 +238,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKey:(NSString *)key nearGeoPoint:(PFGeoPoint *)geopoint;
 
-/*!
+/**
  @abstract Add a constraint to the query that requires a particular key's coordinates (specified via <PFGeoPoint>)
  be near a reference point and within the maximum distance specified (in miles).
 
@@ -255,7 +255,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
             nearGeoPoint:(PFGeoPoint *)geopoint
              withinMiles:(double)maxDistance;
 
-/*!
+/**
  @abstract Add a constraint to the query that requires a particular key's coordinates (specified via <PFGeoPoint>)
  be near a reference point and within the maximum distance specified (in kilometers).
 
@@ -272,7 +272,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
             nearGeoPoint:(PFGeoPoint *)geopoint
         withinKilometers:(double)maxDistance;
 
-/*!
+/**
  Add a constraint to the query that requires a particular key's coordinates (specified via <PFGeoPoint>) be near
  a reference point and within the maximum distance specified (in radians).  Distance is calculated based on
  angular distance on a sphere.  Results will be sorted by distance (nearest to farthest) from the reference point.
@@ -287,7 +287,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
             nearGeoPoint:(PFGeoPoint *)geopoint
            withinRadians:(double)maxDistance;
 
-/*!
+/**
  @abstract Add a constraint to the query that requires a particular key's coordinates (specified via <PFGeoPoint>) be
  contained within a given rectangular geographic bounding box.
 
@@ -303,7 +303,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Adding String Constraints
 ///--------------------------------------
 
-/*!
+/**
  @abstract Add a regular expression constraint for finding string values that match the provided regular expression.
 
  @warning This may be slow for large datasets.
@@ -315,7 +315,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKey:(NSString *)key matchesRegex:(NSString *)regex;
 
-/*!
+/**
  @abstract Add a regular expression constraint for finding string values that match the provided regular expression.
 
  @warning This may be slow for large datasets.
@@ -332,7 +332,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
             matchesRegex:(NSString *)regex
                modifiers:(nullable NSString *)modifiers;
 
-/*!
+/**
  @abstract Add a constraint for finding string values that contain a provided substring.
 
  @warning This will be slow for large datasets.
@@ -344,7 +344,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKey:(NSString *)key containsString:(nullable NSString *)substring;
 
-/*!
+/**
  @abstract Add a constraint for finding string values that start with a provided prefix.
 
  @discussion This will use smart indexing, so it will be fast for large datasets.
@@ -356,7 +356,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKey:(NSString *)key hasPrefix:(nullable NSString *)prefix;
 
-/*!
+/**
  @abstract Add a constraint for finding string values that end with a provided suffix.
 
  @warning This will be slow for large datasets.
@@ -372,7 +372,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Adding Subqueries
 ///--------------------------------------
 
-/*!
+/**
  Returns a `PFQuery` that is the `or` of the passed in queries.
 
  @param queries The list of queries to or together.
@@ -381,7 +381,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 + (instancetype)orQueryWithSubqueries:(NSArray PF_GENERIC(PFQuery *)*)queries;
 
-/*!
+/**
  @abstract Adds a constraint that requires that a key's value matches a value in another key
  in objects returned by a sub query.
 
@@ -395,7 +395,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
               matchesKey:(NSString *)otherKey
                  inQuery:(PFQuery *)query;
 
-/*!
+/**
  @abstract Adds a constraint that requires that a key's value `NOT` match a value in another key
  in objects returned by a sub query.
 
@@ -409,7 +409,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
          doesNotMatchKey:(NSString *)otherKey
                  inQuery:(PFQuery *)query;
 
-/*!
+/**
  @abstract Add a constraint that requires that a key's value matches a `PFQuery` constraint.
 
  @warning This only works where the key's values are <PFObject>s or arrays of <PFObject>s.
@@ -421,7 +421,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)whereKey:(NSString *)key matchesQuery:(PFQuery *)query;
 
-/*!
+/**
  @abstract Add a constraint that requires that a key's value to not match a `PFQuery` constraint.
 
  @warning This only works where the key's values are <PFObject>s or arrays of <PFObject>s.
@@ -437,7 +437,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Sorting
 ///--------------------------------------
 
-/*!
+/**
  @abstract Sort the results in *ascending* order with the given key.
 
  @param key The key to order by.
@@ -446,7 +446,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)orderByAscending:(NSString *)key;
 
-/*!
+/**
  @abstract Additionally sort in *ascending* order by the given key.
 
  @discussion The previous keys provided will precedence over this key.
@@ -455,7 +455,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)addAscendingOrder:(NSString *)key;
 
-/*!
+/**
  @abstract Sort the results in *descending* order with the given key.
 
  @param key The key to order by.
@@ -464,7 +464,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)orderByDescending:(NSString *)key;
 
-/*!
+/**
  @abstract Additionally sort in *descending* order by the given key.
 
  @discussion The previous keys provided will precedence over this key.
@@ -473,7 +473,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)addDescendingOrder:(NSString *)key;
 
-/*!
+/**
  @abstract Sort the results using a given sort descriptor.
 
  @warning If a `sortDescriptor` has custom `selector` or `comparator` - they aren't going to be used.
@@ -484,7 +484,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)orderBySortDescriptor:(NSSortDescriptor *)sortDescriptor;
 
-/*!
+/**
  @abstract Sort the results using a given array of sort descriptors.
 
  @warning If a `sortDescriptor` has custom `selector` or `comparator` - they aren't going to be used.
@@ -499,7 +499,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Getting Objects by ID
 ///--------------------------------------
 
-/*!
+/**
  @abstract Returns a <PFObject> with a given class and id.
 
  @param objectClass The class name for the object that is being requested.
@@ -510,7 +510,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 + (nullable PFGenericObject)getObjectOfClass:(NSString *)objectClass
                                     objectId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
 
-/*!
+/**
  @abstract Returns a <PFObject> with a given class and id and sets an error if necessary.
 
  @param objectClass The class name for the object that is being requested.
@@ -523,7 +523,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
                                     objectId:(NSString *)objectId
                                        error:(NSError **)error;
 
-/*!
+/**
  @abstract Returns a <PFObject> with the given id.
 
  @warning This method mutates the query.
@@ -535,7 +535,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (nullable PFGenericObject)getObjectWithId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
 
-/*!
+/**
  @abstract Returns a <PFObject> with the given id and sets an error if necessary.
 
  @warning This method mutates the query.
@@ -548,7 +548,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (nullable PFGenericObject)getObjectWithId:(NSString *)objectId error:(NSError **)error;
 
-/*!
+/**
  @abstract Gets a <PFObject> asynchronously and calls the given block with the result.
 
  @warning This method mutates the query.
@@ -560,7 +560,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (BFTask PF_GENERIC(PFGenericObject) *)getObjectInBackgroundWithId:(NSString *)objectId;
 
-/*!
+/**
  @abstract Gets a <PFObject> asynchronously and calls the given block with the result.
 
  @warning This method mutates the query.
@@ -592,7 +592,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Getting User Objects
 ///--------------------------------------
 
-/*!
+/**
  @abstract Returns a <PFUser> with a given id.
 
  @param objectId The id of the object that is being requested.
@@ -601,7 +601,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 + (nullable PFUser *)getUserObjectWithId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
 
-/*!
+/**
  Returns a PFUser with a given class and id and sets an error if necessary.
  @param objectId The id of the object that is being requested.
  @param error Pointer to an NSError that will be set if necessary.
@@ -609,7 +609,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 + (nullable PFUser *)getUserObjectWithId:(NSString *)objectId error:(NSError **)error;
 
-/*!
+/**
  @deprecated Please use [PFUser query] instead.
  */
 + (instancetype)queryForUser PARSE_DEPRECATED("Use [PFUser query] instead.");
@@ -618,14 +618,14 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Getting all Matches for a Query
 ///--------------------------------------
 
-/*!
+/**
  @abstract Finds objects *synchronously* based on the constructed query.
 
  @returns Returns an array of <PFObject> objects that were found.
  */
 - (nullable NSArray PF_GENERIC(PFGenericObject) *)findObjects PF_SWIFT_UNAVAILABLE;
 
-/*!
+/**
  @abstract Finds objects *synchronously* based on the constructed query and sets an error if there was one.
 
  @param error Pointer to an `NSError` that will be set if necessary.
@@ -634,14 +634,14 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (nullable NSArray PF_GENERIC(PFGenericObject) *)findObjects:(NSError **)error;
 
-/*!
+/**
  @abstract Finds objects *asynchronously* and sets the `NSArray` of <PFObject> objects as a result of the task.
 
  @returns The task, that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(NSArray<PFGenericObject> *)*)findObjectsInBackground;
 
-/*!
+/**
  @abstract Finds objects *asynchronously* and calls the given block with the results.
 
  @param block The block to execute.
@@ -663,7 +663,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Getting the First Match in a Query
 ///--------------------------------------
 
-/*!
+/**
  @abstract Gets an object *synchronously* based on the constructed query.
 
  @warning This method mutates the query. It will reset the limit to `1`.
@@ -672,7 +672,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (nullable PFGenericObject)getFirstObject PF_SWIFT_UNAVAILABLE;
 
-/*!
+/**
  @abstract Gets an object *synchronously* based on the constructed query and sets an error if any occurred.
 
  @warning This method mutates the query. It will reset the limit to `1`.
@@ -683,7 +683,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (nullable PFGenericObject)getFirstObject:(NSError **)error;
 
-/*!
+/**
  @abstract Gets an object *asynchronously* and sets it as a result of the task.
 
  @warning This method mutates the query. It will reset the limit to `1`.
@@ -692,7 +692,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (BFTask PF_GENERIC(PFGenericObject) *)getFirstObjectInBackground;
 
-/*!
+/**
  @abstract Gets an object *asynchronously* and calls the given block with the result.
 
  @warning This method mutates the query. It will reset the limit to `1`.
@@ -721,14 +721,14 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Counting the Matches in a Query
 ///--------------------------------------
 
-/*!
+/**
  @abstract Counts objects *synchronously* based on the constructed query.
 
  @returns Returns the number of <PFObject> objects that match the query, or `-1` if there is an error.
  */
 - (NSInteger)countObjects PF_SWIFT_UNAVAILABLE;
 
-/*!
+/**
  @abstract Counts objects *synchronously* based on the constructed query and sets an error if there was one.
 
  @param error Pointer to an `NSError` that will be set if necessary.
@@ -737,14 +737,14 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (NSInteger)countObjects:(NSError **)error;
 
-/*!
+/**
  @abstract Counts objects *asynchronously* and sets `NSNumber` with count as a result of the task.
 
  @returns The task, that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(NSNumber *)*)countObjectsInBackground;
 
-/*!
+/**
  @abstract Counts objects *asynchronously* and calls the given block with the counts.
 
  @param block The block to execute.
@@ -765,7 +765,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Cancelling a Query
 ///--------------------------------------
 
-/*!
+/**
  @abstract Cancels the current network request (if any). Ensures that callbacks won't be called.
  */
 - (void)cancel;
@@ -774,7 +774,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Paginating Results
 ///--------------------------------------
 
-/*!
+/**
  @abstract A limit on the number of objects to return. The default limit is `100`, with a
  maximum of 1000 results being returned at a time.
 
@@ -782,7 +782,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 @property (nonatomic, assign) NSInteger limit;
 
-/*!
+/**
  @abstract The number of objects to skip before returning any.
  */
 @property (nonatomic, assign) NSInteger skip;
@@ -791,7 +791,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Controlling Caching Behavior
 ///--------------------------------------
 
-/*!
+/**
  @abstract The cache policy to use for requests.
 
  Not allowed when Pinning is enabled.
@@ -802,24 +802,24 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 @property (nonatomic, assign) PFCachePolicy cachePolicy;
 
-/*!
+/**
  @abstract The age after which a cached value will be ignored
  */
 @property (nonatomic, assign) NSTimeInterval maxCacheAge;
 
-/*!
+/**
  @abstract Returns whether there is a cached result for this query.
 
  @result `YES` if there is a cached result for this query, otherwise `NO`.
  */
 - (BOOL)hasCachedResult;
 
-/*!
+/**
  @abstract Clears the cached result for this query. If there is no cached result, this is a noop.
  */
 - (void)clearCachedResult;
 
-/*!
+/**
  @abstract Clears the cached results for all queries.
  */
 + (void)clearAllCachedResults;
@@ -828,7 +828,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Query Source
 ///--------------------------------------
 
-/*!
+/**
  @abstract Change the source of this query to all pinned objects.
 
  @warning Requires Local Datastore to be enabled.
@@ -839,7 +839,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)fromLocalDatastore;
 
-/*!
+/**
  @abstract Change the source of this query to the default group of pinned objects.
 
  @warning Requires Local Datastore to be enabled.
@@ -851,7 +851,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)fromPin;
 
-/*!
+/**
  @abstract Change the source of this query to a specific group of pinned objects.
 
  @warning Requires Local Datastore to be enabled.
@@ -865,7 +865,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (instancetype)fromPinWithName:(nullable NSString *)name;
 
-/*!
+/**
  @abstract Ignore ACLs when querying from the Local Datastore.
 
  @discussion This is particularly useful when querying for objects with Role based ACLs set on them.
@@ -880,7 +880,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /// @name Advanced Settings
 ///--------------------------------------
 
-/*!
+/**
  @abstract Whether or not performance tracing should be done on the query.
 
  @warning This should not be set to `YES` in most cases.

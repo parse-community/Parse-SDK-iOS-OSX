@@ -34,7 +34,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 
     NSMutableDictionary *_taskCompletionSources;
 
-    /*!
+    /**
      Task queue that will enqueue command enqueueing task so that we enqueue the command
      one at a time.
      */
@@ -43,7 +43,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 
 @property (nonatomic, assign, readwrite, getter=isConnected) BOOL connected;
 
-/*!
+/**
  This method is used to do some work after the command is finished running and
  either succeeded or dropped from queue with error/exception.
 
@@ -87,12 +87,12 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 ///--------------------------------------
 
 
-/*!
+/**
  Generates a new identifier for a command so that it can be sorted later by this identifier.
  */
 - (NSString *)_newIdentifierForCommand:(id<PFNetworkCommand>)command;
 
-/*!
+/**
  This method is triggered on batch processing of the queue.
  It will capture the identifiers and use them to execute commands.
 
@@ -100,7 +100,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
  */
 - (NSArray *)_pendingCommandIdentifiers;
 
-/*!
+/**
  This method should return a command for a given identifier.
 
  @param identifier An identifier of a command, that was in array returned by <_pendingCommandIdentifiers>
@@ -114,7 +114,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 /// @name Running Commands
 ///--------------------------------------
 
-/*!
+/**
  This method serves as a way to do any kind of work to enqueue a command properly.
  If the task fails with an error/exception or is cancelled - execution won't start.
 

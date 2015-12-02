@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*!
+/**
  Provides utility functions for working with Anonymously logged-in users.
  Anonymous users have some unique characteristics:
 
@@ -40,14 +40,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Creating an Anonymous User
 ///--------------------------------------
 
-/*!
+/**
  @abstract Creates an anonymous user asynchronously and sets as a result to `BFTask`.
 
  @returns The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(PFUser *)*)logInInBackground;
 
-/*!
+/**
  @abstract Creates an anonymous user.
 
  @param block The block to execute when anonymous user creation is complete.
@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Determining Whether a User is Anonymous
 ///--------------------------------------
 
-/*!
+/**
  @abstract Whether the <PFUser> object is logged in anonymously.
 
  @param user <PFUser> object to check for anonymity. The user must be logged in on this device.

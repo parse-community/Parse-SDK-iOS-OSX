@@ -34,7 +34,7 @@
 /// @name Fetch
 ///--------------------------------------
 
-/*!
+/**
  Fetches current config from network async.
 
  @param sessionToken Current user session token.

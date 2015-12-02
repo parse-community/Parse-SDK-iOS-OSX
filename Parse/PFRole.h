@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*!
+/**
  The `PFRole` class represents a Role on the Parse server.
  `PFRoles` represent groupings of <PFUser> objects for the purposes of granting permissions
  (e.g. specifying a <PFACL> for a <PFObject>).
@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Creating a New Role
 ///--------------------------------------
 
-/*!
+/**
  @abstract Constructs a new `PFRole` with the given name.
  If no default ACL has been specified, you must provide an ACL for the role.
 
@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithName:(NSString *)name;
 
-/*!
+/**
  @abstract Constructs a new `PFRole` with the given name.
 
  @param name The name of the Role to create.
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithName:(NSString *)name acl:(nullable PFACL *)acl;
 
-/*!
+/**
  @abstract Constructs a new `PFRole` with the given name.
 
  @discussion If no default ACL has been specified, you must provide an ACL for the role.
@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)roleWithName:(NSString *)name;
 
-/*!
+/**
  @abstract Constructs a new `PFRole` with the given name.
 
  @param name The name of the Role to create.
@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Role-specific Properties
 ///--------------------------------------
 
-/*!
+/**
  @abstract Gets or sets the name for a role.
 
  @discussion This value must be set before the role has been saved to the server,
@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSString *name;
 
-/*!
+/**
  @abstract Gets the <PFRelation> for the <PFUser> objects that are direct children of this role.
 
  @discussion These users are granted any privileges that this role has been granted
@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, readonly) PFRelation *users;
 
-/*!
+/**
  @abstract Gets the <PFRelation> for the `PFRole` objects that are direct children of this role.
 
  @discussion These roles' users are granted any privileges that this role has been granted

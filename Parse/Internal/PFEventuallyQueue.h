@@ -32,7 +32,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 
 @property (nonatomic, assign, readonly) NSUInteger commandCount;
 
-/*!
+/**
  Controls whether the queue should monitor network reachability and pause itself when there is no connection.
  Default: `YES`.
  */

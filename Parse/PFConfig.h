@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nullable error);
 
-/*!
+/**
  `PFConfig` is a representation of the remote configuration object.
  It enables you to add things like feature gating, a/b testing or simple "Message of the day".
  */
@@ -29,7 +29,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 /// @name Current Config
 ///--------------------------------------
 
-/*!
+/**
  @abstract Returns the most recently fetched config.
 
  @discussion If there was no config fetched - this method will return an empty instance of `PFConfig`.
@@ -42,14 +42,14 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 /// @name Retrieving Config
 ///--------------------------------------
 
-/*!
+/**
  @abstract Gets the `PFConfig` object *synchronously* from the server.
 
  @returns Instance of `PFConfig` if the operation succeeded, otherwise `nil`.
  */
 + (nullable PFConfig *)getConfig PF_SWIFT_UNAVAILABLE;
 
-/*!
+/**
  @abstract Gets the `PFConfig` object *synchronously* from the server and sets an error if it occurs.
 
  @param error Pointer to an `NSError` that will be set if necessary.
@@ -58,14 +58,14 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
  */
 + (nullable PFConfig *)getConfig:(NSError **)error;
 
-/*!
+/**
  @abstract Gets the `PFConfig` *asynchronously* and sets it as a result of a task.
 
  @returns The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(PFConfig *)*)getConfigInBackground;
 
-/*!
+/**
  @abstract Gets the `PFConfig` *asynchronously* and executes the given callback block.
 
  @param block The block to execute.
@@ -77,7 +77,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 /// @name Parameters
 ///--------------------------------------
 
-/*!
+/**
  @abstract Returns the object associated with a given key.
 
  @param key The key for which to return the corresponding configuration value.
@@ -86,7 +86,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
  */
 - (nullable id)objectForKey:(NSString *)key;
 
-/*!
+/**
  @abstract Returns the object associated with a given key.
 
  @discussion This method enables usage of literal syntax on `PFConfig`.

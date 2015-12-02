@@ -50,7 +50,7 @@ typedef void(^PFObjectStateMutationBlock)(PFMutableObjectState *state);
 /// @name Coding
 ///--------------------------------------
 
-/*!
+/**
  Encodes all fields in `serverData`, `objectId`, `createdAt` and `updatedAt` into objects suitable for JSON/Persistence.
 
  @note `parseClassName` isn't automatically added to the dictionary.

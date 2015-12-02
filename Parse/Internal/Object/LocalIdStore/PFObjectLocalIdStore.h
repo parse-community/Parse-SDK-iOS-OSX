@@ -11,7 +11,7 @@
 
 #import "PFDataProvider.h"
 
-/*!
+/**
  A disk-based map of local ids to global Parse objectIds. Every entry in this
  map has a retain count, and the entry will be removed from the map if the
  retain count reaches 0. Every time a localId is written out to disk, its retain

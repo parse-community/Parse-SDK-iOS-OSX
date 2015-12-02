@@ -9,7 +9,7 @@
 
 @import Foundation;
 
-/*!
+/**
  Because OCMock is not thread-safe, let's create our own class that implements NSCache.
  Note that we don't inherit from NSCache, so we still get 'strict mock' functionality. We cannot do expectations
  this way, however.

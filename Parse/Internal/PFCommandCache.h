@@ -16,7 +16,7 @@
 @class PFCommandCacheTestHelper;
 @class PFObject;
 
-/*!
+/**
  ParseCommandCache manages an on-disk cache of commands to be executed, and a thread with a standard run loop
  that executes the commands.  There should only ever be one instance of this class, because multiple instances
  would be running separate threads trying to read and execute the same commands.
@@ -30,7 +30,7 @@
 /// @name Init
 ///--------------------------------------
 
-/*!
+/**
  Creates the command cache object for all ParseObjects with default configuration.
  This command cache is used to locally store save commands created by the [PFObject saveEventually].
  When a PFCommandCache is instantiated, it will begin running its run loop,

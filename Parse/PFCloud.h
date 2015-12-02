@@ -15,12 +15,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*!
+/**
  The `PFCloud` class provides methods for interacting with Parse Cloud Functions.
  */
 @interface PFCloud : NSObject
 
-/*!
+/**
  @abstract Calls the given cloud function *synchronously* with the parameters provided.
 
  @param function The function name to call.
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable id)callFunction:(NSString *)function withParameters:(nullable NSDictionary *)parameters PF_SWIFT_UNAVAILABLE;
 
-/*!
+/**
  @abstract Calls the given cloud function *synchronously* with the parameters provided and
  sets the error if there is one.
 
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
              withParameters:(nullable NSDictionary *)parameters
                       error:(NSError **)error;
 
-/*!
+/**
  @abstract Calls the given cloud function *asynchronously* with the parameters provided.
 
  @param function The function name to call.
@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BFTask PF_GENERIC(id) *)callFunctionInBackground:(NSString *)function
                                      withParameters:(nullable NSDictionary *)parameters;
 
-/*!
+/**
  @abstract Calls the given cloud function *asynchronously* with the parameters provided
  and executes the given block when it is done.
 
