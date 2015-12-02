@@ -54,9 +54,9 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFProduct : PFObject<PFSubcla
 @property (nullable, nonatomic, strong) NSString *subtitle;
 
 /**
- The order in which the product information is displayed in <PFProductTableViewController>.
+ The order in which the product information is displayed in `PFProductTableViewController`.
 
- The product with a smaller order is displayed earlier in the <PFProductTableViewController>.
+ The product with a smaller order is displayed earlier in the `PFProductTableViewController`.
  */
 @property (nullable, nonatomic, strong) NSNumber *order;
 

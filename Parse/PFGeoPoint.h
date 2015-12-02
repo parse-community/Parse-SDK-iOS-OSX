@@ -17,10 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *__nullable error);
 
 /**
- `PFGeoPoint` may be used to embed a latitude / longitude point as the value for a key in a <PFObject>.
- It could be used to perform queries in a geospatial manner using <[PFQuery whereKey:nearGeoPoint:]>.
+ `PFGeoPoint` may be used to embed a latitude / longitude point as the value for a key in a `PFObject`.
+ It could be used to perform queries in a geospatial manner using `PFQuery.-whereKey:nearGeoPoint:`.
 
- Currently, instances of <PFObject> may only have one key associated with a `PFGeoPoint` type.
+ Currently, instances of `PFObject` may only have one key associated with a `PFGeoPoint` type.
  */
 @interface PFGeoPoint : NSObject <NSCopying, NSCoding>
 

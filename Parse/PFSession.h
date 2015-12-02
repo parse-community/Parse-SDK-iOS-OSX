@@ -22,8 +22,8 @@ typedef void(^PFSessionResultBlock)(PFSession *__nullable session, NSError *__nu
 
 /**
  `PFSession` is a local representation of a session.
- This class is a subclass of a <PFObject>,
- and retains the same functionality as any other subclass of <PFObject>.
+ This class is a subclass of a `PFObject`,
+ and retains the same functionality as any other subclass of `PFObject`.
  */
 @interface PFSession : PFObject<PFSubclassing>
 

@@ -80,7 +80,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  Creates a reference to an existing PFObject for use in creating associations between PFObjects.
 
- Calling <isDataAvailable> on this object will return `NO` until <fetchIfNeeded> has been called.
+ Calling `dataAvailable` on this object will return `NO` until `-fetchIfNeeded` has been called.
  No network request will be made.
 
  @param className The object's class.
@@ -135,6 +135,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  Returns the value associated with a given key.
 
  @param key The key for which to return the corresponding value.
+
+ @see -objectForKeyedSubscript:
  */
 - (nullable id)objectForKey:(NSString *)key;
 
@@ -147,7 +149,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param key The key for `object`.
  Raises an `NSInvalidArgumentException` if `key` is `nil`.
 
- @see setObject:forKeyedSubscript:
+ @see -setObject:forKeyedSubscript:
  */
 - (void)setObject:(id)object forKey:(NSString *)key;
 
@@ -166,7 +168,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @param key The key for which to return the corresponding value.
 
- @see objectForKey:
+ @see -objectForKey:
  */
 - (nullable id)objectForKeyedSubscript:(NSString *)key;
 
@@ -182,23 +184,23 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param key The key for `object`.
  Raises an `NSInvalidArgumentException` if `key` is `nil`.
 
- @see setObject:forKey:
+ @see -setObject:forKey:
  */
 - (void)setObject:(id)object forKeyedSubscript:(NSString *)key;
 
 /**
- Returns the relation object associated with the given key.
+ Returns the instance of `PFRelation` class associated with the given key.
 
  @param key The key that the relation is associated with.
  */
 - (PFRelation *)relationForKey:(NSString *)key;
 
 /**
- Returns the relation object associated with the given key.
+ Returns the instance of `PFRelation` class associated with the given key.
 
  @param key The key that the relation is associated with.
 
- @deprecated Please use `[PFObject relationForKey:]` instead.
+ @deprecated Please use `PFObject.-relationForKey:` instead.
  */
 - (PFRelation *)relationforKey:(NSString *)key PARSE_DEPRECATED("Please use -relationForKey: instead.");
 
@@ -305,7 +307,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  *Synchronously* saves the `PFObject` and sets an error if it occurs.
 
- @param error Pointer to an NSError that will be set if necessary.
+ @param error Pointer to an `NSError` that will be set if necessary.
 
  @return Returns whether the save succeeded.
  */
@@ -348,7 +350,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  Objects saved with this method will be stored locally in an on-disk cache until they can be delivered to Parse.
  They will be sent immediately if possible. Otherwise, they will be sent the next time a network connection is
  available. Objects saved this way will persist even after the app is closed, in which case they will be sent the
- next time the app is opened. If more than 10MB of data is waiting to be sent, subsequent calls to <saveEventually>
+ next time the app is opened. If more than 10MB of data is waiting to be sent, subsequent calls to `-saveEventually`
  will cause old saves to be silently discarded until the connection can be re-established, and the queued objects
  can be saved.
 
@@ -367,7 +369,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  Objects saved with this method will be stored locally in an on-disk cache until they can be delivered to Parse.
  They will be sent immediately if possible. Otherwise, they will be sent the next time a network connection is
  available. Objects saved this way will persist even after the app is closed, in which case they will be sent the
- next time the app is opened. If more than 10MB of data is waiting to be sent, subsequent calls to <saveEventually>
+ next time the app is opened. If more than 10MB of data is waiting to be sent, subsequent calls to `-saveEventually:`
  will cause old saves to be silently discarded until the connection can be re-established, and the queued objects
  can be saved.
 
@@ -553,12 +555,12 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (nullable instancetype)fetch:(NSError **)error;
 
 /**
- *Synchronously* fetches the `PFObject` data from the server if <isDataAvailable> is `NO`.
+ *Synchronously* fetches the `PFObject` data from the server if `dataAvailable` is `NO`.
  */
 - (nullable instancetype)fetchIfNeeded PF_SWIFT_UNAVAILABLE;
 
 /**
- *Synchronously* fetches the `PFObject` data from the server if <isDataAvailable> is `NO`.
+ *Synchronously* fetches the `PFObject` data from the server if `dataAvailable` is `NO`.
 
  @param error Pointer to an `NSError` that will be set if necessary.
  */
@@ -572,7 +574,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (BFTask PF_GENERIC(__kindof PFObject *)*)fetchInBackground;
 
 /**
- Fetches the PFObject *asynchronously* and executes the given callback block.
+ Fetches the `PFObject` *asynchronously* and executes the given callback block.
 
  @param block The block to execute.
  It should have the following argument signature: `^(PFObject *object, NSError *error)`.
@@ -591,7 +593,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (void)fetchInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 /**
- Fetches the `PFObject` data *asynchronously* if isDataAvailable is `NO`,
+ Fetches the `PFObject` data *asynchronously* if `dataAvailable` is `NO`,
  then sets it as a result for the task.
 
  @return The task that encapsulates the work being done.
@@ -599,7 +601,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (BFTask PF_GENERIC(__kindof PFObject *)*)fetchIfNeededInBackground;
 
 /**
- Fetches the `PFObject` data *asynchronously* if <isDataAvailable> is `NO`, then calls the callback block.
+ Fetches the `PFObject` data *asynchronously* if `dataAvailable` is `NO`, then calls the callback block.
 
  @param block The block to execute.
  It should have the following argument signature: `^(PFObject *object, NSError *error)`.
@@ -607,7 +609,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (void)fetchIfNeededInBackgroundWithBlock:(nullable PFObjectResultBlock)block;
 
 /*
- Fetches the PFObject's data asynchronously if isDataAvailable is false, then calls the callback.
+ Fetches the PFObject's data asynchronously if `dataAvailable` is `NO`, then calls the callback.
 
  @param target The target on which the selector will be called.
  @param selector The selector to call.
@@ -739,7 +741,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  from the server already.
 
  If the object is not stored in the local datastore, this `error` will be set to
- return kPFErrorCacheMiss.
+ return `kPFErrorCacheMiss`.
 
  @param error Pointer to an `NSError` that will be set if necessary.
  */
@@ -820,8 +822,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  Delete instructions made with this method will be stored locally in an on-disk cache until they can be transmitted
  to Parse. They will be sent immediately if possible. Otherwise, they will be sent the next time a network connection
  is available. Delete requests will persist even after the app is closed, in which case they will be sent the
- next time the app is opened. If more than 10MB of <saveEventually> or <deleteEventually> commands are waiting
- to be sent, subsequent calls to <saveEventually> or <deleteEventually> will cause old requests to be silently discarded
+ next time the app is opened. If more than 10MB of `-saveEventually` or `-deleteEventually` commands are waiting
+ to be sent, subsequent calls to `-saveEventually` or `-deleteEventually` will cause old requests to be silently discarded
  until the connection can be re-established, and the queued requests can go through.
 
  @return The task that encapsulates the work being done.
@@ -859,13 +861,13 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `-fetchFromLocalDatastore` on it.
 
  @return Returns whether the pin succeeded.
 
- @see unpin:
- @see PFObjectDefaultPin
+ @see `-unpin:`
+ @see `PFObjectDefaultPin`
  */
 - (BOOL)pin PF_SWIFT_UNAVAILABLE;
 
@@ -875,15 +877,15 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `-fetchFromLocalDatastore` on it.
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
  @return Returns whether the pin succeeded.
 
- @see unpin:
- @see PFObjectDefaultPin
+ @see `-unpin:`
+ @see `PFObjectDefaultPin`
  */
 - (BOOL)pin:(NSError **)error;
 
@@ -892,14 +894,14 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `-fetchFromLocalDatastore` on it.
 
  @param name The name of the pin.
 
  @return Returns whether the pin succeeded.
 
- @see unpinWithName:
+ @see `-unpinWithName:`
  */
 - (BOOL)pinWithName:(NSString *)name PF_SWIFT_UNAVAILABLE;
 
@@ -908,15 +910,15 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `-fetchFromLocalDatastore` on it.
 
  @param name    The name of the pin.
  @param error   Pointer to an `NSError` that will be set if necessary.
 
  @return Returns whether the pin succeeded.
 
- @see unpinWithName:
+ @see `-unpinWithName:`
  */
 - (BOOL)pinWithName:(NSString *)name
               error:(NSError **)error;
@@ -927,13 +929,13 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `-fetchFromLocalDatastore` on it.
 
  @return The task that encapsulates the work being done.
 
- @see unpinInBackground
- @see PFObjectDefaultPin
+ @see `-unpinInBackground`
+ @see `PFObjectDefaultPin`
  */
 - (BFTask PF_GENERIC(NSNumber *)*)pinInBackground;
 
@@ -943,14 +945,14 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `-fetchFromLocalDatastore` on it.
 
  @param block The block to execute.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`.
 
- @see unpinInBackgroundWithBlock:
- @see PFObjectDefaultPin
+ @see `-unpinInBackgroundWithBlock:`
+ @see `PFObjectDefaultPin`
  */
 - (void)pinInBackgroundWithBlock:(nullable PFBooleanResultBlock)block;
 
@@ -959,8 +961,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `-fetchFromLocalDatastore on it.
 
  @param name The name of the pin.
 
@@ -975,8 +977,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `-fetchFromLocalDatastore` on it.
 
  @param name    The name of the pin.
  @param block   The block to execute.
@@ -996,8 +998,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `fetchFromLocalDatastore:` on it.
 
  @param objects The objects to be pinned.
 
@@ -1014,8 +1016,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `fetchFromLocalDatastore:` on it.
 
  @param objects The objects to be pinned.
  @param error   Pointer to an `NSError` that will be set if necessary.
@@ -1032,8 +1034,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `fetchFromLocalDatastore:` on it.
 
  @param objects The objects to be pinned.
  @param name    The name of the pin.
@@ -1049,8 +1051,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `fetchFromLocalDatastore:` on it.
 
  @param objects The objects to be pinned.
  @param name    The name of the pin.
@@ -1070,8 +1072,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `fetchFromLocalDatastore:` on it.
 
  @param objects The objects to be pinned.
 
@@ -1088,8 +1090,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `fetchFromLocalDatastore:` on it.
 
  @param objects The objects to be pinned.
  @param block   The block to execute.
@@ -1105,8 +1107,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `fetchFromLocalDatastore:` on it.
 
  @param objects     The objects to be pinned.
  @param name        The name of the pin.
@@ -1122,8 +1124,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
- use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
- `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
+ use a `PFQuery` that uses `PFQuery.-fromLocalDatastore`, or you can create an unfetched pointer with
+ `+objectWithoutDataWithClassName:objectId:` and then call `fetchFromLocalDatastore:` on it.
 
  @param objects     The objects to be pinned.
  @param name        The name of the pin.

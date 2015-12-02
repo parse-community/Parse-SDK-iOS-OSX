@@ -82,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Enable pinning in your application. This must be called before your application can use
- pinning. The recommended way is to call this method before `setApplicationId:clientKey:`.
+ pinning. The recommended way is to call this method before `+setApplicationId:clientKey:`.
  */
 + (void)enableLocalDatastore PF_TV_UNAVAILABLE;
 
@@ -100,10 +100,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Enables data sharing with an application group identifier.
 
- After enabling - Local Datastore, `currentUser`, `currentInstallation` and all eventually commands
+ After enabling - Local Datastore, `PFUser.+currentUser`, `PFInstallation.+currentInstallation` and all eventually commands
  are going to be available to every application/extension in a group that have the same Parse applicationId.
 
- @warning This method is required to be called before <setApplicationId:clientKey:>.
+ @warning This method is required to be called before `+setApplicationId:clientKey:`.
 
  @param groupIdentifier Application Group Identifier to share data with.
  */
@@ -112,10 +112,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Enables data sharing with an application group identifier.
 
- After enabling - Local Datastore, `currentUser`, `currentInstallation` and all eventually commands
+ After enabling - Local Datastore, `PFUser.+currentUser`, `PFInstallation.+currentInstallation` and all eventually commands
  are going to be available to every application/extension in a group that have the same Parse applicationId.
 
- @warning This method is required to be called before <setApplicationId:clientKey:>.
+ @warning This method is required to be called before `+setApplicationId:clientKey:`.
  This method can only be used by application extensions.
 
  @param groupIdentifier Application Group Identifier to share data with.
@@ -125,14 +125,14 @@ NS_ASSUME_NONNULL_BEGIN
                                   containingApplication:(NSString *)bundleIdentifier PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
 
 /**
- Application Group Identifier for Data Sharing
+ Application Group Identifier for Data Sharing.
 
  @return `NSString` value if data sharing is enabled, otherwise `nil`.
  */
 + (NSString *)applicationGroupIdentifierForDataSharing PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
 
 /**
- Containing application bundle identifier.
+ Containing application bundle identifier for Data Sharing.
 
  @return `NSString` value if data sharing is enabled, otherwise `nil`.
  */
@@ -174,8 +174,8 @@ NS_ASSUME_NONNULL_BEGIN
  Sets the level of logging to display.
 
  By default:
- - If running inside an app that was downloaded from iOS App Store - it is set to <PFLogLevelNone>
- - All other cases - it is set to <PFLogLevelWarning>
+ - If running inside an app that was downloaded from iOS App Store - it is set to `PFLogLevelNone`
+ - All other cases - it is set to `PFLogLevelWarning`
 
  @param logLevel Log level to set.
  @see PFLogLevel
@@ -186,10 +186,11 @@ NS_ASSUME_NONNULL_BEGIN
  Log level that will be displayed.
 
  By default:
- - If running inside an app that was downloaded from iOS App Store - it is set to <PFLogLevelNone>
- - All other cases - it is set to <PFLogLevelWarning>
 
- @return A <PFLogLevel> value.
+ - If running inside an app that was downloaded from iOS App Store - it is set to `PFLogLevelNone`
+ - All other cases - it is set to `PFLogLevelWarning`
+
+ @return A `PFLogLevel` value.
  @see PFLogLevel
  */
 + (PFLogLevel)logLevel;

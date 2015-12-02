@@ -25,11 +25,11 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
 /**
  The `PFUser` class is a local representation of a user persisted to the Parse Data.
- This class is a subclass of a <PFObject>, and retains the same functionality of a <PFObject>,
+ This class is a subclass of a `PFObject`, and retains the same functionality of a `PFObject`,
  but also extends it with various user specific methods, like authentication, signing up, and validation uniqueness.
 
  Many APIs responsible for linking a `PFUser` with Facebook or Twitter have been deprecated in favor of dedicated
- utilities for each social network. See <PFFacebookUtils>, <PFTwitterUtils> and <PFAnonymousUtils> for more information.
+ utilities for each social network. See `PFFacebookUtils`, `PFTwitterUtils` and `PFAnonymousUtils` for more information.
  */
 
 @interface PFUser : PFObject <PFSubclassing>
@@ -62,7 +62,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /**
  Whether the user is an authenticated object for the device.
 
- An authenticated `PFUser` is one that is obtained via a <signUp> or <logIn> method.
+ An authenticated `PFUser` is one that is obtained via a `-signUp:` or `+logInWithUsername:password:` method.
  An authenticated object is required in order to save (with altered values) or delete it.
  */
 @property (nonatomic, assign, readonly, getter=isAuthenticated) BOOL authenticated;
@@ -81,11 +81,11 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /**
  Enables automatic creation of anonymous users.
 
- After calling this method, <currentUser> will always have a value.
+ After calling this method, `+currentUser` will always have a value.
  The user will only be created on the server once the user has been saved,
  or once an object with a relation to that user or an ACL that refers to the user has been saved.
 
- @warning <[PFObject saveEventually]> will not work on if an item being saved has a relation
+ @warning `PFObject.-saveEventually` will not work on if an item being saved has a relation
  to an automatic user that has never been saved.
  */
 + (void)enableAutomaticUser;
@@ -178,7 +178,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  Makes a *synchronous* request to login a user with specified credentials.
 
  Returns an instance of the successfully logged in `PFUser`.
- This also caches the user locally so that calls to <currentUser> will use the latest logged in user.
+ This also caches the user locally so that calls to `+currentUser` will use the latest logged in user.
 
  @param username The username of the user.
  @param password The password of the user.
@@ -193,7 +193,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  Makes a *synchronous* request to login a user with specified credentials.
 
  Returns an instance of the successfully logged in `PFUser`.
- This also caches the user locally so that calls to <currentUser> will use the latest logged in user.
+ This also caches the user locally so that calls to `+currentUser` will use the latest logged in user.
 
  @param username The username of the user.
  @param password The password of the user.
@@ -210,7 +210,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  Makes an *asynchronous* request to login a user with specified credentials.
 
  Returns an instance of the successfully logged in `PFUser`.
- This also caches the user locally so that calls to <currentUser> will use the latest logged in user.
+ This also caches the user locally so that calls to `+currentUser` will use the latest logged in user.
 
  @param username The username of the user.
  @param password The password of the user.
@@ -224,7 +224,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  Makes an *asynchronous* request to login a user with specified credentials.
 
  Returns an instance of the successfully logged in `PFUser`.
- This also caches the user locally so that calls to <currentUser> will use the latest logged in user.
+ This also caches the user locally so that calls to `+currentUser` will use the latest logged in user.
 
  @param username The username of the user.
  @param password The password of the user.
@@ -241,7 +241,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  Makes an *asynchronous* request to log in a user with specified credentials.
 
  Returns an instance of the successfully logged in `PFUser`.
- This also caches the user locally so that calls to <currentUser> will use the latest logged in user.
+ This also caches the user locally so that calls to `+currentUser` will use the latest logged in user.
 
  @param username The username of the user.
  @param password The password of the user.
@@ -260,7 +260,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  Makes a *synchronous* request to become a user with the given session token.
 
  Returns an instance of the successfully logged in `PFUser`.
- This also caches the user locally so that calls to <currentUser> will use the latest logged in user.
+ This also caches the user locally so that calls to `+currentUser` will use the latest logged in user.
 
  @param sessionToken The session token for the user.
 
@@ -273,7 +273,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  Makes a *synchronous* request to become a user with the given session token.
 
  Returns an instance of the successfully logged in `PFUser`.
- This will also cache the user locally so that calls to <currentUser> will use the latest logged in user.
+ This will also cache the user locally so that calls to `+currentUser` will use the latest logged in user.
 
  @param sessionToken The session token for the user.
  @param error The error object to set on error.
@@ -287,7 +287,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  Makes an *asynchronous* request to become a user with the given session token.
 
  Returns an instance of the successfully logged in `PFUser`.
- This also caches the user locally so that calls to <currentUser> will use the latest logged in user.
+ This also caches the user locally so that calls to `+currentUser` will use the latest logged in user.
 
  @param sessionToken The session token for the user.
 
@@ -299,7 +299,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  Makes an *asynchronous* request to become a user with the given session token.
 
  Returns an instance of the successfully logged in `PFUser`. This also caches the user locally
- so that calls to <currentUser> will use the latest logged in user.
+ so that calls to `+currentUser` will use the latest logged in user.
 
  @param sessionToken The session token for the user.
  @param block The block to execute.
@@ -311,7 +311,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  Makes an *asynchronous* request to become a user with the given session token.
 
  Returns an instance of the successfully logged in `PFUser`. This also caches the user locally
- so that calls to <currentUser> will use the latest logged in user.
+ so that calls to `+currentUser` will use the latest logged in user.
 
  @param sessionToken The session token for the user.
  @param target Target object for the selector.
@@ -329,9 +329,9 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /**
  Enables revocable sessions and migrates the currentUser session token to use revocable session if needed.
 
- This method is required if you want to use <PFSession> APIs
+ This method is required if you want to use `PFSession` APIs
  and your application's 'Require Revocable Session' setting is turned off on `http://parse.com` app settings.
- After returned `BFTask` completes - <PFSession> class and APIs will be available for use.
+ After returned `BFTask` completes - `PFSession` class and APIs will be available for use.
 
  @return An instance of `BFTask` that is completed when revocable
  sessions are enabled and currentUser token is migrated.
@@ -341,9 +341,9 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 /**
  Enables revocable sessions and upgrades the currentUser session token to use revocable session if needed.
 
- This method is required if you want to use <PFSession> APIs
+ This method is required if you want to use `PFSession` APIs
  and legacy sessions are enabled in your application settings on `http://parse.com/`.
- After returned `BFTask` completes - <PFSession> class and APIs will be available for use.
+ After returned `BFTask` completes - `PFSession` class and APIs will be available for use.
 
  @param block Block that will be called when revocable sessions are enabled and currentUser token is migrated.
  */
@@ -362,7 +362,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  *Asynchronously* logs out the currently logged in user.
 
  This will also remove the session from disk, log out of linked services
- and all future calls to <currentUser> will return `nil`. This is preferrable to using <logOut>,
+ and all future calls to `+currentUser` will return `nil`. This is preferrable to using `-logOut`,
  unless your code is already running from a background thread.
 
  @return An instance of `BFTask`, that is resolved with `nil` result when logging out completes.
@@ -373,7 +373,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  *Asynchronously* logs out the currently logged in user.
 
  This will also remove the session from disk, log out of linked services
- and all future calls to <currentUser> will return `nil`. This is preferrable to using <logOut>,
+ and all future calls to `+currentUser` will return `nil`. This is preferrable to using `-logOut`,
  unless your code is already running from a background thread.
 
  @param block A block that will be called when logging out completes or fails.

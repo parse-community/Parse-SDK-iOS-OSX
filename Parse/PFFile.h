@@ -230,7 +230,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSData *)getData PF_SWIFT_UNAVAILABLE;
 
 /**
- This method is like <getData> but avoids ever holding the entire `PFFile` contents in memory at once.
+ This method is like `-getData` but avoids ever holding the entire `PFFile` contents in memory at once.
 
  This can help applications with many large files avoid memory warnings.
 
@@ -249,7 +249,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSData *)getData:(NSError **)error;
 
 /**
- This method is like <getData> but avoids ever holding the entire `PFFile` contents in memory at once.
+ This method is like `-getData` but avoids ever holding the entire `PFFile` contents in memory at once.
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
@@ -259,7 +259,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSInputStream *)getDataStream:(NSError **)error;
 
 /**
- This method is like <getData> but it fetches asynchronously to avoid blocking the current thread.
+ This method is like `-getData` but it fetches asynchronously to avoid blocking the current thread.
 
  @see getData
 
@@ -268,7 +268,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask PF_GENERIC(NSData *)*)getDataInBackground;
 
 /**
- This method is like <getData> but it fetches asynchronously to avoid blocking the current thread.
+ This method is like `-getData` but it fetches asynchronously to avoid blocking the current thread.
 
  This can help applications with many large files avoid memory warnings.
 
@@ -281,8 +281,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask PF_GENERIC(NSData *)*)getDataInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
- This method is like <getDataInBackground> but avoids
- ever holding the entire `PFFile` contents in memory at once.
+ This method is like `-getDataInBackground` but avoids ever holding the entire `PFFile` contents in memory at once.
 
  This can help applications with many large files avoid memory warnings.
 
@@ -291,22 +290,22 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask PF_GENERIC(NSInputStream *)*)getDataStreamInBackground;
 
 /**
- This method is like <getDataStreamInBackground>, but yields a live-updating stream.
+ This method is like `-getDataStreamInBackground`, but yields a live-updating stream.
 
- Instead of <getDataStream>, which yields a stream that can be read from only after the request has
+ Instead of `-getDataStream`, which yields a stream that can be read from only after the request has
  completed, this method gives you a stream directly written to by the HTTP session. As this stream is not pre-buffered,
  it is strongly advised to use the `NSStreamDelegate` methods, in combination with a run loop, to consume the data in
  the stream, to do proper async file downloading.
 
  @note You MUST open this stream before reading from it.
- @note Do NOT call <waitUntilFinished> on this task from the main thread. It may result in a deadlock.
+ @note Do NOT call `waitUntilFinished` on this task from the main thread. It may result in a deadlock.
 
  @return A task that produces a *live* stream that is being written to with the data from the server.
  */
 - (BFTask PF_GENERIC(NSInputStream *)*)getDataDownloadStreamInBackground;
 
 /**
- This method is like <getDataInBackground> but avoids
+ This method is like `-getDataInBackground` but avoids
  ever holding the entire `PFFile` contents in memory at once.
 
  This can help applications with many large files avoid memory warnings.
@@ -317,15 +316,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask PF_GENERIC(NSInputStream *)*)getDataStreamInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
- This method is like <getDataStreamInBackgroundWithProgrssBlock>, but yields a live-updating stream.
+ This method is like `-getDataStreamInBackgroundWithProgressBlock:`, but yields a live-updating stream.
 
- Instead of <getDataStream>, which yields a stream that can be read from only after the request has
+ Instead of `-getDataStream`, which yields a stream that can be read from only after the request has
  completed, this method gives you a stream directly written to by the HTTP session. As this stream is not pre-buffered,
  it is strongly advised to use the `NSStreamDelegate` methods, in combination with a run loop, to consume the data in
  the stream, to do proper async file downloading.
 
  @note You MUST open this stream before reading from it.
- @note Do NOT call <waitUntilFinished> on this task from the main thread. It may result in a deadlock.
+ @note Do NOT call `waitUntilFinished` on this task from the main thread. It may result in a deadlock.
 
  @param progressBlock The block should have the following argument signature: `^(int percentDone)`
 
@@ -341,8 +340,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getDataInBackgroundWithBlock:(nullable PFDataResultBlock)block;
 
 /**
- This method is like <getDataInBackgroundWithBlock:> but avoids
- ever holding the entire `PFFile` contents in memory at once.
+ This method is like `-getDataInBackgroundWithBlock:` but avoids ever holding the entire `PFFile` contents in memory at once.
 
  This can help applications with many large files avoid memory warnings.
 
@@ -363,7 +361,7 @@ NS_ASSUME_NONNULL_BEGIN
                        progressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
- This method is like <getDataInBackgroundWithBlock:progressBlock:> but avoids
+ This method is like `-getDataInBackgroundWithBlock:progressBlock:` but avoids
  ever holding the entire `PFFile` contents in memory at once.
 
  This can help applications with many large files avoid memory warnings.

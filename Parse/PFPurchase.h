@@ -34,7 +34,7 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchase : NSObject
  Add application logic block which is run when buying a product.
 
  This method should be called once for each product, and should be called before
- calling <buyProduct:block:>. All invocations to <addObserverForProduct:block:> should happen within
+ calling `+buyProduct:block:`. All invocations to `+addObserverForProduct:block:` should happen within
  the same method, and on the main thread. It is recommended to place all invocations of this method
  in `application:didFinishLaunchingWithOptions:`.
 
@@ -89,7 +89,7 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchase : NSObject
 /**
  Returns a content path of the asset of a product, if it was purchased and downloaded.
 
- To download and verify purchases use <downloadAssetForTransaction:completion:>.
+ To download and verify purchases use `+downloadAssetForTransaction:completion:`.
 
  @warning This method will return `nil`, if the purchase wasn't verified or if the asset was not downloaded.
  */

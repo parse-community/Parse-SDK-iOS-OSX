@@ -19,7 +19,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- The `PFQuery` class defines a query that is used to query for <PFObject>s.
+ The `PFQuery` class defines a query that is used to query for `PFObject`s.
  */
 @interface PFQuery PF_GENERIC(PFGenericObject : PFObject *) : NSObject<NSCopying>
 
@@ -88,14 +88,14 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  This has an effect similar to a join.  You can use dot notation to specify which fields in
  the included object are also fetch.
 
- @param key The key to load child <PFObject>s for.
+ @param key The key to load child `PFObject`s for.
 
  @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)includeKey:(NSString *)key;
 
 /**
- Make the query restrict the fields of the returned <PFObject>s to include only the provided keys.
+ Make the query restrict the fields of the returned `PFObject`s to include only the provided keys.
 
  If this is called multiple times, then all of the keys specified in each of the calls will be included.
 
@@ -225,28 +225,28 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 ///--------------------------------------
 
 /**
- Add a constraint to the query that requires a particular key's coordinates (specified via <PFGeoPoint>)
+ Add a constraint to the query that requires a particular key's coordinates (specified via `PFGeoPoint`)
  be near a reference point.
 
  Distance is calculated based on angular distance on a sphere. Results will be sorted by distance
  from reference point.
 
  @param key The key to be constrained.
- @param geopoint The reference point represented as a <PFGeoPoint>.
+ @param geopoint The reference point represented as a `PFGeoPoint`.
 
  @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key nearGeoPoint:(PFGeoPoint *)geopoint;
 
 /**
- Add a constraint to the query that requires a particular key's coordinates (specified via <PFGeoPoint>)
+ Add a constraint to the query that requires a particular key's coordinates (specified via `PFGeoPoint`)
  be near a reference point and within the maximum distance specified (in miles).
 
  Distance is calculated based on a spherical coordinate system.
  Results will be sorted by distance (nearest to farthest) from the reference point.
 
  @param key The key to be constrained.
- @param geopoint The reference point represented as a <PFGeoPoint>.
+ @param geopoint The reference point represented as a `PFGeoPoint`.
  @param maxDistance Maximum distance in miles.
 
  @return The same instance of `PFQuery` as the receiver. This allows method chaining.
@@ -256,14 +256,14 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
              withinMiles:(double)maxDistance;
 
 /**
- Add a constraint to the query that requires a particular key's coordinates (specified via <PFGeoPoint>)
+ Add a constraint to the query that requires a particular key's coordinates (specified via `PFGeoPoint`)
  be near a reference point and within the maximum distance specified (in kilometers).
 
  Distance is calculated based on a spherical coordinate system.
  Results will be sorted by distance (nearest to farthest) from the reference point.
 
  @param key The key to be constrained.
- @param geopoint The reference point represented as a <PFGeoPoint>.
+ @param geopoint The reference point represented as a `PFGeoPoint`.
  @param maxDistance Maximum distance in kilometers.
 
  @return The same instance of `PFQuery` as the receiver. This allows method chaining.
@@ -273,12 +273,12 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
         withinKilometers:(double)maxDistance;
 
 /**
- Add a constraint to the query that requires a particular key's coordinates (specified via <PFGeoPoint>) be near
+ Add a constraint to the query that requires a particular key's coordinates (specified via `PFGeoPoint`) be near
  a reference point and within the maximum distance specified (in radians).  Distance is calculated based on
  angular distance on a sphere.  Results will be sorted by distance (nearest to farthest) from the reference point.
 
  @param key The key to be constrained.
- @param geopoint The reference point as a <PFGeoPoint>.
+ @param geopoint The reference point as a `PFGeoPoint`.
  @param maxDistance Maximum distance in radians.
 
  @return The same instance of `PFQuery` as the receiver. This allows method chaining.
@@ -288,7 +288,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
            withinRadians:(double)maxDistance;
 
 /**
- Add a constraint to the query that requires a particular key's coordinates (specified via <PFGeoPoint>) be
+ Add a constraint to the query that requires a particular key's coordinates (specified via `PFGeoPoint`) be
  contained within a given rectangular geographic bounding box.
 
  @param key The key to be constrained.
@@ -412,7 +412,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /**
  Add a constraint that requires that a key's value matches a `PFQuery` constraint.
 
- @warning This only works where the key's values are <PFObject>s or arrays of <PFObject>s.
+ @warning This only works where the key's values are `PFObject`s or arrays of `PFObject`s.
 
  @param key The key that the value is stored in
  @param query The query the value should match
@@ -424,7 +424,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /**
  Add a constraint that requires that a key's value to not match a `PFQuery` constraint.
 
- @warning This only works where the key's values are <PFObject>s or arrays of <PFObject>s.
+ @warning This only works where the key's values are `PFObject`s or arrays of `PFObject`s.
 
  @param key The key that the value is stored in
  @param query The query the value should not match
@@ -500,43 +500,43 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 ///--------------------------------------
 
 /**
- Returns a <PFObject> with a given class and id.
+ Returns a `PFObject` with a given class and id.
 
  @param objectClass The class name for the object that is being requested.
  @param objectId The id of the object that is being requested.
 
- @return The <PFObject> if found. Returns `nil` if the object isn't found, or if there was an error.
+ @return The `PFObject` if found. Returns `nil` if the object isn't found, or if there was an error.
  */
 + (nullable PFGenericObject)getObjectOfClass:(NSString *)objectClass
                                     objectId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
 
 /**
- Returns a <PFObject> with a given class and id and sets an error if necessary.
+ Returns a `PFObject` with a given class and id and sets an error if necessary.
 
  @param objectClass The class name for the object that is being requested.
  @param objectId The id of the object that is being requested.
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @return The <PFObject> if found. Returns `nil` if the object isn't found, or if there was an `error`.
+ @return The `PFObject` if found. Returns `nil` if the object isn't found, or if there was an `error`.
  */
 + (nullable PFGenericObject)getObjectOfClass:(NSString *)objectClass
                                     objectId:(NSString *)objectId
                                        error:(NSError **)error;
 
 /**
- Returns a <PFObject> with the given id.
+ Returns a `PFObject` with the given id.
 
  @warning This method mutates the query.
  It will reset limit to `1`, skip to `0` and remove all conditions, leaving only `objectId`.
 
  @param objectId The id of the object that is being requested.
 
- @return The <PFObject> if found. Returns nil if the object isn't found, or if there was an error.
+ @return The `PFObject` if found. Returns nil if the object isn't found, or if there was an error.
  */
 - (nullable PFGenericObject)getObjectWithId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
 
 /**
- Returns a <PFObject> with the given id and sets an error if necessary.
+ Returns a `PFObject` with the given id and sets an error if necessary.
 
  @warning This method mutates the query.
  It will reset limit to `1`, skip to `0` and remove all conditions, leaving only `objectId`.
@@ -544,12 +544,12 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  @param objectId The id of the object that is being requested.
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @return The <PFObject> if found. Returns nil if the object isn't found, or if there was an error.
+ @return The `PFObject` if found. Returns nil if the object isn't found, or if there was an error.
  */
 - (nullable PFGenericObject)getObjectWithId:(NSString *)objectId error:(NSError **)error;
 
 /**
- Gets a <PFObject> asynchronously and calls the given block with the result.
+ Gets a `PFObject` asynchronously and calls the given block with the result.
 
  @warning This method mutates the query.
  It will reset limit to `1`, skip to `0` and remove all conditions, leaving only `objectId`.
@@ -561,7 +561,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 - (BFTask PF_GENERIC(PFGenericObject) *)getObjectInBackgroundWithId:(NSString *)objectId;
 
 /**
- Gets a <PFObject> asynchronously and calls the given block with the result.
+ Gets a `PFObject` asynchronously and calls the given block with the result.
 
  @warning This method mutates the query.
  It will reset limit to `1`, skip to `0` and remove all conditions, leaving only `objectId`.
@@ -574,7 +574,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
                               block:(nullable void (^)(PFGenericObject __nullable object, NSError *__nullable error))block;
 
 /*
- Gets a <PFObject> asynchronously.
+ Gets a `PFObject` asynchronously.
 
  This mutates the PFQuery. It will reset limit to `1`, skip to `0` and remove all conditions, leaving only `objectId`.
 
@@ -593,7 +593,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 ///--------------------------------------
 
 /**
- Returns a <PFUser> with a given id.
+ Returns a `PFUser` with a given id.
 
  @param objectId The id of the object that is being requested.
 
@@ -621,7 +621,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /**
  Finds objects *synchronously* based on the constructed query.
 
- @return Returns an array of <PFObject> objects that were found.
+ @return Returns an array of `PFObject` objects that were found.
  */
 - (nullable NSArray PF_GENERIC(PFGenericObject) *)findObjects PF_SWIFT_UNAVAILABLE;
 
@@ -630,12 +630,12 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @return Returns an array of <PFObject> objects that were found.
+ @return Returns an array of `PFObject` objects that were found.
  */
 - (nullable NSArray PF_GENERIC(PFGenericObject) *)findObjects:(NSError **)error;
 
 /**
- Finds objects *asynchronously* and sets the `NSArray` of <PFObject> objects as a result of the task.
+ Finds objects *asynchronously* and sets the `NSArray` of `PFObject` objects as a result of the task.
 
  @return The task, that encapsulates the work being done.
  */
@@ -668,7 +668,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @warning This method mutates the query. It will reset the limit to `1`.
 
- @return Returns a <PFObject>, or `nil` if none was found.
+ @return Returns a `PFObject`, or `nil` if none was found.
  */
 - (nullable PFGenericObject)getFirstObject PF_SWIFT_UNAVAILABLE;
 
@@ -679,7 +679,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @return Returns a <PFObject>, or `nil` if none was found.
+ @return Returns a `PFObject`, or `nil` if none was found.
  */
 - (nullable PFGenericObject)getFirstObject:(NSError **)error;
 
@@ -724,7 +724,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /**
  Counts objects *synchronously* based on the constructed query.
 
- @return Returns the number of <PFObject> objects that match the query, or `-1` if there is an error.
+ @return Returns the number of `PFObject` objects that match the query, or `-1` if there is an error.
  */
 - (NSInteger)countObjects PF_SWIFT_UNAVAILABLE;
 
@@ -733,7 +733,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
- @return Returns the number of <PFObject> objects that match the query, or `-1` if there is an error.
+ @return Returns the number of `PFObject` objects that match the query, or `-1` if there is an error.
  */
 - (NSInteger)countObjects:(NSError **)error;
 

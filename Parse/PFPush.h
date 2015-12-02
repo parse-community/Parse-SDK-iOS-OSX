@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  The `PFPush` class defines a push notification that can be sent from a client device.
 
  The preferred way of modifying or retrieving channel subscriptions is to use
- the <PFInstallation> class, instead of the class methods in `PFPush`.
+ the `PFInstallation` class, instead of the class methods in `PFPush`.
  */
 PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
@@ -58,7 +58,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  Sets an installation query to which this push notification will be sent.
 
- The query should be created via <[PFInstallation query]> and should not specify a skip, limit, or order.
+ The query should be created via `PFInstallation.+query` and should not specify a skip, limit, or order.
 
  @param query The installation query to set for this push.
  */
@@ -89,7 +89,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  @param pushToAndroid Whether this push will go to Android devices.
 
- @deprecated Please use a `[PFInstallation query]` with a constraint on deviceType instead.
+ @deprecated Please use a `PFInstallation.+query` with a constraint on deviceType instead.
  */
 - (void)setPushToAndroid:(BOOL)pushToAndroid PARSE_DEPRECATED("Please use a [PFInstallation query] with a constraint on deviceType. This method is deprecated and won't do anything.");
 
@@ -98,7 +98,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  @param pushToIOS Whether this push will go to iOS devices.
 
- @deprecated Please use a `[PFInstallation query]` with a constraint on deviceType instead.
+ @deprecated Please use a `PFInstallation.+query` with a constraint on deviceType instead.
  */
 - (void)setPushToIOS:(BOOL)pushToIOS PARSE_DEPRECATED("Please use a [PFInstallation query] with a constraint on deviceType. This method is deprecated and won't do anything.");
 
@@ -108,7 +108,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  The notification will be sent to devices which are either online
  at the time the notification is sent, or which come online before the expiration time is reached.
  Because device clocks are not guaranteed to be accurate,
- most applications should instead use <expireAfterTimeInterval:>.
+ most applications should instead use `-expireAfterTimeInterval:`.
 
  @see expireAfterTimeInterval:
 
@@ -135,10 +135,10 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 - (void)clearExpiration;
 
 /**
- Date at which to send this push notification. 
- 
- Push notificaitons with this date will be delivered at the local time matching the <PFInstallation.timeZone>.
- 
+ Date at which to send this push notification.
+
+ Push notificaitons with this date will be delivered at the local time matching the `PFInstallation.timeZone`.
+
  @warning The date cannot be in the past, and can be up to two weeks in the future.
  */
 @property (nullable, nonatomic, strong) NSDate *pushDate;
@@ -206,7 +206,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  Send a push message to a query.
 
- @param query The query to send to. The query must be a <PFInstallation> query created with <[PFInstallation query]>.
+ @param query The query to send to. The query must be a `PFInstallation` query created with `PFInstallation.+query`.
  @param message The message to send.
  @param error Pointer to an NSError that will be set if necessary.
 
@@ -219,7 +219,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  *Asynchronously* send a push message to a query.
 
- @param query The query to send to. The query must be a <PFInstallation> query created with <[PFInstallation query]>.
+ @param query The query to send to. The query must be a `PFInstallation` query created with `PFInstallation.+query`.
  @param message The message to send.
 
  @return The task, that encapsulates the work being done.
@@ -343,8 +343,8 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  See the guide for information about the dictionary structure.
 
- @param query The query to send to. The query must be a <PFInstallation> query
- created with <[PFInstallation query]>.
+ @param query The query to send to. The query must be a `PFInstallation` query
+ created with `PFInstallation.+query`.
  @param data The data to send.
  @param error Pointer to an NSError that will be set if necessary.
 
@@ -359,8 +359,8 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  See the guide for information about the dictionary structure.
 
- @param query The query to send to. The query must be a <PFInstallation> query
- created with <[PFInstallation query]>.
+ @param query The query to send to. The query must be a `PFInstallation` query
+ created with `PFInstallation.+query`.
  @param data The data to send.
 
  @return The task, that encapsulates the work being done.
@@ -373,8 +373,8 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  See the guide for information about the dictionary structure.
 
- @param query The query to send to. The query must be a <PFInstallation> query
- created with <[PFInstallation query]>.
+ @param query The query to send to. The query must be a `PFInstallation` query
+ created with `PFInstallation.+query`.
  @param data The data to send.
  @param block The block to execute.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`.

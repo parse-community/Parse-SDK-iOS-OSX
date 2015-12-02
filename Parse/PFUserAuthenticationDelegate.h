@@ -14,7 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- Provides a general interface for delegation of third party authentication with <PFUser>s.
+ Provides a general interface for delegation of third party authentication with `PFUser`s.
  */
 @protocol PFUserAuthenticationDelegate <NSObject>
 

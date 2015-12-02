@@ -46,7 +46,7 @@ extern NSString *const __nonnull kPFParseServer;
 ///--------------------------------------
 
 /**
- `PFCachePolicy` specifies different caching policies that could be used with <PFQuery>.
+ `PFCachePolicy` specifies different caching policies that could be used with `PFQuery`.
 
  This lets you show data when the user's device is offline,
  or when the app has just started and network requests have not yet had time to complete.
@@ -96,8 +96,8 @@ typedef NS_ENUM(uint8_t, PFCachePolicy) {
 /**
  `PFLogLevel` enum specifies different levels of logging that could be used to limit or display more messages in logs.
 
- @see [Parse setLogLevel:]
- @see [Parse logLevel]
+ @see `Parse.+setLogLevel:`
+ @see `Parse.+logLevel`
  */
 typedef NS_ENUM(uint8_t, PFLogLevel) {
     /**
@@ -225,7 +225,7 @@ typedef NS_ENUM(NSInteger, PFErrorCode) {
      */
     kPFErrorInvalidFileName = 122,
     /**
-     Invalid ACL. An ACL with an invalid format was saved. This should not happen if you use <PFACL>.
+     Invalid ACL. An ACL with an invalid format was saved. This should not happen if you use `PFACL`.
      */
     kPFErrorInvalidACL = 123,
     /**

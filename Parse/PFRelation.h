@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- Returns a <PFQuery> object that can be used to get objects in this relation.
+ Returns a `PFQuery` object that can be used to get objects in this relation.
  */
 - (PFQuery *)query;
 
@@ -41,14 +41,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Adds a relation to the passed in object.
 
- @param object A <PFObject> object to add relation to.
+ @param object A `PFObject` object to add relation to.
  */
 - (void)addObject:(PFObject *)object;
 
 /**
  Removes a relation to the passed in object.
 
- @param object A <PFObject> object to add relation to.
+ @param object A `PFObject` object to add relation to.
  */
 - (void)removeObject:(PFObject *)object;
 

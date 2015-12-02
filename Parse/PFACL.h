@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  The `PFACL` class is used to control which users can access or modify a particular object.
- Each <PFObject> can have its own `PFACL`. You can grant read and write permissions separately to specific users,
+ Each `PFObject` can have its own `PFACL`. You can grant read and write permissions separately to specific users,
  to groups of users that belong to roles, or you can grant permissions to "the public" so that,
  for example, any user could read a particular object but only a particular set of users could write to that object.
  */
@@ -62,16 +62,16 @@ NS_ASSUME_NONNULL_BEGIN
  Set whether the given user id is allowed to read this object.
 
  @param allowed Whether the given user can write this object.
- @param userId The <[PFObject objectId]> of the user to assign access.
+ @param userId The `PFObject.objectId` of the user to assign access.
  */
 - (void)setReadAccess:(BOOL)allowed forUserId:(NSString *)userId;
 
 /**
  Gets whether the given user id is *explicitly* allowed to read this object.
- Even if this returns `NO`, the user may still be able to access it if <getPublicReadAccess> returns `YES`
+ Even if this returns `NO`, the user may still be able to access it if `publicReadAccess` returns `YES`
  or if the user belongs to a role that has access.
 
- @param userId The <[PFObject objectId]> of the user for which to retrive access.
+ @param userId The `PFObject.objectId` of the user for which to retrive access.
 
  @return `YES` if the user with this `objectId` has *explicit* read access, otherwise `NO`.
  */
@@ -81,18 +81,18 @@ NS_ASSUME_NONNULL_BEGIN
  Set whether the given user id is allowed to write this object.
 
  @param allowed Whether the given user can read this object.
- @param userId The `objectId` of the user to assign access.
+ @param userId The `PFObject.objectId` of the user to assign access.
  */
 - (void)setWriteAccess:(BOOL)allowed forUserId:(NSString *)userId;
 
 /**
  Gets whether the given user id is *explicitly* allowed to write this object.
- Even if this returns NO, the user may still be able to write it if <getPublicWriteAccess> returns `YES`
+ Even if this returns NO, the user may still be able to write it if `publicWriteAccess` returns `YES`
  or if the user belongs to a role that has access.
 
- @param userId The <[PFObject objectId]> of the user for which to retrive access.
+ @param userId The `PFObject.objectId` of the user for which to retrive access.
 
- @return `YES` if the user with this `objectId` has *explicit* write access, otherwise `NO`.
+ @return `YES` if the user with this `PFObject.objectId` has *explicit* write access, otherwise `NO`.
  */
 - (BOOL)getWriteAccessForUserId:(NSString *)userId;
 
@@ -106,7 +106,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Gets whether the given user is *explicitly* allowed to read this object.
- Even if this returns `NO`, the user may still be able to access it if <getPublicReadAccess> returns `YES`
+ Even if this returns `NO`, the user may still be able to access it if `publicReadAccess` returns `YES`
  or if the user belongs to a role that has access.
 
  @param user The user for which to retrive access.
@@ -125,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Gets whether the given user is *explicitly* allowed to write this object.
- Even if this returns `NO`, the user may still be able to write it if <getPublicWriteAccess> returns `YES`
+ Even if this returns `NO`, the user may still be able to write it if `publicWriteAccess` returns `YES`
  or if the user belongs to a role that has access.
 
  @param user The user for which to retrive access.
@@ -227,13 +227,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- Sets a default ACL that will be applied to all instances of <PFObject> when they are created.
+ Sets a default ACL that will be applied to all instances of `PFObject` when they are created.
 
- @param acl The ACL to use as a template for all instance of <PFObject> created after this method has been called.
+ @param acl The ACL to use as a template for all instance of `PFObject` created after this method has been called.
  This value will be copied and used as a template for the creation of new ACLs, so changes to the
- instance after this method has been called will not be reflected in new instance of <PFObject>.
- @param currentUserAccess - If `YES`, the `PFACL` that is applied to newly-created instance of <PFObject> will
- provide read and write access to the <[PFUser currentUser]> at the time of creation.
+ instance after this method has been called will not be reflected in new instance of `PFObject`.
+ @param currentUserAccess - If `YES`, the `PFACL` that is applied to newly-created instance of `PFObject` will
+ provide read and write access to the `PFUser.+currentUser` at the time of creation.
  - If `NO`, the provided `acl` will be used without modification.
  - If `acl` is `nil`, this value is ignored.
  */

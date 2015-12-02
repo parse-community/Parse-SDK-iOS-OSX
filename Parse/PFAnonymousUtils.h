@@ -69,9 +69,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- Whether the <PFUser> object is logged in anonymously.
+ Whether the `PFUser` object is logged in anonymously.
 
- @param user <PFUser> object to check for anonymity. The user must be logged in on this device.
+ @param user `PFUser` object to check for anonymity. The user must be logged in on this device.
 
  @return `YES` if the user is anonymous. `NO` if the user is not the current user or is not anonymous.
  */

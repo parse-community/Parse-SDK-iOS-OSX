@@ -16,8 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  The `PFRole` class represents a Role on the Parse server.
- `PFRoles` represent groupings of <PFUser> objects for the purposes of granting permissions
- (e.g. specifying a <PFACL> for a <PFObject>).
+ `PFRoles` represent groupings of `PFUser` objects for the purposes of granting permissions
+ (e.g. specifying a `PFACL` for a `PFObject`).
  Roles are specified by their sets of child users and child roles,
  all of which are granted any permissions that the parent role has.
 
@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *name;
 
 /**
- Gets the <PFRelation> for the <PFUser> objects that are direct children of this role.
+ Gets the `PFRelation` for the `PFUser` objects that are direct children of this role.
 
  These users are granted any privileges that this role has been granted
  (e.g. read or write access through ACLs). You can add or remove users from
@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) PFRelation *users;
 
 /**
- Gets the <PFRelation> for the `PFRole` objects that are direct children of this role.
+ Gets the `PFRelation` for the `PFRole` objects that are direct children of this role.
 
  These roles' users are granted any privileges that this role has been granted
  (e.g. read or write access through ACLs). You can add or remove child roles
