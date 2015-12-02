@@ -67,7 +67,19 @@
 ///--------------------------------------
 
 // Extension for property methods.
-@interface PFObject ()
+@interface PFObject () {
+@protected
+    BOOL dirty;
+
+    // An array of NSDictionary of NSString -> PFFieldOperation.
+    // Each dictionary has a subset of the object's keys as keys, and the
+    // changes to the value for that key as its value.
+    // There is always at least one dictionary of pending operations.
+    // Every time a save is started, a new dictionary is added to the end.
+    // Whenever a save completes, the new data is put into fetchedData, and
+    // a dictionary is removed from the start.
+    NSMutableArray *operationSetQueue;
+}
 
 /*!
  @returns Current object state.
