@@ -29,18 +29,7 @@ extern NSString *const PFObjectDefaultPin;
  This is the main class that is used to interact with objects in your app.
  */
 NS_REQUIRES_PROPERTY_DEFINITIONS
-@interface PFObject : NSObject {
-    BOOL dirty;
-
-    // An array of NSDictionary of NSString -> PFFieldOperation.
-    // Each dictionary has a subset of the object's keys as keys, and the
-    // changes to the value for that key as its value.
-    // There is always at least one dictionary of pending operations.
-    // Every time a save is started, a new dictionary is added to the end.
-    // Whenever a save completes, the new data is put into fetchedData, and
-    // a dictionary is removed from the start.
-    NSMutableArray *__nullable operationSetQueue;
-}
+@interface PFObject : NSObject
 
 ///--------------------------------------
 /// @name Creating a PFObject
