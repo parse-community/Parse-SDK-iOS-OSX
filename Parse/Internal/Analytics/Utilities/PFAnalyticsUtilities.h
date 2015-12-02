@@ -11,7 +11,7 @@
 
 @interface PFAnalyticsUtilities : NSObject
 
-/*!
+/**
  Serializes and hexdigests an alert payload into a "push_hash" identifier
  for use in Analytics.
  Limitedly flexible - the payload is the value under the "alert" key in the
@@ -21,7 +21,7 @@
 
  @param payload `alert` value from a push notification.
 
- @returns md5 identifier.
+ @return md5 identifier.
  */
 + (NSString *)md5DigestFromPushPayload:(id)payload;
 

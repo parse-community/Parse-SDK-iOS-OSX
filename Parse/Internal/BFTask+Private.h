@@ -36,29 +36,29 @@
 - (instancetype)continueWithMainThreadBooleanResultBlock:(PFBooleanResultBlock)resultBlock
                                       executeIfCancelled:(BOOL)executeIfCancelled;
 
-/*!
+/**
  Adds a continuation to the task that will run the given block on the main
  thread sometime after this task has finished. If the task was cancelled,
  the block will never be called. If the task had an exception, the exception
  will be throw on the main thread instead of running the block. Otherwise,
  the block will be given the result and error of this task.
- @returns A new task that will be finished once the block has run.
+ @return A new task that will be finished once the block has run.
  */
 - (BFTask *)thenCallBackOnMainThreadAsync:(void(^)(id result, NSError *error))block;
 
-/*!
+/**
  Identical to thenCallBackOnMainThreadAsync:, except that the result of a successful
  task will be converted to a BOOL using the boolValue method, and that will
  be passed to the block instead of the original result.
  */
 - (BFTask *)thenCallBackOnMainThreadWithBoolValueAsync:(void(^)(BOOL result, NSError *error))block;
 
-/*!
+/**
  Same as `waitForResult:error withMainThreadWarning:YES`
  */
 - (id)waitForResult:(NSError **)error;
 
-/*!
+/**
  Waits until this operation is completed, then returns its value.
  This method is inefficient and consumes a thread resource while its running.
 

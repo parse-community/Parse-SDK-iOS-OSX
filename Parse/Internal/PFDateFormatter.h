@@ -19,12 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name String from Date
 ///--------------------------------------
 
-/*!
+/**
  Converts `NSDate` into `NSString` representation using the following format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
 
  @param date `NSDate` to convert.
 
- @returns Formatted `NSString` representation.
+ @return Formatted `NSString` representation.
  */
 - (NSString *)preciseStringFromDate:(NSDate *)date;
 
@@ -32,10 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Date from String
 ///--------------------------------------
 
-/*!
+/**
  Converts `NSString` representation of a date into `NSDate` object.
 
- @discussion Following date formats are supported:
+ Following date formats are supported:
  YYYY-MM-DD
  YYYY-MM-DD HH:MM'Z'
  YYYY-MM-DD HH:MM:SS'Z'
@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param string `NSString` representation to convert.
 
- @returns `NSDate` incapsulating the date.
+ @return `NSDate` incapsulating the date.
  */
 - (NSDate *)dateFromString:(NSString *)string;
 

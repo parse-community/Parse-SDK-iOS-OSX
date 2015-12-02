@@ -53,7 +53,7 @@
  **/
 + (id)traverseObject:(id)object usingBlock:(id (^)(id object))block;
 
-/*!
+/**
  This method will split an array into multiple arrays, each with up to maximum components count.
 
  @param array      Array to split.

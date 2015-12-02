@@ -26,11 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Decoding
 ///--------------------------------------
 
-/*!
+/**
  Converts a parsed JSON object into a PFFieldOperation.
 
  @param encoded An NSDictionary containing an __op field.
- @returns An NSObject that conforms to PFFieldOperation.
+ @return An NSObject that conforms to PFFieldOperation.
  */
 - (PFFieldOperation *)decode:(NSDictionary *)encoded withDecoder:(PFDecoder *)decoder;
 

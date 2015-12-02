@@ -31,14 +31,14 @@
 /// @name Cloud Functions
 ///--------------------------------------
 
-/*!
+/**
  Calls a Cloud Code function and returns a result of it's execution.
 
  @param functionName Function name to call.
  @param parameters   Parameters to pass. (can't be nil).
  @param sessionToken Session token to use.
 
- @returns `BFTask` with a result set to a result of Cloud Function.
+ @return `BFTask` with a result set to a result of Cloud Function.
  */
 - (BFTask *)callCloudCodeFunctionAsync:(NSString *)functionName
                         withParameters:(NSDictionary *)parameters

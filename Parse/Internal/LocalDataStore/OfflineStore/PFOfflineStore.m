@@ -51,28 +51,28 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 
 @property (nonatomic, strong, readonly) NSObject *lock;
 
-/*!
+/**
  In-memory map of (className, objectId) to ParseObject. This is used so that we can
  always return the same instance for a given object. Objects in this map may or may
  not be in the database.
  */
 @property (nonatomic, strong, readonly) NSMapTable *classNameAndObjectIdToObjectMap;
 
-/*!
+/**
  In-memory set of ParseObjects that have been fetched from local database already.
  If the object is in the map, a fetch of it has been started. If the value is a
  finished task, then the fetch was completed.
  */
 @property (nonatomic, strong, readonly) NSMapTable *fetchedObjects;
 
-/*!
+/**
  In-memory map of ParseObject to UUID. This is used so that we can always return
  the same instance for a given object. Objects in this map may or may not be in the
  database.
  */
 @property (nonatomic, strong, readonly) NSMapTable *objectToUUIDMap;
 
-/*!
+/**
  In-memory map of UUID to ParseObject. This is used so we can always return
  the same instance for a given object. The only objects in this map are ones that
  are in database.
@@ -873,7 +873,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 
 #pragma mark Pointers
 
-/*!
+/**
  Gets an unfetched pointer to an object in the database, based on its uuid. The object may or may
  not be in memory, but it must be in database. If it is already in memory, the instance will be
  returned. Since this is only for creating pointers to objects that are referenced by other objects
@@ -881,7 +881,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 
  @param uuid        The UUID of the object to retrieve.
  @param database    The database instance to retrieve from.
- @returns The object with that UUID.
+ @return The object with that UUID.
  */
 - (BFTask *)_getPointerAsyncWithUUID:(NSString *)uuid database:(PFSQLiteDatabase *)database {
     @synchronized (self.lock) {

@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*!
+/**
  PFSQLiteStatement is sqlite3_stmt wrapper class.
  */
 typedef struct sqlite3_stmt sqlite3_stmt;

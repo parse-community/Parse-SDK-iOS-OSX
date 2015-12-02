@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 extern NSString *const PFKeychainStoreDefaultService;
 
-/*!
+/**
  PFKeychainStore is NSUserDefaults-like wrapper on top of Keychain.
  It supports any object, with NSCoding support. Every object is serialized using NSKeyedArchiver.
 

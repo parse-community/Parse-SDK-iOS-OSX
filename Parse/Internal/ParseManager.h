@@ -56,18 +56,18 @@ PFInstallationIdentifierStoreProvider>
 
 - (instancetype)init NS_UNAVAILABLE;
 
-/*!
+/**
  Initializes an instance of ParseManager class.
 
  @param applicationId                   ApplicationId of Parse app.
  @param clientKey                       ClientKey of Parse app.
 
- @returns `ParseManager` instance.
+ @return `ParseManager` instance.
  */
 - (instancetype)initWithApplicationId:(NSString *)applicationId
                             clientKey:(NSString *)clientKey NS_DESIGNATED_INITIALIZER;
 
-/*!
+/**
  Configures ParseManager with specified properties.
 
  @param applicationGroupIdentifier      Shared AppGroup container identifier.

@@ -136,7 +136,7 @@ static const int PFRESTCommandCacheKeyVersion = 1;
 
 #pragma mark Local Identifiers
 
-/*!
+/**
  If this was the second save on a new object while offline, then its objectId
  wasn't yet set when the command was created, so it would have been considered a
  "create". But if the first save succeeded, then there is an objectId now, and it

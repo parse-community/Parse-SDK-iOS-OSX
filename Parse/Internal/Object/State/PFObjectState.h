@@ -50,14 +50,14 @@ typedef void(^PFObjectStateMutationBlock)(PFMutableObjectState *state);
 /// @name Coding
 ///--------------------------------------
 
-/*!
+/**
  Encodes all fields in `serverData`, `objectId`, `createdAt` and `updatedAt` into objects suitable for JSON/Persistence.
 
  @note `parseClassName` isn't automatically added to the dictionary.
 
  @param objectEncoder Encoder to use to encode custom objects.
 
- @returns `NSDictionary` instance representing object state.
+ @return `NSDictionary` instance representing object state.
  */
 - (NSDictionary *)dictionaryRepresentationWithObjectEncoder:(PFEncoder *)objectEncoder NS_REQUIRES_SUPER;
 

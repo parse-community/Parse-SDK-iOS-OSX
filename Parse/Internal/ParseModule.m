@@ -96,7 +96,7 @@ typedef void (^ParseModuleEnumerationBlock)(id<ParseModule> module, BOOL *stop, 
     dispatch_sync(self.collectionQueue, block);
 }
 
-/*!
+/**
  Enumerates all existing modules in this collection.
 
  NOTE: This **will modify the contents of the collection** if any of the modules were deallocated since last loop.

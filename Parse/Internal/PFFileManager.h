@@ -55,7 +55,7 @@ typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
 - (instancetype)initWithApplicationIdentifier:(NSString *)applicationIdentifier
                    applicationGroupIdentifier:(NSString *)applicationGroupIdentifier NS_DESIGNATED_INITIALIZER;
 
-/*!
+/**
  Returns <Application Home>/Library/Private Documents/Parse
  for non-user generated data that shouldn't be deleted by iOS, such as "offline data".
 
@@ -64,7 +64,7 @@ typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
 - (NSString *)parseDefaultDataDirectoryPath;
 - (NSString *)parseLocalSandboxDataDirectoryPath;
 
-/*!
+/**
  The path including directories that we save data to for a given filename.
  If the file isn't found in the new "Private Documents" location, but is in the old "Documents" location,
  moves it and returns the new location.

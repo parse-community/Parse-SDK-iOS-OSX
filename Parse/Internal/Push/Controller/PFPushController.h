@@ -37,13 +37,13 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushController : NSObject
 /// @name Sending Push
 ///--------------------------------------
 
-/*!
+/**
  Requests push notification to be sent for a given state.
 
  @param state        State to use to send notifications.
  @param sessionToken Current user session token.
 
- @returns `BFTask` with result set to `NSNumber` with `BOOL` identifying whether the request succeeded.
+ @return `BFTask` with result set to `NSNumber` with `BOOL` identifying whether the request succeeded.
  */
 - (BFTask *)sendPushNotificationAsyncWithState:(PFPushState *)state sessionToken:(nullable NSString *)sessionToken;
 

@@ -46,7 +46,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 
 - (BFTask *)fetchObjectLocallyAsync:(PFObject *)object;
 
-/*!
+/**
  Gets the data for the given object from the offline database. Returns a task that will be
  completed if data for the object was available. If the object is not in the cache, the task
  will be faulted, with a CACHE_MISS error.
@@ -64,7 +64,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 - (BFTask *)saveObjectLocallyAsync:(PFObject *)object includeChildren:(BOOL)includeChildren;
 - (BFTask *)saveObjectLocallyAsync:(PFObject *)object withChildren:(NSArray *)children;
 
-/*!
+/**
  Stores an object (and optionally, every object it points to recursively) in the local database.
  If any of the objects have not been fetched from Parse, they will not be stored. However, if
  they have changed data, the data will be retained. To get the objects back later, you can use a
@@ -85,35 +85,35 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 /// @name Find
 ///--------------------------------------
 
-/*!
+/**
  Runs a PFQueryState against the store's contents.
 
- @returns The objects that match the query's constraint.
+ @return The objects that match the query's constraint.
  */
 - (BFTask *)findAsyncForQueryState:(PFQueryState *)queryState
                               user:(PFUser *)user
                                pin:(PFPin *)pin;
 
-/*!
+/**
  Runs a PFQueryState against the store's contents.
 
- @returns The count of objects that match the query's constraint.
+ @return The count of objects that match the query's constraint.
  */
 - (BFTask *)countAsyncForQueryState:(PFQueryState *)queryState
                                user:(PFUser *)user
                                 pin:(PFPin *)pin;
 
-/*!
+/**
  Runs a PFQueryState against the store's contents.
 
- @returns The objects that match the query's constraint.
+ @return The objects that match the query's constraint.
  */
 - (BFTask *)findAsyncForQueryState:(PFQueryState *)queryState
                               user:(PFUser *)user
                                pin:(PFPin *)pin
                            isCount:(BOOL)isCount;
 
-/*!
+/**
  Runs a PFQueryState against the store's contents. May cause any instances of the object to get fetched from
  offline database. (TODO (hallucinogen): should we consider objects in memory but not in Offline Store?)
 
@@ -123,7 +123,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
  @param isCount     YES if we're doing count.
  @param database    The PFSQLiteDatabase
 
- @returns The objects that match the query's constraint.
+ @return The objects that match the query's constraint.
  */
 - (BFTask *)findAsyncForQueryState:(PFQueryState *)queryState
                               user:(PFUser *)user
@@ -135,7 +135,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 /// @name Update Internal State
 ///--------------------------------------
 
-/*!
+/**
  Takes an object that has been fetched from the database before and updates it with whatever
  data is in memory. This will only be used when data comes back from the server after a fetch
  or a save.
@@ -146,7 +146,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 /// @name Delete
 ///--------------------------------------
 
-/*!
+/**
  Deletes the given object from Offline Store's pins
  */
 - (BFTask *)deleteDataForObjectAsync:(PFObject *)object;
@@ -161,22 +161,22 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 /// @name Internal Helper Methods
 ///--------------------------------------
 
-/*!
+/**
  Gets the UUID for the given object, if it has one. Otherwise, creates a new UUID for the object
  and adds a new row to the database for the object with no data.
  */
 - (BFTask *)getOrCreateUUIDAsyncForObject:(PFObject *)object
                                  database:(PFSQLiteDatabase *)database;
 
-/*!
+/**
  This should only be called from `PFObject.objectWithoutDataWithClassName`.
 
- @returns an object from OfflineStore cache. If nil is returned the object is not found in the cache.
+ @return an object from OfflineStore cache. If nil is returned the object is not found in the cache.
  */
 - (PFObject *)getOrCreateObjectWithoutDataWithClassName:(NSString *)className
                                                objectId:(NSString *)objectId;
 
-/*!
+/**
  When an object is finished saving, it gets an objectId. Then it should call this method to
  clean up the bookeeping around ids.
  */
@@ -188,12 +188,12 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 /// @name Unit Test Helper Methods
 ///--------------------------------------
 
-/*!
+/**
  Used in unit testing only. Clears all in-memory caches so that data must be retrieved from disk.
  */
 - (void)simulateReboot;
 
-/*!
+/**
  Used in unit testing only. Clears the database on disk.
  */
 - (void)clearDatabase;

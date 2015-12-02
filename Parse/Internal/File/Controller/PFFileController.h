@@ -41,20 +41,20 @@
 /// @name Download
 ///--------------------------------------
 
-/*!
+/**
  Downloads a file asynchronously with a given state.
 
  @param fileState         File state to download the file for.
  @param cancellationToken Cancellation token.
  @param progressBlock     Progress block to call (optional).
 
- @returns `BFTask` with a result set to `nil`.
+ @return `BFTask` with a result set to `nil`.
  */
 - (BFTask *)downloadFileAsyncWithState:(PFFileState *)fileState
                      cancellationToken:(BFCancellationToken *)cancellationToken
                          progressBlock:(PFProgressBlock)progressBlock;
 
-/*!
+/**
  Downloads a file asynchronously with a given state and yields a stream to the live download of that file.
 
  @param fileState File state to download the file for.
@@ -71,7 +71,7 @@
 /// @name Upload
 ///--------------------------------------
 
-/*!
+/**
  Uploads a file asynchronously from file path for a given file state.
 
  @param fileState         File state to upload the file for.
@@ -80,7 +80,7 @@
  @param cancellationToken Cancellation token.
  @param progressBlock     Progress block to call (optional).
 
- @returns `BFTask` with a result set to `PFFileState` of uploaded file.
+ @return `BFTask` with a result set to `PFFileState` of uploaded file.
  */
 - (BFTask *)uploadFileAsyncWithState:(PFFileState *)fileState
                       sourceFilePath:(NSString *)sourceFilePath

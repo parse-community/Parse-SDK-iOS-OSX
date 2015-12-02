@@ -34,12 +34,12 @@
 /// @name Fetch
 ///--------------------------------------
 
-/*!
+/**
  Fetches current config from network async.
 
  @param sessionToken Current user session token.
 
- @returns `BFTask` with result set to `PFConfig`.
+ @return `BFTask` with result set to `PFConfig`.
  */
 - (BFTask *)fetchConfigAsyncWithSessionToken:(NSString *)sessionToken;
 

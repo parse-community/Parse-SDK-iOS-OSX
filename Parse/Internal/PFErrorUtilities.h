@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PFErrorUtilities : NSObject
 
-/*!
+/**
  Construct an error object from a code and a message.
 
  @description Note that this logs all errors given to it.
@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSError *)errorWithCode:(NSInteger)code message:(NSString *)message;
 + (NSError *)errorWithCode:(NSInteger)code message:(NSString *)message shouldLog:(BOOL)shouldLog;
 
-/*!
+/**
  Construct an error object from a result dictionary the API returned.
 
  @description Note that this logs all errors given to it.

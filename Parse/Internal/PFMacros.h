@@ -13,12 +13,12 @@
 #ifndef Parse_PFMacros_h
 #define Parse_PFMacros_h
 
-/*!
+/**
  This macro allows to create NSSet via subscript.
  */
 #define PF_SET(...)  [NSSet setWithObjects:__VA_ARGS__, nil]
 
-/*!
+/**
  This macro is a handy thing for converting libSystem objects to (void *) pointers.
  If you are targeting OSX 10.8+ and iOS 6.0+ - this is no longer required.
  */
@@ -30,7 +30,7 @@
     (void *)(object)
 #endif
 
-/*!
+/**
  Mark a queue in order to be able to check PFAssertIsOnMarkedQueue.
  */
 #define PFMarkDispatchQueue(queue) \
@@ -45,7 +45,7 @@ dispatch_queue_set_specific((queue), \
 /// The following macros are influenced and include portions of libextobjc.
 ///--------------------------------------
 
-/*!
+/**
  Creates a __weak version of the variable provided,
  which can later be safely used or converted into strong variable via @strongify.
  */
@@ -53,7 +53,7 @@ dispatch_queue_set_specific((queue), \
 try {} @catch (...) {} \
 __weak __typeof__(var) var ## _weak = var;
 
-/*!
+/**
  Creates a strong shadow reference of the variable provided.
  Variable must have previously been passed to @weakify.
  */
@@ -65,7 +65,7 @@ __strong __typeof__(var) var = var ## _weak;
 /// @name KVC
 ///--------------------------------------
 
-/*!
+/**
  This macro ensures that object.key exists at compile time.
  It can accept a chained key path.
  */
@@ -76,7 +76,7 @@ __strong __typeof__(var) var = var ## _weak;
 /// @name Runtime
 ///--------------------------------------
 
-/*!
+/**
  Using objc_msgSend directly is bad, very bad. Doing so without casting could result in stack-smashing on architectures
  (*cough* x86 *cough*) that use strange methods of returning values of different types.
 
@@ -87,7 +87,7 @@ __strong __typeof__(var) var = var ## _weak;
 #define objc_msgSend(...)  _Pragma("GCC error \"Use objc_msgSend_safe() instead!\"")
 #define objc_msgSend_safe(returnType, argTypes...) ((returnType (*)(id, SEL, ##argTypes))(objc_msgSend))
 
-/*!
+/**
  This exists because if we throw an exception from dispatch_sync, it doesn't 'bubble up' to the calling thread.
  This simply wraps dispatch_sync and properly throws the exception back to the calling thread, not the thread that
  the exception was originally raised on.
@@ -109,7 +109,7 @@ __strong __typeof__(var) var = var ## _weak;
         if (caught) @throw caught;            \
     } while (0)
 
-/*!
+/**
  To prevent retain cycles by OCMock, this macro allows us to capture a weak reference to return from a stubbed method.
  */
 #define andReturnWeak(variable) _andDo(                                              \
@@ -122,7 +122,7 @@ __strong __typeof__(var) var = var ## _weak;
     })                                                                               \
 )
 
-/*!
+/**
  This exists to use along with bolts generic tasks. Instead of returning a BFTask with no generic type, or a generic
  type of 'NSNull' when there is no usable result from a task, we use the type 'PFVoid', which will always have a value
  of  'nil'.

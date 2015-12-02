@@ -30,14 +30,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Default ACL
 ///--------------------------------------
 
-/*!
+/**
  Get the default ACL managed by this controller.
 
  @return A task that returns the ACL encapsulated by this controller.
  */
 - (BFTask *)getDefaultACLAsync;
 
-/*!
+/**
  Set the new default default ACL to be encapsulated in this controller.
 
  @param acl                  The new ACL. Will be copied.

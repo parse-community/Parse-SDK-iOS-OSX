@@ -42,12 +42,12 @@
 /// @name Local Datastore Options
 ///--------------------------------------
 
-/*!
+/**
  If ignoreACLs is enabled, we don't check ACLs when querying from LDS. We also don't grab
  `PFUser currentUser` since it's unnecessary when ignoring ACLs.
  */
 @property (nonatomic, assign, readonly) BOOL shouldIgnoreACLs;
-/*!
+/**
  This is currently unused, but is here to allow future querying across objects that are in the
  process of being deleted eventually.
  */

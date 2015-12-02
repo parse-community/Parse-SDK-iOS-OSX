@@ -15,7 +15,7 @@
 #import "PFLocationManager.h"
 #import "PFUnitTestCase.h"
 
-/*!
+/**
  We do this because OCMock does not allow you to stub -respondsToSelector:, so we force it to bend to our will using a
  protocol mock.
 

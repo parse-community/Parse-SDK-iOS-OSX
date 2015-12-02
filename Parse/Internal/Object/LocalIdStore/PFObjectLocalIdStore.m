@@ -23,7 +23,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
 #pragma mark - PFObjectLocalIdStoreMapEntry
 ///--------------------------------------
 
-/*!
+/**
  * Internal class representing all the information we know about a local id.
  */
 @interface PFObjectLocalIdStoreMapEntry : NSObject
@@ -86,7 +86,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
     PFNotDesignatedInitializer();
 }
 
-/*!
+/**
  * Creates a new LocalIdManager with default options.
  */
 - (instancetype)initWithDataSource:(id<PFFileManagerProvider>)dataSource {
@@ -118,7 +118,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
 #pragma mark - Accessors
 ///--------------------------------------
 
-/*!
+/**
  * Returns Yes if localId has the right basic format for a local id.
  */
 + (BOOL)isLocalId:(NSString *)localId {
@@ -136,7 +136,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
     return YES;
 }
 
-/*!
+/**
  * Grabs one entry in the local id map off the disk.
  */
 - (PFObjectLocalIdStoreMapEntry *)getMapEntry:(NSString *)localId {
@@ -166,7 +166,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
     return entry;
 }
 
-/*!
+/**
  * Writes one entry to the local id map on disk.
  */
 - (void)putMapEntry:(PFObjectLocalIdStoreMapEntry *)entry forLocalId:(NSString *)localId {
@@ -176,7 +176,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
     [entry writeToFile:file];
 }
 
-/*!
+/**
  * Removes an entry from the local id map on disk.
  */
 - (void)removeMapEntry:(NSString *)localId {
@@ -186,7 +186,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
     [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
 }
 
-/*!
+/**
  * Creates a new local id in the map.
  */
 - (NSString *)createLocalId {
@@ -204,7 +204,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
     }
 }
 
-/*!
+/**
  * Increments the retain count of a local id on disk.
  */
 - (void)retainLocalIdOnDisk:(NSString *)localId {
@@ -215,7 +215,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
     }
 }
 
-/*!
+/**
  * Decrements the retain count of a local id on disk.
  * If the retain count hits zero, the id is forgotten forever.
  */
@@ -230,7 +230,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
     }
 }
 
-/*!
+/**
  * Sets the objectId associated with a given local id.
  */
 - (void)setObjectId:(NSString *)objectId forLocalId:(NSString *)localId {
@@ -244,7 +244,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
     }
 }
 
-/*!
+/**
  * Returns the objectId associated with a given local id.
  * Returns nil if no objectId is yet known for the lcoal id.
  */
@@ -260,7 +260,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
     }
 }
 
-/*!
+/**
  * Removes all local ids from the disk and memory caches.
  */
 - (BOOL)clear {
@@ -279,7 +279,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
     }
 }
 
-/*!
+/**
  * Removes all local ids from the memory cache.
  */
 - (void)clearInMemoryCache {

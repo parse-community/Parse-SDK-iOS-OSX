@@ -20,7 +20,7 @@
 
 typedef void(^PFLocationManagerLocationUpdateBlock)(CLLocation *location, NSError *error);
 
-/*!
+/**
  PFLocationManager is an internal class which wraps a CLLocationManager and
  returns an updated CLLocation via the provided block.
 

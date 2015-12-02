@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) dispatch_queue_t dataQueue;
 
-/*!
- @abstract Defaults to to-memory output stream if not overwritten.
+/**
+ Defaults to to-memory output stream if not overwritten.
  */
 @property (nonatomic, strong, readonly) NSOutputStream *dataOutputStream;
 @property (nonatomic, assign, readonly) uint64_t downloadedBytes;

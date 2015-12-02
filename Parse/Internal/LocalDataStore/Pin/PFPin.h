@@ -15,7 +15,7 @@
 extern NSString *const PFPinKeyName;
 extern NSString *const PFPinKeyObjects;
 
-/*!
+/**
  PFPin represent internal pin implementation of PFObject's `pin`.
  */
 @interface PFPin : PFObject<PFSubclassing>
