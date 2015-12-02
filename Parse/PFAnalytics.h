@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  user opening a push notification, this method sends along information to
  correlate this open with that push.
 
- @discussion Pass in `nil` to track a standard "application opened" event.
+ Pass in `nil` to track a standard "application opened" event.
 
  @param launchOptions The `NSDictionary` indicating the reason the application was
  launched, if any. This value can be found as a parameter to various
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
  If this happened as the result of the user opening a push notification,
  this method sends along information to correlate this open with that push.
 
- @discussion Pass in `nil` to track a standard "application opened" event.
+ Pass in `nil` to track a standard "application opened" event.
 
  @param launchOptions The dictionary indicating the reason the application was
  launched, if any. This value can be found as a parameter to various
@@ -94,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Tracks the occurrence of a custom event.
 
- @discussion Parse will store a data point at the time of invocation with the given event name.
+ Parse will store a data point at the time of invocation with the given event name.
 
  @param name The name of the custom event to report to Parse as having happened.
 
@@ -117,7 +117,7 @@ NS_ASSUME_NONNULL_BEGIN
  Tracks the occurrence of a custom event with additional dimensions. Parse will
  store a data point at the time of invocation with the given event name.
 
- @discussion Dimensions will allow segmentation of the occurrences of this custom event.
+ Dimensions will allow segmentation of the occurrences of this custom event.
  Keys and values should be NSStrings, and will throw otherwise.
 
  To track a user signup along with additional metadata, consider the following:

@@ -52,7 +52,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /**
  Creates a PFQuery with the constraints given by predicate.
 
- @discussion The following types of predicates are supported:
+ The following types of predicates are supported:
 
  - Simple comparisons such as `=`, `!=`, `<`, `>`, `<=`, `>=`, and `BETWEEN` with a key and a constant.
  - Containment predicates, such as `x IN {1, 2, 3}`.
@@ -85,7 +85,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /**
  Make the query include PFObjects that have a reference stored at the provided key.
 
- @discussion This has an effect similar to a join.  You can use dot notation to specify which fields in
+ This has an effect similar to a join.  You can use dot notation to specify which fields in
  the included object are also fetch.
 
  @param key The key to load child <PFObject>s for.
@@ -97,7 +97,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /**
  Make the query restrict the fields of the returned <PFObject>s to include only the provided keys.
 
- @discussion If this is called multiple times, then all of the keys specified in each of the calls will be included.
+ If this is called multiple times, then all of the keys specified in each of the calls will be included.
 
  @param keys The keys to include in the result.
 
@@ -228,7 +228,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  Add a constraint to the query that requires a particular key's coordinates (specified via <PFGeoPoint>)
  be near a reference point.
 
- @discussion Distance is calculated based on angular distance on a sphere. Results will be sorted by distance
+ Distance is calculated based on angular distance on a sphere. Results will be sorted by distance
  from reference point.
 
  @param key The key to be constrained.
@@ -242,7 +242,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  Add a constraint to the query that requires a particular key's coordinates (specified via <PFGeoPoint>)
  be near a reference point and within the maximum distance specified (in miles).
 
- @discussion Distance is calculated based on a spherical coordinate system.
+ Distance is calculated based on a spherical coordinate system.
  Results will be sorted by distance (nearest to farthest) from the reference point.
 
  @param key The key to be constrained.
@@ -259,7 +259,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  Add a constraint to the query that requires a particular key's coordinates (specified via <PFGeoPoint>)
  be near a reference point and within the maximum distance specified (in kilometers).
 
- @discussion Distance is calculated based on a spherical coordinate system.
+ Distance is calculated based on a spherical coordinate system.
  Results will be sorted by distance (nearest to farthest) from the reference point.
 
  @param key The key to be constrained.
@@ -347,7 +347,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /**
  Add a constraint for finding string values that start with a provided prefix.
 
- @discussion This will use smart indexing, so it will be fast for large datasets.
+ This will use smart indexing, so it will be fast for large datasets.
 
  @param key The key that the string to match is stored in.
  @param prefix The substring that the value must start with.
@@ -449,7 +449,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /**
  Additionally sort in *ascending* order by the given key.
 
- @discussion The previous keys provided will precedence over this key.
+ The previous keys provided will precedence over this key.
 
  @param key The key to order by.
  */
@@ -467,7 +467,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /**
  Additionally sort in *descending* order by the given key.
 
- @discussion The previous keys provided will precedence over this key.
+ The previous keys provided will precedence over this key.
 
  @param key The key to order by.
  */
@@ -868,7 +868,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 /**
  Ignore ACLs when querying from the Local Datastore.
 
- @discussion This is particularly useful when querying for objects with Role based ACLs set on them.
+ This is particularly useful when querying for objects with Role based ACLs set on them.
 
  @warning Requires Local Datastore to be enabled.
 

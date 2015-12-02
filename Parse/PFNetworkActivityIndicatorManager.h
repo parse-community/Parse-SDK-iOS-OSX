@@ -55,7 +55,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFNetworkActivityIndicatorMana
 /**
  Increments the number of active network requests.
 
- @discussion If this number was zero before incrementing,
+ If this number was zero before incrementing,
  this will start animating network activity indicator in the status bar.
  */
 - (void)incrementActivityCount;
@@ -63,7 +63,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFNetworkActivityIndicatorMana
 /**
  Decrements the number of active network requests.
 
- @discussion If this number becomes zero after decrementing,
+ If this number becomes zero after decrementing,
  this will stop animating network activity indicator in the status bar.
  */
 - (void)decrementActivityCount;

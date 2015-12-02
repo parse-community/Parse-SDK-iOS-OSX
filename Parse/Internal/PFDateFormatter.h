@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Converts `NSString` representation of a date into `NSDate` object.
 
- @discussion Following date formats are supported:
+ Following date formats are supported:
  YYYY-MM-DD
  YYYY-MM-DD HH:MM'Z'
  YYYY-MM-DD HH:MM:SS'Z'

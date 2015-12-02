@@ -178,7 +178,7 @@ NS_ASSUME_NONNULL_BEGIN
  Get whether users belonging to the given role are allowed to read this object.
  Even if this returns `NO`, the role may still be able to read it if a parent role has read access.
 
- @discussion The role must already be saved on the server and
+ The role must already be saved on the server and
  it's data must have been fetched in order to use this method.
 
  @param role The name of the role.
@@ -190,7 +190,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Set whether users belonging to the given role are allowed to read this object.
 
- @discussion The role must already be saved on the server and
+ The role must already be saved on the server and
  it's data must have been fetched in order to use this method.
 
  @param allowed Whether the given role can read this object.
@@ -202,7 +202,7 @@ NS_ASSUME_NONNULL_BEGIN
  Get whether users belonging to the given role are allowed to write this object.
  Even if this returns `NO`, the role may still be able to write it if a parent role has write access.
 
- @discussion The role must already be saved on the server and
+ The role must already be saved on the server and
  it's data must have been fetched in order to use this method.
 
  @param role The name of the role.
@@ -214,7 +214,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Set whether users belonging to the given role are allowed to write this object.
 
- @discussion The role must already be saved on the server and
+ The role must already be saved on the server and
  it's data must have been fetched in order to use this method.
 
  @param allowed Whether the given role can write this object.

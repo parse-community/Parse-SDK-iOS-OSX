@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Constructs an object of the most specific class known to implement <parseClassName>.
 
- @discussion This method takes care to help <PFObject> subclasses be subclassed themselves.
+ This method takes care to help <PFObject> subclasses be subclassed themselves.
  For example, `[PFUser object]` returns a <PFUser> by default but will return an
  object of a registered subclass instead if one is known.
  A default implementation is provided by <PFObject> which should always be sufficient.
@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Creates a reference to an existing PFObject for use in creating associations between PFObjects.
 
- @discussion Calling <PFObject.dataAvailable> on this object will return `NO`
+ Calling <PFObject.dataAvailable> on this object will return `NO`
  until <[PFObject fetchIfNeeded]> has been called. No network request will be made.
  A default implementation is provided by PFObject which should always be sufficient.
 
@@ -56,14 +56,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Create a query which returns objects of this type.
 
- @discussion A default implementation is provided by <PFObject> which should always be sufficient.
+ A default implementation is provided by <PFObject> which should always be sufficient.
  */
 + (nullable PFQuery *)query;
 
 /**
  Returns a query for objects of this type with a given predicate.
 
- @discussion A default implementation is provided by <PFObject> which should always be sufficient.
+ A default implementation is provided by <PFObject> which should always be sufficient.
 
  @param predicate The predicate to create conditions from.
 

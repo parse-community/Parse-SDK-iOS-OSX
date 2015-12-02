@@ -58,7 +58,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  Sets an installation query to which this push notification will be sent.
 
- @discussion The query should be created via <[PFInstallation query]> and should not specify a skip, limit, or order.
+ The query should be created via <[PFInstallation query]> and should not specify a skip, limit, or order.
 
  @param query The installation query to set for this push.
  */
@@ -76,7 +76,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  Sets an arbitrary data payload for this push notification.
 
- @discussion See the guide for information about the dictionary structure.
+ See the guide for information about the dictionary structure.
 
  @warning This will overwrite any data specified in setMessage.
 
@@ -105,7 +105,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  Sets the expiration time for this notification.
 
- @discussion The notification will be sent to devices which are either online
+ The notification will be sent to devices which are either online
  at the time the notification is sent, or which come online before the expiration time is reached.
  Because device clocks are not guaranteed to be accurate,
  most applications should instead use <expireAfterTimeInterval:>.
@@ -119,7 +119,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  Sets the time interval after which this notification should expire.
 
- @discussion This notification will be sent to devices which are either online at
+ This notification will be sent to devices which are either online at
  the time the notification is sent, or which come online within the given
  time interval of the notification being received by Parse's server.
  An interval which is less than or equal to zero indicates that the
@@ -137,7 +137,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  Date at which to send this push notification. 
  
- @discussion Push notificaitons with this date will be delivered at the local time matching the <PFInstallation.timeZone>.
+ Push notificaitons with this date will be delivered at the local time matching the <PFInstallation.timeZone>.
  
  @warning The date cannot be in the past, and can be up to two weeks in the future.
  */
@@ -277,7 +277,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  *Synchronously* send a push message with arbitrary data to a channel.
 
- @discussion See the guide for information about the dictionary structure.
+ See the guide for information about the dictionary structure.
 
  @param channel The channel to send to. The channel name must start with
  a letter and contain only letters, numbers, dashes, and underscores.
@@ -293,7 +293,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  *Asynchronously* send a push message with arbitrary data to a channel.
 
- @discussion See the guide for information about the dictionary structure.
+ See the guide for information about the dictionary structure.
 
  @param channel The channel to send to. The channel name must start with
  a letter and contain only letters, numbers, dashes, and underscores.
@@ -307,7 +307,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  Asynchronously sends a push message with arbitrary data to a channel and calls the given block.
 
- @discussion See the guide for information about the dictionary structure.
+ See the guide for information about the dictionary structure.
 
  @param channel The channel to send to. The channel name must start with
  a letter and contain only letters, numbers, dashes, and underscores.
@@ -322,7 +322,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /*
  *Asynchronously* send a push message with arbitrary data to a channel.
 
- @discussion See the guide for information about the dictionary structure.
+ See the guide for information about the dictionary structure.
 
  @param channel The channel to send to. The channel name must start with
  a letter and contain only letters, numbers, dashes, and underscores.
@@ -341,7 +341,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  *Synchronously* send a push message with arbitrary data to a query.
 
- @discussion See the guide for information about the dictionary structure.
+ See the guide for information about the dictionary structure.
 
  @param query The query to send to. The query must be a <PFInstallation> query
  created with <[PFInstallation query]>.
@@ -357,7 +357,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  Asynchronously send a push message with arbitrary data to a query.
 
- @discussion See the guide for information about the dictionary structure.
+ See the guide for information about the dictionary structure.
 
  @param query The query to send to. The query must be a <PFInstallation> query
  created with <[PFInstallation query]>.
@@ -371,7 +371,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  *Asynchronously* sends a push message with arbitrary data to a query and calls the given block.
 
- @discussion See the guide for information about the dictionary structure.
+ See the guide for information about the dictionary structure.
 
  @param query The query to send to. The query must be a <PFInstallation> query
  created with <[PFInstallation query]>.
@@ -391,7 +391,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  A default handler for push notifications while the app is active that
  could be used to mimic the behavior of iOS push notifications while the app is backgrounded or not running.
 
- @discussion Call this from `application:didReceiveRemoteNotification:`.
+ Call this from `application:didReceiveRemoteNotification:`.
  If push has a dictionary containing loc-key and loc-args in the alert,
  we support up to 10 items in loc-args (`NSRangeException` if limit exceeded).
 
@@ -408,7 +408,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 /**
  Store the device token locally for push notifications.
 
- @discussion Usually called from you main app delegate's `didRegisterForRemoteNotificationsWithDeviceToken:`.
+ Usually called from you main app delegate's `didRegisterForRemoteNotificationsWithDeviceToken:`.
 
  @param deviceToken Either as an `NSData` straight from `application:didRegisterForRemoteNotificationsWithDeviceToken:`
  or as an `NSString` if you converted it yourself.

@@ -100,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Enables data sharing with an application group identifier.
 
- @discussion After enabling - Local Datastore, `currentUser`, `currentInstallation` and all eventually commands
+ After enabling - Local Datastore, `currentUser`, `currentInstallation` and all eventually commands
  are going to be available to every application/extension in a group that have the same Parse applicationId.
 
  @warning This method is required to be called before <setApplicationId:clientKey:>.
@@ -112,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Enables data sharing with an application group identifier.
 
- @discussion After enabling - Local Datastore, `currentUser`, `currentInstallation` and all eventually commands
+ After enabling - Local Datastore, `currentUser`, `currentInstallation` and all eventually commands
  are going to be available to every application/extension in a group that have the same Parse applicationId.
 
  @warning This method is required to be called before <setApplicationId:clientKey:>.
@@ -173,7 +173,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Sets the level of logging to display.
 
- @discussion By default:
+ By default:
  - If running inside an app that was downloaded from iOS App Store - it is set to <PFLogLevelNone>
  - All other cases - it is set to <PFLogLevelWarning>
 
@@ -185,7 +185,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Log level that will be displayed.
 
- @discussion By default:
+ By default:
  - If running inside an app that was downloaded from iOS App Store - it is set to <PFLogLevelNone>
  - All other cases - it is set to <PFLogLevelWarning>
 

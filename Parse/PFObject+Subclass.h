@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Creates an instance of the registered subclass with this class's <parseClassName>.
 
- @discussion This helps a subclass ensure that it can be subclassed itself.
+ This helps a subclass ensure that it can be subclassed itself.
  For example, `[PFUser object]` will return a `MyUser` object if `MyUser` is a registered subclass of `PFUser`.
  For this reason, `[MyClass object]` is preferred to `[[MyClass alloc] init]`.
  This method can only be called on subclasses which conform to `PFSubclassing`.
@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Creates a reference to an existing `PFObject` for use in creating associations between `PFObjects`.
 
- @discussion Calling <isDataAvailable> on this object will return `NO` until <fetchIfNeeded> or <fetch> has been called.
+ Calling <isDataAvailable> on this object will return `NO` until <fetchIfNeeded> or <fetch> has been called.
  This method can only be called on subclasses which conform to <PFSubclassing>.
  A default implementation is provided by `PFObject` which should always be sufficient.
  No network request will be made.
@@ -90,7 +90,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Registers an Objective-C class for Parse to use for representing a given Parse class.
 
- @discussion Once this is called on a `PFObject` subclass, any `PFObject` Parse creates with a class name
+ Once this is called on a `PFObject` subclass, any `PFObject` Parse creates with a class name
  that matches `[self parseClassName]` will be an instance of subclass.
  This method can only be called on subclasses which conform to <PFSubclassing>.
  A default implementation is provided by `PFObject` which should always be sufficient.
@@ -100,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Returns a query for objects of type <parseClassName>.
 
- @discussion This method can only be called on subclasses which conform to <PFSubclassing>.
+ This method can only be called on subclasses which conform to <PFSubclassing>.
  A default implementation is provided by <PFObject> which should always be sufficient.
  */
 + (nullable PFQuery *)query;
@@ -108,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Returns a query for objects of type <parseClassName> with a given predicate.
 
- @discussion A default implementation is provided by <PFObject> which should always be sufficient.
+ A default implementation is provided by <PFObject> which should always be sufficient.
  @warning This method can only be called on subclasses which conform to <PFSubclassing>.
 
  @param predicate The predicate to create conditions from.

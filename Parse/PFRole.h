@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Constructs a new `PFRole` with the given name.
 
- @discussion If no default ACL has been specified, you must provide an ACL for the role.
+ If no default ACL has been specified, you must provide an ACL for the role.
 
  @param name The name of the Role to create.
  */
@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Gets or sets the name for a role.
 
- @discussion This value must be set before the role has been saved to the server,
+ This value must be set before the role has been saved to the server,
  and cannot be set once the role has been saved.
 
  @warning A role's name can only contain alphanumeric characters, `_`, `-`, and spaces.
@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Gets the <PFRelation> for the <PFUser> objects that are direct children of this role.
 
- @discussion These users are granted any privileges that this role has been granted
+ These users are granted any privileges that this role has been granted
  (e.g. read or write access through ACLs). You can add or remove users from
  the role through this relation.
  */
@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Gets the <PFRelation> for the `PFRole` objects that are direct children of this role.
 
- @discussion These roles' users are granted any privileges that this role has been granted
+ These roles' users are granted any privileges that this role has been granted
  (e.g. read or write access through ACLs). You can add or remove child roles
  from this role through this relation.
  */

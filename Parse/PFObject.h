@@ -80,7 +80,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  Creates a reference to an existing PFObject for use in creating associations between PFObjects.
 
- @discussion Calling <isDataAvailable> on this object will return `NO` until <fetchIfNeeded> has been called.
+ Calling <isDataAvailable> on this object will return `NO` until <fetchIfNeeded> has been called.
  No network request will be made.
 
  @param className The object's class.
@@ -122,7 +122,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  Returns an array of the keys contained in this object.
 
- @discussion This does not include `createdAt`, `updatedAt`, `authData`, or `objectId`.
+ This does not include `createdAt`, `updatedAt`, `authData`, or `objectId`.
  It does include things like username and ACL.
  */
 @property (nonatomic, copy, readonly) NSArray PF_GENERIC(NSString *)*allKeys;
@@ -161,7 +161,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  Returns the value associated with a given key.
 
- @discussion This method enables usage of literal syntax on `PFObject`.
+ This method enables usage of literal syntax on `PFObject`.
  E.g. `NSString *value = object[@"key"];`
 
  @param key The key for which to return the corresponding value.
@@ -173,7 +173,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  Returns the value associated with a given key.
 
- @discussion This method enables usage of literal syntax on `PFObject`.
+ This method enables usage of literal syntax on `PFObject`.
  E.g. `object[@"key"] = @"value";`
 
  @param object The object for `key`. A strong reference to the object is maintained by PFObject.
@@ -238,7 +238,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  Adds an object to the array associated with a given key, only if it is not already present in the array.
 
- @discussion The position of the insert is not guaranteed.
+ The position of the insert is not guaranteed.
 
  @param object The object to add.
  @param key The key.
@@ -341,7 +341,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  Saves this object to the server at some unspecified time in the future,
  even if Parse is currently inaccessible.
 
- @discussion Use this when you may not have a solid network connection, and don't need to know when the save completes.
+ Use this when you may not have a solid network connection, and don't need to know when the save completes.
  If there is some problem with the object such that it can't be saved, it will be silently discarded. If the save
  completes successfully while the object is still in memory, then callback will be called.
 
@@ -360,7 +360,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  Saves this object to the server at some unspecified time in the future,
  even if Parse is currently inaccessible.
 
- @discussion Use this when you may not have a solid network connection, and don't need to know when the save completes.
+ Use this when you may not have a solid network connection, and don't need to know when the save completes.
  If there is some problem with the object such that it can't be saved, it will be silently discarded. If the save
  completes successfully while the object is still in memory, then callback will be called.
 
@@ -738,7 +738,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Synchronously* loads data from the local datastore into this object, if it has not been fetched
  from the server already.
 
- @discussion If the object is not stored in the local datastore, this `error` will be set to
+ If the object is not stored in the local datastore, this `error` will be set to
  return kPFErrorCacheMiss.
 
  @param error Pointer to an `NSError` that will be set if necessary.
@@ -813,7 +813,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  Deletes this object from the server at some unspecified time in the future,
  even if Parse is currently inaccessible.
 
- @discussion Use this when you may not have a solid network connection,
+ Use this when you may not have a solid network connection,
  and don't need to know when the delete completes. If there is some problem with the object
  such that it can't be deleted, the request will be silently discarded.
 
@@ -857,7 +857,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Synchronously* stores the object and every object it points to in the local datastore, recursively,
  using a default pin name: `PFObjectDefaultPin`.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
@@ -873,7 +873,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Synchronously* stores the object and every object it points to in the local datastore, recursively,
  using a default pin name: `PFObjectDefaultPin`.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
@@ -890,7 +890,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  *Synchronously* stores the object and every object it points to in the local datastore, recursively.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
@@ -906,7 +906,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  *Synchronously* stores the object and every object it points to in the local datastore, recursively.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
@@ -925,7 +925,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Asynchronously* stores the object and every object it points to in the local datastore, recursively,
  using a default pin name: `PFObjectDefaultPin`.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
@@ -941,7 +941,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Asynchronously* stores the object and every object it points to in the local datastore, recursively,
  using a default pin name: `PFObjectDefaultPin`.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
@@ -957,7 +957,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  *Asynchronously* stores the object and every object it points to in the local datastore, recursively.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
@@ -973,7 +973,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  *Asynchronously* stores the object and every object it points to in the local datastore, recursively.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  <[PFObject objectWithoutDataWithClassName:objectId:]> and then call <fetchFromLocalDatastore> on it.
@@ -994,7 +994,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Synchronously* stores the objects and every object they point to in the local datastore, recursively,
  using a default pin name: `PFObjectDefaultPin`.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
@@ -1012,7 +1012,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Synchronously* stores the objects and every object they point to in the local datastore, recursively,
  using a default pin name: `PFObjectDefaultPin`.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
@@ -1030,7 +1030,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  *Synchronously* stores the objects and every object they point to in the local datastore, recursively.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
@@ -1047,7 +1047,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  *Synchronously* stores the objects and every object they point to in the local datastore, recursively.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
@@ -1068,7 +1068,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Asynchronously* stores the objects and every object they point to in the local datastore, recursively,
  using a default pin name: `PFObjectDefaultPin`.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
@@ -1086,7 +1086,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  *Asynchronously* stores the objects and every object they point to in the local datastore, recursively,
  using a default pin name: `PFObjectDefaultPin`.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
@@ -1103,7 +1103,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  *Asynchronously* stores the objects and every object they point to in the local datastore, recursively.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.
@@ -1120,7 +1120,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 /**
  *Asynchronously* stores the objects and every object they point to in the local datastore, recursively.
 
- @discussion If those other objects have not been fetched from Parse, they will not be stored. However,
+ If those other objects have not been fetched from Parse, they will not be stored. However,
  if they have changed data, all the changes will be retained. To get the objects back later, you can
  use a <PFQuery> that uses <[PFQuery fromLocalDatastore]>, or you can create an unfetched pointer with
  `[PFObject objectWithoutDataWithClassName:objectId:]` and then call `fetchFromLocalDatastore:` on it.

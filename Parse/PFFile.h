@@ -131,7 +131,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The name of the file.
 
- @discussion Before the file is saved, this is the filename given by
+ Before the file is saved, this is the filename given by
  the user. After the file is saved, that name gets prefixed with a unique
  identifier.
  */
@@ -193,7 +193,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Saves the file *asynchronously* and executes the given block.
 
- @discussion This method will execute the progressBlock periodically with the percent progress.
+ This method will execute the progressBlock periodically with the percent progress.
  `progressBlock` will get called with `100` before `resultBlock` is called.
 
  @param block The block should have the following argument signature: `^(BOOL succeeded, NSError *error)`
@@ -232,7 +232,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  This method is like <getData> but avoids ever holding the entire `PFFile` contents in memory at once.
 
- @discussion This can help applications with many large files avoid memory warnings.
+ This can help applications with many large files avoid memory warnings.
 
  @returns A stream containing the data. Returns `nil` if there was an error in fetching.
  */
@@ -270,7 +270,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  This method is like <getData> but it fetches asynchronously to avoid blocking the current thread.
 
- @discussion This can help applications with many large files avoid memory warnings.
+ This can help applications with many large files avoid memory warnings.
 
  @see getData
 
@@ -284,7 +284,7 @@ NS_ASSUME_NONNULL_BEGIN
  This method is like <getDataInBackground> but avoids
  ever holding the entire `PFFile` contents in memory at once.
 
- @discussion This can help applications with many large files avoid memory warnings.
+ This can help applications with many large files avoid memory warnings.
 
  @returns The task, that encapsulates the work being done.
  */
@@ -293,7 +293,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  This method is like <getDataStreamInBackground>, but yields a live-updating stream.
 
- @discussion Instead of <getDataStream>, which yields a stream that can be read from only after the request has
+ Instead of <getDataStream>, which yields a stream that can be read from only after the request has
  completed, this method gives you a stream directly written to by the HTTP session. As this stream is not pre-buffered,
  it is strongly advised to use the `NSStreamDelegate` methods, in combination with a run loop, to consume the data in
  the stream, to do proper async file downloading.
@@ -309,7 +309,7 @@ NS_ASSUME_NONNULL_BEGIN
  This method is like <getDataInBackground> but avoids
  ever holding the entire `PFFile` contents in memory at once.
 
- @discussion This can help applications with many large files avoid memory warnings.
+ This can help applications with many large files avoid memory warnings.
  @param progressBlock The block should have the following argument signature: ^(int percentDone)
 
  @returns The task, that encapsulates the work being done.
@@ -319,7 +319,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  This method is like <getDataStreamInBackgroundWithProgrssBlock>, but yields a live-updating stream.
 
- @discussion Instead of <getDataStream>, which yields a stream that can be read from only after the request has
+ Instead of <getDataStream>, which yields a stream that can be read from only after the request has
  completed, this method gives you a stream directly written to by the HTTP session. As this stream is not pre-buffered,
  it is strongly advised to use the `NSStreamDelegate` methods, in combination with a run loop, to consume the data in
  the stream, to do proper async file downloading.
@@ -344,7 +344,7 @@ NS_ASSUME_NONNULL_BEGIN
  This method is like <getDataInBackgroundWithBlock:> but avoids
  ever holding the entire `PFFile` contents in memory at once.
 
- @discussion This can help applications with many large files avoid memory warnings.
+ This can help applications with many large files avoid memory warnings.
 
  @param block The block should have the following argument signature: `(NSInputStream *result, NSError *error)`
  */
@@ -353,7 +353,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *Asynchronously* gets the data from cache if available or fetches its contents from the network.
 
- @discussion This method will execute the progressBlock periodically with the percent progress.
+ This method will execute the progressBlock periodically with the percent progress.
  `progressBlock` will get called with `100` before `resultBlock` is called.
 
  @param resultBlock The block should have the following argument signature: ^(NSData *result, NSError *error)
@@ -366,7 +366,7 @@ NS_ASSUME_NONNULL_BEGIN
  This method is like <getDataInBackgroundWithBlock:progressBlock:> but avoids
  ever holding the entire `PFFile` contents in memory at once.
 
- @discussion This can help applications with many large files avoid memory warnings.
+ This can help applications with many large files avoid memory warnings.
 
  @param resultBlock The block should have the following argument signature: `^(NSInputStream *result, NSError *error)`.
  @param progressBlock The block should have the following argument signature: `^(int percentDone)`.

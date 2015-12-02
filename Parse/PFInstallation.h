@@ -44,7 +44,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSu
 /**
  Gets the currently-running installation from disk and returns an instance of it.
 
- @discussion If this installation is not stored on disk, returns a `PFInstallation`
+ If this installation is not stored on disk, returns a `PFInstallation`
  with <deviceType> and <installationId> fields set to those of the
  current installation.
 
@@ -100,7 +100,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSu
 /**
  Creates a <PFQuery> for `PFInstallation` objects.
 
- @discussion Only the following types of queries are allowed for installations:
+ Only the following types of queries are allowed for installations:
 
  - `[query getObjectWithId:<value>]`
  - `[query whereKey:@"installationId" equalTo:<value>]`

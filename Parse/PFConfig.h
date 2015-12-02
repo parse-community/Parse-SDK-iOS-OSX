@@ -32,7 +32,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 /**
  Returns the most recently fetched config.
 
- @discussion If there was no config fetched - this method will return an empty instance of `PFConfig`.
+ If there was no config fetched - this method will return an empty instance of `PFConfig`.
 
  @returns Current, last fetched instance of PFConfig.
  */
@@ -89,7 +89,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 /**
  Returns the object associated with a given key.
 
- @discussion This method enables usage of literal syntax on `PFConfig`.
+ This method enables usage of literal syntax on `PFConfig`.
  E.g. `NSString *value = config[@"key"];`
 
  @see objectForKey:

@@ -13,7 +13,7 @@
 
 /**
  Safely sets an object's instance variable to the variable in the specified address.
- @discussion The Objective-C runtime's built-in methods for setting instance variables (`object_setIvar`) and
+ The Objective-C runtime's built-in methods for setting instance variables (`object_setIvar`) and
  (`object_setInstanceVariable`), are both terrible. They never read any more than a single pointer, so they
  fail for structs, as well as 64 bit numbers on 32 bit platforms. Because of this, we need a solution to allow us to
  safely set instance variable values whose sizes may be significantly more than a pointer.
@@ -29,7 +29,7 @@ extern void object_setIvarValue_safe(__unsafe_unretained id obj, Ivar ivar, void
 
 /**
  Safely gets an object's instance variable and puts it into the specified address.
- @discussion  The Objective-C runtime's built-in methods for getting instance variables (`object_getIvar`) and
+  The Objective-C runtime's built-in methods for getting instance variables (`object_getIvar`) and
  (`object_getInstanceVariable`), are both terrible. They never read any more than a single pointer, so they
  fail for structs, as well as 64 bit numbers on 32 bit platforms. Because of this, we need a solution to allow us to
  safely get instance variable values whose sizes may be significantly more than a pointer.
