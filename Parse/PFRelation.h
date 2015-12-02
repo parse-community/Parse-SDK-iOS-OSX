@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFRelation : NSObject
 
 /**
- @abstract The name of the class of the target child objects.
+ The name of the class of the target child objects.
  */
 @property (nullable, nonatomic, copy) NSString *targetClass;
 
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Returns a <PFQuery> object that can be used to get objects in this relation.
+ Returns a <PFQuery> object that can be used to get objects in this relation.
  */
 - (PFQuery *)query;
 
@@ -39,14 +39,14 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Adds a relation to the passed in object.
+ Adds a relation to the passed in object.
 
  @param object A <PFObject> object to add relation to.
  */
 - (void)addObject:(PFObject *)object;
 
 /**
- @abstract Removes a relation to the passed in object.
+ Removes a relation to the passed in object.
 
  @param object A <PFObject> object to add relation to.
  */

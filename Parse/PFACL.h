@@ -27,14 +27,14 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Creates an ACL with no permissions granted.
+ Creates an ACL with no permissions granted.
 
  @returns Returns a new `PFACL`.
  */
 + (instancetype)ACL;
 
 /**
- @abstract Creates an ACL where only the provided user has access.
+ Creates an ACL where only the provided user has access.
 
  @param user The user to assign access.
  */
@@ -45,12 +45,12 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Controls whether the public is allowed to read this object.
+ Controls whether the public is allowed to read this object.
  */
 @property (nonatomic, assign, getter=getPublicReadAccess) BOOL publicReadAccess;
 
 /**
- @abstract Controls whether the public is allowed to write this object.
+ Controls whether the public is allowed to write this object.
  */
 @property (nonatomic, assign, getter=getPublicWriteAccess) BOOL publicWriteAccess;
 
@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Set whether the given user id is allowed to read this object.
+ Set whether the given user id is allowed to read this object.
 
  @param allowed Whether the given user can write this object.
  @param userId The <[PFObject objectId]> of the user to assign access.
@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setReadAccess:(BOOL)allowed forUserId:(NSString *)userId;
 
 /**
- @abstract Gets whether the given user id is *explicitly* allowed to read this object.
+ Gets whether the given user id is *explicitly* allowed to read this object.
  Even if this returns `NO`, the user may still be able to access it if <getPublicReadAccess> returns `YES`
  or if the user belongs to a role that has access.
 
@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)getReadAccessForUserId:(NSString *)userId;
 
 /**
- @abstract Set whether the given user id is allowed to write this object.
+ Set whether the given user id is allowed to write this object.
 
  @param allowed Whether the given user can read this object.
  @param userId The `objectId` of the user to assign access.
@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setWriteAccess:(BOOL)allowed forUserId:(NSString *)userId;
 
 /**
- @abstract Gets whether the given user id is *explicitly* allowed to write this object.
+ Gets whether the given user id is *explicitly* allowed to write this object.
  Even if this returns NO, the user may still be able to write it if <getPublicWriteAccess> returns `YES`
  or if the user belongs to a role that has access.
 
@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)getWriteAccessForUserId:(NSString *)userId;
 
 /**
- @abstract Set whether the given user is allowed to read this object.
+ Set whether the given user is allowed to read this object.
 
  @param allowed Whether the given user can read this object.
  @param user The user to assign access.
@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setReadAccess:(BOOL)allowed forUser:(PFUser *)user;
 
 /**
- @abstract Gets whether the given user is *explicitly* allowed to read this object.
+ Gets whether the given user is *explicitly* allowed to read this object.
  Even if this returns `NO`, the user may still be able to access it if <getPublicReadAccess> returns `YES`
  or if the user belongs to a role that has access.
 
@@ -116,7 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)getReadAccessForUser:(PFUser *)user;
 
 /**
- @abstract Set whether the given user is allowed to write this object.
+ Set whether the given user is allowed to write this object.
 
  @param allowed Whether the given user can write this object.
  @param user The user to assign access.
@@ -124,7 +124,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setWriteAccess:(BOOL)allowed forUser:(PFUser *)user;
 
 /**
- @abstract Gets whether the given user is *explicitly* allowed to write this object.
+ Gets whether the given user is *explicitly* allowed to write this object.
  Even if this returns `NO`, the user may still be able to write it if <getPublicWriteAccess> returns `YES`
  or if the user belongs to a role that has access.
 
@@ -139,7 +139,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Get whether users belonging to the role with the given name are allowed to read this object.
+ Get whether users belonging to the role with the given name are allowed to read this object.
  Even if this returns `NO`, the role may still be able to read it if a parent role has read access.
 
  @param name The name of the role.
@@ -149,7 +149,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)getReadAccessForRoleWithName:(NSString *)name;
 
 /**
- @abstract Set whether users belonging to the role with the given name are allowed to read this object.
+ Set whether users belonging to the role with the given name are allowed to read this object.
 
  @param allowed Whether the given role can read this object.
  @param name The name of the role.
@@ -157,7 +157,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setReadAccess:(BOOL)allowed forRoleWithName:(NSString *)name;
 
 /**
- @abstract Get whether users belonging to the role with the given name are allowed to write this object.
+ Get whether users belonging to the role with the given name are allowed to write this object.
  Even if this returns `NO`, the role may still be able to write it if a parent role has write access.
 
  @param name The name of the role.
@@ -167,7 +167,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)getWriteAccessForRoleWithName:(NSString *)name;
 
 /**
- @abstract Set whether users belonging to the role with the given name are allowed to write this object.
+ Set whether users belonging to the role with the given name are allowed to write this object.
 
  @param allowed Whether the given role can write this object.
  @param name The name of the role.
@@ -175,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setWriteAccess:(BOOL)allowed forRoleWithName:(NSString *)name;
 
 /**
- @abstract Get whether users belonging to the given role are allowed to read this object.
+ Get whether users belonging to the given role are allowed to read this object.
  Even if this returns `NO`, the role may still be able to read it if a parent role has read access.
 
  @discussion The role must already be saved on the server and
@@ -188,7 +188,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)getReadAccessForRole:(PFRole *)role;
 
 /**
- @abstract Set whether users belonging to the given role are allowed to read this object.
+ Set whether users belonging to the given role are allowed to read this object.
 
  @discussion The role must already be saved on the server and
  it's data must have been fetched in order to use this method.
@@ -199,7 +199,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setReadAccess:(BOOL)allowed forRole:(PFRole *)role;
 
 /**
- @abstract Get whether users belonging to the given role are allowed to write this object.
+ Get whether users belonging to the given role are allowed to write this object.
  Even if this returns `NO`, the role may still be able to write it if a parent role has write access.
 
  @discussion The role must already be saved on the server and
@@ -212,7 +212,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)getWriteAccessForRole:(PFRole *)role;
 
 /**
- @abstract Set whether users belonging to the given role are allowed to write this object.
+ Set whether users belonging to the given role are allowed to write this object.
 
  @discussion The role must already be saved on the server and
  it's data must have been fetched in order to use this method.
@@ -227,7 +227,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Sets a default ACL that will be applied to all instances of <PFObject> when they are created.
+ Sets a default ACL that will be applied to all instances of <PFObject> when they are created.
 
  @param acl The ACL to use as a template for all instance of <PFObject> created after this method has been called.
  This value will be copied and used as a template for the creation of new ACLs, so changes to the

@@ -29,14 +29,14 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 ///--------------------------------------
 
 /**
- @abstract Create a PFGeoPoint object. Latitude and longitude are set to `0.0`.
+ Create a PFGeoPoint object. Latitude and longitude are set to `0.0`.
 
  @returns Returns a new `PFGeoPoint`.
  */
 + (instancetype)geoPoint;
 
 /**
- @abstract Creates a new `PFGeoPoint` object for the given `CLLocation`, set to the location's coordinates.
+ Creates a new `PFGeoPoint` object for the given `CLLocation`, set to the location's coordinates.
 
  @param location Instace of `CLLocation`, with set latitude and longitude.
 
@@ -45,7 +45,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 + (instancetype)geoPointWithLocation:(nullable CLLocation *)location;
 
 /**
- @abstract Create a new `PFGeoPoint` object with the specified latitude and longitude.
+ Create a new `PFGeoPoint` object with the specified latitude and longitude.
 
  @param latitude Latitude of point in degrees.
  @param longitude Longitude of point in degrees.
@@ -55,7 +55,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 + (instancetype)geoPointWithLatitude:(double)latitude longitude:(double)longitude;
 
 /**
- @abstract Fetches the current device location and executes a block with a new `PFGeoPoint` object.
+ Fetches the current device location and executes a block with a new `PFGeoPoint` object.
 
  @param resultBlock A block which takes the newly created `PFGeoPoint` as an argument.
  It should have the following argument signature: `^(PFGeoPoint *geoPoint, NSError *error)`
@@ -67,12 +67,12 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 ///--------------------------------------
 
 /**
- @abstract Latitude of point in degrees. Valid range is from `-90.0` to `90.0`.
+ Latitude of point in degrees. Valid range is from `-90.0` to `90.0`.
  */
 @property (nonatomic, assign) double latitude;
 
 /**
- @abstract Longitude of point in degrees. Valid range is from `-180.0` to `180.0`.
+ Longitude of point in degrees. Valid range is from `-180.0` to `180.0`.
  */
 @property (nonatomic, assign) double longitude;
 
@@ -81,7 +81,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 ///--------------------------------------
 
 /**
- @abstract Get distance in radians from this point to specified point.
+ Get distance in radians from this point to specified point.
 
  @param point `PFGeoPoint` that represents the location of other point.
 
@@ -90,7 +90,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 - (double)distanceInRadiansTo:(nullable PFGeoPoint *)point;
 
 /**
- @abstract Get distance in miles from this point to specified point.
+ Get distance in miles from this point to specified point.
 
  @param point `PFGeoPoint` that represents the location of other point.
 
@@ -99,7 +99,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 - (double)distanceInMilesTo:(nullable PFGeoPoint *)point;
 
 /**
- @abstract Get distance in kilometers from this point to specified point.
+ Get distance in kilometers from this point to specified point.
 
  @param point `PFGeoPoint` that represents the location of other point.
 

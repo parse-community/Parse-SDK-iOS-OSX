@@ -31,7 +31,7 @@ typedef void (^PFPurchaseDownloadAssetResultBlock)(NSString *__nullable filePath
 PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchase : NSObject
 
 /**
- @abstract Add application logic block which is run when buying a product.
+ Add application logic block which is run when buying a product.
 
  @discussion This method should be called once for each product, and should be called before
  calling <buyProduct:block:>. All invocations to <addObserverForProduct:block:> should happen within
@@ -44,7 +44,7 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchase : NSObject
 + (void)addObserverForProduct:(NSString *)productIdentifier block:(PFPurchaseProductObservationBlock)block;
 
 /**
- @abstract *Asynchronously* initiates the purchase for the product.
+ *Asynchronously* initiates the purchase for the product.
 
  @param productIdentifier the product identifier
  @param block the completion block.
@@ -52,7 +52,7 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchase : NSObject
 + (void)buyProduct:(NSString *)productIdentifier block:(nullable PFPurchaseBuyProductResultBlock)block;
 
 /**
- @abstract *Asynchronously* download the purchased asset, which is stored on Parse's server.
+ *Asynchronously* download the purchased asset, which is stored on Parse's server.
 
  @discussion Parse verifies the receipt with Apple and delivers the content only if the receipt is valid.
 
@@ -63,7 +63,7 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchase : NSObject
                          completion:(PFPurchaseDownloadAssetResultBlock)completion;
 
 /**
- @abstract *Asynchronously* download the purchased asset, which is stored on Parse's server.
+ *Asynchronously* download the purchased asset, which is stored on Parse's server.
 
  @discussion Parse verifies the receipt with Apple and delivers the content only if the receipt is valid.
 
@@ -76,7 +76,7 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchase : NSObject
                            progress:(nullable PFProgressBlock)progress;
 
 /**
- @abstract *Asynchronously* restore completed transactions for the current user.
+ *Asynchronously* restore completed transactions for the current user.
 
  @discussion Only nonconsumable purchases are restored. If observers for the products have been added before
  calling this method, invoking the method reruns the application logic associated with the purchase.
@@ -87,7 +87,7 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchase : NSObject
 + (void)restore;
 
 /**
- @abstract Returns a content path of the asset of a product, if it was purchased and downloaded.
+ Returns a content path of the asset of a product, if it was purchased and downloaded.
 
  @discussion To download and verify purchases use <downloadAssetForTransaction:completion:>.
 

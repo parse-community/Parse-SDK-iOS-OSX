@@ -41,14 +41,14 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Creates an anonymous user asynchronously and sets as a result to `BFTask`.
+ Creates an anonymous user asynchronously and sets as a result to `BFTask`.
 
  @returns The task, that encapsulates the work being done.
  */
 + (BFTask PF_GENERIC(PFUser *)*)logInInBackground;
 
 /**
- @abstract Creates an anonymous user.
+ Creates an anonymous user.
 
  @param block The block to execute when anonymous user creation is complete.
  It should have the following argument signature: `^(PFUser *user, NSError *error)`.
@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)logInWithBlock:(nullable PFUserResultBlock)block;
 
 /*
- @abstract Creates an anonymous user.
+ Creates an anonymous user.
 
  @param target Target object for the selector.
  @param selector The selector that will be called when the asynchronous request is complete.
@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Whether the <PFUser> object is logged in anonymously.
+ Whether the <PFUser> object is logged in anonymously.
 
  @param user <PFUser> object to check for anonymity. The user must be logged in on this device.
 

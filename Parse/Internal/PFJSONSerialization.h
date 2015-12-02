@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable id)JSONObjectFromString:(NSString *)string;
 
 /**
- @abstract Takes a file path to json file and returns the NSDictionaries and NSArrays in it.
+ Takes a file path to json file and returns the NSDictionaries and NSArrays in it.
 
  @description You should still call decodeObject if you want Parse types.
 

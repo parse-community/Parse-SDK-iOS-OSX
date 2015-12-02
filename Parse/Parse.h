@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Sets the applicationId and clientKey of your application.
+ Sets the applicationId and clientKey of your application.
 
  @param applicationId The application id of your Parse application.
  @param clientKey The client key of your Parse application.
@@ -67,12 +67,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey;
 
 /**
- @abstract The current application id that was used to configure Parse framework.
+ The current application id that was used to configure Parse framework.
  */
 + (NSString *)getApplicationId;
 
 /**
- @abstract The current client key that was used to configure Parse framework.
+ The current client key that was used to configure Parse framework.
  */
 + (NSString *)getClientKey;
 
@@ -81,13 +81,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Enable pinning in your application. This must be called before your application can use
+ Enable pinning in your application. This must be called before your application can use
  pinning. The recommended way is to call this method before `setApplicationId:clientKey:`.
  */
 + (void)enableLocalDatastore PF_TV_UNAVAILABLE;
 
 /**
- @abstract Flag that indicates whether Local Datastore is enabled.
+ Flag that indicates whether Local Datastore is enabled.
 
  @returns `YES` if Local Datastore is enabled, otherwise `NO`.
  */
@@ -98,7 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Enables data sharing with an application group identifier.
+ Enables data sharing with an application group identifier.
 
  @discussion After enabling - Local Datastore, `currentUser`, `currentInstallation` and all eventually commands
  are going to be available to every application/extension in a group that have the same Parse applicationId.
@@ -110,7 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)enableDataSharingWithApplicationGroupIdentifier:(NSString *)groupIdentifier PF_EXTENSION_UNAVAILABLE("Use `enableDataSharingWithApplicationGroupIdentifier:containingApplication:`.") PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
 
 /**
- @abstract Enables data sharing with an application group identifier.
+ Enables data sharing with an application group identifier.
 
  @discussion After enabling - Local Datastore, `currentUser`, `currentInstallation` and all eventually commands
  are going to be available to every application/extension in a group that have the same Parse applicationId.
@@ -125,14 +125,14 @@ NS_ASSUME_NONNULL_BEGIN
                                   containingApplication:(NSString *)bundleIdentifier PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
 
 /**
- @abstract Application Group Identifier for Data Sharing
+ Application Group Identifier for Data Sharing
 
  @returns `NSString` value if data sharing is enabled, otherwise `nil`.
  */
 + (NSString *)applicationGroupIdentifierForDataSharing PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
 
 /**
- @abstract Containing application bundle identifier.
+ Containing application bundle identifier.
 
  @returns `NSString` value if data sharing is enabled, otherwise `nil`.
  */
@@ -145,7 +145,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Set whether to show offline messages when using a Parse view or view controller related classes.
+ Set whether to show offline messages when using a Parse view or view controller related classes.
 
  @param enabled Whether a `UIAlertView` should be shown when the device is offline
  and network access is required from a view or view controller.
@@ -155,7 +155,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)offlineMessagesEnabled:(BOOL)enabled PARSE_DEPRECATED("This method is deprecated and has no effect.");
 
 /**
- @abstract Set whether to show an error message when using a Parse view or view controller related classes
+ Set whether to show an error message when using a Parse view or view controller related classes
  and a Parse error was generated via a query.
 
  @param enabled Whether a `UIAlertView` should be shown when an error occurs.
@@ -171,7 +171,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Sets the level of logging to display.
+ Sets the level of logging to display.
 
  @discussion By default:
  - If running inside an app that was downloaded from iOS App Store - it is set to <PFLogLevelNone>
@@ -183,7 +183,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setLogLevel:(PFLogLevel)logLevel;
 
 /**
- @abstract Log level that will be displayed.
+ Log level that will be displayed.
 
  @discussion By default:
  - If running inside an app that was downloaded from iOS App Store - it is set to <PFLogLevelNone>

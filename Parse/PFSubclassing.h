@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol PFSubclassing
 
 /**
- @abstract Constructs an object of the most specific class known to implement <parseClassName>.
+ Constructs an object of the most specific class known to implement <parseClassName>.
 
  @discussion This method takes care to help <PFObject> subclasses be subclassed themselves.
  For example, `[PFUser object]` returns a <PFUser> by default but will return an
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)object;
 
 /**
- @abstract Creates a reference to an existing PFObject for use in creating associations between PFObjects.
+ Creates a reference to an existing PFObject for use in creating associations between PFObjects.
 
  @discussion Calling <PFObject.dataAvailable> on this object will return `NO`
  until <[PFObject fetchIfNeeded]> has been called. No network request will be made.
@@ -49,19 +49,19 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)objectWithoutDataWithObjectId:(nullable NSString *)objectId;
 
 /**
- @abstract The name of the class as seen in the REST API.
+ The name of the class as seen in the REST API.
  */
 + (NSString *)parseClassName;
 
 /**
- @abstract Create a query which returns objects of this type.
+ Create a query which returns objects of this type.
 
  @discussion A default implementation is provided by <PFObject> which should always be sufficient.
  */
 + (nullable PFQuery *)query;
 
 /**
- @abstract Returns a query for objects of this type with a given predicate.
+ Returns a query for objects of this type with a given predicate.
 
  @discussion A default implementation is provided by <PFObject> which should always be sufficient.
 
@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable PFQuery *)queryWithPredicate:(nullable NSPredicate *)predicate;
 
 /**
- @abstract Lets Parse know this class should be used to instantiate all objects with class type <parseClassName>.
+ Lets Parse know this class should be used to instantiate all objects with class type <parseClassName>.
 
  @warning This method must be called before <[Parse setApplicationId:clientKey:]>
  */

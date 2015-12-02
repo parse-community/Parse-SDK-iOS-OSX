@@ -32,36 +32,36 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFProduct : PFObject<PFSubcla
 ///--------------------------------------
 
 /**
- @abstract The product identifier of the product.
+ The product identifier of the product.
 
  @discussion This should match the product identifier in iTunes Connect exactly.
  */
 @property (nullable, nonatomic, strong) NSString *productIdentifier;
 
 /**
- @abstract The icon of the product.
+ The icon of the product.
  */
 @property (nullable, nonatomic, strong) PFFile *icon;
 
 /**
- @abstract The title of the product.
+ The title of the product.
  */
 @property (nullable, nonatomic, strong) NSString *title;
 
 /**
- @abstract The subtitle of the product.
+ The subtitle of the product.
  */
 @property (nullable, nonatomic, strong) NSString *subtitle;
 
 /**
- @abstract The order in which the product information is displayed in <PFProductTableViewController>.
+ The order in which the product information is displayed in <PFProductTableViewController>.
 
  @discussion The product with a smaller order is displayed earlier in the <PFProductTableViewController>.
  */
 @property (nullable, nonatomic, strong) NSNumber *order;
 
 /**
- @abstract The name of the associated download.
+ The name of the associated download.
 
  @discussion If there is no downloadable asset, it should be `nil`.
  */

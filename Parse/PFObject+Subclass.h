@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Creates an instance of the registered subclass with this class's <parseClassName>.
+ Creates an instance of the registered subclass with this class's <parseClassName>.
 
  @discussion This helps a subclass ensure that it can be subclassed itself.
  For example, `[PFUser object]` will return a `MyUser` object if `MyUser` is a registered subclass of `PFUser`.
@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)object;
 
 /**
- @abstract Creates a reference to an existing `PFObject` for use in creating associations between `PFObjects`.
+ Creates a reference to an existing `PFObject` for use in creating associations between `PFObjects`.
 
  @discussion Calling <isDataAvailable> on this object will return `NO` until <fetchIfNeeded> or <fetch> has been called.
  This method can only be called on subclasses which conform to <PFSubclassing>.
@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)objectWithoutDataWithObjectId:(nullable NSString *)objectId;
 
 /**
- @abstract Registers an Objective-C class for Parse to use for representing a given Parse class.
+ Registers an Objective-C class for Parse to use for representing a given Parse class.
 
  @discussion Once this is called on a `PFObject` subclass, any `PFObject` Parse creates with a class name
  that matches `[self parseClassName]` will be an instance of subclass.
@@ -98,7 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)registerSubclass;
 
 /**
- @abstract Returns a query for objects of type <parseClassName>.
+ Returns a query for objects of type <parseClassName>.
 
  @discussion This method can only be called on subclasses which conform to <PFSubclassing>.
  A default implementation is provided by <PFObject> which should always be sufficient.
@@ -106,7 +106,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable PFQuery *)query;
 
 /**
- @abstract Returns a query for objects of type <parseClassName> with a given predicate.
+ Returns a query for objects of type <parseClassName> with a given predicate.
 
  @discussion A default implementation is provided by <PFObject> which should always be sufficient.
  @warning This method can only be called on subclasses which conform to <PFSubclassing>.

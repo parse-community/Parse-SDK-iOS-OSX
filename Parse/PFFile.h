@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)new NS_UNAVAILABLE;
 
 /**
- @abstract Creates a file with given data. A name will be assigned to it by the server.
+ Creates a file with given data. A name will be assigned to it by the server.
 
  @param data The contents of the new `PFFile`.
 
@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable instancetype)fileWithData:(NSData *)data;
 
 /**
- @abstract Creates a file with given data and name.
+ Creates a file with given data and name.
 
  @param name The name of the new PFFile. The file name must begin with and
  alphanumeric character, and consist of alphanumeric characters, periods,
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable instancetype)fileWithName:(nullable NSString *)name data:(NSData *)data;
 
 /**
- @abstract Creates a file with the contents of another file.
+ Creates a file with the contents of another file.
 
  @warning This method raises an exception if the file at path is not accessible
  or if there is not enough disk space left.
@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
                        contentsAtPath:(NSString *)path PF_SWIFT_UNAVAILABLE;
 
 /**
- @abstract Creates a file with the contents of another file.
+ Creates a file with the contents of another file.
 
  @param name  The name of the new `PFFile`. The file name must begin with and alphanumeric character,
  and consist of alphanumeric characters, periods, spaces, underscores, or dashes.
@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
                                 error:(NSError **)error;
 
 /**
- @abstract Creates a file with given data, name and content type.
+ Creates a file with given data, name and content type.
 
  @warning This method raises an exception if the data supplied is not accessible or could not be saved.
 
@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
                           contentType:(nullable NSString *)contentType PF_SWIFT_UNAVAILABLE;
 
 /**
- @abstract Creates a file with given data, name and content type.
+ Creates a file with given data, name and content type.
 
  @param name        The name of the new `PFFile`. The file name must begin with and alphanumeric character,
  and consist of alphanumeric characters, periods, spaces, underscores, or dashes.
@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
                                 error:(NSError **)error;
 
 /**
- @abstract Creates a file with given data and content type.
+ Creates a file with given data and content type.
 
  @param data The contents of the new `PFFile`.
  @param contentType Represents MIME type of the data.
@@ -129,7 +129,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract The name of the file.
+ The name of the file.
 
  @discussion Before the file is saved, this is the filename given by
  the user. After the file is saved, that name gets prefixed with a unique
@@ -138,12 +138,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSString *name;
 
 /**
- @abstract The url of the file.
+ The url of the file.
  */
 @property (nullable, nonatomic, copy, readonly) NSString *url;
 
 /**
- @abstract Whether the file has been uploaded for the first time.
+ Whether the file has been uploaded for the first time.
  */
 @property (nonatomic, assign, readonly, getter=isDirty) BOOL dirty;
 
@@ -152,14 +152,14 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Saves the file *synchronously*.
+ Saves the file *synchronously*.
 
  @returns Returns whether the save succeeded.
  */
 - (BOOL)save PF_SWIFT_UNAVAILABLE;
 
 /**
- @abstract Saves the file *synchronously* and sets an error if it occurs.
+ Saves the file *synchronously* and sets an error if it occurs.
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
@@ -168,14 +168,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)save:(NSError **)error;
 
 /**
- @abstract Saves the file *asynchronously*.
+ Saves the file *asynchronously*.
 
  @returns The task, that encapsulates the work being done.
  */
 - (BFTask PF_GENERIC(NSNumber *)*)saveInBackground;
 
 /**
- @abstract Saves the file *asynchronously*
+ Saves the file *asynchronously*
 
  @param progressBlock The block should have the following argument signature: `^(int percentDone)`
 
@@ -184,14 +184,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask PF_GENERIC(NSNumber *)*)saveInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
- @abstract Saves the file *asynchronously* and executes the given block.
+ Saves the file *asynchronously* and executes the given block.
 
  @param block The block should have the following argument signature: `^(BOOL succeeded, NSError *error)`.
  */
 - (void)saveInBackgroundWithBlock:(nullable PFBooleanResultBlock)block;
 
 /**
- @abstract Saves the file *asynchronously* and executes the given block.
+ Saves the file *asynchronously* and executes the given block.
 
  @discussion This method will execute the progressBlock periodically with the percent progress.
  `progressBlock` will get called with `100` before `resultBlock` is called.
@@ -203,7 +203,7 @@ NS_ASSUME_NONNULL_BEGIN
                     progressBlock:(nullable PFProgressBlock)progressBlock;
 
 /*
- @abstract Saves the file *asynchronously* and calls the given callback.
+ Saves the file *asynchronously* and calls the given callback.
 
  @param target The object to call selector on.
  @param selector The selector to call.
@@ -218,19 +218,19 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Whether the data is available in memory or needs to be downloaded.
+ Whether the data is available in memory or needs to be downloaded.
  */
 @property (nonatomic, assign, readonly, getter=isDataAvailable) BOOL dataAvailable;
 
 /**
- @abstract *Synchronously* gets the data from cache if available or fetches its contents from the network.
+ *Synchronously* gets the data from cache if available or fetches its contents from the network.
 
  @returns The `NSData` object containing file data. Returns `nil` if there was an error in fetching.
  */
 - (nullable NSData *)getData PF_SWIFT_UNAVAILABLE;
 
 /**
- @abstract This method is like <getData> but avoids ever holding the entire `PFFile` contents in memory at once.
+ This method is like <getData> but avoids ever holding the entire `PFFile` contents in memory at once.
 
  @discussion This can help applications with many large files avoid memory warnings.
 
@@ -239,7 +239,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSInputStream *)getDataStream PF_SWIFT_UNAVAILABLE;
 
 /**
- @abstract *Synchronously* gets the data from cache if available or fetches its contents from the network.
+ *Synchronously* gets the data from cache if available or fetches its contents from the network.
  Sets an error if it occurs.
 
  @param error Pointer to an `NSError` that will be set if necessary.
@@ -249,7 +249,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSData *)getData:(NSError **)error;
 
 /**
- @abstract This method is like <getData> but avoids ever holding the entire `PFFile` contents in memory at once.
+ This method is like <getData> but avoids ever holding the entire `PFFile` contents in memory at once.
 
  @param error Pointer to an `NSError` that will be set if necessary.
 
@@ -259,7 +259,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSInputStream *)getDataStream:(NSError **)error;
 
 /**
- @abstract This method is like <getData> but it fetches asynchronously to avoid blocking the current thread.
+ This method is like <getData> but it fetches asynchronously to avoid blocking the current thread.
 
  @see getData
 
@@ -268,7 +268,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask PF_GENERIC(NSData *)*)getDataInBackground;
 
 /**
- @abstract This method is like <getData> but it fetches asynchronously to avoid blocking the current thread.
+ This method is like <getData> but it fetches asynchronously to avoid blocking the current thread.
 
  @discussion This can help applications with many large files avoid memory warnings.
 
@@ -281,7 +281,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask PF_GENERIC(NSData *)*)getDataInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
- @abstract This method is like <getDataInBackground> but avoids
+ This method is like <getDataInBackground> but avoids
  ever holding the entire `PFFile` contents in memory at once.
 
  @discussion This can help applications with many large files avoid memory warnings.
@@ -291,7 +291,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask PF_GENERIC(NSInputStream *)*)getDataStreamInBackground;
 
 /**
- @abstract This method is like <getDataStreamInBackground>, but yields a live-updating stream.
+ This method is like <getDataStreamInBackground>, but yields a live-updating stream.
 
  @discussion Instead of <getDataStream>, which yields a stream that can be read from only after the request has
  completed, this method gives you a stream directly written to by the HTTP session. As this stream is not pre-buffered,
@@ -306,7 +306,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask PF_GENERIC(NSInputStream *)*)getDataDownloadStreamInBackground;
 
 /**
- @abstract This method is like <getDataInBackground> but avoids
+ This method is like <getDataInBackground> but avoids
  ever holding the entire `PFFile` contents in memory at once.
 
  @discussion This can help applications with many large files avoid memory warnings.
@@ -317,7 +317,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask PF_GENERIC(NSInputStream *)*)getDataStreamInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
- @abstract This method is like <getDataStreamInBackgroundWithProgrssBlock>, but yields a live-updating stream.
+ This method is like <getDataStreamInBackgroundWithProgrssBlock>, but yields a live-updating stream.
 
  @discussion Instead of <getDataStream>, which yields a stream that can be read from only after the request has
  completed, this method gives you a stream directly written to by the HTTP session. As this stream is not pre-buffered,
@@ -334,14 +334,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask PF_GENERIC(NSInputStream *)*)getDataDownloadStreamInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
- @abstract *Asynchronously* gets the data from cache if available or fetches its contents from the network.
+ *Asynchronously* gets the data from cache if available or fetches its contents from the network.
 
  @param block The block should have the following argument signature: `^(NSData *result, NSError *error)`
  */
 - (void)getDataInBackgroundWithBlock:(nullable PFDataResultBlock)block;
 
 /**
- @abstract This method is like <getDataInBackgroundWithBlock:> but avoids
+ This method is like <getDataInBackgroundWithBlock:> but avoids
  ever holding the entire `PFFile` contents in memory at once.
 
  @discussion This can help applications with many large files avoid memory warnings.
@@ -351,7 +351,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getDataStreamInBackgroundWithBlock:(nullable PFDataStreamResultBlock)block;
 
 /**
- @abstract *Asynchronously* gets the data from cache if available or fetches its contents from the network.
+ *Asynchronously* gets the data from cache if available or fetches its contents from the network.
 
  @discussion This method will execute the progressBlock periodically with the percent progress.
  `progressBlock` will get called with `100` before `resultBlock` is called.
@@ -363,7 +363,7 @@ NS_ASSUME_NONNULL_BEGIN
                        progressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
- @abstract This method is like <getDataInBackgroundWithBlock:progressBlock:> but avoids
+ This method is like <getDataInBackgroundWithBlock:progressBlock:> but avoids
  ever holding the entire `PFFile` contents in memory at once.
 
  @discussion This can help applications with many large files avoid memory warnings.
@@ -375,7 +375,7 @@ NS_ASSUME_NONNULL_BEGIN
                              progressBlock:(nullable PFProgressBlock)progressBlock;
 
 /*
- @abstract *Asynchronously* gets the data from cache if available or fetches its contents from the network.
+ *Asynchronously* gets the data from cache if available or fetches its contents from the network.
 
  @param target The object to call selector on.
  @param selector The selector to call.
@@ -385,7 +385,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getDataInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 /**
- @abstract *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.
+ *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.
 
  @note The file path may change between versions of SDK.
  @note If you overwrite the contents of the file at returned path it will persist those change
@@ -396,7 +396,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask PF_GENERIC(NSString *)*)getFilePathInBackground;
 
 /**
- @abstract *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.
+ *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.
 
  @note The file path may change between versions of SDK.
  @note If you overwrite the contents of the file at returned path it will persist those change
@@ -409,7 +409,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask PF_GENERIC(NSString *)*)getFilePathInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
- @abstract *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.
+ *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.
 
  @note The file path may change between versions of SDK.
  @note If you overwrite the contents of the file at returned path it will persist those change
@@ -420,7 +420,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getFilePathInBackgroundWithBlock:(nullable PFFilePathResultBlock)block;
 
 /**
- @abstract *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.
+ *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.
 
  @note The file path may change between versions of SDK.
  @note If you overwrite the contents of the file at returned path it will persist those change
@@ -437,7 +437,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- @abstract Cancels the current request (upload or download of file).
+ Cancels the current request (upload or download of file).
  */
 - (void)cancel;
 

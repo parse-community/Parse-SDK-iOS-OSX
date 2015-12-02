@@ -46,14 +46,14 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFNetworkActivityIndicatorMana
 @property (nonatomic, assign, readonly) NSUInteger networkActivityCount;
 
 /**
- @abstract Returns the shared network activity indicator manager object for the system.
+ Returns the shared network activity indicator manager object for the system.
 
  @returns The systemwide network activity indicator manager.
  */
 + (PFNetworkActivityIndicatorManager *)sharedManager;
 
 /**
- @abstract Increments the number of active network requests.
+ Increments the number of active network requests.
 
  @discussion If this number was zero before incrementing,
  this will start animating network activity indicator in the status bar.
@@ -61,7 +61,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFNetworkActivityIndicatorMana
 - (void)incrementActivityCount;
 
 /**
- @abstract Decrements the number of active network requests.
+ Decrements the number of active network requests.
 
  @discussion If this number becomes zero after decrementing,
  this will stop animating network activity indicator in the status bar.

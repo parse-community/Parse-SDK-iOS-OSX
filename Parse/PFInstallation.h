@@ -42,7 +42,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSu
 ///--------------------------------------
 
 /**
- @abstract Gets the currently-running installation from disk and returns an instance of it.
+ Gets the currently-running installation from disk and returns an instance of it.
 
  @discussion If this installation is not stored on disk, returns a `PFInstallation`
  with <deviceType> and <installationId> fields set to those of the
@@ -57,37 +57,37 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSu
 ///--------------------------------------
 
 /**
- @abstract The device type for the `PFInstallation`.
+ The device type for the `PFInstallation`.
  */
 @property (nonatomic, copy, readonly) NSString *deviceType;
 
 /**
- @abstract The installationId for the `PFInstallation`.
+ The installationId for the `PFInstallation`.
  */
 @property (nonatomic, copy, readonly) NSString *installationId;
 
 /**
- @abstract The device token for the `PFInstallation`.
+ The device token for the `PFInstallation`.
  */
 @property (nullable, nonatomic, copy) NSString *deviceToken;
 
 /**
- @abstract The badge for the `PFInstallation`.
+ The badge for the `PFInstallation`.
  */
 @property (nonatomic, assign) NSInteger badge;
 
 /**
- @abstract The name of the time zone for the `PFInstallation`.
+ The name of the time zone for the `PFInstallation`.
  */
 @property (nullable, nonatomic, copy, readonly) NSString *timeZone;
 
 /**
- @abstract The channels for the `PFInstallation`.
+ The channels for the `PFInstallation`.
  */
 @property (nullable, nonatomic, copy) NSArray PF_GENERIC(NSString *)*channels;
 
 /**
- @abstract Sets the device token string property from an `NSData`-encoded token.
+ Sets the device token string property from an `NSData`-encoded token.
 
  @param deviceTokenData A token that identifies the device.
  */
@@ -98,7 +98,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSu
 ///--------------------------------------
 
 /**
- @abstract Creates a <PFQuery> for `PFInstallation` objects.
+ Creates a <PFQuery> for `PFInstallation` objects.
 
  @discussion Only the following types of queries are allowed for installations:
 

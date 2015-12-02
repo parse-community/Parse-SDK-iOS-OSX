@@ -299,7 +299,7 @@ static NSSet *protectedKeys;
 }
 
 /**
- @abstract Save localeIdentifier in the following format: [language code]-[COUNTRY CODE].
+ Save localeIdentifier in the following format: [language code]-[COUNTRY CODE].
 
  @discussion The language codes are two-letter lowercase ISO language codes (such as "en") as defined by
  <a href="http://en.wikipedia.org/wiki/ISO_639-1">ISO 639-1</a>.

@@ -28,7 +28,7 @@ typedef void(^PFSessionResultBlock)(PFSession *__nullable session, NSError *__nu
 @interface PFSession : PFObject<PFSubclassing>
 
 /**
- @abstract The session token string for this session.
+ The session token string for this session.
  */
 @property (nullable, nonatomic, copy, readonly) NSString *sessionToken;
 

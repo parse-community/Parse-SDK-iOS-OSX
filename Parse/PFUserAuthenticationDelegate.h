@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol PFUserAuthenticationDelegate <NSObject>
 
 /**
- @abstract Called when restoring third party authentication credentials that have been serialized,
+ Called when restoring third party authentication credentials that have been serialized,
  such as session keys, user id, etc.
 
  @note This method will be executed on a background thread.
