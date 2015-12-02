@@ -23,6 +23,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @protocol PFSubclassing
 
+@required
+
+/**
+ The name of the class as seen in the REST API.
+ */
++ (NSString *)parseClassName;
+
+@optional
+
 /**
  Constructs an object of the most specific class known to implement `+parseClassName`.
 
@@ -47,11 +56,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return A new `PFObject` without data.
  */
 + (instancetype)objectWithoutDataWithObjectId:(nullable NSString *)objectId;
-
-/**
- The name of the class as seen in the REST API.
- */
-+ (NSString *)parseClassName;
 
 /**
  Create a query which returns objects of this type.
