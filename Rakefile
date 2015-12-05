@@ -28,7 +28,8 @@ module Constants
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
-    File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift', 'Resources', 'Info.plist')
+    File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift', 'Resources', 'Info.plist'),
+    File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseAppExtensionsStarterProject', 'Resources', 'Info.plist')
   ]
 
   def self.current_version
@@ -175,7 +176,8 @@ namespace :package do
 
     ios_starters = [
       File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject'),
-      File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift')
+      File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift'),
+      File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseAppExtensionsStarterProject')
     ]
     ios_framework_archive = File.join(release_folder, package_ios_name)
     make_starter_package(release_folder, ios_starters, ios_framework_archive, package_starter_ios_name)
@@ -295,7 +297,8 @@ namespace :test do
   task :starters do |_|
     results = []
     ios_schemes = ['ParseStarterProject',
-                   'ParseStarterProject-Swift']
+                   'ParseStarterProject-Swift',
+                   'ParseAppExtensionsStarterProject']
     osx_schemes = ['ParseOSXStarterProject',
                    'ParseOSXStarterProject-Swift']
     watchos_schemes = ['ParseWatchStarter-watchOS']
