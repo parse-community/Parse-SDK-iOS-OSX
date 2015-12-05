@@ -377,12 +377,16 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 // This saves all of the objects and files reachable from the given object.
 // It does its work in multiple waves, saving as many as possible in each wave.
 // If there's ever an error, it just gives up, sets error, and returns NO;
-+ (BFTask *)_deepSaveAsync:(id)object withCurrentUser:(PFUser *)currentUser sessionToken:(NSString *)sessionToken {
-    BFTask *task = [BFTask taskWithResult:@YES];
-
++ (BFTask *)_deepSaveAsyncChildrenOfObject:(id)object withCurrentUser:(PFUser *)currentUser sessionToken:(NSString *)sessionToken {
     NSMutableSet *uniqueObjects = [NSMutableSet set];
     NSMutableSet *uniqueFiles = [NSMutableSet set];
     [self collectDirtyChildren:object children:uniqueObjects files:uniqueFiles currentUser:currentUser];
+    // Remove object from the queue of objects to save as this method should only save children.
+    if ([object isKindOfClass:[PFObject class]]) {
+        [uniqueObjects removeObject:object];
+    }
+
+    BFTask *task = [BFTask taskWithResult:@YES];
     for (PFFile *file in uniqueFiles) {
         task = [task continueAsyncWithSuccessBlock:^id(BFTask *task) {
             return [[file saveInBackground] continueAsyncWithBlock:^id(BFTask *task) {
@@ -622,9 +626,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (BFTask *)_saveChildrenInBackgroundWithCurrentUser:(PFUser *)currentUser sessionToken:(NSString *)sessionToken {
     @synchronized (lock) {
-        return [[self class] _deepSaveAsync:_estimatedData.dictionaryRepresentation
-                            withCurrentUser:currentUser
-                               sessionToken:sessionToken];
+        return [[self class] _deepSaveAsyncChildrenOfObject:self withCurrentUser:currentUser sessionToken:sessionToken];
     }
 }
 
@@ -2345,7 +2347,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return [[controller getCurrentObjectAsync] continueWithBlock:^id(BFTask *task) {
         PFUser *currentUser = task.result;
         NSString *sessionToken = currentUser.sessionToken;
-        return [PFObject _deepSaveAsync:objects withCurrentUser:currentUser sessionToken:sessionToken];
+        return [self _deepSaveAsyncChildrenOfObject:objects withCurrentUser:currentUser sessionToken:sessionToken];
     }];
 }
 
