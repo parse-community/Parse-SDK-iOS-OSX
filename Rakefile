@@ -25,6 +25,7 @@ module Constants
     File.join(script_folder, 'Parse', 'Resources', 'Parse-iOS.Info.plist'),
     File.join(script_folder, 'Parse', 'Resources', 'Parse-OSX.Info.plist'),
     File.join(script_folder, 'Parse', 'Resources', 'Parse-watchOS.Info.plist'),
+    File.join(script_folder, 'Parse', 'Resources', 'Parse-tvOS.Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
@@ -142,6 +143,7 @@ end
 namespace :package do
   package_ios_name = 'Parse-iOS.zip'
   package_osx_name = 'Parse-OSX.zip'
+  package_tvos_name = 'Parse-tvOS.zip'
   package_watchos_name = 'Parse-watchOS.zip'
   package_starter_ios_name = 'ParseStarterProject-iOS.zip'
   package_starter_osx_name = 'ParseStarterProject-OSX.zip'
@@ -172,6 +174,14 @@ namespace :package do
     make_package(release_folder,
                  [osx_framework_path, bolts_path],
                  package_osx_name)
+
+   ## Build tvOS Framework
+   Rake::Task['build:tvos'].invoke
+   bolts_path = File.join(bolts_build_folder, 'tvOS', 'Bolts.framework')
+   tvos_framework_path = File.join(build_folder, 'Parse.framework')
+   make_package(release_folder,
+                [tvos_framework_path, bolts_path],
+                package_tvos_name)
 
     ## Build watchOS Framework
     Rake::Task['build:watchos'].invoke
@@ -304,7 +314,6 @@ namespace :test do
 
   desc 'Run Deployment Tests'
   task :deployment do |_|
-    Rake::Task['build:tvos'].invoke
     Rake::Task['package:frameworks'].invoke
     Rake::Task['package:starters'].invoke
   end
