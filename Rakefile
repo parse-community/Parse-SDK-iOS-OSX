@@ -139,6 +139,7 @@ end
 namespace :package do
   package_ios_name = 'Parse-iOS.zip'
   package_osx_name = 'Parse-OSX.zip'
+  package_watchos_name = 'Parse-watchOS.zip'
   package_starter_ios_name = 'ParseStarterProject-iOS.zip'
   package_starter_osx_name = 'ParseStarterProject-OSX.zip'
 
@@ -167,6 +168,14 @@ namespace :package do
     make_package(release_folder,
                  [osx_framework_path, bolts_path],
                  package_osx_name)
+
+    ## Build watchOS Framework
+    Rake::Task['build:watchos'].invoke
+    bolts_path = File.join(bolts_build_folder, 'watchOS', 'Bolts.framework')
+    watchos_framework_path = File.join(build_folder, 'Parse.framework')
+    make_package(release_folder,
+                 [watchos_framework_path, bolts_path],
+                 package_watchos_name)
   end
 
   desc 'Build and package all starter projects for the release'
@@ -285,7 +294,6 @@ namespace :test do
 
   desc 'Run Deployment Tests'
   task :deployment do |_|
-    Rake::Task['build:watchos'].invoke
     Rake::Task['build:tvos'].invoke
     Rake::Task['package:frameworks'].invoke
     Rake::Task['package:starters'].invoke
