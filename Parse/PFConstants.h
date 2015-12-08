@@ -29,12 +29,6 @@ extern NSInteger const PARSE_API_VERSION;
 
 extern NSString *const __nonnull kPFDeviceType;
 
-#if PARSE_IOS_ONLY
-#import <UIKit/UIKit.h>
-#else
-#import <Cocoa/Cocoa.h>
-#endif
-
 ///--------------------------------------
 /// @name Server
 ///--------------------------------------

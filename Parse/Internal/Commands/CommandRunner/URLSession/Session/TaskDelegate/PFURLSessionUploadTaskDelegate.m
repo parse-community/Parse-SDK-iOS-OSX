@@ -45,7 +45,7 @@
    didSendBodyData:(int64_t)bytesSent
     totalBytesSent:(int64_t)totalBytesSent
 totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
-    int progress = (int)round(totalBytesSent / (CGFloat)totalBytesExpectedToSend * 100);
+    int progress = (int)round(totalBytesSent / (double)totalBytesExpectedToSend * 100);
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_progressBlock) {
             _progressBlock(progress);
