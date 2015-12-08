@@ -28,7 +28,10 @@ module Constants
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
-    File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift', 'Resources', 'Info.plist')
+    File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift', 'Resources', 'Info.plist'),
+    File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter', 'Info.plist'),
+    File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter Extension', 'Info.plist'),
+    File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
   ]
 
   def self.current_version
@@ -142,6 +145,7 @@ namespace :package do
   package_watchos_name = 'Parse-watchOS.zip'
   package_starter_ios_name = 'ParseStarterProject-iOS.zip'
   package_starter_osx_name = 'ParseStarterProject-OSX.zip'
+  package_starter_watchos_name = 'ParseStarterProject-watchOS.zip'
 
   task :prepare do
     `rm -rf #{build_folder} && mkdir -p #{build_folder}`
@@ -195,6 +199,12 @@ namespace :package do
     ]
     osx_framework_archive = File.join(release_folder, package_osx_name)
     make_starter_package(release_folder, osx_starters, osx_framework_archive, package_starter_osx_name)
+
+    watchos_starters = [
+      File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift')
+    ]
+    watchos_framework_archive = File.join(release_folder, package_watchos_name)
+    make_starter_package(release_folder, watchos_starters, watchos_framework_archive, package_starter_watchos_name)
   end
 
   def make_package(target_path, items, archive_name)
