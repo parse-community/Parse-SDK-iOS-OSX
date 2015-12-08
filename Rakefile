@@ -78,6 +78,24 @@ namespace :build do
     end
   end
 
+  desc 'Build iOS Dynamic framework.'
+  task :ios_dynamic do
+    task = XCTask::BuildFrameworkTask.new do |t|
+      t.directory = script_folder
+      t.build_directory = build_folder
+      t.framework_type = XCTask::FrameworkType::IOS
+      t.framework_name = 'Parse.framework'
+      t.workspace = 'Parse.xcworkspace'
+      t.scheme = 'Parse-iOS-Dynamic'
+      t.configuration = 'Release'
+    end
+    result = task.execute
+    unless result
+      puts 'Failed to build iOS Framework.'
+      exit(1)
+    end
+  end
+
   desc 'Build watchOS framework.'
   task :watchos do
     task = XCTask::BuildFrameworkTask.new do |t|
@@ -138,6 +156,7 @@ end
 
 namespace :package do
   package_ios_name = 'Parse-iOS.zip'
+  package_ios_dynamic_name = 'Parse-iOS-Dynamic.zip'
   package_osx_name = 'Parse-OSX.zip'
   package_starter_ios_name = 'ParseStarterProject-iOS.zip'
   package_starter_osx_name = 'ParseStarterProject-OSX.zip'
@@ -147,26 +166,52 @@ namespace :package do
     `rm -rf #{bolts_build_folder} && mkdir -p #{bolts_build_folder}`
   end
 
+  namespace :framework do
+
+    task :ios, [:version] => :prepare do |_, args|
+      version = args[:version] || Constants.current_version
+      Constants.update_version(version)
+      Rake::Task['build:ios'].invoke
+      bolts_path = File.join(bolts_build_folder, 'ios', 'Bolts.framework')
+      ios_framework_path = File.join(build_folder, 'Parse.framework')
+      make_package(release_folder,
+                   [ios_framework_path, bolts_path],
+                   package_ios_name)
+    end
+
+    task :ios_dynamic, [:version] => :prepare do |_, args|
+      version = args[:version] || Constants.current_version
+      Constants.update_version(version)
+      Rake::Task['build:ios_dynamic'].invoke
+      bolts_path = File.join(build_folder, 'Bolts.framework')
+      ios_framework_path = File.join(build_folder, 'Parse.framework')
+      make_package(release_folder,
+                   [ios_framework_path, bolts_path],
+                   package_ios_dynamic_name)
+    end
+
+    task :osx, [:version] => :prepare do |_, args|
+      version = args[:version] || Constants.current_version
+      Constants.update_version(version)
+      Rake::Task['build:osx'].invoke
+      bolts_path = File.join(bolts_build_folder, 'osx', 'Bolts.framework')
+      osx_framework_path = File.join(build_folder, 'Parse.framework')
+      make_package(release_folder,
+                   [osx_framework_path, bolts_path],
+                   package_osx_name)
+    end
+  end
+
   desc 'Build and package all frameworks for the release'
   task :frameworks, [:version] => :prepare do |_, args|
-    version = args[:version] || Constants.current_version
-    Constants.update_version(version)
-
     ## Build iOS Framework
-    Rake::Task['build:ios'].invoke
-    bolts_path = File.join(bolts_build_folder, 'ios', 'Bolts.framework')
-    ios_framework_path = File.join(build_folder, 'Parse.framework')
-    make_package(release_folder,
-                 [ios_framework_path, bolts_path],
-                 package_ios_name)
+    Rake::Task['package:framework:ios'].invoke
+
+    ## Build iOS Dynamic Framework
+    Rake::Task['package:framework:ios_dynamic'].invoke
 
     ## Build OS X Framework
-    Rake::Task['build:osx'].invoke
-    bolts_path = File.join(bolts_build_folder, 'osx', 'Bolts.framework')
-    osx_framework_path = File.join(build_folder, 'Parse.framework')
-    make_package(release_folder,
-                 [osx_framework_path, bolts_path],
-                 package_osx_name)
+    Rake::Task['package:framework:osx'].invoke
   end
 
   desc 'Build and package all starter projects for the release'

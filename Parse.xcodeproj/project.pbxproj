@@ -1574,6 +1574,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4A8E7F261C0627D300E8AF28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09D33641139C54930098E916 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A8E7F1E1C0627AF00E8AF28;
+			remoteInfo = "Bolts-iOS-Dynamic";
+		};
 		811167461B8402DA003CB026 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 09D33641139C54930098E916 /* Project object */;
@@ -1719,6 +1726,9 @@
 		499E425615B6409000A2C28E /* PFProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFProduct.m; sourceTree = "<group>"; };
 		49FDE2EC158C138F00126F64 /* PFPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPurchase.h; sourceTree = "<group>"; };
 		49FDE2ED158C138F00126F64 /* PFPurchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPurchase.m; sourceTree = "<group>"; };
+		4A26C3B61C053AEE00E5F505 /* Parse-iOS-Dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Parse-iOS-Dynamic.xcconfig"; sourceTree = "<group>"; };
+		4A8E7F291C06458F00E8AF28 /* Bolts-iOS-Dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Bolts-iOS-Dynamic.xcconfig"; sourceTree = "<group>"; };
+		4A9C0E851C0B7DDE009DC60E /* Framework-iOS-Dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-iOS-Dynamic.xcconfig"; sourceTree = "<group>"; };
 		63723F6D1565A085007A1A73 /* PFRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRole.h; sourceTree = "<group>"; };
 		63723F6E1565A085007A1A73 /* PFRole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFRole.m; sourceTree = "<group>"; };
 		638CBBB415191435004F54E4 /* PFAnonymousUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAnonymousUtils.h; sourceTree = "<group>"; };
@@ -3723,13 +3733,16 @@
 		F55ABB501B4F39DA00A0ECD5 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
+				4A9C0E851C0B7DDE009DC60E /* Framework-iOS-Dynamic.xcconfig */,
 				F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */,
+				4A26C3B61C053AEE00E5F505 /* Parse-iOS-Dynamic.xcconfig */,
 				F55ABB541B4F39DA00A0ECD5 /* Parse-OSX.xcconfig */,
 				815F24171BD04D310054659F /* Parse-tvOS.xcconfig */,
 				810154FE1BB382F800D7C7BD /* Parse-watchOS.xcconfig */,
 				F55ABB591B4F39DA00A0ECD5 /* ParseUnitTests-iOS.xcconfig */,
 				F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-OSX.xcconfig */,
 				812F31FB1BCF40DC00FCBCD4 /* Bolts-iOS.xcconfig */,
+				4A8E7F291C06458F00E8AF28 /* Bolts-iOS-Dynamic.xcconfig */,
 				812F31FC1BCF40DC00FCBCD4 /* Bolts-OSX.xcconfig */,
 				815F24191BD04DB70054659F /* Bolts-tvOS.xcconfig */,
 				812F31FD1BCF40DC00FCBCD4 /* Bolts-watchOS.xcconfig */,
@@ -4622,6 +4635,35 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
+		4A26C3BB1C053C2C00E5F505 /* Parse-iOS-Dynamic */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-xcconfig Configurations/Parse-iOS-Dynamic.xcconfig -workspace Parse.xcworkspace -scheme Parse-iOS -configuration $(CONFIGURATION) -sdk $SDKROOT CONFIGURATION_BUILD_DIR=$(CONFIGURATION_BUILD_DIR) $(ACTION)";
+			buildConfigurationList = 4A26C3BC1C053C2D00E5F505 /* Build configuration list for PBXLegacyTarget "Parse-iOS-Dynamic" */;
+			buildPhases = (
+			);
+			buildToolPath = xcodebuild;
+			buildWorkingDirectory = "$(SRCROOT)";
+			dependencies = (
+				4A8E7F271C0627D300E8AF28 /* PBXTargetDependency */,
+			);
+			name = "Parse-iOS-Dynamic";
+			passBuildSettingsInEnvironment = 1;
+			productName = Parse;
+		};
+		4A8E7F1E1C0627AF00E8AF28 /* Bolts-iOS-Dynamic */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "Scripts/build_bolts_dynamic.sh $(ACTION)";
+			buildConfigurationList = 4A8E7F251C0627AF00E8AF28 /* Build configuration list for PBXLegacyTarget "Bolts-iOS-Dynamic" */;
+			buildPhases = (
+			);
+			buildToolPath = sh;
+			buildWorkingDirectory = "$(SRCROOT)";
+			dependencies = (
+			);
+			name = "Bolts-iOS-Dynamic";
+			passBuildSettingsInEnvironment = 1;
+			productName = "Bolts-iOS-Dynamic";
+		};
 		812F31F71BCF40AA00FCBCD4 /* Bolts-watchOS */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\"";
@@ -4810,6 +4852,12 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Parse Inc.";
 				TargetAttributes = {
+					4A26C3BB1C053C2C00E5F505 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+					4A8E7F1E1C0627AF00E8AF28 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
 					81493A931A0D3492008D5504 = {
 						CreatedOnToolsVersion = 6.1;
 					};
@@ -4838,6 +4886,7 @@
 			projectRoot = "";
 			targets = (
 				81C3821B19CCA89E0066284A /* Parse-iOS */,
+				4A26C3BB1C053C2C00E5F505 /* Parse-iOS-Dynamic */,
 				816F441B1A8E8933009CDB32 /* ParseUnitTests-iOS */,
 				97010FAB1630B18F00AB761E /* Parse-OSX */,
 				81C09F501AF97A490043B49C /* ParseUnitTests-OSX */,
@@ -4847,6 +4896,7 @@
 				81493A931A0D3492008D5504 /* Bolts-OSX */,
 				815F241A1BD04DBB0054659F /* Bolts-tvOS */,
 				812F31F71BCF40AA00FCBCD4 /* Bolts-watchOS */,
+				4A8E7F1E1C0627AF00E8AF28 /* Bolts-iOS-Dynamic */,
 			);
 		};
 /* End PBXProject section */
@@ -5831,6 +5881,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4A8E7F271C0627D300E8AF28 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A8E7F1E1C0627AF00E8AF28 /* Bolts-iOS-Dynamic */;
+			targetProxy = 4A8E7F261C0627D300E8AF28 /* PBXContainerItemProxy */;
+		};
 		811167471B8402DA003CB026 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 97010FAB1630B18F00AB761E /* Parse-OSX */;
@@ -6046,6 +6101,24 @@
 			buildConfigurations = (
 				09D3366B139C54940098E916 /* Debug */,
 				09D3366C139C54940098E916 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A26C3BC1C053C2D00E5F505 /* Build configuration list for PBXLegacyTarget "Parse-iOS-Dynamic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A8E7F371C0652D500E8AF28 /* Debug */,
+				4A8E7F381C0652D500E8AF28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A8E7F251C0627AF00E8AF28 /* Build configuration list for PBXLegacyTarget "Bolts-iOS-Dynamic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A8E7F2A1C06458F00E8AF28 /* Debug */,
+				4A8E7F2B1C06458F00E8AF28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
