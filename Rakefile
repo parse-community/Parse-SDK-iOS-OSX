@@ -30,6 +30,7 @@ module Constants
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift', 'Resources', 'Info.plist'),
+    File.join(script_folder, 'ParseStarterProject', 'tvOS', 'ParseStarterProject-Swift', 'ParseStarter', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter Extension', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
@@ -147,6 +148,7 @@ namespace :package do
   package_watchos_name = 'Parse-watchOS.zip'
   package_starter_ios_name = 'ParseStarterProject-iOS.zip'
   package_starter_osx_name = 'ParseStarterProject-OSX.zip'
+  package_starter_tvos_name = 'ParseStarterProject-tvOS.zip'
   package_starter_watchos_name = 'ParseStarterProject-watchOS.zip'
 
   task :prepare do
@@ -209,6 +211,12 @@ namespace :package do
     ]
     osx_framework_archive = File.join(release_folder, package_osx_name)
     make_starter_package(release_folder, osx_starters, osx_framework_archive, package_starter_osx_name)
+
+    tvos_starters = [
+      File.join(script_folder, 'ParseStarterProject', 'tvOS', 'ParseStarterProject-Swift')
+    ]
+    tvos_framework_archive = File.join(release_folder, package_tvos_name)
+    make_starter_package(release_folder, tvos_starters, tvos_framework_archive, package_starter_tvos_name)
 
     watchos_starters = [
       File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift')
@@ -325,8 +333,8 @@ namespace :test do
                    'ParseStarterProject-Swift']
     osx_schemes = ['ParseOSXStarterProject',
                    'ParseOSXStarterProject-Swift']
-    watchos_schemes = ['ParseWatchStarter-watchOS']
     tvos_schemes = ['ParseStarter-tvOS']
+    watchos_schemes = ['ParseWatchStarter-watchOS']
 
     ios_schemes.each do |scheme|
       task = XCTask::BuildTask.new do |t|
