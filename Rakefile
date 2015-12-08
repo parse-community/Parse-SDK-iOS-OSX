@@ -28,7 +28,10 @@ module Constants
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
-    File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift', 'Resources', 'Info.plist')
+    File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift', 'Resources', 'Info.plist'),
+    File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter', 'Info.plist'),
+    File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter Extension', 'Info.plist'),
+    File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
   ]
 
   def self.current_version
@@ -139,8 +142,10 @@ end
 namespace :package do
   package_ios_name = 'Parse-iOS.zip'
   package_osx_name = 'Parse-OSX.zip'
+  package_watchos_name = 'Parse-watchOS.zip'
   package_starter_ios_name = 'ParseStarterProject-iOS.zip'
   package_starter_osx_name = 'ParseStarterProject-OSX.zip'
+  package_starter_watchos_name = 'ParseStarterProject-watchOS.zip'
 
   task :prepare do
     `rm -rf #{build_folder} && mkdir -p #{build_folder}`
@@ -167,6 +172,14 @@ namespace :package do
     make_package(release_folder,
                  [osx_framework_path, bolts_path],
                  package_osx_name)
+
+    ## Build watchOS Framework
+    Rake::Task['build:watchos'].invoke
+    bolts_path = File.join(bolts_build_folder, 'watchOS', 'Bolts.framework')
+    watchos_framework_path = File.join(build_folder, 'Parse.framework')
+    make_package(release_folder,
+                 [watchos_framework_path, bolts_path],
+                 package_watchos_name)
   end
 
   desc 'Build and package all starter projects for the release'
@@ -186,6 +199,12 @@ namespace :package do
     ]
     osx_framework_archive = File.join(release_folder, package_osx_name)
     make_starter_package(release_folder, osx_starters, osx_framework_archive, package_starter_osx_name)
+
+    watchos_starters = [
+      File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift')
+    ]
+    watchos_framework_archive = File.join(release_folder, package_watchos_name)
+    make_starter_package(release_folder, watchos_starters, watchos_framework_archive, package_starter_watchos_name)
   end
 
   def make_package(target_path, items, archive_name)
@@ -285,7 +304,6 @@ namespace :test do
 
   desc 'Run Deployment Tests'
   task :deployment do |_|
-    Rake::Task['build:watchos'].invoke
     Rake::Task['build:tvos'].invoke
     Rake::Task['package:frameworks'].invoke
     Rake::Task['package:starters'].invoke
