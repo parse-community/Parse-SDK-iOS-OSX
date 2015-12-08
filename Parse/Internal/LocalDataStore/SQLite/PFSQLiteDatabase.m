@@ -69,12 +69,13 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
     _databaseClosedTaskCompletionSource = [[BFTaskCompletionSource alloc] init];
     _databasePath = [path copy];
 
-    _databaseQueue = PFThreadsafetyCreateQueueForObject(self);
+    dispatch_queue_t queue = PFThreadsafetyCreateQueueForObject(self);
+    _databaseQueue = queue;
     _databaseExecutor = [BFExecutor executorWithBlock:^(dispatch_block_t block) {
         // Execute asynchrounously on the proper queue.
         // Seems a bit backwards, but we don't have PFThreadsafetySafeDispatchAsync.
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            PFThreadsafetySafeDispatchSync(_databaseQueue, block);
+            PFThreadsafetySafeDispatchSync(queue, block);
         });
     }];
 
