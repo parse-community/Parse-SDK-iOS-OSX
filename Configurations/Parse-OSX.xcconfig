@@ -11,6 +11,7 @@
 #include "Shared/Product/Framework.xcconfig"
 
 PRODUCT_NAME = Parse
+PRODUCT_BUNDLE_IDENTIFIER = com.parse.osx
 
 MACH_O_TYPE = mh_dylib
 DEFINES_MODULE = YES

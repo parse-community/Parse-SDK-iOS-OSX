@@ -12,6 +12,7 @@
 
 PRODUCT_NAME = ParseUnitTests-OSX
 PRODUCT_MODULE_NAME = ParseUnitTests
+PRODUCT_BUNDLE_IDENTIFIER = com.parse.unit.osx
 
 INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/ParseUnitTests-OSX-Info.plist
 LD_RUNPATH_SEARCH_PATHS = $(inherited) @loader_path/../Frameworks

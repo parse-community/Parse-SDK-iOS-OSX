@@ -11,6 +11,7 @@
 #include "Shared/Product/Framework.xcconfig"
 
 PRODUCT_NAME = Parse
+PRODUCT_BUNDLE_IDENTIFIER = com.parse.watchos
 
 MACH_O_TYPE = staticlib
 APPLICATION_EXTENSION_API_ONLY = YES

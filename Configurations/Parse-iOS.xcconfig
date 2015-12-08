@@ -11,6 +11,7 @@
 #include "Shared/Product/Framework.xcconfig"
 
 PRODUCT_NAME = Parse
+PRODUCT_BUNDLE_IDENTIFIER = com.parse.ios
 
 MACH_O_TYPE = staticlib
 DEFINES_MODULE = YES
