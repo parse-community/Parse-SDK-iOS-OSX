@@ -10,6 +10,10 @@
 #import "PFAnalytics.h"
 #import "PFAnalytics_Private.h"
 
+#if PF_TARGET_OS_OSX
+#import <AppKit/AppKit.h>
+#endif
+
 #import "BFTask+Private.h"
 #import "PFAnalyticsController.h"
 #import "PFAssert.h"
