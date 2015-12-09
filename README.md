@@ -13,11 +13,6 @@
 A library that gives you access to the powerful Parse cloud platform from your iOS or OS X app.
 For more information Parse and its features, see [the website][parse.com] and [getting started][docs].
 
-## Other Parse Projects
-
- - [ParseUI for iOS][parseui-ios-link]
- - [Parse SDK for Android][android-sdk-link]
-
 ## Getting Started
 
 To use parse, head on over to the [releases][releases] page, and download the latest build.
@@ -63,6 +58,12 @@ We use the following libraries as dependencies inside of Parse:
  - [Bolts][bolts-framework], for task management.
  - [OCMock][ocmock-framework], for unit testing.
 
+## Other Parse Projects
+
+ - [ParseUI for iOS][parseui-link]
+ - [ParseFacebookUtils for iOS][parsefacebookutils-link]
+ - [ParseTwitterUtils for iOS][parsetwitterutils-link]
+
 ## License
 
 ```
@@ -78,8 +79,9 @@ of patent rights can be found in the PATENTS file in the same directory.
  [docs]: https://www.parse.com/docs/ios/guide
  [blog]: https://blog.parse.com/ 
 
- [parseui-ios-link]: https://github.com/ParsePlatform/ParseUI-iOS
- [android-sdk-link]: https://github.com/ParsePlatform/Parse-SDK-Android
+ [parseui-link]: https://github.com/ParsePlatform/ParseUI-iOS
+ [parsefacebookutils-link]: https://github.com/ParsePlatform/ParseFacebookUtils-iOS
+ [parsetwitterutils-link]: https://github.com/ParsePlatform/ParseTwitterUtils-iOS
  
  [releases]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/releases
  [contributing]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/blob/master/CONTRIBUTING.md
