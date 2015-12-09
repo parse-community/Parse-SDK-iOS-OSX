@@ -12,6 +12,7 @@
 
 PRODUCT_NAME = ParseUnitTests-iOS
 PRODUCT_MODULE_NAME = ParseUnitTests
+PRODUCT_BUNDLE_IDENTIFIER = com.parse.unit.ios
 
 INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/ParseUnitTests-iOS-Info.plist
 LIBRARY_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR)
