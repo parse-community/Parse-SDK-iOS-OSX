@@ -8,9 +8,11 @@ Pod::Spec.new do |s|
 
   s.source           = { :git => "https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git", :tag => s.version.to_s }
 
-  s.platform = :ios, :osx
+  s.platform = :ios, :osx, :tvos, :watchos
   s.ios.deployment_target = '7.0'
   s.osx.deployment_target = '10.9'
+  s.tvos.deployment_target = '9.0'
+  s.watchos.deployment_target = '2.0'
 
   s.requires_arc = true
 
@@ -26,19 +28,45 @@ Pod::Spec.new do |s|
                         'Parse/Internal/Product/**/*.{h,m}',
                         'Parse/Internal/Purchase/**/*.{h,m}',
                         'Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
+  s.tvos.exclude_files = 'Parse/PFNetworkActivityIndicatorManager.{h,m}',
+                         'Parse/PFPush.{h,m}',
+                         'Parse/PFInstallation.{h,m}',
+                         'Parse/Internal/PFAlertView.{h,m}',
+                         'Parse/Internal/Push/**/*.{h,m}',
+                         'Parse/Internal/Installation/Controller/*.{h,m}',
+                         'Parse/Internal/Installation/Constants/*.{h,m}',
+                         'Parse/Internal/Installation/CurrentInstallationController/*.{h,m}',
+                         'Parse/Internal/Installation/PFInstallationPrivate.h',
+                         'Parse/Internal/Commands/PFRESTPushCommand.{h,m}'
+  s.watchos.exclude_files = 'Parse/PFNetworkActivityIndicatorManager.{h,m}',
+                            'Parse/PFProduct.{h,m}',
+                            'Parse/PFPurchase.{h,m}',
+                            'Parse/PFPush.{h,m}',
+                            'Parse/PFInstallation.{h,m}',
+                            'Parse/Internal/PFAlertView.{h,m}',
+                            'Parse/Internal/PFReachability.{h,m}',
+                            'Parse/Internal/Product/**/*.{h,m}',
+                            'Parse/Internal/Purchase/**/*.{h,m}',
+                            'Parse/Internal/Push/**/*.{h,m}',
+                            'Parse/Internal/Installation/Controller/*.{h,m}',
+                            'Parse/Internal/Installation/Constants/*.{h,m}',
+                            'Parse/Internal/Installation/CurrentInstallationController/*.{h,m}',
+                            'Parse/Internal/Installation/PFInstallationPrivate.h',
+                            'Parse/Internal/Commands/PFRESTPushCommand.{h,m}',
+                            'Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
 
   s.resources = 'Parse/Resources/en.lproj'
 
-  s.ios.frameworks        = 'AudioToolbox',
-                            'CFNetwork',
-                            'CoreGraphics',
-                            'CoreLocation',
-                            'QuartzCore',
-                            'Security',
-                            'StoreKit',
-                            'SystemConfiguration'
-  s.ios.weak_frameworks   = 'Accounts',
-                            'Social'
+  s.ios.frameworks = 'AudioToolbox',
+                     'CFNetwork',
+                     'CoreGraphics',
+                     'CoreLocation',
+                     'QuartzCore',
+                     'Security',
+                     'StoreKit',
+                     'SystemConfiguration'
+  s.ios.weak_frameworks = 'Accounts',
+                          'Social'
   s.osx.frameworks = 'ApplicationServices',
                      'CFNetwork',
                      'CoreGraphics',
@@ -46,6 +74,10 @@ Pod::Spec.new do |s|
                      'QuartzCore',
                      'Security',
                      'SystemConfiguration'
+  s.tvos.frameworks = 'CoreLocation',
+                      'StoreKit',
+                      'SystemConfiguration',
+                      'Security'
 
   s.libraries        = 'z', 'sqlite3'
 
