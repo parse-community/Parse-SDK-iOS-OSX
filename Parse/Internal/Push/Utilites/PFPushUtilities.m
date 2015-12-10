@@ -54,9 +54,9 @@
     [[[PFKeychainStore alloc] initWithService:@"ParsePush"] removeObjectForKey:@"ParsePush"];
 }
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS
 
-+ (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message {
++ (void)showAlertViewWithTitle:(nullable NSString *)title message:(nullable NSString *)message NS_EXTENSION_UNAVAILABLE_IOS("") {
     NSString *cancelButtonTitle = NSLocalizedStringFromTableInBundle(@"OK", @"Parse",
                                                                      [NSBundle bundleForClass:[self class]],
                                                                      @"Default alert view cancel button title.");
