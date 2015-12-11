@@ -344,6 +344,7 @@ namespace :test do
         t.scheme = scheme
         t.configuration = 'Debug'
         t.sdk = 'iphonesimulator'
+        t.destinations = ['"platform=iOS Simulator,name=iPhone 6s"']
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
@@ -371,7 +372,7 @@ namespace :test do
 
         t.scheme = scheme
         t.configuration = 'Debug'
-        t.destinations = ["\"platform=iOS Simulator,OS=9.1,name=iPhone 6s\"",]
+        t.destinations = ["\"platform=iOS Simulator,name=iPhone 6s\"",]
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
