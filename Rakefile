@@ -277,7 +277,9 @@ namespace :package do
       if target.name == 'Bootstrap'
         target.remove_from_project
       else
-        target.dependencies.each(&:remove_from_project)
+        target.dependencies.each do |dependency|
+          dependency.remove_from_project if dependency.display_name == 'Bootstrap'
+        end
       end
     end
     project.save
