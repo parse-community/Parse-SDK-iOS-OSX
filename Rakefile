@@ -222,7 +222,19 @@ namespace :package do
       File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift')
     ]
     watchos_framework_archive = File.join(release_folder, package_watchos_name)
-    make_starter_package(release_folder, watchos_starters, watchos_framework_archive, package_starter_watchos_name)
+    watchos_starters.each do |project_path|
+      `git clean -xfd #{project_path}`
+      `mkdir -p #{project_path}/Frameworks/iOS && mkdir -p #{project_path}/Frameworks/watchOS`
+      `cd #{project_path}/Frameworks/iOS && unzip -o #{ios_framework_archive}`
+      `cd #{project_path}/Frameworks/watchOS && unzip -o #{watchos_framework_archive}`
+      xcodeproj_path = Dir.glob(File.join(project_path, '*.xcodeproj'))[0]
+      prepare_xcodeproj(xcodeproj_path)
+    end
+    make_package(release_folder, watchos_starters, package_starter_watchos_name)
+    watchos_starters.each do |project_path|
+      `git clean -xfd #{project_path}`
+      `git checkout #{project_path}`
+    end
   end
 
   def make_package(target_path, items, archive_name)
@@ -265,7 +277,9 @@ namespace :package do
       if target.name == 'Bootstrap'
         target.remove_from_project
       else
-        target.dependencies.each(&:remove_from_project)
+        target.dependencies.each do |dependency|
+          dependency.remove_from_project if dependency.display_name == 'Bootstrap'
+        end
       end
     end
     project.save
