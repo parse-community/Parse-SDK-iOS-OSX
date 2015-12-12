@@ -56,20 +56,6 @@
 			remoteGlobalIDString = 81411DD81BC3658C0004BE84;
 			remoteInfo = "ParseStarter Extension";
 		};
-		81411DF31BC3685A0004BE84 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81BA813D1A49DA1800E65899 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 81993FC71B69AA940077D6B9;
-			remoteInfo = Bootstrap;
-		};
-		81993FCC1B69AAE40077D6B9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81BA813D1A49DA1800E65899 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 81993FC71B69AA940077D6B9;
-			remoteInfo = Bootstrap;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -298,7 +284,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				81411DF41BC3685A0004BE84 /* PBXTargetDependency */,
 			);
 			name = "ParseStarter Extension";
 			productName = "ParseStarter Extension";
@@ -319,7 +304,6 @@
 			);
 			dependencies = (
 				068C15651BC8F15300820E44 /* PBXTargetDependency */,
-				81993FCD1B69AAE40077D6B9 /* PBXTargetDependency */,
 			);
 			name = "ParseStarter-Swift";
 			productName = ParseStarterProject;
@@ -460,16 +444,6 @@
 			isa = PBXTargetDependency;
 			target = 81411DD81BC3658C0004BE84 /* ParseStarter Extension */;
 			targetProxy = 81411DDB1BC3658D0004BE84 /* PBXContainerItemProxy */;
-		};
-		81411DF41BC3685A0004BE84 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 81993FC71B69AA940077D6B9 /* Bootstrap */;
-			targetProxy = 81411DF31BC3685A0004BE84 /* PBXContainerItemProxy */;
-		};
-		81993FCD1B69AAE40077D6B9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 81993FC71B69AA940077D6B9 /* Bootstrap */;
-			targetProxy = 81993FCC1B69AAE40077D6B9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
