@@ -1,4 +1,4 @@
-# Parse SDK for iOS/OS X
+# Parse SDK for iOS/OS X/watchOS/tvOS
 
 [![Build Status][build-status-svg]][build-status-link]
 [![Coverage Status][coverage-status-svg]][coverage-status-link]
@@ -34,10 +34,10 @@ And you're off! Take a look at the public [documentation][docs] and start buildi
 
         # To pull in extra dependencies (Bolts and OCMock)
         git submodule update --init --recursive
-        
+
         # To install all the gems
         bundle install
-        
+
         # Build & Package the Frameworks
         rake package:frameworks
 
@@ -71,22 +71,22 @@ Copyright (c) 2015-present, Parse, LLC.
 All rights reserved.
 
 This source code is licensed under the BSD-style license found in the
-LICENSE file in the root directory of this source tree. An additional grant 
+LICENSE file in the root directory of this source tree. An additional grant
 of patent rights can be found in the PATENTS file in the same directory.
 ```
- 
+
  [parse.com]: https://www.parse.com/products/ios
  [docs]: https://www.parse.com/docs/ios/guide
- [blog]: https://blog.parse.com/ 
+ [blog]: https://blog.parse.com/
 
  [parseui-link]: https://github.com/ParsePlatform/ParseUI-iOS
  [parsefacebookutils-link]: https://github.com/ParsePlatform/ParseFacebookUtils-iOS
  [parsetwitterutils-link]: https://github.com/ParsePlatform/ParseTwitterUtils-iOS
- 
+
  [releases]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/releases
  [contributing]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/blob/master/CONTRIBUTING.md
 
- [bolts-framework]: https://github.com/BoltsFramework/Bolts-iOS 
+ [bolts-framework]: https://github.com/BoltsFramework/Bolts-iOS
  [ocmock-framework]: http://ocmock.org
 
  [build-status-svg]: https://travis-ci.org/ParsePlatform/Parse-SDK-iOS-OSX.svg
@@ -101,7 +101,7 @@ of patent rights can be found in the PATENTS file in the same directory.
  [podspec-svg]: https://img.shields.io/cocoapods/v/Parse.svg
  [podspec-link]: https://cocoapods.org/pods/Parse
 
- [platforms-svg]: https://img.shields.io/badge/platform-ios%20%7C%20osx-lightgrey.svg
+ [platforms-svg]: http://img.shields.io/cocoapods/p/Parse.svg?style=flat
 
  [dependencies-svg]: https://img.shields.io/badge/dependencies-2-yellowgreen.svg
  [dependencies-link]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/blob/master/Vendor
