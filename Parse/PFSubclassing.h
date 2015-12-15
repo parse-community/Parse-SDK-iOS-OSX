@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  include `PFObject+Subclass.h` in their implementation file.
  This ensures the methods in the Subclass category of `PFObject` are exposed in its subclasses only.
  */
-@protocol PFSubclassing
+@protocol PFSubclassing <NSObject>
 
 @required
 
