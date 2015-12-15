@@ -171,18 +171,16 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     dispatch_sync(_eventuallyQueueAccessQueue, ^{
 #if TARGET_OS_TV
         if (!_eventuallyQueue) {
-            _eventuallyQueue = [PFMemoryEventuallyQueue newDefaultMemoryEventuallyQueueWithCommandRunner:self.commandRunner];
+            _eventuallyQueue = [PFMemoryEventuallyQueue newDefaultMemoryEventuallyQueueWithDataSource:self];
         }
 #else
         if (!_eventuallyQueue ||
             (self.offlineStoreLoaded && [_eventuallyQueue isKindOfClass:[PFCommandCache class]]) ||
             (!self.offlineStoreLoaded && [_eventuallyQueue isKindOfClass:[PFPinningEventuallyQueue class]])) {
 
-            id<PFCommandRunning> commandRunner = self.commandRunner;
-
             PFCommandCache *commandCache = [self _newCommandCache];
             _eventuallyQueue = (self.offlineStoreLoaded ?
-                                [PFPinningEventuallyQueue newDefaultPinningEventuallyQueueWithCommandRunner:commandRunner]
+                                [PFPinningEventuallyQueue newDefaultPinningEventuallyQueueWithDataSource:self]
                                 :
                                 commandCache);
 
@@ -205,7 +203,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     // It falls under the category of "offline data".
     // See https://developer.apple.com/library/ios/#qa/qa1699/_index.html
     NSString *folderPath = [self.fileManager parseDefaultDataDirectoryPath];
-    return [PFCommandCache newDefaultCommandCacheWithCommandRunner:self.commandRunner cacheFolderPath:folderPath];
+    return [PFCommandCache newDefaultCommandCacheWithCommonDataSource:self coreDataSource:self.coreManager cacheFolderPath:folderPath];
 }
 
 - (void)clearEventuallyQueue {

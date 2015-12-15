@@ -46,37 +46,37 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
 
 @implementation PFCommandCache
 
+@dynamic dataSource;
+
 ///--------------------------------------
 #pragma mark - Init
 ///--------------------------------------
 
-+ (instancetype)newDefaultCommandCacheWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                                        cacheFolderPath:(NSString *)cacheFolderPath {
++ (instancetype)newDefaultCommandCacheWithCommonDataSource:(id<PFCommandRunnerProvider>)dataSource
+                                            coreDataSource:(id<PFObjectLocalIdStoreProvider>)coreDataSource
+                                           cacheFolderPath:(NSString *)cacheFolderPath {
     NSString *diskCachePath = [cacheFolderPath stringByAppendingPathComponent:_PFCommandCacheDiskCacheDirectoryName];
     diskCachePath = [diskCachePath stringByStandardizingPath];
-    PFCommandCache *cache = [[PFCommandCache alloc] initWithCommandRunner:commandRunner
-                                                         maxAttemptsCount:PFEventuallyQueueDefaultMaxAttemptsCount
-                                                            retryInterval:PFEventuallyQueueDefaultTimeoutRetryInterval
-                                                            diskCachePath:diskCachePath
-                                                            diskCacheSize:PFCommandCacheDefaultDiskCacheSize];
+    PFCommandCache *cache = [[PFCommandCache alloc] initWithDataSource:dataSource
+                                                        coreDataSource:coreDataSource
+                                                      maxAttemptsCount:PFEventuallyQueueDefaultMaxAttemptsCount
+                                                         retryInterval:PFEventuallyQueueDefaultTimeoutRetryInterval
+                                                         diskCachePath:diskCachePath
+                                                         diskCacheSize:PFCommandCacheDefaultDiskCacheSize];
     [cache start];
     return cache;
 }
 
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                     maxAttemptsCount:(NSUInteger)attemptsCount
-                        retryInterval:(NSTimeInterval)retryInterval {
-    PFNotDesignatedInitializer();
-}
-
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                     maxAttemptsCount:(NSUInteger)attemptsCount
-                        retryInterval:(NSTimeInterval)retryInterval
-                        diskCachePath:(NSString *)diskCachePath
-                        diskCacheSize:(unsigned long long)diskCacheSize {
-    self = [super initWithCommandRunner:commandRunner maxAttemptsCount:attemptsCount retryInterval:retryInterval];
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource
+                    coreDataSource:(id<PFObjectLocalIdStoreProvider>)coreDataSource
+                  maxAttemptsCount:(NSUInteger)attemptsCount
+                     retryInterval:(NSTimeInterval)retryInterval
+                     diskCachePath:(NSString *)diskCachePath
+                     diskCacheSize:(unsigned long long)diskCacheSize {
+    self = [super initWithDataSource:dataSource maxAttemptsCount:attemptsCount retryInterval:retryInterval];
     if (!self) return nil;
 
+    _coreDataSource = coreDataSource;
     _diskCachePath = diskCachePath;
     _diskCacheSize = diskCacheSize;
     _fileCounter = 0;
@@ -205,7 +205,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
         if (dictionaryResult != nil) {
             NSString *objectId = dictionaryResult[@"objectId"];
             if (objectId) {
-                [[Parse _currentManager].coreManager.objectLocalIdStore setObjectId:objectId forLocalId:command.localId];
+                [self.coreDataSource.objectLocalIdStore setObjectId:objectId forLocalId:command.localId];
             }
         }
     }
