@@ -15,6 +15,6 @@ PF_WATCH_UNAVAILABLE_WARNING
 
 PF_IOS_UNAVAILABLE PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFMemoryEventuallyQueue : PFEventuallyQueue
 
-+ (instancetype)newDefaultMemoryEventuallyQueueWithCommandRunner:(id<PFCommandRunning>)commandRunner;
++ (instancetype)newDefaultMemoryEventuallyQueueWithDataSource:(id<PFCommandRunnerProvider>)dataSource;
 
 @end

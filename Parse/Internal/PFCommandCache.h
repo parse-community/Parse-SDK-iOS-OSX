@@ -15,6 +15,7 @@
 
 @class PFCommandCacheTestHelper;
 @class PFObject;
+@protocol PFObjectLocalIdStoreProvider;
 
 /**
  ParseCommandCache manages an on-disk cache of commands to be executed, and a thread with a standard run loop
@@ -22,6 +23,8 @@
  would be running separate threads trying to read and execute the same commands.
  */
 @interface PFCommandCache : PFEventuallyQueue
+
+@property (nonatomic, weak, readonly) id<PFObjectLocalIdStoreProvider> coreDataSource;
 
 @property (nonatomic, copy, readonly) NSString *diskCachePath;
 @property (nonatomic, assign, readonly) unsigned long long diskCacheSize;
@@ -36,17 +39,19 @@
  When a PFCommandCache is instantiated, it will begin running its run loop,
  which will start by processing any commands already stored in the on-disk queue.
  */
-+ (instancetype)newDefaultCommandCacheWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                                        cacheFolderPath:(NSString *)cacheFolderPath;
++ (instancetype)newDefaultCommandCacheWithCommonDataSource:(id<PFCommandRunnerProvider>)dataSource
+                                            coreDataSource:(id<PFObjectLocalIdStoreProvider>)coreDataSource
+                                           cacheFolderPath:(NSString *)cacheFolderPath;
 
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                     maxAttemptsCount:(NSUInteger)attemptsCount
-                        retryInterval:(NSTimeInterval)retryInterval NS_UNAVAILABLE;
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource
+                  maxAttemptsCount:(NSUInteger)attemptsCount
+                     retryInterval:(NSTimeInterval)retryInterval NS_UNAVAILABLE;
 
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                     maxAttemptsCount:(NSUInteger)attemptsCount
-                        retryInterval:(NSTimeInterval)retryInterval
-                        diskCachePath:(NSString *)diskCachePath
-                        diskCacheSize:(unsigned long long)diskCacheSize NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource
+                    coreDataSource:(id<PFObjectLocalIdStoreProvider>)coreDataSource
+                  maxAttemptsCount:(NSUInteger)attemptsCount
+                     retryInterval:(NSTimeInterval)retryInterval
+                     diskCachePath:(NSString *)diskCachePath
+                     diskCacheSize:(unsigned long long)diskCacheSize NS_DESIGNATED_INITIALIZER;
 
 @end

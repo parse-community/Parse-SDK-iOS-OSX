@@ -50,13 +50,13 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     PFNotDesignatedInitializer();
 }
 
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                     maxAttemptsCount:(NSUInteger)attemptsCount
-                        retryInterval:(NSTimeInterval)retryInterval {
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource
+                  maxAttemptsCount:(NSUInteger)attemptsCount
+                     retryInterval:(NSTimeInterval)retryInterval {
     self = [super init];
     if (!self) return nil;
 
-    _commandRunner = commandRunner;
+    _dataSource = dataSource;
     _maxAttemptsCount = attemptsCount;
     _retryInterval = retryInterval;
 
@@ -328,7 +328,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 
 - (BFTask *)_runCommand:(id<PFNetworkCommand>)command withIdentifier:(NSString *)identifier {
     if ([command isKindOfClass:[PFRESTCommand class]]) {
-        return [self.commandRunner runCommandAsync:(PFRESTCommand *)command withOptions:0];
+        return [self.dataSource.commandRunner runCommandAsync:(PFRESTCommand *)command withOptions:0];
     }
 
     NSString *reason = [NSString stringWithFormat:@"Can't find a compatible runner for command %@.", command];

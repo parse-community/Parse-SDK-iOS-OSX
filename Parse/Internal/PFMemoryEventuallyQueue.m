@@ -29,18 +29,18 @@
 #pragma mark - Init
 ///--------------------------------------
 
-+ (instancetype)newDefaultMemoryEventuallyQueueWithCommandRunner:(id<PFCommandRunning>)commandRunner {
-    PFMemoryEventuallyQueue *queue = [[self alloc] initWithCommandRunner:commandRunner
-                                                        maxAttemptsCount:PFEventuallyQueueDefaultMaxAttemptsCount
-                                                           retryInterval:PFEventuallyQueueDefaultTimeoutRetryInterval];
++ (instancetype)newDefaultMemoryEventuallyQueueWithDataSource:(id<PFCommandRunnerProvider>)dataSource {
+    PFMemoryEventuallyQueue *queue = [[self alloc] initWithDataSource:dataSource
+                                                     maxAttemptsCount:PFEventuallyQueueDefaultMaxAttemptsCount
+                                                        retryInterval:PFEventuallyQueueDefaultTimeoutRetryInterval];
     [queue start];
     return queue;
 }
 
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                     maxAttemptsCount:(NSUInteger)attemptsCount
-                        retryInterval:(NSTimeInterval)retryInterval {
-    self = [super initWithCommandRunner:commandRunner maxAttemptsCount:attemptsCount retryInterval:retryInterval];
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource
+                  maxAttemptsCount:(NSUInteger)attemptsCount
+                     retryInterval:(NSTimeInterval)retryInterval {
+    self = [super initWithDataSource:dataSource maxAttemptsCount:attemptsCount retryInterval:retryInterval];
     if (!self) return nil;
 
     _dataAccessQueue = dispatch_queue_create("com.parse.eventuallyQueue.memory", DISPATCH_QUEUE_SERIAL);

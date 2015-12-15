@@ -18,14 +18,14 @@
 @class PFEventuallyPin;
 @class PFEventuallyQueueTestHelper;
 @class PFObject;
-@protocol PFCommandRunning;
+@protocol PFCommandRunnerProvider;
 
 extern NSUInteger const PFEventuallyQueueDefaultMaxAttemptsCount;
 extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 
 @interface PFEventuallyQueue : NSObject
 
-@property (nonatomic, strong, readonly) id<PFCommandRunning> commandRunner;
+@property (nonatomic, weak, readonly) id<PFCommandRunnerProvider> dataSource;
 
 @property (nonatomic, assign, readonly) NSUInteger maxAttemptsCount;
 @property (nonatomic, assign, readonly) NSTimeInterval retryInterval;
@@ -47,9 +47,9 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                     maxAttemptsCount:(NSUInteger)attemptsCount
-                        retryInterval:(NSTimeInterval)retryInterval NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource
+                  maxAttemptsCount:(NSUInteger)attemptsCount
+                     retryInterval:(NSTimeInterval)retryInterval NS_DESIGNATED_INITIALIZER;
 
 ///--------------------------------------
 /// @name Running Commands

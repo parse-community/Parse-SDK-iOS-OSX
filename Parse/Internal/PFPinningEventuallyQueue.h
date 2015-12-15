@@ -17,6 +17,6 @@
 /// @name Init
 ///--------------------------------------
 
-+ (instancetype)newDefaultPinningEventuallyQueueWithCommandRunner:(id<PFCommandRunning>)commandRunner;
++ (instancetype)newDefaultPinningEventuallyQueueWithDataSource:(id<PFCommandRunnerProvider>)dataSource;
 
 @end
