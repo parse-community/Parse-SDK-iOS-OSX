@@ -40,6 +40,7 @@ PFPersistenceControllerProvider>
 
 @interface PFCoreManager : NSObject
 <PFLocationManagerProvider,
+PFDefaultACLControllerProvider,
 PFObjectControllerProvider,
 PFObjectBatchController,
 PFObjectFilePersistenceControllerProvider,

@@ -21,6 +21,8 @@
 #import "PFRole.h"
 #import "PFUser.h"
 #import "PFUserPrivate.h"
+#import "Parse_Private.h"
+#import "PFCoreManager.h"
 
 static NSString *const PFACLPublicKey_ = @"*";
 static NSString *const PFACLUnresolvedKey_ = @"*unresolved";
@@ -69,12 +71,15 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 }
 
 + (PFACL *)defaultACL {
-    return [[[PFDefaultACLController defaultController] getDefaultACLAsync] waitForResult:NULL
-                                                                    withMainThreadWarning:NO];
+    PFDefaultACLController *controller = [Parse _currentManager].coreManager.defaultACLController;
+    return [[controller getDefaultACLAsync] waitForResult:NULL withMainThreadWarning:NO];
 }
 
 + (void)setDefaultACL:(PFACL *)acl withAccessForCurrentUser:(BOOL)currentUserAccess {
-    [[PFDefaultACLController defaultController] setDefaultACLAsync:acl withCurrentUserAccess:currentUserAccess];
+    PFDefaultACLController *controller = [Parse _currentManager].coreManager.defaultACLController;
+    // TODO: (nlutsenko) Remove this in favor of assert on `_currentManager`.
+    PFConsistencyAssert(controller, @"Can't set default ACL before Parse is initialized.");
+    [controller setDefaultACLAsync:acl withCurrentUserAccess:currentUserAccess];
 }
 
 - (void)setShared:(BOOL)newShared {

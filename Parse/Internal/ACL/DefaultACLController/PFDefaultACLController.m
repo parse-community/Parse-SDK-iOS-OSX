@@ -13,9 +13,7 @@
 
 #import "PFACLPrivate.h"
 #import "PFAsyncTaskQueue.h"
-#import "PFCoreManager.h"
 #import "PFCurrentUserController.h"
-#import "Parse_Private.h"
 
 @implementation PFDefaultACLController {
     PFAsyncTaskQueue *_taskQueue;
@@ -27,30 +25,22 @@
     PFACL *_defaultACLWithCurrentUser;
 }
 
-static PFDefaultACLController *defaultController_;
-
 ///--------------------------------------
 #pragma mark - Init
 ///--------------------------------------
 
-+ (instancetype)defaultController {
-    if (!defaultController_) {
-        defaultController_ = [[self alloc] init];
-    }
-    return defaultController_;
-}
-
-+ (void)clearDefaultController {
-    defaultController_ = nil;
-}
-
-- (instancetype)init {
+- (instancetype)initWithDataSource:(id<PFCurrentUserControllerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
 
     _taskQueue = [[PFAsyncTaskQueue alloc] init];
+    _dataSource = dataSource;
 
     return self;
+}
+
++ (instancetype)controllerWithDataSource:(id<PFCurrentUserControllerProvider>)dataSource {
+    return [[self alloc] initWithDataSource:dataSource];
 }
 
 ///--------------------------------------
@@ -63,7 +53,7 @@ static PFDefaultACLController *defaultController_;
             return _defaultACL;
         }
 
-        PFCurrentUserController *currentUserController = [Parse _currentManager].coreManager.currentUserController;
+        PFCurrentUserController *currentUserController = self.dataSource.currentUserController;
         return [[currentUserController getCurrentObjectAsync] continueWithBlock:^id(BFTask *task) {
             PFUser *currentUser = task.result;
             if (!currentUser) {

@@ -11,6 +11,8 @@
 
 #import <Parse/PFConstants.h>
 
+#import "PFCoreDataProvider.h"
+
 @class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFACL;
 
@@ -18,13 +20,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PFDefaultACLController : NSObject
 
+@property (nonatomic, weak, readonly) id<PFCurrentUserControllerProvider> dataSource;
+
 ///--------------------------------------
 /// @name Init
 ///--------------------------------------
 
-// TODO: (nlutsenko, richardross) Make it not terrible aka don't have singletons
-+ (instancetype)defaultController;
-+ (void)clearDefaultController;
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
++ (instancetype)controllerWithDataSource:(id<PFCurrentUserControllerProvider>)dataSource;
 
 ///--------------------------------------
 /// @name Default ACL
