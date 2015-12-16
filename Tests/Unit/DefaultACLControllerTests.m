@@ -19,7 +19,7 @@
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
 
-@interface DefaultACLControllerTests : PFUnitTestCase
+@interface DefaultACLControllerTests : PFTestCase
 
 @property (nonatomic, strong, readonly) id<PFCurrentUserControllerProvider> mockedDataSource;
 
@@ -72,15 +72,15 @@
 - (void)testSetDefaultACLWithUserAccessWithoutCurrentUser {
     id mockedACL = PFStrictClassMock([PFACL class]);
     id mockedCurrentUserController = PFStrictClassMock([PFCurrentUserController class]);
-
-    [Parse _currentManager].coreManager.currentUserController = mockedCurrentUserController;
+    id dataSource = self.mockedDataSource;
+    OCMStub([dataSource currentUserController]).andReturn(mockedCurrentUserController);
 
     OCMExpect([mockedACL createUnsharedCopy]).andReturnWeak(mockedACL);
     OCMExpect([mockedACL setShared:YES]);
 
     [OCMStub([mockedCurrentUserController getCurrentObjectAsync]) andReturn:[BFTask taskWithResult:nil]];
 
-    PFDefaultACLController *aclController = [PFDefaultACLController controllerWithDataSource:self.mockedDataSource];
+    PFDefaultACLController *aclController = [PFDefaultACLController controllerWithDataSource:dataSource];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[[aclController setDefaultACLAsync:mockedACL withCurrentUserAccess:YES] continueWithBlock:^id(BFTask *task) {
@@ -101,16 +101,17 @@
 - (void)testSetDefaultACLWithUserAccessWithCurrentUser {
     id mockedACL = PFStrictClassMock([PFACL class]);
     id mockedCurrentUserController = PFStrictClassMock([PFCurrentUserController class]);
-
-    [Parse _currentManager].coreManager.currentUserController = mockedCurrentUserController;
+    id dataSource = self.mockedDataSource;
+    OCMStub([dataSource currentUserController]).andReturn(mockedCurrentUserController);
 
     OCMExpect([mockedACL createUnsharedCopy]).andReturnWeak(mockedACL);
     OCMExpect([mockedACL setShared:YES]);
 
-    PFUser *user = [PFUser user];
+    PFUser *user = PFStrictClassMock([PFUser class]);
+    [OCMStub(user.objectId) andReturn:[NSUUID UUID].UUIDString];
     [OCMStub([mockedCurrentUserController getCurrentObjectAsync]) andReturn:[BFTask taskWithResult:user]];
 
-    PFDefaultACLController *aclController = [PFDefaultACLController controllerWithDataSource:self.mockedDataSource];
+    PFDefaultACLController *aclController = [PFDefaultACLController controllerWithDataSource:dataSource];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[[[aclController setDefaultACLAsync:mockedACL withCurrentUserAccess:YES] continueWithBlock:^id(BFTask *task) {
