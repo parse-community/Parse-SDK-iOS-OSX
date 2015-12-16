@@ -15,7 +15,6 @@
 #import "PFInternalUtils.h"
 #import "PFJSONSerialization.h"
 #import "PFLogging.h"
-#import "Parse_Private.h"
 
 static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
 
@@ -99,7 +98,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
     _inMemoryCache = [NSMutableDictionary dictionary];
 
     // Construct the path to the disk storage directory.
-    _diskPath = [[Parse _currentManager].fileManager parseDataItemPathForPathComponent:_PFObjectLocalIdStoreDiskFolderPath];
+    _diskPath = [dataSource.fileManager parseDataItemPathForPathComponent:_PFObjectLocalIdStoreDiskFolderPath];
 
     NSError *error = nil;
     [[PFFileManager createDirectoryIfNeededAsyncAtPath:_diskPath] waitForResult:&error withMainThreadWarning:NO];
