@@ -155,10 +155,12 @@ static NSSet *protectedKeys;
 ///--------------------------------------
 
 - (id)objectForKey:(NSString *)key {
+#if !TARGET_OS_TV
     if ([key isEqualToString:PFInstallationKeyBadge] && [self _isCurrentInstallation]) {
         // Update the data dictionary badge value from the device.
         [self _updateBadgeFromDevice];
     }
+#endif
 
     return [super objectForKey:key];
 }
@@ -261,7 +263,9 @@ static NSSet *protectedKeys;
     if ([self _isCurrentInstallation]) {
         @synchronized(self.lock) {
             [self _updateTimeZoneFromDevice];
+#if !TARGET_OS_TV
             [self _updateBadgeFromDevice];
+#endif
             [self _updateVersionInfoFromDevice];
             [self _updateLocaleIdentifierFromDevice];
         }
@@ -277,7 +281,7 @@ static NSSet *protectedKeys;
     }
 }
 
-- (void)_updateBadgeFromDevice {
+- (void)_updateBadgeFromDevice PF_TV_UNAVAILABLE {
     // Get the application icon and update the installation if necessary.
     NSNumber *applicationBadge = @([PFApplication currentApplication].iconBadgeNumber);
     NSNumber *installationBadge = [super objectForKey:PFInstallationKeyBadge];

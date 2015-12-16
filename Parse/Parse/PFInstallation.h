@@ -12,7 +12,6 @@
 #import <Parse/PFObject.h>
 #import <Parse/PFSubclassing.h>
 
-PF_TV_UNAVAILABLE_WARNING
 PF_WATCH_UNAVAILABLE_WARNING
 
 NS_ASSUME_NONNULL_BEGIN
@@ -35,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  the Parse cloud can be used to target push notifications.
  */
 
-PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSubclassing>
+PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSubclassing>
 
 ///--------------------------------------
 #pragma mark - Accessing the Current Installation
@@ -83,7 +82,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSu
 /**
  The badge for the `PFInstallation`.
  */
-@property (nonatomic, assign) NSInteger badge;
+@property (nonatomic, assign) NSInteger badge PF_TV_UNAVAILABLE;
 
 /**
  The name of the time zone for the `PFInstallation`.

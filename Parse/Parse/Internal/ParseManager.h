@@ -37,7 +37,7 @@ PFInstallationIdentifierStoreProvider>
 
 @property (nonatomic, strong, readonly) PFCoreManager *coreManager;
 
-#if !TARGET_OS_WATCH && !TARGET_OS_TV
+#if !TARGET_OS_WATCH
 @property (nonatomic, strong) PFPushManager *pushManager;
 #endif
 
