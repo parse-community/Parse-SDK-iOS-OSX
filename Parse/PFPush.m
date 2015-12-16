@@ -386,7 +386,7 @@ static Class _pushInternalUtilClass = nil;
 #pragma mark - Handling Notifications
 ///--------------------------------------
 
-#if PARSE_IOS_ONLY
+#if TARGET_OS_IOS
 + (void)handlePush:(NSDictionary *)userInfo {
     UIApplication *application = [UIApplication sharedApplication];
     if (application.applicationState != UIApplicationStateActive) {

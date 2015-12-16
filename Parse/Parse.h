@@ -42,6 +42,8 @@
 
 #elif TARGET_OS_TV
 
+#import <Parse/PFInstallation.h>
+#import <Parse/PFPush.h>
 #import <Parse/PFProduct.h>
 #import <Parse/PFPurchase.h>
 

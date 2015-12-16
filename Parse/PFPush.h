@@ -14,7 +14,6 @@
 #import <Parse/PFConstants.h>
 #import <Parse/PFInstallation.h>
 
-PF_TV_UNAVAILABLE_WARNING
 PF_WATCH_UNAVAILABLE_WARNING
 
 @class PFQuery PF_GENERIC(PFGenericObject : PFObject *);
@@ -27,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  The preferred way of modifying or retrieving channel subscriptions is to use
  the `PFInstallation` class, instead of the class methods in `PFPush`.
  */
-PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
+PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
 ///--------------------------------------
 /// @name Creating a Push Notification
@@ -399,7 +398,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 
  @param userInfo The userInfo dictionary you get in `appplication:didReceiveRemoteNotification:`.
  */
-+ (void)handlePush:(nullable NSDictionary *)userInfo NS_AVAILABLE_IOS(3_0) PF_EXTENSION_UNAVAILABLE("");
++ (void)handlePush:(nullable NSDictionary *)userInfo NS_AVAILABLE_IOS(3_0) PF_EXTENSION_UNAVAILABLE("") PF_TV_UNAVAILABLE;
 
 ///--------------------------------------
 /// @name Managing Channel Subscriptions

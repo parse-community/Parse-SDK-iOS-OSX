@@ -28,7 +28,7 @@
 #import "PFURLSessionCommandRunner.h"
 #import "PFPersistenceController.h"
 
-#if !TARGET_OS_WATCH && !TARGET_OS_TV
+#if !TARGET_OS_WATCH
 #import "PFPushManager.h"
 #import "PFInstallation.h"
 #endif
@@ -75,7 +75,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 @synthesize keyValueCache = _keyValueCache;
 @synthesize coreManager = _coreManager;
 @synthesize analyticsController = _analyticsController;
-#if !TARGET_OS_WATCH && !TARGET_OS_TV
+#if !TARGET_OS_WATCH
 @synthesize pushManager = _pushManager;
 #endif
 #if TARGET_OS_IOS
@@ -360,7 +360,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     });
 }
 
-#if !TARGET_OS_WATCH && !TARGET_OS_TV
+#if !TARGET_OS_WATCH
 
 #pragma mark PushManager
 
@@ -437,7 +437,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
         @strongify(self);
         [PFUser currentUser];
         [PFConfig currentConfig];
-#if !TARGET_OS_WATCH && !TARGET_OS_TV
+#if !TARGET_OS_WATCH
         [PFInstallation currentInstallation];
 #endif
         
