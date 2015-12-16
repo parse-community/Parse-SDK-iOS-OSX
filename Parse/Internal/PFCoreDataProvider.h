@@ -13,6 +13,18 @@
 NS_ASSUME_NONNULL_BEGIN
 
 ///--------------------------------------
+/// @name Default ACL
+///--------------------------------------
+
+@class PFDefaultACLController;
+
+@protocol PFDefaultACLControllerProvider <NSObject>
+
+@property (nonatomic, strong, readonly) PFDefaultACLController *defaultACLController;
+
+@end
+
+///--------------------------------------
 /// @name Object
 ///--------------------------------------
 
