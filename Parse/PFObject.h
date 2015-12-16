@@ -333,8 +333,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  even if Parse is currently inaccessible.
 
  Use this when you may not have a solid network connection, and don't need to know when the save completes.
- If there is some problem with the object such that it can't be saved, it will be silently discarded. If the save
- completes successfully while the object is still in memory, then callback will be called.
+ If there is some problem with the object such that it can't be saved, it will be silently discarded.
 
  Objects saved with this method will be stored locally in an on-disk cache until they can be delivered to Parse.
  They will be sent immediately if possible. Otherwise, they will be sent the next time a network connection is
