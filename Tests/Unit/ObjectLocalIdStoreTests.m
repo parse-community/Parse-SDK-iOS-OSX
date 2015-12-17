@@ -9,36 +9,18 @@
 
 #import <OCMock/OCMock.h>
 
-#import "PFCoreManager.h"
 #import "PFDecoder.h"
 #import "PFFileManager.h"
 #import "PFInternalUtils.h"
 #import "PFJSONSerialization.h"
 #import "PFObjectLocalIdStore.h"
-#import "PFUnitTestCase.h"
-#import "Parse_Private.h"
+#import "PFTestCase.h"
 
-@interface ObjectLocalIdStoreTests : PFUnitTestCase
+@interface ObjectLocalIdStoreTests : PFTestCase
 
 @end
 
 @implementation ObjectLocalIdStoreTests
-
-///--------------------------------------
-#pragma mark - XCTestCase
-///--------------------------------------
-
-- (void)setUp {
-    [super setUp];
-
-    [[Parse _currentManager].coreManager.objectLocalIdStore clear];
-}
-
-- (void)tearDown {
-    [[Parse _currentManager].coreManager.objectLocalIdStore clear];
-
-    [super tearDown];
-}
 
 ///--------------------------------------
 #pragma mark - Helpers
@@ -69,76 +51,86 @@
 }
 
 - (void)testRetain {
-    PFObjectLocalIdStore *manager = [Parse _currentManager].coreManager.objectLocalIdStore;
+    id<PFFileManagerProvider> dataSource = [self mockedDataSource];
+    PFFileManager *fileManager = dataSource.fileManager;
+    OCMStub([fileManager parseDataItemPathForPathComponent:[OCMArg isNotNil]]).andReturn(NSTemporaryDirectory());
 
-    NSString *localId1 = [manager createLocalId];
+    PFObjectLocalIdStore *store = [[PFObjectLocalIdStore alloc] initWithDataSource:dataSource];
+
+    NSString *localId1 = [store createLocalId];
     XCTAssertNotNil(localId1);
-    [manager retainLocalIdOnDisk:localId1];  // refcount = 1
-    XCTAssertNil([manager objectIdForLocalId:localId1]);
+    [store retainLocalIdOnDisk:localId1]; // refcount = 1
+    XCTAssertNil([store objectIdForLocalId:localId1]);
 
-    NSString *localId2 = [manager createLocalId];
+    NSString *localId2 = [store createLocalId];
     XCTAssertNotNil(localId2);
-    [manager retainLocalIdOnDisk:localId2];  // refcount = 1
-    XCTAssertNil([manager objectIdForLocalId:localId2]);
+    [store retainLocalIdOnDisk:localId2]; // refcount = 1
+    XCTAssertNil([store objectIdForLocalId:localId2]);
 
-    [manager retainLocalIdOnDisk:localId1];  // refcount = 2
-    XCTAssertNil([manager objectIdForLocalId:localId1]);
-    XCTAssertNil([manager objectIdForLocalId:localId2]);
+    [store retainLocalIdOnDisk:localId1]; // refcount = 2
+    XCTAssertNil([store objectIdForLocalId:localId1]);
+    XCTAssertNil([store objectIdForLocalId:localId2]);
 
-    [manager releaseLocalIdOnDisk:localId1];  // refcount = 1
-    XCTAssertNil([manager objectIdForLocalId:localId1]);
-    XCTAssertNil([manager objectIdForLocalId:localId2]);
+    [store releaseLocalIdOnDisk:localId1]; // refcount = 1
+    XCTAssertNil([store objectIdForLocalId:localId1]);
+    XCTAssertNil([store objectIdForLocalId:localId2]);
 
     NSString *objectId1 = @"objectId1";
-    [manager setObjectId:objectId1 forLocalId:localId1];
-    XCTAssertEqualObjects(objectId1, [manager objectIdForLocalId:localId1]);
-    XCTAssertNil([manager objectIdForLocalId:localId2]);
+    [store setObjectId:objectId1 forLocalId:localId1];
+    XCTAssertEqualObjects(objectId1, [store objectIdForLocalId:localId1]);
+    XCTAssertNil([store objectIdForLocalId:localId2]);
 
-    [manager retainLocalIdOnDisk:localId1];  // refcount = 2
-    XCTAssertEqualObjects(objectId1, [manager objectIdForLocalId:localId1]);
-    XCTAssertNil([manager objectIdForLocalId:localId2]);
+    [store retainLocalIdOnDisk:localId1]; // refcount = 2
+    XCTAssertEqualObjects(objectId1, [store objectIdForLocalId:localId1]);
+    XCTAssertNil([store objectIdForLocalId:localId2]);
 
     NSString *objectId2 = @"objectId2";
-    [manager setObjectId:objectId2 forLocalId:localId2];
-    XCTAssertEqualObjects(objectId1, [manager objectIdForLocalId:localId1]);
-    XCTAssertEqualObjects(objectId2, [manager objectIdForLocalId:localId2]);
+    [store setObjectId:objectId2 forLocalId:localId2];
+    XCTAssertEqualObjects(objectId1, [store objectIdForLocalId:localId1]);
+    XCTAssertEqualObjects(objectId2, [store objectIdForLocalId:localId2]);
 
-    [manager releaseLocalIdOnDisk:localId1];  // refcount = 1
-    XCTAssertEqualObjects(objectId1, [manager objectIdForLocalId:localId1]);
-    XCTAssertEqualObjects(objectId2, [manager objectIdForLocalId:localId2]);
+    [store releaseLocalIdOnDisk:localId1]; // refcount = 1
+    XCTAssertEqualObjects(objectId1, [store objectIdForLocalId:localId1]);
+    XCTAssertEqualObjects(objectId2, [store objectIdForLocalId:localId2]);
 
-    [manager releaseLocalIdOnDisk:localId1];  // refcount = 0
-    XCTAssertEqualObjects(objectId1, [manager objectIdForLocalId:localId1]);
-    XCTAssertEqualObjects(objectId2, [manager objectIdForLocalId:localId2]);
+    [store releaseLocalIdOnDisk:localId1]; // refcount = 0
+    XCTAssertEqualObjects(objectId1, [store objectIdForLocalId:localId1]);
+    XCTAssertEqualObjects(objectId2, [store objectIdForLocalId:localId2]);
 
-    [manager clearInMemoryCache];
-    XCTAssertNil([manager objectIdForLocalId:localId1]);
-    XCTAssertEqualObjects(objectId2, [manager objectIdForLocalId:localId2]);
+    [store clearInMemoryCache];
+    XCTAssertNil([store objectIdForLocalId:localId1]);
+    XCTAssertEqualObjects(objectId2, [store objectIdForLocalId:localId2]);
 
-    [manager releaseLocalIdOnDisk:localId2];  // refcount = 0
-    XCTAssertNil([manager objectIdForLocalId:localId1]);
-    XCTAssertNil([manager objectIdForLocalId:localId2]);
+    [store releaseLocalIdOnDisk:localId2]; // refcount = 0
+    XCTAssertNil([store objectIdForLocalId:localId1]);
+    XCTAssertNil([store objectIdForLocalId:localId2]);
 
-    [manager clearInMemoryCache];
-    XCTAssertNil([manager objectIdForLocalId:localId1]);
-    XCTAssertNil([manager objectIdForLocalId:localId2]);
+    [store clearInMemoryCache];
+    XCTAssertNil([store objectIdForLocalId:localId1]);
+    XCTAssertNil([store objectIdForLocalId:localId2]);
 
-    XCTAssertFalse([[Parse _currentManager].coreManager.objectLocalIdStore clear]);
+    [store clear];
 }
 
 - (void)testRetainAfterRelease {
-    PFObjectLocalIdStore *manager = [Parse _currentManager].coreManager.objectLocalIdStore;
+    id<PFFileManagerProvider> dataSource = [self mockedDataSource];
+    PFFileManager *fileManager = dataSource.fileManager;
+    OCMStub([fileManager parseDataItemPathForPathComponent:[OCMArg isNotNil]]).andReturn(NSTemporaryDirectory());
 
-    NSString *localId = [manager createLocalId];
-    [manager setObjectId:@"venus" forLocalId:localId];
-    [manager retainLocalIdOnDisk:localId];
-    [manager clearInMemoryCache];
-    XCTAssertEqualObjects(@"venus", [manager objectIdForLocalId:localId]);
+    PFObjectLocalIdStore *store = [[PFObjectLocalIdStore alloc] initWithDataSource:dataSource];
+
+    NSString *localId = [store createLocalId];
+    [store setObjectId:@"venus" forLocalId:localId];
+    [store retainLocalIdOnDisk:localId];
+    [store clearInMemoryCache];
+    XCTAssertEqualObjects(@"venus", [store objectIdForLocalId:localId]);
+
+    [store clear];
 }
 
 - (void)testLongSerialization {
     long long expected = 0x8000000000000000L;
-    NSDictionary *object = @{ @"hugeNumber": @(expected) };
+    NSDictionary *object = @{ @"hugeNumber" : @(expected) };
 
     NSString *json = [PFJSONSerialization stringFromJSONObject:object];
 

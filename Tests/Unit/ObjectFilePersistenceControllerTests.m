@@ -12,10 +12,10 @@
 #import "BFTask+Private.h"
 #import "PFObject.h"
 #import "PFObjectFilePersistenceController.h"
-#import "PFUnitTestCase.h"
+#import "PFTestCase.h"
 #import "PFPersistenceController.h"
 
-@interface ObjectFilePersistenceControllerTests : PFUnitTestCase
+@interface ObjectFilePersistenceControllerTests : PFTestCase
 
 @end
 

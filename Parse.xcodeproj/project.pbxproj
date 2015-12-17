@@ -325,6 +325,10 @@
 		810749B11B74662B00682EEB /* PFURLSessionFileDownloadTaskDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 810749AD1B74662B00682EEB /* PFURLSessionFileDownloadTaskDelegate.m */; };
 		810B7D761A0291FF003C0909 /* PFMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 810B7D751A0291FF003C0909 /* PFMacros.h */; };
 		810B7D771A0291FF003C0909 /* PFMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 810B7D751A0291FF003C0909 /* PFMacros.h */; };
+		810D54B61C22582F002B4932 /* URLConstructorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D54B51C22582F002B4932 /* URLConstructorTests.m */; };
+		810D54B71C22582F002B4932 /* URLConstructorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D54B51C22582F002B4932 /* URLConstructorTests.m */; };
+		810D54C01C226741002B4932 /* ACLDefaultTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D54BF1C226741002B4932 /* ACLDefaultTests.m */; };
+		810D54C11C226741002B4932 /* ACLDefaultTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D54BF1C226741002B4932 /* ACLDefaultTests.m */; };
 		810ECA701B573853002944D4 /* PFRelationPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 810ECA6F1B573853002944D4 /* PFRelationPrivate.h */; };
 		810ECA711B573853002944D4 /* PFRelationPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 810ECA6F1B573853002944D4 /* PFRelationPrivate.h */; };
 		810ECC6F1B573C6B002944D4 /* SwiftSubclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810ECC6E1B573C6B002944D4 /* SwiftSubclass.swift */; };
@@ -452,8 +456,8 @@
 		814881671B795CD4008763BF /* PFMultiProcessFileLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8148815F1B795CD4008763BF /* PFMultiProcessFileLockController.m */; };
 		814916291B66D44500EFD14F /* ACLStateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915CC1B66D44500EFD14F /* ACLStateTests.m */; };
 		8149162A1B66D44500EFD14F /* ACLStateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915CC1B66D44500EFD14F /* ACLStateTests.m */; };
-		8149162B1B66D44500EFD14F /* ACLUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915CD1B66D44500EFD14F /* ACLUnitTests.m */; };
-		8149162C1B66D44500EFD14F /* ACLUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915CD1B66D44500EFD14F /* ACLUnitTests.m */; };
+		8149162B1B66D44500EFD14F /* ACLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915CD1B66D44500EFD14F /* ACLTests.m */; };
+		8149162C1B66D44500EFD14F /* ACLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915CD1B66D44500EFD14F /* ACLTests.m */; };
 		8149162F1B66D44500EFD14F /* AnalyticsCommandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915CF1B66D44500EFD14F /* AnalyticsCommandTests.m */; };
 		814916301B66D44500EFD14F /* AnalyticsCommandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915CF1B66D44500EFD14F /* AnalyticsCommandTests.m */; };
 		814916311B66D44500EFD14F /* AnalyticsControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915D01B66D44500EFD14F /* AnalyticsControllerTests.m */; };
@@ -1757,6 +1761,8 @@
 		810749AC1B74662B00682EEB /* PFURLSessionFileDownloadTaskDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFURLSessionFileDownloadTaskDelegate.h; sourceTree = "<group>"; };
 		810749AD1B74662B00682EEB /* PFURLSessionFileDownloadTaskDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFURLSessionFileDownloadTaskDelegate.m; sourceTree = "<group>"; };
 		810B7D751A0291FF003C0909 /* PFMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMacros.h; sourceTree = "<group>"; };
+		810D54B51C22582F002B4932 /* URLConstructorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLConstructorTests.m; sourceTree = "<group>"; };
+		810D54BF1C226741002B4932 /* ACLDefaultTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLDefaultTests.m; sourceTree = "<group>"; };
 		810ECA6F1B573853002944D4 /* PFRelationPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRelationPrivate.h; sourceTree = "<group>"; };
 		810ECC611B573B96002944D4 /* ParseUnitTests-iOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ParseUnitTests-iOS-Info.plist"; sourceTree = "<group>"; };
 		810ECC621B573B96002944D4 /* ParseUnitTests-OSX-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ParseUnitTests-OSX-Info.plist"; sourceTree = "<group>"; };
@@ -1835,7 +1841,7 @@
 		8148815E1B795CD4008763BF /* PFMultiProcessFileLockController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMultiProcessFileLockController.h; sourceTree = "<group>"; };
 		8148815F1B795CD4008763BF /* PFMultiProcessFileLockController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMultiProcessFileLockController.m; sourceTree = "<group>"; };
 		814915CC1B66D44500EFD14F /* ACLStateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLStateTests.m; sourceTree = "<group>"; };
-		814915CD1B66D44500EFD14F /* ACLUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUnitTests.m; sourceTree = "<group>"; };
+		814915CD1B66D44500EFD14F /* ACLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLTests.m; sourceTree = "<group>"; };
 		814915CE1B66D44500EFD14F /* AlertViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewTests.m; sourceTree = "<group>"; };
 		814915CF1B66D44500EFD14F /* AnalyticsCommandTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsCommandTests.m; sourceTree = "<group>"; };
 		814915D01B66D44500EFD14F /* AnalyticsControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsControllerTests.m; sourceTree = "<group>"; };
@@ -2841,8 +2847,9 @@
 		814915CB1B66D44500EFD14F /* Unit */ = {
 			isa = PBXGroup;
 			children = (
+				810D54BF1C226741002B4932 /* ACLDefaultTests.m */,
 				814915CC1B66D44500EFD14F /* ACLStateTests.m */,
-				814915CD1B66D44500EFD14F /* ACLUnitTests.m */,
+				814915CD1B66D44500EFD14F /* ACLTests.m */,
 				814915CE1B66D44500EFD14F /* AlertViewTests.m */,
 				814915CF1B66D44500EFD14F /* AnalyticsCommandTests.m */,
 				814915D01B66D44500EFD14F /* AnalyticsControllerTests.m */,
@@ -5365,7 +5372,7 @@
 				814916851B66D44600EFD14F /* ObjectFileCoderTests.m in Sources */,
 				814916831B66D44600EFD14F /* ObjectEstimatedDataTests.m in Sources */,
 				814916791B66D44600EFD14F /* LocationManagerMobileTests.m in Sources */,
-				8149162B1B66D44500EFD14F /* ACLUnitTests.m in Sources */,
+				8149162B1B66D44500EFD14F /* ACLTests.m in Sources */,
 				814916371B66D44500EFD14F /* AnonymousAuthenticationProviderTests.m in Sources */,
 				814916D31B66D44600EFD14F /* SessionUnitTests.m in Sources */,
 				81E0337E1B57441F00B25168 /* CLLocationManager+TestAdditions.m in Sources */,
@@ -5373,6 +5380,7 @@
 				814916611B66D44600EFD14F /* FieldOperationTests.m in Sources */,
 				814916A11B66D44600EFD14F /* ParseModuleUnitTests.m in Sources */,
 				814916951B66D44600EFD14F /* ObjectSubclassTests.m in Sources */,
+				810D54C01C226741002B4932 /* ACLDefaultTests.m in Sources */,
 				814916B51B66D44600EFD14F /* PushControllerTests.m in Sources */,
 				814916D11B66D44600EFD14F /* SessionControllerTests.m in Sources */,
 				814916AF1B66D44600EFD14F /* PurchaseUnitTests.m in Sources */,
@@ -5469,6 +5477,7 @@
 				81E0335D1B573F3E00B25168 /* PFMockURLResponse.m in Sources */,
 				814916C01B66D44600EFD14F /* QueryCachedControllerTests.m in Sources */,
 				814916B61B66D44600EFD14F /* PushControllerTests.m in Sources */,
+				810D54C11C226741002B4932 /* ACLDefaultTests.m in Sources */,
 				814916E21B66D44600EFD14F /* UserUnitTests.m in Sources */,
 				81A016281B59E19D00B0C7ED /* PFExtensionDataSharingTestHelper.m in Sources */,
 				814916441B66D44600EFD14F /* CloudUnitTests.m in Sources */,
@@ -5506,7 +5515,7 @@
 				810ECC701B573C6B002944D4 /* SwiftSubclass.swift in Sources */,
 				814916D01B66D44600EFD14F /* RoleUnitTests.m in Sources */,
 				814916941B66D44600EFD14F /* ObjectSubclassPropertiesTests.m in Sources */,
-				8149162C1B66D44500EFD14F /* ACLUnitTests.m in Sources */,
+				8149162C1B66D44500EFD14F /* ACLTests.m in Sources */,
 				814916A41B66D44600EFD14F /* ParseSetupUnitTests.m in Sources */,
 				810ECC7E1B573D28002944D4 /* PFTestCase.m in Sources */,
 				814916C81B66D44600EFD14F /* QueryUnitTests.m in Sources */,

@@ -13,10 +13,9 @@
 #import "PFFileManager.h"
 #import "PFSQLiteDatabase.h"
 #import "PFSQLiteDatabaseResult.h"
-#import "PFUnitTestCase.h"
-#import "Parse_Private.h"
+#import "PFTestCase.h"
 
-@interface SQLiteDatabaseTest : PFUnitTestCase {
+@interface SQLiteDatabaseTest : PFTestCase {
     PFSQLiteDatabase *database;
 }
 @end
