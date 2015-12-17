@@ -56,6 +56,8 @@
 
 - (void)testConstructors {
     id<PFFileManagerProvider> dataSource = [self mockedDataSource];
+    PFFileManager *fileManager = dataSource.fileManager;
+    OCMStub([fileManager parseDataItemPathForPathComponent:[OCMArg isNotNil]]).andReturn(NSTemporaryDirectory());
 
     PFObjectLocalIdStore *store = [[PFObjectLocalIdStore alloc] initWithDataSource:dataSource];
     XCTAssertNotNil(store);
