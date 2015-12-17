@@ -18,13 +18,13 @@
 #import "PFFileController.h"
 #import "PFFileManager.h"
 #import "PFMutableFileState.h"
-#import "PFUnitTestCase.h"
+#import "PFTestCase.h"
 
 @protocol FileControllerDataSource <PFCommandRunnerProvider, PFFileManagerProvider>
 
 @end
 
-@interface FileControllerTests : PFUnitTestCase
+@interface FileControllerTests : PFTestCase
 
 @end
 
