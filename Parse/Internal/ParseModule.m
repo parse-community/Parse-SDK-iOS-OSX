@@ -81,11 +81,11 @@ typedef void (^ParseModuleEnumerationBlock)(id<ParseModule> module, BOOL *stop, 
 ///--------------------------------------
 
 - (void)parseDidInitializeWithApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey {
-    [self enumerateModulesWithBlock:^(id<ParseModule> module, BOOL *stop, BOOL *remove) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self enumerateModulesWithBlock:^(id<ParseModule> module, BOOL *stop, BOOL *remove) {
             [module parseDidInitializeWithApplicationId:applicationId clientKey:clientKey];
-        });
-    }];
+        }];
+    });
 }
 
 ///--------------------------------------
