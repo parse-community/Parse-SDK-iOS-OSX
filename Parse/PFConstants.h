@@ -30,12 +30,6 @@ extern NSInteger const PARSE_API_VERSION;
 extern NSString *const __nonnull kPFDeviceType;
 
 ///--------------------------------------
-/// @name Server
-///--------------------------------------
-
-extern NSString *const __nonnull kPFParseServer;
-
-///--------------------------------------
 /// @name Cache Policies
 ///--------------------------------------
 
