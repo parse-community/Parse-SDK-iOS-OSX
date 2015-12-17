@@ -13,14 +13,14 @@
 #import "PFMacros.h"
 #import "PFObjectPrivate.h"
 #import "PFRole.h"
-#import "PFUnitTestCase.h"
+#import "PFTestCase.h"
 #import "PFUserPrivate.h"
 
-@interface ACLUnitTests : PFUnitTestCase
+@interface ACLTests : PFTestCase
 
 @end
 
-@implementation ACLUnitTests
+@implementation ACLTests
 
 - (void)testConstructors {
     id mockedUser = PFStrictClassMock([PFUser class]);
@@ -207,15 +207,7 @@
     XCTAssertTrue([unsharedACL getPublicReadAccess]);
 }
 
-- (void)testDefaultACL {
-    PFACL *newACL = [PFACL ACL];
-    [newACL setPublicReadAccess:YES];
-    [newACL setShared:YES];
 
-    XCTAssertNotEqualObjects(newACL, [PFACL defaultACL]);
-    [PFACL setDefaultACL:newACL withAccessForCurrentUser:YES];
-    XCTAssertEqualObjects(newACL, [PFACL defaultACL]);
-}
 
 - (void)testACLRequiresObjectId {
     [PFUser registerSubclass];
