@@ -316,7 +316,8 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
             _commandRunner = [PFURLSessionCommandRunner commandRunnerWithDataSource:self
                                                                       retryAttempts:self.configuration.networkRetryAttempts
                                                                       applicationId:self.configuration.applicationId
-                                                                          clientKey:self.configuration.clientKey];
+                                                                          clientKey:self.configuration.clientKey
+                                                                          serverURL:self.serverURL];
         }
         runner = _commandRunner;
     });

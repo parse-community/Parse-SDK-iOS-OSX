@@ -41,6 +41,7 @@
 
 @synthesize applicationId = _applicationId;
 @synthesize clientKey = _clientKey;
+@synthesize serverURL = _serverURL;
 @synthesize initialRetryDelay = _initialRetryDelay;
 
 ///--------------------------------------
@@ -53,23 +54,26 @@
 
 - (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                      applicationId:(NSString *)applicationId
-                         clientKey:(NSString *)clientKey {
+                         clientKey:(NSString *)clientKey
+                         serverURL:(nonnull NSURL *)serverURL {
     return [self initWithDataSource:dataSource
                       retryAttempts:PFCommandRunningDefaultMaxAttemptsCount
                       applicationId:applicationId
-                          clientKey:clientKey];
+                          clientKey:clientKey
+                          serverURL:serverURL];
 
 }
 
 - (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                      retryAttempts:(NSUInteger)retryAttempts
                      applicationId:(NSString *)applicationId
-                         clientKey:(NSString *)clientKey {
+                         clientKey:(NSString *)clientKey
+                         serverURL:(NSURL *)serverURL {
     NSURLSessionConfiguration *configuration = [[self class] _urlSessionConfigurationForApplicationId:applicationId
                                                                                             clientKey:clientKey];
 
     PFURLSession *session = [PFURLSession sessionWithConfiguration:configuration delegate:self];
-    PFCommandURLRequestConstructor *constructor = [PFCommandURLRequestConstructor constructorWithDataSource:dataSource];
+    PFCommandURLRequestConstructor *constructor = [PFCommandURLRequestConstructor constructorWithDataSource:dataSource serverURL:serverURL];
     self = [self initWithDataSource:dataSource
                             session:session
                  requestConstructor:constructor
@@ -79,6 +83,7 @@
     _retryAttempts = retryAttempts;
     _applicationId = [applicationId copy];
     _clientKey = [clientKey copy];
+    _serverURL = serverURL;
 
     return self;
 }
@@ -102,18 +107,21 @@
 
 + (instancetype)commandRunnerWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                               applicationId:(NSString *)applicationId
-                                  clientKey:(NSString *)clientKey {
-    return [[self alloc] initWithDataSource:dataSource applicationId:applicationId clientKey:clientKey];
+                                  clientKey:(NSString *)clientKey
+                                  serverURL:(nonnull NSURL *)serverURL {
+    return [[self alloc] initWithDataSource:dataSource applicationId:applicationId clientKey:clientKey serverURL:serverURL];
 }
 
 + (instancetype)commandRunnerWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                               retryAttempts:(NSUInteger)retryAttempts
                               applicationId:(NSString *)applicationId
-                                  clientKey:(NSString *)clientKey {
+                                  clientKey:(NSString *)clientKey
+                                  serverURL:(nonnull NSURL *)serverURL {
     return [[self alloc] initWithDataSource:dataSource
                               retryAttempts:retryAttempts
                               applicationId:applicationId
-                                  clientKey:clientKey];
+                                  clientKey:clientKey
+                                  serverURL:serverURL];
 }
 
 ///--------------------------------------

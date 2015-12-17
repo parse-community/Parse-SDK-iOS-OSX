@@ -28,24 +28,29 @@
 
 - (void)testConstructors {
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
+    NSURL *url = [NSURL URLWithString:@"https://parse.com/123"];
 
     PFURLSessionCommandRunner *commandRunner = [[PFURLSessionCommandRunner alloc] initWithDataSource:mockedDataSource
                                                                                        applicationId:@"appId"
-                                                                                           clientKey:@"clientKey"];
+                                                                                           clientKey:@"clientKey"
+                                                                                           serverURL:url];
     XCTAssertNotNil(commandRunner);
     XCTAssertEqual(mockedDataSource, (id)commandRunner.dataSource);
     XCTAssertEqualObjects(@"appId", commandRunner.applicationId);
     XCTAssertEqualObjects(@"clientKey", commandRunner.clientKey);
     XCTAssertEqual(commandRunner.initialRetryDelay, PFCommandRunningDefaultRetryDelay);
+    XCTAssertEqual(commandRunner.serverURL, url);
 
     commandRunner = [PFURLSessionCommandRunner commandRunnerWithDataSource:mockedDataSource
                                                              applicationId:@"appId"
-                                                                 clientKey:@"clientKey"];
+                                                                 clientKey:@"clientKey"
+                                                                 serverURL:url];
     XCTAssertNotNil(commandRunner);
     XCTAssertEqual(mockedDataSource, (id)commandRunner.dataSource);
     XCTAssertEqualObjects(@"appId", commandRunner.applicationId);
     XCTAssertEqualObjects(@"clientKey", commandRunner.clientKey);
     XCTAssertEqual(commandRunner.initialRetryDelay, PFCommandRunningDefaultRetryDelay);
+    XCTAssertEqual(commandRunner.serverURL, url);
 
     PFAssertThrowsInconsistencyException([PFURLSessionCommandRunner new]);
 }

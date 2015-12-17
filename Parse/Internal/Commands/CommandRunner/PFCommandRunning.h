@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSString *applicationId;
 @property (nonatomic, copy, readonly) NSString *clientKey;
+@property (nonatomic, strong, readonly) NSURL *serverURL;
 
 @property (nonatomic, assign) NSTimeInterval initialRetryDelay;
 
@@ -42,10 +43,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                      applicationId:(NSString *)applicationId
-                         clientKey:(NSString *)clientKey;
+                         clientKey:(NSString *)clientKey
+                         serverURL:(NSURL *)serverURL;
 + (instancetype)commandRunnerWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                               applicationId:(NSString *)applicationId
-                                  clientKey:(NSString *)clientKey;
+                                  clientKey:(NSString *)clientKey
+                                  serverURL:(NSURL *)serverURL;
 
 ///--------------------------------------
 /// @name Data Commands

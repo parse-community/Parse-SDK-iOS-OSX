@@ -19,14 +19,14 @@
 @interface PFCommandURLRequestConstructor : NSObject
 
 @property (nonatomic, weak, readonly) id<PFInstallationIdentifierStoreProvider> dataSource;
+@property (nonatomic, strong, readonly) NSURL *serverURL;
 
 ///--------------------------------------
 /// @name Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource NS_DESIGNATED_INITIALIZER;
-+ (instancetype)constructorWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource;
++ (instancetype)constructorWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource serverURL:(NSURL *)serverURL;
 
 ///--------------------------------------
 /// @name Data

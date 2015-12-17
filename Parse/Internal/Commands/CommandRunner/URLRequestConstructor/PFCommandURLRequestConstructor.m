@@ -31,17 +31,18 @@
     PFNotDesignatedInitializer();
 }
 
-- (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource {
+- (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource serverURL:(NSURL *)serverURL {
     self = [super init];
     if (!self) return nil;
 
     _dataSource = dataSource;
+    _serverURL = serverURL;
 
     return self;
 }
 
-+ (instancetype)constructorWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource {
-    return [[self alloc] initWithDataSource:dataSource];
++ (instancetype)constructorWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource serverURL:(NSURL *)serverURL {
+    return [[self alloc] initWithDataSource:dataSource serverURL:serverURL];
 }
 
 ///--------------------------------------
@@ -50,8 +51,8 @@
 
 - (BFTask PF_GENERIC(NSURLRequest *)*)getDataURLRequestAsyncForCommand:(PFRESTCommand *)command {
     return (BFTask *)[[self _getURLRequestHeadersAsyncForCommand:command] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSDictionary *)*task) {
-        NSURL *url = [PFURLConstructor URLFromAbsoluteString:[PFInternalUtils parseServerURLString]
-                                                        path:[NSString stringWithFormat:@"/1/%@", command.httpPath]
+        NSURL *url = [PFURLConstructor URLFromAbsoluteString:self.serverURL.absoluteString
+                                                        path:command.httpPath
                                                        query:nil];
         NSDictionary *headers = task.result;
 
