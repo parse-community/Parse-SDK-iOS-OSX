@@ -21,8 +21,10 @@
                             path:(nullable NSString *)path
                            query:(nullable NSString *)query {
     NSURLComponents *components = [NSURLComponents componentsWithString:string];
-    if (path) {
-        components.path = path;
+    if (path.length != 0) {
+        NSString *fullPath = (components.path.length ? components.path : @"/");
+        fullPath = [fullPath stringByAppendingPathComponent:path];
+        components.path = fullPath;
     }
     if (query) {
         components.query = query;
