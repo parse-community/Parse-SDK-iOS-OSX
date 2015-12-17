@@ -329,6 +329,8 @@
 		810D54B71C22582F002B4932 /* URLConstructorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D54B51C22582F002B4932 /* URLConstructorTests.m */; };
 		810D54C01C226741002B4932 /* ACLDefaultTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D54BF1C226741002B4932 /* ACLDefaultTests.m */; };
 		810D54C11C226741002B4932 /* ACLDefaultTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D54BF1C226741002B4932 /* ACLDefaultTests.m */; };
+		810D54CF1C234A86002B4932 /* CloudCommandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915D81B66D44500EFD14F /* CloudCommandTests.m */; };
+		810D54D01C234A87002B4932 /* CloudCommandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915D81B66D44500EFD14F /* CloudCommandTests.m */; };
 		810ECA701B573853002944D4 /* PFRelationPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 810ECA6F1B573853002944D4 /* PFRelationPrivate.h */; };
 		810ECA711B573853002944D4 /* PFRelationPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 810ECA6F1B573853002944D4 /* PFRelationPrivate.h */; };
 		810ECC6F1B573C6B002944D4 /* SwiftSubclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810ECC6E1B573C6B002944D4 /* SwiftSubclass.swift */; };
@@ -474,8 +476,6 @@
 		8149163C1B66D44500EFD14F /* BaseStateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915D51B66D44500EFD14F /* BaseStateTests.m */; };
 		8149163F1B66D44500EFD14F /* CloudCodeControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915D71B66D44500EFD14F /* CloudCodeControllerTests.m */; };
 		814916401B66D44500EFD14F /* CloudCodeControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915D71B66D44500EFD14F /* CloudCodeControllerTests.m */; };
-		814916411B66D44600EFD14F /* CloudCommandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915D81B66D44500EFD14F /* CloudCommandTests.m */; };
-		814916421B66D44600EFD14F /* CloudCommandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915D81B66D44500EFD14F /* CloudCommandTests.m */; };
 		814916431B66D44600EFD14F /* CloudUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915D91B66D44500EFD14F /* CloudUnitTests.m */; };
 		814916441B66D44600EFD14F /* CloudUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915D91B66D44500EFD14F /* CloudUnitTests.m */; };
 		814916451B66D44600EFD14F /* CommandResultTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814915DA1B66D44500EFD14F /* CommandResultTests.m */; };
@@ -2878,6 +2878,7 @@
 				814915E81B66D44500EFD14F /* FieldOperationTests.m */,
 				814915E91B66D44500EFD14F /* FileCommandTests.m */,
 				814915EA1B66D44500EFD14F /* FileControllerTests.m */,
+				F57E29B11BA388DD00A2C59D /* FileDataStreamTests.m */,
 				814915EB1B66D44500EFD14F /* FileStateTests.m */,
 				814915EC1B66D44500EFD14F /* FileUnitTests.m */,
 				814915ED1B66D44500EFD14F /* GeoPointLocationTests.m */,
@@ -2890,7 +2891,6 @@
 				814915F31B66D44500EFD14F /* KeyValueCacheTests.m */,
 				814915F41B66D44500EFD14F /* LocationManagerMobileTests.m */,
 				814915F51B66D44500EFD14F /* LocationManagerTests.m */,
-				F57E29B11BA388DD00A2C59D /* FileDataStreamTests.m */,
 				814915F61B66D44500EFD14F /* ObjectBatchCommandTests.m */,
 				814915F71B66D44500EFD14F /* ObjectBatchControllerTests.m */,
 				814915F81B66D44500EFD14F /* ObjectCommandTests.m */,
@@ -2938,6 +2938,7 @@
 				814916211B66D44500EFD14F /* SessionUnitTests.m */,
 				814916221B66D44500EFD14F /* SessionUtilitiesTests.m */,
 				814916231B66D44500EFD14F /* SQLiteDatabaseTest.m */,
+				810D54B51C22582F002B4932 /* URLConstructorTests.m */,
 				814916241B66D44500EFD14F /* URLSessionCommandRunnerTests.m */,
 				F5732DE01B6712140066DCD5 /* URLSessionDataTaskDelegateTests.m */,
 				F5556A141B66F36000410837 /* URLSessionTests.m */,
@@ -5336,7 +5337,6 @@
 				814916731B66D44600EFD14F /* InstallationUnitTests.m in Sources */,
 				814916A91B66D44600EFD14F /* ProductTests.m in Sources */,
 				F5E381311B68832000A3B9F2 /* URLSessionTests.m in Sources */,
-				814916411B66D44600EFD14F /* CloudCommandTests.m in Sources */,
 				814916311B66D44500EFD14F /* AnalyticsControllerTests.m in Sources */,
 				814916971B66D44600EFD14F /* ObjectUnitTests.m in Sources */,
 				81308B6F1B5781F500FFFF44 /* PFTestSwizzledMethod.m in Sources */,
@@ -5362,6 +5362,7 @@
 				814916A31B66D44600EFD14F /* ParseSetupUnitTests.m in Sources */,
 				8149163B1B66D44500EFD14F /* BaseStateTests.m in Sources */,
 				8149162F1B66D44500EFD14F /* AnalyticsCommandTests.m in Sources */,
+				810D54B61C22582F002B4932 /* URLConstructorTests.m in Sources */,
 				814916931B66D44600EFD14F /* ObjectSubclassPropertiesTests.m in Sources */,
 				8149168B1B66D44600EFD14F /* ObjectOfflineTests.m in Sources */,
 				814916B11B66D44600EFD14F /* PushChannelsControllerTests.m in Sources */,
@@ -5386,6 +5387,7 @@
 				814916AF1B66D44600EFD14F /* PurchaseUnitTests.m in Sources */,
 				8149166D1B66D44600EFD14F /* GeoPointUnitTests.m in Sources */,
 				814916711B66D44600EFD14F /* InstallationIdentifierUnitTests.m in Sources */,
+				810D54D01C234A87002B4932 /* CloudCommandTests.m in Sources */,
 				8149164B1B66D44600EFD14F /* ConfigCommandTests.m in Sources */,
 				814916871B66D44600EFD14F /* ObjectFileCodingLogicTests.m in Sources */,
 				81308B711B5781F500FFFF44 /* PFTestSwizzlingUtilities.m in Sources */,
@@ -5428,6 +5430,7 @@
 				814916601B66D44600EFD14F /* FieldOperationDecoderTests.m in Sources */,
 				81E0337F1B57441F00B25168 /* CLLocationManager+TestAdditions.m in Sources */,
 				814916861B66D44600EFD14F /* ObjectFileCoderTests.m in Sources */,
+				810D54CF1C234A86002B4932 /* CloudCommandTests.m in Sources */,
 				F57E29B31BA388DD00A2C59D /* FileDataStreamTests.m in Sources */,
 				8149163A1B66D44500EFD14F /* AnonymousUtilsTests.m in Sources */,
 				81308B721B5781F500FFFF44 /* PFTestSwizzlingUtilities.m in Sources */,
@@ -5465,7 +5468,6 @@
 				814916A01B66D44600EFD14F /* OperationSetUnitTests.m in Sources */,
 				814916721B66D44600EFD14F /* InstallationIdentifierUnitTests.m in Sources */,
 				814916881B66D44600EFD14F /* ObjectFileCodingLogicTests.m in Sources */,
-				814916421B66D44600EFD14F /* CloudCommandTests.m in Sources */,
 				814916841B66D44600EFD14F /* ObjectEstimatedDataTests.m in Sources */,
 				814916621B66D44600EFD14F /* FieldOperationTests.m in Sources */,
 				814916381B66D44500EFD14F /* AnonymousAuthenticationProviderTests.m in Sources */,
@@ -5482,6 +5484,7 @@
 				81A016281B59E19D00B0C7ED /* PFExtensionDataSharingTestHelper.m in Sources */,
 				814916441B66D44600EFD14F /* CloudUnitTests.m in Sources */,
 				814916DE1B66D44600EFD14F /* UserControllerTests.m in Sources */,
+				810D54B71C22582F002B4932 /* URLConstructorTests.m in Sources */,
 				814916801B66D44600EFD14F /* ObjectBatchControllerTests.m in Sources */,
 				814916CA1B66D44600EFD14F /* QueryUtilitiesTests.m in Sources */,
 				81E0335B1B573F3E00B25168 /* PFMockURLProtocol.m in Sources */,
