@@ -137,6 +137,7 @@
 - (void)testDeleteAll {
     id<PFCommandRunnerProvider> dataSource = [self mockedDataSource];
     id commandRunner = dataSource.commandRunner;
+    OCMStub([commandRunner serverURL]).andReturn([NSURL URLWithString:@"https://api.parse.com/1"]);
 
     NSString *sessionToken = [[NSUUID UUID] UUIDString];
 
@@ -178,6 +179,7 @@
 - (void)testDeleteAllError {
     id<PFCommandRunnerProvider> dataSource = [self mockedDataSource];
     id commandRunner = dataSource.commandRunner;
+    OCMStub([commandRunner serverURL]).andReturn([NSURL URLWithString:@"https://api.parse.com/1"]);
 
     NSString *sessionToken = [[NSUUID UUID] UUIDString];
 
