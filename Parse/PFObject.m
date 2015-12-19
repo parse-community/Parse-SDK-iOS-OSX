@@ -2293,6 +2293,14 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     self[key] = value;
 }
 
+- (void)setValuesForKeysWithDictionary:(NSDictionary PF_GENERIC(NSString *,id)*)keyedValues {
+    // This is overwritten to make sure we don't use `nil` instead of `NSNull` (the default NSObject implementation).
+    // Remove this if we 100% conform to KVC.
+    [keyedValues enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
+        [self setValue:obj forKey:key];
+    }];
+}
+
 ///--------------------------------------
 #pragma mark - Misc
 ///--------------------------------------
