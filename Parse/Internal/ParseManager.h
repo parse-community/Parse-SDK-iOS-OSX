@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/ParseClientConfiguration.h>
 #import <Parse/PFConstants.h>
 
 #import "PFDataProvider.h"
@@ -32,11 +33,7 @@ PFKeychainStoreProvider,
 PFKeyValueCacheProvider,
 PFInstallationIdentifierStoreProvider>
 
-@property (nonatomic, copy, readonly) NSString *applicationId;
-@property (nonatomic, copy, readonly) NSString *clientKey;
-
-@property (nonatomic, copy, readonly) NSString *applicationGroupIdentifier;
-@property (nonatomic, copy, readonly) NSString *containingApplicationIdentifier;
+@property (nonatomic, copy, readonly) ParseClientConfiguration *configuration;
 
 @property (nonatomic, strong, readonly) PFCoreManager *coreManager;
 
@@ -59,24 +56,16 @@ PFInstallationIdentifierStoreProvider>
 /**
  Initializes an instance of ParseManager class.
 
- @param applicationId                   ApplicationId of Parse app.
- @param clientKey                       ClientKey of Parse app.
+ @param configuration                   Configuration of parse app.
 
  @return `ParseManager` instance.
  */
-- (instancetype)initWithApplicationId:(NSString *)applicationId
-                            clientKey:(NSString *)clientKey NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithConfiguration:(ParseClientConfiguration *)configuration;
 
 /**
- Configures ParseManager with specified properties.
-
- @param applicationGroupIdentifier      Shared AppGroup container identifier.
- @param containingApplicationIdentifier Containg application bundle identifier (for extensions).
- @param localDataStoreEnabled           `BOOL` flag to enable local datastore or not.
+ Begins all necessary operations for this manager to become active.
  */
-- (void)configureWithApplicationGroupIdentifier:(NSString *)applicationGroupIdentifier
-                containingApplicationIdentifier:(NSString *)containingApplicationIdentifier
-                          enabledLocalDataStore:(BOOL)localDataStoreEnabled;
+- (void)startManaging;
 
 ///--------------------------------------
 /// @name Offline Store

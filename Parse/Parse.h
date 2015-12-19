@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/ParseClientConfiguration.h>
 #import <Parse/PFACL.h>
 #import <Parse/PFAnalytics.h>
 #import <Parse/PFAnonymousUtils.h>
@@ -65,6 +66,22 @@ NS_ASSUME_NONNULL_BEGIN
  @param clientKey The client key of your Parse application.
  */
 + (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey;
+
+/**
+ Sets the configuration to be used for the Parse SDK.
+
+ @note Re-setting the configuration after having previously sent requests through the SDK results in undefined behavior.
+
+ @param configuration The new configuration to set for the SDK.
+ */
++ (void)initializeWithConfiguration:(ParseClientConfiguration *)configuration;
+
+/**
+ Gets the current configuration in use by the Parse SDK.
+
+ @return The current configuration in use by the SDK. Returns nil if the SDK has not been initialized yet.
+ */
++ (ParseClientConfiguration *)currentConfiguration;
 
 /**
  The current application id that was used to configure Parse framework.
