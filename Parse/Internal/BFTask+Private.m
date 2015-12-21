@@ -29,11 +29,11 @@
 
 @implementation BFTask (Private)
 
-- (instancetype)continueAsyncWithBlock:(BFContinuationBlock)block {
+- (BFTask *)continueAsyncWithBlock:(BFContinuationBlock)block {
     return [self continueWithExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:block];
 }
 
-- (instancetype)continueAsyncWithSuccessBlock:(BFContinuationBlock)block {
+- (BFTask *)continueAsyncWithSuccessBlock:(BFContinuationBlock)block {
     return [self continueWithExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withSuccessBlock:block];
 }
 
@@ -45,20 +45,20 @@
     return [self continueWithExecutor:[BFExecutor immediateExecutor] withSuccessBlock:block];
 }
 
-- (instancetype)continueWithResult:(id)result {
+- (BFTask *)continueWithResult:(id)result {
     return [self continueWithBlock:^id(BFTask *task) {
         return result;
     }];
 }
 
-- (instancetype)continueWithSuccessResult:(id)result {
+- (BFTask *)continueWithSuccessResult:(id)result {
     return [self continueWithSuccessBlock:^id(BFTask *task) {
         return result;
     }];
 }
 
-- (instancetype)continueWithMainThreadResultBlock:(PFIdResultBlock)resultBlock
-                               executeIfCancelled:(BOOL)executeIfCancelled {
+- (BFTask *)continueWithMainThreadResultBlock:(PFIdResultBlock)resultBlock
+                           executeIfCancelled:(BOOL)executeIfCancelled {
     if (!resultBlock) {
         return self;
     }
@@ -84,8 +84,8 @@
                             }];
 }
 
-- (instancetype)continueWithMainThreadBooleanResultBlock:(PFBooleanResultBlock)resultBlock
-                                      executeIfCancelled:(BOOL)executeIfCancelled {
+- (BFTask *)continueWithMainThreadBooleanResultBlock:(PFBooleanResultBlock)resultBlock
+                                  executeIfCancelled:(BOOL)executeIfCancelled {
     return [self continueWithMainThreadResultBlock:^(id object, NSError *error) {
         resultBlock([object boolValue], error);
     } executeIfCancelled:executeIfCancelled];
