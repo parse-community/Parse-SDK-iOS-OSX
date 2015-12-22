@@ -261,7 +261,11 @@
     };
 
     self.expectationToFulfuill = backgroundTargetSelectorExpectation;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [thePush sendPushInBackgroundWithTarget:self selector:@selector(validateObjectResults:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }
@@ -307,10 +311,13 @@
     };
 
     self.expectationToFulfuill = toChannelTargetSelectorExpectation;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFPush sendPushMessageToChannelInBackground:channelName
                                      withMessage:message
                                           target:self
                                         selector:@selector(validateObjectResults:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }
@@ -348,10 +355,13 @@
     };
 
     self.expectationToFulfuill = toChannelTargetSelectorExpectation;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFPush sendPushDataToChannelInBackground:channelName
                                      withData:payload
                                        target:self
                                      selector:@selector(validateObjectResults:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }
@@ -459,7 +469,10 @@
     };
 
     self.expectationToFulfuill = subscribeTargetSelectorExpectation;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFPush getSubscribedChannelsInBackgroundWithTarget:self selector:@selector(validateObjectResults:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }
@@ -496,9 +509,13 @@
     };
 
     self.expectationToFulfuill = subscribeTargetSelectorExpectation;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFPush subscribeToChannelInBackground:channel
                                     target:self
                                   selector:@selector(validateObjectResults:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }
@@ -535,9 +552,13 @@
     };
 
     self.expectationToFulfuill = unsubscribeTargetSelectorExpectation;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFPush unsubscribeFromChannelInBackground:channel
                                         target:self
                                       selector:@selector(validateObjectResults:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }

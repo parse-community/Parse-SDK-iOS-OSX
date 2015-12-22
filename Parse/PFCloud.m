@@ -42,17 +42,25 @@
 
 + (void)callFunctionInBackground:(NSString *)function
                   withParameters:(NSDictionary *)parameters
-                          target:(id)target
-                        selector:(SEL)selector {
+                           block:(PFIdResultBlock)block {
+    [[self callFunctionInBackground:function withParameters:parameters] thenCallBackOnMainThreadAsync:block];
+}
+
+@end
+
+///--------------------------------------
+#pragma mark - Deprecated
+///--------------------------------------
+
+@implementation PFCloud (Deprecated)
+
++ (void)callFunctionInBackground:(NSString *)function
+                  withParameters:(nullable NSDictionary *)parameters
+                          target:(nullable id)target
+                        selector:(nullable SEL)selector {
     [self callFunctionInBackground:function withParameters:parameters block:^(id results, NSError *error) {
         [PFInternalUtils safePerformSelector:selector withTarget:target object:results object:error];
     }];
-}
-
-+ (void)callFunctionInBackground:(NSString *)function
-                  withParameters:(NSDictionary *)parameters
-                           block:(PFIdResultBlock)block {
-    [[self callFunctionInBackground:function withParameters:parameters] thenCallBackOnMainThreadAsync:block];
 }
 
 @end

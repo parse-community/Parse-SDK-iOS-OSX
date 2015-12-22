@@ -176,12 +176,6 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
     [[self _uploadAsyncWithProgressBlock:progressBlock] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-- (void)saveInBackgroundWithTarget:(id)target selector:(SEL)selector {
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
-    }];
-}
-
 #pragma mark Downloading
 
 - (NSData *)getData {
@@ -240,12 +234,6 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
 - (void)getDataStreamInBackgroundWithBlock:(PFDataStreamResultBlock)resultBlock
                              progressBlock:(PFProgressBlock)progressBlock {
     [[self _getDataStreamAsyncWithProgressBlock:progressBlock] thenCallBackOnMainThreadAsync:resultBlock];
-}
-
-- (void)getDataInBackgroundWithTarget:(id)target selector:(SEL)selector {
-    [self getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:data object:error];
-    }];
 }
 
 - (BFTask PF_GENERIC(NSString *)*)getFilePathInBackground {
@@ -545,6 +533,26 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
 
 + (PFFileController *)fileController {
     return [Parse _currentManager].coreManager.fileController;
+}
+
+@end
+
+///--------------------------------------
+#pragma mark - Deprecated
+///--------------------------------------
+
+@implementation PFFile (Deprecated)
+
+- (void)saveInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector {
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
+    }];
+}
+
+- (void)getDataInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector {
+    [self getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:data object:error];
+    }];
 }
 
 @end

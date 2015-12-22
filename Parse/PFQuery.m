@@ -738,12 +738,6 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     }
 }
 
-- (void)getObjectInBackgroundWithId:(NSString *)objectId target:(id)target selector:(SEL)selector {
-    [self getObjectInBackgroundWithId:objectId block:^(PFObject *object, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:object object:error];
-    }];
-}
-
 - (BFTask *)_getObjectWithIdAsync:(NSString *)objectId cachePolicy:(PFCachePolicy)cachePolicy after:(BFTask *)task {
     self.limit = 1;
     self.skip = 0;
@@ -817,12 +811,6 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     }
 }
 
-- (void)findObjectsInBackgroundWithTarget:(id)target selector:(SEL)selector {
-    [self findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:objects object:error];
-    }];
-}
-
 - (BFTask *)_findObjectsAsyncForQueryState:(PFQueryState *)queryState after:(BFTask *)previous {
     BFCancellationTokenSource *cancellationTokenSource = _cancellationTokenSource;
     if (!previous) {
@@ -888,12 +876,6 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     }
 }
 
-- (void)getFirstObjectInBackgroundWithTarget:(id)target selector:(SEL)selector {
-    [self getFirstObjectInBackgroundWithBlock:^(PFObject *result, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:result object:error];
-    }];
-}
-
 - (BFTask *)_getFirstObjectAsyncWithCachePolicy:(PFCachePolicy)cachePolicy after:(BFTask *)task {
     self.limit = 1;
 
@@ -931,12 +913,6 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     PFConsistencyAssert(self.state.cachePolicy != kPFCachePolicyCacheThenNetwork,
                         @"kPFCachePolicyCacheThenNetwork can only be used with methods that have a callback.");
     return [self _countObjectsAsyncForQueryState:[self _queryStateCopy] after:nil];
-}
-
-- (void)countObjectsInBackgroundWithTarget:(id)target selector:(SEL)selector {
-    [self countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(number) object:error];
-    }];
 }
 
 - (void)countObjectsInBackgroundWithBlock:(PFIntegerResultBlock)block {
@@ -1134,6 +1110,46 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
         return [BFTask taskWithResult:nil];
     }
     return [[Parse _currentManager].coreManager.currentUserController getCurrentObjectAsync];
+}
+
+@end
+
+///--------------------------------------
+#pragma mark - Deprecated
+///--------------------------------------
+
+@implementation PFQuery (Deprecated)
+
+#pragma mark - Getting Objects by ID
+
+- (void)getObjectInBackgroundWithId:(NSString *)objectId target:(nullable id)target selector:(nullable SEL)selector {
+    [self getObjectInBackgroundWithId:objectId block:^(PFObject *object, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:object object:error];
+    }];
+}
+
+#pragma mark Getting all Matches for a Query
+
+- (void)findObjectsInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector {
+    [self findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:objects object:error];
+    }];
+}
+
+#pragma mark Getting the First Match in a Query
+
+- (void)getFirstObjectInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector {
+    [self getFirstObjectInBackgroundWithBlock:^(PFObject *result, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:result object:error];
+    }];
+}
+
+#pragma mark Counting the Matches in a Query
+
+- (void)countObjectsInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector {
+    [self countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(number) object:error];
+    }];
 }
 
 @end

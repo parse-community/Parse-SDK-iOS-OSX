@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  The preferred way of modifying or retrieving channel subscriptions is to use
  the `PFInstallation` class, instead of the class methods in `PFPush`.
  */
-PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
+PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
 
 ///--------------------------------------
 /// @name Creating a Push Notification
@@ -186,23 +186,6 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
                                  withMessage:(NSString *)message
                                        block:(nullable PFBooleanResultBlock)block;
 
-/*
- *Asynchronously* send a push message to a channel.
-
- @param channel The channel to send to. The channel name must start with
- a letter and contain only letters, numbers, dashes, and underscores.
- @param message The message to send.
- @param target The object to call selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSNumber *)result error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `[result boolValue]` will tell you whether the call succeeded or not.
- */
-+ (void)sendPushMessageToChannelInBackground:(NSString *)channel
-                                 withMessage:(NSString *)message
-                                      target:(__nullable id)target
-                                    selector:(__nullable SEL)selector;
-
 /**
  Send a push message to a query.
 
@@ -263,17 +246,6 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  */
 - (void)sendPushInBackgroundWithBlock:(nullable PFBooleanResultBlock)block;
 
-/*
- *Asynchronously* send this push message and calls the given callback.
-
- @param target The object to call selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSNumber *)result error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `[result boolValue]` will tell you whether the call succeeded or not.
- */
-- (void)sendPushInBackgroundWithTarget:(__nullable id)target selector:(__nullable SEL)selector;
-
 /**
  *Synchronously* send a push message with arbitrary data to a channel.
 
@@ -318,25 +290,6 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 + (void)sendPushDataToChannelInBackground:(NSString *)channel
                                  withData:(NSDictionary *)data
                                     block:(nullable PFBooleanResultBlock)block;
-
-/*
- *Asynchronously* send a push message with arbitrary data to a channel.
-
- See the guide for information about the dictionary structure.
-
- @param channel The channel to send to. The channel name must start with
- a letter and contain only letters, numbers, dashes, and underscores.
- @param data The data to send.
- @param target The object to call selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSNumber *)result error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `[result boolValue]` will tell you whether the call succeeded or not.
- */
-+ (void)sendPushDataToChannelInBackground:(NSString *)channel
-                                 withData:(NSDictionary *)data
-                                   target:(__nullable id)target
-                                 selector:(__nullable SEL)selector;
 
 /**
  *Synchronously* send a push message with arbitrary data to a query.
@@ -438,16 +391,6 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  */
 + (void)getSubscribedChannelsInBackgroundWithBlock:(PFSetResultBlock)block;
 
-/*
- *Asynchronously* get all the channels that this device is subscribed to.
-
- @param target The object to call selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSSet *)result error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- */
-+ (void)getSubscribedChannelsInBackgroundWithTarget:(id)target selector:(SEL)selector;
-
 /**
  *Synchrnously* subscribes the device to a channel of push notifications.
 
@@ -480,21 +423,6 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
 + (void)subscribeToChannelInBackground:(NSString *)channel
                                  block:(nullable PFBooleanResultBlock)block;
 
-/*
- *Asynchronously* subscribes the device to a channel of push notifications and calls the given callback.
-
- @param channel The channel to subscribe to. The channel name must start with
- a letter and contain only letters, numbers, dashes, and underscores.
- @param target The object to call selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSNumber *)result error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `[result boolValue]` will tell you whether the call succeeded or not.
- */
-+ (void)subscribeToChannelInBackground:(NSString *)channel
-                                target:(nullable id)target
-                              selector:(nullable SEL)selector;
-
 /**
  *Synchronously* unsubscribes the device to a channel of push notifications.
 
@@ -523,20 +451,6 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject <NSCopying>
  */
 + (void)unsubscribeFromChannelInBackground:(NSString *)channel
                                      block:(nullable PFBooleanResultBlock)block;
-
-/*
- *Asynchronously* unsubscribes the device from a channel of push notifications and calls the given callback.
-
- @param channel The channel to unsubscribe from.
- @param target The object to call selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSNumber *)result error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `[result boolValue]` will tell you whether the call succeeded or not.
- */
-+ (void)unsubscribeFromChannelInBackground:(NSString *)channel
-                                    target:(nullable id)target
-                                  selector:(nullable SEL)selector;
 
 @end
 

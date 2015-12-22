@@ -111,10 +111,14 @@
     OCMStub([mock callbackWithResult:[OCMArg isEqual:result]
                                error:[OCMArg isNil]]).andCall(expectation, @selector(fulfill));
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFCloud callFunctionInBackground:@"yolo"
                        withParameters:nil
                                target:mock
                              selector:@selector(callbackWithResult:error:)];
+#pragma clang diagnostic pop
+
     [self waitForTestExpectations];
 }
 
@@ -154,10 +158,14 @@
     OCMStub([mock callbackWithResult:[OCMArg isNil]
                                error:[OCMArg isEqual:error]]).andCall(expectation, @selector(fulfill));
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFCloud callFunctionInBackground:@"yolo"
                        withParameters:nil
                                target:mock
                              selector:@selector(callbackWithResult:error:)];
+#pragma clang diagnostic pop
+
     [self waitForTestExpectations];
 }
 

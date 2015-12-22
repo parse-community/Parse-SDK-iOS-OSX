@@ -13,19 +13,25 @@
 #import <Parse/PFACL.h>
 #import <Parse/PFAnalytics.h>
 #import <Parse/PFAnonymousUtils.h>
+#import <Parse/PFAnonymousUtils+Deprecated.h>
 #import <Parse/PFCloud.h>
+#import <Parse/PFCloud+Deprecated.h>
 #import <Parse/PFConfig.h>
 #import <Parse/PFConstants.h>
 #import <Parse/PFFile.h>
+#import <Parse/PFFile+Deprecated.h>
 #import <Parse/PFGeoPoint.h>
-#import <Parse/PFObject+Subclass.h>
 #import <Parse/PFObject.h>
+#import <Parse/PFObject+Subclass.h>
+#import <Parse/PFObject+Deprecated.h>
 #import <Parse/PFQuery.h>
+#import <Parse/PFQuery+Deprecated.h>
 #import <Parse/PFRelation.h>
 #import <Parse/PFRole.h>
 #import <Parse/PFSession.h>
 #import <Parse/PFSubclassing.h>
 #import <Parse/PFUser.h>
+#import <Parse/PFUser+Deprecated.h>
 #import <Parse/PFUserAuthenticationDelegate.h>
 
 #if TARGET_OS_IOS
@@ -33,6 +39,7 @@
 #import <Parse/PFInstallation.h>
 #import <Parse/PFNetworkActivityIndicatorManager.h>
 #import <Parse/PFPush.h>
+#import <Parse/PFPush+Deprecated.h>
 #import <Parse/PFProduct.h>
 #import <Parse/PFPurchase.h>
 
@@ -40,6 +47,7 @@
 
 #import <Parse/PFInstallation.h>
 #import <Parse/PFPush.h>
+#import <Parse/PFPush+Deprecated.h>
 
 #elif TARGET_OS_TV
 
