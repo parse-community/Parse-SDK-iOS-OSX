@@ -317,17 +317,6 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  */
 - (void)saveInBackgroundWithBlock:(nullable PFBooleanResultBlock)block;
 
-/*
- Saves the `PFObject` asynchronously and calls the given callback.
-
- @param target The object to call selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSNumber *)result error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `[result boolValue]` will tell you whether the call succeeded or not.
- */
-- (void)saveInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
-
 /**
  Saves this object to the server at some unspecified time in the future,
  even if Parse is currently inaccessible.
@@ -408,20 +397,6 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 + (void)saveAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
                       block:(nullable PFBooleanResultBlock)block;
 
-/*
- Saves a collection of objects all at once *asynchronously* and calls a callback when done.
-
- @param objects The array of objects to save.
- @param target The object to call selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSNumber *)number error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `[result boolValue]` will tell you whether the call succeeded or not.
- */
-+ (void)saveAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
-                     target:(nullable id)target
-                   selector:(nullable SEL)selector;
-
 ///--------------------------------------
 /// @name Deleting Many Objects
 ///--------------------------------------
@@ -462,20 +437,6 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 + (void)deleteAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
                         block:(nullable PFBooleanResultBlock)block;
 
-/*
- Deletes a collection of objects all at once *asynchronously* and calls a callback when done.
-
- @param objects The array of objects to delete.
- @param target The object to call selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSNumber *)number error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `[result boolValue]` will tell you whether the call succeeded or not.
- */
-+ (void)deleteAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
-                       target:(nullable id)target
-                     selector:(nullable SEL)selector;
-
 ///--------------------------------------
 /// @name Getting an Object
 ///--------------------------------------
@@ -514,20 +475,6 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @deprecated Please use `-fetchInBackgroundWithBlock:` instead.
  */
 - (void)refreshInBackgroundWithBlock:(nullable PFObjectResultBlock)block PARSE_DEPRECATED("Please use `-fetchInBackgroundWithBlock:` instead.");
-
-/*
- *Asynchronously* refreshes the `PFObject` and calls the given callback.
-
- @param target The target on which the selector will be called.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(PFObject *)refreshedObject error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `refreshedObject` will be the `PFObject` with the refreshed data.
-
- @deprecated Please use `fetchInBackgroundWithTarget:selector:` instead.
- */
-- (void)refreshInBackgroundWithTarget:(nullable id)target
-                             selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `fetchInBackgroundWithTarget:selector:` instead.");
 
 #endif
 
@@ -569,17 +516,6 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  */
 - (void)fetchInBackgroundWithBlock:(nullable PFObjectResultBlock)block;
 
-/*
- Fetches the `PFObject *asynchronously* and calls the given callback.
-
- @param target The target on which the selector will be called.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(PFObject *)refreshedObject error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `refreshedObject` will be the `PFObject` with the refreshed data.
- */
-- (void)fetchInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
-
 /**
  Fetches the `PFObject` data *asynchronously* if `dataAvailable` is `NO`,
  then sets it as a result for the task.
@@ -595,17 +531,6 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  It should have the following argument signature: `^(PFObject *object, NSError *error)`.
  */
 - (void)fetchIfNeededInBackgroundWithBlock:(nullable PFObjectResultBlock)block;
-
-/*
- Fetches the PFObject's data asynchronously if `dataAvailable` is `NO`, then calls the callback.
-
- @param target The target on which the selector will be called.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(PFObject *)fetchedObject error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `refreshedObject` will be the `PFObject` with the refreshed data.
- */
-- (void)fetchIfNeededInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Getting Many Objects
@@ -664,21 +589,6 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 + (void)fetchAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
                        block:(nullable PFArrayResultBlock)block;
 
-/*
- Fetches all of the `PFObject` objects with the current data from the server *asynchronously*
- and calls the given callback.
-
- @param objects The list of objects to fetch.
- @param target The target on which the selector will be called.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSArray *)fetchedObjects error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `fetchedObjects` will the array of `PFObject` objects that were fetched.
- */
-+ (void)fetchAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
-                      target:(nullable id)target
-                    selector:(nullable SEL)selector;
-
 /**
  Fetches all of the `PFObject` objects with the current data from the server *asynchronously*.
 
@@ -698,21 +608,6 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  */
 + (void)fetchAllIfNeededInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
                                block:(nullable PFArrayResultBlock)block;
-
-/*
- Fetches all of the PFObjects with the current data from the server *asynchronously*
- and calls the given callback.
-
- @param objects The list of objects to fetch.
- @param target The target on which the selector will be called.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSArray *)fetchedObjects error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `fetchedObjects` will the array of `PFObject` objects that were fetched.
- */
-+ (void)fetchAllIfNeededInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
-                              target:(nullable id)target
-                            selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Fetching From Local Datastore
@@ -786,18 +681,6 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`.
  */
 - (void)deleteInBackgroundWithBlock:(nullable PFBooleanResultBlock)block;
-
-/*
- Deletes the `PFObject` *asynchronously* and calls the given callback.
-
- @param target The object to call selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSNumber *)result error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `[result boolValue]` will tell you whether the call succeeded or not.
- */
-- (void)deleteInBackgroundWithTarget:(nullable id)target
-                            selector:(nullable SEL)selector;
 
 /**
  Deletes this object from the server at some unspecified time in the future,

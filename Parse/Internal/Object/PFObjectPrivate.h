@@ -103,7 +103,6 @@
 - (instancetype)refresh;
 - (instancetype)refresh:(NSError **)error;
 - (void)refreshInBackgroundWithBlock:(PFObjectResultBlock)block;
-- (void)refreshInBackgroundWithTarget:(id)target selector:(SEL)selector;
 
 #endif
 

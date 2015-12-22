@@ -21,8 +21,9 @@
 #import <Parse/PFFile.h>
 #import <Parse/PFFile+Deprecated.h>
 #import <Parse/PFGeoPoint.h>
-#import <Parse/PFObject+Subclass.h>
 #import <Parse/PFObject.h>
+#import <Parse/PFObject+Subclass.h>
+#import <Parse/PFObject+Deprecated.h>
 #import <Parse/PFQuery.h>
 #import <Parse/PFQuery+Deprecated.h>
 #import <Parse/PFRelation.h>

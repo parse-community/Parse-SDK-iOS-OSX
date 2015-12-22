@@ -1351,6 +1351,10 @@
 		81CA29F11C28ECFD00C4F34A /* PFUser+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29EF1C28ECFD00C4F34A /* PFUser+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81CA29F21C28ECFD00C4F34A /* PFUser+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29EF1C28ECFD00C4F34A /* PFUser+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81CA29F31C28ECFD00C4F34A /* PFUser+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29EF1C28ECFD00C4F34A /* PFUser+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81CA29F51C28ED2300C4F34A /* PFObject+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29F41C28ED2300C4F34A /* PFObject+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81CA29F61C28ED2300C4F34A /* PFObject+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29F41C28ED2300C4F34A /* PFObject+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81CA29F71C28ED2300C4F34A /* PFObject+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29F41C28ED2300C4F34A /* PFObject+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81CA29F81C28ED2300C4F34A /* PFObject+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29F41C28ED2300C4F34A /* PFObject+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81CB7F6F1B166FE500DC601D /* PFObjectState.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CB7F6D1B166FE500DC601D /* PFObjectState.h */; };
 		81CB7F701B166FE500DC601D /* PFObjectState.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CB7F6D1B166FE500DC601D /* PFObjectState.h */; };
 		81CB7F711B166FE500DC601D /* PFObjectState.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CB7F6E1B166FE500DC601D /* PFObjectState.m */; };
@@ -2137,6 +2141,7 @@
 		81CA29E51C28EC3B00C4F34A /* PFPush+Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFPush+Deprecated.h"; sourceTree = "<group>"; };
 		81CA29EA1C28ECA300C4F34A /* PFQuery+Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFQuery+Deprecated.h"; sourceTree = "<group>"; };
 		81CA29EF1C28ECFD00C4F34A /* PFUser+Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFUser+Deprecated.h"; sourceTree = "<group>"; };
+		81CA29F41C28ED2300C4F34A /* PFObject+Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFObject+Deprecated.h"; sourceTree = "<group>"; };
 		81CB7F6D1B166FE500DC601D /* PFObjectState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFObjectState.h; sourceTree = "<group>"; };
 		81CB7F6E1B166FE500DC601D /* PFObjectState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFObjectState.m; sourceTree = "<group>"; };
 		81CB7F731B166FF500DC601D /* PFMutableObjectState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMutableObjectState.h; sourceTree = "<group>"; };
@@ -2377,6 +2382,8 @@
 				44B78E11157D21B000A5E97F /* PFInstallation.h */,
 				44B78E12157D21B000A5E97F /* PFInstallation.m */,
 				0925ABED13D791770095FEFA /* PFObject.h */,
+				E9BBE98E16D18E5800CD7B52 /* PFObject+Subclass.h */,
+				81CA29F41C28ED2300C4F34A /* PFObject+Deprecated.h */,
 				0925ABEE13D791770095FEFA /* PFObject.m */,
 				499E425515B6409000A2C28E /* PFProduct.h */,
 				499E425615B6409000A2C28E /* PFProduct.m */,
@@ -2398,7 +2405,6 @@
 				81CA29EF1C28ECFD00C4F34A /* PFUser+Deprecated.h */,
 				0925ABF613D791770095FEFA /* PFUser.m */,
 				811083F11BA2580100FC7F65 /* PFUserAuthenticationDelegate.h */,
-				E9BBE98E16D18E5800CD7B52 /* PFObject+Subclass.h */,
 				E9E81E8316EEF93E001D034F /* PFSubclassing.h */,
 				81DEF089199D555800D86A21 /* PFNetworkActivityIndicatorManager.h */,
 				81DEF08A199D555800D86A21 /* PFNetworkActivityIndicatorManager.m */,
@@ -3977,6 +3983,7 @@
 				810155EB1BB3832700D7C7BD /* PFURLSessionDataTaskDelegate_Private.h in Headers */,
 				810155EC1BB3832700D7C7BD /* PFURLSession_Private.h in Headers */,
 				810155ED1BB3832700D7C7BD /* PFRESTCommand_Private.h in Headers */,
+				81CA29F81C28ED2300C4F34A /* PFObject+Deprecated.h in Headers */,
 				810155EE1BB3832700D7C7BD /* PFObjectState.h in Headers */,
 				810155EF1BB3832700D7C7BD /* PFHTTPRequest.h in Headers */,
 				810155F01BB3832700D7C7BD /* PFRESTCommand.h in Headers */,
@@ -4232,6 +4239,7 @@
 				815F23D41BD04D150054659F /* PFProductsRequestHandler.h in Headers */,
 				815F23D51BD04D150054659F /* PFProduct+Private.h in Headers */,
 				815F23D61BD04D150054659F /* PFKeyValueCache.h in Headers */,
+				81CA29F71C28ED2300C4F34A /* PFObject+Deprecated.h in Headers */,
 				815F23D81BD04D150054659F /* PFSessionController.h in Headers */,
 				815F23D91BD04D150054659F /* PFRole.h in Headers */,
 				815F23DC1BD04D150054659F /* PFSession.h in Headers */,
@@ -4312,6 +4320,7 @@
 				81C9CA0619FECF5F00D514C5 /* PFRESTFileCommand.h in Headers */,
 				81CB7F7A1B16710D00DC601D /* PFObjectState_Private.h in Headers */,
 				81BB6E211B0E7A1A00465C38 /* PFBase64Encoder.h in Headers */,
+				81CA29F51C28ED2300C4F34A /* PFObject+Deprecated.h in Headers */,
 				818AAA6F19D36B1C00FC1B3C /* Parse.h in Headers */,
 				819A4B081A67330200D01241 /* PFHash.h in Headers */,
 				91DF24991A0B0FF200CFC7D4 /* PFEventuallyQueue_Private.h in Headers */,
@@ -4626,6 +4635,7 @@
 				815619011A1F79AC0076504A /* PFDateFormatter.h in Headers */,
 				811214741B3E1CF10052741B /* PFObjectBatchController.h in Headers */,
 				818ADC771BE1A8BA00C8006C /* PFFilePersistenceGroup.h in Headers */,
+				81CA29F61C28ED2300C4F34A /* PFObject+Deprecated.h in Headers */,
 				8148814A1B795C63008763BF /* PFKeyValueCache_Private.h in Headers */,
 				81D843CA1B012FBA007CEBCB /* PFCloudCodeController.h in Headers */,
 				81068EBC1ADE462500A34D13 /* Parse_Private.h in Headers */,

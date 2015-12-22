@@ -1873,12 +1873,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }];
 }
 
-- (void)deleteInBackgroundWithTarget:(id)target selector:(SEL)selector {
-    [self deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
-    }];
-}
-
 - (void)deleteInBackgroundWithBlock:(PFBooleanResultBlock)block {
     [[self deleteInBackground] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
@@ -1898,12 +1892,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 - (BFTask *)saveInBackground {
     return [self.taskQueue enqueue:^BFTask *(BFTask *toAwait) {
         return [self saveAsync:toAwait];
-    }];
-}
-
-- (void)saveInBackgroundWithTarget:(id)target selector:(SEL)selector {
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
     }];
 }
 
@@ -1987,10 +1975,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return [self fetch:error];
 }
 
-- (void)refreshInBackgroundWithTarget:(id)target selector:(SEL)selector {
-    [self fetchInBackgroundWithTarget:target selector:selector];
-}
-
 - (void)refreshInBackgroundWithBlock:(PFObjectResultBlock)block {
     [self fetchInBackgroundWithBlock:block];
 }
@@ -2018,12 +2002,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self fetchInBackground] thenCallBackOnMainThreadAsync:block];
 }
 
-- (void)fetchInBackgroundWithTarget:(id)target selector:(SEL)selector {
-    [self fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:object object:error];
-    }];
-}
-
 - (instancetype)fetchIfNeeded {
     return [self fetchIfNeeded:nil];
 }
@@ -2041,12 +2019,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (void)fetchIfNeededInBackgroundWithBlock:(PFObjectResultBlock)block {
     [[self fetchIfNeededInBackground] thenCallBackOnMainThreadAsync:block];
-}
-
-- (void)fetchIfNeededInBackgroundWithTarget:(id)target selector:(SEL)selector {
-    [self fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:object object:error];
-    }];
 }
 
 ///--------------------------------------
@@ -2087,12 +2059,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }] continueWithSuccessResult:fetchObjects];
 }
 
-+ (void)fetchAllInBackground:(NSArray *)objects target:(id)target selector:(SEL)selector {
-    [self fetchAllInBackground:objects block:^(NSArray *objects, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:objects object:error];
-    }];
-}
-
 + (void)fetchAllInBackground:(NSArray *)objects block:(PFArrayResultBlock)block {
     [[self fetchAllInBackground:objects] thenCallBackOnMainThreadAsync:block];
 }
@@ -2111,12 +2077,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             }];
         } forObjects:uniqueObjects];
     }] continueWithSuccessResult:fetchObjects];
-}
-
-+ (void)fetchAllIfNeededInBackground:(NSArray *)objects target:(id)target selector:(SEL)selector {
-    [self fetchAllIfNeededInBackground:objects block:^(NSArray *objects, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:objects object:error];
-    }];
 }
 
 + (void)fetchAllIfNeededInBackground:(NSArray *)objects block:(PFArrayResultBlock)block {
@@ -2359,12 +2319,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }];
 }
 
-+ (void)saveAllInBackground:(NSArray *)objects target:(id)target selector:(SEL)selector {
-    [PFObject saveAllInBackground:objects block:^(BOOL succeeded, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
-    }];
-}
-
 + (void)saveAllInBackground:(NSArray *)objects block:(PFBooleanResultBlock)block {
     [[PFObject saveAllInBackground:objects] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
@@ -2405,12 +2359,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             } forObjects:uniqueObjects];
         }];
     }] continueWithSuccessResult:@YES];
-}
-
-+ (void)deleteAllInBackground:(NSArray *)objects target:(id)target selector:(SEL)selector {
-    [PFObject deleteAllInBackground:objects block:^(BOOL succeeded, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
-    }];
 }
 
 + (void)deleteAllInBackground:(NSArray *)objects block:(PFBooleanResultBlock)block {
@@ -2678,6 +2626,78 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 + (PFObjectSubclassingController *)subclassingController {
     return [PFObjectSubclassingController defaultController];
+}
+
+@end
+
+///--------------------------------------
+#pragma mark - Deprecated
+///--------------------------------------
+
+@implementation PFObject (Deprecated)
+
+#pragma mark Saving Objects
+
+- (void)saveInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector {
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
+    }];
+}
+
+#pragma mark Saving Many Objects
+
++ (void)saveAllInBackground:(NSArray PF_GENERIC(PFObject *)*)objects target:(nullable id)target selector:(nullable SEL)selector {
+    [self saveAllInBackground:objects block:^(BOOL succeeded, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
+    }];
+}
+
+#pragma mark Getting an Object
+
+- (void)refreshInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector {
+    [self fetchInBackgroundWithTarget:target selector:selector];
+}
+
+- (void)fetchInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector {
+    [self fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:object object:error];
+    }];
+}
+
+- (void)fetchIfNeededInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector {
+    [self fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:object object:error];
+    }];
+}
+
+#pragma mark Getting Many Objects
+
++ (void)fetchAllInBackground:(NSArray PF_GENERIC(PFObject *)*)objects target:(nullable id)target selector:(nullable SEL)selector {
+    [self fetchAllInBackground:objects block:^(NSArray *objects, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:objects object:error];
+    }];
+}
+
++ (void)fetchAllIfNeededInBackground:(NSArray PF_GENERIC(PFObject *)*)objects target:(nullable id)target selector:(nullable SEL)selector {
+    [self fetchAllIfNeededInBackground:objects block:^(NSArray *objects, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:objects object:error];
+    }];
+}
+
+#pragma mark Deleting an Object
+
+- (void)deleteInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector {
+    [self deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
+    }];
+}
+
+#pragma mark Deleting Many Objects
+
++ (void)deleteAllInBackground:(NSArray PF_GENERIC(PFObject *)*)objects target:(nullable id)target selector:(nullable SEL)selector {
+    [self deleteAllInBackground:objects block:^(BOOL succeeded, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
+    }];
 }
 
 @end
