@@ -123,7 +123,12 @@
     OCMExpect([observer callbackWithUser:user error:nil]).andDo(^(NSInvocation *invocation) {
         [expectation fulfill];
     });
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFAnonymousUtils logInWithTarget:observer selector:@selector(callbackWithUser:error:)];
+#pragma clang diagnostic pop
+
     [self waitForTestExpectations];
     OCMVerifyAll(authController);
 }

@@ -13,6 +13,7 @@
 #import <Parse/PFACL.h>
 #import <Parse/PFAnalytics.h>
 #import <Parse/PFAnonymousUtils.h>
+#import <Parse/PFAnonymousUtils+Deprecated.h>
 #import <Parse/PFCloud.h>
 #import <Parse/PFConfig.h>
 #import <Parse/PFConstants.h>
