@@ -22,19 +22,19 @@
 
 @interface BFTask (Private)
 
-- (instancetype)continueAsyncWithBlock:(BFContinuationBlock)block;
-- (instancetype)continueAsyncWithSuccessBlock:(BFContinuationBlock)block;
+- (BFTask *)continueAsyncWithBlock:(BFContinuationBlock)block;
+- (BFTask *)continueAsyncWithSuccessBlock:(BFContinuationBlock)block;
 
 - (BFTask *)continueImmediatelyWithBlock:(BFContinuationBlock)block;
 - (BFTask *)continueImmediatelyWithSuccessBlock:(BFContinuationBlock)block;
 
-- (instancetype)continueWithResult:(id)result;
-- (instancetype)continueWithSuccessResult:(id)result;
+- (BFTask *)continueWithResult:(id)result;
+- (BFTask *)continueWithSuccessResult:(id)result;
 
-- (instancetype)continueWithMainThreadResultBlock:(PFIdResultBlock)resultBlock
-                               executeIfCancelled:(BOOL)executeIfCancelled;
-- (instancetype)continueWithMainThreadBooleanResultBlock:(PFBooleanResultBlock)resultBlock
-                                      executeIfCancelled:(BOOL)executeIfCancelled;
+- (BFTask *)continueWithMainThreadResultBlock:(PFIdResultBlock)resultBlock
+                           executeIfCancelled:(BOOL)executeIfCancelled;
+- (BFTask *)continueWithMainThreadBooleanResultBlock:(PFBooleanResultBlock)resultBlock
+                                  executeIfCancelled:(BOOL)executeIfCancelled;
 
 /**
  Adds a continuation to the task that will run the given block on the main

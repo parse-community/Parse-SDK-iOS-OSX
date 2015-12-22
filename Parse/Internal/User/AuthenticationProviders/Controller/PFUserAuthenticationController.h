@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PFUserAuthenticationController : NSObject
 
-@property (nonatomic, weak, readonly) id<PFCurrentUserControllerProvider> dataSource;
+@property (nonatomic, weak, readonly) id<PFCurrentUserControllerProvider, PFUserControllerProvider> dataSource;
 
 ///--------------------------------------
 /// @name Init
@@ -30,8 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 
-- (instancetype)initWithDataSource:(id<PFCurrentUserControllerProvider>)dataSource;
-+ (instancetype)controllerWithDataSource:(id<PFCurrentUserControllerProvider>)dataSource;
++ (instancetype)controllerWithDataSource:(id<PFCurrentUserControllerProvider, PFUserControllerProvider>)dataSource;
 
 ///--------------------------------------
 /// @name Authentication Providers
@@ -46,15 +45,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Authentication
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSNumber *) *)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary *)authData
-                                                              forAuthType:(NSString *)authType;
-- (BFTask PF_GENERIC(NSNumber *) *)deauthenticateAsyncWithAuthType:(NSString *)authType;
+- (BFTask PF_GENERIC(NSNumber *)*)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary PF_GENERIC(NSString *, NSString *)*)authData
+                                                             forAuthType:(NSString *)authType;
+- (BFTask PF_GENERIC(NSNumber *)*)deauthenticateAsyncWithAuthType:(NSString *)authType;
 
 ///--------------------------------------
 /// @name Log In
 ///--------------------------------------
 
-- (BFTask *)logInUserAsyncWithAuthType:(NSString *)authType authData:(NSDictionary *)authData;
+- (BFTask PF_GENERIC(PFUser *)*)logInUserAsyncWithAuthType:(NSString *)authType
+                                                  authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;
 
 @end
 

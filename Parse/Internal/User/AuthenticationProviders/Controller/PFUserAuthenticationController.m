@@ -32,7 +32,7 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)initWithDataSource:(id<PFCurrentUserControllerProvider>)dataSource {
+- (instancetype)initWithDataSource:(id<PFCurrentUserControllerProvider, PFUserControllerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
 
@@ -43,7 +43,7 @@
     return self;
 }
 
-+ (instancetype)controllerWithDataSource:(id<PFCurrentUserControllerProvider>)dataSource {
++ (instancetype)controllerWithDataSource:(id<PFCurrentUserControllerProvider, PFUserControllerProvider>)dataSource {
     return [[self alloc] initWithDataSource:dataSource];
 }
 
@@ -94,7 +94,7 @@
 #pragma mark - Authentication
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSNumber *)*)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary *)authData
+- (BFTask PF_GENERIC(NSNumber *)*)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary PF_GENERIC(NSString *, NSString *)*)authData
                                                              forAuthType:(NSString *)authType {
     id<PFUserAuthenticationDelegate> provider = [self authenticationDelegateForAuthType:authType];
     if (!provider) {
@@ -113,12 +113,12 @@
 #pragma mark - Log In
 ///--------------------------------------
 
-- (BFTask *)logInUserAsyncWithAuthType:(NSString *)authType authData:(NSDictionary *)authData {
+- (BFTask PF_GENERIC(PFUser *)*)logInUserAsyncWithAuthType:(NSString *)authType
+                                                  authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData {
     //TODO: (nlutsenko) Make it fully async.
-    //TODO: (nlutsenko) Inject `PFUserController` here.
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser && [PFAnonymousUtils isLinkedWithUser:currentUser]) {
-        if ([currentUser isLazy]) {
+        if (currentUser.isLazy) {
             PFUser *user = currentUser;
             BFTask *resolveLaziness = nil;
             NSDictionary *oldAnonymousData = nil;
@@ -135,7 +135,7 @@
             }
 
             return [resolveLaziness continueAsyncWithBlock:^id(BFTask *task) {
-                if (task.isCancelled || task.exception || task.error) {
+                if (task.cancelled || task.faulted) {
                     [user.authData removeObjectForKey:authType];
                     [user.linkedServiceNames removeObject:authType];
                     [user restoreAnonymity:oldAnonymousData];
@@ -144,28 +144,26 @@
                 return task.result;
             }];
         } else {
-            return [[currentUser linkWithAuthTypeInBackground:authType
-                                                     authData:authData] continueAsyncWithBlock:^id(BFTask *task) {
+            return [[currentUser linkWithAuthTypeInBackground:authType authData:authData] continueAsyncWithBlock:^id(BFTask *task) {
                 NSError *error = task.error;
                 if (error) {
                     if (error.code == kPFErrorAccountAlreadyLinked) {
                         // An account that's linked to the given authData already exists,
                         // so log in instead of trying to claim.
-                        return [[PFUser userController] logInCurrentUserAsyncWithAuthType:authType
-                                                                                 authData:authData
-                                                                         revocableSession:[PFUser _isRevocableSessionEnabled]];
+                        return [self.dataSource.userController logInCurrentUserAsyncWithAuthType:authType
+                                                                                        authData:authData
+                                                                                revocableSession:[PFUser _isRevocableSessionEnabled]];
                     } else {
                         return task;
                     }
                 }
-
                 return currentUser;
             }];
         }
     }
-    return [[PFUser userController] logInCurrentUserAsyncWithAuthType:authType
-                                                             authData:authData
-                                                     revocableSession:[PFUser _isRevocableSessionEnabled]];
+    return [self.dataSource.userController logInCurrentUserAsyncWithAuthType:authType
+                                                                    authData:authData
+                                                            revocableSession:[PFUser _isRevocableSessionEnabled]];
 }
 
 @end
