@@ -695,7 +695,11 @@
         [expectation fulfill];
     });
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [query getObjectInBackgroundWithId:@"yarr" target:verifier selector:@selector(verifyObject:error:)];
+#pragma clang diagnostic pop
+
     [self waitForTestExpectations];
 }
 
@@ -847,7 +851,11 @@
         [expectation fulfill];
     });
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [query findObjectsInBackgroundWithTarget:verifier selector:@selector(verifyArray:error:)];
+#pragma clang diagnostic pop
+
     [self waitForTestExpectations];
 }
 
@@ -1050,7 +1058,11 @@
         [expectation fulfill];
     });
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [query getFirstObjectInBackgroundWithTarget:verifier selector:@selector(verifyObject:error:)];
+#pragma clang diagnostic pop
+
     [self waitForTestExpectations];
 }
 
@@ -1160,7 +1172,11 @@
         [expectation fulfill];
     });
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [query countObjectsInBackgroundWithTarget:verifier selector:@selector(verifyNumber:error:)];
+#pragma clang diagnostic pop
+
     [self waitForTestExpectations];
 }
 

@@ -24,6 +24,7 @@
 #import <Parse/PFObject+Subclass.h>
 #import <Parse/PFObject.h>
 #import <Parse/PFQuery.h>
+#import <Parse/PFQuery+Deprecated.h>
 #import <Parse/PFRelation.h>
 #import <Parse/PFRole.h>
 #import <Parse/PFSession.h>

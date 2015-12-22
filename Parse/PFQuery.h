@@ -573,21 +573,6 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 - (void)getObjectInBackgroundWithId:(NSString *)objectId
                               block:(nullable void (^)(PFGenericObject __nullable object, NSError *__nullable error))block;
 
-/*
- Gets a `PFObject` asynchronously.
-
- This mutates the PFQuery. It will reset limit to `1`, skip to `0` and remove all conditions, leaving only `objectId`.
-
- @param objectId The id of the object being requested.
- @param target The target for the callback selector.
- @param selector The selector for the callback.
- It should have the following signature: `(void)callbackWithResult:(id)result error:(NSError *)error`.
- Result will be `nil` if error is set and vice versa.
- */
-- (void)getObjectInBackgroundWithId:(NSString *)objectId
-                             target:(nullable id)target
-                           selector:(nullable SEL)selector;
-
 ///--------------------------------------
 /// @name Getting User Objects
 ///--------------------------------------
@@ -649,16 +634,6 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (void)findObjectsInBackgroundWithBlock:(nullable PFQueryArrayResultBlock)block;
 
-/*
- Finds objects *asynchronously* and calls the given callback with the results.
-
- @param target The object to call the selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(id)result error:(NSError *)error`.
- Result will be `nil` if error is set and vice versa.
- */
-- (void)findObjectsInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
-
 ///--------------------------------------
 /// @name Getting the First Match in a Query
 ///--------------------------------------
@@ -704,19 +679,6 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  */
 - (void)getFirstObjectInBackgroundWithBlock:(nullable void (^)(PFGenericObject __nullable object, NSError *__nullable error))block;
 
-/*
- Gets an object *asynchronously* and calls the given callback with the results.
-
- @warning This method mutates the query. It will reset the limit to `1`.
-
- @param target The object to call the selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(PFObject *)result error:(NSError *)error`.
- `result` will be `nil` if `error` is set OR no object was found matching the query.
- `error` will be `nil` if `result` is set OR if the query succeeded, but found no results.
- */
-- (void)getFirstObjectInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
-
 ///--------------------------------------
 /// @name Counting the Matches in a Query
 ///--------------------------------------
@@ -751,15 +713,6 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
  It should have the following argument signature: `^(int count, NSError *error)`
  */
 - (void)countObjectsInBackgroundWithBlock:(nullable PFIntegerResultBlock)block;
-
-/*
- Counts objects *asynchronously* and calls the given callback with the count.
-
- @param target The object to call the selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSNumber *)result error:(NSError *)error`.
- */
-- (void)countObjectsInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 ///--------------------------------------
 /// @name Cancelling a Query
