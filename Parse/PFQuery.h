@@ -500,55 +500,6 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 ///--------------------------------------
 
 /**
- Returns a `PFObject` with a given class and id.
-
- @param objectClass The class name for the object that is being requested.
- @param objectId The id of the object that is being requested.
-
- @return The `PFObject` if found. Returns `nil` if the object isn't found, or if there was an error.
- */
-+ (nullable PFGenericObject)getObjectOfClass:(NSString *)objectClass
-                                    objectId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
-
-/**
- Returns a `PFObject` with a given class and id and sets an error if necessary.
-
- @param objectClass The class name for the object that is being requested.
- @param objectId The id of the object that is being requested.
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return The `PFObject` if found. Returns `nil` if the object isn't found, or if there was an `error`.
- */
-+ (nullable PFGenericObject)getObjectOfClass:(NSString *)objectClass
-                                    objectId:(NSString *)objectId
-                                       error:(NSError **)error;
-
-/**
- Returns a `PFObject` with the given id.
-
- @warning This method mutates the query.
- It will reset limit to `1`, skip to `0` and remove all conditions, leaving only `objectId`.
-
- @param objectId The id of the object that is being requested.
-
- @return The `PFObject` if found. Returns nil if the object isn't found, or if there was an error.
- */
-- (nullable PFGenericObject)getObjectWithId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
-
-/**
- Returns a `PFObject` with the given id and sets an error if necessary.
-
- @warning This method mutates the query.
- It will reset limit to `1`, skip to `0` and remove all conditions, leaving only `objectId`.
-
- @param objectId The id of the object that is being requested.
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return The `PFObject` if found. Returns nil if the object isn't found, or if there was an error.
- */
-- (nullable PFGenericObject)getObjectWithId:(NSString *)objectId error:(NSError **)error;
-
-/**
  Gets a `PFObject` asynchronously and calls the given block with the result.
 
  @warning This method mutates the query.
@@ -578,23 +529,6 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 ///--------------------------------------
 
 /**
- Returns a `PFUser` with a given id.
-
- @param objectId The id of the object that is being requested.
-
- @return The PFUser if found. Returns nil if the object isn't found, or if there was an error.
- */
-+ (nullable PFUser *)getUserObjectWithId:(NSString *)objectId PF_SWIFT_UNAVAILABLE;
-
-/**
- Returns a PFUser with a given class and id and sets an error if necessary.
- @param objectId The id of the object that is being requested.
- @param error Pointer to an NSError that will be set if necessary.
- @result The PFUser if found. Returns nil if the object isn't found, or if there was an error.
- */
-+ (nullable PFUser *)getUserObjectWithId:(NSString *)objectId error:(NSError **)error;
-
-/**
  @deprecated Please use [PFUser query] instead.
  */
 + (instancetype)queryForUser PARSE_DEPRECATED("Use [PFUser query] instead.");
@@ -602,22 +536,6 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 ///--------------------------------------
 /// @name Getting all Matches for a Query
 ///--------------------------------------
-
-/**
- Finds objects *synchronously* based on the constructed query.
-
- @return Returns an array of `PFObject` objects that were found.
- */
-- (nullable NSArray PF_GENERIC(PFGenericObject) *)findObjects PF_SWIFT_UNAVAILABLE;
-
-/**
- Finds objects *synchronously* based on the constructed query and sets an error if there was one.
-
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return Returns an array of `PFObject` objects that were found.
- */
-- (nullable NSArray PF_GENERIC(PFGenericObject) *)findObjects:(NSError **)error;
 
 /**
  Finds objects *asynchronously* and sets the `NSArray` of `PFObject` objects as a result of the task.
@@ -637,26 +555,6 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 ///--------------------------------------
 /// @name Getting the First Match in a Query
 ///--------------------------------------
-
-/**
- Gets an object *synchronously* based on the constructed query.
-
- @warning This method mutates the query. It will reset the limit to `1`.
-
- @return Returns a `PFObject`, or `nil` if none was found.
- */
-- (nullable PFGenericObject)getFirstObject PF_SWIFT_UNAVAILABLE;
-
-/**
- Gets an object *synchronously* based on the constructed query and sets an error if any occurred.
-
- @warning This method mutates the query. It will reset the limit to `1`.
-
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return Returns a `PFObject`, or `nil` if none was found.
- */
-- (nullable PFGenericObject)getFirstObject:(NSError **)error;
 
 /**
  Gets an object *asynchronously* and sets it as a result of the task.
@@ -682,22 +580,6 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 ///--------------------------------------
 /// @name Counting the Matches in a Query
 ///--------------------------------------
-
-/**
- Counts objects *synchronously* based on the constructed query.
-
- @return Returns the number of `PFObject` objects that match the query, or `-1` if there is an error.
- */
-- (NSInteger)countObjects PF_SWIFT_UNAVAILABLE;
-
-/**
- Counts objects *synchronously* based on the constructed query and sets an error if there was one.
-
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return Returns the number of `PFObject` objects that match the query, or `-1` if there is an error.
- */
-- (NSInteger)countObjects:(NSError **)error;
 
 /**
  Counts objects *asynchronously* and sets `NSNumber` with count as a result of the task.

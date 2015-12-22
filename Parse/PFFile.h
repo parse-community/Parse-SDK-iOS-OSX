@@ -152,22 +152,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- Saves the file *synchronously*.
-
- @return Returns whether the save succeeded.
- */
-- (BOOL)save PF_SWIFT_UNAVAILABLE;
-
-/**
- Saves the file *synchronously* and sets an error if it occurs.
-
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return Returns whether the save succeeded.
- */
-- (BOOL)save:(NSError **)error;
-
-/**
  Saves the file *asynchronously*.
 
  @return The task, that encapsulates the work being done.
@@ -211,41 +195,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign, readonly, getter=isDataAvailable) BOOL dataAvailable;
 
-/**
- *Synchronously* gets the data from cache if available or fetches its contents from the network.
-
- @return The `NSData` object containing file data. Returns `nil` if there was an error in fetching.
- */
-- (nullable NSData *)getData PF_SWIFT_UNAVAILABLE;
-
-/**
- This method is like `-getData` but avoids ever holding the entire `PFFile` contents in memory at once.
-
- This can help applications with many large files avoid memory warnings.
-
- @return A stream containing the data. Returns `nil` if there was an error in fetching.
- */
-- (nullable NSInputStream *)getDataStream PF_SWIFT_UNAVAILABLE;
-
-/**
- *Synchronously* gets the data from cache if available or fetches its contents from the network.
- Sets an error if it occurs.
-
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return The `NSData` object containing file data. Returns `nil` if there was an error in fetching.
- */
-- (nullable NSData *)getData:(NSError **)error;
-
-/**
- This method is like `-getData` but avoids ever holding the entire `PFFile` contents in memory at once.
-
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return A stream containing the data. Returns nil if there was an error in
- fetching.
- */
-- (nullable NSInputStream *)getDataStream:(NSError **)error;
 
 /**
  This method is like `-getData` but it fetches asynchronously to avoid blocking the current thread.

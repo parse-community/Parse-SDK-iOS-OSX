@@ -9,6 +9,8 @@
 
 #import "PFUser.h"
 #import "PFUserPrivate.h"
+#import "PFUser+Synchronous.h"
+#import "PFObject+Synchronous.h"
 
 #import <Bolts/BFExecutor.h>
 #import <Bolts/BFTaskCompletionSource.h>
@@ -797,14 +799,6 @@ static BOOL revocableSessionEnabled_;
 #pragma mark - Log In
 ///--------------------------------------
 
-+ (instancetype)logInWithUsername:(NSString *)username password:(NSString *)password {
-    return [self logInWithUsername:username password:password error:nil];
-}
-
-+ (instancetype)logInWithUsername:(NSString *)username password:(NSString *)password error:(NSError **)error {
-    return [[self logInWithUsernameInBackground:username password:password] waitForResult:error];
-}
-
 + (BFTask *)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password {
     return [[self userController] logInCurrentUserAsyncWithUsername:username
                                                            password:password
@@ -923,14 +917,6 @@ static BOOL revocableSessionEnabled_;
 #pragma mark - Become
 ///--------------------------------------
 
-+ (instancetype)become:(NSString *)sessionToken {
-    return [self become:sessionToken error:nil];
-}
-
-+ (instancetype)become:(NSString *)sessionToken error:(NSError **)error {
-    return [[self becomeInBackground:sessionToken] waitForResult:error];
-}
-
 + (BFTask *)becomeInBackground:(NSString *)sessionToken {
     PFParameterAssert(sessionToken, @"Session Token must be provided for login.");
     return [[self userController] logInCurrentUserAsyncWithSessionToken:sessionToken];
@@ -963,14 +949,6 @@ static BOOL revocableSessionEnabled_;
 #pragma mark - Request Password Reset
 ///--------------------------------------
 
-+ (BOOL)requestPasswordResetForEmail:(NSString *)email {
-    return [self requestPasswordResetForEmail:email error:nil];
-}
-
-+ (BOOL)requestPasswordResetForEmail:(NSString *)email error:(NSError **)error {
-    return [[[self requestPasswordResetForEmailInBackground:email] waitForResult:error] boolValue];
-}
-
 + (BFTask *)requestPasswordResetForEmailInBackground:(NSString *)email {
     PFParameterAssert(email, @"Email should be provided to request password reset.");
     return [[[self userController] requestPasswordResetAsyncForEmail:email] continueWithSuccessResult:@YES];
@@ -983,10 +961,6 @@ static BOOL revocableSessionEnabled_;
 ///--------------------------------------
 #pragma mark - Logging out
 ///--------------------------------------
-
-+ (void)logOut {
-    [[self logOutInBackground] waitForResult:nil withMainThreadWarning:NO];
-}
 
 + (BFTask *)logOutInBackground {
     PFCurrentUserController *controller = [[self class] currentUserController];
@@ -1129,14 +1103,6 @@ static BOOL revocableSessionEnabled_;
     }];
 }
 
-- (BOOL)signUp {
-    return [self signUp:nil];
-}
-
-- (BOOL)signUp:(NSError **)error {
-    return [[[self signUpInBackground] waitForResult:error] boolValue];
-}
-
 - (BFTask *)signUpInBackground {
     return [self.taskQueue enqueue:^BFTask *(BFTask *toAwait) {
         return [self signUpAsync:toAwait];
@@ -1197,6 +1163,60 @@ static BOOL revocableSessionEnabled_;
                                             objectId:(NSString *)objectId
                                           isComplete:(BOOL)complete {
     return [PFUserState stateWithParseClassName:className objectId:objectId isComplete:complete];
+}
+
+@end
+
+///--------------------------------------
+#pragma mark - Synchronous
+///--------------------------------------
+
+@implementation PFUser (Synchronous)
+
+#pragma mark Creating a New User
+
+- (BOOL)signUp {
+    return [self signUp:nil];
+}
+
+- (BOOL)signUp:(NSError **)error {
+    return [[[self signUpInBackground] waitForResult:error] boolValue];
+}
+
+#pragma mark Logging In
+
++ (nullable instancetype)logInWithUsername:(NSString *)username password:(NSString *)password {
+    return [self logInWithUsername:username password:password error:nil];
+}
+
++ (nullable instancetype)logInWithUsername:(NSString *)username password:(NSString *)password error:(NSError **)error {
+    return [[self logInWithUsernameInBackground:username password:password] waitForResult:error];
+}
+
+#pragma mark Becoming a User
+
++ (nullable instancetype)become:(NSString *)sessionToken {
+    return [self become:sessionToken error:nil];
+}
+
++ (nullable instancetype)become:(NSString *)sessionToken error:(NSError **)error {
+    return [[self becomeInBackground:sessionToken] waitForResult:error];
+}
+
+#pragma mark Logging Out
+
++ (void)logOut {
+    [[self logOutInBackground] waitForResult:nil withMainThreadWarning:NO];
+}
+
+#pragma mark Requesting a Password Reset
+
++ (BOOL)requestPasswordResetForEmail:(NSString *)email {
+    return [self requestPasswordResetForEmail:email error:nil];
+}
+
++ (BOOL)requestPasswordResetForEmail:(NSString *)email error:(NSError **)error {
+    return [[[self requestPasswordResetForEmailInBackground:email] waitForResult:error] boolValue];
 }
 
 @end

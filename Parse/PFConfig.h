@@ -43,22 +43,6 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 ///--------------------------------------
 
 /**
- Gets the `PFConfig` object *synchronously* from the server.
-
- @return Instance of `PFConfig` if the operation succeeded, otherwise `nil`.
- */
-+ (nullable PFConfig *)getConfig PF_SWIFT_UNAVAILABLE;
-
-/**
- Gets the `PFConfig` object *synchronously* from the server and sets an error if it occurs.
-
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return Instance of PFConfig if the operation succeeded, otherwise `nil`.
- */
-+ (nullable PFConfig *)getConfig:(NSError **)error;
-
-/**
  Gets the `PFConfig` *asynchronously* and sets it as a result of a task.
 
  @return The task, that encapsulates the work being done.
