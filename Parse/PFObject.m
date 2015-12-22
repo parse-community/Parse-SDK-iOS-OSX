@@ -470,54 +470,55 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                             [commands addObject:command];
                         }
 
+                        id<PFCommandRunning> commandRunner = [Parse _currentManager].commandRunner;
                         PFRESTCommand *batchCommand = [PFRESTObjectBatchCommand batchCommandWithCommands:commands
-                                                                                            sessionToken:sessionToken];
-                        return [[[Parse _currentManager].commandRunner runCommandAsync:batchCommand withOptions:0]
-                                continueAsyncWithBlock:^id(BFTask *commandRunnerTask) {
-                                    NSArray *results = [commandRunnerTask.result result];
+                                                                                            sessionToken:sessionToken
+                                                                                               serverURL:commandRunner.serverURL];
+                        return [[commandRunner runCommandAsync:batchCommand withOptions:0] continueAsyncWithBlock:^id(BFTask *commandRunnerTask) {
+                            NSArray *results = [commandRunnerTask.result result];
 
-                                    NSMutableArray *handleSaveTasks = [NSMutableArray arrayWithCapacity:objectBatch.count];
+                            NSMutableArray *handleSaveTasks = [NSMutableArray arrayWithCapacity:objectBatch.count];
 
-                                    __block NSError *error = task.error;
-                                    [objectBatch enumerateObjectsUsingBlock:^(PFObject *object, NSUInteger idx, BOOL *stop) {
-                                        // If the task resulted in an error - don't even bother looking into
-                                        // the result of the command, just roll the error further
+                            __block NSError *error = task.error;
+                            [objectBatch enumerateObjectsUsingBlock:^(PFObject *object, NSUInteger idx, BOOL *stop) {
+                                // If the task resulted in an error - don't even bother looking into
+                                // the result of the command, just roll the error further
 
-                                        BFTask *task = nil;
-                                        if (commandRunnerTask.error) {
-                                            task = [object handleSaveResultAsync:nil];
-                                        } else {
-                                            NSDictionary *commandResult = results[idx];
+                                BFTask *task = nil;
+                                if (commandRunnerTask.error) {
+                                    task = [object handleSaveResultAsync:nil];
+                                } else {
+                                    NSDictionary *commandResult = results[idx];
 
-                                            NSDictionary *errorResult = commandResult[@"error"];
-                                            if (errorResult) {
-                                                error = [PFErrorUtilities errorFromResult:errorResult];
-                                                task = [[object handleSaveResultAsync:nil] continueWithBlock:^id(BFTask *task) {
-                                                    return [BFTask taskWithError:error];
-                                                }];
-                                            } else {
-                                                NSDictionary *successfulResult = commandResult[@"success"];
-                                                task = [object handleSaveResultAsync:successfulResult];
-                                            }
-                                        }
-                                        [handleSaveTasks addObject:task];
-                                    }];
+                                    NSDictionary *errorResult = commandResult[@"error"];
+                                    if (errorResult) {
+                                        error = [PFErrorUtilities errorFromResult:errorResult];
+                                        task = [[object handleSaveResultAsync:nil] continueWithBlock:^id(BFTask *task) {
+                                            return [BFTask taskWithError:error];
+                                        }];
+                                    } else {
+                                        NSDictionary *successfulResult = commandResult[@"success"];
+                                        task = [object handleSaveResultAsync:successfulResult];
+                                    }
+                                }
+                                [handleSaveTasks addObject:task];
+                            }];
 
-                                    return [[BFTask taskForCompletionOfAllTasks:handleSaveTasks] continueAsyncWithBlock:^id(BFTask *task) {
-                                        if (commandRunnerTask.error || commandRunnerTask.cancelled || commandRunnerTask.exception) {
-                                            return commandRunnerTask;
-                                        }
+                            return [[BFTask taskForCompletionOfAllTasks:handleSaveTasks] continueAsyncWithBlock:^id(BFTask *task) {
+                                if (commandRunnerTask.error || commandRunnerTask.cancelled || commandRunnerTask.exception) {
+                                    return commandRunnerTask;
+                                }
 
-                                        // Reiterate saveAll tasks, return first error.
-                                        for (BFTask *handleSaveTask in handleSaveTasks) {
-                                            if (handleSaveTask.error || handleSaveTask.exception) {
-                                                return handleSaveTask;
-                                            }
-                                        }
+                                // Reiterate saveAll tasks, return first error.
+                                for (BFTask *handleSaveTask in handleSaveTasks) {
+                                    if (handleSaveTask.error || handleSaveTask.exception) {
+                                        return handleSaveTask;
+                                    }
+                                }
 
-                                        return @YES;
-                                    }];
-                                }];
+                                return @YES;
+                            }];
+                        }];
                     }];
                 } forObjects:objectBatch];
                 [tasks addObject:batchTask];
