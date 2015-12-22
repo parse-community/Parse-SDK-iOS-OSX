@@ -15,6 +15,7 @@
 #import <Parse/PFAnonymousUtils.h>
 #import <Parse/PFAnonymousUtils+Deprecated.h>
 #import <Parse/PFCloud.h>
+#import <Parse/PFCloud+Deprecated.h>
 #import <Parse/PFConfig.h>
 #import <Parse/PFConstants.h>
 #import <Parse/PFFile.h>

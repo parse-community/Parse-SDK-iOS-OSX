@@ -69,22 +69,6 @@ NS_ASSUME_NONNULL_BEGIN
                   withParameters:(nullable NSDictionary *)parameters
                            block:(nullable PFIdResultBlock)block;
 
-/*
- Calls the given cloud function *asynchronously* with the parameters provided
- and then executes the given selector when it is done.
-
- @param function The function name to call.
- @param parameters The parameters to send to the function.
- @param target The object to call the selector on.
- @param selector The selector to call when the function call finished.
- It should have the following signature: `(void)callbackWithResult:(id)result error:(NSError *)error`.
- Result will be `nil` if error is set and vice versa.
- */
-+ (void)callFunctionInBackground:(NSString *)function
-                  withParameters:(nullable NSDictionary *)parameters
-                          target:(nullable id)target
-                        selector:(nullable SEL)selector;
-
 @end
 
 NS_ASSUME_NONNULL_END
