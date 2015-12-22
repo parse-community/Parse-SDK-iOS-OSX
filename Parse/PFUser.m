@@ -817,15 +817,6 @@ static BOOL revocableSessionEnabled_;
     [[self logInWithUsernameInBackground:username password:password] thenCallBackOnMainThreadAsync:block];
 }
 
-+ (void)logInWithUsernameInBackground:(NSString *)username
-                             password:(NSString *)password
-                               target:(id)target
-                             selector:(SEL)selector {
-    [self logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:user object:error];
-    }];
-}
-
 ///--------------------------------------
 #pragma mark - Third-party Authentication
 ///--------------------------------------
@@ -949,12 +940,6 @@ static BOOL revocableSessionEnabled_;
     [[self becomeInBackground:sessionToken] thenCallBackOnMainThreadAsync:block];
 }
 
-+ (void)becomeInBackground:(NSString *)sessionToken target:(id)target selector:(SEL)selector {
-    [self becomeInBackground:sessionToken block:^(PFUser *user, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:user object:error];
-    }];
-}
-
 ///--------------------------------------
 #pragma mark - Revocable Sessions
 ///--------------------------------------
@@ -993,12 +978,6 @@ static BOOL revocableSessionEnabled_;
 
 + (void)requestPasswordResetForEmailInBackground:(NSString *)email block:(PFBooleanResultBlock)block {
     [[self requestPasswordResetForEmailInBackground:email] thenCallBackOnMainThreadWithBoolValueAsync:block];
-}
-
-+ (void)requestPasswordResetForEmailInBackground:(NSString *)email target:(id)target selector:(SEL)selector {
-    [self requestPasswordResetForEmailInBackground:email block:^(BOOL succeeded, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
-    }];
 }
 
 ///--------------------------------------
@@ -1164,12 +1143,6 @@ static BOOL revocableSessionEnabled_;
     }];
 }
 
-- (void)signUpInBackgroundWithTarget:(id)target selector:(SEL)selector {
-    [self signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
-    }];
-}
-
 - (BOOL)isAuthenticated {
     PFUser *currentUser = [[self class] currentUser];
     return [self _isAuthenticatedWithCurrentUser:currentUser];
@@ -1224,6 +1197,49 @@ static BOOL revocableSessionEnabled_;
                                             objectId:(NSString *)objectId
                                           isComplete:(BOOL)complete {
     return [PFUserState stateWithParseClassName:className objectId:objectId isComplete:complete];
+}
+
+@end
+
+///--------------------------------------
+#pragma mark - Deprecated
+///--------------------------------------
+
+@implementation PFUser (Deprecated)
+
+#pragma mark Creating a new User
+
+- (void)signUpInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector {
+    [self signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
+    }];
+}
+
+#pragma mark Logging In
+
++ (void)logInWithUsernameInBackground:(NSString *)username
+                             password:(NSString *)password
+                               target:(nullable id)target
+                             selector:(nullable SEL)selector {
+    [self logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:user object:error];
+    }];
+}
+
+#pragma mark Becoming a User
+
++ (void)becomeInBackground:(NSString *)sessionToken target:(nullable id)target selector:(nullable SEL)selector {
+    [self becomeInBackground:sessionToken block:^(PFUser *user, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:user object:error];
+    }];
+}
+
+#pragma mark Requesting a Password Reset
+
++ (void)requestPasswordResetForEmailInBackground:(NSString *)email target:(nullable id)target selector:(nullable SEL)selector {
+    [self requestPasswordResetForEmailInBackground:email block:^(BOOL succeeded, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
+    }];
 }
 
 @end

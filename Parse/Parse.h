@@ -30,6 +30,7 @@
 #import <Parse/PFSession.h>
 #import <Parse/PFSubclassing.h>
 #import <Parse/PFUser.h>
+#import <Parse/PFUser+Deprecated.h>
 #import <Parse/PFUserAuthenticationDelegate.h>
 
 #if TARGET_OS_IOS
