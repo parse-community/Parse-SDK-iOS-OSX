@@ -21,7 +21,7 @@
 
 @interface PFUserAuthenticationController () {
     dispatch_queue_t _dataAccessQueue;
-    NSMutableDictionary PF_GENERIC(NSString *, id<PFUserAuthenticationDelegate>) *_authenticationDelegates;
+    NSMutableDictionary PF_GENERIC(NSString *, id<PFUserAuthenticationDelegate>)*_authenticationDelegates;
 }
 
 @end
@@ -115,55 +115,54 @@
 
 - (BFTask PF_GENERIC(PFUser *)*)logInUserAsyncWithAuthType:(NSString *)authType
                                                   authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData {
-    //TODO: (nlutsenko) Make it fully async.
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser && [PFAnonymousUtils isLinkedWithUser:currentUser]) {
-        if (currentUser.isLazy) {
-            PFUser *user = currentUser;
-            BFTask *resolveLaziness = nil;
-            NSDictionary *oldAnonymousData = nil;
-            @synchronized(user.lock) {
-                oldAnonymousData = user.authData[PFAnonymousUserAuthenticationType];
+    return [[self.dataSource.currentUserController getCurrentUserAsyncWithOptions:0] continueWithSuccessBlock:^id(BFTask PF_GENERIC(PFUser *)*task) {
+        PFUser *currentUser = task.result;
+        if (currentUser && [PFAnonymousUtils isLinkedWithUser:currentUser]) {
+            if (currentUser.isLazy) {
+                BFTask *resolveLaziness = nil;
+                NSDictionary *oldAnonymousData = nil;
+                @synchronized(currentUser.lock) {
+                    oldAnonymousData = currentUser.authData[PFAnonymousUserAuthenticationType];
 
-                // Replace any anonymity with the new linked authData
-                [user stripAnonymity];
+                    // Replace any anonymity with the new linked authData
+                    [currentUser stripAnonymity];
 
-                [user.authData setObject:authData forKey:authType];
-                [user.linkedServiceNames addObject:authType];
+                    currentUser.authData[authType] = authData;
+                    [currentUser.linkedServiceNames addObject:authType];
 
-                resolveLaziness = [user resolveLazinessAsync:[BFTask taskWithResult:nil]];
-            }
-
-            return [resolveLaziness continueAsyncWithBlock:^id(BFTask *task) {
-                if (task.cancelled || task.faulted) {
-                    [user.authData removeObjectForKey:authType];
-                    [user.linkedServiceNames removeObject:authType];
-                    [user restoreAnonymity:oldAnonymousData];
-                    return task;
+                    resolveLaziness = [currentUser resolveLazinessAsync:[BFTask taskWithResult:nil]];
                 }
-                return task.result;
-            }];
-        } else {
-            return [[currentUser linkWithAuthTypeInBackground:authType authData:authData] continueAsyncWithBlock:^id(BFTask *task) {
-                NSError *error = task.error;
-                if (error) {
-                    if (error.code == kPFErrorAccountAlreadyLinked) {
-                        // An account that's linked to the given authData already exists,
-                        // so log in instead of trying to claim.
-                        return [self.dataSource.userController logInCurrentUserAsyncWithAuthType:authType
-                                                                                        authData:authData
-                                                                                revocableSession:[PFUser _isRevocableSessionEnabled]];
-                    } else {
+                return [resolveLaziness continueWithBlock:^id(BFTask *task) {
+                    if (task.cancelled || task.faulted) {
+                        [currentUser.authData removeObjectForKey:authType];
+                        [currentUser.linkedServiceNames removeObject:authType];
+                        [currentUser restoreAnonymity:oldAnonymousData];
                         return task;
                     }
-                }
-                return currentUser;
-            }];
+                    return task.result;
+                }];
+            } else {
+                return [[currentUser linkWithAuthTypeInBackground:authType authData:authData] continueWithBlock:^id(BFTask *task) {
+                    NSError *error = task.error;
+                    if (error) {
+                        if (error.code == kPFErrorAccountAlreadyLinked) {
+                            // An account that's linked to the given authData already exists,
+                            // so log in instead of trying to claim.
+                            return [self.dataSource.userController logInCurrentUserAsyncWithAuthType:authType
+                                                                                            authData:authData
+                                                                                    revocableSession:[PFUser _isRevocableSessionEnabled]];
+                        } else {
+                            return task;
+                        }
+                    }
+                    return currentUser;
+                }];
+            }
         }
-    }
-    return [self.dataSource.userController logInCurrentUserAsyncWithAuthType:authType
-                                                                    authData:authData
-                                                            revocableSession:[PFUser _isRevocableSessionEnabled]];
+        return [self.dataSource.userController logInCurrentUserAsyncWithAuthType:authType
+                                                                        authData:authData
+                                                                revocableSession:[PFUser _isRevocableSessionEnabled]];
+    }];
 }
 
 @end
