@@ -61,6 +61,18 @@
                                                              path:@"/100500/yolo"
                                                             query:nil].absoluteString,
                           @"https://yolo.com/abc/xyz/100500/yolo");
+    XCTAssertEqualObjects([PFURLConstructor URLFromAbsoluteString:@"https://yolo.com/"
+                                                             path:@"/yolo/"
+                                                            query:nil].absoluteString,
+                          @"https://yolo.com/yolo/");
+    XCTAssertEqualObjects([PFURLConstructor URLFromAbsoluteString:@"https://yolo.com/"
+                                                             path:@"a/yolo/"
+                                                            query:nil].absoluteString,
+                          @"https://yolo.com/a/yolo/");
+    XCTAssertEqualObjects([PFURLConstructor URLFromAbsoluteString:@"https://yolo.com/"
+                                                             path:@"/a/yolo/"
+                                                            query:nil].absoluteString,
+                          @"https://yolo.com/a/yolo/");
 }
 
 @end
