@@ -16,6 +16,7 @@
 #import "PFLogging.h"
 #import "PFMacros.h"
 #import "PFWeakValue.h"
+#import "Parse_Private.h"
 
 @interface PFReachability () {
     dispatch_queue_t _synchronizationQueue;
@@ -102,9 +103,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
     static PFReachability *reachability;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *serverUrlAsString = [NSString stringWithFormat:@"%@/%ld", kPFParseServer, (long)PARSE_API_VERSION];
-        NSURL *serverUrl = [NSURL URLWithString:serverUrlAsString];
-        reachability = [[self alloc] initWithURL:serverUrl];
+        reachability = [[self alloc] initWithURL:[Parse _currentManager].serverURL];
     });
     return reachability;
 }

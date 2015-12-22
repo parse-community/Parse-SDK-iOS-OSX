@@ -25,12 +25,15 @@
 #import "PFKeychainStore.h"
 #import "PFLogging.h"
 #import "PFObjectSubclassingController.h"
+#import "Parse_Private.h"
 
 #if !TARGET_OS_WATCH && !TARGET_OS_TV
 #import "PFInstallationPrivate.h"
 #endif
 
 #import "PFCategoryLoader.h"
+
+NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
 
 @implementation Parse
 
@@ -73,7 +76,8 @@ static ParseClientConfiguration *currentParseConfiguration_;
                         configuration.containingApplicationBundleIdentifier != nil,
                         @"'containingApplicationBundleIdentifier' must be non-nil in extension environment");
 
-    ParseManager *manager = [[ParseManager alloc] initWithConfiguration:configuration];
+    ParseManager *manager = [[ParseManager alloc] initWithConfiguration:configuration
+                                                              serverURL:[NSURL URLWithString:[PFInternalUtils parseServerURLString]]];
     [manager startManaging];
 
     currentParseManager_ = manager;

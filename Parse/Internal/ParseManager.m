@@ -90,7 +90,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     PFNotDesignatedInitializer();
 }
 
-- (instancetype)initWithConfiguration:(ParseClientConfiguration *)configuration {
+- (instancetype)initWithConfiguration:(ParseClientConfiguration *)configuration serverURL:(NSURL *)url {
     self = [super init];
     if (!self) return nil;
 
@@ -109,6 +109,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     _preloadQueue = dispatch_queue_create("com.parse.preload", DISPATCH_QUEUE_SERIAL);
 
     _configuration = [configuration copy];
+    _serverURL = url;
 
     return self;
 }
@@ -315,7 +316,8 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
             _commandRunner = [PFURLSessionCommandRunner commandRunnerWithDataSource:self
                                                                       retryAttempts:self.configuration.networkRetryAttempts
                                                                       applicationId:self.configuration.applicationId
-                                                                          clientKey:self.configuration.clientKey];
+                                                                          clientKey:self.configuration.clientKey
+                                                                          serverURL:self.serverURL];
         }
         runner = _commandRunner;
     });

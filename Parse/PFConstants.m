@@ -17,8 +17,6 @@ NSString *const kPFDeviceType                = @"ios";
 NSString *const kPFDeviceType                = @"osx";
 #endif
 
-NSString *const kPFParseServer               = @"https://api.parse.com";
-
 NSString *const PFParseErrorDomain = @"Parse";
 
 ///--------------------------------------

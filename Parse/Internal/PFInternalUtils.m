@@ -33,6 +33,7 @@
 #import "PFJSONSerialization.h"
 #import "PFMultiProcessFileLockController.h"
 #import "PFHash.h"
+#import "Parse_Private.h"
 
 #if TARGET_OS_IOS
 #import "PFProduct.h"
@@ -44,7 +45,7 @@ static NSString *parseServer_;
 
 + (void)initialize {
     if (self == [PFInternalUtils class]) {
-        [self setParseServer:kPFParseServer];
+        [self setParseServer:_ParseDefaultServerURLString];
     }
 }
 

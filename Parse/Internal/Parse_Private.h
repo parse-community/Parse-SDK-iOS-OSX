@@ -13,6 +13,8 @@
 
 #import "ParseManager.h"
 
+extern NSString *const _ParseDefaultServerURLString;
+
 @class PFEventuallyQueue;
 
 @interface Parse ()
