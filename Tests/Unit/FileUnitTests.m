@@ -286,7 +286,11 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     OCMStub([verifier verifyObject:@YES error:nil]).andDo(^(NSInvocation *invocation) {
         [expectation fulfill];
     });
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [file saveInBackgroundWithTarget:verifier selector:@selector(verifyObject:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }
@@ -417,7 +421,11 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     OCMStub([verifier verifyObject:expectedData error:nil]).andDo(^(NSInvocation *invocation) {
         [expectation fulfill];
     });
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [file getDataInBackgroundWithTarget:verifier selector:@selector(verifyObject:error:)];
+#pragma clang diagnostic pop
 
     wait_next;
     expectation = [self expectationForSelector:@selector(getDataDownloadStreamInBackground)];

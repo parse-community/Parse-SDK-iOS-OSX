@@ -1337,6 +1337,14 @@
 		81CA29D91C28E15900C4F34A /* PFCloud+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29D71C28E15900C4F34A /* PFCloud+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81CA29DA1C28E15900C4F34A /* PFCloud+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29D71C28E15900C4F34A /* PFCloud+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81CA29DB1C28E15900C4F34A /* PFCloud+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29D71C28E15900C4F34A /* PFCloud+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81CA29E11C28EB2000C4F34A /* PFFile+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29DC1C28EA7400C4F34A /* PFFile+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81CA29E21C28EB2200C4F34A /* PFFile+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29DC1C28EA7400C4F34A /* PFFile+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81CA29E31C28EB2300C4F34A /* PFFile+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29DC1C28EA7400C4F34A /* PFFile+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81CA29E41C28EB2400C4F34A /* PFFile+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29DC1C28EA7400C4F34A /* PFFile+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81CA29E61C28EC3B00C4F34A /* PFPush+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29E51C28EC3B00C4F34A /* PFPush+Deprecated.h */; };
+		81CA29E71C28EC3B00C4F34A /* PFPush+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29E51C28EC3B00C4F34A /* PFPush+Deprecated.h */; };
+		81CA29E81C28EC3B00C4F34A /* PFPush+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29E51C28EC3B00C4F34A /* PFPush+Deprecated.h */; };
+		81CA29E91C28EC3B00C4F34A /* PFPush+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CA29E51C28EC3B00C4F34A /* PFPush+Deprecated.h */; };
 		81CB7F6F1B166FE500DC601D /* PFObjectState.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CB7F6D1B166FE500DC601D /* PFObjectState.h */; };
 		81CB7F701B166FE500DC601D /* PFObjectState.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CB7F6D1B166FE500DC601D /* PFObjectState.h */; };
 		81CB7F711B166FE500DC601D /* PFObjectState.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CB7F6E1B166FE500DC601D /* PFObjectState.m */; };
@@ -2119,6 +2127,7 @@
 		81C9CA0519FECF5F00D514C5 /* PFRESTFileCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFRESTFileCommand.m; sourceTree = "<group>"; };
 		81CA29CE1C28DF8F00C4F34A /* PFAnonymousUtils+Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFAnonymousUtils+Deprecated.h"; sourceTree = "<group>"; };
 		81CA29D71C28E15900C4F34A /* PFCloud+Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFCloud+Deprecated.h"; sourceTree = "<group>"; };
+		81CA29DC1C28EA7400C4F34A /* PFFile+Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFFile+Deprecated.h"; sourceTree = "<group>"; };
 		81CB7F6D1B166FE500DC601D /* PFObjectState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFObjectState.h; sourceTree = "<group>"; };
 		81CB7F6E1B166FE500DC601D /* PFObjectState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFObjectState.m; sourceTree = "<group>"; };
 		81CB7F731B166FF500DC601D /* PFMutableObjectState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMutableObjectState.h; sourceTree = "<group>"; };
@@ -2352,6 +2361,7 @@
 				0925ABEB13D791770095FEFA /* PFConstants.h */,
 				0925ABEC13D791770095FEFA /* PFConstants.m */,
 				81DEF07D199C42A300D86A21 /* PFFile.h */,
+				81CA29DC1C28EA7400C4F34A /* PFFile+Deprecated.h */,
 				81DEF07E199C42A300D86A21 /* PFFile.m */,
 				09B119F614880776002B5594 /* PFGeoPoint.h */,
 				09B119F714880776002B5594 /* PFGeoPoint.m */,
@@ -3911,6 +3921,7 @@
 				810155BC1BB3832700D7C7BD /* ParseModule.h in Headers */,
 				810155BD1BB3832700D7C7BD /* PFAssert.h in Headers */,
 				810155BE1BB3832700D7C7BD /* PFUserState.h in Headers */,
+				81CA29E11C28EB2000C4F34A /* PFFile+Deprecated.h in Headers */,
 				810155BF1BB3832700D7C7BD /* PFDecoder.h in Headers */,
 				810155C01BB3832700D7C7BD /* PFGeoPointPrivate.h in Headers */,
 				810155C11BB3832700D7C7BD /* PFURLSessionFileDownloadTaskDelegate.h in Headers */,
@@ -4145,6 +4156,7 @@
 				815F23981BD04D150054659F /* PFURLSession_Private.h in Headers */,
 				815F23991BD04D150054659F /* PFRESTCommand_Private.h in Headers */,
 				815F239A1BD04D150054659F /* PFObjectState.h in Headers */,
+				81CA29E21C28EB2200C4F34A /* PFFile+Deprecated.h in Headers */,
 				815F239B1BD04D150054659F /* PFHTTPRequest.h in Headers */,
 				815F239C1BD04D150054659F /* PFRESTCommand.h in Headers */,
 				815F239D1BD04D150054659F /* PFCloud.h in Headers */,
@@ -4351,6 +4363,7 @@
 				815EE8F519F976D50076FE5D /* PFRESTCommand.h in Headers */,
 				818AAA7319D36B1C00FC1B3C /* PFCloud.h in Headers */,
 				81A715A41B423A4100A504FC /* PFObjectUtilities.h in Headers */,
+				81CA29E41C28EB2400C4F34A /* PFFile+Deprecated.h in Headers */,
 				81CA29CF1C28DF8F00C4F34A /* PFAnonymousUtils+Deprecated.h in Headers */,
 				81C76EE81B4B201E0031C2FD /* PFObjectConstants.h in Headers */,
 				81CB7F751B166FF500DC601D /* PFMutableObjectState.h in Headers */,
@@ -4642,6 +4655,7 @@
 				814B64121A769EF500213055 /* PFLogger.h in Headers */,
 				8124C8AD1B27D5D600758E00 /* PFSessionUtilities.h in Headers */,
 				814881561B795CAC008763BF /* PFPropertyInfo_Runtime.h in Headers */,
+				81CA29E31C28EB2300C4F34A /* PFFile+Deprecated.h in Headers */,
 				81BCB4C91B744626006659CB /* PFURLSessionDataTaskDelegate_Private.h in Headers */,
 				8166FB9C1B4F2F08003841A2 /* PFUserConstants.h in Headers */,
 				81C76EE91B4B201E0031C2FD /* PFObjectConstants.h in Headers */,

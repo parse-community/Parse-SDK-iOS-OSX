@@ -202,17 +202,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)saveInBackgroundWithBlock:(nullable PFBooleanResultBlock)block
                     progressBlock:(nullable PFProgressBlock)progressBlock;
 
-/*
- Saves the file *asynchronously* and calls the given callback.
-
- @param target The object to call selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSNumber *)result error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- `[result boolValue]` will tell you whether the call succeeded or not.
- */
-- (void)saveInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
-
 ///--------------------------------------
 /// @name Getting Data from Parse
 ///--------------------------------------
@@ -371,16 +360,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)getDataStreamInBackgroundWithBlock:(nullable PFDataStreamResultBlock)resultBlock
                              progressBlock:(nullable PFProgressBlock)progressBlock;
-
-/*
- *Asynchronously* gets the data from cache if available or fetches its contents from the network.
-
- @param target The object to call selector on.
- @param selector The selector to call.
- It should have the following signature: `(void)callbackWithResult:(NSData *)result error:(NSError *)error`.
- `error` will be `nil` on success and set if there was an error.
- */
-- (void)getDataInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector;
 
 /**
  *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.

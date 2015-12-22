@@ -19,6 +19,7 @@
 #import <Parse/PFConfig.h>
 #import <Parse/PFConstants.h>
 #import <Parse/PFFile.h>
+#import <Parse/PFFile+Deprecated.h>
 #import <Parse/PFGeoPoint.h>
 #import <Parse/PFObject+Subclass.h>
 #import <Parse/PFObject.h>
