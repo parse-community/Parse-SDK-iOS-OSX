@@ -89,7 +89,7 @@ of patent rights can be found in the PATENTS file in the same directory.
  [bolts-framework]: https://github.com/BoltsFramework/Bolts-iOS
  [ocmock-framework]: http://ocmock.org
 
- [build-status-svg]: https://travis-ci.org/ParsePlatform/Parse-SDK-iOS-OSX.svg
+ [build-status-svg]: https://img.shields.io/travis/ParsePlatform/Parse-SDK-iOS-OSX/master.svg
  [build-status-link]: https://travis-ci.org/ParsePlatform/Parse-SDK-iOS-OSX/branches
 
  [coverage-status-svg]: https://img.shields.io/codecov/c/github/ParsePlatform/Parse-SDK-iOS-OSX/master.svg
