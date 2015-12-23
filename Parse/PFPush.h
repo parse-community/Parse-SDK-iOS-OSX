@@ -148,20 +148,6 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
 ///--------------------------------------
 
 /**
- *Synchronously* send a push message to a channel.
-
- @param channel The channel to send to. The channel name must start with
- a letter and contain only letters, numbers, dashes, and underscores.
- @param message The message to send.
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return Returns whether the send succeeded.
- */
-+ (BOOL)sendPushMessageToChannel:(NSString *)channel
-                     withMessage:(NSString *)message
-                           error:(NSError **)error;
-
-/**
  *Asynchronously* send a push message to a channel.
 
  @param channel The channel to send to. The channel name must start with
@@ -170,8 +156,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
 
  @return The task, that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)sendPushMessageToChannelInBackground:(NSString *)channel
-                                                           withMessage:(NSString *)message;
++ (BFTask PF_GENERIC(NSNumber *)*)sendPushMessageToChannelInBackground:(NSString *)channel withMessage:(NSString *)message;
 
 /**
  *Asynchronously* sends a push message to a channel and calls the given block.
@@ -182,22 +167,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
  @param block The block to execute.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`
  */
-+ (void)sendPushMessageToChannelInBackground:(NSString *)channel
-                                 withMessage:(NSString *)message
-                                       block:(nullable PFBooleanResultBlock)block;
-
-/**
- Send a push message to a query.
-
- @param query The query to send to. The query must be a `PFInstallation` query created with `PFInstallation.+query`.
- @param message The message to send.
- @param error Pointer to an NSError that will be set if necessary.
-
- @return Returns whether the send succeeded.
- */
-+ (BOOL)sendPushMessageToQuery:(PFQuery PF_GENERIC(PFInstallation *)*)query
-                   withMessage:(NSString *)message
-                         error:(NSError **)error;
++ (void)sendPushMessageToChannelInBackground:(NSString *)channel withMessage:(NSString *)message block:(nullable PFBooleanResultBlock)block;
 
 /**
  *Asynchronously* send a push message to a query.
@@ -224,15 +194,6 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
                                      block:(nullable PFBooleanResultBlock)block;
 
 /**
- *Synchronously* send this push message.
-
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return Returns whether the send succeeded.
- */
-- (BOOL)sendPush:(NSError **)error;
-
-/**
  *Asynchronously* send this push message.
  @return The task, that encapsulates the work being done.
  */
@@ -247,22 +208,6 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
 - (void)sendPushInBackgroundWithBlock:(nullable PFBooleanResultBlock)block;
 
 /**
- *Synchronously* send a push message with arbitrary data to a channel.
-
- See the guide for information about the dictionary structure.
-
- @param channel The channel to send to. The channel name must start with
- a letter and contain only letters, numbers, dashes, and underscores.
- @param data The data to send.
- @param error Pointer to an NSError that will be set if necessary.
-
- @return Returns whether the send succeeded.
- */
-+ (BOOL)sendPushDataToChannel:(NSString *)channel
-                     withData:(NSDictionary *)data
-                        error:(NSError **)error;
-
-/**
  *Asynchronously* send a push message with arbitrary data to a channel.
 
  See the guide for information about the dictionary structure.
@@ -273,8 +218,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
 
  @return The task, that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)sendPushDataToChannelInBackground:(NSString *)channel
-                                                           withData:(NSDictionary *)data;
++ (BFTask PF_GENERIC(NSNumber *)*)sendPushDataToChannelInBackground:(NSString *)channel withData:(NSDictionary *)data;
 
 /**
  Asynchronously sends a push message with arbitrary data to a channel and calls the given block.
@@ -290,22 +234,6 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
 + (void)sendPushDataToChannelInBackground:(NSString *)channel
                                  withData:(NSDictionary *)data
                                     block:(nullable PFBooleanResultBlock)block;
-
-/**
- *Synchronously* send a push message with arbitrary data to a query.
-
- See the guide for information about the dictionary structure.
-
- @param query The query to send to. The query must be a `PFInstallation` query
- created with `PFInstallation.+query`.
- @param data The data to send.
- @param error Pointer to an NSError that will be set if necessary.
-
- @return Returns whether the send succeeded.
- */
-+ (BOOL)sendPushDataToQuery:(PFQuery PF_GENERIC(PFInstallation *)*)query
-                   withData:(NSDictionary *)data
-                      error:(NSError **)error;
 
 /**
  Asynchronously send a push message with arbitrary data to a query.
@@ -369,15 +297,6 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
 + (void)storeDeviceToken:(id)deviceToken;
 
 /**
- *Synchronously* get all the channels that this device is subscribed to.
-
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return Returns an `NSSet` containing all the channel names this device is subscribed to.
- */
-+ (nullable NSSet PF_GENERIC(NSString *)*)getSubscribedChannels:(NSError **)error;
-
-/**
  *Asynchronously* get all the channels that this device is subscribed to.
 
  @return The task, that encapsulates the work being done.
@@ -390,17 +309,6 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
  It should have the following argument signature: `^(NSSet *channels, NSError *error)`.
  */
 + (void)getSubscribedChannelsInBackgroundWithBlock:(PFSetResultBlock)block;
-
-/**
- *Synchrnously* subscribes the device to a channel of push notifications.
-
- @param channel The channel to subscribe to. The channel name must start with
- a letter and contain only letters, numbers, dashes, and underscores.
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return Returns whether the subscribe succeeded.
- */
-+ (BOOL)subscribeToChannel:(NSString *)channel error:(NSError **)error;
 
 /**
  *Asynchronously* subscribes the device to a channel of push notifications.
@@ -420,18 +328,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
  @param block The block to execute.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`
  */
-+ (void)subscribeToChannelInBackground:(NSString *)channel
-                                 block:(nullable PFBooleanResultBlock)block;
-
-/**
- *Synchronously* unsubscribes the device to a channel of push notifications.
-
- @param channel The channel to unsubscribe from.
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return Returns whether the unsubscribe succeeded.
- */
-+ (BOOL)unsubscribeFromChannel:(NSString *)channel error:(NSError **)error;
++ (void)subscribeToChannelInBackground:(NSString *)channel block:(nullable PFBooleanResultBlock)block;
 
 /**
  *Asynchronously* unsubscribes the device from a channel of push notifications.
@@ -449,8 +346,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
  @param block The block to execute.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`.
  */
-+ (void)unsubscribeFromChannelInBackground:(NSString *)channel
-                                     block:(nullable PFBooleanResultBlock)block;
++ (void)unsubscribeFromChannelInBackground:(NSString *)channel block:(nullable PFBooleanResultBlock)block;
 
 @end
 

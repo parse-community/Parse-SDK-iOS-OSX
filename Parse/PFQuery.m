@@ -9,6 +9,8 @@
 
 #import "PFQuery.h"
 #import "PFQueryPrivate.h"
+#import "PFQuery+Synchronous.h"
+#import "PFQuery+Deprecated.h"
 
 #import <Bolts/BFCancellationTokenSource.h>
 #import <Bolts/BFTask.h>
@@ -693,26 +695,6 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
 #pragma mark - Get with objectId
 ///--------------------------------------
 
-+ (PFObject *)getObjectOfClass:(NSString *)objectClass objectId:(NSString *)objectId {
-    return [self getObjectOfClass:objectClass objectId:objectId error:nil];
-}
-
-+ (PFObject *)getObjectOfClass:(NSString *)objectClass
-                      objectId:(NSString *)objectId
-                         error:(NSError **)error {
-    PFQuery *query = [self queryWithClassName:objectClass];
-    return [query getObjectWithId:objectId error:error];
-}
-
-// TODO (hallucinogen): we may want to remove this in 2.0 since we can just use the static counterpart
-- (PFObject *)getObjectWithId:(NSString *)objectId {
-    return [self getObjectWithId:objectId error:nil];
-}
-
-- (PFObject *)getObjectWithId:(NSString *)objectId error:(NSError **)error {
-    return [[self getObjectInBackgroundWithId:objectId] waitForResult:error];
-}
-
 - (BFTask *)getObjectInBackgroundWithId:(NSString *)objectId {
     if (objectId.length == 0) {
         return [BFTask taskWithResult:nil];
@@ -760,17 +742,6 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
 #pragma mark - Get Users (Deprecated)
 ///--------------------------------------
 
-+ (PFUser *)getUserObjectWithId:(NSString *)objectId {
-    return [self getUserObjectWithId:objectId error:nil];
-}
-
-+ (PFUser *)getUserObjectWithId:(NSString *)objectId error:(NSError **)error {
-    PFQuery *query = [PFUser query];
-    PFUser *object = (PFUser *)[query getObjectWithId:objectId error:error];
-
-    return object;
-}
-
 + (instancetype)queryForUser {
     return [PFUser query];
 }
@@ -778,14 +749,6 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
 ///--------------------------------------
 #pragma mark - Find Objects
 ///--------------------------------------
-
-- (NSArray *)findObjects {
-    return [self findObjects:nil];
-}
-
-- (NSArray *)findObjects:(NSError **)error {
-    return [[self findObjectsInBackground] waitForResult:error];
-}
 
 - (BFTask *)findObjectsInBackground {
     PFQueryState *state = [self _queryStateCopy];
@@ -849,14 +812,6 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
 #pragma mark - Get Object
 ///--------------------------------------
 
-- (PFObject *)getFirstObject {
-    return [self getFirstObject:nil];
-}
-
-- (PFObject *)getFirstObject:(NSError **)error {
-    return [[self getFirstObjectInBackground] waitForResult:error];
-}
-
 - (BFTask *)getFirstObjectInBackground {
     PFConsistencyAssert(self.state.cachePolicy != kPFCachePolicyCacheThenNetwork,
                         @"kPFCachePolicyCacheThenNetwork can only be used with methods that have a callback.");
@@ -893,21 +848,6 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
 ///--------------------------------------
 #pragma mark - Count Objects
 ///--------------------------------------
-
-- (NSInteger)countObjects {
-    return [self countObjects:nil];
-}
-
-- (NSInteger)countObjects:(NSError **)error {
-    NSNumber *count = [[self countObjectsInBackground] waitForResult:error];
-    if (!count) {
-        // TODO: (nlutsenko) It's really weird that we are inconsistent in sync vs async methods.
-        // Leaving for now since some devs might be relying on this.
-        return -1;
-    }
-
-    return count.integerValue;
-}
 
 - (BFTask *)countObjectsInBackground {
     PFConsistencyAssert(self.state.cachePolicy != kPFCachePolicyCacheThenNetwork,
@@ -1115,12 +1055,87 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
 @end
 
 ///--------------------------------------
+#pragma mark - Synchronous
+///--------------------------------------
+
+@implementation PFQuery (Synchronous)
+
+#pragma mark Getting Objects by ID
+
++ (PFObject *)getObjectOfClass:(NSString *)objectClass objectId:(NSString *)objectId {
+    return [self getObjectOfClass:objectClass objectId:objectId error:nil];
+}
+
++ (PFObject *)getObjectOfClass:(NSString *)objectClass objectId:(NSString *)objectId error:(NSError **)error {
+    PFQuery *query = [self queryWithClassName:objectClass];
+    return [query getObjectWithId:objectId error:error];
+}
+
+- (PFObject *)getObjectWithId:(NSString *)objectId {
+    return [self getObjectWithId:objectId error:nil];
+}
+
+- (PFObject *)getObjectWithId:(NSString *)objectId error:(NSError **)error {
+    return [[self getObjectInBackgroundWithId:objectId] waitForResult:error];
+}
+
+#pragma mark Getting User Objects
+
++ (PFUser *)getUserObjectWithId:(NSString *)objectId {
+    return [self getUserObjectWithId:objectId error:nil];
+}
+
++ (PFUser *)getUserObjectWithId:(NSString *)objectId error:(NSError **)error {
+    PFQuery *query = [PFUser query];
+    return [query getObjectWithId:objectId error:error];
+}
+
+#pragma mark Getting all Matches for a Query
+
+- (NSArray *)findObjects {
+    return [self findObjects:nil];
+}
+
+- (NSArray *)findObjects:(NSError **)error {
+    return [[self findObjectsInBackground] waitForResult:error];
+}
+
+#pragma mark Getting First Match in a Query
+
+- (PFObject *)getFirstObject {
+    return [self getFirstObject:nil];
+}
+
+- (PFObject *)getFirstObject:(NSError **)error {
+    return [[self getFirstObjectInBackground] waitForResult:error];
+}
+
+#pragma mark Counting the Matches in a Query
+
+- (NSInteger)countObjects {
+    return [self countObjects:nil];
+}
+
+- (NSInteger)countObjects:(NSError **)error {
+    NSNumber *count = [[self countObjectsInBackground] waitForResult:error];
+    if (!count) {
+        // TODO: (nlutsenko) It's really weird that we are inconsistent in sync vs async methods.
+        // Leaving for now since some devs might be relying on this.
+        return -1;
+    }
+
+    return count.integerValue;
+}
+
+@end
+
+///--------------------------------------
 #pragma mark - Deprecated
 ///--------------------------------------
 
 @implementation PFQuery (Deprecated)
 
-#pragma mark - Getting Objects by ID
+#pragma mark Getting Objects by ID
 
 - (void)getObjectInBackgroundWithId:(NSString *)objectId target:(nullable id)target selector:(nullable SEL)selector {
     [self getObjectInBackgroundWithId:objectId block:^(PFObject *object, NSError *error) {

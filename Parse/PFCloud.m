@@ -22,14 +22,6 @@
 #pragma mark - Public
 ///--------------------------------------
 
-+ (id)callFunction:(NSString *)function withParameters:(NSDictionary *)parameters {
-    return [self callFunction:function withParameters:parameters error:nil];
-}
-
-+ (id)callFunction:(NSString *)function withParameters:(NSDictionary *)parameters error:(NSError **)error {
-    return [[self callFunctionInBackground:function withParameters:parameters] waitForResult:error];
-}
-
 + (BFTask *)callFunctionInBackground:(NSString *)functionName withParameters:(NSDictionary *)parameters {
     return [[PFUser _getCurrentUserSessionTokenAsync] continueWithBlock:^id(BFTask *task) {
         NSString *sessionToken = task.result;
@@ -44,6 +36,22 @@
                   withParameters:(NSDictionary *)parameters
                            block:(PFIdResultBlock)block {
     [[self callFunctionInBackground:function withParameters:parameters] thenCallBackOnMainThreadAsync:block];
+}
+
+@end
+
+///--------------------------------------
+#pragma mark - Synchronous
+///--------------------------------------
+
+@implementation PFCloud (Synchronous)
+
++ (id)callFunction:(NSString *)function withParameters:(NSDictionary *)parameters {
+    return [self callFunction:function withParameters:parameters error:nil];
+}
+
++ (id)callFunction:(NSString *)function withParameters:(NSDictionary *)parameters error:(NSError **)error {
+    return [[self callFunctionInBackground:function withParameters:parameters] waitForResult:error];
 }
 
 @end

@@ -61,14 +61,6 @@ NSString *const PFConfigParametersRESTKey = @"params";
 #pragma mark - Fetch
 ///--------------------------------------
 
-+ (PFConfig *)getConfig {
-    return [self getConfig:nil];
-}
-
-+ (PFConfig *)getConfig:(NSError **)error {
-    return [[self getConfigInBackground] waitForResult:error];
-}
-
 + (BFTask *)getConfigInBackground {
     PFCurrentUserController *controller = [Parse _currentManager].coreManager.currentUserController;
     return [[controller getCurrentUserSessionTokenAsync] continueWithBlock:^id(BFTask *task) {
@@ -109,6 +101,24 @@ NSString *const PFConfigParametersRESTKey = @"params";
     }
 
     return NO;
+}
+
+@end
+
+///--------------------------------------
+#pragma mark - Synchronous
+///--------------------------------------
+
+@implementation PFConfig (Synchronous)
+
+#pragma mark Retrieving Config
+
++ (PFConfig *)getConfig {
+    return [self getConfig:nil];
+}
+
++ (PFConfig *)getConfig:(NSError **)error {
+    return [[self getConfigInBackground] waitForResult:error];
 }
 
 @end

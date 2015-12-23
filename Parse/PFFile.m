@@ -151,14 +151,6 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
 
 #pragma mark Uploading
 
-- (BOOL)save {
-    return [self save:nil];
-}
-
-- (BOOL)save:(NSError **)error {
-    return [[[self saveInBackground] waitForResult:error] boolValue];
-}
-
 - (BFTask *)saveInBackground {
     return [self _uploadAsyncWithProgressBlock:nil];
 }
@@ -177,22 +169,6 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
 }
 
 #pragma mark Downloading
-
-- (NSData *)getData {
-    return [self getData:nil];
-}
-
-- (NSInputStream *)getDataStream {
-    return [self getDataStream:nil];
-}
-
-- (NSData *)getData:(NSError **)error {
-    return [[self getDataInBackground] waitForResult:error];
-}
-
-- (NSInputStream *)getDataStream:(NSError **)error {
-    return [[self getDataStreamInBackground] waitForResult:error];
-}
 
 - (BFTask *)getDataInBackground {
     return [self _getDataAsyncWithProgressBlock:nil];
@@ -533,6 +509,42 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
 
 + (PFFileController *)fileController {
     return [Parse _currentManager].coreManager.fileController;
+}
+
+@end
+
+///--------------------------------------
+#pragma mark - Synchronous
+///--------------------------------------
+
+@implementation PFFile (Synchronous)
+
+#pragma mark Storing Data with Parse
+
+- (BOOL)save {
+    return [self save:nil];
+}
+
+- (BOOL)save:(NSError **)error {
+    return [[[self saveInBackground] waitForResult:error] boolValue];
+}
+
+#pragma mark Getting Data from Parse
+
+- (NSData *)getData {
+    return [self getData:nil];
+}
+
+- (NSData *)getData:(NSError **)error {
+    return [[self getDataInBackground] waitForResult:error];
+}
+
+- (NSInputStream *)getDataStream {
+    return [self getDataStream:nil];
+}
+
+- (NSInputStream *)getDataStream:(NSError **)error {
+    return [[self getDataStreamInBackground] waitForResult:error];
 }
 
 @end

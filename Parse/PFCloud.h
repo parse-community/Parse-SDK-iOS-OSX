@@ -21,31 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFCloud : NSObject
 
 /**
- Calls the given cloud function *synchronously* with the parameters provided.
-
- @param function The function name to call.
- @param parameters The parameters to send to the function.
-
- @return The response from the cloud function.
- */
-+ (nullable id)callFunction:(NSString *)function withParameters:(nullable NSDictionary *)parameters PF_SWIFT_UNAVAILABLE;
-
-/**
- Calls the given cloud function *synchronously* with the parameters provided and
- sets the error if there is one.
-
- @param function The function name to call.
- @param parameters The parameters to send to the function.
- @param error Pointer to an `NSError` that will be set if necessary.
-
- @return The response from the cloud function.
- This result could be a `NSDictionary`, an `NSArray`, `NSNumber` or `NSString`.
- */
-+ (nullable id)callFunction:(NSString *)function
-             withParameters:(nullable NSDictionary *)parameters
-                      error:(NSError **)error;
-
-/**
  Calls the given cloud function *asynchronously* with the parameters provided.
 
  @param function The function name to call.

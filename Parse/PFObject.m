@@ -9,6 +9,8 @@
 
 #import "PFObject.h"
 #import "PFObject+Subclass.h"
+#import "PFObject+Synchronous.h"
+#import "PFObject+Deprecated.h"
 #import "PFObjectSubclassingController.h"
 
 #import <objc/message.h>
@@ -1860,14 +1862,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Delete commands
 ///--------------------------------------
 
-- (BOOL)delete {
-    return [self delete:nil];
-}
-
-- (BOOL)delete:(NSError **)error {
-    return [[[self deleteInBackground] waitForResult:error] boolValue];
-}
-
 - (BFTask *)deleteInBackground {
     return [self.taskQueue enqueue:^BFTask *(BFTask *toAwait) {
         return [[self deleteAsync:toAwait] continueWithSuccessResult:@YES];
@@ -1881,14 +1875,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 ///--------------------------------------
 #pragma mark - Save commands
 ///--------------------------------------
-
-- (BOOL)save {
-    return [self save:nil];
-}
-
-- (BOOL)save:(NSError **)error {
-    return [[[self saveInBackground] waitForResult:error] boolValue];
-}
 
 - (BFTask *)saveInBackground {
     return [self.taskQueue enqueue:^BFTask *(BFTask *toAwait) {
@@ -1980,14 +1966,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [self fetchInBackgroundWithBlock:block];
 }
 
-- (instancetype)fetch {
-    return [self fetch:nil];
-}
-
-- (instancetype)fetch:(NSError **)error {
-    return [[self fetchInBackground] waitForResult:error];
-}
-
 - (BFTask *)fetchInBackground {
     if (!self._state.objectId) {
         NSError *error = [PFErrorUtilities errorWithCode:kPFErrorMissingObjectId
@@ -2001,14 +1979,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (void)fetchInBackgroundWithBlock:(PFObjectResultBlock)block {
     [[self fetchInBackground] thenCallBackOnMainThreadAsync:block];
-}
-
-- (instancetype)fetchIfNeeded {
-    return [self fetchIfNeeded:nil];
-}
-
-- (instancetype)fetchIfNeeded:(NSError **)error {
-    return [[self fetchIfNeededInBackground] waitForResult:error];
 }
 
 - (BFTask *)fetchIfNeededInBackground {
@@ -2025,22 +1995,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 ///--------------------------------------
 #pragma mark - Fetching Many Objects
 ///--------------------------------------
-
-+ (NSArray *)fetchAll:(NSArray *)objects {
-    return [self fetchAll:objects error:nil];
-}
-
-+ (NSArray *)fetchAllIfNeeded:(NSArray *)objects {
-    return [self fetchAllIfNeeded:objects error:nil];
-}
-
-+ (NSArray *)fetchAll:(NSArray *)objects error:(NSError **)error {
-    return [[self fetchAllInBackground:objects] waitForResult:error];
-}
-
-+ (NSArray *)fetchAllIfNeeded:(NSArray *)objects error:(NSError **)error {
-    return [[self fetchAllIfNeededInBackground:objects] waitForResult:error];
-}
 
 + (BFTask *)fetchAllInBackground:(NSArray *)objects {
     // Snapshot the objects array.
@@ -2087,14 +2041,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 ///--------------------------------------
 #pragma mark - Fetch From Local Datastore
 ///--------------------------------------
-
-- (instancetype)fetchFromLocalDatastore {
-    return [self fetchFromLocalDatastore:nil];
-}
-
-- (instancetype)fetchFromLocalDatastore:(NSError **)error {
-    return [[self fetchFromLocalDatastoreInBackground] waitForResult:error];
-}
 
 - (void)fetchFromLocalDatastoreInBackgroundWithBlock:(PFObjectResultBlock)block {
     [[self fetchFromLocalDatastoreInBackground] thenCallBackOnMainThreadAsync:block];
@@ -2303,14 +2249,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Save all
 ///--------------------------------------
 
-+ (BOOL)saveAll:(NSArray *)objects {
-    return [PFObject saveAll:objects error:nil];
-}
-
-+ (BOOL)saveAll:(NSArray *)objects error:(NSError **)error {
-    return [[[self saveAllInBackground:objects] waitForResult:error] boolValue];
-}
-
 + (BFTask *)saveAllInBackground:(NSArray *)objects {
     PFCurrentUserController *controller = [[self class] currentUserController];
     return [[controller getCurrentObjectAsync] continueWithBlock:^id(BFTask *task) {
@@ -2327,14 +2265,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 ///--------------------------------------
 #pragma mark - Delete all
 ///--------------------------------------
-
-+ (BOOL)deleteAll:(NSArray *)objects {
-    return [PFObject deleteAll:objects error:nil];
-}
-
-+ (BOOL)deleteAll:(NSArray *)objects error:(NSError **)error {
-    return [[[self deleteAllInBackground:objects] waitForResult:error] boolValue];
-}
 
 + (BFTask PF_GENERIC(NSNumber *) *)deleteAllInBackground:(NSArray *)objects {
     NSArray *deleteObjects = [objects copy]; // Snapshot the objects.
@@ -2412,28 +2342,12 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Pinning
 ///--------------------------------------
 
-- (BOOL)pin {
-    return [self pin:nil];
-}
-
-- (BOOL)pin:(NSError **)error {
-    return [self pinWithName:PFObjectDefaultPin error:error];
-}
-
 - (BFTask *)pinInBackground {
     return [self pinInBackgroundWithName:PFObjectDefaultPin];
 }
 
 - (void)pinInBackgroundWithBlock:(PFBooleanResultBlock)block {
     [[self pinInBackground] thenCallBackOnMainThreadWithBoolValueAsync:block];
-}
-
-- (BOOL)pinWithName:(NSString *)name {
-    return [self pinWithName:name error:nil];
-}
-
-- (BOOL)pinWithName:(NSString *)name error:(NSError **)error {
-    return [[[self pinInBackgroundWithName:name] waitForResult:error] boolValue];
 }
 
 - (void)pinInBackgroundWithName:(NSString *)name block:(PFBooleanResultBlock)block {
@@ -2452,14 +2366,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Pinning Many Objects
 ///--------------------------------------
 
-+ (BOOL)pinAll:(NSArray *)objects {
-    return [self pinAll:objects error:nil];
-}
-
-+ (BOOL)pinAll:(NSArray *)objects error:(NSError **)error {
-    return [self pinAll:objects withName:PFObjectDefaultPin error:error];
-}
-
 + (BFTask *)pinAllInBackground:(NSArray *)objects {
     return [self pinAllInBackground:objects withName:PFObjectDefaultPin];
 }
@@ -2467,14 +2373,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 + (void)pinAllInBackground:(NSArray *)objects
                      block:(PFBooleanResultBlock)block {
     [[self pinAllInBackground:objects] thenCallBackOnMainThreadWithBoolValueAsync:block];
-}
-
-+ (BOOL)pinAll:(NSArray *)objects withName:(NSString *)name {
-    return [self pinAll:objects withName:name error:nil];
-}
-
-+ (BOOL)pinAll:(NSArray *)objects withName:(NSString *)name error:(NSError **)error {
-    return [[[self pinAllInBackground:objects withName:name] waitForResult:error] boolValue];
 }
 
 + (BFTask *)pinAllInBackground:(NSArray *)objects withName:(NSString *)name {
@@ -2490,22 +2388,12 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 + (BFTask *)_pinAllInBackground:(NSArray *)objects
                        withName:(NSString *)name
                 includeChildren:(BOOL)includeChildren {
-    return [[self pinningObjectStore] pinObjectsAsync:objects
-                                          withPinName:name
-                                      includeChildren:includeChildren];
+    return [[self pinningObjectStore] pinObjectsAsync:objects withPinName:name includeChildren:includeChildren];
 }
 
 ///--------------------------------------
 #pragma mark - Unpinning
 ///--------------------------------------
-
-- (BOOL)unpin {
-    return [self unpinWithName:PFObjectDefaultPin];
-}
-
-- (BOOL)unpin:(NSError **)error {
-    return [self unpinWithName:PFObjectDefaultPin error:error];
-}
 
 - (BFTask *)unpinInBackground {
     return [self unpinInBackgroundWithName:PFObjectDefaultPin];
@@ -2513,14 +2401,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (void)unpinInBackgroundWithBlock:(PFBooleanResultBlock)block {
     [[self unpinInBackground] thenCallBackOnMainThreadWithBoolValueAsync:block];
-}
-
-- (BOOL)unpinWithName:(NSString *)name {
-    return [self unpinWithName:name error:nil];
-}
-
-- (BOOL)unpinWithName:(NSString *)name error:(NSError **)error {
-    return [[[self unpinInBackgroundWithName:name] waitForResult:error] boolValue];
 }
 
 - (BFTask *)unpinInBackgroundWithName:(NSString *)name {
@@ -2535,28 +2415,12 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Unpinning Many Objects
 ///--------------------------------------
 
-+ (BOOL)unpinAllObjects {
-    return [self unpinAllObjects:nil];
-}
-
-+ (BOOL)unpinAllObjects:(NSError **)error {
-    return [self unpinAllObjectsWithName:PFObjectDefaultPin error:error];
-}
-
 + (BFTask *)unpinAllObjectsInBackground {
     return [self unpinAllObjectsInBackgroundWithName:PFObjectDefaultPin];
 }
 
 + (void)unpinAllObjectsInBackgroundWithBlock:(PFBooleanResultBlock)block {
     [[self unpinAllObjectsInBackground] thenCallBackOnMainThreadWithBoolValueAsync:block];
-}
-
-+ (BOOL)unpinAllObjectsWithName:(NSString *)name {
-    return [self unpinAllObjectsWithName:name error:nil];
-}
-
-+ (BOOL)unpinAllObjectsWithName:(NSString *)name error:(NSError **)error {
-    return [[[self unpinAllObjectsInBackgroundWithName:name] waitForResult:error] boolValue];
 }
 
 + (void)unpinAllObjectsInBackgroundWithName:(NSString *)name block:(PFBooleanResultBlock)block {
@@ -2567,14 +2431,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return [[self pinningObjectStore] unpinAllObjectsAsyncWithPinName:name];
 }
 
-+ (BOOL)unpinAll:(NSArray *)objects {
-    return [self unpinAll:objects error:nil];
-}
-
-+ (BOOL)unpinAll:(NSArray *)objects error:(NSError **)error {
-    return [self unpinAll:objects withName:PFObjectDefaultPin error:error];
-}
-
 + (BFTask *)unpinAllInBackground:(NSArray *)objects {
     return [self unpinAllInBackground:objects withName:PFObjectDefaultPin];
 }
@@ -2583,21 +2439,11 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self unpinAllInBackground:objects] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-+ (BOOL)unpinAll:(NSArray *)objects withName:(NSString *)name {
-    return [self unpinAll:objects withName:name error:nil];
-}
-
-+ (BOOL)unpinAll:(NSArray *)objects withName:(NSString *)name error:(NSError **)error {
-    return [[[self unpinAllInBackground:objects withName:name] waitForResult:error] boolValue];
-}
-
 + (BFTask *)unpinAllInBackground:(NSArray *)objects withName:(NSString *)name {
     return [[self pinningObjectStore] unpinObjectsAsync:objects withPinName:name];
 }
 
-+ (void)unpinAllInBackground:(NSArray *)objects
-                    withName:(NSString *)name
-                       block:(PFBooleanResultBlock)block {
++ (void)unpinAllInBackground:(NSArray *)objects withName:(NSString *)name block:(PFBooleanResultBlock)block {
     [[self unpinAllInBackground:objects withName:name] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
@@ -2627,6 +2473,188 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 + (PFObjectSubclassingController *)subclassingController {
     return [PFObjectSubclassingController defaultController];
+}
+
+@end
+
+///--------------------------------------
+#pragma mark - Synchronous
+///--------------------------------------
+
+@implementation PFObject (Synchronous)
+
+#pragma mark Saving Objects
+
+- (BOOL)save {
+    return [self save:nil];
+}
+
+- (BOOL)save:(NSError **)error {
+    return [[[self saveInBackground] waitForResult:error] boolValue];
+}
+
+#pragma mark Saving Many Objects
+
++ (BOOL)saveAll:(NSArray *)objects {
+    return [PFObject saveAll:objects error:nil];
+}
+
++ (BOOL)saveAll:(NSArray *)objects error:(NSError **)error {
+    return [[[self saveAllInBackground:objects] waitForResult:error] boolValue];
+}
+
+#pragma mark Getting an Object
+
+- (instancetype)fetch {
+    return [self fetch:nil];
+}
+
+- (instancetype)fetch:(NSError **)error {
+    return [[self fetchInBackground] waitForResult:error];
+}
+
+- (instancetype)fetchIfNeeded {
+    return [self fetchIfNeeded:nil];
+}
+
+- (instancetype)fetchIfNeeded:(NSError **)error {
+    return [[self fetchIfNeededInBackground] waitForResult:error];
+}
+
+#pragma mark Getting Many Objects
+
++ (NSArray *)fetchAll:(NSArray *)objects {
+    return [self fetchAll:objects error:nil];
+}
+
++ (NSArray *)fetchAll:(NSArray *)objects error:(NSError **)error {
+    return [[self fetchAllInBackground:objects] waitForResult:error];
+}
+
++ (NSArray *)fetchAllIfNeeded:(NSArray *)objects {
+    return [self fetchAllIfNeeded:objects error:nil];
+}
+
++ (NSArray *)fetchAllIfNeeded:(NSArray *)objects error:(NSError **)error {
+    return [[self fetchAllIfNeededInBackground:objects] waitForResult:error];
+}
+
+#pragma mark Fetching From Local Datastore
+
+- (instancetype)fetchFromLocalDatastore {
+    return [self fetchFromLocalDatastore:nil];
+}
+
+- (instancetype)fetchFromLocalDatastore:(NSError **)error {
+    return [[self fetchFromLocalDatastoreInBackground] waitForResult:error];
+}
+
+#pragma mark Deleting an Object
+
+- (BOOL)delete {
+    return [self delete:nil];
+}
+
+- (BOOL)delete:(NSError **)error {
+    return [[[self deleteInBackground] waitForResult:error] boolValue];
+}
+
+#pragma mark Deleting Many Objects
+
++ (BOOL)deleteAll:(NSArray *)objects {
+    return [PFObject deleteAll:objects error:nil];
+}
+
++ (BOOL)deleteAll:(NSArray *)objects error:(NSError **)error {
+    return [[[self deleteAllInBackground:objects] waitForResult:error] boolValue];
+}
+
+#pragma mark Pinning
+
+- (BOOL)pin {
+    return [self pin:nil];
+}
+
+- (BOOL)pin:(NSError **)error {
+    return [self pinWithName:PFObjectDefaultPin error:error];
+}
+
+- (BOOL)pinWithName:(NSString *)name {
+    return [self pinWithName:name error:nil];
+}
+
+- (BOOL)pinWithName:(NSString *)name error:(NSError **)error {
+    return [[[self pinInBackgroundWithName:name] waitForResult:error] boolValue];
+}
+
+#pragma mark Pinning Many Objects
+
++ (BOOL)pinAll:(NSArray *)objects {
+    return [self pinAll:objects error:nil];
+}
+
++ (BOOL)pinAll:(NSArray *)objects error:(NSError **)error {
+    return [self pinAll:objects withName:PFObjectDefaultPin error:error];
+}
+
++ (BOOL)pinAll:(NSArray *)objects withName:(NSString *)name {
+    return [self pinAll:objects withName:name error:nil];
+}
+
++ (BOOL)pinAll:(NSArray *)objects withName:(NSString *)name error:(NSError **)error {
+    return [[[self pinAllInBackground:objects withName:name] waitForResult:error] boolValue];
+}
+
+#pragma mark Unpinning
+
+- (BOOL)unpin {
+    return [self unpinWithName:PFObjectDefaultPin];
+}
+
+- (BOOL)unpin:(NSError **)error {
+    return [self unpinWithName:PFObjectDefaultPin error:error];
+}
+
+- (BOOL)unpinWithName:(NSString *)name {
+    return [self unpinWithName:name error:nil];
+}
+
+- (BOOL)unpinWithName:(NSString *)name error:(NSError **)error {
+    return [[[self unpinInBackgroundWithName:name] waitForResult:error] boolValue];
+}
+
+#pragma mark Unpinning Many Objects
+
++ (BOOL)unpinAllObjects {
+    return [self unpinAllObjects:nil];
+}
+
++ (BOOL)unpinAllObjects:(NSError **)error {
+    return [self unpinAllObjectsWithName:PFObjectDefaultPin error:error];
+}
+
++ (BOOL)unpinAllObjectsWithName:(NSString *)name {
+    return [self unpinAllObjectsWithName:name error:nil];
+}
+
++ (BOOL)unpinAllObjectsWithName:(NSString *)name error:(NSError **)error {
+    return [[[self unpinAllObjectsInBackgroundWithName:name] waitForResult:error] boolValue];
+}
+
++ (BOOL)unpinAll:(NSArray *)objects {
+    return [self unpinAll:objects error:nil];
+}
+
++ (BOOL)unpinAll:(NSArray *)objects error:(NSError **)error {
+    return [self unpinAll:objects withName:PFObjectDefaultPin error:error];
+}
+
++ (BOOL)unpinAll:(NSArray *)objects withName:(NSString *)name {
+    return [self unpinAll:objects withName:name error:nil];
+}
+
++ (BOOL)unpinAll:(NSArray *)objects withName:(NSString *)name error:(NSError **)error {
+    return [[[self unpinAllInBackground:objects withName:name] waitForResult:error] boolValue];
 }
 
 @end
