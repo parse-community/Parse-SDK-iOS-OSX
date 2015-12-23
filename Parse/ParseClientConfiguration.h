@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @protocol ParseMutableClientConfiguration <NSObject>
 
+///--------------------------------------
+/// @name Connecting to Parse
+///--------------------------------------
+
 /**
  The Parse.com application id to configure the SDK with.
  */
@@ -37,12 +41,20 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nullable, nonatomic, copy) NSString *clientKey;
 
+///--------------------------------------
+/// @name Enabling Local Datastore
+///--------------------------------------
+
 /**
  Whether or not to enable pinning in the SDK.
 
  The default value is `NO`.
  */
 @property (nonatomic, assign, readwrite, getter=isLocalDatastoreEnabled) BOOL localDatastoreEnabled;
+
+///--------------------------------------
+/// @name Enabling Extensions Data Sharing
+///--------------------------------------
 
 /**
  When set, enables data sharing with an application group identifier.
@@ -59,6 +71,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nullable, nonatomic, copy) NSString *containingApplicationBundleIdentifier;
 
+///--------------------------------------
+/// @name Other Properties
+///--------------------------------------
+
 /**
  The maximum number of retry attempts to make upon a failed network request.
  */
@@ -66,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-/*!
+/**
  The `ParseClientConfiguration` represents the local configuration of the SDK to connect to the server with.
 
  These configurations can be stored, copied, and compared, but cannot be safely changed once the SDK is initialized.
@@ -75,6 +91,10 @@ NS_ASSUME_NONNULL_BEGIN
  `Parse.+initializeWithConfiguration:`.
  */
 @interface ParseClientConfiguration : NSObject <NSCopying>
+
+///--------------------------------------
+/// @name Connecting to Parse
+///--------------------------------------
 
 /**
  The Parse.com application id to configure the SDK with.
@@ -86,12 +106,20 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nullable, nonatomic, copy, readonly) NSString *clientKey;
 
+///--------------------------------------
+/// @name Enabling Local Datastore
+///--------------------------------------
+
 /**
  Whether or not to enable pinning in the SDK.
 
  The default value is `NO`.
  */
 @property (nonatomic, assign, readonly, getter=isLocalDatastoreEnabled) BOOL localDatastoreEnabled;
+
+///--------------------------------------
+/// @name Enabling Extensions Data Sharing
+///--------------------------------------
 
 /**
  When set, enables data sharing with an application group identifier.
@@ -108,10 +136,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nullable, nonatomic, copy, readonly) NSString *containingApplicationBundleIdentifier;
 
+///--------------------------------------
+/// @name Other Properties
+///--------------------------------------
+
 /**
  The maximum number of retry attempts to make upon a failed network request.
  */
 @property (nonatomic, assign, readonly) NSUInteger networkRetryAttempts;
+
+///--------------------------------------
+/// @name Creating a Configuration
+///--------------------------------------
 
 /**
  Create a new SDK configuration object. This will create a temporarily modifiable configuration, and pass it to a block
@@ -120,7 +156,7 @@ NS_ASSUME_NONNULL_BEGIN
  Example usage:
  
  ```
- [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientconfiguration> configuration) {
+ [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
      configuration.applicationId = ...;
      configuration.clientKey = ...;
      configuration.localDatastoreEnabled = ...;
