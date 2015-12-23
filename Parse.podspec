@@ -30,6 +30,7 @@ Pod::Spec.new do |s|
                         'Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
   s.tvos.exclude_files = 'Parse/PFNetworkActivityIndicatorManager.{h,m}',
                          'Parse/PFPush.{h,m}',
+                         'Parse/PFPush+Deprecated.{h,m}',
                          'Parse/PFInstallation.{h,m}',
                          'Parse/Internal/PFAlertView.{h,m}',
                          'Parse/Internal/Push/**/*.{h,m}',
@@ -42,6 +43,7 @@ Pod::Spec.new do |s|
                             'Parse/PFProduct.{h,m}',
                             'Parse/PFPurchase.{h,m}',
                             'Parse/PFPush.{h,m}',
+                            'Parse/PFPush+Deprecated.{h,m}',
                             'Parse/PFInstallation.{h,m}',
                             'Parse/Internal/PFAlertView.{h,m}',
                             'Parse/Internal/PFReachability.{h,m}',
