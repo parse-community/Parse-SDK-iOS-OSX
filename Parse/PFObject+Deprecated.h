@@ -10,6 +10,9 @@
 #import <Parse/PFConstants.h>
 #import <Parse/PFObject.h>
 
+/**
+ This category lists all methods of `PFObject` that are deprecated and will be removed in the near future.
+ */
 @interface PFObject (Deprecated)
 
 ///--------------------------------------

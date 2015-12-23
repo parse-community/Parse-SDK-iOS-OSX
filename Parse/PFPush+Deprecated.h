@@ -12,6 +12,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ This category lists all methods of `PFPush` that are deprecated and will be removed in the near future.
+ */
 @interface PFPush (Deprecated)
 
 ///--------------------------------------
