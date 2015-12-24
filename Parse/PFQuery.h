@@ -647,7 +647,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @result `YES` if there is a cached result for this query, otherwise `NO`.
  */
-- (BOOL)hasCachedResult;
+@property (nonatomic, assign, readonly) BOOL hasCachedResult;
 
 /**
  Clears the cached result for this query. If there is no cached result, this is a noop.
