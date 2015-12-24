@@ -91,11 +91,11 @@
             }
         }
 
-        NSString *traceLog = [result.result objectForKey:@"trace"];
+        NSString *traceLog = result.result[@"trace"];
         if (traceLog != nil) {
             NSLog(@"Pre-processing took %f seconds\n%@Client side parsing took %f seconds",
                   [querySent timeIntervalSinceDate:queryStart], traceLog,
-                  [queryReceived timeIntervalSinceNow]);
+                  queryReceived.timeIntervalSinceNow);
         }
 
         return foundObjects;

@@ -56,7 +56,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
                                             coreDataSource:(id<PFObjectLocalIdStoreProvider>)coreDataSource
                                            cacheFolderPath:(NSString *)cacheFolderPath {
     NSString *diskCachePath = [cacheFolderPath stringByAppendingPathComponent:_PFCommandCacheDiskCacheDirectoryName];
-    diskCachePath = [diskCachePath stringByStandardizingPath];
+    diskCachePath = diskCachePath.stringByStandardizingPath;
     PFCommandCache *cache = [[PFCommandCache alloc] initWithDataSource:dataSource
                                                         coreDataSource:coreDataSource
                                                       maxAttemptsCount:PFEventuallyQueueDefaultMaxAttemptsCount
@@ -96,7 +96,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
     [super removeAllCommands];
 
     NSArray *commandIdentifiers = [self _pendingCommandIdentifiers];
-    NSMutableArray *tasks = [NSMutableArray arrayWithCapacity:[commandIdentifiers count]];
+    NSMutableArray *tasks = [NSMutableArray arrayWithCapacity:commandIdentifiers.count];
 
     for (NSString *identifier in commandIdentifiers) {
         BFTask *task = [self _removeFileForCommandWithIdentifier:identifier];
@@ -127,7 +127,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
             PFCommandCachePrefixString,
             (unsigned long long)[NSDate timeIntervalSinceReferenceDate],
             _fileCounter++,
-            [[NSUUID UUID] UUIDString]];
+            [NSUUID UUID].UUIDString];
 }
 
 - (NSArray *)_pendingCommandIdentifiers {
@@ -151,7 +151,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
 
     if (innerError || !jsonData) {
         NSString *message = [NSString stringWithFormat:@"Failed to read command from cache. %@",
-                             innerError ? [innerError localizedDescription] : @""];
+                             innerError ? innerError.localizedDescription : @""];
         innerError = [PFErrorUtilities errorWithCode:kPFErrorInternalServer
                                              message:message];
         if (error) {
@@ -165,7 +165,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
                                                       error:&innerError];
     if (innerError) {
         NSString *message = [NSString stringWithFormat:@"Failed to deserialiaze command from cache. %@",
-                             [innerError localizedDescription]];
+                             innerError.localizedDescription];
         innerError = [PFErrorUtilities errorWithCode:kPFErrorInternalServer
                                              message:message];
     } else {
@@ -234,10 +234,10 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
 
         NSString *identifier = nil;
         while ((identifier = [enumerator nextObject])) {
-            NSNumber *fileSize = [enumerator fileAttributes][NSFileSize];
+            NSNumber *fileSize = enumerator.fileAttributes[NSFileSize];
             if (fileSize) {
                 commandSizes[identifier] = fileSize;
-                size += [fileSize unsignedIntegerValue];
+                size += fileSize.unsignedIntegerValue;
             }
         }
 
@@ -245,7 +245,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
 
         if (size > self.diskCacheSize) {
             // Get identifiers and sort them to remove oldest commands first
-            NSArray *identifiers = [[commandSizes allKeys] sortedArrayUsingSelector:@selector(compare:)];
+            NSArray *identifiers = [commandSizes.allKeys sortedArrayUsingSelector:@selector(compare:)];
             for (NSString *identifier in identifiers) @autoreleasepool {
                 [self _removeFileForCommandWithIdentifier:identifier];
                 size -= [commandSizes[identifier] unsignedIntegerValue];
@@ -284,7 +284,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
         NSData *data = [NSJSONSerialization dataWithJSONObject:[command dictionaryRepresentation]
                                                        options:0
                                                          error:&error];
-        NSUInteger commandSize = [data length];
+        NSUInteger commandSize = data.length;
         if (commandSize > self.diskCacheSize) {
             error = [PFErrorUtilities errorWithCode:kPFErrorInternalServer
                                             message:@"Failed to run command, because it's too big."];

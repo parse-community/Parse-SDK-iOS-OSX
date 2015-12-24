@@ -238,7 +238,7 @@
     self = [super init];
     if (!self) return nil;
 
-    _objects = [[NSSet setWithArray:array] allObjects];
+    _objects = [NSSet setWithArray:array].allObjects;
 
     return self;
 }
@@ -294,7 +294,7 @@
                 if (index == NSNotFound) {
                     [newValue addObject:objectToAdd];
                 } else {
-                    [newValue replaceObjectAtIndex:index withObject:objectToAdd];
+                    newValue[index] = objectToAdd;
                 }
             } else if (![newValue containsObject:objectToAdd]) {
                 [newValue addObject:objectToAdd];
@@ -372,7 +372,7 @@
                     return ([obj isKindOfClass:[PFObject class]] &&
                             [[obj objectId] isEqualToString:[objectToRemove objectId]]);
                 }];
-                if ([indexes count] != 0) {
+                if (indexes.count != 0) {
                     [newValue removeObjectsAtIndexes:indexes];
                 }
             }
@@ -405,7 +405,7 @@
 + (instancetype)addRelationToObjects:(NSArray *)targets {
     PFRelationOperation *op = [[self alloc] init];
     if (targets.count > 0) {
-        op.targetClass = [[targets firstObject] parseClassName];
+        op.targetClass = [targets.firstObject parseClassName];
     }
 
     for (PFObject *target in targets) {

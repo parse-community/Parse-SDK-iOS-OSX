@@ -101,7 +101,7 @@
 
         //TODO (nlutsenko): Check for error here.
         NSNumber *fileSize = [PFInternalUtils fileSizeOfFileAtPath:contentFilePath error:nil];
-        [request setValue:[fileSize stringValue] forHTTPHeaderField:PFHTTPRequestHeaderNameContentLength];
+        [request setValue:fileSize.stringValue forHTTPHeaderField:PFHTTPRequestHeaderNameContentLength];
 
         return request;
     }];

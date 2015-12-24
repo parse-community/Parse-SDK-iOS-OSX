@@ -47,7 +47,7 @@
 
 - (void)setPushDate:(NSDate *)pushDate {
     if (self.pushDate != pushDate) {
-        NSTimeInterval interval = [pushDate timeIntervalSinceNow];
+        NSTimeInterval interval = pushDate.timeIntervalSinceNow;
         PFParameterAssert(interval > 0, @"Can't set the scheduled push time in the past.");
         PFParameterAssert(interval <= 60 * 24 * 14, @"Can't set the schedule push time more than two weeks from now.");
         _pushDate = pushDate;

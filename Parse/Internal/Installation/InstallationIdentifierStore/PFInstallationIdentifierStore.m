@@ -104,7 +104,7 @@ static NSString *const PFInstallationIdentifierFileName = @"installationId";
                     return installationId;
                 }
             }
-            installationId = [[[NSUUID UUID] UUIDString] lowercaseString];
+            installationId = [NSUUID UUID].UUIDString.lowercaseString;
             return [[group setDataAsync:[installationId dataUsingEncoding:NSUTF8StringEncoding]
                                 forKey:PFInstallationIdentifierFileName] continueWithSuccessResult:installationId];
         }] continueWithBlock:^id(BFTask PF_GENERIC(NSString *)*task) {

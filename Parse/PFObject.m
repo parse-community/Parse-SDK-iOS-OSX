@@ -405,7 +405,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }
 
     // TODO: (nlutsenko) Get rid of this once we allow localIds in batches.
-    NSArray *remaining = [uniqueObjects allObjects];
+    NSArray *remaining = uniqueObjects.allObjects;
     NSMutableArray *finished = [NSMutableArray array];
     while (remaining.count > 0) {
         // Partition the objects into two sets: those that can be save immediately,
@@ -988,7 +988,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                     PFConsistencyAssert(remoteOperationSet, @"'remoteOperationSet' should not be nil.");
                     NSUInteger index = [operationSetQueue indexOfObject:localOperationSet];
                     [remoteOperationSet mergeOperationSet:localOperationSet];
-                    [operationSetQueue replaceObjectAtIndex:index withObject:remoteOperationSet];
+                    operationSetQueue[index] = remoteOperationSet;
                 }
 
                 return;
@@ -1170,7 +1170,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
         PFFieldOperation *oldOperation = [self unsavedChanges][key];
         PFFieldOperation *newOperation = [operation mergeWithPrevious:oldOperation];
-        [[self unsavedChanges] setObject:newOperation forKey:key];
+        [self unsavedChanges][key] = newOperation;
         [_availableKeys addObject:key];
     }
 }
@@ -1201,7 +1201,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
  */
 - (BOOL)_hasChanges {
     @synchronized (lock) {
-        return [[self unsavedChanges] count] > 0;
+        return [self unsavedChanges].count > 0;
     }
 }
 
@@ -1402,7 +1402,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 [self startSave];
                 BFTask *childrenTask = [self _saveChildrenInBackgroundWithCurrentUser:currentUser
                                                                          sessionToken:sessionToken];
-                if (!dirty && ![changes count]) {
+                if (!dirty && changes.count != 0) {
                     return childrenTask;
                 }
                 return [[childrenTask continueWithSuccessBlock:^id(BFTask *task) {

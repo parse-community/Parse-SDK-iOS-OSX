@@ -239,7 +239,7 @@
             return task;
         }
 
-        if ([[task.error userInfo][@"temporary"] boolValue] && attempts > 1) {
+        if ([task.error.userInfo[@"temporary"] boolValue] && attempts > 1) {
             PFLogError(PFLoggingTagCommon,
                        @"Network connection failed. Making attempt %lu after sleeping for %f seconds.",
                        (unsigned long)(_retryAttempts - attempts + 1), (double)delay);

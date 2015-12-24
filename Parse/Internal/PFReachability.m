@@ -191,7 +191,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 
 - (void)_startMonitoringReachabilityWithURL:(NSURL *)url {
     dispatch_barrier_async(_synchronizationQueue, ^{
-        _networkReachability = SCNetworkReachabilityCreateWithName(NULL, [[url host] UTF8String]);
+        _networkReachability = SCNetworkReachabilityCreateWithName(NULL, url.host.UTF8String);
         if (_networkReachability != NULL) {
             // Set the initial flags
             SCNetworkReachabilityFlags flags;

@@ -20,13 +20,13 @@ NSUInteger const PFRESTObjectBatchCommandSubcommandsLimit = 50;
 + (nonnull instancetype)batchCommandWithCommands:(nonnull NSArray PF_GENERIC(PFRESTCommand *)*)commands
                                     sessionToken:(nullable NSString *)sessionToken
                                        serverURL:(nonnull NSURL *)serverURL {
-    PFParameterAssert([commands count] <= PFRESTObjectBatchCommandSubcommandsLimit,
+    PFParameterAssert(commands.count <= PFRESTObjectBatchCommandSubcommandsLimit,
                       @"Max of %d commands are allowed in a single batch command",
                       (int)PFRESTObjectBatchCommandSubcommandsLimit);
 
-    NSMutableArray *requests = [NSMutableArray arrayWithCapacity:[commands count]];
+    NSMutableArray *requests = [NSMutableArray arrayWithCapacity:commands.count];
     for (PFRESTCommand *command in commands) {
-        NSURL *commandURL = [PFURLConstructor URLFromAbsoluteString:[serverURL absoluteString]
+        NSURL *commandURL = [PFURLConstructor URLFromAbsoluteString:serverURL.absoluteString
                                                                path:command.httpPath
                                                               query:nil];
         NSMutableDictionary *requestDictionary = [@{ @"method" : command.httpMethod,

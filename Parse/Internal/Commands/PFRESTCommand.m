@@ -149,8 +149,8 @@ static const int PFRESTCommandCacheKeyVersion = 1;
         if (objectId) {
             self.localId = nil;
 
-            NSArray *components = [self.httpPath pathComponents];
-            if ([components count] == 2) {
+            NSArray *components = self.httpPath.pathComponents;
+            if (components.count == 2) {
                 self.httpPath = [NSString pathWithComponents:[components arrayByAddingObject:objectId]];
             }
 

@@ -169,7 +169,7 @@
                      // Remove negation from any subpredicates.
                      NSMutableArray *newSubpredicates =
                      [NSMutableArray arrayWithCapacity:compound.subpredicates.count];
-                     for (NSPredicate *subPredicate in [compound subpredicates]) {
+                     for (NSPredicate *subPredicate in compound.subpredicates) {
                          [newSubpredicates addObject:[self removeNegation:subPredicate]];
                      }
 
@@ -192,7 +192,7 @@
     return [self _mapPredicate:predicate
                  compoundBlock:nil
                comparisonBlock:^NSPredicate *(NSComparisonPredicate *predicate) {
-                   if ([predicate predicateOperatorType] == NSBetweenPredicateOperatorType) {
+                   if (predicate.predicateOperatorType == NSBetweenPredicateOperatorType) {
                        NSComparisonPredicate *between = (NSComparisonPredicate *)predicate;
                        NSExpression *rhs = between.rightExpression;
 
@@ -246,7 +246,7 @@
                        comparison.rightExpression.expressionType == NSKeyPathExpressionType) {
                        // This is a Yoda condition.
                        NSPredicateOperatorType newType;
-                       switch ([comparison predicateOperatorType]) {
+                       switch (comparison.predicateOperatorType) {
                            case NSEqualToPredicateOperatorType: {
                                newType = NSEqualToPredicateOperatorType;
                                break;

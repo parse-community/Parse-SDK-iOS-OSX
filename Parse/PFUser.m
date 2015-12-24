@@ -440,7 +440,7 @@ static BOOL revocableSessionEnabled_;
             } else {
                 // Otherwise, treat this as a fresh login, and switch the current user to the new user.
                 PFUser *newUser = [[self class] _objectFromDictionary:result.result
-                                                     defaultClassName:[self parseClassName]
+                                                     defaultClassName:self.parseClassName
                                                          completeData:YES];
                 @synchronized ([newUser lock]) {
                     [newUser startSave];
@@ -530,7 +530,7 @@ static BOOL revocableSessionEnabled_;
                             }
 
                             @synchronized(self.lock) {
-                                [operationSetQueue replaceObjectAtIndex:0 withObject:selfOperations];
+                                operationSetQueue[0] = selfOperations;
                                 [self rebuildEstimatedData];
                             }
                         }

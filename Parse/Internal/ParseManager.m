@@ -221,7 +221,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     __block PFKeychainStore *store = nil;
     dispatch_sync(_keychainStoreAccessQueue, ^{
         if (!_keychainStore) {
-            NSString *bundleIdentifier = (self.configuration.containingApplicationBundleIdentifier ?: [[NSBundle mainBundle] bundleIdentifier]);
+            NSString *bundleIdentifier = (self.configuration.containingApplicationBundleIdentifier ?: [NSBundle mainBundle].bundleIdentifier);
             NSString *service = [NSString stringWithFormat:@"%@.%@", bundleIdentifier, PFKeychainStoreDefaultService];
             _keychainStore = [[PFKeychainStore alloc] initWithService:service];
         }
@@ -459,7 +459,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     NSString *localSandboxDataPath = [self.fileManager parseLocalSandboxDataDirectoryPath];
     NSString *dataPath = [self.fileManager parseDefaultDataDirectoryPath];
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:localSandboxDataPath error:nil];
-    if ([contents count] != 0) {
+    if (contents.count != 0) {
         // If moving files fails - just log the error, but don't fail.
         NSError *error = nil;
         [[PFFileManager moveContentsOfDirectoryAsyncAtPath:localSandboxDataPath

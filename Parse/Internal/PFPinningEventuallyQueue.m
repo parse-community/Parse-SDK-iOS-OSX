@@ -139,7 +139,7 @@
 ///--------------------------------------
 
 - (NSString *)_newIdentifierForCommand:(id<PFNetworkCommand>)command {
-    return [[NSUUID UUID] UUIDString];
+    return [NSUUID UUID].UUIDString;
 }
 
 - (NSArray *)_pendingCommandIdentifiers {

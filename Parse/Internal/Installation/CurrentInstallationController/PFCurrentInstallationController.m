@@ -107,7 +107,7 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
             PFInstallation *installation = task.result;
             //TODO: (nlutsenko) Make it not terrible aka actually use task chaining here.
             NSString *installationId = [[self.installationIdentifierStore getInstallationIdentifierAsync] waitForResult:nil];
-            installationId = [installationId  lowercaseString];
+            installationId = installationId.lowercaseString;
             if (!installation || ![installationId isEqualToString:installation.installationId]) {
                 // If there's no installation object, or the object's installation
                 // ID doesn't match this device's installation ID, create a new
@@ -210,9 +210,9 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
 
         return [[query findObjectsInBackground] continueWithSuccessBlock:^id(BFTask *task) {
             NSArray *results = task.result;
-            if ([results count] == 1) {
-                return [BFTask taskWithResult:[results firstObject]];
-            } else if ([results count] != 0) {
+            if (results.count == 1) {
+                return [BFTask taskWithResult:results.firstObject];
+            } else if (results.count != 0) {
                 return [[PFObject unpinAllObjectsInBackgroundWithName:PFCurrentInstallationPinName]
                         continueWithSuccessResult:nil];
             }

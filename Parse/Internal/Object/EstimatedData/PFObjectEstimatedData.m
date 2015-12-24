@@ -68,7 +68,7 @@
 }
 
 - (NSArray *)allKeys {
-    return [_dataDictionary allKeys];
+    return _dataDictionary.allKeys;
 }
 
 - (NSDictionary *)dictionaryRepresentation {

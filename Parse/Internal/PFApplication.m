@@ -43,7 +43,7 @@
 }
 
 - (BOOL)isExtensionEnvironment {
-    return [[[NSBundle mainBundle] bundlePath] hasSuffix:@".appex"];
+    return [[NSBundle mainBundle].bundlePath hasSuffix:@".appex"];
 }
 
 - (NSInteger)iconBadgeNumber {

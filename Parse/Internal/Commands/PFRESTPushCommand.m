@@ -28,12 +28,12 @@
         parameters[@"where"] = queryParameters[@"where"];
     } else {
         if (state.channels) {
-            parameters[@"channels"] = [state.channels allObjects];
+            parameters[@"channels"] = state.channels.allObjects;
         }
     }
 
     // If there are no conditions set, then push to everyone by specifying empty query conditions.
-    if ([parameters count] == 0) {
+    if (parameters.count == 0) {
         parameters[@"where"] = @{};
     }
 

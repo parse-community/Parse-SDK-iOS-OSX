@@ -261,7 +261,7 @@
 }
 
 - (id)debugQuickLookObject {
-    return [[self dictionaryRepresentation] description];
+    return [self dictionaryRepresentation].description;
 }
 
 @end

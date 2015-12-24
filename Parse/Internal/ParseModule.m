@@ -73,7 +73,7 @@ typedef void (^ParseModuleEnumerationBlock)(id<ParseModule> module, BOOL *stop, 
 }
 
 - (NSUInteger)modulesCount {
-    return [self.modules count];
+    return self.modules.count;
 }
 
 ///--------------------------------------

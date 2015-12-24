@@ -199,7 +199,7 @@
 - (BFTask *)_saveCommandResultAsync:(PFCommandResult *)result forCommandCacheKey:(NSString *)cacheKey {
     NSString *resultString = result.resultString;
     if (resultString) {
-        [self.commonDataSource.keyValueCache setObject:resultString forKey:cacheKey];
+        self.commonDataSource.keyValueCache[cacheKey] = resultString;
     }
     // Roll-forward the original result.
     return [BFTask taskWithResult:result];

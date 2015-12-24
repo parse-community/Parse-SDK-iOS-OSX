@@ -135,7 +135,7 @@
                            withProgressBlock:(PFProgressBlock)progressBlock
                                 sessionToken:(NSString *)sessionToken {
     NSString *productIdentifier = transaction.payment.productIdentifier;
-    NSURL *appStoreReceiptURL = [self.bundle appStoreReceiptURL];
+    NSURL *appStoreReceiptURL = self.bundle.appStoreReceiptURL;
     if (!productIdentifier || !appStoreReceiptURL) {
         return [BFTask taskWithError:[NSError errorWithDomain:PFParseErrorDomain
                                                          code:kPFErrorReceiptMissing
@@ -177,7 +177,7 @@
 
         NSString *finalFilePath = [self assetContentPathForProductWithIdentifier:transaction.payment.productIdentifier
                                                                         fileName:file.name];
-        NSString *directoryPath = [finalFilePath stringByDeletingLastPathComponent];
+        NSString *directoryPath = finalFilePath.stringByDeletingLastPathComponent;
         return [[[[[PFFileManager createDirectoryIfNeededAsyncAtPath:directoryPath] continueWithBlock:^id(BFTask *task) {
             if (task.faulted) {
                 return [BFTask taskWithError:[NSError errorWithDomain:PFParseErrorDomain

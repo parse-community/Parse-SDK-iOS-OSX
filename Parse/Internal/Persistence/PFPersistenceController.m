@@ -111,7 +111,7 @@ static NSString *const PFUserDefaultsPersistenceParseKey = @"com.parse";
 #else
     if (self.applicationGroupIdentifier) {
         NSURL *containerPath = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:self.applicationGroupIdentifier];
-        directoryPath = [[containerPath path] stringByAppendingPathComponent:PFFilePersistenceParseDirectoryName];
+        directoryPath = [containerPath.path stringByAppendingPathComponent:PFFilePersistenceParseDirectoryName];
         directoryPath = [directoryPath stringByAppendingPathComponent:self.applicationIdentifier];
     } else {
         NSString *library = [NSHomeDirectory() stringByAppendingPathComponent:@"Library"];

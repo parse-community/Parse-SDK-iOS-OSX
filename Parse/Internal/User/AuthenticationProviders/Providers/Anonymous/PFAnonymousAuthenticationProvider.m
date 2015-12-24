@@ -29,7 +29,7 @@ NSString *const PFAnonymousUserAuthenticationType = @"anonymous";
 
 - (NSDictionary *)authData {
     NSString *uuidString = [NSUUID UUID].UUIDString;
-    uuidString = [uuidString lowercaseString];
+    uuidString = uuidString.lowercaseString;
     return @{ @"id" : uuidString };
 }
 
