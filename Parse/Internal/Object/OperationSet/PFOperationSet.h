@@ -55,9 +55,10 @@
 /// @name Accessors
 ///--------------------------------------
 
+@property (nonatomic, assign, readonly) NSUInteger count;
+
 - (id)objectForKey:(id)aKey;
 - (id)objectForKeyedSubscript:(id)aKey;
-- (NSUInteger)count;
 - (NSEnumerator *)keyEnumerator;
 
 - (void)enumerateKeysAndObjectsUsingBlock:(void (^)(NSString *key, PFFieldOperation *operation, BOOL *stop))block;

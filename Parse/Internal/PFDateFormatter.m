@@ -71,7 +71,7 @@
 
 - (NSString *)preciseStringFromDate:(NSDate *)date {
     __block NSString *string = nil;
-    NSTimeInterval interval = [date timeIntervalSince1970];
+    NSTimeInterval interval = date.timeIntervalSince1970;
     dispatch_sync(_synchronizationQueue, ^{
         sqlite3_bind_double(_dateToStringStatement, 1, interval);
 
@@ -93,7 +93,7 @@
     __block sqlite3_int64 interval = 0;
     __block double seconds = 0.0;
     dispatch_sync(_synchronizationQueue, ^{
-        const char *utf8String = [string UTF8String];
+        const char *utf8String = string.UTF8String;
 
         sqlite3_bind_text(_stringToDateStatement, 1, utf8String, -1, SQLITE_STATIC);
         sqlite3_bind_text(_stringToDateStatement, 2, utf8String, -1, SQLITE_STATIC);

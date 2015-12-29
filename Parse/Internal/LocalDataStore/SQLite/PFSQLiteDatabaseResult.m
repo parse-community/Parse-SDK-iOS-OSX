@@ -165,9 +165,9 @@
 }
 
 - (int)columnIndexForName:(NSString *)columnName {
-    NSNumber *index = self.columnNameToIndexMap[[columnName lowercaseString]];
+    NSNumber *index = self.columnNameToIndexMap[columnName.lowercaseString];
     if (index) {
-        return [index intValue];
+        return index.intValue;
     }
     // not found
     return -1;
@@ -176,11 +176,11 @@
 - (NSDictionary *)columnNameToIndexMap {
     if (!_columnNameToIndexMap) {
         PFThreadsafetySafeDispatchSync(_databaseQueue, ^{
-            int columnCount = sqlite3_column_count([self.statement sqliteStatement]);
+            int columnCount = sqlite3_column_count(self.statement.sqliteStatement);
             NSMutableDictionary *mutableColumnNameToIndexMap = [[NSMutableDictionary alloc] initWithCapacity:columnCount];
             for (int i = 0; i < columnCount; ++i) {
-                NSString *key = [NSString stringWithUTF8String:sqlite3_column_name([self.statement sqliteStatement], i)];
-                mutableColumnNameToIndexMap[[key lowercaseString]] = @(i);
+                NSString *key = [NSString stringWithUTF8String:sqlite3_column_name(self.statement.sqliteStatement, i)];
+                mutableColumnNameToIndexMap[key.lowercaseString] = @(i);
             }
             _columnNameToIndexMap = mutableColumnNameToIndexMap;
         });

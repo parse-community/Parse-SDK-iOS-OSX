@@ -13,7 +13,7 @@ static void *const PFThreadsafetyQueueIDKey = (void *)&PFThreadsafetyQueueIDKey;
 
 dispatch_queue_t PFThreadsafetyCreateQueueForObject(id object) {
     NSString *label = [NSStringFromClass([object class]) stringByAppendingString:@".synchronizationQueue"];
-    dispatch_queue_t queue = dispatch_queue_create([label UTF8String], DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queue = dispatch_queue_create(label.UTF8String, DISPATCH_QUEUE_SERIAL);
 
     void *uuid = calloc(1, sizeof(uuid));
     dispatch_queue_set_specific(queue, PFThreadsafetyQueueIDKey, uuid, free);

@@ -57,7 +57,7 @@
     // Run a single runloop tick to trigger the parse initializaiton.
     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantPast]];
 
-    XCTAssertEqual([collection modulesCount], 0);
+    XCTAssertEqual(collection.modulesCount, 0);
 }
 
 - (void)testModuleRemove {
@@ -73,16 +73,16 @@
 
     XCTAssertTrue([collection containsModule:moduleB]);
     XCTAssertFalse([collection containsModule:moduleA]);
-    XCTAssertEqual([collection modulesCount], 1);
+    XCTAssertEqual(collection.modulesCount, 1);
 }
 
 - (void)testNilModule {
     ParseModuleCollection *collection = [[ParseModuleCollection alloc] init];
 
     XCTAssertNoThrow([collection addParseModule:nil]);
-    XCTAssertEqual([collection modulesCount], 0);
+    XCTAssertEqual(collection.modulesCount, 0);
     XCTAssertNoThrow([collection removeParseModule:nil]);
-    XCTAssertEqual([collection modulesCount], 0);
+    XCTAssertEqual(collection.modulesCount, 0);
 }
 
 @end

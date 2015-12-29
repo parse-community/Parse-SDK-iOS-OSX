@@ -104,7 +104,7 @@
 }
 
 - (void)_writeDataOutputStreamData:(NSData *)data {
-    NSInteger length = [data length];
+    NSInteger length = data.length;
     while (YES) {
         NSInteger bytesWritten = 0;
         if ([self.dataOutputStream hasSpaceAvailable]) {

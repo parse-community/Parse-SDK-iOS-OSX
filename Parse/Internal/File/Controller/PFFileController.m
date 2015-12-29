@@ -260,7 +260,7 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
         return nil;
     }
 
-    NSString *filename = [fileState.secureURLString lastPathComponent];
+    NSString *filename = fileState.secureURLString.lastPathComponent;
     NSString *path = [self.cacheFilesDirectoryPath stringByAppendingPathComponent:filename];
     return path;
 }
@@ -272,8 +272,7 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
 }
 
 - (BFTask *)clearFileCacheAsync {
-    NSString *path = [self cacheFilesDirectoryPath];
-    return [PFFileManager removeDirectoryContentsAsyncAtPath:path];
+    return [PFFileManager removeDirectoryContentsAsyncAtPath:self.cacheFilesDirectoryPath];
 }
 
 @end

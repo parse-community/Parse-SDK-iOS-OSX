@@ -142,11 +142,11 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
         return contents;
     }] continueWithSuccessBlock:^id(BFTask *task) {
         NSArray *contents = task.result;
-        if ([contents count] == 0) {
+        if (contents.count == 0) {
             return nil;
         }
 
-        NSMutableArray *tasks = [NSMutableArray arrayWithCapacity:[contents count]];
+        NSMutableArray *tasks = [NSMutableArray arrayWithCapacity:contents.count];
         for (NSString *path in contents) {
             BFTask *task = [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
                 NSError *error = nil;
@@ -254,7 +254,7 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
     NSString *directoryPath = nil;
     if (self.applicationGroupIdentifier) {
         NSURL *containerPath = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:self.applicationGroupIdentifier];
-        directoryPath = [[containerPath path] stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
+        directoryPath = [containerPath.path stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
         directoryPath = [directoryPath stringByAppendingPathComponent:self.applicationIdentifier];
     } else {
         return [self parseLocalSandboxDataDirectoryPath];
@@ -296,7 +296,7 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
 
 - (NSString *)parseCacheItemPathForPathComponent:(NSString *)component {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *folderPath = [paths firstObject];
+    NSString *folderPath = paths.firstObject;
     folderPath = [folderPath stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
 #if !TARGET_OS_IPHONE
     // We append the applicationId in case the OS X application isn't sandboxed,
@@ -304,7 +304,7 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
     folderPath = [folderPath stringByAppendingPathComponent:self.applicationIdentifier];
 #endif
     folderPath = [folderPath stringByAppendingPathComponent:component];
-    return [folderPath stringByStandardizingPath];
+    return folderPath.stringByStandardizingPath;
 }
 
 ///--------------------------------------

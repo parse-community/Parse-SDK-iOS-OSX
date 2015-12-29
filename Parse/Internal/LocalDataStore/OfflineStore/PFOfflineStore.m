@@ -154,8 +154,8 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         }] forKey:object];
         uuidTask = [self.objectToUUIDMap objectForKey:object];
     }
-    NSString *className = [object parseClassName];
-    NSString *objectId = [object objectId];
+    NSString *className = object.parseClassName;
+    NSString *objectId = object.objectId;
 
     // If this gets set, then it will contain data from offline store that need to be merged
     // into existing object in memory
@@ -266,7 +266,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
             return object;
         }];
 
-        NSArray *objectValues = [offlineObjects allValues];
+        NSArray *objectValues = offlineObjects.allValues;
         return [[BFTask taskForCompletionOfAllTasks:objectValues] continueWithSuccessBlock:^id(BFTask *task) {
             PFDecoder *decoder = [PFOfflineDecoder decoderWithOfflineObjects:offlineObjects];
             [object mergeFromRESTDictionary:parsedJson withDecoder:decoder];
@@ -369,7 +369,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 - (BFTask *)saveObjectLocallyAsync:(PFObject *)object
                                key:(NSString *)key
                           database:(PFSQLiteDatabase *)database {
-    if ([object objectId] != nil && !object.dataAvailable &&
+    if (object.objectId != nil && !object.dataAvailable &&
         ![object _hasChanges] && ![object _hasOutstandingOperations]) {
         return [BFTask taskWithResult:nil];
     }
@@ -390,8 +390,8 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         return [encoder encodeFinished];
     }] continueWithSuccessBlock:^id(BFTask *task) {
         // Time to actually save the object
-        NSString *className = [object parseClassName];
-        NSString *objectId = [object objectId];
+        NSString *className = object.parseClassName;
+        NSString *objectId = object.objectId;
         NSString *encodedString = [PFJSONSerialization stringFromJSONObject:encoded];
         NSString *updateFields = nil;
         NSArray *queryParams = nil;
@@ -837,7 +837,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 
 - (BFTask *)getOrCreateUUIDAsyncForObject:(PFObject *)object
                                  database:(PFSQLiteDatabase *)database {
-    NSString *newUUID = [[NSUUID UUID] UUIDString];
+    NSString *newUUID = [NSUUID UUID].UUIDString;
     BFTaskCompletionSource *tcs = [BFTaskCompletionSource taskCompletionSource];
 
     @synchronized (self.lock) {
@@ -863,7 +863,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     NSString *query = [NSString stringWithFormat:@"INSERT INTO %@(%@, %@) VALUES(?, ?);",
                        PFOfflineStoreTableOfObjects, PFOfflineStoreKeyOfUUID, PFOfflineStoreKeyOfClassName];
     [[database executeSQLAsync:query
-          withArgumentsInArray:@[ newUUID, [object parseClassName]]] continueWithSuccessBlock:^id(BFTask *task) {
+          withArgumentsInArray:@[ newUUID, object.parseClassName] ] continueWithSuccessBlock:^id(BFTask *task) {
         [tcs setResult:newUUID];
         return nil;
     }];

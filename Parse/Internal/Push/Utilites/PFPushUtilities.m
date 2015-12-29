@@ -71,8 +71,8 @@
     SystemSoundID soundId = -1;
 
     if (audioFileName) {
-        NSURL *bundlePath = [[NSBundle mainBundle] URLForResource:[audioFileName stringByDeletingPathExtension]
-                                                    withExtension:[audioFileName pathExtension]];
+        NSURL *bundlePath = [[NSBundle mainBundle] URLForResource:audioFileName.stringByDeletingPathExtension
+                                                    withExtension:audioFileName.pathExtension];
 
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)bundlePath, &soundId);
     }

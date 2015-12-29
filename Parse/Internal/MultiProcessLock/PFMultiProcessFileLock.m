@@ -41,9 +41,8 @@ static const NSTimeInterval PFMultiProcessLockAttemptsDelay = 0.001;
     _filePath = [path copy];
     _lockFilePath = [path stringByAppendingPathExtension:@"pflock"];
 
-    NSString *queueName = [NSString stringWithFormat:@"com.parse.multiprocess.%@",
-                           [[path lastPathComponent] stringByDeletingPathExtension]];
-    _synchronizationQueue = dispatch_queue_create([queueName UTF8String], DISPATCH_QUEUE_SERIAL);
+    NSString *queueName = [NSString stringWithFormat:@"com.parse.multiprocess.%@", path.lastPathComponent.stringByDeletingPathExtension];
+    _synchronizationQueue = dispatch_queue_create(queueName.UTF8String, DISPATCH_QUEUE_SERIAL);
 
     return self;
 }
@@ -94,7 +93,7 @@ static const NSTimeInterval PFMultiProcessLockAttemptsDelay = 0.001;
 ///--------------------------------------
 
 - (BOOL)_tryLock {
-    const char *filePath = [self.lockFilePath fileSystemRepresentation];
+    const char *filePath = self.lockFilePath.fileSystemRepresentation;
 
     // Atomically create a lock file if it doesn't exist and acquire the lock.
     _fileDescriptor = open(filePath, (O_RDWR | O_CREAT | O_EXLOCK),

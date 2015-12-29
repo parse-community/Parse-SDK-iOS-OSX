@@ -109,10 +109,10 @@ typedef BOOL (^PFSubQueryMatcherBlock)(id object, NSArray *results);
     if ([key rangeOfString:@"."].location != NSNotFound) {
         NSArray *parts = [key componentsSeparatedByString:@"."];
 
-        NSString *firstKey = [parts firstObject];
+        NSString *firstKey = parts.firstObject;
         NSString *rest = nil;
-        if ([parts count] > 1) {
-            NSRange range = NSMakeRange(1, [parts count] - 1);
+        if (parts.count > 1) {
+            NSRange range = NSMakeRange(1, parts.count - 1);
             rest = [[parts subarrayWithRange:range] componentsJoinedByString:@"."];
         }
         id value = [self valueForContainer:container key:firstKey depth:depth + 1];
@@ -387,7 +387,7 @@ greaterThanOrEqualTo:(id)constraint {
     }
     PFGeoPoint *point1 = constraint;
     PFGeoPoint *point2 = value;
-    return [point1 distanceInRadiansTo:point2] <= [maxDistance doubleValue];
+    return [point1 distanceInRadiansTo:point2] <= maxDistance.doubleValue;
 }
 
 /**
@@ -689,10 +689,10 @@ greaterThanOrEqualTo:(id)constraint {
     // Descend into the container and try again
     NSArray *parts = [include componentsSeparatedByString:@"."];
 
-    NSString *key = [parts firstObject];
+    NSString *key = parts.firstObject;
     NSString *rest = nil;
-    if ([parts count] > 1) {
-        NSRange range = NSMakeRange(1, [parts count] - 1);
+    if (parts.count > 1) {
+        NSRange range = NSMakeRange(1, parts.count - 1);
         rest = [[parts subarrayWithRange:range] componentsJoinedByString:@"."];
     }
 
@@ -727,11 +727,11 @@ greaterThanOrEqualTo:(id)constraint {
         return YES;
     }
 
-    PFACL *acl = [object ACL];
+    PFACL *acl = object.ACL;
     if (acl == nil) {
         return YES;
     }
-    if ([acl getPublicReadAccess]) {
+    if (acl.publicReadAccess) {
         return YES;
     }
     if (user != nil && [acl getReadAccessForUser:user]) {
@@ -747,11 +747,11 @@ greaterThanOrEqualTo:(id)constraint {
         return YES;
     }
 
-    PFACL *acl = [object ACL];
+    PFACL *acl = object.ACL;
     if (acl == nil) {
         return YES;
     }
-    if ([acl getPublicWriteAccess]) {
+    if (acl.publicWriteAccess) {
         return YES;
     }
     if (user != nil && [acl getWriteAccessForUser:user]) {

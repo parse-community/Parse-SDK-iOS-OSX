@@ -223,9 +223,9 @@
         // Silence the warning if we are loading from LDS
         task = [[query findObjectsInBackground] continueWithSuccessBlock:^id(BFTask *task) {
             NSArray *results = task.result;
-            if ([results count] == 1) {
+            if (results.count == 1) {
                 return results.firstObject;
-            } else if ([results count] != 0) {
+            } else if (results.count != 0) {
                 return [[PFObject unpinAllObjectsInBackgroundWithName:PFUserCurrentUserPinName] continueWithSuccessResult:nil];
             }
 
@@ -308,7 +308,7 @@
             if (user.sessionToken) {
                 userData[PFUserSessionTokenRESTKey] = [user.sessionToken copy];
             }
-            if ([user.authData count]) {
+            if (user.authData.count) {
                 userData[PFUserAuthDataRESTKey] = [user.authData copy];
             }
         }

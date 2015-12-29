@@ -24,7 +24,7 @@
 #include <dirent.h>
 
 static NSString *PFDeviceSysctlByName(NSString *name) {
-    const char *charName = [name UTF8String];
+    const char *charName = name.UTF8String;
     NSString *string = nil;
     size_t size = 0;
     char *answer = NULL;

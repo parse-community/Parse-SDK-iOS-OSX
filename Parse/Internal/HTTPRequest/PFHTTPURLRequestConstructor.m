@@ -41,9 +41,9 @@ static NSString *const PFHTTPURLRequestContentTypeJSON = @"application/json; cha
         [request setValue:PFHTTPURLRequestContentTypeJSON forHTTPHeaderField:PFHTTPRequestHeaderNameContentType];
 
         NSError *error = nil;
-        [request setHTTPBody:[NSJSONSerialization dataWithJSONObject:parameters
-                                                             options:(NSJSONWritingOptions)0
-                                                               error:&error]];
+        request.HTTPBody = [NSJSONSerialization dataWithJSONObject:parameters
+                                                           options:(NSJSONWritingOptions)0
+                                                             error:&error];
         PFConsistencyAssert(error == nil, @"Failed to serialize JSON with error = %@", error);
     }
     return request;

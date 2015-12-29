@@ -63,19 +63,17 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     // Set up all the queues
     NSString *queueBaseLabel = [NSString stringWithFormat:@"com.parse.%@", NSStringFromClass([self class])];
 
-    _synchronizationQueue = dispatch_queue_create([[NSString stringWithFormat:@"%@.synchronization",
-                                                    queueBaseLabel] UTF8String],
+    _synchronizationQueue = dispatch_queue_create([NSString stringWithFormat:@"%@.synchronization", queueBaseLabel].UTF8String,
                                                   DISPATCH_QUEUE_SERIAL);
     PFMarkDispatchQueue(_synchronizationQueue);
     _synchronizationExecutor = [BFExecutor executorWithDispatchQueue:_synchronizationQueue];
 
-    _processingQueue = dispatch_queue_create([[NSString stringWithFormat:@"%@.processing",
-                                               queueBaseLabel] UTF8String],
+    _processingQueue = dispatch_queue_create([NSString stringWithFormat:@"%@.processing", queueBaseLabel].UTF8String,
                                              DISPATCH_QUEUE_SERIAL);
     PFMarkDispatchQueue(_processingQueue);
 
     _processingQueueSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, _processingQueue);
-
+    
     _commandEnqueueTaskQueue = [[PFTaskQueue alloc] init];
 
     _taskCompletionSources = [NSMutableDictionary dictionary];
@@ -174,7 +172,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 }
 
 - (NSUInteger)commandCount {
-    return [[self _pendingCommandIdentifiers] count];
+    return [self _pendingCommandIdentifiers].count;
 }
 
 ///--------------------------------------
@@ -266,8 +264,8 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 
         if (error) {
             BOOL permanent = (![error.userInfo[@"temporary"] boolValue] &&
-                              ([[error domain] isEqualToString:PFParseErrorDomain] ||
-                               [error code] != kPFErrorConnectionFailed));
+                              ([error.domain isEqualToString:PFParseErrorDomain] ||
+                               error.code != kPFErrorConnectionFailed));
 
             if (!permanent) {
                 PFLogWarning(PFLoggingTagCommon,
@@ -443,7 +441,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 
 /** Test helper to return how many commands are being retained in memory by the cache. */
 - (int)_commandsInMemory {
-    return (int)[_taskCompletionSources count];
+    return (int)_taskCompletionSources.count;
 }
 
 /** Called by PFObject whenever an object has been updated after a saveEventually. */

@@ -45,8 +45,8 @@
     NSDictionary *newPointers = dictionary[@"pointers"];
     NSMutableDictionary *pointersDictionary = [NSMutableDictionary dictionaryWithCapacity:newPointers.count];
     [newPointers enumerateKeysAndObjectsUsingBlock:^(id key, NSArray *pointerArray, BOOL *stop) {
-        PFObject *pointer = [PFObject objectWithoutDataWithClassName:[pointerArray firstObject]
-                                                            objectId:[pointerArray lastObject]];
+        PFObject *pointer = [PFObject objectWithoutDataWithClassName:pointerArray.firstObject
+                                                            objectId:pointerArray.lastObject];
         pointersDictionary[key] = pointer;
     }];
 
