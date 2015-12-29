@@ -7,3 +7,6 @@
 [submodule "Vendor/xctoolchain"]
 	path = Vendor/xctoolchain
 	url = https://github.com/ParsePlatform/xctoolchain.git
+[submodule "Carthage/Checkouts/Bolts-iOS"]
+	path = Carthage/Checkouts/Bolts-iOS
+	url = https://github.com/BoltsFramework/Bolts-iOS.git
