@@ -2386,7 +2386,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 }
 
 + (BFTask PF_GENERIC(NSNumber *)*)_pinAllInBackground:(NSArray *)objects withName:(NSString *)name includeChildren:(BOOL)includeChildren {
-    return [[self pinningObjectStore] pinObjectsAsync:objects withPinName:name includeChildren:includeChildren];
+    return [[[self pinningObjectStore] pinObjectsAsync:objects
+                                           withPinName:name
+                                       includeChildren:includeChildren] continueWithSuccessResult:@YES];
 }
 
 ///--------------------------------------
@@ -2426,7 +2428,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 }
 
 + (BFTask PF_GENERIC(NSNumber *)*)unpinAllObjectsInBackgroundWithName:(NSString *)name {
-    return [[self pinningObjectStore] unpinAllObjectsAsyncWithPinName:name];
+    return [[[self pinningObjectStore] unpinAllObjectsAsyncWithPinName:name] continueWithSuccessResult:@YES];
 }
 
 + (BFTask *)unpinAllInBackground:(NSArray *)objects {
@@ -2438,7 +2440,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 }
 
 + (BFTask PF_GENERIC(NSNumber *)*)unpinAllInBackground:(NSArray *)objects withName:(NSString *)name {
-    return [[self pinningObjectStore] unpinObjectsAsync:objects withPinName:name];
+    return [[[self pinningObjectStore] unpinObjectsAsync:objects withPinName:name] continueWithSuccessResult:@YES];
 }
 
 + (void)unpinAllInBackground:(NSArray *)objects withName:(NSString *)name block:(PFBooleanResultBlock)block {
