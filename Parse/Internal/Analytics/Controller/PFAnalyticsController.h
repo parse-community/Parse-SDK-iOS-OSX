@@ -12,8 +12,11 @@
 #import <Parse/PFConstants.h>
 
 #import "PFDataProvider.h"
+#import "PFMacros.h"
 
 @class BFTask PF_GENERIC(__covariant BFGenericType);
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface PFAnalyticsController : NSObject
 
@@ -42,8 +45,8 @@
 
  @return `BFTask` with result set to `@YES`.
  */
-- (BFTask *)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(NSDictionary *)payload
-                                                     sessionToken:(NSString *)sessionToken;
+- (BFTask PF_GENERIC(PFVoid)*)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(nullable NSDictionary *)payload
+                                                                       sessionToken:(nullable NSString *)sessionToken;
 
 /**
  Tracks the occurrence of a custom event with additional dimensions.
@@ -54,8 +57,10 @@
 
  @return `BFTask` with result set to `@YES`.
  */
-- (BFTask *)trackEventAsyncWithName:(NSString *)name
-                         dimensions:(NSDictionary *)dimensions
-                       sessionToken:(NSString *)sessionToken;
+- (BFTask PF_GENERIC(PFVoid)*)trackEventAsyncWithName:(NSString *)name
+                                           dimensions:(nullable NSDictionary PF_GENERIC(NSString *, NSString *)*)dimensions
+                                         sessionToken:(nullable NSString *)sessionToken;
 
 @end
+
+NS_ASSUME_NONNULL_END
