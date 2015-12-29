@@ -2342,7 +2342,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Pinning
 ///--------------------------------------
 
-- (BFTask *)pinInBackground {
+- (BFTask PF_GENERIC(NSNumber *)*)pinInBackground {
     return [self pinInBackgroundWithName:PFObjectDefaultPin];
 }
 
@@ -2354,11 +2354,11 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self pinInBackgroundWithName:name] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-- (BFTask *)pinInBackgroundWithName:(NSString *)name {
+- (BFTask PF_GENERIC(NSNumber *)*)pinInBackgroundWithName:(NSString *)name {
     return [self _pinInBackgroundWithName:name includeChildren:YES];
 }
 
-- (BFTask *)_pinInBackgroundWithName:(NSString *)name includeChildren:(BOOL)includeChildren {
+- (BFTask PF_GENERIC(NSNumber *)*)_pinInBackgroundWithName:(NSString *)name includeChildren:(BOOL)includeChildren {
     return [[self class] _pinAllInBackground:@[ self ] withName:name includeChildren:includeChildren];
 }
 
@@ -2366,7 +2366,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Pinning Many Objects
 ///--------------------------------------
 
-+ (BFTask *)pinAllInBackground:(NSArray *)objects {
++ (BFTask PF_GENERIC(NSNumber *)*)pinAllInBackground:(NSArray *)objects {
     return [self pinAllInBackground:objects withName:PFObjectDefaultPin];
 }
 
@@ -2375,7 +2375,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self pinAllInBackground:objects] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-+ (BFTask *)pinAllInBackground:(NSArray *)objects withName:(NSString *)name {
++ (BFTask PF_GENERIC(NSNumber *)*)pinAllInBackground:(NSArray *)objects withName:(NSString *)name {
     return [self _pinAllInBackground:objects withName:name includeChildren:YES];
 }
 
@@ -2385,9 +2385,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self pinAllInBackground:objects withName:name] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-+ (BFTask *)_pinAllInBackground:(NSArray *)objects
-                       withName:(NSString *)name
-                includeChildren:(BOOL)includeChildren {
++ (BFTask PF_GENERIC(NSNumber *)*)_pinAllInBackground:(NSArray *)objects withName:(NSString *)name includeChildren:(BOOL)includeChildren {
     return [[self pinningObjectStore] pinObjectsAsync:objects withPinName:name includeChildren:includeChildren];
 }
 
@@ -2395,7 +2393,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Unpinning
 ///--------------------------------------
 
-- (BFTask *)unpinInBackground {
+- (BFTask PF_GENERIC(NSNumber *)*)unpinInBackground {
     return [self unpinInBackgroundWithName:PFObjectDefaultPin];
 }
 
@@ -2403,7 +2401,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self unpinInBackground] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-- (BFTask *)unpinInBackgroundWithName:(NSString *)name {
+- (BFTask PF_GENERIC(NSNumber *)*)unpinInBackgroundWithName:(NSString *)name {
     return [[self class] unpinAllInBackground:@[ self ] withName:name];
 }
 
@@ -2415,7 +2413,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Unpinning Many Objects
 ///--------------------------------------
 
-+ (BFTask *)unpinAllObjectsInBackground {
++ (BFTask PF_GENERIC(NSNumber *)*)unpinAllObjectsInBackground {
     return [self unpinAllObjectsInBackgroundWithName:PFObjectDefaultPin];
 }
 
@@ -2427,7 +2425,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self unpinAllObjectsInBackgroundWithName:name] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-+ (BFTask *)unpinAllObjectsInBackgroundWithName:(NSString *)name {
++ (BFTask PF_GENERIC(NSNumber *)*)unpinAllObjectsInBackgroundWithName:(NSString *)name {
     return [[self pinningObjectStore] unpinAllObjectsAsyncWithPinName:name];
 }
 
@@ -2439,7 +2437,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self unpinAllInBackground:objects] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-+ (BFTask *)unpinAllInBackground:(NSArray *)objects withName:(NSString *)name {
++ (BFTask PF_GENERIC(NSNumber *)*)unpinAllInBackground:(NSArray *)objects withName:(NSString *)name {
     return [[self pinningObjectStore] unpinObjectsAsync:objects withPinName:name];
 }
 
