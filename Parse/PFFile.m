@@ -536,7 +536,8 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
 }
 
 - (NSData *)getData:(NSError **)error {
-    return [[self getDataInBackground] waitForResult:error];
+    BOOL enableWarning = !self.isDataAvailable;
+    return [[self getDataInBackground] waitForResult:error withMainThreadWarning:enableWarning];
 }
 
 - (NSInputStream *)getDataStream {
@@ -544,7 +545,8 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
 }
 
 - (NSInputStream *)getDataStream:(NSError **)error {
-    return [[self getDataStreamInBackground] waitForResult:error];
+    BOOL enableWarning = !self.isDataAvailable;
+    return [[self getDataStreamInBackground] waitForResult:error withMainThreadWarning:enableWarning];
 }
 
 @end
