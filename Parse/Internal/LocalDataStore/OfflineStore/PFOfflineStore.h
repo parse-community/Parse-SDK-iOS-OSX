@@ -44,7 +44,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 /// @name Fetch
 ///--------------------------------------
 
-- (BFTask *)fetchObjectLocallyAsync:(PFObject *)object;
+- (BFTask PF_GENERIC(PFObject *)*)fetchObjectLocallyAsync:(PFObject *)object;
 
 /**
  Gets the data for the given object from the offline database. Returns a task that will be
@@ -54,15 +54,15 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
  @param     object      The object to fetch.
  @param     database    A database connection to use.
  */
-- (BFTask *)fetchObjectLocallyAsync:(PFObject *)object database:(PFSQLiteDatabase *)database;
+- (BFTask PF_GENERIC(PFObject *)*)fetchObjectLocallyAsync:(PFObject *)object database:(PFSQLiteDatabase *)database;
 
 ///--------------------------------------
 /// @name Save
 ///--------------------------------------
 
 //TODO: (nlutsenko) Remove `includChildren` method, replace with PFLocalStore that wraps OfflineStore + Pin.
-- (BFTask *)saveObjectLocallyAsync:(PFObject *)object includeChildren:(BOOL)includeChildren;
-- (BFTask *)saveObjectLocallyAsync:(PFObject *)object withChildren:(NSArray *)children;
+- (BFTask PF_GENERIC(PFVoid)*)saveObjectLocallyAsync:(PFObject *)object includeChildren:(BOOL)includeChildren;
+- (BFTask PF_GENERIC(PFVoid)*)saveObjectLocallyAsync:(PFObject *)object withChildren:(NSArray PF_GENERIC(PFObject *)*)children;
 
 /**
  Stores an object (and optionally, every object it points to recursively) in the local database.
@@ -77,9 +77,9 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
  @param children If non-empty - these children will be saved to LDS as well.
  @param database A database connection to use.
  */
-- (BFTask *)saveObjectLocallyAsync:(PFObject *)object
-                      withChildren:(NSArray *)children
-                          database:(PFSQLiteDatabase *)database;
+- (BFTask PF_GENERIC(PFVoid)*)saveObjectLocallyAsync:(PFObject *)object
+                                        withChildren:(NSArray PF_GENERIC(PFObject *)*)children
+                                            database:(PFSQLiteDatabase *)database;
 
 ///--------------------------------------
 /// @name Find
@@ -90,21 +90,19 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 
  @return The objects that match the query's constraint.
  */
-- (BFTask *)findAsyncForQueryState:(PFQueryState *)queryState
-                              user:(PFUser *)user
-                               pin:(PFPin *)pin;
+- (BFTask PF_GENERIC(NSArray<PFObject *> *)*)findAsyncForQueryState:(PFQueryState *)queryState user:(PFUser *)user pin:(PFPin *)pin;
 
 /**
  Runs a PFQueryState against the store's contents.
 
  @return The count of objects that match the query's constraint.
  */
-- (BFTask *)countAsyncForQueryState:(PFQueryState *)queryState
-                               user:(PFUser *)user
-                                pin:(PFPin *)pin;
+- (BFTask PF_GENERIC(NSNumber *)*)countAsyncForQueryState:(PFQueryState *)queryState user:(PFUser *)user pin:(PFPin *)pin;
 
 /**
  Runs a PFQueryState against the store's contents.
+
+ //TODO: (nlutsenko) A task that could yield to 2 different result types? Fix this logic!
 
  @return The objects that match the query's constraint.
  */
@@ -116,6 +114,8 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 /**
  Runs a PFQueryState against the store's contents. May cause any instances of the object to get fetched from
  offline database. (TODO (hallucinogen): should we consider objects in memory but not in Offline Store?)
+
+ //TODO: (nlutsenko) A task that could yield to 2 different result types? Fix this logic!
 
  @param queryState       The query.
  @param user        The user making the query.
@@ -140,7 +140,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
  data is in memory. This will only be used when data comes back from the server after a fetch
  or a save.
  */
-- (BFTask *)updateDataForObjectAsync:(PFObject *)object;
+- (BFTask PF_GENERIC(PFVoid)*)updateDataForObjectAsync:(PFObject *)object;
 
 ///--------------------------------------
 /// @name Delete
@@ -149,13 +149,13 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
 /**
  Deletes the given object from Offline Store's pins
  */
-- (BFTask *)deleteDataForObjectAsync:(PFObject *)object;
+- (BFTask PF_GENERIC(PFVoid)*)deleteDataForObjectAsync:(PFObject *)object;
 
 ///--------------------------------------
 /// @name Unpin
 ///--------------------------------------
 
-- (BFTask *)unpinObjectAsync:(PFObject *)object;
+- (BFTask PF_GENERIC(PFVoid)*)unpinObjectAsync:(PFObject *)object;
 
 ///--------------------------------------
 /// @name Internal Helper Methods
@@ -165,8 +165,8 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions)
  Gets the UUID for the given object, if it has one. Otherwise, creates a new UUID for the object
  and adds a new row to the database for the object with no data.
  */
-- (BFTask *)getOrCreateUUIDAsyncForObject:(PFObject *)object
-                                 database:(PFSQLiteDatabase *)database;
+- (BFTask PF_GENERIC(NSString *)*)getOrCreateUUIDAsyncForObject:(PFObject *)object
+                                                       database:(PFSQLiteDatabase *)database;
 
 /**
  This should only be called from `PFObject.objectWithoutDataWithClassName`.
