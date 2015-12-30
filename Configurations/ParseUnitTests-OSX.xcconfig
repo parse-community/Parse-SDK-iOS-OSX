@@ -17,7 +17,7 @@ PRODUCT_BUNDLE_IDENTIFIER = com.parse.unit.osx
 INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/ParseUnitTests-OSX-Info.plist
 LD_RUNPATH_SEARCH_PATHS = $(inherited) @loader_path/../Frameworks
 
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(VENDOR_DIR)/Bolts-ObjC/build/osx
+FRAMEWORK_SEARCH_PATHS = $(inherited) $(PROJECT_DIR)/Carthage/Checkouts/Bolts-iOS/build/osx
 
 HEADER_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR)
 USER_HEADER_SEARCH_PATHS = $(inherited) $(PARSE_DIR)/Parse/Internal/**

@@ -20,6 +20,6 @@ ENABLE_BITCODE = YES
 
 OTHER_LDFLAGS = $(inherited) -ObjC
 
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR) $(VENDOR_DIR)/Bolts-ObjC/build/watchOS/
+FRAMEWORK_SEARCH_PATHS = $(inherited) $(PROJECT_DIR)/Carthage/Checkouts/Bolts-iOS/build/watchOS/
 
 INFOPLIST_FILE = $(PROJECT_DIR)/Parse/Resources/Parse-watchOS.Info.plist

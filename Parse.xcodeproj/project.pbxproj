@@ -1815,8 +1815,8 @@
 		8103FA34198FC190000BAE3F /* BFTask+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BFTask+Private.m"; sourceTree = "<group>"; };
 		8103FA35198FC190000BAE3F /* PFCategoryLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFCategoryLoader.h; sourceTree = "<group>"; };
 		8103FA36198FC190000BAE3F /* PFCategoryLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFCategoryLoader.m; sourceTree = "<group>"; };
-		8103FA42198FC25B000BAE3F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Vendor/Bolts-ObjC/build/ios/Bolts.framework"; sourceTree = "<group>"; };
-		8103FA44198FC267000BAE3F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Vendor/Bolts-ObjC/build/osx/Bolts.framework"; sourceTree = "<group>"; };
+		8103FA42198FC25B000BAE3F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Carthage/Checkouts/Bolts-iOS/build/ios/Bolts.framework"; sourceTree = "<group>"; };
+		8103FA44198FC267000BAE3F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Carthage/Checkouts/Bolts-iOS/build/osx/Bolts.framework"; sourceTree = "<group>"; };
 		81068EBA1ADE462500A34D13 /* Parse_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parse_Private.h; sourceTree = "<group>"; };
 		81068EEF1AE0845D00A34D13 /* PFEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFEncoder.h; sourceTree = "<group>"; };
 		81068EF01AE0845D00A34D13 /* PFEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFEncoder.m; sourceTree = "<group>"; };
@@ -4786,7 +4786,7 @@
 /* Begin PBXLegacyTarget section */
 		812F31F71BCF40AA00FCBCD4 /* Bolts-watchOS */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\"";
+			buildArgumentsString = "$(SRCROOT)/Carthage/Checkouts/Bolts-iOS/ \\\n\"Carthage/Checkouts/Bolts-iOS/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\"";
 			buildConfigurationList = 812F31F81BCF40AA00FCBCD4 /* Build configuration list for PBXLegacyTarget "Bolts-watchOS" */;
 			buildPhases = (
 			);
@@ -4800,7 +4800,7 @@
 		};
 		81493A931A0D3492008D5504 /* Bolts-OSX */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\"";
+			buildArgumentsString = "$(SRCROOT)/Carthage/Checkouts/Bolts-iOS/ \\\n\"Carthage/Checkouts/Bolts-iOS/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\"";
 			buildConfigurationList = 81493A941A0D3493008D5504 /* Build configuration list for PBXLegacyTarget "Bolts-OSX" */;
 			buildPhases = (
 			);
@@ -4814,7 +4814,7 @@
 		};
 		815F241A1BD04DBB0054659F /* Bolts-tvOS */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\"";
+			buildArgumentsString = "$(SRCROOT)/Carthage/Checkouts/Bolts-iOS/ \\\n\"Carthage/Checkouts/Bolts-iOS/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\"";
 			buildConfigurationList = 815F241B1BD04DBB0054659F /* Build configuration list for PBXLegacyTarget "Bolts-tvOS" */;
 			buildPhases = (
 			);
@@ -4828,7 +4828,7 @@
 		};
 		F569F07A1B14DB1E00296F73 /* Bolts-iOS */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(SRCROOT)/Vendor/Bolts-ObjC/ \\\n\"Vendor/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\"";
+			buildArgumentsString = "$(SRCROOT)/Carthage/Checkouts/Bolts-iOS/ \\\n\"Carthage/Checkouts/Bolts-iOS/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\"";
 			buildConfigurationList = F569F07B1B14DB1E00296F73 /* Build configuration list for PBXLegacyTarget "Bolts-iOS" */;
 			buildPhases = (
 			);
