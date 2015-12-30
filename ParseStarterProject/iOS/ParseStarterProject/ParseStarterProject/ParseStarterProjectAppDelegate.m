@@ -15,9 +15,6 @@
 // If you are using Facebook, uncomment this line
 // #import <ParseFacebookUtils/PFFacebookUtils.h>
 
-// If you want to use Crash Reporting - uncomment this line
-// #import <ParseCrashReporting/ParseCrashReporting.h>
-
 #import "ParseStarterProjectAppDelegate.h"
 #import "ParseStarterProjectViewController.h"
 
@@ -32,9 +29,6 @@
     [Parse enableLocalDatastore];
 
     // ****************************************************************************
-    // Uncomment this line if you want to enable Crash Reporting
-    // [ParseCrashReporting enable];
-    //
     // Uncomment and fill in with your Parse credentials:
     // [Parse setApplicationId:@"your_application_id" clientKey:@"your_client_key"];
     //
