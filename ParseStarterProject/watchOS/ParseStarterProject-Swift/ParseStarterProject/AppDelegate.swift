@@ -14,9 +14,6 @@ import Parse
 // If you want to use any of the UI components, uncomment this line
 // import ParseUI
 
-// If you want to use Crash Reporting - uncomment this line
-// import ParseCrashReporting
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -32,9 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.enableLocalDatastore()
 
         // ****************************************************************************
-        // Uncomment this line if you want to enable Crash Reporting
-        // ParseCrashReporting.enable()
-        //
         // Uncomment and fill in with your Parse credentials:
         // Parse.setApplicationId("your_application_id", clientKey: "your_client_key")
         //
