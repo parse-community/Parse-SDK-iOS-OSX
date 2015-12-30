@@ -7,3 +7,6 @@
 [submodule "Carthage/Checkouts/Bolts-iOS"]
 	path = Carthage/Checkouts/Bolts-iOS
 	url = https://github.com/BoltsFramework/Bolts-iOS.git
+[submodule "Carthage/Checkouts/OCMock"]
+	path = Carthage/Checkouts/OCMock
+	url = https://github.com/erikdoe/OCMock.git

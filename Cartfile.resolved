@@ -1,1 +1,2 @@
 github "BoltsFramework/Bolts-iOS" "1.5.1"
+github "erikdoe/OCMock" "v3.2"
