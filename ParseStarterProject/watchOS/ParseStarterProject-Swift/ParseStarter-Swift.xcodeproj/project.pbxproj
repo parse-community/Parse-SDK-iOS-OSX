@@ -395,7 +395,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ ! -d \"Frameworks/iOS/Bolts.framework\" ]]; then\n  mkdir -p Frameworks/iOS\n  cp -R ../../../Vendor/Bolts-ObjC/build/ios/Bolts.framework ./Frameworks/iOS\nfi\n\nif [[ ! -d \"Frameworks/watchOS/Bolts.framework\" ]]; then\n  mkdir -p Frameworks/watchOS\n  cp -R ../../../Vendor/Bolts-ObjC/build/watchOS/Bolts.framework ./Frameworks/watchOS\nfi\n";
+			shellScript = "if [[ ! -d \"Frameworks/iOS/Bolts.framework\" ]]; then\n  mkdir -p Frameworks/iOS\n  cp -R ../../../Carthage/Checkouts/Bolts-iOS/build/ios/Bolts.framework ./Frameworks/iOS\nfi\n\nif [[ ! -d \"Frameworks/watchOS/Bolts.framework\" ]]; then\n  mkdir -p Frameworks/watchOS\n  cp -R ../../../Carthage/Checkouts/Bolts-iOS/build/watchOS/Bolts.framework ./Frameworks/watchOS\nfi\n";
 		};
 		81CC85E11A49F6D40076DE19 /* Upload Symbol Files */ = {
 			isa = PBXShellScriptBuildPhase;
