@@ -2120,7 +2120,7 @@
 		81A245F11B1FB188006A6953 /* PFDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFDataProvider.h; sourceTree = "<group>"; };
 		81A715A21B423A4100A504FC /* PFObjectUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFObjectUtilities.h; sourceTree = "<group>"; };
 		81A715A31B423A4100A504FC /* PFObjectUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFObjectUtilities.m; sourceTree = "<group>"; };
-		81AB68AE1B7E7ECC0053210E /* OCMock.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OCMock.xcodeproj; path = Vendor/OCMock/Source/OCMock.xcodeproj; sourceTree = "<group>"; };
+		81AB68AE1B7E7ECC0053210E /* OCMock.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OCMock.xcodeproj; path = Carthage/Checkouts/OCMock/Source/OCMock.xcodeproj; sourceTree = "<group>"; };
 		81ABC0FC1B5427EC00BA9009 /* PFUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFUserController.h; sourceTree = "<group>"; };
 		81ABC0FD1B5427EC00BA9009 /* PFUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFUserController.m; sourceTree = "<group>"; };
 		81AFE0E51A1FDB7900AB6CB3 /* PFRESTUserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRESTUserCommand.h; sourceTree = "<group>"; };
