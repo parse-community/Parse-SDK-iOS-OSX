@@ -220,7 +220,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ ! -d \"Bolts.framework\" ]]; then\n  cp -R ../../../Vendor/Bolts-ObjC/build/ios/Bolts.framework .\nfi\n";
+			shellScript = "if [[ ! -d \"Bolts.framework\" ]]; then\n  cp -R ../../../Carthage/Checkouts/Bolts-iOS/build/ios/Bolts.framework .\nfi\n";
 		};
 		81CC85E11A49F6D40076DE19 /* Upload Symbol Files */ = {
 			isa = PBXShellScriptBuildPhase;
