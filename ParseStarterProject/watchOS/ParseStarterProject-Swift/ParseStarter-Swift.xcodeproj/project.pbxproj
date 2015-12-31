@@ -297,7 +297,6 @@
 				81BA81411A49DA1800E65899 /* Sources */,
 				81BA81421A49DA1800E65899 /* Frameworks */,
 				81BA81431A49DA1800E65899 /* Resources */,
-				81CC85E11A49F6D40076DE19 /* Upload Symbol Files */,
 				81411DCA1BC364DC0004BE84 /* Embed Watch Content */,
 			);
 			buildRules = (
@@ -396,20 +395,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [[ ! -d \"Frameworks/iOS/Bolts.framework\" ]]; then\n  mkdir -p Frameworks/iOS\n  cp -R ../../../Carthage/Checkouts/Bolts-iOS/build/ios/Bolts.framework ./Frameworks/iOS\nfi\n\nif [[ ! -d \"Frameworks/watchOS/Bolts.framework\" ]]; then\n  mkdir -p Frameworks/watchOS\n  cp -R ../../../Carthage/Checkouts/Bolts-iOS/build/watchOS/Bolts.framework ./Frameworks/watchOS\nfi\n";
-		};
-		81CC85E11A49F6D40076DE19 /* Upload Symbol Files */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Upload Symbol Files";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script will upload symbol files for your application,\n# so all your crash reports are going to be symbolicated\n\n# Important!\n# Before using the script, please initialize CloudCode folder and replace <path_to_cloudcode_folder> with the path to it\n#\n# Read more on Parse.com - https://parse.com/apps/quickstart#analytics/crashreporting/ios/\n############################################################\n\n\n# export PATH=/usr/local/bin:$PATH\n# cd <path_to_cloudcode_folder>\n\n# parse symbols -p \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
