@@ -18,8 +18,6 @@ IPHONEOS_DEPLOYMENT_TARGET = 8.0
 
 INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/ParseUnitTests-iOS-Info.plist
 
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR) $(PROJECT_DIR)/Carthage/Checkouts/Bolts-iOS/build/ios
-
 USER_HEADER_SEARCH_PATHS = $(inherited) $(PARSE_DIR)/Parse/Internal/**
 
 // Swift

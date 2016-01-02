@@ -17,8 +17,6 @@ APPLICATION_EXTENSION_API_ONLY = YES
 MACH_O_TYPE = staticlib
 DEFINES_MODULE = YES
 
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(PROJECT_DIR)/Carthage/Checkouts/Bolts-iOS/build/ios/
-
 INFOPLIST_FILE = $(PROJECT_DIR)/Parse/Resources/Parse-iOS.Info.plist
 
 OTHER_CFLAGS[sdk=iphoneos9.*] = $(inherited) -fembed-bitcode
