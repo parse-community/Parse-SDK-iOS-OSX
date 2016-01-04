@@ -113,8 +113,7 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
                                                                              cancellationToken:cancellationToken
                                                                                  progressBlock:unifyingProgressBlock];
             resultTask = [[resultTask continueWithSuccessBlock:^id(BFTask *task) {
-                return [[PFFileManager moveItemAsyncAtPath:temporaryPath
-                                                    toPath:[self cachedFilePathForFileState:fileState]] continueWithBlock:^id(BFTask *task) {
+                return [[self _cacheFileAsyncWithState:fileState atPath:temporaryPath] continueWithBlock:^id(BFTask *task) {
                     // Ignore the error if file exists.
                     if (task.error && task.error.code == NSFileWriteFileExistsError) {
                         return nil;
@@ -236,24 +235,21 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
                                                          urlString:result.result[@"url"]
                                                           mimeType:nil];
         return fileState;
-    }] continueWithSuccessBlock:^id(BFTask *task) {
+    }] continueWithSuccessBlock:^id(BFTask<PFFileState *> *task) {
         @strongify(self);
-
-        NSString *finalPath = [self cachedFilePathForFileState:task.result];
-        NSError *error = nil;
-        [[NSFileManager defaultManager] moveItemAtPath:sourceFilePath
-                                                toPath:finalPath
-                                                 error:&error];
-        if (error) {
-            return [BFTask taskWithError:error];
-        }
-        return task;
+        return [self _cacheFileAsyncWithState:task.result atPath:sourceFilePath];
     }];
 }
 
 ///--------------------------------------
 #pragma mark - Cache
 ///--------------------------------------
+
+- (BFTask<PFVoid> *)_cacheFileAsyncWithState:(PFFileState *)state atPath:(NSString *)path {
+    return [[PFFileManager createDirectoryIfNeededAsyncAtPath:self.cacheFilesDirectoryPath] continueWithSuccessBlock:^id(BFTask *_) {
+        return [PFFileManager moveItemAsyncAtPath:path toPath:[self cachedFilePathForFileState:state]];
+    }];
+}
 
 - (NSString *)cachedFilePathForFileState:(PFFileState *)fileState {
     if (!fileState.secureURLString) {
@@ -266,13 +262,17 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
 }
 
 - (NSString *)cacheFilesDirectoryPath {
-    NSString *path = [self.dataSource.fileManager parseCacheItemPathForPathComponent:PFFileControllerCacheDirectoryName_];
-    [[PFFileManager createDirectoryIfNeededAsyncAtPath:path] waitForResult:nil withMainThreadWarning:NO];
-    return path;
+    return [self.dataSource.fileManager parseCacheItemPathForPathComponent:PFFileControllerCacheDirectoryName_];
 }
 
 - (BFTask *)clearFileCacheAsync {
-    return [PFFileManager removeDirectoryContentsAsyncAtPath:self.cacheFilesDirectoryPath];
+    return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
+        NSString *path = self.cacheFilesDirectoryPath;
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            return [PFFileManager removeDirectoryContentsAsyncAtPath:path];
+        }
+        return nil;
+    }];
 }
 
 @end
