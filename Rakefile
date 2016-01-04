@@ -13,7 +13,8 @@ require_relative 'Vendor/xctoolchain/Scripts/xctask/build_framework_task'
 script_folder = File.expand_path(File.dirname(__FILE__))
 build_folder = File.join(script_folder, 'build')
 release_folder = File.join(build_folder, 'release')
-bolts_build_folder = File.join(script_folder, 'Vendor', 'Bolts-ObjC', 'build')
+bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-iOS')
+bolts_build_folder = File.join(bolts_folder, 'build')
 
 module Constants
   require 'plist'
@@ -154,6 +155,7 @@ namespace :package do
   task :prepare do
     `rm -rf #{build_folder} && mkdir -p #{build_folder}`
     `rm -rf #{bolts_build_folder} && mkdir -p #{bolts_build_folder}`
+    `#{bolts_folder}/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos`
   end
 
   desc 'Build and package all frameworks for the release'
