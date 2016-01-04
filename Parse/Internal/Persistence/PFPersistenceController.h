@@ -13,7 +13,7 @@
 
 #import "PFPersistenceGroup.h"
 
-@class BFTask PF_GENERIC(id);
+@class BFTask<__covariant BFGenericType>;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Controller
 ///--------------------------------------
 
-typedef BFTask PF_GENERIC(NSNumber *)* __nonnull (^PFPersistenceGroupValidationHandler)(id<PFPersistenceGroup> group);
+typedef BFTask<NSNumber *> *__nonnull (^PFPersistenceGroupValidationHandler)(id<PFPersistenceGroup> group);
 
 @interface PFPersistenceController : NSObject
 
@@ -41,7 +41,7 @@ typedef BFTask PF_GENERIC(NSNumber *)* __nonnull (^PFPersistenceGroupValidationH
 /// @name Data Persistence
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(id<PFPersistenceGroup>)*)getPersistenceGroupAsync;
+- (BFTask<id<PFPersistenceGroup>> *)getPersistenceGroupAsync;
 
 @end
 

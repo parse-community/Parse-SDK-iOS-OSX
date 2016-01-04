@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFPin;
 
 @interface PFPinningObjectStore : NSObject
@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return `BFTask` with `PFPin` result if pinning succeeds.
  */
-- (BFTask PF_GENERIC(PFPin *)*)fetchPinAsyncWithName:(NSString *)name;
+- (BFTask<PFPin *> *)fetchPinAsyncWithName:(NSString *)name;
 
 /**
  Pins given objects to the pin. Creates new pin if the pin with such name is not found.
@@ -53,9 +53,9 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return `BFTask` with no result.
  */
-- (BFTask PF_GENERIC(PFVoid)*)pinObjectsAsync:(nullable NSArray *)objects
-                                  withPinName:(NSString *)name
-                              includeChildren:(BOOL)includeChildren;
+- (BFTask<PFVoid> *)pinObjectsAsync:(nullable NSArray *)objects
+                        withPinName:(NSString *)name
+                    includeChildren:(BOOL)includeChildren;
 
 ///--------------------------------------
 /// @name Unpin
@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return `BFTask` with no result.
  */
-- (BFTask PF_GENERIC(PFVoid)*)unpinObjectsAsync:(nullable NSArray *)objects withPinName:(NSString *)name;
+- (BFTask<PFVoid> *)unpinObjectsAsync:(nullable NSArray *)objects withPinName:(NSString *)name;
 
 /**
  Unpins all objects from the pin.
@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return `BFTask` with no result.
  */
-- (BFTask PF_GENERIC(PFVoid)*)unpinAllObjectsAsyncWithPinName:(NSString *)name;
+- (BFTask<PFVoid> *)unpinAllObjectsAsyncWithPinName:(NSString *)name;
 
 @end
 

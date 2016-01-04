@@ -49,8 +49,8 @@
 #pragma mark - Data
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSURLRequest *)*)getDataURLRequestAsyncForCommand:(PFRESTCommand *)command {
-    return (BFTask *)[[self _getURLRequestHeadersAsyncForCommand:command] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSDictionary *)*task) {
+- (BFTask<NSURLRequest *> *)getDataURLRequestAsyncForCommand:(PFRESTCommand *)command {
+    return (BFTask *)[[self _getURLRequestHeadersAsyncForCommand:command] continueWithSuccessBlock:^id(BFTask<NSDictionary *> *task) {
         NSURL *url = [PFURLConstructor URLFromAbsoluteString:self.serverURL.absoluteString
                                                         path:command.httpPath
                                                        query:nil];
@@ -89,10 +89,10 @@
 #pragma mark - File
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSURLRequest *)*)getFileUploadURLRequestAsyncForCommand:(PFRESTCommand *)command
-                                                             withContentType:(NSString *)contentType
-                                                       contentSourceFilePath:(NSString *)contentFilePath {
-    return [[self getDataURLRequestAsyncForCommand:command] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSURLRequest *)*task) {
+- (BFTask<NSURLRequest *> *)getFileUploadURLRequestAsyncForCommand:(PFRESTCommand *)command
+                                                   withContentType:(NSString *)contentType
+                                             contentSourceFilePath:(NSString *)contentFilePath {
+    return [[self getDataURLRequestAsyncForCommand:command] continueWithSuccessBlock:^id(BFTask<NSURLRequest *> *task) {
         NSMutableURLRequest *request = [task.result mutableCopy];
 
         if (contentType) {
@@ -145,14 +145,14 @@
     return [mutableHeaders copy];
 }
 
-- (BFTask PF_GENERIC(NSDictionary *)*)_getURLRequestHeadersAsyncForCommand:(PFRESTCommand *)command {
+- (BFTask<NSDictionary *> *)_getURLRequestHeadersAsyncForCommand:(PFRESTCommand *)command {
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id {
         NSMutableDictionary *headers = [NSMutableDictionary dictionary];
         [headers addEntriesFromDictionary:command.additionalRequestHeaders];
         if (command.sessionToken) {
             headers[PFCommandHeaderNameSessionToken] = command.sessionToken;
         }
-        return [[self.dataSource.installationIdentifierStore getInstallationIdentifierAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSString *)*task) {
+        return [[self.dataSource.installationIdentifierStore getInstallationIdentifierAsync] continueWithSuccessBlock:^id(BFTask <NSString *>*task) {
             headers[PFCommandHeaderNameInstallationId] = task.result;
             return [headers copy];
         }];

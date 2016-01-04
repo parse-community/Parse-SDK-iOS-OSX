@@ -454,17 +454,6 @@ extern NSString *const __nonnull PFNetworkNotificationURLResponseBodyUserInfoKey
 #endif
 
 ///--------------------------------------
-/// @name Obj-C Generics Macros
-///--------------------------------------
-
-#if __has_feature(objc_generics) || __has_extension(objc_generics)
-#  define PF_GENERIC(...) <__VA_ARGS__>
-#else
-#  define PF_GENERIC(...)
-#  define PFGenericObject PFObject *
-#endif
-
-///--------------------------------------
 /// @name Platform Availability Defines
 ///--------------------------------------
 

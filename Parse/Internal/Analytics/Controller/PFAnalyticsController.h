@@ -14,7 +14,7 @@
 #import "PFDataProvider.h"
 #import "PFMacros.h"
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -45,8 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return `BFTask` with result set to `@YES`.
  */
-- (BFTask PF_GENERIC(PFVoid)*)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(nullable NSDictionary *)payload
-                                                                       sessionToken:(nullable NSString *)sessionToken;
+- (BFTask<PFVoid> *)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(nullable NSDictionary *)payload
+                                                             sessionToken:(nullable NSString *)sessionToken;
 
 /**
  Tracks the occurrence of a custom event with additional dimensions.
@@ -57,9 +57,9 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return `BFTask` with result set to `@YES`.
  */
-- (BFTask PF_GENERIC(PFVoid)*)trackEventAsyncWithName:(NSString *)name
-                                           dimensions:(nullable NSDictionary PF_GENERIC(NSString *, NSString *)*)dimensions
-                                         sessionToken:(nullable NSString *)sessionToken;
+- (BFTask<PFVoid> *)trackEventAsyncWithName:(NSString *)name
+                                 dimensions:(nullable NSDictionary<NSString *, NSString *> *)dimensions
+                               sessionToken:(nullable NSString *)sessionToken;
 
 @end
 

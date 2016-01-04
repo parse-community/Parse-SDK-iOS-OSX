@@ -16,7 +16,7 @@
 #import "PFDataProvider.h"
 #import "PFMacros.h"
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFUser;
 
 typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {

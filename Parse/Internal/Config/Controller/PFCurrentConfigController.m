@@ -60,7 +60,7 @@ static NSString *const PFConfigCurrentConfigFileName_ = @"config";
 - (BFTask *)getCurrentConfigAsync {
     return [_dataTaskQueue enqueue:^id(BFTask *_) {
         if (!_currentConfig) {
-            return [[self _loadConfigAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(PFConfig *)*task) {
+            return [[self _loadConfigAsync] continueWithSuccessBlock:^id(BFTask<PFConfig *> *task) {
                 _currentConfig = task.result;
                 return _currentConfig;
             }];
@@ -106,7 +106,7 @@ static NSString *const PFConfigCurrentConfigFileName_ = @"config";
 #pragma mark - Data
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFConfig *)*)_loadConfigAsync {
+- (BFTask<PFConfig *> *)_loadConfigAsync {
     return [[[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
         return [task.result getDataAsyncForKey:PFConfigCurrentConfigFileName_];
     }] continueWithSuccessBlock:^id(BFTask *task) {
@@ -125,7 +125,7 @@ static NSString *const PFConfigCurrentConfigFileName_ = @"config";
 #pragma mark - Convenience
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(id<PFPersistenceGroup>)*)_getPersistenceGroupAsync {
+- (BFTask<id<PFPersistenceGroup>> *)_getPersistenceGroupAsync {
     return [self.dataSource.persistenceController getPersistenceGroupAsync];
 }
 

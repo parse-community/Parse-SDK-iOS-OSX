@@ -22,7 +22,7 @@ PF_WATCH_UNAVAILABLE_WARNING
 extern NSString *const PFCurrentInstallationFileName;
 extern NSString *const PFCurrentInstallationPinName;
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFInstallation;
 
 PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFCurrentInstallationController : NSObject <PFCurrentObjectControlling>

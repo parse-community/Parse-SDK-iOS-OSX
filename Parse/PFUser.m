@@ -96,8 +96,8 @@ static BOOL revocableSessionEnabled_;
 
 #pragma mark Validation
 
-- (BFTask PF_GENERIC(PFVoid) *)_validateDeleteAsync {
-    return [[super _validateDeleteAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(PFVoid) *task) {
+- (BFTask<PFVoid> *)_validateDeleteAsync {
+    return [[super _validateDeleteAsync] continueWithSuccessBlock:^id(BFTask<PFVoid> *task) {
         if (!self.authenticated) {
             NSError *error = [PFErrorUtilities errorWithCode:kPFErrorUserCannotBeAlteredWithoutSession
                                                      message:@"User cannot be deleted unless they have been authenticated."];
@@ -107,8 +107,8 @@ static BOOL revocableSessionEnabled_;
     }];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)_validateSaveEventuallyAsync {
-    return [[super _validateSaveEventuallyAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(PFVoid) *task) {
+- (BFTask<PFVoid> *)_validateSaveEventuallyAsync {
+    return [[super _validateSaveEventuallyAsync] continueWithSuccessBlock:^id(BFTask<PFVoid> *task) {
         if ([self isDirtyForKey:PFUserPasswordRESTKey]) {
             NSError *error = [PFErrorUtilities errorWithCode:kPFErrorOperationForbidden
                                                      message:@"Unable to saveEventually a PFUser with dirty password."];
@@ -821,8 +821,8 @@ static BOOL revocableSessionEnabled_;
 
 #pragma mark Log In
 
-+ (BFTask PF_GENERIC(PFUser *)*)logInWithAuthTypeInBackground:(NSString *)authType
-                                                     authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData {
++ (BFTask<__kindof PFUser *> *)logInWithAuthTypeInBackground:(NSString *)authType
+                                           authData:(NSDictionary<NSString *, NSString *> *)authData {
     PFParameterAssert(authType, @"Can't log in without `authType`.");
     PFParameterAssert(authData, @"Can't log in without `authData`.");
     PFUserAuthenticationController *controller = [self authenticationController];
@@ -835,8 +835,8 @@ static BOOL revocableSessionEnabled_;
 
 #pragma mark Link
 
-- (BFTask PF_GENERIC(NSNumber *)*)linkWithAuthTypeInBackground:(NSString *)authType
-                                                      authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)newAuthData {
+- (BFTask<NSNumber *> *)linkWithAuthTypeInBackground:(NSString *)authType
+                                            authData:(NSDictionary<NSString *, NSString *> *)newAuthData {
     PFParameterAssert(authType, @"Can't link without `authType`.");
     PFParameterAssert(newAuthData, @"Can't link without `authData`.");
     PFUserAuthenticationController *controller = [[self class] authenticationController];

@@ -14,7 +14,7 @@
 #import "PFMacros.h"
 #import "PFNetworkCommand.h"
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFEventuallyPin;
 @class PFEventuallyQueueTestHelper;
 @class PFObject;

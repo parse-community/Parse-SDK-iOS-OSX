@@ -15,7 +15,7 @@
 #import "PFMacros.h"
 
 @class BFCancellationToken;
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFFileState;
 @class PFFileStagingController;
 
@@ -35,7 +35,6 @@
 - (instancetype)initWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource;
-
 
 ///--------------------------------------
 /// @name Download

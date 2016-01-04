@@ -21,13 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The `PFQuery` class defines a query that is used to query for `PFObject`s.
  */
-@interface PFQuery PF_GENERIC(PFGenericObject : PFObject *) : NSObject<NSCopying>
+@interface PFQuery<PFGenericObject : PFObject *> : NSObject<NSCopying>
 
 ///--------------------------------------
 /// @name Blocks
 ///--------------------------------------
 
-typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __nullable objects, NSError * __nullable error);
+typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable objects, NSError * __nullable error);
 
 ///--------------------------------------
 /// @name Creating a Query for a Class
@@ -103,7 +103,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
-- (instancetype)selectKeys:(NSArray PF_GENERIC(NSString *)*)keys;
+- (instancetype)selectKeys:(NSArray<NSString *> *)keys;
 
 /**
  Add a constraint that requires a particular key exists.
@@ -379,7 +379,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @return An instance of `PFQuery` that is the `or` of the passed in queries.
  */
-+ (instancetype)orQueryWithSubqueries:(NSArray PF_GENERIC(PFQuery *)*)queries;
++ (instancetype)orQueryWithSubqueries:(NSArray<PFQuery *> *)queries;
 
 /**
  Adds a constraint that requires that a key's value matches a value in another key
@@ -493,7 +493,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
-- (instancetype)orderBySortDescriptors:(nullable NSArray PF_GENERIC(NSSortDescriptor *)*)sortDescriptors;
+- (instancetype)orderBySortDescriptors:(nullable NSArray<NSSortDescriptor *> *)sortDescriptors;
 
 ///--------------------------------------
 /// @name Getting Objects by ID
@@ -509,7 +509,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @return The task, that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(PFGenericObject) *)getObjectInBackgroundWithId:(NSString *)objectId;
+- (BFTask<PFGenericObject> *)getObjectInBackgroundWithId:(NSString *)objectId;
 
 /**
  Gets a `PFObject` asynchronously and calls the given block with the result.
@@ -542,7 +542,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @return The task, that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSArray<PFGenericObject> *)*)findObjectsInBackground;
+- (BFTask<NSArray<PFGenericObject> *> *)findObjectsInBackground;
 
 /**
  Finds objects *asynchronously* and calls the given block with the results.
@@ -563,7 +563,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @return The task, that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(PFGenericObject) *)getFirstObjectInBackground;
+- (BFTask<PFGenericObject> *)getFirstObjectInBackground;
 
 /**
  Gets an object *asynchronously* and calls the given block with the result.
@@ -586,7 +586,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray PF_GENERIC(PFGenericObject) * __
 
  @return The task, that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSNumber *)*)countObjectsInBackground;
+- (BFTask<NSNumber *> *)countObjectsInBackground;
 
 /**
  Counts objects *asynchronously* and calls the given block with the counts.

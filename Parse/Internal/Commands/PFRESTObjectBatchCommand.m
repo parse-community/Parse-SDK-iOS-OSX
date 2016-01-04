@@ -17,7 +17,7 @@ NSUInteger const PFRESTObjectBatchCommandSubcommandsLimit = 50;
 
 @implementation PFRESTObjectBatchCommand
 
-+ (nonnull instancetype)batchCommandWithCommands:(nonnull NSArray PF_GENERIC(PFRESTCommand *)*)commands
++ (nonnull instancetype)batchCommandWithCommands:(nonnull NSArray<PFRESTCommand *> *)commands
                                     sessionToken:(nullable NSString *)sessionToken
                                        serverURL:(nonnull NSURL *)serverURL {
     PFParameterAssert(commands.count <= PFRESTObjectBatchCommandSubcommandsLimit,

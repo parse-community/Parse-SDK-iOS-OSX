@@ -47,7 +47,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 
  @return The task, that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(PFConfig *)*)getConfigInBackground;
++ (BFTask<PFConfig *> *)getConfigInBackground;
 
 /**
  Gets the `PFConfig` *asynchronously* and executes the given callback block.

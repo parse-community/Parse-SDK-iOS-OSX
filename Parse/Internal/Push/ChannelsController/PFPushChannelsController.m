@@ -49,7 +49,7 @@
 #pragma mark - Get
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSSet<NSString *> *)*)getSubscribedChannelsAsync {
+- (BFTask<NSSet<NSString *> *>*)getSubscribedChannelsAsync {
     return [[self _getCurrentObjectAsync] continueWithSuccessBlock:^id(BFTask *task) {
         PFInstallation *installation = task.result;
 

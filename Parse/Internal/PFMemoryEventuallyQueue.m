@@ -17,8 +17,8 @@
     dispatch_queue_t _dataAccessQueue;
     BFExecutor *_dataAccessExecutor;
 
-    NSMutableArray PF_GENERIC(NSString *)*_pendingCommandIdentifiers;
-    NSMutableDictionary PF_GENERIC(NSString *, id<PFNetworkCommand>)*_commandsDictionary;
+    NSMutableArray<NSString *> *_pendingCommandIdentifiers;
+    NSMutableDictionary<NSString *, id<PFNetworkCommand>> *_commandsDictionary;
 }
 
 @end
@@ -73,7 +73,7 @@
     return [NSUUID UUID].UUIDString;
 }
 
-- (NSArray PF_GENERIC(NSString *)*)_pendingCommandIdentifiers {
+- (NSArray<NSString *> *)_pendingCommandIdentifiers {
     __block NSArray *array = nil;
     dispatch_sync(_dataAccessQueue, ^{
         array = [_pendingCommandIdentifiers copy];

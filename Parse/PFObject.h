@@ -64,7 +64,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @return A PFObject with the given class name and set with the given data.
  */
-+ (instancetype)objectWithClassName:(NSString *)className dictionary:(nullable NSDictionary PF_GENERIC(NSString *, id)*)dictionary;
++ (instancetype)objectWithClassName:(NSString *)className dictionary:(nullable NSDictionary<NSString *, id> *)dictionary;
 
 /**
  Creates a reference to an existing PFObject for use in creating associations between PFObjects.
@@ -114,7 +114,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  This does not include `createdAt`, `updatedAt`, `authData`, or `objectId`.
  It does include things like username and ACL.
  */
-@property (nonatomic, copy, readonly) NSArray PF_GENERIC(NSString *)*allKeys;
+@property (nonatomic, copy, readonly) NSArray<NSString *> *allKeys;
 
 ///--------------------------------------
 /// @name Accessors
@@ -291,7 +291,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @return The task that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSNumber *)*)saveInBackground;
+- (BFTask<NSNumber *> *)saveInBackground;
 
 /**
  Saves the `PFObject` *asynchronously* and executes the given callback block.
@@ -317,7 +317,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @return The task that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSNumber *)*)saveEventually PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE;
+- (BFTask<NSNumber *> *)saveEventually PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE;
 
 /**
  Saves this object to the server at some unspecified time in the future,
@@ -350,7 +350,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @return The task that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)saveAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects;
++ (BFTask<NSNumber *> *)saveAllInBackground:(nullable NSArray<PFObject *> *)objects;
 
 /**
  Saves a collection of objects all at once `asynchronously` and executes the block when done.
@@ -359,7 +359,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param block The block to execute.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`.
  */
-+ (void)saveAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
++ (void)saveAllInBackground:(nullable NSArray<PFObject *> *)objects
                       block:(nullable PFBooleanResultBlock)block;
 
 ///--------------------------------------
@@ -371,7 +371,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param objects The array of objects to delete.
  @return The task that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)deleteAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects;
++ (BFTask<NSNumber *> *)deleteAllInBackground:(nullable NSArray<PFObject *> *)objects;
 
 /**
  Deletes a collection of objects all at once *asynchronously* and executes the block when done.
@@ -380,7 +380,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param block The block to execute.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`.
  */
-+ (void)deleteAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
++ (void)deleteAllInBackground:(nullable NSArray<PFObject *> *)objects
                         block:(nullable PFBooleanResultBlock)block;
 
 ///--------------------------------------
@@ -429,7 +429,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @return The task that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(__kindof PFObject *)*)fetchInBackground;
+- (BFTask<__kindof PFObject *> *)fetchInBackground;
 
 /**
  Fetches the `PFObject` *asynchronously* and executes the given callback block.
@@ -445,7 +445,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @return The task that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(__kindof PFObject *)*)fetchIfNeededInBackground;
+- (BFTask<__kindof PFObject *> *)fetchIfNeededInBackground;
 
 /**
  Fetches the `PFObject` data *asynchronously* if `dataAvailable` is `NO`, then calls the callback block.
@@ -466,7 +466,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @return The task that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(NSArray<__kindof PFObject *> *)*)fetchAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects;
++ (BFTask<NSArray<__kindof PFObject *> *> *)fetchAllInBackground:(nullable NSArray<PFObject *> *)objects;
 
 /**
  Fetches all of the `PFObject` objects with the current data from the server *asynchronously*
@@ -476,7 +476,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param block The block to execute.
  It should have the following argument signature: `^(NSArray *objects, NSError *error)`.
  */
-+ (void)fetchAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
++ (void)fetchAllInBackground:(nullable NSArray<PFObject *> *)objects
                        block:(nullable PFArrayResultBlock)block;
 
 /**
@@ -486,7 +486,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @return The task that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(NSArray<__kindof PFObject *> *)*)fetchAllIfNeededInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects;
++ (BFTask<NSArray<__kindof PFObject *> *> *)fetchAllIfNeededInBackground:(nullable NSArray<PFObject *> *)objects;
 
 /**
  Fetches all of the PFObjects with the current data from the server *asynchronously*
@@ -496,7 +496,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param block The block to execute.
  It should have the following argument signature: `^(NSArray *objects, NSError *error)`.
  */
-+ (void)fetchAllIfNeededInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
++ (void)fetchAllIfNeededInBackground:(nullable NSArray<PFObject *> *)objects
                                block:(nullable PFArrayResultBlock)block;
 
 ///--------------------------------------
@@ -509,7 +509,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @return The task that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(__kindof PFObject *)*)fetchFromLocalDatastoreInBackground;
+- (BFTask<__kindof PFObject *> *)fetchFromLocalDatastoreInBackground;
 
 /**
  *Asynchronously* loads data from the local datastore into this object,
@@ -529,7 +529,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @return The task that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSNumber *)*)deleteInBackground;
+- (BFTask<NSNumber *> *)deleteInBackground;
 
 /**
  Deletes the `PFObject` *asynchronously* and executes the given callback block.
@@ -556,7 +556,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @return The task that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSNumber *)*)deleteEventually PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE;
+- (BFTask<NSNumber *> *)deleteEventually PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE;
 
 ///--------------------------------------
 /// @name Dirtiness
@@ -597,7 +597,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see `-unpinInBackground`
  @see `PFObjectDefaultPin`
  */
-- (BFTask PF_GENERIC(NSNumber *)*)pinInBackground;
+- (BFTask<NSNumber *> *)pinInBackground;
 
 /**
  *Asynchronously* stores the object and every object it points to in the local datastore, recursively,
@@ -630,7 +630,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see unpinInBackgroundWithName:
  */
-- (BFTask PF_GENERIC(NSNumber *)*)pinInBackgroundWithName:(NSString *)name;
+- (BFTask<NSNumber *> *)pinInBackgroundWithName:(NSString *)name;
 
 /**
  *Asynchronously* stores the object and every object it points to in the local datastore, recursively.
@@ -668,7 +668,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see unpinAllInBackground:
  @see PFObjectDefaultPin
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)pinAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects;
++ (BFTask<NSNumber *> *)pinAllInBackground:(nullable NSArray<PFObject *> *)objects;
 
 /**
  *Asynchronously* stores the objects and every object they point to in the local datastore, recursively,
@@ -686,7 +686,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see unpinAllInBackground:block:
  @see PFObjectDefaultPin
  */
-+ (void)pinAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects block:(nullable PFBooleanResultBlock)block;
++ (void)pinAllInBackground:(nullable NSArray<PFObject *> *)objects block:(nullable PFBooleanResultBlock)block;
 
 /**
  *Asynchronously* stores the objects and every object they point to in the local datastore, recursively.
@@ -703,7 +703,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see unpinAllInBackground:withName:
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)pinAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects withName:(NSString *)name;
++ (BFTask<NSNumber *> *)pinAllInBackground:(nullable NSArray<PFObject *> *)objects withName:(NSString *)name;
 
 /**
  *Asynchronously* stores the objects and every object they point to in the local datastore, recursively.
@@ -720,7 +720,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see unpinAllInBackground:withName:block:
  */
-+ (void)pinAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
++ (void)pinAllInBackground:(nullable NSArray<PFObject *> *)objects
                   withName:(NSString *)name
                      block:(nullable PFBooleanResultBlock)block;
 
@@ -737,7 +737,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see pinInBackground
  @see PFObjectDefaultPin
  */
-- (BFTask PF_GENERIC(NSNumber *)*)unpinInBackground;
+- (BFTask<NSNumber *> *)unpinInBackground;
 
 /**
  *Asynchronously* removes the object and every object it points to in the local datastore, recursively,
@@ -760,7 +760,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see pinInBackgroundWithName:
  */
-- (BFTask PF_GENERIC(NSNumber *)*)unpinInBackgroundWithName:(NSString *)name;
+- (BFTask<NSNumber *> *)unpinInBackgroundWithName:(NSString *)name;
 
 /**
  *Asynchronously* removes the object and every object it points to in the local datastore, recursively.
@@ -785,7 +785,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see PFObjectDefaultPin
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)unpinAllObjectsInBackground;
++ (BFTask<NSNumber *> *)unpinAllObjectsInBackground;
 
 /**
  *Asynchronously* removes all objects in the local datastore
@@ -805,7 +805,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @return The task that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)unpinAllObjectsInBackgroundWithName:(NSString *)name;
++ (BFTask<NSNumber *> *)unpinAllObjectsInBackgroundWithName:(NSString *)name;
 
 /**
  *Asynchronously* removes all objects with the specified pin name.
@@ -827,7 +827,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see pinAllInBackground:
  @see PFObjectDefaultPin
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)unpinAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects;
++ (BFTask<NSNumber *> *)unpinAllInBackground:(nullable NSArray<PFObject *> *)objects;
 
 /**
  *Asynchronously* removes the objects and every object they point to in the local datastore, recursively,
@@ -840,7 +840,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @see pinAllInBackground:block:
  @see PFObjectDefaultPin
  */
-+ (void)unpinAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects block:(nullable PFBooleanResultBlock)block;
++ (void)unpinAllInBackground:(nullable NSArray<PFObject *> *)objects block:(nullable PFBooleanResultBlock)block;
 
 /**
  *Asynchronously* removes the objects and every object they point to in the local datastore, recursively.
@@ -852,7 +852,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see pinAllInBackground:withName:
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)unpinAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects withName:(NSString *)name;
++ (BFTask<NSNumber *> *)unpinAllInBackground:(nullable NSArray<PFObject *> *)objects withName:(NSString *)name;
 
 /**
  *Asynchronously* removes the objects and every object they point to in the local datastore, recursively.
@@ -864,7 +864,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @see pinAllInBackground:withName:block:
  */
-+ (void)unpinAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
++ (void)unpinAllInBackground:(nullable NSArray<PFObject *> *)objects
                     withName:(NSString *)name
                        block:(nullable PFBooleanResultBlock)block;
 

@@ -21,7 +21,7 @@
 
 @interface PFUserAuthenticationController () {
     dispatch_queue_t _dataAccessQueue;
-    NSMutableDictionary PF_GENERIC(NSString *, id<PFUserAuthenticationDelegate>)*_authenticationDelegates;
+    NSMutableDictionary<NSString *, id<PFUserAuthenticationDelegate>>*_authenticationDelegates;
 }
 
 @end
@@ -94,8 +94,8 @@
 #pragma mark - Authentication
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSNumber *)*)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary PF_GENERIC(NSString *, NSString *)*)authData
-                                                             forAuthType:(NSString *)authType {
+- (BFTask<NSNumber *> *)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary<NSString *, NSString *> *)authData
+                                                   forAuthType:(NSString *)authType {
     id<PFUserAuthenticationDelegate> provider = [self authenticationDelegateForAuthType:authType];
     if (!provider) {
         return [BFTask taskWithResult:@YES];
@@ -105,7 +105,7 @@
     }];
 }
 
-- (BFTask PF_GENERIC(NSNumber *)*)deauthenticateAsyncWithAuthType:(NSString *)authType {
+- (BFTask<NSNumber *> *)deauthenticateAsyncWithAuthType:(NSString *)authType {
     return [self restoreAuthenticationAsyncWithAuthData:nil forAuthType:authType];
 }
 
@@ -113,9 +113,9 @@
 #pragma mark - Log In
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFUser *)*)logInUserAsyncWithAuthType:(NSString *)authType
-                                                  authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData {
-    return [[self.dataSource.currentUserController getCurrentUserAsyncWithOptions:0] continueWithSuccessBlock:^id(BFTask PF_GENERIC(PFUser *)*task) {
+- (BFTask<PFUser *> *)logInUserAsyncWithAuthType:(NSString *)authType
+                                        authData:(NSDictionary<NSString *, NSString *> *)authData {
+    return [[self.dataSource.currentUserController getCurrentUserAsyncWithOptions:0] continueWithSuccessBlock:^id(BFTask<PFUser *> *task) {
         PFUser *currentUser = task.result;
         if (currentUser && [PFAnonymousUtils isLinkedWithUser:currentUser]) {
             if (currentUser.isLazy) {

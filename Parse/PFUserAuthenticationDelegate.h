@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return `YES` - if the `authData` was succesfully synchronized,
  or `NO` if user should not longer be associated because of bad `authData`.
  */
-- (BOOL)restoreAuthenticationWithAuthData:(nullable NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;
+- (BOOL)restoreAuthenticationWithAuthData:(nullable NSDictionary<NSString *, NSString *> *)authData;
 
 @end
 

@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PFRESTObjectBatchCommand : PFRESTCommand
 
-+ (instancetype)batchCommandWithCommands:(NSArray PF_GENERIC(PFRESTCommand *)*)commands
++ (instancetype)batchCommandWithCommands:(NSArray<PFRESTCommand *> *)commands
                             sessionToken:(nullable NSString *)sessionToken
                                serverURL:(NSURL *)serverURL;
 

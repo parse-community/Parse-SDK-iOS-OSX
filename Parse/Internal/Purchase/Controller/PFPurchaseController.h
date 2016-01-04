@@ -16,7 +16,7 @@
 PF_OSX_UNAVAILABLE_WARNING
 PF_WATCH_UNAVAILABLE_WARNING
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFFileManager;
 @class PFPaymentTransactionObserver;
 @class PFProductsRequestResult;

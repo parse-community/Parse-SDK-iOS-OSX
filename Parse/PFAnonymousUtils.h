@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The task, that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(PFUser *)*)logInInBackground;
++ (BFTask<PFUser *> *)logInInBackground;
 
 /**
  Creates an anonymous user asynchronously and performs a provided block.
