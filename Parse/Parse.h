@@ -72,7 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Parse : NSObject
 
 ///--------------------------------------
-/// @name Connecting to Parse
+#pragma mark - Connecting to Parse
 ///--------------------------------------
 
 /**
@@ -110,7 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getClientKey;
 
 ///--------------------------------------
-/// @name Enabling Local Datastore
+#pragma mark - Enabling Local Datastore
 ///--------------------------------------
 
 /**
@@ -127,7 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)isLocalDatastoreEnabled PF_TV_UNAVAILABLE;
 
 ///--------------------------------------
-/// @name Enabling Extensions Data Sharing
+#pragma mark - Enabling Extensions Data Sharing
 ///--------------------------------------
 
 /**
@@ -174,7 +174,7 @@ NS_ASSUME_NONNULL_BEGIN
 #if PARSE_IOS_ONLY
 
 ///--------------------------------------
-/// @name Configuring UI Settings
+#pragma mark - Configuring UI Settings
 ///--------------------------------------
 
 /**
@@ -200,7 +200,7 @@ NS_ASSUME_NONNULL_BEGIN
 #endif
 
 ///--------------------------------------
-/// @name Logging
+#pragma mark - Logging
 ///--------------------------------------
 
 /**

@@ -41,7 +41,7 @@
 @required
 
 ///--------------------------------------
-/// @name State
+#pragma mark - State
 ///--------------------------------------
 
 + (PFObjectState *)_newObjectStateWithParseClassName:(NSString *)className
@@ -51,7 +51,7 @@
 @optional
 
 ///--------------------------------------
-/// @name Before Save
+#pragma mark - Before Save
 ///--------------------------------------
 
 /**
@@ -107,7 +107,7 @@
 #endif
 
 ///--------------------------------------
-/// @name Validation
+#pragma mark - Validation
 ///--------------------------------------
 
 - (BFTask<PFVoid> *)_validateFetchAsync NS_REQUIRES_SUPER;
@@ -122,7 +122,7 @@
 - (BFTask<PFVoid> *)_validateSaveEventuallyAsync NS_REQUIRES_SUPER;
 
 ///--------------------------------------
-/// @name Pin
+#pragma mark - Pin
 ///--------------------------------------
 - (BFTask *)_pinInBackgroundWithName:(NSString *)name includeChildren:(BOOL)includeChildren;
 + (BFTask *)_pinAllInBackground:(NSArray *)objects withName:(NSString *)name includeChildren:(BOOL)includeChildren;

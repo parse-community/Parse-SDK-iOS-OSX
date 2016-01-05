@@ -32,7 +32,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions) {
 @property (nonatomic, strong, readonly) PFFileManager *fileManager;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -40,7 +40,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions) {
                             options:(PFOfflineStoreOptions)options NS_DESIGNATED_INITIALIZER;
 
 ///--------------------------------------
-/// @name Fetch
+#pragma mark - Fetch
 ///--------------------------------------
 
 - (BFTask<PFObject *> *)fetchObjectLocallyAsync:(PFObject *)object;
@@ -56,7 +56,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions) {
 - (BFTask<PFObject *> *)fetchObjectLocallyAsync:(PFObject *)object database:(PFSQLiteDatabase *)database;
 
 ///--------------------------------------
-/// @name Save
+#pragma mark - Save
 ///--------------------------------------
 
 //TODO: (nlutsenko) Remove `includChildren` method, replace with PFLocalStore that wraps OfflineStore + Pin.
@@ -81,7 +81,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions) {
                                   database:(PFSQLiteDatabase *)database;
 
 ///--------------------------------------
-/// @name Find
+#pragma mark - Find
 ///--------------------------------------
 
 /**
@@ -131,7 +131,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions) {
                           database:(PFSQLiteDatabase *)database;
 
 ///--------------------------------------
-/// @name Update Internal State
+#pragma mark - Update Internal State
 ///--------------------------------------
 
 /**
@@ -142,7 +142,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions) {
 - (BFTask<PFVoid> *)updateDataForObjectAsync:(PFObject *)object;
 
 ///--------------------------------------
-/// @name Delete
+#pragma mark - Delete
 ///--------------------------------------
 
 /**
@@ -151,13 +151,13 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions) {
 - (BFTask<PFVoid> *)deleteDataForObjectAsync:(PFObject *)object;
 
 ///--------------------------------------
-/// @name Unpin
+#pragma mark - Unpin
 ///--------------------------------------
 
 - (BFTask<PFVoid> *)unpinObjectAsync:(PFObject *)object;
 
 ///--------------------------------------
-/// @name Internal Helper Methods
+#pragma mark - Internal Helper Methods
 ///--------------------------------------
 
 /**
@@ -184,7 +184,7 @@ typedef NS_OPTIONS(uint8_t, PFOfflineStoreOptions) {
                     newObjectId:(NSString *)newObjectId;
 
 ///--------------------------------------
-/// @name Unit Test Helper Methods
+#pragma mark - Unit Test Helper Methods
 ///--------------------------------------
 
 /**

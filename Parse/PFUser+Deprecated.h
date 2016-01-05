@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFUser (Deprecated)
 
 ///--------------------------------------
-/// @name Creating a New User
+#pragma mark - Creating a New User
 ///--------------------------------------
 
 /**
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
                             selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFUser.-signUpInBackgroundWithBlock:` instead.");
 
 ///--------------------------------------
-/// @name Logging In
+#pragma mark - Logging In
 ///--------------------------------------
 
 /**
@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
                              selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFUser.+logInWithUsernameInBackground:password:block:` instead.");
 
 ///--------------------------------------
-/// @name Becoming a User
+#pragma mark - Becoming a User
 ///--------------------------------------
 
 /**
@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
                   selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFUser.+becomeInBackground:block:` instead.");
 
 ///--------------------------------------
-/// @name Requesting a Password Reset
+#pragma mark - Requesting a Password Reset
 ///--------------------------------------
 
 /**

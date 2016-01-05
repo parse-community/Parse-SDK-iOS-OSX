@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) id<PFCurrentUserControllerProvider, PFUserControllerProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)controllerWithDataSource:(id<PFCurrentUserControllerProvider, PFUserControllerProvider>)dataSource;
 
 ///--------------------------------------
-/// @name Authentication Providers
+#pragma mark - Authentication Providers
 ///--------------------------------------
 
 - (void)registerAuthenticationDelegate:(id<PFUserAuthenticationDelegate>)delegate forAuthType:(NSString *)authType;
@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (id<PFUserAuthenticationDelegate>)authenticationDelegateForAuthType:(NSString *)authType;
 
 ///--------------------------------------
-/// @name Authentication
+#pragma mark - Authentication
 ///--------------------------------------
 
 - (BFTask<NSNumber *> *)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary<NSString *, NSString *> *)authData
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask<NSNumber *> *)deauthenticateAsyncWithAuthType:(NSString *)authType;
 
 ///--------------------------------------
-/// @name Log In
+#pragma mark - Log In
 ///--------------------------------------
 
 - (BFTask<PFUser *> *)logInUserAsyncWithAuthType:(NSString *)authType

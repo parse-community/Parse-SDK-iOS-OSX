@@ -16,7 +16,7 @@
 @interface PFObject (Deprecated)
 
 ///--------------------------------------
-/// @name Saving Objects
+#pragma mark - Saving Objects
 ///--------------------------------------
 
 /**
@@ -34,7 +34,7 @@
                           selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFObject.-saveInBackgroundWithBlock:` instead.");
 
 ///--------------------------------------
-/// @name Saving Many Objects
+#pragma mark - Saving Many Objects
 ///--------------------------------------
 
 /**
@@ -54,7 +54,7 @@
                    selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFObject.+saveAllInBackground:block:` instead.");
 
 ///--------------------------------------
-/// @name Getting an Object
+#pragma mark - Getting an Object
 ///--------------------------------------
 
 /**
@@ -100,7 +100,7 @@
                                    selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFObject.-fetchIfNeededInBackgroundWithBlock:` instead.");
 
 ///--------------------------------------
-/// @name Getting Many Objects
+#pragma mark - Getting Many Objects
 ///--------------------------------------
 
 /**
@@ -138,7 +138,7 @@
                             selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFObject.+fetchAllIfNeededInBackground:block:` instead.");
 
 ///--------------------------------------
-/// @name Deleting an Object
+#pragma mark - Deleting an Object
 ///--------------------------------------
 
 /**
@@ -156,7 +156,7 @@
                             selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFObject.-deleteInBackgroundWithBlock:` instead.");
 
 ///--------------------------------------
-/// @name Deleting Many Objects
+#pragma mark - Deleting Many Objects
 ///--------------------------------------
 
 /**

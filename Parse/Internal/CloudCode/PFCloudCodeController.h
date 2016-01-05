@@ -19,7 +19,7 @@
 @property (nonatomic, strong, readonly) id<PFCommandRunnerProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -28,7 +28,7 @@
 + (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider>)dataSource;
 
 ///--------------------------------------
-/// @name Cloud Functions
+#pragma mark - Cloud Functions
 ///--------------------------------------
 
 /**

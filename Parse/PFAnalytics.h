@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFAnalytics : NSObject
 
 ///--------------------------------------
-/// @name App-Open / Push Analytics
+#pragma mark - App-Open / Push Analytics
 ///--------------------------------------
 
 /**
@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
                                                           block:(nullable PFBooleanResultBlock)block;
 
 ///--------------------------------------
-/// @name Custom Analytics
+#pragma mark - Custom Analytics
 ///--------------------------------------
 
 /**

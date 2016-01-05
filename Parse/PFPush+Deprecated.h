@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFPush (Deprecated)
 
 ///--------------------------------------
-/// @name Sending Push Notifications
+#pragma mark - Sending Push Notifications
 ///--------------------------------------
 
 /**
@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
                                  selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFPush.+sendPushDataToChannelInBackground:withData:block:` instead.");
 
 ///--------------------------------------
-/// @name Managing Channel Subscriptions
+#pragma mark - Managing Channel Subscriptions
 ///--------------------------------------
 
 /**

@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFUser (Synchronous)
 
 ///--------------------------------------
-/// @name Creating a New User
+#pragma mark - Creating a New User
 ///--------------------------------------
 
 /**
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)signUp:(NSError **)error;
 
 ///--------------------------------------
-/// @name Logging In
+#pragma mark - Logging In
 ///--------------------------------------
 
 /**
@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable instancetype)logInWithUsername:(NSString *)username password:(NSString *)password error:(NSError **)error;
 
 ///--------------------------------------
-/// @name Becoming a User
+#pragma mark - Becoming a User
 ///--------------------------------------
 
 /**
@@ -112,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable instancetype)become:(NSString *)sessionToken error:(NSError **)error;
 
 ///--------------------------------------
-/// @name Logging Out
+#pragma mark - Logging Out
 ///--------------------------------------
 
 /**
@@ -121,7 +121,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)logOut;
 
 ///--------------------------------------
-/// @name Requesting a Password Reset
+#pragma mark - Requesting a Password Reset
 ///--------------------------------------
 
 /**

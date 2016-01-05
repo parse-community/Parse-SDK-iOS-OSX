@@ -43,7 +43,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 @property (nonatomic, strong, readonly) PFEventuallyQueueTestHelper *testHelper;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -52,14 +52,14 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
                      retryInterval:(NSTimeInterval)retryInterval NS_DESIGNATED_INITIALIZER;
 
 ///--------------------------------------
-/// @name Running Commands
+#pragma mark - Running Commands
 ///--------------------------------------
 
 - (BFTask *)enqueueCommandInBackground:(id<PFNetworkCommand>)command;
 - (BFTask *)enqueueCommandInBackground:(id<PFNetworkCommand>)command withObject:(PFObject *)object;
 
 ///--------------------------------------
-/// @name Controlling Queue
+#pragma mark - Controlling Queue
 ///--------------------------------------
 
 - (void)start NS_REQUIRES_SUPER;

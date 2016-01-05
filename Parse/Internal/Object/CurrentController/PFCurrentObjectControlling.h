@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, PFCurrentObjectStorageType) {
 @property (nonatomic, assign, readonly) PFCurrentObjectStorageType storageType;
 
 ///--------------------------------------
-/// @name Current
+#pragma mark - Current
 ///--------------------------------------
 
 - (BFTask *)getCurrentObjectAsync;

@@ -30,13 +30,13 @@ NS_ASSUME_NONNULL_BEGIN
 PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
 
 ///--------------------------------------
-/// @name Creating a Push Notification
+#pragma mark - Creating a Push Notification
 ///--------------------------------------
 
 + (instancetype)push;
 
 ///--------------------------------------
-/// @name Configuring a Push Notification
+#pragma mark - Configuring a Push Notification
 ///--------------------------------------
 
 /**
@@ -144,7 +144,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
 @property (nullable, nonatomic, strong) NSDate *pushDate;
 
 ///--------------------------------------
-/// @name Sending Push Notifications
+#pragma mark - Sending Push Notifications
 ///--------------------------------------
 
 /**
@@ -265,7 +265,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
                                   block:(nullable PFBooleanResultBlock)block;
 
 ///--------------------------------------
-/// @name Handling Notifications
+#pragma mark - Handling Notifications
 ///--------------------------------------
 
 /**
@@ -283,7 +283,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
 + (void)handlePush:(nullable NSDictionary *)userInfo NS_AVAILABLE_IOS(3_0) PF_EXTENSION_UNAVAILABLE("");
 
 ///--------------------------------------
-/// @name Managing Channel Subscriptions
+#pragma mark - Managing Channel Subscriptions
 ///--------------------------------------
 
 /**

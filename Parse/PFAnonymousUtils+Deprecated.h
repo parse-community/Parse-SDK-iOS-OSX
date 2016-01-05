@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFAnonymousUtils (Deprecated)
 
 ///--------------------------------------
-/// @name Creating an Anonymous User
+#pragma mark - Creating an Anonymous User
 ///--------------------------------------
 
 /**

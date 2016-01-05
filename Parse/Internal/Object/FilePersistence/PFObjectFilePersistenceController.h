@@ -22,7 +22,7 @@
 @property (nonatomic, weak, readonly) id<PFPersistenceControllerProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -30,7 +30,7 @@
 + (instancetype)controllerWithDataSource:(id<PFPersistenceControllerProvider>)dataSource;
 
 ///--------------------------------------
-/// @name Objects
+#pragma mark - Objects
 ///--------------------------------------
 
 /**

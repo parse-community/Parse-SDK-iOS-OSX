@@ -52,7 +52,7 @@
                                       usingDecoder:(PFDecoder *)decoder;
 
 ///--------------------------------------
-/// @name Accessors
+#pragma mark - Accessors
 ///--------------------------------------
 
 @property (nonatomic, assign, readonly) NSUInteger count;

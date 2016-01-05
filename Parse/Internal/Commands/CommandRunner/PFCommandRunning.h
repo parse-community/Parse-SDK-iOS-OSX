@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSTimeInterval initialRetryDelay;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
                                   serverURL:(NSURL *)serverURL;
 
 ///--------------------------------------
-/// @name Data Commands
+#pragma mark - Data Commands
 ///--------------------------------------
 
 /**
@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
           cancellationToken:(nullable BFCancellationToken *)cancellationToken;
 
 ///--------------------------------------
-/// @name File Commands
+#pragma mark - File Commands
 ///--------------------------------------
 
 - (BFTask *)runFileUploadCommandAsync:(PFRESTCommand *)command

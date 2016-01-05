@@ -32,7 +32,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 @interface PFObject : NSObject
 
 ///--------------------------------------
-/// @name Creating a PFObject
+#pragma mark - Creating a PFObject
 ///--------------------------------------
 
 /**
@@ -80,7 +80,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 + (instancetype)objectWithoutDataWithClassName:(NSString *)className objectId:(nullable NSString *)objectId;
 
 ///--------------------------------------
-/// @name Managing Object Properties
+#pragma mark - Managing Object Properties
 ///--------------------------------------
 
 /**
@@ -117,7 +117,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 @property (nonatomic, copy, readonly) NSArray<NSString *> *allKeys;
 
 ///--------------------------------------
-/// @name Accessors
+#pragma mark - Accessors
 ///--------------------------------------
 
 /**
@@ -207,7 +207,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (void)revertObjectForKey:(NSString *)key;
 
 ///--------------------------------------
-/// @name Array Accessors
+#pragma mark - Array Accessors
 ///--------------------------------------
 
 /**
@@ -264,7 +264,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (void)removeObjectsInArray:(NSArray *)objects forKey:(NSString *)key;
 
 ///--------------------------------------
-/// @name Increment
+#pragma mark - Increment
 ///--------------------------------------
 
 /**
@@ -283,7 +283,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (void)incrementKey:(NSString *)key byAmount:(NSNumber *)amount;
 
 ///--------------------------------------
-/// @name Saving Objects
+#pragma mark - Saving Objects
 ///--------------------------------------
 
 /**
@@ -340,7 +340,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (void)saveEventually:(nullable PFBooleanResultBlock)callback PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE;
 
 ///--------------------------------------
-/// @name Saving Many Objects
+#pragma mark - Saving Many Objects
 ///--------------------------------------
 
 /**
@@ -363,7 +363,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
                       block:(nullable PFBooleanResultBlock)block;
 
 ///--------------------------------------
-/// @name Deleting Many Objects
+#pragma mark - Deleting Many Objects
 ///--------------------------------------
 
 /**
@@ -384,7 +384,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
                         block:(nullable PFBooleanResultBlock)block;
 
 ///--------------------------------------
-/// @name Getting an Object
+#pragma mark - Getting an Object
 ///--------------------------------------
 
 /**
@@ -456,7 +456,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (void)fetchIfNeededInBackgroundWithBlock:(nullable PFObjectResultBlock)block;
 
 ///--------------------------------------
-/// @name Getting Many Objects
+#pragma mark - Getting Many Objects
 ///--------------------------------------
 
 /**
@@ -500,7 +500,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
                                block:(nullable PFArrayResultBlock)block;
 
 ///--------------------------------------
-/// @name Fetching From Local Datastore
+#pragma mark - Fetching From Local Datastore
 ///--------------------------------------
 
 /**
@@ -521,7 +521,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (void)fetchFromLocalDatastoreInBackgroundWithBlock:(nullable PFObjectResultBlock)block;
 
 ///--------------------------------------
-/// @name Deleting an Object
+#pragma mark - Deleting an Object
 ///--------------------------------------
 
 /**
@@ -559,7 +559,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (BFTask<NSNumber *> *)deleteEventually PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE;
 
 ///--------------------------------------
-/// @name Dirtiness
+#pragma mark - Dirtiness
 ///--------------------------------------
 
 /**
@@ -580,7 +580,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (BOOL)isDirtyForKey:(NSString *)key;
 
 ///--------------------------------------
-/// @name Pinning
+#pragma mark - Pinning
 ///--------------------------------------
 
 /**
@@ -649,7 +649,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (void)pinInBackgroundWithName:(NSString *)name block:(nullable PFBooleanResultBlock)block;
 
 ///--------------------------------------
-/// @name Pinning Many Objects
+#pragma mark - Pinning Many Objects
 ///--------------------------------------
 
 /**
@@ -725,7 +725,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
                      block:(nullable PFBooleanResultBlock)block;
 
 ///--------------------------------------
-/// @name Unpinning
+#pragma mark - Unpinning
 ///--------------------------------------
 
 /**
@@ -774,7 +774,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 - (void)unpinInBackgroundWithName:(NSString *)name block:(nullable PFBooleanResultBlock)block;
 
 ///--------------------------------------
-/// @name Unpinning Many Objects
+#pragma mark - Unpinning Many Objects
 ///--------------------------------------
 
 /**

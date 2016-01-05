@@ -16,7 +16,7 @@
 @property (nonatomic, copy, readonly) NSString *lockFilePath;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;

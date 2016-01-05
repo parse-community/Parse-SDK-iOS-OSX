@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFObjectUtilities : NSObject
 
 ///--------------------------------------
-/// @name Operations
+#pragma mark - Operations
 ///--------------------------------------
 
 + (id)newValueByApplyingFieldOperation:(PFFieldOperation *)operation
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)applyOperationSet:(PFOperationSet *)operationSet toDictionary:(NSMutableDictionary *)dictionary;
 
 ///--------------------------------------
-/// @name Equality
+#pragma mark - Equality
 ///--------------------------------------
 
 + (BOOL)isObject:(nullable id<NSObject>)objectA equalToObject:(nullable id<NSObject>)objectB;

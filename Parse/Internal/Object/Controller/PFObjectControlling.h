@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol PFObjectControlling <NSObject>
 
 ///--------------------------------------
-/// @name Fetch
+#pragma mark - Fetch
 ///--------------------------------------
 
 /**
@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask *)processFetchResultAsync:(NSDictionary *)result forObject:(PFObject *)object;
 
 ///--------------------------------------
-/// @name Delete
+#pragma mark - Delete
 ///--------------------------------------
 
 /**

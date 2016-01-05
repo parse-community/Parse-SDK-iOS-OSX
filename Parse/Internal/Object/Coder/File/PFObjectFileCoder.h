@@ -22,13 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFObjectFileCoder : NSObject
 
 ///--------------------------------------
-/// @name Encode
+#pragma mark - Encode
 ///--------------------------------------
 
 + (NSData *)dataFromObject:(PFObject *)object usingEncoder:(PFEncoder *)encoder;
 
 ///--------------------------------------
-/// @name Decode
+#pragma mark - Decode
 ///--------------------------------------
 
 + (PFObject *)objectFromData:(NSData *)data usingDecoder:(PFDecoder *)decoder;

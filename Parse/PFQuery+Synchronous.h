@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFQuery<PFGenericObject : PFObject *> (Synchronous)
 
 ///--------------------------------------
-/// @name Getting Objects by ID
+#pragma mark - Getting Objects by ID
 ///--------------------------------------
 
 /**
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable PFGenericObject)getObjectWithId:(NSString *)objectId error:(NSError **)error;
 
 ///--------------------------------------
-/// @name Getting User Objects
+#pragma mark - Getting User Objects
 ///--------------------------------------
 
 /**
@@ -91,7 +91,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable PFUser *)getUserObjectWithId:(NSString *)objectId error:(NSError **)error;
 
 ///--------------------------------------
-/// @name Getting all Matches for a Query
+#pragma mark - Getting all Matches for a Query
 ///--------------------------------------
 
 /**
@@ -111,7 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSArray<PFGenericObject> *)findObjects:(NSError **)error;
 
 ///--------------------------------------
-/// @name Getting the First Match in a Query
+#pragma mark - Getting the First Match in a Query
 ///--------------------------------------
 
 /**
@@ -135,7 +135,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable PFGenericObject)getFirstObject:(NSError **)error;
 
 ///--------------------------------------
-/// @name Counting the Matches in a Query
+#pragma mark - Counting the Matches in a Query
 ///--------------------------------------
 
 /**

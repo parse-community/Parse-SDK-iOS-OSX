@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *targetClass;
 
 ///--------------------------------------
-/// @name Accessing Objects
+#pragma mark - Accessing Objects
 ///--------------------------------------
 
 /**
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (PFQuery *)query;
 
 ///--------------------------------------
-/// @name Modifying Relations
+#pragma mark - Modifying Relations
 ///--------------------------------------
 
 /**

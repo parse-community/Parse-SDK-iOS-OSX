@@ -58,14 +58,14 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
                           resultTask:(BFTask *)resultTask;
 
 ///--------------------------------------
-/// @name Reachability
+#pragma mark - Reachability
 ///--------------------------------------
 
 - (void)_startMonitoringNetworkReachability;
 - (void)_stopMonitoringNetworkReachability;
 
 ///--------------------------------------
-/// @name Test Helper
+#pragma mark - Test Helper
 ///--------------------------------------
 
 - (void)_setMaxAttemptsCount:(NSUInteger)attemptsCount;
@@ -83,7 +83,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 @protocol PFEventuallyQueueSubclass <NSObject>
 
 ///--------------------------------------
-/// @name Pending Commands
+#pragma mark - Pending Commands
 ///--------------------------------------
 
 
@@ -111,7 +111,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 - (id<PFNetworkCommand>)_commandWithIdentifier:(NSString *)identifier error:(NSError **)error;
 
 ///--------------------------------------
-/// @name Running Commands
+#pragma mark - Running Commands
 ///--------------------------------------
 
 /**

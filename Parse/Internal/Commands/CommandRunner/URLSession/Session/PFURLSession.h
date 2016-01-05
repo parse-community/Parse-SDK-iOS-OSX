@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) id<PFURLSessionDelegate> delegate;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -44,13 +44,13 @@ NS_ASSUME_NONNULL_BEGIN
                                 delegate:(id<PFURLSessionDelegate>)delegate;
 
 ///--------------------------------------
-/// @name Teardown
+#pragma mark - Teardown
 ///--------------------------------------
 
 - (void)invalidateAndCancel;
 
 ///--------------------------------------
-/// @name Network Requests
+#pragma mark - Network Requests
 ///--------------------------------------
 
 - (BFTask *)performDataURLRequestAsync:(NSURLRequest *)request

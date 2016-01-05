@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSString *clientKey;
 
 ///--------------------------------------
-/// @name XCTestCase
+#pragma mark - XCTestCase
 ///--------------------------------------
 
 - (void)setUp NS_REQUIRES_SUPER;

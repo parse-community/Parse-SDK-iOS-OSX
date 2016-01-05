@@ -24,7 +24,7 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 @interface PFUser (Private)
 
 ///--------------------------------------
-/// @name Current User
+#pragma mark - Current User
 ///--------------------------------------
 + (BFTask *)_getCurrentUserSessionTokenAsync;
 + (NSString *)currentSessionToken;
@@ -41,7 +41,7 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 - (void)restoreAnonymity:(id)data;
 
 ///--------------------------------------
-/// @name Revocable Session
+#pragma mark - Revocable Session
 ///--------------------------------------
 + (BOOL)_isRevocableSessionEnabled;
 + (void)_setRevocableSessionEnabled:(BOOL)enabled;
@@ -71,7 +71,7 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 - (BFTask *)_logOutAsync;
 
 ///--------------------------------------
-/// @name Third-party Authentication (Private)
+#pragma mark - Third-party Authentication (Private)
 ///--------------------------------------
 
 + (void)_unregisterAuthenticationDelegateForAuthType:(NSString *)authType;

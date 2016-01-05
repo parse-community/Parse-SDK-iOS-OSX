@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) PFFileManager *fileManager;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)controllerWithFileManager:(PFFileManager *)fileManager;
 
 ///--------------------------------------
-/// @name Opening
+#pragma mark - Opening
 ///--------------------------------------
 
 /**

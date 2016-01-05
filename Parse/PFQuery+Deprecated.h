@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFQuery (Deprecated)
 
 ///--------------------------------------
-/// @name Getting Objects by ID
+#pragma mark - Getting Objects by ID
 ///--------------------------------------
 
 /**
@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
                            selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFQuery.-getObjectInBackgroundWithId:block:` instead.");
 
 ///--------------------------------------
-/// @name Getting all Matches for a Query
+#pragma mark - Getting all Matches for a Query
 ///--------------------------------------
 
 /**
@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
                                  selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFQuery.-findObjectsInBackgroundWithBlock:` instead.");
 
 ///--------------------------------------
-/// @name Getting the First Match in a Query
+#pragma mark - Getting the First Match in a Query
 ///--------------------------------------
 
 /**
@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
                                     selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFQuery.-getFirstObjectInBackgroundWithBlock:` instead.");
 
 ///--------------------------------------
-/// @name Counting the Matches in a Query
+#pragma mark - Counting the Matches in a Query
 ///--------------------------------------
 
 /**

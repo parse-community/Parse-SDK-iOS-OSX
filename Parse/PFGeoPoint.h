@@ -25,7 +25,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 @interface PFGeoPoint : NSObject <NSCopying, NSCoding>
 
 ///--------------------------------------
-/// @name Creating a Geo Point
+#pragma mark - Creating a Geo Point
 ///--------------------------------------
 
 /**
@@ -63,7 +63,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 + (void)geoPointForCurrentLocationInBackground:(nullable PFGeoPointResultBlock)resultBlock;
 
 ///--------------------------------------
-/// @name Controlling Position
+#pragma mark - Controlling Position
 ///--------------------------------------
 
 /**
@@ -77,7 +77,7 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *__nullable geoPoint, NSError *_
 @property (nonatomic, assign) double longitude;
 
 ///--------------------------------------
-/// @name Calculating Distance
+#pragma mark - Calculating Distance
 ///--------------------------------------
 
 /**

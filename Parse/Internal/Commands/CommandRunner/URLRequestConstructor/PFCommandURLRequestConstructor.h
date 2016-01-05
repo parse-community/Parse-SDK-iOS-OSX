@@ -22,20 +22,20 @@
 @property (nonatomic, strong, readonly) NSURL *serverURL;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)constructorWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource serverURL:(NSURL *)serverURL;
 
 ///--------------------------------------
-/// @name Data
+#pragma mark - Data
 ///--------------------------------------
 
 - (BFTask<NSURLRequest *> *)getDataURLRequestAsyncForCommand:(PFRESTCommand *)command;
 
 ///--------------------------------------
-/// @name File Upload
+#pragma mark - File Upload
 ///--------------------------------------
 
 - (BFTask<NSURLRequest *> *)getFileUploadURLRequestAsyncForCommand:(PFRESTCommand *)command
@@ -43,7 +43,7 @@
                                              contentSourceFilePath:(NSString *)contentFilePath;
 
 ///--------------------------------------
-/// @name Headers
+#pragma mark - Headers
 ///--------------------------------------
 
 + (NSDictionary *)defaultURLRequestHeadersForApplicationId:(NSString *)applicationId

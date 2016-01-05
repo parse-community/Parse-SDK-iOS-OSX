@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedFormatter;
 
 ///--------------------------------------
-/// @name String from Date
+#pragma mark - String from Date
 ///--------------------------------------
 
 /**
@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)preciseStringFromDate:(NSDate *)date;
 
 ///--------------------------------------
-/// @name Date from String
+#pragma mark - Date from String
 ///--------------------------------------
 
 /**

@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSString *stagedFilesDirectoryPath;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)controllerWithDataSource:(id<PFFileManagerProvider>)dataSource;
 
 ///--------------------------------------
-/// @name Staging
+#pragma mark - Staging
 ///--------------------------------------
 
 /**

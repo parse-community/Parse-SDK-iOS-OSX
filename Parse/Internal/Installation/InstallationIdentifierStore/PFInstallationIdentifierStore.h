@@ -20,14 +20,14 @@
 @property (nonatomic, weak, readonly) id<PFPersistenceControllerProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 
 ///--------------------------------------
-/// @name Accessors
+#pragma mark - Accessors
 ///--------------------------------------
 
 /**
@@ -36,7 +36,7 @@
 - (BFTask<NSString *> *)getInstallationIdentifierAsync;
 
 ///--------------------------------------
-/// @name Clear
+#pragma mark - Clear
 ///--------------------------------------
 
 /**

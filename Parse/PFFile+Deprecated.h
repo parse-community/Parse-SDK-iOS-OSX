@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFFile (Deprecated)
 
 ///--------------------------------------
-/// @name Saving Files
+#pragma mark - Saving Files
 ///--------------------------------------
 
 /**
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
                           selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFFile.-saveInBackgroundWithBlock:` instead.");
 
 ///--------------------------------------
-/// @name Getting Files
+#pragma mark - Getting Files
 ///--------------------------------------
 
 /**

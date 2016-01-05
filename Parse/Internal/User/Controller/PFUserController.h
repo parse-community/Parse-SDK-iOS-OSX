@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) id<PFCurrentUserControllerProvider> coreDataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
                                 coreDataSource:(id<PFCurrentUserControllerProvider>)coreDataSource;
 
 ///--------------------------------------
-/// @name Log In
+#pragma mark - Log In
 ///--------------------------------------
 
 - (BFTask *)logInCurrentUserAsyncWithSessionToken:(NSString *)sessionToken;
@@ -45,13 +45,13 @@ NS_ASSUME_NONNULL_BEGIN
                              revocableSession:(BOOL)revocableSession;
 
 ///--------------------------------------
-/// @name Reset Password
+#pragma mark - Reset Password
 ///--------------------------------------
 
 - (BFTask *)requestPasswordResetAsyncForEmail:(NSString *)email;
 
 ///--------------------------------------
-/// @name Log Out
+#pragma mark - Log Out
 ///--------------------------------------
 
 - (BFTask *)logOutUserAsyncWithSessionToken:(NSString *)sessionToken;

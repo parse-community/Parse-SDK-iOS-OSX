@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol PFPersistenceGroup <NSObject>
 
 ///--------------------------------------
-/// @name Data
+#pragma mark - Data
 ///--------------------------------------
 
 - (BFTask<NSData *> *)getDataAsyncForKey:(NSString *)key;
@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask *)removeAllDataAsync;
 
 ///--------------------------------------
-/// @name Access
+#pragma mark - Access
 ///--------------------------------------
 
 - (BFTask *)beginLockedContentAccessAsyncToDataForKey:(NSString *)key;
