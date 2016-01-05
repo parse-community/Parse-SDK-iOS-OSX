@@ -37,10 +37,6 @@ static NSString *const PFInstallationIdentifierFileName = @"installationId";
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;

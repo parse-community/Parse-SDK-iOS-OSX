@@ -30,10 +30,6 @@ static const NSTimeInterval PFMultiProcessLockAttemptsDelay = 0.001;
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initForFileWithPath:(NSString *)path {
     self = [super init];
     if (!self) return nil;

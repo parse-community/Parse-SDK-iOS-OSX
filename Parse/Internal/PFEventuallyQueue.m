@@ -46,10 +46,6 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource
                   maxAttemptsCount:(NSUInteger)attemptsCount
                      retryInterval:(NSTimeInterval)retryInterval {

@@ -20,6 +20,8 @@
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initForFileWithPath:(NSString *)path NS_DESIGNATED_INITIALIZER;
 + (instancetype)lockForFileWithPath:(NSString *)path;
 

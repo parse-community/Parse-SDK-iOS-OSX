@@ -26,10 +26,6 @@ static NSString *const PFFileStagingControllerDirectoryName_ = @"PFFileStaging";
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithDataSource:(id<PFFileManagerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;

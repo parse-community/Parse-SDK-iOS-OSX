@@ -81,10 +81,6 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
 
 @implementation PFObjectLocalIdStore
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 /**
  * Creates a new LocalIdManager with default options.
  */

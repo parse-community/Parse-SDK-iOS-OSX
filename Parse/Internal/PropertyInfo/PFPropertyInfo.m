@@ -39,10 +39,6 @@ static inline NSString *stringByCapitalizingFirstCharacter(NSString *string) {
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithClass:(Class)kls name:(NSString *)propertyName {
     return [self initWithClass:kls name:propertyName associationType:_associationType];
 }

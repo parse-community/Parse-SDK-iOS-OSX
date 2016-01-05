@@ -44,10 +44,6 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;

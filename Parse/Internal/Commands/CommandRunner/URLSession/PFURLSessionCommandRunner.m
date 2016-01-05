@@ -48,10 +48,6 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                      applicationId:(NSString *)applicationId
                          clientKey:(NSString *)clientKey

@@ -72,10 +72,6 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithDataSource:(id<PFCoreManagerDataSource>)dataSource {
     self = [super init];
     if (!self) return nil;

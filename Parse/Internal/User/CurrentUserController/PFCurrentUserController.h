@@ -35,6 +35,8 @@ typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithStorageType:(PFCurrentObjectStorageType)storageType
                    commonDataSource:(id<PFKeychainStoreProvider>)commonDataSource
                      coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource NS_DESIGNATED_INITIALIZER;

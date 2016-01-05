@@ -53,6 +53,7 @@ PFInstallationIdentifierStoreProvider>
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 /**
  Initializes an instance of ParseManager class.

@@ -16,6 +16,8 @@
 @property (atomic, strong) Class subclass;
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithSubclass:(Class)kls NS_DESIGNATED_INITIALIZER;
 + (instancetype)subclassInfoWithSubclass:(Class)kls;
 

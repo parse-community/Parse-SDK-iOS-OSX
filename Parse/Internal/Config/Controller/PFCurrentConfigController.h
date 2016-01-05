@@ -25,6 +25,8 @@
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)controllerWithDataSource:(id<PFPersistenceControllerProvider>)dataSource;

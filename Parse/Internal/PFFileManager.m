@@ -230,10 +230,6 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
 
 #pragma mark Init
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithApplicationIdentifier:(NSString *)applicationIdentifier
                    applicationGroupIdentifier:(NSString *)applicationGroupIdentifier {
     self = [super init];

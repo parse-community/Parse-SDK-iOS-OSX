@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFPropertyInfo : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithClass:(Class)kls
                          name:(NSString *)propertyName;
 

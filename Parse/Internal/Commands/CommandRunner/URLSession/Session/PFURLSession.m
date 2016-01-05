@@ -37,10 +37,6 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithConfiguration:(NSURLSessionConfiguration *)configuration
                              delegate:(id<PFURLSessionDelegate>)delegate {
     // NOTE: cast to id suppresses warning about designated initializer.

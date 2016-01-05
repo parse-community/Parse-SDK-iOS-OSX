@@ -52,6 +52,8 @@ typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithApplicationIdentifier:(NSString *)applicationIdentifier
                    applicationGroupIdentifier:(NSString *)applicationGroupIdentifier NS_DESIGNATED_INITIALIZER;
 

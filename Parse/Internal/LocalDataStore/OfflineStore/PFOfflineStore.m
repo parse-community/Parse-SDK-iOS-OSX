@@ -93,10 +93,6 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithFileManager:(PFFileManager *)fileManager options:(PFOfflineStoreOptions)options {
     self = [super init];
     if (!self) return nil;

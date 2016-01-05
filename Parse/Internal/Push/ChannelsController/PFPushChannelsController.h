@@ -29,6 +29,8 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushChannelsController : NSO
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithDataSource:(id<PFCurrentInstallationControllerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 + (instancetype)controllerWithDataSource:(id<PFCurrentInstallationControllerProvider>)dataSource;
 

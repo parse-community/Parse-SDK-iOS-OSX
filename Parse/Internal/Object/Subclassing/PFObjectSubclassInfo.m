@@ -77,10 +77,6 @@ static objc_property_t getAccessorMutatorPair(Class klass, SEL sel, SEL outPair[
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithSubclass:(Class)kls {
     self = [super init];
     if (!self) return nil;

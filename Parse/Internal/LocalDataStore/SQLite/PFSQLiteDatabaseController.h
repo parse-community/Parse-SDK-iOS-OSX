@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithFileManager:(PFFileManager *)fileManager NS_DESIGNATED_INITIALIZER;
 + (instancetype)controllerWithFileManager:(PFFileManager *)fileManager;
 

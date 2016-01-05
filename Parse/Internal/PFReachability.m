@@ -84,10 +84,6 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithURL:(NSURL *)url {
     self = [super init];
     if (!self) return nil;
