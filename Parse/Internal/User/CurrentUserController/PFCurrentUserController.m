@@ -120,9 +120,9 @@
         return [[[[self _loadCurrentUserFromDiskAsync] continueWithSuccessBlock:^id(BFTask *task) {
             PFUser *user = task.result;
             // If the object was not yet saved, but is already linked with AnonymousUtils - it means it is lazy.
-            // So mark it's state as `isLazy` and make it `dirty`
+            // So mark it's state as `lazy` and make it `dirty`
             if (!user.objectId && [PFAnonymousUtils isLinkedWithUser:user]) {
-                user.isLazy = YES;
+                user._lazy = YES;
                 [user _setDirty:YES];
             }
             return user;
@@ -158,7 +158,7 @@
         }
         return [[task continueWithBlock:^id(BFTask *task) {
             @synchronized (user.lock) {
-                [user setIsCurrentUser:YES];
+                user._current = YES;
                 [user synchronizeAllAuthData];
             }
             return [self _saveCurrentUserToDiskAsync:user];
@@ -246,7 +246,7 @@
     }
     return [task continueWithSuccessBlock:^id(BFTask *task) {
         PFUser *user = task.result;
-        [user setIsCurrentUser:YES];
+        user._current = YES;
         return [[self _loadSensitiveUserDataAsync:user
                          fromKeychainItemWithName:PFUserCurrentUserKeychainItemName] continueWithSuccessResult:user];
     }];

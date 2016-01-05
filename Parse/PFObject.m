@@ -435,7 +435,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         // This has to happen separately from everything else because there [PFUser save]
         // is special-cased to work for lazy users, but new users can't be created by
         // PFMultiCommand's regular save.
-        if (currentUser.isLazy && [current containsObject:currentUser]) {
+        if (currentUser._lazy && [current containsObject:currentUser]) {
             task = [task continueAsyncWithSuccessBlock:^id(BFTask *task) {
                 return [currentUser saveInBackground];
             }];
@@ -607,7 +607,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             // Unfortunately, ACLs with lazy users still cannot be saved, because the ACL does
             // does not get updated after the user save completes.
             // TODO: (nlutsenko) Make the ACL update after the user is saved.
-            if (currentUser.isLazy && [current containsObject:currentUser]) {
+            if (currentUser._lazy && [current containsObject:currentUser]) {
                 [enqueueTasks addObject:[currentUser _enqueueSaveEventuallyWithChildren:NO]];
                 [finished addObject:currentUser];
                 [current removeObject:currentUser];

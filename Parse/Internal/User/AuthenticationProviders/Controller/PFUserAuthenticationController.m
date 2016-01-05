@@ -118,7 +118,7 @@
     return [[self.dataSource.currentUserController getCurrentUserAsyncWithOptions:0] continueWithSuccessBlock:^id(BFTask<PFUser *> *task) {
         PFUser *currentUser = task.result;
         if (currentUser && [PFAnonymousUtils isLinkedWithUser:currentUser]) {
-            if (currentUser.isLazy) {
+            if (currentUser._lazy) {
                 BFTask *resolveLaziness = nil;
                 NSDictionary *oldAnonymousData = nil;
                 @synchronized(currentUser.lock) {

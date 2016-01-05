@@ -275,7 +275,7 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 - (void)setReadAccess:(BOOL)allowed forUser:(PFUser *)user {
     NSString *objectId = user.objectId;
     if (!objectId) {
-        if (user.isLazy) {
+        if (user._lazy) {
             [self setUnresolvedReadAccess:allowed forUser:user];
             return;
         }
@@ -301,7 +301,7 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 - (void)setWriteAccess:(BOOL)allowed forUser:(PFUser *)user {
     NSString *objectId = user.objectId;
     if (!objectId) {
-        if (user.isLazy) {
+        if (user._lazy) {
             [self setUnresolvedWriteAccess:allowed forUser:user];
             return;
         }

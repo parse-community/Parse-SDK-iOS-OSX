@@ -122,7 +122,7 @@
     OCMStub(lazyUser.objectId).andDo(^(NSInvocation *invocation) {
         [invocation setReturnValue:&userId];
     });
-    OCMStub(lazyUser.isLazy).andReturn(YES);
+    OCMStub(lazyUser._lazy).andReturn(YES);
 
     __block void (^saveListener)(id, NSError *) = nil;
 
