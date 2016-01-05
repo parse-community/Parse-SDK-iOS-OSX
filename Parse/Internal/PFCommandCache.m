@@ -227,17 +227,26 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         NSUInteger size = requiredSize;
 
-        NSMutableDictionary *commandSizes = [NSMutableDictionary dictionary];
+        NSMutableDictionary<NSString *, NSNumber *> *commandSizes = [NSMutableDictionary dictionary];
 
         [[PFMultiProcessFileLockController sharedController] beginLockedContentAccessForFileAtPath:self.diskCachePath];
-        NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtPath:self.diskCachePath];
 
-        NSString *identifier = nil;
-        while ((identifier = [enumerator nextObject])) {
-            NSNumber *fileSize = enumerator.fileAttributes[NSFileSize];
-            if (fileSize) {
-                commandSizes[identifier] = fileSize;
-                size += fileSize.unsignedIntegerValue;
+        NSDictionary *directoryAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:self.diskCachePath error:nil];
+        if ([directoryAttributes[NSFileSize] unsignedLongLongValue] > self.diskCacheSize) {
+            NSDirectoryEnumerator<NSURL *> *enumerator = [[NSFileManager defaultManager] enumeratorAtURL:[NSURL fileURLWithPath:self.diskCachePath]
+                                                                              includingPropertiesForKeys:@[ NSURLFileSizeKey ]
+                                                                                                 options:NSDirectoryEnumerationSkipsSubdirectoryDescendants
+                                                                                            errorHandler:nil];
+            NSURL *fileURL = nil;
+            while ((fileURL = [enumerator nextObject])) {
+                NSNumber *fileSize = nil;
+                if (![fileURL getResourceValue:&fileSize forKey:NSURLFileSizeKey error:nil]) {
+                    continue;
+                }
+                if (fileSize) {
+                    commandSizes[fileURL.path.lastPathComponent] = fileSize;
+                    size += fileSize.unsignedIntegerValue;
+                }
             }
         }
 
@@ -245,7 +254,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
 
         if (size > self.diskCacheSize) {
             // Get identifiers and sort them to remove oldest commands first
-            NSArray *identifiers = [commandSizes.allKeys sortedArrayUsingSelector:@selector(compare:)];
+            NSArray<NSString *> *identifiers = [commandSizes.allKeys sortedArrayUsingSelector:@selector(compare:)];
             for (NSString *identifier in identifiers) @autoreleasepool {
                 [self _removeFileForCommandWithIdentifier:identifier];
                 size -= [commandSizes[identifier] unsignedIntegerValue];
