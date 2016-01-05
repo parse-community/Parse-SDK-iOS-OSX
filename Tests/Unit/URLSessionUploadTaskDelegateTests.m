@@ -54,8 +54,6 @@
     XCTAssertNotNil(delegate);
     XCTAssertEqual(delegate.dataTask, mockedTask);
     XCTAssertNotNil(delegate.resultTask);
-
-    PFAssertThrowsInconsistencyException([PFURLSessionUploadTaskDelegate new]);
 }
 
 - (void)testCancel {

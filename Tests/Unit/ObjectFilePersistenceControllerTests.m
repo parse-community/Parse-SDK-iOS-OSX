@@ -57,8 +57,6 @@
     controller = [PFObjectFilePersistenceController controllerWithDataSource:dataSource];
     XCTAssertNotNil(controller);
     XCTAssertEqual((id)controller.dataSource, dataSource);
-
-    PFAssertThrowsInconsistencyException([PFObjectFilePersistenceController new]);
 }
 
 - (void)testLoadPersistentObject {
