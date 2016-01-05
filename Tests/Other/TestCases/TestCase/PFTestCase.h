@@ -14,21 +14,21 @@
 @interface PFTestCase : XCTestCase
 
 ///--------------------------------------
-/// @name XCTestCase
+#pragma mark - XCTestCase
 ///--------------------------------------
 
 - (void)setUp NS_REQUIRES_SUPER;
 - (void)tearDown NS_REQUIRES_SUPER;
 
 ///--------------------------------------
-/// @name Expectations
+#pragma mark - Expectations
 ///--------------------------------------
 
 - (XCTestExpectation *)currentSelectorTestExpectation;
 - (void)waitForTestExpectations;
 
 ///--------------------------------------
-/// @name File Asserts
+#pragma mark - File Asserts
 ///--------------------------------------
 
 - (void)assertFileExists:(NSString *)path;
@@ -41,7 +41,7 @@
 - (void)assertDirectory:(NSString *)directoryPath hasContents:(NSDictionary *)expected only:(BOOL)only;
 
 ///--------------------------------------
-/// @name Mocks
+#pragma mark - Mocks
 ///--------------------------------------
 
 - (void)registerMockObject:(id)mockObject;

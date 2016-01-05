@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFFile : NSObject
 
 ///--------------------------------------
-/// @name Creating a PFFile
+#pragma mark - Creating a PFFile
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -125,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)fileWithData:(NSData *)data contentType:(nullable NSString *)contentType;
 
 ///--------------------------------------
-/// @name File Properties
+#pragma mark - File Properties
 ///--------------------------------------
 
 /**
@@ -148,7 +148,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly, getter=isDirty) BOOL dirty;
 
 ///--------------------------------------
-/// @name Storing Data with Parse
+#pragma mark - Storing Data with Parse
 ///--------------------------------------
 
 /**
@@ -187,7 +187,7 @@ NS_ASSUME_NONNULL_BEGIN
                     progressBlock:(nullable PFProgressBlock)progressBlock;
 
 ///--------------------------------------
-/// @name Getting Data from Parse
+#pragma mark - Getting Data from Parse
 ///--------------------------------------
 
 /**
@@ -358,7 +358,7 @@ NS_ASSUME_NONNULL_BEGIN
                            progressBlock:(nullable PFProgressBlock)progressBlock;
 
 ///--------------------------------------
-/// @name Interrupting a Transfer
+#pragma mark - Interrupting a Transfer
 ///--------------------------------------
 
 /**

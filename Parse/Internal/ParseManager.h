@@ -49,7 +49,7 @@ PFInstallationIdentifierStoreProvider>
 #endif
 
 ///--------------------------------------
-/// @name Initialization
+#pragma mark - Initialization
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -70,25 +70,25 @@ PFInstallationIdentifierStoreProvider>
 - (void)startManaging;
 
 ///--------------------------------------
-/// @name Offline Store
+#pragma mark - Offline Store
 ///--------------------------------------
 
 - (void)loadOfflineStoreWithOptions:(PFOfflineStoreOptions)options;
 
 ///--------------------------------------
-/// @name Eventually Queue
+#pragma mark - Eventually Queue
 ///--------------------------------------
 
 - (void)clearEventuallyQueue;
 
 ///--------------------------------------
-/// @name Core Manager
+#pragma mark - Core Manager
 ///--------------------------------------
 
 - (void)unloadCoreManager;
 
 ///--------------------------------------
-/// @name Preloading
+#pragma mark - Preloading
 ///--------------------------------------
 
 - (BFTask *)preloadDiskObjectsToMemoryAsync;

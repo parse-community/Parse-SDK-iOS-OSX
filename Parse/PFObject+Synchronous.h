@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFObject (Synchronous)
 
 ///--------------------------------------
-/// @name Saving Objects
+#pragma mark - Saving Objects
 ///--------------------------------------
 
 /**
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)save:(NSError **)error;
 
 ///--------------------------------------
-/// @name Saving Many Objects
+#pragma mark - Saving Many Objects
 ///--------------------------------------
 
 /**
@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)saveAll:(nullable NSArray<PFObject *> *)objects error:(NSError **)error;
 
 ///--------------------------------------
-/// @name Getting an Object
+#pragma mark - Getting an Object
 ///--------------------------------------
 
 /**
@@ -90,7 +90,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable instancetype)fetchIfNeeded:(NSError **)error;
 
 ///--------------------------------------
-/// @name Getting Many Objects
+#pragma mark - Getting Many Objects
 ///--------------------------------------
 
 /**
@@ -127,7 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
                                                       error:(NSError **)error;
 
 ///--------------------------------------
-/// @name Fetching From Local Datastore
+#pragma mark - Fetching From Local Datastore
 ///--------------------------------------
 
 /**
@@ -148,7 +148,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable instancetype)fetchFromLocalDatastore:(NSError **)error;
 
 ///--------------------------------------
-/// @name Deleting an Object
+#pragma mark - Deleting an Object
 ///--------------------------------------
 
 /**
@@ -168,7 +168,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)delete:(NSError **)error;
 
 ///--------------------------------------
-/// @name Deleting Many Objects
+#pragma mark - Deleting Many Objects
 ///--------------------------------------
 
 /**
@@ -191,7 +191,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)deleteAll:(nullable NSArray<PFObject *> *)objects error:(NSError **)error;
 
 ///--------------------------------------
-/// @name Pinning
+#pragma mark - Pinning
 ///--------------------------------------
 
 /**
@@ -262,7 +262,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)pinWithName:(NSString *)name error:(NSError **)error;
 
 ///--------------------------------------
-/// @name Pinning Many Objects
+#pragma mark - Pinning Many Objects
 ///--------------------------------------
 
 /**
@@ -338,7 +338,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)pinAll:(nullable NSArray<PFObject *> *)objects withName:(NSString *)name error:(NSError **)error;
 
 ///--------------------------------------
-/// @name Unpinning
+#pragma mark - Unpinning
 ///--------------------------------------
 
 /**
@@ -389,7 +389,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)unpinWithName:(NSString *)name error:(NSError **)error;
 
 ///--------------------------------------
-/// @name Unpinning Many Objects
+#pragma mark - Unpinning Many Objects
 ///--------------------------------------
 
 /**

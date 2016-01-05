@@ -10,13 +10,13 @@
 #import <Foundation/Foundation.h>
 
 ///--------------------------------------
-/// @name Running
+#pragma mark - Running
 ///--------------------------------------
 
 extern uint8_t const PFCommandRunningDefaultMaxAttemptsCount;
 
 ///--------------------------------------
-/// @name Headers
+#pragma mark - Headers
 ///--------------------------------------
 
 extern NSString *const PFCommandHeaderNameApplicationId;
@@ -29,7 +29,7 @@ extern NSString *const PFCommandHeaderNameOSVersion;
 extern NSString *const PFCommandHeaderNameSessionToken;
 
 ///--------------------------------------
-/// @name HTTP Method Override
+#pragma mark - HTTP Method Override
 ///--------------------------------------
 
 extern NSString *const PFCommandParameterNameMethodOverride;

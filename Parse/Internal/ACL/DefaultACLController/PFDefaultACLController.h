@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) id<PFCurrentUserControllerProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)controllerWithDataSource:(id<PFCurrentUserControllerProvider>)dataSource;
 
 ///--------------------------------------
-/// @name Default ACL
+#pragma mark - Default ACL
 ///--------------------------------------
 
 /**

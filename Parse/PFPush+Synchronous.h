@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFPush (Synchronous)
 
 ///--------------------------------------
-/// @name Sending Push Notifications
+#pragma mark - Sending Push Notifications
 ///--------------------------------------
 
 /**
@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)sendPushDataToQuery:(PFQuery<PFInstallation *> *)query withData:(NSDictionary *)data error:(NSError **)error;
 
 ///--------------------------------------
-/// @name Managing Channel Subscriptions
+#pragma mark - Managing Channel Subscriptions
 ///--------------------------------------
 
 /**

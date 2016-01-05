@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFAnonymousUtils : NSObject
 
 ///--------------------------------------
-/// @name Creating an Anonymous User
+#pragma mark - Creating an Anonymous User
 ///--------------------------------------
 
 /**
@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)logInWithBlock:(nullable PFUserResultBlock)block;
 
 ///--------------------------------------
-/// @name Determining Whether a User is Anonymous
+#pragma mark - Determining Whether a User is Anonymous
 ///--------------------------------------
 
 /**

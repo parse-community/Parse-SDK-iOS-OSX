@@ -17,7 +17,7 @@
 @property (nonatomic, assign, readwrite) NSInteger skip;
 
 ///--------------------------------------
-/// @name Remote + Caching Options
+#pragma mark - Remote + Caching Options
 ///--------------------------------------
 
 @property (nonatomic, assign, readwrite) PFCachePolicy cachePolicy;
@@ -26,7 +26,7 @@
 @property (nonatomic, assign, readwrite) BOOL trace;
 
 ///--------------------------------------
-/// @name Local Datastore Options
+#pragma mark - Local Datastore Options
 ///--------------------------------------
 
 @property (nonatomic, assign, readwrite) BOOL shouldIgnoreACLs;
@@ -35,14 +35,14 @@
 @property (nonatomic, copy, readwrite) NSString *localDatastorePinName;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)initWithParseClassName:(NSString *)className;
 + (instancetype)stateWithParseClassName:(NSString *)className;
 
 ///--------------------------------------
-/// @name Conditions
+#pragma mark - Conditions
 ///--------------------------------------
 
 - (void)setConditionType:(NSString *)type withObject:(id)object forKey:(NSString *)key;
@@ -53,7 +53,7 @@
 - (void)removeAllConditions;
 
 ///--------------------------------------
-/// @name Sort
+#pragma mark - Sort
 ///--------------------------------------
 
 - (void)sortByKey:(NSString *)key ascending:(BOOL)ascending;
@@ -61,19 +61,19 @@
 - (void)addSortKeysFromSortDescriptors:(NSArray *)sortDescriptors;
 
 ///--------------------------------------
-/// @name Includes
+#pragma mark - Includes
 ///--------------------------------------
 
 - (void)includeKey:(NSString *)key;
 
 ///--------------------------------------
-/// @name Selected Keys
+#pragma mark - Selected Keys
 ///--------------------------------------
 
 - (void)selectKeys:(NSArray *)keys;
 
 ///--------------------------------------
-/// @name Redirect
+#pragma mark - Redirect
 ///--------------------------------------
 
 - (void)redirectClassNameForKey:(NSString *)key;

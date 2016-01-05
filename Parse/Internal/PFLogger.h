@@ -18,7 +18,7 @@ typedef uint8_t PFLoggingTag;
 @property (atomic, assign) PFLogLevel logLevel;
 
 ///--------------------------------------
-/// @name Shared Logger
+#pragma mark - Shared Logger
 ///--------------------------------------
 
 /**
@@ -29,7 +29,7 @@ A shared instance of `PFLogger` that should be used for all logging.
 + (instancetype)sharedLogger; //TODO: (nlutsenko) Convert to use an instance everywhere instead of a shared singleton.
 
 ///--------------------------------------
-/// @name Logging Messages
+#pragma mark - Logging Messages
 ///--------------------------------------
 
 /**

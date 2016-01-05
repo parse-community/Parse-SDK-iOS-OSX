@@ -23,7 +23,7 @@ typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
 @interface PFFileManager : NSObject
 
 ///--------------------------------------
-/// @name Class
+#pragma mark - Class
 ///--------------------------------------
 
 + (BOOL)isApplicationGroupContainerReachableForGroupIdentifier:(NSString *)applicationGroup;
@@ -48,7 +48,7 @@ typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
 + (BFTask *)removeDirectoryContentsAsyncAtPath:(NSString *)path;
 
 ///--------------------------------------
-/// @name Instance
+#pragma mark - Instance
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;

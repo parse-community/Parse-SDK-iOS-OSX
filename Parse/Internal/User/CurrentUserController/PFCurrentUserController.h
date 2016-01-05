@@ -31,7 +31,7 @@ typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
 @property (atomic, assign) BOOL automaticUsersEnabled;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -43,7 +43,7 @@ typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
                            coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource;
 
 ///--------------------------------------
-/// @name User
+#pragma mark - User
 ///--------------------------------------
 
 - (BFTask *)getCurrentUserAsyncWithOptions:(PFCurrentUserLoadingOptions)options;
@@ -51,7 +51,7 @@ typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
 - (BFTask *)logOutCurrentUserAsync;
 
 ///--------------------------------------
-/// @name Session Token
+#pragma mark - Session Token
 ///--------------------------------------
 
 - (BFTask *)getCurrentUserSessionTokenAsync;

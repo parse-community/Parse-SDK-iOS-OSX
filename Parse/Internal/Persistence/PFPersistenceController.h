@@ -18,7 +18,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 ///--------------------------------------
-/// @name Controller
+#pragma mark - Controller
 ///--------------------------------------
 
 typedef BFTask<NSNumber *> *__nonnull (^PFPersistenceGroupValidationHandler)(id<PFPersistenceGroup> group);
@@ -29,7 +29,7 @@ typedef BFTask<NSNumber *> *__nonnull (^PFPersistenceGroupValidationHandler)(id<
 @property (nullable, nonatomic, copy, readonly) NSString *applicationGroupIdentifier;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -38,7 +38,7 @@ typedef BFTask<NSNumber *> *__nonnull (^PFPersistenceGroupValidationHandler)(id<
                        groupValidationHandler:(PFPersistenceGroupValidationHandler)handler NS_DESIGNATED_INITIALIZER;
 
 ///--------------------------------------
-/// @name Data Persistence
+#pragma mark - Data Persistence
 ///--------------------------------------
 
 - (BFTask<id<PFPersistenceGroup>> *)getPersistenceGroupAsync;

@@ -25,7 +25,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushChannelsController : NSO
 @property (nonatomic, weak, readonly) id<PFCurrentInstallationControllerProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -33,13 +33,13 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushChannelsController : NSO
 + (instancetype)controllerWithDataSource:(id<PFCurrentInstallationControllerProvider>)dataSource;
 
 ///--------------------------------------
-/// @name Get
+#pragma mark - Get
 ///--------------------------------------
 
 - (BFTask<NSSet<NSString *> *>*)getSubscribedChannelsAsync;
 
 ///--------------------------------------
-/// @name Subscribe
+#pragma mark - Subscribe
 ///--------------------------------------
 
 - (BFTask *)subscribeToChannelAsyncWithName:(NSString *)name;

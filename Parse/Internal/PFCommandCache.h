@@ -30,7 +30,7 @@
 @property (nonatomic, assign, readonly) unsigned long long diskCacheSize;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 /**

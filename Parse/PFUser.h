@@ -35,7 +35,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 @interface PFUser : PFObject <PFSubclassing>
 
 ///--------------------------------------
-/// @name Accessing the Current User
+#pragma mark - Accessing the Current User
 ///--------------------------------------
 
 /**
@@ -68,7 +68,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 @property (nonatomic, assign, readonly, getter=isAuthenticated) BOOL authenticated;
 
 ///--------------------------------------
-/// @name Creating a New User
+#pragma mark - Creating a New User
 ///--------------------------------------
 
 /**
@@ -132,7 +132,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 - (void)signUpInBackgroundWithBlock:(nullable PFBooleanResultBlock)block;
 
 ///--------------------------------------
-/// @name Logging In
+#pragma mark - Logging In
 ///--------------------------------------
 
 /**
@@ -162,7 +162,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(nullable PFUserResultBlock)block;
 
 ///--------------------------------------
-/// @name Becoming a User
+#pragma mark - Becoming a User
 ///--------------------------------------
 
 /**
@@ -190,7 +190,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 + (void)becomeInBackground:(NSString *)sessionToken block:(nullable PFUserResultBlock)block;
 
 ///--------------------------------------
-/// @name Revocable Session
+#pragma mark - Revocable Session
 ///--------------------------------------
 
 /**
@@ -217,7 +217,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 + (void)enableRevocableSessionInBackgroundWithBlock:(nullable PFUserSessionUpgradeResultBlock)block;
 
 ///--------------------------------------
-/// @name Logging Out
+#pragma mark - Logging Out
 ///--------------------------------------
 
 /**
@@ -243,7 +243,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 + (void)logOutInBackgroundWithBlock:(nullable PFUserLogoutResultBlock)block;
 
 ///--------------------------------------
-/// @name Requesting a Password Reset
+#pragma mark - Requesting a Password Reset
 ///--------------------------------------
 
 /**
@@ -268,7 +268,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 + (void)requestPasswordResetForEmailInBackground:(NSString *)email block:(nullable PFBooleanResultBlock)block;
 
 ///--------------------------------------
-/// @name Third-party Authentication
+#pragma mark - Third-party Authentication
 ///--------------------------------------
 
 /**

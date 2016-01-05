@@ -19,7 +19,7 @@
 @class PFSQLiteDatabase;
 
 ///--------------------------------------
-/// @name Encoders
+#pragma mark - Encoders
 ///--------------------------------------
 
 @interface PFEncoder : NSObject

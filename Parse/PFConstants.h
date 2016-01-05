@@ -13,7 +13,7 @@
 @class PFUser;
 
 ///--------------------------------------
-/// @name Version
+#pragma mark - Version
 ///--------------------------------------
 
 #define PARSE_VERSION @"1.11.0"
@@ -21,7 +21,7 @@
 extern NSInteger const PARSE_API_VERSION;
 
 ///--------------------------------------
-/// @name Platform
+#pragma mark - Platform
 ///--------------------------------------
 
 #define PARSE_IOS_ONLY (TARGET_OS_IPHONE)
@@ -30,7 +30,7 @@ extern NSInteger const PARSE_API_VERSION;
 extern NSString *const __nonnull kPFDeviceType;
 
 ///--------------------------------------
-/// @name Cache Policies
+#pragma mark - Cache Policies
 ///--------------------------------------
 
 /**
@@ -78,7 +78,7 @@ typedef NS_ENUM(uint8_t, PFCachePolicy) {
 };
 
 ///--------------------------------------
-/// @name Logging Levels
+#pragma mark - Logging Levels
 ///--------------------------------------
 
 /**
@@ -120,7 +120,7 @@ typedef NS_ENUM(uint8_t, PFLogLevel) {
 };
 
 ///--------------------------------------
-/// @name Errors
+#pragma mark - Errors
 ///--------------------------------------
 
 extern NSString *const __nonnull PFParseErrorDomain;
@@ -356,7 +356,7 @@ typedef NS_ENUM(NSInteger, PFErrorCode) {
 };
 
 ///--------------------------------------
-/// @name Blocks
+#pragma mark - Blocks
 ///--------------------------------------
 
 typedef void (^PFBooleanResultBlock)(BOOL succeeded, NSError *__nullable error);
@@ -373,7 +373,7 @@ typedef void (^PFIdResultBlock)(__nullable id object, NSError *__nullable error)
 typedef void (^PFProgressBlock)(int percentDone);
 
 ///--------------------------------------
-/// @name Network Notifications
+#pragma mark - Network Notifications
 ///--------------------------------------
 
 /**
@@ -406,7 +406,7 @@ extern NSString *const __nonnull PFNetworkNotificationURLResponseBodyUserInfoKey
 
 
 ///--------------------------------------
-/// @name Deprecated Macros
+#pragma mark - Deprecated Macros
 ///--------------------------------------
 
 #ifndef PARSE_DEPRECATED
@@ -422,7 +422,7 @@ extern NSString *const __nonnull PFNetworkNotificationURLResponseBodyUserInfoKey
 #endif
 
 ///--------------------------------------
-/// @name Extensions Macros
+#pragma mark - Extensions Macros
 ///--------------------------------------
 
 #ifndef PF_EXTENSION_UNAVAILABLE
@@ -442,7 +442,7 @@ extern NSString *const __nonnull PFNetworkNotificationURLResponseBodyUserInfoKey
 #endif
 
 ///--------------------------------------
-/// @name Swift Macros
+#pragma mark - Swift Macros
 ///--------------------------------------
 
 #ifndef PF_SWIFT_UNAVAILABLE
@@ -454,7 +454,7 @@ extern NSString *const __nonnull PFNetworkNotificationURLResponseBodyUserInfoKey
 #endif
 
 ///--------------------------------------
-/// @name Platform Availability Defines
+#pragma mark - Platform Availability Defines
 ///--------------------------------------
 
 #ifndef TARGET_OS_IOS
@@ -472,7 +472,7 @@ extern NSString *const __nonnull PFNetworkNotificationURLResponseBodyUserInfoKey
 #endif
 
 ///--------------------------------------
-/// @name Avaiability Macros
+#pragma mark - Avaiability Macros
 ///--------------------------------------
 
 #ifndef PF_IOS_UNAVAILABLE

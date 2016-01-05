@@ -64,7 +64,7 @@ PFUserControllerProvider
 @property (null_resettable, nonatomic, strong) PFSessionController *sessionController;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -73,7 +73,7 @@ PFUserControllerProvider
 + (instancetype)managerWithDataSource:(id<PFCoreManagerDataSource>)dataSource;
 
 ///--------------------------------------
-/// @name ObjectFilePersistenceController
+#pragma mark - ObjectFilePersistenceController
 ///--------------------------------------
 
 - (void)unloadObjectFilePersistenceController;

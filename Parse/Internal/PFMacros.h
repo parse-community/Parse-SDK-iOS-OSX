@@ -40,7 +40,7 @@ dispatch_queue_set_specific((queue), \
                             NULL)
 
 ///--------------------------------------
-/// @name Memory Management
+#pragma mark - Memory Management
 ///
 /// The following macros are influenced and include portions of libextobjc.
 ///--------------------------------------
@@ -62,7 +62,7 @@ try {} @catch (...) {} \
 __strong __typeof__(var) var = var ## _weak;
 
 ///--------------------------------------
-/// @name KVC
+#pragma mark - KVC
 ///--------------------------------------
 
 /**
@@ -73,7 +73,7 @@ __strong __typeof__(var) var = var ## _weak;
 (((void)(NO && ((void)((TYPE *)(nil)).PATH, NO)), # PATH))
 
 ///--------------------------------------
-/// @name Runtime
+#pragma mark - Runtime
 ///--------------------------------------
 
 /**

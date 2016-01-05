@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFConfig (Synchronous)
 
 ///--------------------------------------
-/// @name Retrieving Config
+#pragma mark - Retrieving Config
 ///--------------------------------------
 
 /**

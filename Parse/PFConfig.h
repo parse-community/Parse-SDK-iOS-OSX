@@ -26,7 +26,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 @interface PFConfig : NSObject
 
 ///--------------------------------------
-/// @name Current Config
+#pragma mark - Current Config
 ///--------------------------------------
 
 /**
@@ -39,7 +39,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 + (PFConfig *)currentConfig;
 
 ///--------------------------------------
-/// @name Retrieving Config
+#pragma mark - Retrieving Config
 ///--------------------------------------
 
 /**
@@ -58,7 +58,7 @@ typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nulla
 + (void)getConfigInBackgroundWithBlock:(nullable PFConfigResultBlock)block;
 
 ///--------------------------------------
-/// @name Parameters
+#pragma mark - Parameters
 ///--------------------------------------
 
 /**

@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFRole : PFObject <PFSubclassing>
 
 ///--------------------------------------
-/// @name Creating a New Role
+#pragma mark - Creating a New Role
 ///--------------------------------------
 
 /**
@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)roleWithName:(NSString *)name acl:(nullable PFACL *)acl;
 
 ///--------------------------------------
-/// @name Role-specific Properties
+#pragma mark - Role-specific Properties
 ///--------------------------------------
 
 /**

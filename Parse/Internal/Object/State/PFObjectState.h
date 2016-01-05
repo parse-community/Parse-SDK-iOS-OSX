@@ -28,7 +28,7 @@ typedef void(^PFObjectStateMutationBlock)(PFMutableObjectState *state);
 @property (nonatomic, assign, readonly, getter=isDeleted) BOOL deleted;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
@@ -47,7 +47,7 @@ typedef void(^PFObjectStateMutationBlock)(PFMutableObjectState *state);
                              isComplete:(BOOL)complete;
 
 ///--------------------------------------
-/// @name Coding
+#pragma mark - Coding
 ///--------------------------------------
 
 /**
@@ -62,7 +62,7 @@ typedef void(^PFObjectStateMutationBlock)(PFMutableObjectState *state);
 - (NSDictionary *)dictionaryRepresentationWithObjectEncoder:(PFEncoder *)objectEncoder NS_REQUIRES_SUPER;
 
 ///--------------------------------------
-/// @name Mutating
+#pragma mark - Mutating
 ///--------------------------------------
 
 - (PFObjectState *)copyByMutatingWithBlock:(PFObjectStateMutationBlock)block;

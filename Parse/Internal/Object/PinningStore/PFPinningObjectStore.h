@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) id<PFOfflineStoreProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)storeWithDataSource:(id<PFOfflineStoreProvider>)dataSource;
 
 ///--------------------------------------
-/// @name Pin
+#pragma mark - Pin
 ///--------------------------------------
 
 /**
@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
                     includeChildren:(BOOL)includeChildren;
 
 ///--------------------------------------
-/// @name Unpin
+#pragma mark - Unpin
 ///--------------------------------------
 
 /**

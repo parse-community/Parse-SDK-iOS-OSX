@@ -44,19 +44,19 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFSQLiteDatabase : NSObject
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)initWithPath:(NSString *)path;
 
 ///--------------------------------------
-/// @name Database Creation
+#pragma mark - Database Creation
 ///--------------------------------------
 
 + (instancetype)databaseWithPath:(NSString *)path;
 
 ///--------------------------------------
-/// @name Connection
+#pragma mark - Connection
 ///--------------------------------------
 
 /**
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask *)closeAsync;
 
 ///--------------------------------------
-/// @name Transaction
+#pragma mark - Transaction
 ///--------------------------------------
 
 /**
@@ -94,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask *)rollbackAsync;
 
 ///--------------------------------------
-/// @name Query Methods
+#pragma mark - Query Methods
 ///--------------------------------------
 
 /**

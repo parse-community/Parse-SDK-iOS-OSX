@@ -25,7 +25,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushController : NSObject
 @property (nonatomic, strong, readonly) id<PFCommandRunning> commandRunner;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -34,7 +34,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushController : NSObject
 + (instancetype)controllerWithCommandRunner:(id<PFCommandRunning>)commandRunner;
 
 ///--------------------------------------
-/// @name Sending Push
+#pragma mark - Sending Push
 ///--------------------------------------
 
 /**

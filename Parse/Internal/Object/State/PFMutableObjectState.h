@@ -25,7 +25,7 @@
 @property (nonatomic, assign, readwrite, getter=isDeleted) BOOL deleted;
 
 ///--------------------------------------
-/// @name Accessors
+#pragma mark - Accessors
 ///--------------------------------------
 
 - (void)setServerDataObject:(id)object forKey:(NSString *)key;
@@ -36,7 +36,7 @@
 - (void)setUpdatedAtFromString:(NSString *)string;
 
 ///--------------------------------------
-/// @name Apply
+#pragma mark - Apply
 ///--------------------------------------
 
 - (void)applyState:(PFObjectState *)state;

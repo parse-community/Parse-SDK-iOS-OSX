@@ -28,7 +28,7 @@
 @property (nonatomic, copy, readonly) NSString *cacheFilesDirectoryPath;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -37,7 +37,7 @@
 + (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource;
 
 ///--------------------------------------
-/// @name Download
+#pragma mark - Download
 ///--------------------------------------
 
 /**
@@ -67,7 +67,7 @@
                                progressBlock:(PFProgressBlock)progressBlock;
 
 ///--------------------------------------
-/// @name Upload
+#pragma mark - Upload
 ///--------------------------------------
 
 /**
@@ -88,7 +88,7 @@
                        progressBlock:(PFProgressBlock)progressBlock;
 
 ///--------------------------------------
-/// @name Cache
+#pragma mark - Cache
 ///--------------------------------------
 
 - (BFTask *)clearFileCacheAsync;

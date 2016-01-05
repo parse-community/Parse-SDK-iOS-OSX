@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFACL : NSObject <NSCopying, NSCoding>
 
 ///--------------------------------------
-/// @name Creating an ACL
+#pragma mark - Creating an ACL
 ///--------------------------------------
 
 /**
@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)ACLWithUser:(PFUser *)user;
 
 ///--------------------------------------
-/// @name Controlling Public Access
+#pragma mark - Controlling Public Access
 ///--------------------------------------
 
 /**
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, getter=getPublicWriteAccess) BOOL publicWriteAccess;
 
 ///--------------------------------------
-/// @name Controlling Access Per-User
+#pragma mark - Controlling Access Per-User
 ///--------------------------------------
 
 /**
@@ -135,7 +135,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)getWriteAccessForUser:(PFUser *)user;
 
 ///--------------------------------------
-/// @name Controlling Access Per-Role
+#pragma mark - Controlling Access Per-Role
 ///--------------------------------------
 
 /**
@@ -223,7 +223,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setWriteAccess:(BOOL)allowed forRole:(PFRole *)role;
 
 ///--------------------------------------
-/// @name Setting Access Defaults
+#pragma mark - Setting Access Defaults
 ///--------------------------------------
 
 /**

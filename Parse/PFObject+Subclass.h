@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFObject (Subclass)
 
 ///--------------------------------------
-/// @name Methods for Subclasses
+#pragma mark - Methods for Subclasses
 ///--------------------------------------
 
 /**

@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFFile (Synchronous)
 
 ///--------------------------------------
-/// @name Storing Data with Parse
+#pragma mark - Storing Data with Parse
 ///--------------------------------------
 
 /**
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)save:(NSError **)error;
 
 ///--------------------------------------
-/// @name Getting Data from Parse
+#pragma mark - Getting Data from Parse
 ///--------------------------------------
 
 /**

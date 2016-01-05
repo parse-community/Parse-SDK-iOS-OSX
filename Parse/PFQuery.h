@@ -24,13 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFQuery<PFGenericObject : PFObject *> : NSObject<NSCopying>
 
 ///--------------------------------------
-/// @name Blocks
+#pragma mark - Blocks
 ///--------------------------------------
 
 typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable objects, NSError * __nullable error);
 
 ///--------------------------------------
-/// @name Creating a Query for a Class
+#pragma mark - Creating a Query for a Class
 ///--------------------------------------
 
 /**
@@ -79,7 +79,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 @property (nonatomic, strong) NSString *parseClassName;
 
 ///--------------------------------------
-/// @name Adding Basic Constraints
+#pragma mark - Adding Basic Constraints
 ///--------------------------------------
 
 /**
@@ -221,7 +221,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 - (instancetype)whereKey:(NSString *)key containsAllObjectsInArray:(NSArray *)array;
 
 ///--------------------------------------
-/// @name Adding Location Constraints
+#pragma mark - Adding Location Constraints
 ///--------------------------------------
 
 /**
@@ -300,7 +300,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 - (instancetype)whereKey:(NSString *)key withinGeoBoxFromSouthwest:(PFGeoPoint *)southwest toNortheast:(PFGeoPoint *)northeast;
 
 ///--------------------------------------
-/// @name Adding String Constraints
+#pragma mark - Adding String Constraints
 ///--------------------------------------
 
 /**
@@ -369,7 +369,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 - (instancetype)whereKey:(NSString *)key hasSuffix:(nullable NSString *)suffix;
 
 ///--------------------------------------
-/// @name Adding Subqueries
+#pragma mark - Adding Subqueries
 ///--------------------------------------
 
 /**
@@ -434,7 +434,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 - (instancetype)whereKey:(NSString *)key doesNotMatchQuery:(PFQuery *)query;
 
 ///--------------------------------------
-/// @name Sorting
+#pragma mark - Sorting
 ///--------------------------------------
 
 /**
@@ -496,7 +496,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 - (instancetype)orderBySortDescriptors:(nullable NSArray<NSSortDescriptor *> *)sortDescriptors;
 
 ///--------------------------------------
-/// @name Getting Objects by ID
+#pragma mark - Getting Objects by ID
 ///--------------------------------------
 
 /**
@@ -525,7 +525,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
                               block:(nullable void (^)(PFGenericObject __nullable object, NSError *__nullable error))block;
 
 ///--------------------------------------
-/// @name Getting User Objects
+#pragma mark - Getting User Objects
 ///--------------------------------------
 
 /**
@@ -534,7 +534,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 + (instancetype)queryForUser PARSE_DEPRECATED("Use [PFUser query] instead.");
 
 ///--------------------------------------
-/// @name Getting all Matches for a Query
+#pragma mark - Getting all Matches for a Query
 ///--------------------------------------
 
 /**
@@ -553,7 +553,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 - (void)findObjectsInBackgroundWithBlock:(nullable PFQueryArrayResultBlock)block;
 
 ///--------------------------------------
-/// @name Getting the First Match in a Query
+#pragma mark - Getting the First Match in a Query
 ///--------------------------------------
 
 /**
@@ -578,7 +578,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 - (void)getFirstObjectInBackgroundWithBlock:(nullable void (^)(PFGenericObject __nullable object, NSError *__nullable error))block;
 
 ///--------------------------------------
-/// @name Counting the Matches in a Query
+#pragma mark - Counting the Matches in a Query
 ///--------------------------------------
 
 /**
@@ -597,7 +597,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 - (void)countObjectsInBackgroundWithBlock:(nullable PFIntegerResultBlock)block;
 
 ///--------------------------------------
-/// @name Cancelling a Query
+#pragma mark - Cancelling a Query
 ///--------------------------------------
 
 /**
@@ -606,7 +606,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 - (void)cancel;
 
 ///--------------------------------------
-/// @name Paginating Results
+#pragma mark - Paginating Results
 ///--------------------------------------
 
 /**
@@ -623,7 +623,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 @property (nonatomic, assign) NSInteger skip;
 
 ///--------------------------------------
-/// @name Controlling Caching Behavior
+#pragma mark - Controlling Caching Behavior
 ///--------------------------------------
 
 /**
@@ -660,7 +660,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 + (void)clearAllCachedResults;
 
 ///--------------------------------------
-/// @name Query Source
+#pragma mark - Query Source
 ///--------------------------------------
 
 /**
@@ -712,7 +712,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
 - (instancetype)ignoreACLs;
 
 ///--------------------------------------
-/// @name Advanced Settings
+#pragma mark - Advanced Settings
 ///--------------------------------------
 
 /**

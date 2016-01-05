@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ParseMutableClientConfiguration <NSObject>
 
 ///--------------------------------------
-/// @name Connecting to Parse
+#pragma mark - Connecting to Parse
 ///--------------------------------------
 
 /**
@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *clientKey;
 
 ///--------------------------------------
-/// @name Enabling Local Datastore
+#pragma mark - Enabling Local Datastore
 ///--------------------------------------
 
 /**
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, getter=isLocalDatastoreEnabled) BOOL localDatastoreEnabled PF_TV_UNAVAILABLE;
 
 ///--------------------------------------
-/// @name Enabling Extensions Data Sharing
+#pragma mark - Enabling Extensions Data Sharing
 ///--------------------------------------
 
 /**
@@ -72,7 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *containingApplicationBundleIdentifier PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE;
 
 ///--------------------------------------
-/// @name Other Properties
+#pragma mark - Other Properties
 ///--------------------------------------
 
 /**
@@ -93,7 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ParseClientConfiguration : NSObject <NSCopying>
 
 ///--------------------------------------
-/// @name Connecting to Parse
+#pragma mark - Connecting to Parse
 ///--------------------------------------
 
 /**
@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy, readonly) NSString *clientKey;
 
 ///--------------------------------------
-/// @name Enabling Local Datastore
+#pragma mark - Enabling Local Datastore
 ///--------------------------------------
 
 /**
@@ -118,7 +118,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly, getter=isLocalDatastoreEnabled) BOOL localDatastoreEnabled;
 
 ///--------------------------------------
-/// @name Enabling Extensions Data Sharing
+#pragma mark - Enabling Extensions Data Sharing
 ///--------------------------------------
 
 /**
@@ -137,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy, readonly) NSString *containingApplicationBundleIdentifier;
 
 ///--------------------------------------
-/// @name Other Properties
+#pragma mark - Other Properties
 ///--------------------------------------
 
 /**
@@ -146,7 +146,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) NSUInteger networkRetryAttempts;
 
 ///--------------------------------------
-/// @name Creating a Configuration
+#pragma mark - Creating a Configuration
 ///--------------------------------------
 
 /**
