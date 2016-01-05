@@ -156,7 +156,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The task, that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSNumber *)*)saveInBackground;
+- (BFTask<NSNumber *> *)saveInBackground;
 
 /**
  Saves the file *asynchronously*
@@ -165,7 +165,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The task, that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSNumber *)*)saveInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
+- (BFTask<NSNumber *> *)saveInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
  Saves the file *asynchronously* and executes the given block.
@@ -195,7 +195,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign, readonly, getter=isDataAvailable) BOOL dataAvailable;
 
-
 /**
  This method is like `-getData` but it fetches asynchronously to avoid blocking the current thread.
 
@@ -203,7 +202,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The task, that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSData *)*)getDataInBackground;
+- (BFTask<NSData *> *)getDataInBackground;
 
 /**
  This method is like `-getData` but it fetches asynchronously to avoid blocking the current thread.
@@ -216,7 +215,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The task, that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSData *)*)getDataInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
+- (BFTask<NSData *> *)getDataInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
  This method is like `-getDataInBackground` but avoids ever holding the entire `PFFile` contents in memory at once.
@@ -225,7 +224,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The task, that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSInputStream *)*)getDataStreamInBackground;
+- (BFTask<NSInputStream *> *)getDataStreamInBackground;
 
 /**
  This method is like `-getDataStreamInBackground`, but yields a live-updating stream.
@@ -240,7 +239,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A task that produces a *live* stream that is being written to with the data from the server.
  */
-- (BFTask PF_GENERIC(NSInputStream *)*)getDataDownloadStreamInBackground;
+- (BFTask<NSInputStream *> *)getDataDownloadStreamInBackground;
 
 /**
  This method is like `-getDataInBackground` but avoids
@@ -251,7 +250,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The task, that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSInputStream *)*)getDataStreamInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
+- (BFTask<NSInputStream *> *)getDataStreamInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
  This method is like `-getDataStreamInBackgroundWithProgressBlock:`, but yields a live-updating stream.
@@ -268,7 +267,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A task that produces a *live* stream that is being written to with the data from the server.
  */
-- (BFTask PF_GENERIC(NSInputStream *)*)getDataDownloadStreamInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
+- (BFTask<NSInputStream *> *)getDataDownloadStreamInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
  *Asynchronously* gets the data from cache if available or fetches its contents from the network.
@@ -319,7 +318,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The task, with the result set to `NSString` representation of a file path.
  */
-- (BFTask PF_GENERIC(NSString *)*)getFilePathInBackground;
+- (BFTask<NSString *> *)getFilePathInBackground;
 
 /**
  *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.
@@ -332,7 +331,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The task, with the result set to `NSString` representation of a file path.
  */
-- (BFTask PF_GENERIC(NSString *)*)getFilePathInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
+- (BFTask<NSString *> *)getFilePathInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
  *Asynchronously* gets the file path for file from cache if available or fetches its contents from the network.

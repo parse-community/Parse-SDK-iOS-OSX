@@ -13,7 +13,7 @@
 
 #import "PFMacros.h"
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFFileManager;
 @class PFSQLiteDatabaseResult;
 

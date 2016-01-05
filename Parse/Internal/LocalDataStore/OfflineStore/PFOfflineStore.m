@@ -56,28 +56,28 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
  always return the same instance for a given object. Objects in this map may or may
  not be in the database.
  */
-@property (nonatomic, strong, readonly) NSMapTable PF_GENERIC(NSString *, PFObject *)*classNameAndObjectIdToObjectMap;
+@property (nonatomic, strong, readonly) NSMapTable<NSString *, PFObject *> *classNameAndObjectIdToObjectMap;
 
 /**
  In-memory set of ParseObjects that have been fetched from local database already.
  If the object is in the map, a fetch of it has been started. If the value is a
  finished task, then the fetch was completed.
  */
-@property (nonatomic, strong, readonly) NSMapTable PF_GENERIC(PFObject *, BFTask<PFObject *> *)*fetchedObjects;
+@property (nonatomic, strong, readonly) NSMapTable<PFObject *, BFTask<PFObject *> *> *fetchedObjects;
 
 /**
  In-memory map of ParseObject to UUID. This is used so that we can always return
  the same instance for a given object. Objects in this map may or may not be in the
  database.
  */
-@property (nonatomic, strong, readonly) NSMapTable PF_GENERIC(PFObject *, BFTask<NSString *> *)*objectToUUIDMap;
+@property (nonatomic, strong, readonly) NSMapTable<PFObject *, BFTask<NSString *> *> *objectToUUIDMap;
 
 /**
  In-memory map of UUID to ParseObject. This is used so we can always return
  the same instance for a given object. The only objects in this map are ones that
  are in database.
  */
-@property (nonatomic, strong, readonly) NSMapTable PF_GENERIC(NSString *, PFObject *)*UUIDToObjectMap;
+@property (nonatomic, strong, readonly) NSMapTable<NSString *, PFObject *> *UUIDToObjectMap;
 
 @property (nonatomic, strong, readonly) PFOfflineQueryLogic *offlineQueryLogic;
 
@@ -121,8 +121,8 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 #pragma mark - Fetch
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFObject *)*)fetchObjectLocallyAsync:(PFObject *)object {
-    __block BFTask PF_GENERIC(PFObject *)*fetchTask = nil;
+- (BFTask<PFObject *> *)fetchObjectLocallyAsync:(PFObject *)object {
+    __block BFTask<PFObject *> *fetchTask = nil;
     return [[self _performDatabaseOperationAsyncWithBlock:^BFTask *(PFSQLiteDatabase *database) {
         // We need this to return the result of `fetchObjectLocallyAsync` instead of returning the
         // result of `[database closeAsync]`
@@ -133,7 +133,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     }];
 }
 
-- (BFTask PF_GENERIC(PFObject *)*)fetchObjectLocallyAsync:(PFObject *)object database:(PFSQLiteDatabase *)database {
+- (BFTask<PFObject *> *)fetchObjectLocallyAsync:(PFObject *)object database:(PFSQLiteDatabase *)database {
     BFTaskCompletionSource *tcs = [BFTaskCompletionSource taskCompletionSource];
     BFTask *uuidTask = nil;
 
@@ -291,24 +291,24 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 #pragma mark - Save
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFVoid) *)saveObjectLocallyAsync:(PFObject *)object includeChildren:(BOOL)includeChildren {
+- (BFTask<PFVoid> *)saveObjectLocallyAsync:(PFObject *)object includeChildren:(BOOL)includeChildren {
     //TODO: (nlutsenko) Remove this method, replace with LocalStore implementation that wraps OfflineStore + Pin.
     return [self _performDatabaseTransactionAsyncWithBlock:^BFTask *(PFSQLiteDatabase *database) {
         return [self saveObjectLocallyAsync:object includeChildren:includeChildren database:database];
     }];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)saveObjectLocallyAsync:(PFObject *)object withChildren:(NSArray PF_GENERIC(PFObject *)*)children {
+- (BFTask<PFVoid> *)saveObjectLocallyAsync:(PFObject *)object withChildren:(NSArray<PFObject *> *)children {
     return [self _performDatabaseTransactionAsyncWithBlock:^BFTask *(PFSQLiteDatabase *database) {
         return [self saveObjectLocallyAsync:object withChildren:children database:database];
     }];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)saveObjectLocallyAsync:(PFObject *)object
-                                      includeChildren:(BOOL)includeChildren
-                                             database:(PFSQLiteDatabase *)database {
+- (BFTask<PFVoid> *)saveObjectLocallyAsync:(PFObject *)object
+                           includeChildren:(BOOL)includeChildren
+                                  database:(PFSQLiteDatabase *)database {
     //TODO: (nlutsenko) Remove this method, replace with LocalStore implementation that wraps OfflineStore + Pin.
-    NSMutableArray PF_GENERIC(PFObject *)*children = nil;
+    NSMutableArray<PFObject *> *children = nil;
     if (includeChildren) {
         children = [NSMutableArray array];
         [PFInternalUtils traverseObject:object usingBlock:^id(id traversedObject) {
@@ -321,11 +321,11 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     return [self saveObjectLocallyAsync:object withChildren:children database:database];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)saveObjectLocallyAsync:(PFObject *)object
-                                         withChildren:(NSArray PF_GENERIC(PFObject *)*)children
-                                             database:(PFSQLiteDatabase *)database {
+- (BFTask<PFVoid> *)saveObjectLocallyAsync:(PFObject *)object
+                              withChildren:(NSArray<PFObject *> *)children
+                                  database:(PFSQLiteDatabase *)database {
     //TODO (nlutsenko): Add assert that checks whether all children are actually children of an object.
-    NSMutableArray PF_GENERIC(PFObject *)*objectsInTree = nil;
+    NSMutableArray<PFObject *> *objectsInTree = nil;
     if (children == nil) {
         objectsInTree = [NSMutableArray arrayWithObject:object];
     } else {
@@ -336,7 +336,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     }
 
     // Call saveObjectLocallyAsync for each of them individually
-    NSMutableArray PF_GENERIC(BFTask<PFObject *> *)*tasks = [NSMutableArray array];
+    NSMutableArray<BFTask<PFObject *> *> *tasks = [NSMutableArray array];
     for (PFObject *objInTree in objectsInTree) {
         [tasks addObject:[self fetchObjectLocallyAsync:objInTree database:database]];
     }
@@ -358,7 +358,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     }] continueWithSuccessBlock:^id(BFTask *task) {
         NSString *uuid = task.result;
 
-        NSMutableArray PF_GENERIC(BFTask<PFVoid> *)*tasks = [NSMutableArray array];
+        NSMutableArray<BFTask<PFVoid> *>*tasks = [NSMutableArray array];
         for (PFObject *object in objectsInTree) {
             [tasks addObject:[self saveObjectLocallyAsync:object key:uuid database:database]];
         }
@@ -367,9 +367,9 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     }];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)saveObjectLocallyAsync:(PFObject *)object
-                                                  key:(NSString *)key
-                                             database:(PFSQLiteDatabase *)database {
+- (BFTask<PFVoid> *)saveObjectLocallyAsync:(PFObject *)object
+                                       key:(NSString *)key
+                                  database:(PFSQLiteDatabase *)database {
     if (object.objectId != nil && !object.dataAvailable &&
         ![object _hasChanges] && ![object _hasOutstandingOperations]) {
         return [BFTask taskWithResult:nil];
@@ -424,15 +424,15 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 #pragma mark - Find
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSArray<PFObject *> *)*)findAsyncForQueryState:(PFQueryState *)queryState
-                                                               user:(PFUser *)user
-                                                                pin:(PFPin *)pin {
+- (BFTask<NSArray<PFObject *> *> *)findAsyncForQueryState:(PFQueryState *)queryState
+                                                     user:(PFUser *)user
+                                                      pin:(PFPin *)pin {
     return [self findAsyncForQueryState:queryState user:user pin:pin isCount:NO];
 }
 
-- (BFTask PF_GENERIC(NSNumber *)*)countAsyncForQueryState:(PFQueryState *)queryState
-                                                     user:(PFUser *)user
-                                                      pin:(PFPin *)pin {
+- (BFTask<NSNumber *> *)countAsyncForQueryState:(PFQueryState *)queryState
+                                           user:(PFUser *)user
+                                            pin:(PFPin *)pin {
     return [[self findAsyncForQueryState:queryState
                                     user:user
                                      pin:pin
@@ -465,12 +465,12 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                                pin:(PFPin *)pin
                            isCount:(BOOL)isCount
                           database:(PFSQLiteDatabase *)database {
-    __block NSMutableArray PF_GENERIC(PFObject *)*mutableResults = [NSMutableArray array];
+    __block NSMutableArray<PFObject *> *mutableResults = [NSMutableArray array];
     BFTask *queryTask = nil;
     BOOL includeIsDeletingEventually = queryState.shouldIncludeDeletingEventually;
 
     __block NSString *queryString = nil;
-    __block NSArray PF_GENERIC(NSString *)*queryArguments = nil;
+    __block NSArray<NSString *> *queryArguments = nil;
 
     if (!pin) {
         NSString *isDeletingEventuallyQuery = @"";
@@ -513,23 +513,23 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     @weakify(self);
     return [[queryTask continueWithSuccessBlock:^id(BFTask *task) {
         return [[database executeQueryAsync:queryString withArgumentsInArray:queryArguments block:^id(PFSQLiteDatabaseResult *result) {
-            NSMutableArray PF_GENERIC(NSString *)*uuids = [NSMutableArray array];
+            NSMutableArray<NSString *> *uuids = [NSMutableArray array];
             while ([result next]) {
                 NSString *uuid = [result stringForColumnIndex:0];
                 [uuids addObject:uuid];
             }
             return uuids;
-        }] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSArray<NSString *> *)*task) {
+        }] continueWithSuccessBlock:^id(BFTask<NSArray<NSString *> *> *task) {
             @strongify(self);
             PFConstraintMatcherBlock matcherBlock = [self.offlineQueryLogic createMatcherForQueryState:queryState user:user];
 
             BFTask *checkAllTask = [BFTask taskWithResult:nil];
-            NSArray PF_GENERIC(NSArray<NSString *> *)*uuidBatches = [PFInternalUtils arrayBySplittingArray:task.result
-                                                                           withMaximumComponentsPerSegment:64];
-            for (NSArray PF_GENERIC(NSString *)*uuids in uuidBatches) {
+            NSArray<NSArray<NSString *> *> *uuidBatches = [PFInternalUtils arrayBySplittingArray:task.result
+                                                                 withMaximumComponentsPerSegment:64];
+            for (NSArray <NSString *> *uuids in uuidBatches) {
                 checkAllTask = [[checkAllTask continueWithSuccessBlock:^id(BFTask *_) {
                     return [self _getObjectPointersAsyncWithUUIDs:uuids fromDatabase:database];
-                }] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSArray<PFObject *> *)*task) {
+                }] continueWithSuccessBlock:^id(BFTask<NSArray<PFObject *> *> *task) {
                     BFTask *checkBatchTask = [BFTask taskWithResult:nil];
                     for (PFObject *object in task.result) {
                         checkBatchTask = [[[checkBatchTask continueWithSuccessBlock:^id(BFTask *_) {
@@ -560,9 +560,9 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         if (!isCount) {
             queryOptions = PFOfflineQueryOptionOrder | PFOfflineQueryOptionSkip | PFOfflineQueryOptionLimit;
         }
-        NSArray PF_GENERIC(PFObject *)*results = [self.offlineQueryLogic resultsByApplyingOptions:queryOptions
-                                                                                     ofQueryState:queryState
-                                                                                        toResults:mutableResults];
+        NSArray<PFObject *> *results = [self.offlineQueryLogic resultsByApplyingOptions:queryOptions
+                                                                           ofQueryState:queryState
+                                                                              toResults:mutableResults];
 
         // Fetch includes
         BFTask *fetchIncludesTask = [self.offlineQueryLogic fetchIncludesAsyncForResults:results
@@ -579,7 +579,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 #pragma mark - Update
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFVoid) *)updateDataForObjectAsync:(PFObject *)object {
+- (BFTask<PFVoid> *)updateDataForObjectAsync:(PFObject *)object {
     BFTask *fetchTask = nil;
 
     @synchronized(self.lock) {
@@ -606,7 +606,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     }];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)_updateDataForObjectAsync:(PFObject *)object inDatabase:(PFSQLiteDatabase *)database {
+- (BFTask<PFVoid> *)_updateDataForObjectAsync:(PFObject *)object inDatabase:(PFSQLiteDatabase *)database {
     BFTask *uuidTask = nil;
     @synchronized(self.lock) {
         uuidTask = [self.objectToUUIDMap objectForKey:object];
@@ -658,17 +658,17 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 #pragma mark - Delete
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFVoid) *)deleteDataForObjectAsync:(PFObject *)object {
+- (BFTask<PFVoid> *)deleteDataForObjectAsync:(PFObject *)object {
     return [self _performDatabaseTransactionAsyncWithBlock:^BFTask *(PFSQLiteDatabase *database) {
         return [self deleteDataForObjectAsync:object database:database];
     }];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)deleteDataForObjectAsync:(PFObject *)object database:(PFSQLiteDatabase *)database {
+- (BFTask<PFVoid> *)deleteDataForObjectAsync:(PFObject *)object database:(PFSQLiteDatabase *)database {
     __block NSString *uuid = nil;
 
     // Make sure the object has a UUID.
-    BFTask PF_GENERIC(NSString *)*uuidTask = nil;
+    BFTask<NSString *> *uuidTask = nil;
     @synchronized(self.lock) {
         uuidTask = [self.objectToUUIDMap objectForKey:object];
         if (!uuidTask) {
@@ -689,25 +689,25 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                          PFOfflineStoreKeyOfKey, PFOfflineStoreTableOfDependencies,
                          PFOfflineStoreKeyOfUUID];
         return [database executeQueryAsync:sql withArgumentsInArray:@[ uuid ] block:^id(PFSQLiteDatabaseResult *result) {
-            NSMutableArray PF_GENERIC(NSString *)*uuids = [NSMutableArray array];
+            NSMutableArray<NSString *> *uuids = [NSMutableArray array];
             while (result.next) {
                 NSString *uuid = [result stringForColumnIndex:0];
                 [uuids addObject:uuid];
             }
             return uuids;
         }];
-    }] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSArray<NSString *> *)*task) {
+    }] continueWithSuccessBlock:^id(BFTask<NSArray<NSString *> *> *task) {
         // Try to unpin this object from the pin label if it's a root of the PFPin.
-        NSMutableArray PF_GENERIC(BFTask<PFVoid> *)*tasks = [NSMutableArray array];
+        NSMutableArray<BFTask<PFVoid> *> *tasks = [NSMutableArray array];
 
         for (NSString *uuid in task.result) {
             BFTask *getPointerTask = [self _getPointerAsyncWithUUID:uuid database:database];
-            BFTask *objectUnpinTask = [[getPointerTask continueWithSuccessBlock:^id(BFTask PF_GENERIC(PFPin *)*task) {
+            BFTask *objectUnpinTask = [[getPointerTask continueWithSuccessBlock:^id(BFTask <PFPin *>*task) {
                 return [self fetchObjectLocallyAsync:task.result database:database];
-            }] continueWithBlock:^id(BFTask PF_GENERIC(PFPin *)*task) {
+            }] continueWithBlock:^id(BFTask<PFPin *> *task) {
                 PFPin *pin = task.result;
 
-                NSMutableArray PF_GENERIC(PFObject *)*modified = pin.objects;
+                NSMutableArray<PFObject *> *modified = pin.objects;
                 if (!modified || ![modified containsObject:object]) {
                     return task;
                 }
@@ -754,7 +754,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 #pragma mark - Unpin
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFVoid) *)unpinObjectAsync:(PFObject *)object {
+- (BFTask<PFVoid> *)unpinObjectAsync:(PFObject *)object {
     BFTask *uuidTask = [self.objectToUUIDMap objectForKey:object];
     return [uuidTask continueWithBlock:^id(BFTask *task) {
         NSString *uuid = task.result;
@@ -766,14 +766,14 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     }];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)_unpinKeyAsync:(NSString *)key {
+- (BFTask<PFVoid> *)_unpinKeyAsync:(NSString *)key {
     return [self _performDatabaseTransactionAsyncWithBlock:^BFTask *(PFSQLiteDatabase *database) {
         return [self _unpinKeyAsync:key database:database];
     }];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)_unpinKeyAsync:(NSString *)key database:(PFSQLiteDatabase *)database {
-    NSMutableArray PF_GENERIC(NSString *)*uuids = [NSMutableArray array];
+- (BFTask<PFVoid> *)_unpinKeyAsync:(NSString *)key database:(PFSQLiteDatabase *)database {
+    NSMutableArray<NSString *> *uuids = [NSMutableArray array];
 
     // Fetch all uuids from Dependencies for key=? grouped by uuid having a count of 1
     NSString *query = [NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE %@ = ? AND %@ IN "
@@ -791,7 +791,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
             [uuids addObject:[result stringForColumnIndex:0]];
         }
         return uuids;
-    }] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSArray<NSString *> *)*task) {
+    }] continueWithSuccessBlock:^id(BFTask<NSArray<NSString *> *> *task) {
         // DELETE FROM Objects
         return [self _deleteObjectsWithUUIDs:task.result database:database];
     }] continueWithSuccessBlock:^id(BFTask *_) {
@@ -814,7 +814,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     }];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)_deleteObjectsWithUUIDs:(NSArray PF_GENERIC(NSString *)*)uuids database:(PFSQLiteDatabase *)database {
+- (BFTask<PFVoid> *)_deleteObjectsWithUUIDs:(NSArray<NSString *> *)uuids database:(PFSQLiteDatabase *)database {
     if (uuids.count <= 0) {
         return [BFTask taskWithResult:nil];
     }
@@ -829,7 +829,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         }];
     }
 
-    NSMutableArray PF_GENERIC(NSString *)*placeholders = [NSMutableArray array];
+    NSMutableArray<NSString *> *placeholders = [NSMutableArray array];
     for (int i = 0; i < uuids.count; ++i) {
         [placeholders addObject:@"?"];
     }
@@ -844,8 +844,8 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 #pragma mark - Internal Helper Methods
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSString *)*)getOrCreateUUIDAsyncForObject:(PFObject *)object
-                                                       database:(PFSQLiteDatabase *)database {
+- (BFTask<NSString *> *)getOrCreateUUIDAsyncForObject:(PFObject *)object
+                                             database:(PFSQLiteDatabase *)database {
     NSString *newUUID = [NSUUID UUID].UUIDString;
     BFTaskCompletionSource *tcs = [BFTaskCompletionSource taskCompletionSource];
 
@@ -893,7 +893,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
  @param database    The database instance to retrieve from.
  @return The object with that UUID.
  */
-- (BFTask PF_GENERIC(PFObject *)*)_getPointerAsyncWithUUID:(NSString *)uuid database:(PFSQLiteDatabase *)database {
+- (BFTask<PFObject *> *)_getPointerAsyncWithUUID:(NSString *)uuid database:(PFSQLiteDatabase *)database {
     @synchronized(self.lock) {
         PFObject *existing = [self.UUIDToObjectMap objectForKey:uuid];
         if (existing) {
@@ -926,10 +926,10 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     }];
 }
 
-- (BFTask PF_GENERIC(NSArray<PFObject *> *)*)_getObjectPointersAsyncWithUUIDs:(NSArray PF_GENERIC(NSString *)*)uuids
-                                                                 fromDatabase:(PFSQLiteDatabase *)database {
-    NSMutableArray PF_GENERIC(PFObject *)*objects = [NSMutableArray array];
-    NSMutableArray PF_GENERIC(NSString *)*missingUUIDs = [NSMutableArray array];
+- (BFTask<NSArray<PFObject *> *> *)_getObjectPointersAsyncWithUUIDs:(NSArray<NSString *> *)uuids
+                                                       fromDatabase:(PFSQLiteDatabase *)database {
+    NSMutableArray<PFObject *> *objects = [NSMutableArray array];
+    NSMutableArray<NSString *> *missingUUIDs = [NSMutableArray array];
     @synchronized(self.lock) {
         for (NSString *uuid in uuids) {
             PFObject *object = [self.UUIDToObjectMap objectForKey:uuid];
@@ -947,7 +947,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                              PFOfflineStoreTableOfObjects,
                              PFOfflineStoreKeyOfUUID,
                              [missingUUIDs componentsJoinedByString:@"','"]];
-    NSMutableArray PF_GENERIC(BFTask<PFObject *> *)*fetchPointersTasks = [NSMutableArray arrayWithCapacity:missingUUIDs.count];
+    NSMutableArray<BFTask<PFObject *> *> *fetchPointersTasks = [NSMutableArray arrayWithCapacity:missingUUIDs.count];
     return [[database executeQueryAsync:queryString withArgumentsInArray:nil block:^id(PFSQLiteDatabaseResult *result) {
         while ([result next]) {
             NSString *uuid = [result stringForColumnIndex:0];
@@ -960,16 +960,16 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         }
         return [BFTask taskForCompletionOfAllTasks:fetchPointersTasks];
     }] continueWithSuccessBlock:^id(BFTask *_) {
-        for (BFTask PF_GENERIC(PFObject *)*task in fetchPointersTasks) {
+        for (BFTask <PFObject *>*task in fetchPointersTasks) {
             [objects addObject:task.result];
         }
         return objects;
     }];
 }
 
-- (BFTask PF_GENERIC(PFObject *)*)_getOrCreateInMemoryPointerForObjectWithUUID:(NSString *)uuid
-                                                                parseClassName:(NSString *)parseClassName
-                                                                      objectId:(NSString *)objectId {
+- (BFTask<PFObject *> *)_getOrCreateInMemoryPointerForObjectWithUUID:(NSString *)uuid
+                                                      parseClassName:(NSString *)parseClassName
+                                                            objectId:(NSString *)objectId {
     PFObject *pointer = nil;
     @synchronized(self.lock) {
         pointer = [self.UUIDToObjectMap objectForKey:uuid];
@@ -1063,7 +1063,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
             PFOfflineStoreKeyOfUUID];
 }
 
-+ (BFTask PF_GENERIC(PFVoid) *)_initializeTablesInBackgroundWithDatabaseController:(PFSQLiteDatabaseController *)databaseController {
++ (BFTask<PFVoid> *)_initializeTablesInBackgroundWithDatabaseController:(PFSQLiteDatabaseController *)databaseController {
     return [[databaseController openDatabaseWithNameAsync:PFOfflineStoreDatabaseName] continueWithBlock:^id(BFTask *task) {
         PFSQLiteDatabase *database = task.result;
         return [[[[[database beginTransactionAsync] continueWithSuccessBlock:^id(BFTask *task) {
@@ -1082,7 +1082,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 #pragma mark - Database Helpers
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFVoid) *)_performDatabaseTransactionAsyncWithBlock:(PFOfflineStoreDatabaseExecutionBlock)block {
+- (BFTask<PFVoid> *)_performDatabaseTransactionAsyncWithBlock:(PFOfflineStoreDatabaseExecutionBlock)block {
     return [self _performDatabaseOperationAsyncWithBlock:^BFTask *(PFSQLiteDatabase *database) {
         BFTask *task = [database beginTransactionAsync];
         task = [task continueWithSuccessBlock:^id(BFTask *task) {
@@ -1094,7 +1094,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     }];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)_performDatabaseOperationAsyncWithBlock:(PFOfflineStoreDatabaseExecutionBlock)block {
+- (BFTask<PFVoid> *)_performDatabaseOperationAsyncWithBlock:(PFOfflineStoreDatabaseExecutionBlock)block {
     return [[self.databaseController openDatabaseWithNameAsync:PFOfflineStoreDatabaseName] continueWithBlock:^id(BFTask *task) {
         PFSQLiteDatabase *database = task.result;
         return [block(database) continueWithBlock:^id(BFTask *task) {

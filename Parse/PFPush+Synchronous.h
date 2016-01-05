@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Returns whether the send succeeded.
  */
-+ (BOOL)sendPushMessageToQuery:(PFQuery PF_GENERIC(PFInstallation *)*)query withMessage:(NSString *)message error:(NSError **)error;
++ (BOOL)sendPushMessageToQuery:(PFQuery<PFInstallation *> *)query withMessage:(NSString *)message error:(NSError **)error;
 
 /**
  *Synchronously* send a push message with arbitrary data to a channel.
@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Returns whether the send succeeded.
  */
-+ (BOOL)sendPushDataToQuery:(PFQuery PF_GENERIC(PFInstallation *)*)query withData:(NSDictionary *)data error:(NSError **)error;
++ (BOOL)sendPushDataToQuery:(PFQuery<PFInstallation *> *)query withData:(NSDictionary *)data error:(NSError **)error;
 
 ///--------------------------------------
 /// @name Managing Channel Subscriptions
@@ -94,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Returns an `NSSet` containing all the channel names this device is subscribed to.
  */
-+ (nullable NSSet PF_GENERIC(NSString *)*)getSubscribedChannels:(NSError **)error;
++ (nullable NSSet<NSString *> *)getSubscribedChannels:(NSError **)error;
 
 /**
  *Synchrnously* subscribes the device to a channel of push notifications.

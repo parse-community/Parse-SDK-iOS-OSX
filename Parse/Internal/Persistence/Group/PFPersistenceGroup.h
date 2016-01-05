@@ -11,7 +11,7 @@
 
 #import <Parse/PFConstants.h>
 
-@class BFTask PF_GENERIC(id);
+@class BFTask<__covariant BFGenericType>;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Data
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSData *)*)getDataAsyncForKey:(NSString *)key;
+- (BFTask<NSData *> *)getDataAsyncForKey:(NSString *)key;
 
 - (BFTask *)setDataAsync:(NSData *)data forKey:(NSString *)key;
 - (BFTask *)removeDataAsyncForKey:(NSString *)key;

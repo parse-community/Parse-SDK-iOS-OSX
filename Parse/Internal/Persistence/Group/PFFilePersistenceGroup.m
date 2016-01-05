@@ -34,7 +34,7 @@
 #pragma mark - PFPersistenceGroup
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSData *)*)getDataAsyncForKey:(NSString *)key {
+- (BFTask<NSData *> *)getDataAsyncForKey:(NSString *)key {
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         NSString *path = [self _filePathForItemForKey:key];
         if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
@@ -100,7 +100,7 @@
 
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         NSString *path = [self _filePathForItemForKey:key];
-    [[PFMultiProcessFileLockController sharedController] endLockedContentAccessForFileAtPath:path];
+        [[PFMultiProcessFileLockController sharedController] endLockedContentAccessForFileAtPath:path];
         return nil;
     }];
 }

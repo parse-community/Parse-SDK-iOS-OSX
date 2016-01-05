@@ -61,7 +61,6 @@
                       applicationId:applicationId
                           clientKey:clientKey
                           serverURL:serverURL];
-
 }
 
 - (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
@@ -145,16 +144,16 @@
 #pragma mark - Data Commands
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFCommandResult *)*)runCommandAsync:(PFRESTCommand *)command withOptions:(PFCommandRunningOptions)options {
+- (BFTask<PFCommandResult *> *)runCommandAsync:(PFRESTCommand *)command withOptions:(PFCommandRunningOptions)options {
     return [self runCommandAsync:command withOptions:options cancellationToken:nil];
 }
 
-- (BFTask PF_GENERIC(PFCommandResult *)*)runCommandAsync:(PFRESTCommand *)command
-                                             withOptions:(PFCommandRunningOptions)options
-                                       cancellationToken:(BFCancellationToken *)cancellationToken {
+- (BFTask<PFCommandResult *> *)runCommandAsync:(PFRESTCommand *)command
+                                   withOptions:(PFCommandRunningOptions)options
+                             cancellationToken:(BFCancellationToken *)cancellationToken {
     return [self _performCommandRunningBlock:^id {
         [command resolveLocalIds];
-        return [[self.requestConstructor getDataURLRequestAsyncForCommand:command] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSURLRequest *)*task) {
+        return [[self.requestConstructor getDataURLRequestAsyncForCommand:command] continueWithSuccessBlock:^id(BFTask <NSURLRequest *>*task) {
             return [_session performDataURLRequestAsync:task.result forCommand:command cancellationToken:cancellationToken];
         }];
     } withOptions:options cancellationToken:cancellationToken];
@@ -164,20 +163,20 @@
 #pragma mark - File Commands
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFCommandResult *)*)runFileUploadCommandAsync:(PFRESTCommand *)command
-                                                   withContentType:(NSString *)contentType
-                                             contentSourceFilePath:(NSString *)sourceFilePath
-                                                           options:(PFCommandRunningOptions)options
-                                                 cancellationToken:(nullable BFCancellationToken *)cancellationToken
-                                                     progressBlock:(nullable PFProgressBlock)progressBlock {
+- (BFTask<PFCommandResult *> *)runFileUploadCommandAsync:(PFRESTCommand *)command
+                                         withContentType:(NSString *)contentType
+                                   contentSourceFilePath:(NSString *)sourceFilePath
+                                                 options:(PFCommandRunningOptions)options
+                                       cancellationToken:(nullable BFCancellationToken *)cancellationToken
+                                           progressBlock:(nullable PFProgressBlock)progressBlock {
     @weakify(self);
     return [self _performCommandRunningBlock:^id {
         @strongify(self);
 
         [command resolveLocalIds];
         return [[self.requestConstructor getFileUploadURLRequestAsyncForCommand:command
-                                                               withContentType:contentType
-                                                          contentSourceFilePath:sourceFilePath] continueWithSuccessBlock:^id(BFTask PF_GENERIC(NSURLRequest *)*task) {
+                                                                withContentType:contentType
+                                                          contentSourceFilePath:sourceFilePath] continueWithSuccessBlock:^id(BFTask<NSURLRequest *> *task) {
             return [_session performFileUploadURLRequestAsync:task.result
                                                    forCommand:command
                                     withContentSourceFilePath:sourceFilePath
@@ -187,10 +186,10 @@
     } withOptions:options cancellationToken:cancellationToken];
 }
 
-- (BFTask PF_GENERIC(PFCommandResult *)*)runFileDownloadCommandAsyncWithFileURL:(NSURL *)url
-                                                                 targetFilePath:(NSString *)filePath
-                                                              cancellationToken:(nullable BFCancellationToken *)cancellationToken
-                                                                  progressBlock:(nullable PFProgressBlock)progressBlock {
+- (BFTask<PFCommandResult *> *)runFileDownloadCommandAsyncWithFileURL:(NSURL *)url
+                                                       targetFilePath:(NSString *)filePath
+                                                    cancellationToken:(nullable BFCancellationToken *)cancellationToken
+                                                        progressBlock:(nullable PFProgressBlock)progressBlock {
     return [self _performCommandRunningBlock:^id {
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         return [_session performFileDownloadURLRequestAsync:request

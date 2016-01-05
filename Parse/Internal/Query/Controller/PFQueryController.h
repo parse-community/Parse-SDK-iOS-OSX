@@ -15,7 +15,7 @@
 
 @class BFCancellationToken;
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFQueryState;
 @class PFRESTCommand;
 @class PFCommandResult;

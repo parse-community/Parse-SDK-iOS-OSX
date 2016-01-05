@@ -13,7 +13,7 @@
 
 #import "PFDataProvider.h"
 
-@class BFTask PF_GENERIC(BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFRESTCommand;
 
 @interface PFCommandURLRequestConstructor : NSObject
@@ -32,15 +32,15 @@
 /// @name Data
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSURLRequest *)*)getDataURLRequestAsyncForCommand:(PFRESTCommand *)command;
+- (BFTask<NSURLRequest *> *)getDataURLRequestAsyncForCommand:(PFRESTCommand *)command;
 
 ///--------------------------------------
 /// @name File Upload
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSURLRequest *)*)getFileUploadURLRequestAsyncForCommand:(PFRESTCommand *)command
-                                                             withContentType:(NSString *)contentType
-                                                       contentSourceFilePath:(NSString *)contentFilePath;
+- (BFTask<NSURLRequest *> *)getFileUploadURLRequestAsyncForCommand:(PFRESTCommand *)command
+                                                   withContentType:(NSString *)contentType
+                                             contentSourceFilePath:(NSString *)contentFilePath;
 
 ///--------------------------------------
 /// @name Headers

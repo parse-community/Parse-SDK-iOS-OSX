@@ -17,7 +17,7 @@ extern NSString *const PFUserCurrentUserFileName;
 extern NSString *const PFUserCurrentUserPinName;
 extern NSString *const PFUserCurrentUserKeychainItemName;
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFCommandResult;
 @class PFUserController;
 

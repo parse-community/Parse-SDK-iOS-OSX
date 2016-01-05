@@ -48,8 +48,8 @@
 #pragma mark - Track Event
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFVoid)*)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(nullable NSDictionary *)payload
-                                                                       sessionToken:(nullable NSString *)sessionToken {
+- (BFTask<PFVoid> *)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(nullable NSDictionary *)payload
+                                                             sessionToken:(nullable NSString *)sessionToken {
     @weakify(self);
     return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
@@ -65,9 +65,9 @@
     }] continueWithSuccessResult:nil];
 }
 
-- (BFTask PF_GENERIC(PFVoid)*)trackEventAsyncWithName:(NSString *)name
-                                           dimensions:(nullable NSDictionary PF_GENERIC(NSString *, NSString *)*)dimensions
-                                         sessionToken:(nullable NSString *)sessionToken {
+- (BFTask<PFVoid> *)trackEventAsyncWithName:(NSString *)name
+                                 dimensions:(nullable NSDictionary<NSString *, NSString *> *)dimensions
+                               sessionToken:(nullable NSString *)sessionToken {
     PFParameterAssert([[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length],
                       @"A name for the custom event must be provided.");
 

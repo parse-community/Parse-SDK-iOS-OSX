@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFUser;
 
 @interface PFUserAuthenticationController : NSObject
@@ -45,16 +45,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Authentication
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSNumber *)*)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary PF_GENERIC(NSString *, NSString *)*)authData
-                                                             forAuthType:(NSString *)authType;
-- (BFTask PF_GENERIC(NSNumber *)*)deauthenticateAsyncWithAuthType:(NSString *)authType;
+- (BFTask<NSNumber *> *)restoreAuthenticationAsyncWithAuthData:(nullable NSDictionary<NSString *, NSString *> *)authData
+                                                   forAuthType:(NSString *)authType;
+- (BFTask<NSNumber *> *)deauthenticateAsyncWithAuthType:(NSString *)authType;
 
 ///--------------------------------------
 /// @name Log In
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFUser *)*)logInUserAsyncWithAuthType:(NSString *)authType
-                                                  authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;
+- (BFTask<PFUser *> *)logInUserAsyncWithAuthType:(NSString *)authType
+                                        authData:(NSDictionary<NSString *, NSString *> *)authData;
 
 @end
 

@@ -49,7 +49,7 @@
 
  @deprecated Please use `PFObject.+saveAllInBackground:block:` instead.
  */
-+ (void)saveAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
++ (void)saveAllInBackground:(nullable NSArray<PFObject *> *)objects
                      target:(nullable id)target
                    selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFObject.+saveAllInBackground:block:` instead.");
 
@@ -116,7 +116,7 @@
 
  @deprecated Please use `PFObject.+fetchAllInBackground:block:` instead.
  */
-+ (void)fetchAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
++ (void)fetchAllInBackground:(nullable NSArray<PFObject *> *)objects
                       target:(nullable id)target
                     selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFObject.+fetchAllInBackground:block:` instead.");
 
@@ -133,7 +133,7 @@
 
  @deprecated Please use `PFObject.+fetchAllIfNeededInBackground:block:` instead.
  */
-+ (void)fetchAllIfNeededInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
++ (void)fetchAllIfNeededInBackground:(nullable NSArray<PFObject *> *)objects
                               target:(nullable id)target
                             selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFObject.+fetchAllIfNeededInBackground:block:` instead.");
 
@@ -171,7 +171,7 @@
 
  @deprecated Please use `PFObject.+deleteAllInBackground:block:` instead.
  */
-+ (void)deleteAllInBackground:(nullable NSArray PF_GENERIC(PFObject *)*)objects
++ (void)deleteAllInBackground:(nullable NSArray<PFObject *> *)objects
                        target:(nullable id)target
                      selector:(nullable SEL)selector PARSE_DEPRECATED("Please use `PFObject.+deleteAllInBackground:block:` instead.");
 

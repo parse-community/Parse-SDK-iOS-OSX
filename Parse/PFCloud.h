@@ -28,8 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The task, that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(id) *)callFunctionInBackground:(NSString *)function
-                                     withParameters:(nullable NSDictionary *)parameters;
++ (BFTask<id> *)callFunctionInBackground:(NSString *)function
+                          withParameters:(nullable NSDictionary *)parameters;
 
 /**
  Calls the given cloud function *asynchronously* with the parameters provided

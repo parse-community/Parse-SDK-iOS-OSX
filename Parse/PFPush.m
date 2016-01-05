@@ -34,7 +34,7 @@ static Class _pushInternalUtilClass = nil;
 @interface PFPush ()
 
 @property (nonatomic, strong) PFMutablePushState *state;
-@property (nonatomic, strong) PFQuery PF_GENERIC(PFInstallation *)*query;
+@property (nonatomic, strong) PFQuery<PFInstallation *> *query;
 
 @end
 
@@ -254,7 +254,7 @@ static Class _pushInternalUtilClass = nil;
 
 #pragma mark Get
 
-+ (BFTask PF_GENERIC(NSSet<NSString *> *)*)getSubscribedChannelsInBackground {
++ (BFTask<NSSet<NSString *> *>*)getSubscribedChannelsInBackground {
     return [[self channelsController] getSubscribedChannelsAsync];
 }
 
@@ -406,7 +406,7 @@ static Class _pushInternalUtilClass = nil;
 
 #pragma mark Managing Channel Subscriptions
 
-+ (NSSet PF_GENERIC(NSString *)*)getSubscribedChannels:(NSError **)error {
++ (NSSet<NSString *> *)getSubscribedChannels:(NSError **)error {
     return [[self getSubscribedChannelsInBackground] waitForResult:error];
 }
 

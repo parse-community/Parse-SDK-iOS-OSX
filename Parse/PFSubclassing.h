@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class PFQuery PF_GENERIC(PFGenericObject : PFObject *);
+@class PFQuery<PFGenericObject : PFObject *>;
 
 NS_ASSUME_NONNULL_BEGIN
 

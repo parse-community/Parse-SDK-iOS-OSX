@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^PFUserSessionUpgradeResultBlock)(NSError *__nullable error);
 typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
-@class PFQuery PF_GENERIC(PFGenericObject : PFObject *);
+@class PFQuery<PFGenericObject : PFObject *>;
 @protocol PFUserAuthenticationDelegate;
 
 /**
@@ -117,7 +117,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @return The task, that encapsulates the work being done.
  */
-- (BFTask PF_GENERIC(NSNumber *)*)signUpInBackground;
+- (BFTask<NSNumber *> *)signUpInBackground;
 
 /**
  Signs up the user *asynchronously*.
@@ -146,7 +146,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @return The task, that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(__kindof PFUser *)*)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password;
++ (BFTask<__kindof PFUser *> *)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password;
 
 /**
  Makes an *asynchronous* request to log in a user with specified credentials.
@@ -175,7 +175,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @return The task, that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(__kindof PFUser *)*)becomeInBackground:(NSString *)sessionToken;
++ (BFTask<__kindof PFUser *> *)becomeInBackground:(NSString *)sessionToken;
 
 /**
  Makes an *asynchronous* request to become a user with the given session token.
@@ -253,7 +253,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  @param email Email of the account to send a reset password request.
  @return The task, that encapsulates the work being done.
  */
-+ (BFTask PF_GENERIC(NSNumber *)*)requestPasswordResetForEmailInBackground:(NSString *)email;
++ (BFTask<NSNumber *> *)requestPasswordResetForEmailInBackground:(NSString *)email;
 
 /**
  Send a password reset request *asynchronously* for a specified email.
@@ -293,8 +293,8 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @return A `BFTask` that is resolved to `PFUser` when logging in completes.
  */
-+ (BFTask PF_GENERIC(PFUser *)*)logInWithAuthTypeInBackground:(NSString *)authType
-                                                     authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;
++ (BFTask<__kindof PFUser *> *)logInWithAuthTypeInBackground:(NSString *)authType
+                                                    authData:(NSDictionary<NSString *, NSString *> *)authData;
 
 /**
  Links this user to a third party authentication library.
@@ -307,8 +307,8 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @return A `BFTask` that is resolved to `@YES` if linking succeeds.
  */
-- (BFTask PF_GENERIC(NSNumber *)*)linkWithAuthTypeInBackground:(NSString *)authType
-                                                      authData:(NSDictionary PF_GENERIC(NSString *, NSString *)*)authData;
+- (BFTask<NSNumber *> *)linkWithAuthTypeInBackground:(NSString *)authType
+                                            authData:(NSDictionary<NSString *, NSString *> *)authData;
 
 /**
  Unlinks this user from a third party authentication library.
@@ -320,7 +320,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
 
  @return A `BFTask` that is resolved to `@YES` if unlinking succeeds.
  */
-- (BFTask PF_GENERIC(NSNumber *)*)unlinkWithAuthTypeInBackground:(NSString *)authType;
+- (BFTask<NSNumber *> *)unlinkWithAuthTypeInBackground:(NSString *)authType;
 
 /**
  Indicates whether this user is linked with a third party authentication library of a specific type.

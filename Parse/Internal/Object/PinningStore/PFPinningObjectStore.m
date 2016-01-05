@@ -17,7 +17,7 @@
 #import "PFQueryPrivate.h"
 
 @interface PFPinningObjectStore () {
-    NSMapTable PF_GENERIC(NSString *, BFTask<PFPin *>*)*_pinCacheTable;
+    NSMapTable<NSString *, BFTask<PFPin *> *> *_pinCacheTable;
     dispatch_queue_t _pinCacheAccessQueue;
     BFExecutor *_pinCacheAccessExecutor;
 }
@@ -55,7 +55,7 @@
 #pragma mark - Pin
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFPin *)*)fetchPinAsyncWithName:(NSString *)name {
+- (BFTask<PFPin *> *)fetchPinAsyncWithName:(NSString *)name {
     @weakify(self);
     return [BFTask taskFromExecutor:_pinCacheAccessExecutor withBlock:^id{
         BFTask *cachedTask = [_pinCacheTable objectForKey:name] ?: [BFTask taskWithResult:nil];
@@ -79,7 +79,7 @@
     }];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)pinObjectsAsync:(NSArray *)objects withPinName:(NSString *)name includeChildren:(BOOL)includeChildren {
+- (BFTask<PFVoid> *)pinObjectsAsync:(NSArray *)objects withPinName:(NSString *)name includeChildren:(BOOL)includeChildren {
     if (objects.count == 0) {
         return [BFTask taskWithResult:nil];
     }
@@ -120,7 +120,7 @@
 #pragma mark - Unpin
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFVoid) *)unpinObjectsAsync:(NSArray *)objects withPinName:(NSString *)name {
+- (BFTask<PFVoid> *)unpinObjectsAsync:(NSArray *)objects withPinName:(NSString *)name {
     if (objects.count == 0) {
         return [BFTask taskWithResult:nil];
     }
@@ -151,7 +151,7 @@
     }];
 }
 
-- (BFTask PF_GENERIC(PFVoid)*)unpinAllObjectsAsyncWithPinName:(NSString *)name {
+- (BFTask<PFVoid> *)unpinAllObjectsAsyncWithPinName:(NSString *)name {
     @weakify(self);
     return [[self fetchPinAsyncWithName:name] continueWithSuccessBlock:^id(BFTask *task) {
         @strongify(self);

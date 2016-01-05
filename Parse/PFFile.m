@@ -212,11 +212,11 @@ static const unsigned long long PFFileMaxFileSize = 10 * 1024 * 1024; // 10 MB
     [[self _getDataStreamAsyncWithProgressBlock:progressBlock] thenCallBackOnMainThreadAsync:resultBlock];
 }
 
-- (BFTask PF_GENERIC(NSString *)*)getFilePathInBackground {
+- (BFTask<NSString *> *)getFilePathInBackground {
     return [self getFilePathInBackgroundWithProgressBlock:nil];
 }
 
-- (BFTask PF_GENERIC(NSString *)*)getFilePathInBackgroundWithProgressBlock:(PFProgressBlock)progressBlock {
+- (BFTask<NSString *> *)getFilePathInBackgroundWithProgressBlock:(PFProgressBlock)progressBlock {
     return [[self _downloadAsyncWithProgressBlock:progressBlock] continueWithSuccessBlock:^id(BFTask *task) {
         if (self.dirty) {
             return self.stagedFilePath;

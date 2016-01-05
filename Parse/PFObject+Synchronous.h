@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Returns whether the save succeeded.
  */
-+ (BOOL)saveAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects PF_SWIFT_UNAVAILABLE;
++ (BOOL)saveAll:(nullable NSArray<PFObject *> *)objects PF_SWIFT_UNAVAILABLE;
 
 /**
  Saves a collection of objects *synchronously* all at once and sets an error if necessary.
@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Returns whether the save succeeded.
  */
-+ (BOOL)saveAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects error:(NSError **)error;
++ (BOOL)saveAll:(nullable NSArray<PFObject *> *)objects error:(NSError **)error;
 
 ///--------------------------------------
 /// @name Getting an Object
@@ -98,7 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param objects The list of objects to fetch.
  */
-+ (nullable NSArray PF_GENERIC(__kindof PFObject *)*)fetchAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects PF_SWIFT_UNAVAILABLE;
++ (nullable NSArray<__kindof PFObject *> *)fetchAll:(nullable NSArray<PFObject *> *)objects PF_SWIFT_UNAVAILABLE;
 
 /**
  *Synchronously* fetches all of the `PFObject` objects with the current data from the server
@@ -107,14 +107,14 @@ NS_ASSUME_NONNULL_BEGIN
  @param objects The list of objects to fetch.
  @param error Pointer to an `NSError` that will be set if necessary.
  */
-+ (nullable NSArray PF_GENERIC(__kindof PFObject *)*)fetchAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects
-                                                        error:(NSError **)error;
++ (nullable NSArray<__kindof PFObject *> *)fetchAll:(nullable NSArray<PFObject *> *)objects
+                                              error:(NSError **)error;
 
 /**
  *Synchronously* fetches all of the `PFObject` objects with the current data from the server.
  @param objects The list of objects to fetch.
  */
-+ (nullable NSArray PF_GENERIC(__kindof PFObject *)*)fetchAllIfNeeded:(nullable NSArray PF_GENERIC(PFObject *)*)objects PF_SWIFT_UNAVAILABLE;
++ (nullable NSArray<__kindof PFObject *> *)fetchAllIfNeeded:(nullable NSArray<PFObject *> *)objects PF_SWIFT_UNAVAILABLE;
 
 /**
  *Synchronously* fetches all of the `PFObject` objects with the current data from the server
@@ -123,8 +123,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param objects The list of objects to fetch.
  @param error Pointer to an `NSError` that will be set if necessary.
  */
-+ (nullable NSArray PF_GENERIC(__kindof PFObject *)*)fetchAllIfNeeded:(nullable NSArray PF_GENERIC(PFObject *)*)objects
-                                                                error:(NSError **)error;
++ (nullable NSArray<__kindof PFObject *> *)fetchAllIfNeeded:(nullable NSArray<PFObject *> *)objects
+                                                      error:(NSError **)error;
 
 ///--------------------------------------
 /// @name Fetching From Local Datastore
@@ -178,7 +178,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Returns whether the delete succeeded.
  */
-+ (BOOL)deleteAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects PF_SWIFT_UNAVAILABLE;
++ (BOOL)deleteAll:(nullable NSArray<PFObject *> *)objects PF_SWIFT_UNAVAILABLE;
 
 /**
  *Synchronously* deletes a collection of objects all at once and sets an error if necessary.
@@ -188,7 +188,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Returns whether the delete succeeded.
  */
-+ (BOOL)deleteAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects error:(NSError **)error;
++ (BOOL)deleteAll:(nullable NSArray<PFObject *> *)objects error:(NSError **)error;
 
 ///--------------------------------------
 /// @name Pinning
@@ -281,7 +281,7 @@ NS_ASSUME_NONNULL_BEGIN
  @see unpinAll:
  @see PFObjectDefaultPin
  */
-+ (BOOL)pinAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects PF_SWIFT_UNAVAILABLE;
++ (BOOL)pinAll:(nullable NSArray<PFObject *> *)objects PF_SWIFT_UNAVAILABLE;
 
 /**
  *Synchronously* stores the objects and every object they point to in the local datastore, recursively,
@@ -300,7 +300,7 @@ NS_ASSUME_NONNULL_BEGIN
  @see unpinAll:error:
  @see PFObjectDefaultPin
  */
-+ (BOOL)pinAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects error:(NSError **)error;
++ (BOOL)pinAll:(nullable NSArray<PFObject *> *)objects error:(NSError **)error;
 
 /**
  *Synchronously* stores the objects and every object they point to in the local datastore, recursively.
@@ -317,7 +317,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @see unpinAll:withName:
  */
-+ (BOOL)pinAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects withName:(NSString *)name PF_SWIFT_UNAVAILABLE;
++ (BOOL)pinAll:(nullable NSArray<PFObject *> *)objects withName:(NSString *)name PF_SWIFT_UNAVAILABLE;
 
 /**
  *Synchronously* stores the objects and every object they point to in the local datastore, recursively.
@@ -335,7 +335,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @see unpinAll:withName:error:
  */
-+ (BOOL)pinAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects withName:(NSString *)name error:(NSError **)error;
++ (BOOL)pinAll:(nullable NSArray<PFObject *> *)objects withName:(NSString *)name error:(NSError **)error;
 
 ///--------------------------------------
 /// @name Unpinning
@@ -444,7 +444,7 @@ NS_ASSUME_NONNULL_BEGIN
  @see pinAll:
  @see PFObjectDefaultPin
  */
-+ (BOOL)unpinAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects PF_SWIFT_UNAVAILABLE;
++ (BOOL)unpinAll:(nullable NSArray<PFObject *> *)objects PF_SWIFT_UNAVAILABLE;
 
 /**
  *Synchronously* removes the objects and every object they point to in the local datastore, recursively,
@@ -458,7 +458,7 @@ NS_ASSUME_NONNULL_BEGIN
  @see pinAll:error:
  @see PFObjectDefaultPin
  */
-+ (BOOL)unpinAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects error:(NSError **)error;
++ (BOOL)unpinAll:(nullable NSArray<PFObject *> *)objects error:(NSError **)error;
 
 /**
  *Synchronously* removes the objects and every object they point to in the local datastore, recursively.
@@ -470,7 +470,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @see pinAll:withName:
  */
-+ (BOOL)unpinAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects withName:(NSString *)name PF_SWIFT_UNAVAILABLE;
++ (BOOL)unpinAll:(nullable NSArray<PFObject *> *)objects withName:(NSString *)name PF_SWIFT_UNAVAILABLE;
 
 /**
  *Synchronously* removes the objects and every object they point to in the local datastore, recursively.
@@ -483,7 +483,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @see pinAll:withName:error:
  */
-+ (BOOL)unpinAll:(nullable NSArray PF_GENERIC(PFObject *)*)objects withName:(NSString *)name error:(NSError **)error;
++ (BOOL)unpinAll:(nullable NSArray<PFObject *> *)objects withName:(NSString *)name error:(NSError **)error;
 
 @end
 

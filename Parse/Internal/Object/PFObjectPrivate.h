@@ -18,7 +18,7 @@
 #import "PFMulticastDelegate.h"
 #import "PFObjectControlling.h"
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFCurrentUserController;
 @class PFFieldOperation;
 @class PFJSONCacheItem;
@@ -110,8 +110,8 @@
 /// @name Validation
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFVoid) *)_validateFetchAsync NS_REQUIRES_SUPER;
-- (BFTask PF_GENERIC(PFVoid) *)_validateDeleteAsync NS_REQUIRES_SUPER;
+- (BFTask<PFVoid> *)_validateFetchAsync NS_REQUIRES_SUPER;
+- (BFTask<PFVoid> *)_validateDeleteAsync NS_REQUIRES_SUPER;
 
 /**
  Validate the save eventually operation with the current state.
@@ -119,7 +119,7 @@
 
  @return Task that encapsulates the validation.
  */
-- (BFTask PF_GENERIC(PFVoid) *)_validateSaveEventuallyAsync NS_REQUIRES_SUPER;
+- (BFTask<PFVoid> *)_validateSaveEventuallyAsync NS_REQUIRES_SUPER;
 
 ///--------------------------------------
 /// @name Pin

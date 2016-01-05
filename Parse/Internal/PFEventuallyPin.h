@@ -13,7 +13,7 @@
 #import <Parse/PFObject.h>
 #import <Parse/PFSubclassing.h>
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @protocol PFNetworkCommand;
 
 extern NSString *const PFEventuallyPinPinName;

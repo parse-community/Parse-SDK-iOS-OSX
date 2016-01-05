@@ -13,7 +13,7 @@
 
 #import <Parse/PFConstants.h>
 
-@class BFTask PF_GENERIC(BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 
 @interface PFInstallationIdentifierStore : NSObject
 
@@ -33,7 +33,7 @@
 /**
  Returns a cached installationId or creates a new one, saves it to disk and returns it.
  */
-- (BFTask PF_GENERIC(NSString *)*)getInstallationIdentifierAsync;
+- (BFTask<NSString *> *)getInstallationIdentifierAsync;
 
 ///--------------------------------------
 /// @name Clear

@@ -12,7 +12,7 @@
 #import <Parse/PFConstants.h>
 #import "PFDataProvider.h"
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 
 @interface PFCloudCodeController : NSObject
 

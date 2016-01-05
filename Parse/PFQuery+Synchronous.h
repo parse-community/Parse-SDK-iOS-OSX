@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  Calling one of these synchronous methods could potentially block the current thread for a large amount of time,
  since it might be fetching from network or saving/loading data from disk.
  */
-@interface PFQuery PF_GENERIC(PFGenericObject : PFObject *) (Synchronous)
+@interface PFQuery<PFGenericObject : PFObject *> (Synchronous)
 
 ///--------------------------------------
 /// @name Getting Objects by ID
@@ -99,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Returns an array of `PFObject` objects that were found.
  */
-- (nullable NSArray PF_GENERIC(PFGenericObject) *)findObjects PF_SWIFT_UNAVAILABLE;
+- (nullable NSArray<PFGenericObject> *)findObjects PF_SWIFT_UNAVAILABLE;
 
 /**
  Finds objects *synchronously* based on the constructed query and sets an error if there was one.
@@ -108,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Returns an array of `PFObject` objects that were found.
  */
-- (nullable NSArray PF_GENERIC(PFGenericObject) *)findObjects:(NSError **)error;
+- (nullable NSArray<PFGenericObject> *)findObjects:(NSError **)error;
 
 ///--------------------------------------
 /// @name Getting the First Match in a Query

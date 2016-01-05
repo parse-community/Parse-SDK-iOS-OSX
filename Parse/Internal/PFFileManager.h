@@ -14,7 +14,7 @@
 #import "PFMacros.h"
 
 @class BFExecutor;
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 
 typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
     PFFileManagerOptionSkipBackup = 1 << 0,

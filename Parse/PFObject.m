@@ -1702,7 +1702,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Validation
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFVoid) *)_validateFetchAsync {
+- (BFTask<PFVoid> *)_validateFetchAsync {
     if (!self._state.objectId) {
         NSError *error = [PFErrorUtilities errorWithCode:kPFErrorMissingObjectId
                                                  message:@"Can't fetch an object that hasn't been saved to the server."];
@@ -1711,11 +1711,11 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return [BFTask taskWithResult:nil];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)_validateDeleteAsync {
+- (BFTask<PFVoid> *)_validateDeleteAsync {
     return [BFTask taskWithResult:nil];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)_validateSaveEventuallyAsync {
+- (BFTask<PFVoid> *)_validateSaveEventuallyAsync {
     return [BFTask taskWithResult:nil];
 }
 
@@ -2200,7 +2200,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     self[key] = value;
 }
 
-- (void)setValuesForKeysWithDictionary:(NSDictionary PF_GENERIC(NSString *,id)*)keyedValues {
+- (void)setValuesForKeysWithDictionary:(NSDictionary<NSString *,id> *)keyedValues {
     // This is overwritten to make sure we don't use `nil` instead of `NSNull` (the default NSObject implementation).
     // Remove this if we 100% conform to KVC.
     [keyedValues enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
@@ -2266,10 +2266,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Delete all
 ///--------------------------------------
 
-+ (BFTask PF_GENERIC(NSNumber *) *)deleteAllInBackground:(NSArray *)objects {
++ (BFTask<NSNumber *> *)deleteAllInBackground:(NSArray *)objects {
     NSArray *deleteObjects = [objects copy]; // Snapshot the objects.
     if (deleteObjects.count == 0) {
-        return [BFTask PF_GENERIC(NSNumber *) taskWithResult:@YES];
+        return [BFTask<NSNumber *> taskWithResult:@YES];
     }
     return [[[[self currentUserController] getCurrentUserSessionTokenAsync] continueWithBlock:^id(BFTask *task) {
         NSString *sessionToken = task.result;
@@ -2277,7 +2277,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         NSArray *uniqueObjects = [PFObjectBatchController uniqueObjectsArrayFromArray:deleteObjects usingFilter:^BOOL(PFObject *object) {
             return (object.objectId != nil);
         }];
-        NSMutableArray PF_GENERIC(BFTask <PFVoid> *) *validationTasks = [NSMutableArray array];
+        NSMutableArray<BFTask<PFVoid> *> *validationTasks = [NSMutableArray array];
         for (PFObject *object in uniqueObjects) {
             [validationTasks addObject:[object _validateDeleteAsync]];
         }
@@ -2342,7 +2342,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Pinning
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSNumber *)*)pinInBackground {
+- (BFTask<NSNumber *> *)pinInBackground {
     return [self pinInBackgroundWithName:PFObjectDefaultPin];
 }
 
@@ -2354,11 +2354,11 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self pinInBackgroundWithName:name] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-- (BFTask PF_GENERIC(NSNumber *)*)pinInBackgroundWithName:(NSString *)name {
+- (BFTask<NSNumber *> *)pinInBackgroundWithName:(NSString *)name {
     return [self _pinInBackgroundWithName:name includeChildren:YES];
 }
 
-- (BFTask PF_GENERIC(NSNumber *)*)_pinInBackgroundWithName:(NSString *)name includeChildren:(BOOL)includeChildren {
+- (BFTask<NSNumber *> *)_pinInBackgroundWithName:(NSString *)name includeChildren:(BOOL)includeChildren {
     return [[self class] _pinAllInBackground:@[ self ] withName:name includeChildren:includeChildren];
 }
 
@@ -2366,7 +2366,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Pinning Many Objects
 ///--------------------------------------
 
-+ (BFTask PF_GENERIC(NSNumber *)*)pinAllInBackground:(NSArray *)objects {
++ (BFTask<NSNumber *> *)pinAllInBackground:(NSArray *)objects {
     return [self pinAllInBackground:objects withName:PFObjectDefaultPin];
 }
 
@@ -2375,7 +2375,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self pinAllInBackground:objects] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-+ (BFTask PF_GENERIC(NSNumber *)*)pinAllInBackground:(NSArray *)objects withName:(NSString *)name {
++ (BFTask<NSNumber *> *)pinAllInBackground:(NSArray *)objects withName:(NSString *)name {
     return [self _pinAllInBackground:objects withName:name includeChildren:YES];
 }
 
@@ -2385,7 +2385,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self pinAllInBackground:objects withName:name] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-+ (BFTask PF_GENERIC(NSNumber *)*)_pinAllInBackground:(NSArray *)objects withName:(NSString *)name includeChildren:(BOOL)includeChildren {
++ (BFTask<NSNumber *> *)_pinAllInBackground:(NSArray *)objects withName:(NSString *)name includeChildren:(BOOL)includeChildren {
     return [[[self pinningObjectStore] pinObjectsAsync:objects
                                            withPinName:name
                                        includeChildren:includeChildren] continueWithSuccessResult:@YES];
@@ -2395,7 +2395,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Unpinning
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSNumber *)*)unpinInBackground {
+- (BFTask<NSNumber *> *)unpinInBackground {
     return [self unpinInBackgroundWithName:PFObjectDefaultPin];
 }
 
@@ -2403,7 +2403,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self unpinInBackground] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-- (BFTask PF_GENERIC(NSNumber *)*)unpinInBackgroundWithName:(NSString *)name {
+- (BFTask<NSNumber *> *)unpinInBackgroundWithName:(NSString *)name {
     return [[self class] unpinAllInBackground:@[ self ] withName:name];
 }
 
@@ -2415,7 +2415,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Unpinning Many Objects
 ///--------------------------------------
 
-+ (BFTask PF_GENERIC(NSNumber *)*)unpinAllObjectsInBackground {
++ (BFTask<NSNumber *> *)unpinAllObjectsInBackground {
     return [self unpinAllObjectsInBackgroundWithName:PFObjectDefaultPin];
 }
 
@@ -2427,7 +2427,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self unpinAllObjectsInBackgroundWithName:name] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-+ (BFTask PF_GENERIC(NSNumber *)*)unpinAllObjectsInBackgroundWithName:(NSString *)name {
++ (BFTask<NSNumber *> *)unpinAllObjectsInBackgroundWithName:(NSString *)name {
     return [[[self pinningObjectStore] unpinAllObjectsAsyncWithPinName:name] continueWithSuccessResult:@YES];
 }
 
@@ -2439,7 +2439,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     [[self unpinAllInBackground:objects] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-+ (BFTask PF_GENERIC(NSNumber *)*)unpinAllInBackground:(NSArray *)objects withName:(NSString *)name {
++ (BFTask<NSNumber *> *)unpinAllInBackground:(NSArray *)objects withName:(NSString *)name {
     return [[[self pinningObjectStore] unpinObjectsAsync:objects withPinName:name] continueWithSuccessResult:@YES];
 }
 
@@ -2675,7 +2675,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 #pragma mark Saving Many Objects
 
-+ (void)saveAllInBackground:(NSArray PF_GENERIC(PFObject *)*)objects target:(nullable id)target selector:(nullable SEL)selector {
++ (void)saveAllInBackground:(NSArray<PFObject *> *)objects target:(nullable id)target selector:(nullable SEL)selector {
     [self saveAllInBackground:objects block:^(BOOL succeeded, NSError *error) {
         [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
     }];
@@ -2701,13 +2701,13 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 #pragma mark Getting Many Objects
 
-+ (void)fetchAllInBackground:(NSArray PF_GENERIC(PFObject *)*)objects target:(nullable id)target selector:(nullable SEL)selector {
++ (void)fetchAllInBackground:(NSArray<PFObject *> *)objects target:(nullable id)target selector:(nullable SEL)selector {
     [self fetchAllInBackground:objects block:^(NSArray *objects, NSError *error) {
         [PFInternalUtils safePerformSelector:selector withTarget:target object:objects object:error];
     }];
 }
 
-+ (void)fetchAllIfNeededInBackground:(NSArray PF_GENERIC(PFObject *)*)objects target:(nullable id)target selector:(nullable SEL)selector {
++ (void)fetchAllIfNeededInBackground:(NSArray<PFObject *> *)objects target:(nullable id)target selector:(nullable SEL)selector {
     [self fetchAllIfNeededInBackground:objects block:^(NSArray *objects, NSError *error) {
         [PFInternalUtils safePerformSelector:selector withTarget:target object:objects object:error];
     }];
@@ -2723,7 +2723,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 #pragma mark Deleting Many Objects
 
-+ (void)deleteAllInBackground:(NSArray PF_GENERIC(PFObject *)*)objects target:(nullable id)target selector:(nullable SEL)selector {
++ (void)deleteAllInBackground:(NSArray<PFObject *> *)objects target:(nullable id)target selector:(nullable SEL)selector {
     [self deleteAllInBackground:objects block:^(BOOL succeeded, NSError *error) {
         [PFInternalUtils safePerformSelector:selector withTarget:target object:@(succeeded) object:error];
     }];
