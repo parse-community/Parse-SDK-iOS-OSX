@@ -19,7 +19,7 @@
 static NSString *const _PFFileManagerParseDirectoryName = @"Parse";
 
 static NSDictionary *_PFFileManagerDefaultDirectoryFileAttributes() {
-#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#if !PF_TARGET_OS_OSX
     return @{ NSFileProtectionKey : NSFileProtectionCompleteUntilFirstUserAuthentication };
 #else
     return nil;
@@ -28,7 +28,7 @@ static NSDictionary *_PFFileManagerDefaultDirectoryFileAttributes() {
 
 static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
     NSDataWritingOptions options = NSDataWritingAtomic;
-#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#if !PF_TARGET_OS_OSX
     options |= NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication;
 #endif
     return options;
@@ -92,7 +92,7 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
             }
         }
 
-#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#if TARGET_OS_IOS || TARGET_OS_WATCH // No backups for Apple TV, since everything is cache.
         if (options & PFFileManagerOptionSkipBackup) {
             [self _skipBackupOnPath:path];
         }
@@ -271,7 +271,9 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
 }
 
 - (NSString *)parseLocalSandboxDataDirectoryPath {
-#if TARGET_OS_IPHONE
+#if PF_TARGET_OS_OSX
+    return [self parseDefaultDataDirectoryPath];
+#else
     NSString *library = [NSHomeDirectory() stringByAppendingPathComponent:@"Library"];
     NSString *privateDocuments = [library stringByAppendingPathComponent:@"Private Documents"];
     NSString *directoryPath = [privateDocuments stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
@@ -281,8 +283,6 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
     [createDirectoryTask waitForResult:nil withMainThreadWarning:NO];
 
     return directoryPath;
-#else
-    return [self parseDefaultDataDirectoryPath];
 #endif
 }
 
@@ -294,7 +294,7 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *folderPath = paths.firstObject;
     folderPath = [folderPath stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
-#if !TARGET_OS_IPHONE
+#if PF_TARGET_OS_OSX
     // We append the applicationId in case the OS X application isn't sandboxed,
     // to avoid collisions in the generic ~/Library/Caches/Parse/------ dir.
     folderPath = [folderPath stringByAppendingPathComponent:self.applicationIdentifier];

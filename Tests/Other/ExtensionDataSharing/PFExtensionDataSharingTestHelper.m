@@ -32,11 +32,11 @@
 }
 
 + (NSString *)sharedTestDirectoryPathForGroupIdentifier:(NSString *)groupIdentifier {
-#if TARGET_OS_IPHONE
-    return [[PFExtensionDataSharingTestHelper sharedTestDirectoryPath] stringByAppendingPathComponent:groupIdentifier];
-#else
+#if PF_TARGET_OS_OSX
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     return [paths firstObject];
+#else
+    return [[PFExtensionDataSharingTestHelper sharedTestDirectoryPath] stringByAppendingPathComponent:groupIdentifier];
 #endif
 }
 
