@@ -60,12 +60,12 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
 ///--------------------------------------
 
 - (void)setApplicationId:(NSString *)applicationId {
-    PFConsistencyAssert(applicationId.length, @"'applicationId' should not be nil.");
+    PFParameterAssert(applicationId.length, @"'applicationId' should not be nil.");
     _applicationId = [applicationId copy];
 }
 
 - (void)setClientKey:(NSString *)clientKey {
-    PFConsistencyAssert(clientKey.length, @"'clientKey' should not be nil.");
+    PFParameterAssert(clientKey.length, @"'clientKey' should not be nil.");
     _clientKey = [clientKey copy];
 }
 
@@ -76,18 +76,18 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
 }
 
 - (void)setApplicationGroupIdentifier:(NSString *)applicationGroupIdentifier {
-    PFConsistencyAssert(applicationGroupIdentifier == nil ||
-                        [PFFileManager isApplicationGroupContainerReachableForGroupIdentifier:applicationGroupIdentifier],
-                        @"ApplicationGroupContainer is unreachable. Please double check your Xcode project settings.");
+    PFParameterAssert(applicationGroupIdentifier == nil ||
+                      [PFFileManager isApplicationGroupContainerReachableForGroupIdentifier:applicationGroupIdentifier],
+                      @"ApplicationGroupContainer is unreachable. Please double check your Xcode project settings.");
 
     _applicationGroupIdentifier = [applicationGroupIdentifier copy];
 }
 
 - (void)setContainingApplicationBundleIdentifier:(NSString *)containingApplicationBundleIdentifier {
-    PFConsistencyAssert([PFApplication currentApplication].extensionEnvironment,
-                        @"'containingApplicationBundleIdentifier' cannot be set in non-extension environment");
-    PFConsistencyAssert(containingApplicationBundleIdentifier.length,
-                        @"'containingApplicationBundleIdentifier' should not be nil.");
+    PFParameterAssert([PFApplication currentApplication].extensionEnvironment,
+                      @"'containingApplicationBundleIdentifier' cannot be set in non-extension environment");
+    PFParameterAssert(containingApplicationBundleIdentifier.length,
+                      @"'containingApplicationBundleIdentifier' should not be nil.");
 
     _containingApplicationBundleIdentifier = containingApplicationBundleIdentifier;
 }
