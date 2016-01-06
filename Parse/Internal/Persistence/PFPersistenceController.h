@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Controller
 ///--------------------------------------
 
-typedef BFTask<NSNumber *> *__nonnull (^PFPersistenceGroupValidationHandler)(id<PFPersistenceGroup> group);
+typedef BFTask<NSNumber *> *_Nonnull (^PFPersistenceGroupValidationHandler)(id<PFPersistenceGroup> group);
 
 @interface PFPersistenceController : NSObject
 

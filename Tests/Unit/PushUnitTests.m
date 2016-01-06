@@ -495,7 +495,7 @@
 
         return task;
     }] waitUntilFinished];
-    [PFPush subscribeToChannelInBackground:channel block:^(BOOL succeeded, NSError *__nullable error) {
+    [PFPush subscribeToChannelInBackground:channel block:^(BOOL succeeded, NSError *_Nullable error) {
         XCTAssertTrue(succeeded);
         XCTAssertNil(error);
 
@@ -538,7 +538,7 @@
 
         return task;
     }] waitUntilFinished];
-    [PFPush unsubscribeFromChannelInBackground:channel block:^(BOOL succeeded, NSError *__nullable error) {
+    [PFPush unsubscribeFromChannelInBackground:channel block:^(BOOL succeeded, NSError *_Nullable error) {
         XCTAssertTrue(succeeded);
         XCTAssertNil(error);
 

@@ -10,7 +10,7 @@
 #import "PFURLSessionUploadTaskDelegate.h"
 
 @implementation PFURLSessionUploadTaskDelegate {
-    __nullable PFProgressBlock _progressBlock;
+    _Nullable PFProgressBlock _progressBlock;
 }
 
 ///--------------------------------------

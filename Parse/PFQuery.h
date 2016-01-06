@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Blocks
 ///--------------------------------------
 
-typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable objects, NSError * __nullable error);
+typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *_Nullable objects, NSError * _Nullable error);
 
 ///--------------------------------------
 #pragma mark - Creating a Query for a Class
@@ -522,7 +522,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
  The block should have the following argument signature: `^(NSArray *object, NSError *error)`
  */
 - (void)getObjectInBackgroundWithId:(NSString *)objectId
-                              block:(nullable void (^)(PFGenericObject __nullable object, NSError *__nullable error))block;
+                              block:(nullable void (^)(PFGenericObject _Nullable object, NSError *_Nullable error))block;
 
 ///--------------------------------------
 #pragma mark - Getting User Objects
@@ -575,7 +575,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *__nullable obj
  `result` will be `nil` if `error` is set OR no object was found matching the query.
  `error` will be `nil` if `result` is set OR if the query succeeded, but found no results.
  */
-- (void)getFirstObjectInBackgroundWithBlock:(nullable void (^)(PFGenericObject __nullable object, NSError *__nullable error))block;
+- (void)getFirstObjectInBackgroundWithBlock:(nullable void (^)(PFGenericObject _Nullable object, NSError *_Nullable error))block;
 
 ///--------------------------------------
 #pragma mark - Counting the Matches in a Query

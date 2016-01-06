@@ -20,8 +20,8 @@ PF_WATCH_UNAVAILABLE_WARNING
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^PFPurchaseProductObservationBlock)(SKPaymentTransaction *transaction);
-typedef void (^PFPurchaseBuyProductResultBlock)(NSError *__nullable error);
-typedef void (^PFPurchaseDownloadAssetResultBlock)(NSString *__nullable filePath, NSError *__nullable error);
+typedef void (^PFPurchaseBuyProductResultBlock)(NSError *_Nullable error);
+typedef void (^PFPurchaseDownloadAssetResultBlock)(NSString *_Nullable filePath, NSError *_Nullable error);
 
 /**
  `PFPurchase` provides a set of APIs for working with in-app purchases.
