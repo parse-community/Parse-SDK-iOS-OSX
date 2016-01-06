@@ -23,6 +23,8 @@
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider>)dataSource;

@@ -54,11 +54,6 @@
     XCTAssertEqual((id)offlineQueryController.coreDataSource, objectStoreProvider);
 }
 
-- (void)testBadConstructor {
-    id<PFCoreManagerDataSource> mockedProvider = PFStrictProtocolMock(@protocol(PFCoreManagerDataSource));
-    XCTAssertThrows([(id)[PFOfflineQueryController alloc] initWithCommonDataSource:mockedProvider]);
-}
-
 - (void)testFindObjectsLDS {
     id<PFCoreManagerDataSource> mockedProvider = PFStrictProtocolMock(@protocol(PFCoreManagerDataSource));
     id<PFPinningObjectStoreProvider> objectStoreProvider = PFStrictProtocolMock(@protocol(PFPinningObjectStoreProvider));

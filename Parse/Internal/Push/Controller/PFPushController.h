@@ -29,6 +29,8 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushController : NSObject
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)controllerWithCommandRunner:(id<PFCommandRunning>)commandRunner;

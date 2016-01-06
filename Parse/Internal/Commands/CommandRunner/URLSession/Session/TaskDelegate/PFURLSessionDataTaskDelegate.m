@@ -31,10 +31,6 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initForDataTask:(NSURLSessionDataTask *)dataTask
           withCancellationToken:(BFCancellationToken *)cancellationToken {
     self = [super init];

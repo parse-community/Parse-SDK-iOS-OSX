@@ -52,10 +52,6 @@ NSString *const PFKeychainStoreDefaultService = @"com.parse.sdk";
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithService:(NSString *)service {
     self = [super init];
     if (!self) return nil;

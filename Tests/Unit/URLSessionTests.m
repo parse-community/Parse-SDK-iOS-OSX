@@ -86,8 +86,6 @@
                                          delegate:delegate];
     XCTAssertNotNil(session);
     XCTAssertEqual((id)session.delegate, delegate);
-    
-    PFAssertThrowsInconsistencyException([PFURLSession new]);
 }
 
 - (void)testPerformDataRequestSuccess {

@@ -28,10 +28,6 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithDataSource:(nonnull id<PFCurrentInstallationControllerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;

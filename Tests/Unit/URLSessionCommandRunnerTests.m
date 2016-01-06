@@ -51,8 +51,6 @@
     XCTAssertEqualObjects(@"clientKey", commandRunner.clientKey);
     XCTAssertEqual(commandRunner.initialRetryDelay, PFCommandRunningDefaultRetryDelay);
     XCTAssertEqual(commandRunner.serverURL, url);
-
-    PFAssertThrowsInconsistencyException([PFURLSessionCommandRunner new]);
 }
 
 - (void)testRunCommand {

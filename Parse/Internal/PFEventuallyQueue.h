@@ -47,6 +47,8 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource
                   maxAttemptsCount:(NSUInteger)attemptsCount
                      retryInterval:(NSTimeInterval)retryInterval NS_DESIGNATED_INITIALIZER;

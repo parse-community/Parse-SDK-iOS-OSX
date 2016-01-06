@@ -27,10 +27,6 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource serverURL:(NSURL *)serverURL {
     self = [super init];
     if (!self) return nil;

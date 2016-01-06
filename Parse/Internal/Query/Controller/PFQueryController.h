@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithCommonDataSource:(id<PFCommandRunnerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)controllerWithCommonDataSource:(id<PFCommandRunnerProvider>)dataSource;

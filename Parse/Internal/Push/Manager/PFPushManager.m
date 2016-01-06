@@ -29,10 +29,6 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithCommonDataSource:(id<PFCommandRunnerProvider>)commonDataSource
                           coreDataSource:(id<PFCurrentInstallationControllerProvider>)coreDataSource {
     self = [super init];

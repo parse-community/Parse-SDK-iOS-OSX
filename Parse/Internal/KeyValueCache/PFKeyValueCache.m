@@ -32,10 +32,6 @@ static NSString *const PFKeyValueCacheDiskCachePathKey = @"path";
 
 @implementation PFKeyValueCacheEntry
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithValue:(NSString *)value {
     return [self initWithValue:value creationTime:[NSDate date]];
 }
@@ -72,10 +68,6 @@ static NSString *const PFKeyValueCacheDiskCachePathKey = @"path";
 ///--------------------------------------
 #pragma mark - Init
 ///--------------------------------------
-
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
 
 - (instancetype)initWithCacheDirectoryPath:(NSString *)path {
     return [self initWithCacheDirectoryURL:[NSURL fileURLWithPath:path]

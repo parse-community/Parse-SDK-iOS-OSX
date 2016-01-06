@@ -86,10 +86,6 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithConfiguration:(ParseClientConfiguration *)configuration serverURL:(NSURL *)url {
     self = [super init];
     if (!self) return nil;

@@ -30,10 +30,6 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithDataSource:(id<PFOfflineStoreProvider>)dataSource {
     self = [super init];
     if (!self) return nil;

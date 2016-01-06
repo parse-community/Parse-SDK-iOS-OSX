@@ -68,6 +68,8 @@ PFUserControllerProvider
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithDataSource:(id<PFCoreManagerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)managerWithDataSource:(id<PFCoreManagerDataSource>)dataSource;

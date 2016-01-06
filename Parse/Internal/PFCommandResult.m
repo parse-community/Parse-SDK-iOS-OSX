@@ -17,10 +17,6 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithResult:(NSDictionary *)result
                   resultString:(NSString *)resultString
                   httpResponse:(NSHTTPURLResponse *)response {

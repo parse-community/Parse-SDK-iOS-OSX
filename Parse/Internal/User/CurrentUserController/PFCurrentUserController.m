@@ -41,10 +41,6 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithStorageType:(PFCurrentObjectStorageType)storageType
                    commonDataSource:(id<PFKeychainStoreProvider>)commonDataSource
                      coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource {

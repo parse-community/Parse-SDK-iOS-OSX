@@ -26,6 +26,8 @@
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 + (instancetype)constructorWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource serverURL:(NSURL *)serverURL;
 
 ///--------------------------------------
