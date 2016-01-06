@@ -17,6 +17,8 @@
 #import "PFHash.h"
 #import "PFObjectUtilities.h"
 
+NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
+
 @implementation ParseClientConfiguration
 
 ///--------------------------------------
@@ -32,6 +34,7 @@
     if (!self) return nil;
 
     _networkRetryAttempts = PFCommandRunningDefaultMaxAttemptsCount;
+    _server = [_ParseDefaultServerURLString copy];
 
     return self;
 }
@@ -64,6 +67,12 @@
 - (void)setClientKey:(NSString *)clientKey {
     PFConsistencyAssert(clientKey.length, @"'clientKey' should not be nil.");
     _clientKey = [clientKey copy];
+}
+
+- (void)setServer:(NSString *)server {
+    PFParameterAssert(server.length, @"Server should not be `nil`.");
+    PFParameterAssert([NSURL URLWithString:server], @"Server should be a valid URL.");
+    _server = [server copy];
 }
 
 - (void)setApplicationGroupIdentifier:(NSString *)applicationGroupIdentifier {
@@ -104,6 +113,7 @@
     ParseClientConfiguration *other = object;
     return ([PFObjectUtilities isObject:self.applicationId equalToObject:other.applicationId] &&
             [PFObjectUtilities isObject:self.clientKey equalToObject:other.clientKey] &&
+            [self.server isEqualToString:other.server] &&
             self.localDatastoreEnabled == other.localDatastoreEnabled &&
             [PFObjectUtilities isObject:self.applicationGroupIdentifier equalToObject:other.applicationGroupIdentifier] &&
             [PFObjectUtilities isObject:self.containingApplicationBundleIdentifier equalToObject:other.containingApplicationBundleIdentifier] &&
@@ -119,6 +129,7 @@
         // Use direct assignment to skip over all of the assertions that may fail if we're not fully initialized yet.
         configuration->_applicationId = [self->_applicationId copy];
         configuration->_clientKey = [self->_clientKey copy];
+        configuration->_server = [self.server copy];
         configuration->_localDatastoreEnabled = self->_localDatastoreEnabled;
         configuration->_applicationGroupIdentifier = [self->_applicationGroupIdentifier copy];
         configuration->_containingApplicationBundleIdentifier = [self->_containingApplicationBundleIdentifier copy];

@@ -11,10 +11,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSString *const _ParseDefaultServerURLString;
+
 @interface ParseClientConfiguration ()
 
 @property (nullable, nonatomic, copy, readwrite) NSString *applicationId;
 @property (nullable, nonatomic, copy, readwrite) NSString *clientKey;
+
+@property (nonatomic, copy, readwrite) NSString *server;
 
 @property (nonatomic, assign, readwrite, getter=isLocalDatastoreEnabled) BOOL localDatastoreEnabled;
 

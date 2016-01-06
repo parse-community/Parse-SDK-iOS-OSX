@@ -41,6 +41,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nullable, nonatomic, copy) NSString *clientKey;
 
+/**
+ The URL of the server that is being used by the SDK.
+ Defaults to `https://api.parse.com/1`.
+
+ @note Setting this property to a non-valid URL or `nil` will throw an `NSInvalidArgumentException`.
+ */
+@property (nonatomic, copy) NSString *server;
+
 ///--------------------------------------
 #pragma mark - Enabling Local Datastore
 ///--------------------------------------
@@ -105,6 +113,12 @@ NS_ASSUME_NONNULL_BEGIN
  The Parse.com client key to configure the SDK with.
  */
 @property (nullable, nonatomic, copy, readonly) NSString *clientKey;
+
+/**
+ The URL of the server that is being used by the SDK.
+ Defaults to `https://api.parse.com/1`
+ */
+@property (nonatomic, copy, readonly) NSString *server;
 
 ///--------------------------------------
 #pragma mark - Enabling Local Datastore

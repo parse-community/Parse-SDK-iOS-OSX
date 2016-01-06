@@ -33,8 +33,6 @@
 
 #import "PFCategoryLoader.h"
 
-NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
-
 @implementation Parse
 
 static ParseManager *currentParseManager_;
@@ -58,6 +56,7 @@ static ParseClientConfiguration *currentParseConfiguration_;
 + (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey {
     currentParseConfiguration_.applicationId = applicationId;
     currentParseConfiguration_.clientKey = clientKey;
+    currentParseConfiguration_.server = [PFInternalUtils parseServerURLString]; // TODO: (nlutsenko) Clean this up after tests are updated.
 
     [self initializeWithConfiguration:currentParseConfiguration_];
 
@@ -77,7 +76,7 @@ static ParseClientConfiguration *currentParseConfiguration_;
                         @"'containingApplicationBundleIdentifier' must be non-nil in extension environment");
 
     ParseManager *manager = [[ParseManager alloc] initWithConfiguration:configuration
-                                                              serverURL:[NSURL URLWithString:[PFInternalUtils parseServerURLString]]];
+                                                              serverURL:[NSURL URLWithString:configuration.server]];
     [manager startManaging];
 
     currentParseManager_ = manager;

@@ -15,6 +15,7 @@
 #import "PFURLSessionCommandRunner.h"
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
+#import "ParseClientConfiguration_Private.h"
 
 @interface CommandUnitTests : PFUnitTestCase
 
