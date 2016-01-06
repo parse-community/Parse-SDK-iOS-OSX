@@ -22,8 +22,6 @@
 + (NSString *)parseServerURLString;
 + (void)setParseServer:(NSString *)server;
 
-+ (NSNumber *)fileSizeOfFileAtPath:(NSString *)filePath error:(NSError **)error;
-
 /**
  Clears system time zone cache, gets the name of the time zone
  and caches it. This method is completely thread-safe.

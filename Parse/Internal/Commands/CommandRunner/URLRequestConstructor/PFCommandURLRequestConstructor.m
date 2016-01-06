@@ -99,9 +99,16 @@
             [request setValue:contentType forHTTPHeaderField:PFHTTPRequestHeaderNameContentType];
         }
 
-        //TODO (nlutsenko): Check for error here.
-        NSNumber *fileSize = [PFInternalUtils fileSizeOfFileAtPath:contentFilePath error:nil];
-        [request setValue:fileSize.stringValue forHTTPHeaderField:PFHTTPRequestHeaderNameContentLength];
+        NSURL *fileURL = [NSURL fileURLWithPath:contentFilePath];
+        NSNumber *fileSize = nil;
+        NSError *error = nil;
+        [fileURL getResourceValue:&fileSize forKey:NSURLFileSizeKey error:&error];
+        if (error) {
+            return [BFTask taskWithError:error];
+        }
+        if (fileSize) {
+            [request setValue:fileSize.stringValue forHTTPHeaderField:PFHTTPRequestHeaderNameContentLength];
+        }
 
         return request;
     }];

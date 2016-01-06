@@ -86,12 +86,6 @@ static NSString *parseServer_;
 #pragma clang diagnostic pop
 }
 
-+ (NSNumber *)fileSizeOfFileAtPath:(NSString *)filePath error:(NSError **)error {
-    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath
-                                                                                error:error];
-    return attributes[NSFileSize];
-}
-
 ///--------------------------------------
 #pragma mark - Serialization
 ///--------------------------------------
