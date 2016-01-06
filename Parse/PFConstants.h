@@ -24,9 +24,6 @@ extern NSInteger const PARSE_API_VERSION;
 #pragma mark - Platform
 ///--------------------------------------
 
-#define PARSE_IOS_ONLY (TARGET_OS_IPHONE)
-#define PARSE_OSX_ONLY (TARGET_OS_MAC && !(TARGET_OS_IPHONE))
-
 extern NSString *const _Nonnull kPFDeviceType;
 
 ///--------------------------------------

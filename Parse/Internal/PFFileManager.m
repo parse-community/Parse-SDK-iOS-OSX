@@ -246,7 +246,12 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
 - (NSString *)parseDefaultDataDirectoryPath {
     // NSHomeDirectory: Returns the path to either the user's or application's
     // home directory, depending on the platform. Sandboxed by default on iOS.
-#if PARSE_IOS_ONLY
+#if PF_TARGET_OS_OSX
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *directoryPath = [paths firstObject];
+    directoryPath = [directoryPath stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
+    directoryPath = [directoryPath stringByAppendingPathComponent:self.applicationIdentifier];
+#else
     NSString *directoryPath = nil;
     if (self.applicationGroupIdentifier) {
         NSURL *containerPath = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:self.applicationGroupIdentifier];
@@ -255,11 +260,6 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
     } else {
         return [self parseLocalSandboxDataDirectoryPath];
     }
-#else
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *directoryPath = [paths firstObject];
-    directoryPath = [directoryPath stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
-    directoryPath = [directoryPath stringByAppendingPathComponent:self.applicationIdentifier];
 #endif
 
     BFTask *createDirectoryTask = [[self class] createDirectoryIfNeededAsyncAtPath:directoryPath

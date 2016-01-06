@@ -28,6 +28,7 @@
 #import "PFQueryPrivate.h"
 #import "PFUserPrivate.h"
 #import "Parse_Private.h"
+#import "PFApplication.h"
 
 static Class _pushInternalUtilClass = nil;
 
@@ -286,9 +287,9 @@ static Class _pushInternalUtilClass = nil;
 #pragma mark - Handling Notifications
 ///--------------------------------------
 
-#if PARSE_IOS_ONLY
+#if TARGET_OS_IOS
 + (void)handlePush:(NSDictionary *)userInfo {
-    UIApplication *application = [UIApplication sharedApplication];
+    UIApplication *application = [PFApplication currentApplication].systemApplication;
     if (application.applicationState != UIApplicationStateActive) {
         return;
     }

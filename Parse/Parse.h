@@ -171,7 +171,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)containingApplicationBundleIdentifierForDataSharing PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
 
-#if PARSE_IOS_ONLY
+#if TARGET_OS_IOS
 
 ///--------------------------------------
 #pragma mark - Configuring UI Settings
