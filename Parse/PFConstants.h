@@ -465,7 +465,7 @@ extern NSString *const _Nonnull PFNetworkNotificationURLResponseBodyUserInfoKey;
 #endif
 
 #ifndef PF_TARGET_OS_OSX
-#  define PF_TARGET_OS_OSX TARGET_OS_MAC && !TARGET_OS_IOS && !TARGET_OS_WATCH && !TARGET_OS_TV
+#  define PF_TARGET_OS_OSX (TARGET_OS_MAC && !TARGET_OS_IOS && !TARGET_OS_WATCH && !TARGET_OS_TV)
 #endif
 
 ///--------------------------------------
