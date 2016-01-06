@@ -118,6 +118,9 @@ typedef NS_ENUM(uint8_t, PFLogLevel) {
 #pragma mark - Errors
 ///--------------------------------------
 
+/**
+ Error domain used for all `NSError`s in the SDK.
+ */
 extern NSString *const _Nonnull PFParseErrorDomain;
 
 /**
