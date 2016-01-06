@@ -9,16 +9,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class PFObject;
-@class PFUser;
-
 ///--------------------------------------
-#pragma mark - Version
+#pragma mark - SDK Version
 ///--------------------------------------
 
 #define PARSE_VERSION @"1.11.0"
-
-extern NSInteger const PARSE_API_VERSION;
 
 ///--------------------------------------
 #pragma mark - Platform
@@ -358,6 +353,9 @@ typedef NS_ENUM(NSInteger, PFErrorCode) {
 ///--------------------------------------
 #pragma mark - Blocks
 ///--------------------------------------
+
+@class PFObject;
+@class PFUser;
 
 typedef void (^PFBooleanResultBlock)(BOOL succeeded, NSError *_Nullable error);
 typedef void (^PFIntegerResultBlock)(int number, NSError *_Nullable error);

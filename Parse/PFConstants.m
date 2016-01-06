@@ -9,8 +9,6 @@
 
 #import "PFConstants.h"
 
-NSInteger const PARSE_API_VERSION          = 2;
-
 #if TARGET_OS_IOS
 NSString *const kPFDeviceType = @"ios";
 #elif PF_TARGET_OS_OSX
