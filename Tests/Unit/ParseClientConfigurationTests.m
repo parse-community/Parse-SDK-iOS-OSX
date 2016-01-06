@@ -37,19 +37,21 @@
     ParseClientConfiguration *configuration = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         configuration.applicationId = @"foo";
         configuration.clientKey = @"bar";
+        configuration.server = @"http://localhost";
         configuration.localDatastoreEnabled = YES;
         configuration.networkRetryAttempts = 1337;
     }];
 
     XCTAssertEqualObjects(configuration.applicationId, @"foo");
     XCTAssertEqualObjects(configuration.clientKey, @"bar");
+    XCTAssertEqualObjects(configuration.server, @"http://localhost");
     XCTAssertTrue(configuration.localDatastoreEnabled);
     XCTAssertEqual(configuration.networkRetryAttempts, 1337);
 }
 
 - (void)testEqual {
-    ParseClientConfiguration *configurationA = [(id)[ParseClientConfiguration alloc] init];
-    ParseClientConfiguration *configurationB = [(id)[ParseClientConfiguration alloc] init];
+    ParseClientConfiguration *configurationA = [ParseClientConfiguration emptyConfiguration];
+    ParseClientConfiguration *configurationB = [ParseClientConfiguration emptyConfiguration];
     XCTAssertEqualObjects(configurationA, configurationB);
     XCTAssertEqual(configurationA.hash, configurationB.hash);
 
@@ -66,6 +68,13 @@
     configurationB.clientKey = @"test";
     XCTAssertNotEqualObjects(configurationA, configurationB);
     configurationB.clientKey = configurationA.clientKey;
+
+    configurationA.server = configurationB.server = @"http://localhost";
+    XCTAssertEqualObjects(configurationA, configurationB);
+    XCTAssertEqual(configurationA.hash, configurationB.hash);
+    configurationB.server = @"http://api.parse.com";
+    XCTAssertNotEqualObjects(configurationA, configurationB);
+    configurationB.server = configurationA.server;
 
     configurationA.localDatastoreEnabled = configurationB.localDatastoreEnabled = YES;
     XCTAssertEqualObjects(configurationA, configurationB);
@@ -85,6 +94,7 @@
     ParseClientConfiguration *configurationA = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         configuration.applicationId = @"foo";
         configuration.clientKey = @"bar";
+        configuration.server = @"http://localhost";
         configuration.localDatastoreEnabled = YES;
         configuration.networkRetryAttempts = 1337;
     }];
@@ -100,6 +110,7 @@
 
     XCTAssertEqualObjects(configurationB.applicationId, @"foo");
     XCTAssertEqualObjects(configurationB.clientKey, @"bar");
+    XCTAssertEqualObjects(configurationB.server, @"http://localhost");
     XCTAssertTrue(configurationB.localDatastoreEnabled);
     XCTAssertEqual(configurationB.networkRetryAttempts, 1337);
 }
@@ -123,6 +134,16 @@
 
     // In extension environment this should succeed.
     XCTAssertNoThrow(configuration.containingApplicationBundleIdentifier = @"someContainer");
+}
+
+- (void)testServerValidation {
+    [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration>  _Nonnull configuration) {
+        configuration.applicationId = @"a";
+        configuration.clientKey = @"b";
+
+        PFAssertThrowsInvalidArgumentException(configuration.server = @"");
+        PFAssertThrowsInvalidArgumentException(configuration.server = @"Yolo Yarr");
+    }];
 }
 
 @end

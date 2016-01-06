@@ -34,6 +34,7 @@
 #import "PFMultiProcessFileLockController.h"
 #import "PFHash.h"
 #import "Parse_Private.h"
+#import "ParseClientConfiguration_Private.h"
 
 #if TARGET_OS_IOS
 #import "PFProduct.h"

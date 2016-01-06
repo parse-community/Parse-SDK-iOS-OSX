@@ -48,9 +48,9 @@
 
 - (void)testInitializeWithNilApplicationIdNilClientKeyShouldThrowException {
     NSString *yolo = nil;
-    PFAssertThrowsInconsistencyException([Parse setApplicationId:yolo clientKey:yolo]);
-    PFAssertThrowsInconsistencyException([Parse setApplicationId:yolo clientKey:@"a"]);
-    PFAssertThrowsInconsistencyException([Parse setApplicationId:@"a" clientKey:yolo]);
+    PFAssertThrowsInvalidArgumentException([Parse setApplicationId:yolo clientKey:yolo]);
+    PFAssertThrowsInvalidArgumentException([Parse setApplicationId:yolo clientKey:@"a"]);
+    PFAssertThrowsInvalidArgumentException([Parse setApplicationId:@"a" clientKey:yolo]);
 }
 
 @end
