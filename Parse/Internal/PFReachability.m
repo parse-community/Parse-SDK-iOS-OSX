@@ -66,7 +66,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
         }
     }
 
-#if TARGET_OS_IPHONE
+#if !PF_TARGET_OS_OSX
     if (((flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN) &&
         ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0)) {
         // ... but WWAN connections are OK if the calling application

@@ -97,7 +97,7 @@
 
 - (PFObjectEstimatedData *)_estimatedData;
 
-#if PARSE_OSX_ONLY
+#if PF_TARGET_OS_OSX
 // Not available publicly, but available for testing
 
 - (instancetype)refresh;

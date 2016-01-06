@@ -19,9 +19,6 @@
 #pragma mark - Platform
 ///--------------------------------------
 
-#define PARSE_IOS_ONLY (TARGET_OS_IPHONE)
-#define PARSE_OSX_ONLY (TARGET_OS_MAC && !(TARGET_OS_IPHONE))
-
 extern NSString *const _Nonnull kPFDeviceType;
 
 ///--------------------------------------
@@ -469,7 +466,7 @@ extern NSString *const _Nonnull PFNetworkNotificationURLResponseBodyUserInfoKey;
 #endif
 
 #ifndef PF_TARGET_OS_OSX
-#  define PF_TARGET_OS_OSX TARGET_OS_MAC && !TARGET_OS_IOS && !TARGET_OS_WATCH && !TARGET_OS_TV
+#  define PF_TARGET_OS_OSX (TARGET_OS_MAC && !TARGET_OS_IOS && !TARGET_OS_WATCH && !TARGET_OS_TV)
 #endif
 
 ///--------------------------------------

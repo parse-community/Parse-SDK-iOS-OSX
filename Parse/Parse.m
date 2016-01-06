@@ -186,7 +186,7 @@ static ParseClientConfiguration *currentParseConfiguration_;
 #pragma mark - User Interface
 ///--------------------------------------
 
-#if PARSE_IOS_ONLY
+#if TARGET_OS_IOS
 
 + (void)offlineMessagesEnabled:(BOOL)enabled {
     // Deprecated method - shouldn't do anything.

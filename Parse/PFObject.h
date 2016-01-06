@@ -394,7 +394,7 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  */
 @property (nonatomic, assign, readonly, getter=isDataAvailable) BOOL dataAvailable;
 
-#if PARSE_IOS_ONLY
+#if TARGET_OS_IOS
 
 /**
  Refreshes the PFObject with the current data from the server.

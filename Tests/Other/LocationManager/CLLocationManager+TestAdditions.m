@@ -9,6 +9,8 @@
 
 #import "CLLocationManager+TestAdditions.h"
 
+#import <Parse/PFConstants.h>
+
 #import "PFTestSwizzlingUtilities.h"
 
 @interface CLLocationManager ()
@@ -31,7 +33,7 @@ static BOOL mockingEnabled = NO;
 
 + (void)setMockingEnabled:(BOOL)enabled {
     // There is no ability to use real CLLocationManager on Mac, due to permission requests
-#if PARSE_OSX_ONLY
+#if PF_TARGET_OS_OSX
     if (!enabled) {
         return;
     }
