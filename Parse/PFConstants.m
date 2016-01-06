@@ -11,10 +11,14 @@
 
 NSInteger const PARSE_API_VERSION          = 2;
 
-#if PARSE_IOS_ONLY
-NSString *const kPFDeviceType                = @"ios";
-#else
-NSString *const kPFDeviceType                = @"osx";
+#if TARGET_OS_IOS
+NSString *const kPFDeviceType = @"ios";
+#elif PF_TARGET_OS_OSX
+NSString *const kPFDeviceType = @"osx";
+#elif TARGET_OS_TV
+NSString *const kPFDeviceType = @"appletv";
+#elif TARGET_OS_WATCH
+NSString *const kPFDeviceType = @"applewatch";
 #endif
 
 NSString *const PFParseErrorDomain = @"Parse";
