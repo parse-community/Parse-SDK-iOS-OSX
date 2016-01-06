@@ -17,8 +17,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^PFUserSessionUpgradeResultBlock)(NSError *__nullable error);
-typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
+typedef void(^PFUserSessionUpgradeResultBlock)(NSError *_Nullable error);
+typedef void(^PFUserLogoutResultBlock)(NSError *_Nullable error);
 
 @class PFQuery<PFGenericObject : PFObject *>;
 @protocol PFUserAuthenticationDelegate;

@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class PFConfig;
 
-typedef void(^PFConfigResultBlock)(PFConfig *__nullable config, NSError *__nullable error);
+typedef void(^PFConfigResultBlock)(PFConfig *_Nullable config, NSError *_Nullable error);
 
 /**
  `PFConfig` is a representation of the remote configuration object.

@@ -17,7 +17,7 @@
 @class PFFileManager;
 @class PFSQLiteDatabaseResult;
 
-typedef id __nullable(^PFSQLiteDatabaseQueryBlock)(PFSQLiteDatabaseResult *__nonnull result);
+typedef id _Nullable(^PFSQLiteDatabaseQueryBlock)(PFSQLiteDatabaseResult *_Nonnull result);
 
 /**
  Argument count given in executeSQLAsync or executeQueryAsync is invalid.

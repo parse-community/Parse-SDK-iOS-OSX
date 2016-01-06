@@ -176,7 +176,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                 uuid = task.result;
                 NSString *query = [NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE %@ = ?;",
                                    PFOfflineStoreKeyOfJSON, PFOfflineStoreTableOfObjects, PFOfflineStoreKeyOfUUID];
-                return [database executeQueryAsync:query withArgumentsInArray:@[ uuid ] block:^id(PFSQLiteDatabaseResult *__nonnull result) {
+                return [database executeQueryAsync:query withArgumentsInArray:@[ uuid ] block:^id(PFSQLiteDatabaseResult *_Nonnull result) {
                     if (![result next]) {
                         [NSException raise:NSInternalInconsistencyException
                                     format:@"Attempted to find non-existent uuid %@.", uuid];
@@ -213,7 +213,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 
         __block NSString *jsonString = nil;
         __block NSString *newUUID = nil;
-        jsonStringTask = [[database executeQueryAsync:query withArgumentsInArray:@[ className, objectId ] block:^id(PFSQLiteDatabaseResult *__nonnull result) {
+        jsonStringTask = [[database executeQueryAsync:query withArgumentsInArray:@[ className, objectId ] block:^id(PFSQLiteDatabaseResult *_Nonnull result) {
             if (![result next]) {
                 NSString *errorMessage = @"This object is not available in the offline cache.";
                 NSError *error = [PFErrorUtilities errorWithCode:kPFErrorCacheMiss
