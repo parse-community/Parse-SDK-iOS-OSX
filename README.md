@@ -3,6 +3,7 @@
 [![Build Status][build-status-svg]][build-status-link]
 [![Coverage Status][coverage-status-svg]][coverage-status-link]
 [![Podspec][podspec-svg]][podspec-link]
+[![Carthage compatible][carthage-svg]](carthage-link)
 [![License][license-svg]][license-link]
 ![Platforms][platforms-svg]
 [![Dependencies][dependencies-svg]][dependencies-link]
@@ -109,6 +110,9 @@ of patent rights can be found in the PATENTS file in the same directory.
 
  [podspec-svg]: https://img.shields.io/cocoapods/v/Parse.svg
  [podspec-link]: https://cocoapods.org/pods/Parse
+ 
+ [carthage-svg]: https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat
+ [carthage-link]: https://github.com/carthage/carthage
 
  [platforms-svg]: http://img.shields.io/cocoapods/p/Parse.svg?style=flat
 
