@@ -1,13 +1,15 @@
 # Parse SDK for iOS/OS X/watchOS/tvOS
 
-[![Build Status][build-status-svg]][build-status-link]
-[![Coverage Status][coverage-status-svg]][coverage-status-link]
+![Platforms][platforms-svg]
+[![License][license-svg]][license-link]
+
 [![Podspec][podspec-svg]][podspec-link]
 [![Carthage compatible][carthage-svg]](carthage-link)
-[![License][license-svg]][license-link]
-![Platforms][platforms-svg]
 [![Dependencies][dependencies-svg]][dependencies-link]
 [![References][references-svg]][references-link]
+
+[![Build Status][build-status-svg]][build-status-link]
+[![Coverage Status][coverage-status-svg]][coverage-status-link]
 
 [![Join Chat][gitter-svg]][gitter-link]
 
