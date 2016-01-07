@@ -18,6 +18,7 @@
 @class BFTask<__covariant BFGenericType>;
 @class PFFileState;
 @class PFFileStagingController;
+@class PFFileDataStream;
 
 @interface PFFileController : NSObject
 
@@ -51,9 +52,9 @@
 
  @return `BFTask` with a result set to `nil`.
  */
-- (BFTask *)downloadFileAsyncWithState:(PFFileState *)fileState
-                     cancellationToken:(BFCancellationToken *)cancellationToken
-                         progressBlock:(PFProgressBlock)progressBlock;
+- (BFTask<PFVoid> *)downloadFileAsyncWithState:(PFFileState *)fileState
+                             cancellationToken:(BFCancellationToken *)cancellationToken
+                                 progressBlock:(PFProgressBlock)progressBlock;
 
 /**
  Downloads a file asynchronously with a given state and yields a stream to the live download of that file.
@@ -64,9 +65,9 @@
 
  @return `BFTask` with a result set to live `NSInputStream` of the file.
  */
-- (BFTask *)downloadFileStreamAsyncWithState:(PFFileState *)fileState
-                           cancellationToken:(BFCancellationToken *)cancellationToken
-                               progressBlock:(PFProgressBlock)progressBlock;
+- (BFTask<PFFileDataStream *> *)downloadFileStreamAsyncWithState:(PFFileState *)fileState
+                                               cancellationToken:(BFCancellationToken *)cancellationToken
+                                                   progressBlock:(PFProgressBlock)progressBlock;
 
 ///--------------------------------------
 #pragma mark - Upload
@@ -93,7 +94,7 @@
 #pragma mark - Cache
 ///--------------------------------------
 
-- (BFTask *)clearFileCacheAsync;
+- (BFTask<PFVoid> *)clearFileCacheAsync;
 
 - (NSString *)cachedFilePathForFileState:(PFFileState *)fileState;
 

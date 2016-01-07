@@ -81,9 +81,9 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
 #pragma mark - Download
 ///--------------------------------------
 
-- (BFTask *)downloadFileAsyncWithState:(PFFileState *)fileState
-                     cancellationToken:(BFCancellationToken *)cancellationToken
-                         progressBlock:(PFProgressBlock)progressBlock {
+- (BFTask<PFVoid> *)downloadFileAsyncWithState:(PFFileState *)fileState
+                             cancellationToken:(BFCancellationToken *)cancellationToken
+                                 progressBlock:(PFProgressBlock)progressBlock {
     if (cancellationToken.cancellationRequested) {
         return [BFTask cancelledTask];
     }
@@ -131,11 +131,11 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
     }];
 }
 
-- (BFTask *)downloadFileStreamAsyncWithState:(PFFileState *)fileState
-                           cancellationToken:(BFCancellationToken *)cancellationToken
-                               progressBlock:(PFProgressBlock)progressBlock {
+- (BFTask<PFFileDataStream *> *)downloadFileStreamAsyncWithState:(PFFileState *)fileState
+                                               cancellationToken:(BFCancellationToken *)cancellationToken
+                                                   progressBlock:(PFProgressBlock)progressBlock {
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
-        BFTaskCompletionSource *taskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
+        BFTaskCompletionSource<PFFileDataStream *> *taskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
         NSString *filePath = [self _temporaryFileDownloadPathForFileState:fileState];
         PFFileDataStream *stream = [[PFFileDataStream alloc] initWithFileAtPath:filePath];
         [[self downloadFileAsyncWithState:fileState
@@ -259,7 +259,7 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
     return [self.dataSource.fileManager parseCacheItemPathForPathComponent:PFFileControllerCacheDirectoryName_];
 }
 
-- (BFTask *)clearFileCacheAsync {
+- (BFTask<PFVoid> *)clearFileCacheAsync {
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         NSString *path = self.cacheFilesDirectoryPath;
         if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
