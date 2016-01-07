@@ -440,8 +440,9 @@
                                 progressBlock:^(int percentDone) {
                                     XCTAssertTrue(progress <= percentDone);
                                     progress = percentDone;
-                                }] continueWithBlock:^id(BFTask *task) {
-                                    XCTAssertNil(task.error);
+                                }] continueWithBlock:^id(BFTask<PFFileState *> *task) {
+                                    XCTAssertNotNil(task.result);
+                                    XCTAssertEqualObjects(task.result.urlString, tempPath.absoluteString);
                                     [expectation fulfill];
                                     return nil;
                                 }];

@@ -83,11 +83,11 @@
 
  @return `BFTask` with a result set to `PFFileState` of uploaded file.
  */
-- (BFTask *)uploadFileAsyncWithState:(PFFileState *)fileState
-                      sourceFilePath:(NSString *)sourceFilePath
-                        sessionToken:(NSString *)sessionToken
-                   cancellationToken:(BFCancellationToken *)cancellationToken
-                       progressBlock:(PFProgressBlock)progressBlock;
+- (BFTask<PFFileState *> *)uploadFileAsyncWithState:(PFFileState *)fileState
+                                     sourceFilePath:(NSString *)sourceFilePath
+                                       sessionToken:(NSString *)sessionToken
+                                  cancellationToken:(BFCancellationToken *)cancellationToken
+                                      progressBlock:(PFProgressBlock)progressBlock;
 
 ///--------------------------------------
 #pragma mark - Cache
