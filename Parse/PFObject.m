@@ -1402,7 +1402,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 [self startSave];
                 BFTask *childrenTask = [self _saveChildrenInBackgroundWithCurrentUser:currentUser
                                                                          sessionToken:sessionToken];
-                if (!dirty && changes.count != 0) {
+                if (!dirty && changes.count == 0) {
                     return childrenTask;
                 }
                 return [[childrenTask continueWithSuccessBlock:^id(BFTask *task) {
