@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  The `PFRelation` class that is used to access all of the children of a many-to-many relationship.
  Each instance of `PFRelation` is associated with a particular parent object and key.
  */
-@interface PFRelation : NSObject
+@interface PFRelation<ObjectType : PFObject *> : NSObject
 
 /**
  The name of the class of the target child objects.
@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Returns a `PFQuery` object that can be used to get objects in this relation.
  */
-- (PFQuery *)query;
+- (PFQuery<ObjectType> *)query;
 
 ///--------------------------------------
 #pragma mark - Modifying Relations
@@ -43,14 +43,14 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param object A `PFObject` object to add relation to.
  */
-- (void)addObject:(PFObject *)object;
+- (void)addObject:(ObjectType)object;
 
 /**
  Removes a relation to the passed in object.
 
  @param object A `PFObject` object to add relation to.
  */
-- (void)removeObject:(PFObject *)object;
+- (void)removeObject:(ObjectType)object;
 
 @end
 
