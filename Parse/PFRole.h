@@ -11,8 +11,11 @@
 
 #import <Parse/PFObject.h>
 #import <Parse/PFSubclassing.h>
+#import <Parse/PFUser.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class PFRelation<ObjectType : PFObject *>;
 
 /**
  The `PFRole` class represents a Role on the Parse server.
@@ -83,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
  (e.g. read or write access through ACLs). You can add or remove users from
  the role through this relation.
  */
-@property (nonatomic, strong, readonly) PFRelation *users;
+@property (nonatomic, strong, readonly) PFRelation<PFUser *> *users;
 
 /**
  Gets the `PFRelation` for the `PFRole` objects that are direct children of this role.
@@ -92,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
  (e.g. read or write access through ACLs). You can add or remove child roles
  from this role through this relation.
  */
-@property (nonatomic, strong, readonly) PFRelation *roles;
+@property (nonatomic, strong, readonly) PFRelation<PFRole *> *roles;
 
 @end
 

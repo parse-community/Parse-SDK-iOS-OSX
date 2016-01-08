@@ -51,11 +51,11 @@
 @dynamic name;
 
 // Dynamic synthesizers would use objectForKey, not relationForKey
-- (PFRelation *)roles {
+- (PFRelation<PFRole *> *)roles {
     return [self relationForKey:@keypath(PFRole, roles)];
 }
 
-- (PFRelation *)users {
+- (PFRelation<PFUser *> *)users {
     return [self relationForKey:@keypath(PFRole, users)];
 }
 
