@@ -33,7 +33,7 @@
 #import "PFInstallation.h"
 #endif
 
-#if TARGET_OS_IOS
+#if TARGET_OS_IOS || TARGET_OS_TV
 #import "PFPurchaseController.h"
 #import "PFProduct.h"
 #endif
@@ -78,7 +78,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 #if !TARGET_OS_WATCH && !TARGET_OS_TV
 @synthesize pushManager = _pushManager;
 #endif
-#if TARGET_OS_IOS
+#if TARGET_OS_IOS || TARGET_OS_TV
 @synthesize purchaseController = _purchaseController;
 #endif
 
@@ -397,7 +397,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     });
 }
 
-#if TARGET_OS_IOS
+#if TARGET_OS_IOS || TARGET_OS_TV
 
 #pragma mark PurchaseController
 
