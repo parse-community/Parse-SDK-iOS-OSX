@@ -34,7 +34,6 @@ PFKeyValueCacheProvider,
 PFInstallationIdentifierStoreProvider>
 
 @property (nonatomic, copy, readonly) ParseClientConfiguration *configuration;
-@property (nonatomic, strong, readonly) NSURL *serverURL;
 
 @property (nonatomic, strong, readonly) PFCoreManager *coreManager;
 
@@ -59,11 +58,10 @@ PFInstallationIdentifierStoreProvider>
  Initializes an instance of ParseManager class.
 
  @param configuration Configuration of parse app.
- @param url           Parse API Server URL.
 
  @return `ParseManager` instance.
  */
-- (instancetype)initWithConfiguration:(ParseClientConfiguration *)configuration serverURL:(NSURL *)url NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithConfiguration:(ParseClientConfiguration *)configuration NS_DESIGNATED_INITIALIZER;
 
 /**
  Begins all necessary operations for this manager to become active.

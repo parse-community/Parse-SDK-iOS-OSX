@@ -75,8 +75,7 @@ static ParseClientConfiguration *currentParseConfiguration_;
                         configuration.containingApplicationBundleIdentifier != nil,
                         @"'containingApplicationBundleIdentifier' must be non-nil in extension environment");
 
-    ParseManager *manager = [[ParseManager alloc] initWithConfiguration:configuration
-                                                              serverURL:[NSURL URLWithString:configuration.server]];
+    ParseManager *manager = [[ParseManager alloc] initWithConfiguration:configuration];
     [manager startManaging];
 
     currentParseManager_ = manager;
