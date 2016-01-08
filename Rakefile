@@ -419,7 +419,7 @@ namespace :test do
   end
 
   desc 'Run Podspec Lint'
-  task :podspecs do |_|
+  task :cocoapods do |_|
     podspecs = ['Parse.podspec']
     results = []
     system("pod repo update --silent")
@@ -432,6 +432,14 @@ namespace :test do
         puts 'Podspec Tests Failed!'
         exit(1)
       end
+    end
+  end
+
+  desc 'Run Carthage Build'
+  task :carthage do |_|
+    if !system('carthage build --no-skip-current')
+      puts 'Carthage Tests Failed!'
+      exit(1)
     end
   end
 end
