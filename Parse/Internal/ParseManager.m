@@ -86,7 +86,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)initWithConfiguration:(ParseClientConfiguration *)configuration serverURL:(NSURL *)url {
+- (instancetype)initWithConfiguration:(ParseClientConfiguration *)configuration {
     self = [super init];
     if (!self) return nil;
 
@@ -105,7 +105,6 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     _preloadQueue = dispatch_queue_create("com.parse.preload", DISPATCH_QUEUE_SERIAL);
 
     _configuration = [configuration copy];
-    _serverURL = url;
 
     return self;
 }
@@ -313,7 +312,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
                                                                       retryAttempts:self.configuration.networkRetryAttempts
                                                                       applicationId:self.configuration.applicationId
                                                                           clientKey:self.configuration.clientKey
-                                                                          serverURL:self.serverURL];
+                                                                          serverURL:[NSURL URLWithString:self.configuration.server]];
         }
         runner = _commandRunner;
     });

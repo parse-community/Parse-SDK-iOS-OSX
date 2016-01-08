@@ -99,7 +99,8 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
     static PFReachability *reachability;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        reachability = [[self alloc] initWithURL:[Parse _currentManager].serverURL];
+        NSURL *url = [NSURL URLWithString:[Parse _currentManager].configuration.server];
+        reachability = [[self alloc] initWithURL:url];
     });
     return reachability;
 }
