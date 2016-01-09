@@ -1,12 +1,15 @@
 # Parse SDK for iOS/OS X/watchOS/tvOS
 
-[![Build Status][build-status-svg]][build-status-link]
-[![Coverage Status][coverage-status-svg]][coverage-status-link]
-[![Podspec][podspec-svg]][podspec-link]
-[![License][license-svg]][license-link]
 ![Platforms][platforms-svg]
+[![License][license-svg]][license-link]
+
+[![Podspec][podspec-svg]][podspec-link]
+[![Carthage compatible][carthage-svg]](carthage-link)
 [![Dependencies][dependencies-svg]][dependencies-link]
 [![References][references-svg]][references-link]
+
+[![Build Status][build-status-svg]][build-status-link]
+[![Coverage Status][coverage-status-svg]][coverage-status-link]
 
 [![Join Chat][gitter-svg]][gitter-link]
 
@@ -20,15 +23,24 @@ And you're off! Take a look at the public [documentation][docs] and start buildi
 
 **Other Installation Options**
 
- 1. **CocoaPods**
+ - **[CocoaPods](https://cocoapods.org)**
+ 
+   Add the following line to your Podfile:
+   ```ruby
+   pod 'Parse'
+   ```
+   Run `pod install`, and you should now have the latest parse release.
+    
+    
+ - **[Carthage](https://github.com/carthage/carthage)**
+ 
+   Add the following line to your Cartfile:
+   ```
+   github "ParsePlatform/Parse-SDK-iOS-OSX"
+   ```
+   Run `carthage update`, and you should now have the latest version of Parse SDK in your Carthage folder.
 
-    Add the following line to your podfile:
-
-        pod 'Parse'
-
-    Run pod install, and you should now have the latest parse release.
-
- 2. **Compiling for yourself**
+ - **Compiling for yourself**
 
     If you want to manually compile the SDK, clone it locally, and run the following commands in the root directory of the repository:
 
@@ -43,7 +55,7 @@ And you're off! Take a look at the public [documentation][docs] and start buildi
 
     Compiled frameworks will be in 2 archives: `Parse-iOS.zip` and `Parse-OSX.zip` inside the `build/release` folder, and you can link them as you'd please.
 
- 3. **Using Parse as a sub-project**
+ - **Using Parse as a sub-project**
 
     You can also include parse as a subproject inside of your application if you'd prefer, although we do not recommend this, as it will increase your indexing time significantly. To do so, just drag and drop the Parse.xcodeproj file into your workspace. Note that unit tests will be unavailable if you use Parse like this, as OCMock will be unable to be found.
 
@@ -100,6 +112,9 @@ of patent rights can be found in the PATENTS file in the same directory.
 
  [podspec-svg]: https://img.shields.io/cocoapods/v/Parse.svg
  [podspec-link]: https://cocoapods.org/pods/Parse
+ 
+ [carthage-svg]: https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat
+ [carthage-link]: https://github.com/carthage/carthage
 
  [platforms-svg]: http://img.shields.io/cocoapods/p/Parse.svg?style=flat
 
