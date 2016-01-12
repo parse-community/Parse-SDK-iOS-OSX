@@ -669,20 +669,15 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     return [self queryWithClassName:className normalizedPredicate:normalizedPredicate];
 }
 
-+ (instancetype)orQueryWithSubqueries:(NSArray *)queries {
-    NSMutableArray *array = [NSMutableArray array];
-    NSString *className = nil;
-    for (id object in queries) {
-        PFParameterAssert([object isKindOfClass:[PFQuery class]],
++ (instancetype)orQueryWithSubqueries:(NSArray<PFQuery *> *)queries {
+    PFParameterAssert(queries.count, @"Can't create an `or` query from no subqueries.");
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:queries.count];
+    NSString *className = queries.firstObject.parseClassName;
+    for (PFQuery *query in queries) {
+        PFParameterAssert([query isKindOfClass:[PFQuery class]],
                           @"All elements should be instances of `PFQuery` class.");
-
-        PFQuery *query = (PFQuery *)object;
-        if (!className) {
-            className = query.parseClassName;
-        } else {
-            PFParameterAssert([query.parseClassName isEqualToString:className],
-                              @"All sub queries of an `or` query should be on the same class.");
-        }
+        PFParameterAssert([query.parseClassName isEqualToString:className],
+                          @"All sub queries of an `or` query should be on the same class.");
 
         [array addObject:query];
     }
