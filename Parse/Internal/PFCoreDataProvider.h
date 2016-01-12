@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PFObjectFilePersistenceControllerProvider <NSObject>
 
-@property (nonatomic, strong, readonly) PFObjectFilePersistenceController *objectFilePersistenceController;
+@property (null_resettable, nonatomic, strong, readonly) PFObjectFilePersistenceController *objectFilePersistenceController;
 
 @end
 
