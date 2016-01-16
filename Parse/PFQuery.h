@@ -83,7 +83,7 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *_Nullable obje
 ///--------------------------------------
 
 /**
- Make the query include PFObjects that have a reference stored at the provided key.
+ Make the query include `PFObject`s that have a reference stored at the provided key.
 
  This has an effect similar to a join.  You can use dot notation to specify which fields in
  the included object are also fetch.
@@ -93,6 +93,15 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *_Nullable obje
  @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)includeKey:(NSString *)key;
+
+/**
+ Make the query include `PFObject`s that have a reference stored at the provided keys.
+ 
+ @param keys The keys to load child `PFObject`s for.
+ 
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
+ */
+- (instancetype)includeKeys:(NSArray<NSString *> *)keys;
 
 /**
  Make the query restrict the fields of the returned `PFObject`s to include only the provided keys.

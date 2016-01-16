@@ -65,6 +65,7 @@
 ///--------------------------------------
 
 - (void)includeKey:(NSString *)key;
+- (void)includeKeys:(NSArray<NSString *> *)keys;
 
 ///--------------------------------------
 #pragma mark - Selected Keys
