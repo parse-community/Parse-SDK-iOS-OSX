@@ -405,6 +405,12 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     return self;
 }
 
+- (instancetype)includeKeys:(NSArray<NSString *> *)keys {
+    [self checkIfCommandIsRunning];
+    [self.state includeKeys:keys];
+    return self;
+}
+
 ///--------------------------------------
 #pragma mark - Select
 ///--------------------------------------
