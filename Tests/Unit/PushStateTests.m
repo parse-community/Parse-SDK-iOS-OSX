@@ -132,6 +132,18 @@
     PFMutablePushState *state = [[PFMutablePushState alloc] init];
     PFAssertThrowsInvalidArgumentException(state.pushDate = [NSDate distantPast]);
     PFAssertThrowsInvalidArgumentException(state.pushDate = [NSDate distantFuture]);
+    
+    NSDate *slightlyPast = [NSDate dateWithTimeIntervalSinceNow:-1];
+    PFAssertThrowsInvalidArgumentException(state.pushDate = slightlyPast);
+    
+    NSDateComponents *toAdd = [[NSDateComponents alloc] init];
+    toAdd.day = 13;
+    NSDate *withinTwoWeeks = [[NSCalendar currentCalendar] dateByAddingComponents:toAdd toDate:[NSDate date] options:0];
+    XCTAssertNoThrow(state.pushDate = withinTwoWeeks);
+    toAdd.day = 14;
+    toAdd.minute = 1;
+    NSDate *beyondTwoWeeks = [[NSCalendar currentCalendar] dateByAddingComponents:toAdd toDate:[NSDate date] options:0];
+    PFAssertThrowsInvalidArgumentException(state.pushDate = beyondTwoWeeks);
 }
 
 @end
