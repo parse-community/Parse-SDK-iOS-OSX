@@ -25,7 +25,7 @@ install:
     bundle install
     if [ "$TEST_TYPE" == "Carthage" ]; then
       brew update
-      brew install carthage
+      brew install carthage || brew upgrade carthage
     fi
   fi
 script:
