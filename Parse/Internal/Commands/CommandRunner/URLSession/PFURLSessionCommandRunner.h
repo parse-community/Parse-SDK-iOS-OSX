@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)commandRunnerWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                               retryAttempts:(NSUInteger)retryAttempts
                               applicationId:(NSString *)applicationId
-                                  clientKey:(NSString *)clientKey
+                                  clientKey:(nullable NSString *)clientKey
                                   serverURL:(NSURL *)serverURL;
 
 @end

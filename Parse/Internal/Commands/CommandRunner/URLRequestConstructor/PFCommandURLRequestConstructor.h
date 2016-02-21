@@ -16,6 +16,8 @@
 @class BFTask<__covariant BFGenericType>;
 @class PFRESTCommand;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PFCommandURLRequestConstructor : NSObject
 
 @property (nonatomic, weak, readonly) id<PFInstallationIdentifierStoreProvider> dataSource;
@@ -49,7 +51,9 @@
 ///--------------------------------------
 
 + (NSDictionary *)defaultURLRequestHeadersForApplicationId:(NSString *)applicationId
-                                                 clientKey:(NSString *)clientKey
+                                                 clientKey:(nullable NSString *)clientKey
                                                     bundle:(NSBundle *)bundle;
 
 @end
+
+NS_ASSUME_NONNULL_END
