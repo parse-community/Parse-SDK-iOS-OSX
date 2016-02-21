@@ -9,9 +9,11 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol ParseModule <NSObject>
 
-- (void)parseDidInitializeWithApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey;
+- (void)parseDidInitializeWithApplicationId:(NSString *)applicationId clientKey:(nullable NSString *)clientKey;
 
 @end
 
@@ -25,3 +27,5 @@
 - (BOOL)containsModule:(id<ParseModule>)module;
 
 @end
+
+NS_ASSUME_NONNULL_END
