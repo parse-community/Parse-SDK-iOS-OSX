@@ -43,11 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                      applicationId:(NSString *)applicationId
-                         clientKey:(NSString *)clientKey
+                         clientKey:(nullable NSString *)clientKey
                          serverURL:(NSURL *)serverURL;
 + (instancetype)commandRunnerWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                               applicationId:(NSString *)applicationId
-                                  clientKey:(NSString *)clientKey
+                                  clientKey:(nullable NSString *)clientKey
                                   serverURL:(NSURL *)serverURL;
 
 ///--------------------------------------

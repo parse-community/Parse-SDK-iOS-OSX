@@ -50,8 +50,8 @@
 
 - (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                      applicationId:(NSString *)applicationId
-                         clientKey:(NSString *)clientKey
-                         serverURL:(nonnull NSURL *)serverURL {
+                         clientKey:(nullable NSString *)clientKey
+                         serverURL:(NSURL *)serverURL {
     return [self initWithDataSource:dataSource
                       retryAttempts:PFCommandRunningDefaultMaxAttemptsCount
                       applicationId:applicationId
@@ -62,10 +62,9 @@
 - (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                      retryAttempts:(NSUInteger)retryAttempts
                      applicationId:(NSString *)applicationId
-                         clientKey:(NSString *)clientKey
+                         clientKey:(nullable NSString *)clientKey
                          serverURL:(NSURL *)serverURL {
-    NSURLSessionConfiguration *configuration = [[self class] _urlSessionConfigurationForApplicationId:applicationId
-                                                                                            clientKey:clientKey];
+    NSURLSessionConfiguration *configuration = [[self class] _urlSessionConfigurationForApplicationId:applicationId clientKey:clientKey];
 
     PFURLSession *session = [PFURLSession sessionWithConfiguration:configuration delegate:self];
     PFCommandURLRequestConstructor *constructor = [PFCommandURLRequestConstructor constructorWithDataSource:dataSource serverURL:serverURL];
@@ -102,7 +101,7 @@
 
 + (instancetype)commandRunnerWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                               applicationId:(NSString *)applicationId
-                                  clientKey:(NSString *)clientKey
+                                  clientKey:(nullable NSString *)clientKey
                                   serverURL:(nonnull NSURL *)serverURL {
     return [[self alloc] initWithDataSource:dataSource applicationId:applicationId clientKey:clientKey serverURL:serverURL];
 }
@@ -110,7 +109,7 @@
 + (instancetype)commandRunnerWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                               retryAttempts:(NSUInteger)retryAttempts
                               applicationId:(NSString *)applicationId
-                                  clientKey:(NSString *)clientKey
+                                  clientKey:(nullable NSString *)clientKey
                                   serverURL:(nonnull NSURL *)serverURL {
     return [[self alloc] initWithDataSource:dataSource
                               retryAttempts:retryAttempts
@@ -255,7 +254,7 @@
 ///--------------------------------------
 
 + (NSURLSessionConfiguration *)_urlSessionConfigurationForApplicationId:(NSString *)applicationId
-                                                              clientKey:(NSString *)clientKey {
+                                                              clientKey:(nullable NSString *)clientKey {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
 
     // No cookies, they are bad for you.

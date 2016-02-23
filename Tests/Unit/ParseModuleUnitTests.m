@@ -36,7 +36,7 @@
     ParseTestModule *module = [[ParseTestModule alloc] init];
     [collection addParseModule:module];
 
-    [collection parseDidInitializeWithApplicationId:nil clientKey:nil];
+    [collection parseDidInitializeWithApplicationId:@"a" clientKey:nil];
 
     // Spin the run loop, as the delegate messages are being called on the main thread
     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
@@ -52,7 +52,7 @@
         [collection addParseModule:module];
     }
 
-    [collection parseDidInitializeWithApplicationId:nil clientKey:nil];
+    [collection parseDidInitializeWithApplicationId:@"a" clientKey:nil];
 
     // Run a single runloop tick to trigger the parse initializaiton.
     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantPast]];
@@ -74,15 +74,6 @@
     XCTAssertTrue([collection containsModule:moduleB]);
     XCTAssertFalse([collection containsModule:moduleA]);
     XCTAssertEqual(collection.modulesCount, 1);
-}
-
-- (void)testNilModule {
-    ParseModuleCollection *collection = [[ParseModuleCollection alloc] init];
-
-    XCTAssertNoThrow([collection addParseModule:nil]);
-    XCTAssertEqual(collection.modulesCount, 0);
-    XCTAssertNoThrow([collection removeParseModule:nil]);
-    XCTAssertEqual(collection.modulesCount, 0);
 }
 
 @end

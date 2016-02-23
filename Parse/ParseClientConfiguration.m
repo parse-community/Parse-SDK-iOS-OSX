@@ -46,7 +46,6 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
     configurationBlock(self);
 
     PFConsistencyAssert(self.applicationId.length, @"`applicationId` should not be nil.");
-    PFConsistencyAssert(self.clientKey.length, @"`clientKey` should not be nil.");
 
     return self;
 }
@@ -65,7 +64,6 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
 }
 
 - (void)setClientKey:(NSString *)clientKey {
-    PFParameterAssert(clientKey.length, @"'clientKey' should not be nil.");
     _clientKey = [clientKey copy];
 }
 
