@@ -189,20 +189,6 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     XCTAssertTrue(file.dataAvailable);
 }
 
-- (void)testConstructorWithTooLargeData {
-    NSMutableData *data = [NSMutableData dataWithLength:(10 * 1048576 + 1)];
-
-    NSError *error = nil;
-    PFFile *file = [PFFile fileWithName:@"testFile"
-                                   data:data
-                            contentType:nil
-                                  error:&error];
-
-    XCTAssertNil(file);
-    XCTAssertEqualObjects(NSCocoaErrorDomain, error.domain);
-    XCTAssertEqual(NSFileReadTooLargeError, error.code);
-}
-
 - (void)testConstructorWithNilData {
     NSMutableData *data = nil;
 
