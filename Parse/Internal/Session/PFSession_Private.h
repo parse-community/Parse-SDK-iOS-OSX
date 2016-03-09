@@ -16,7 +16,7 @@
 @interface PFSession ()
 
 ///--------------------------------------
-/// @name Session Controller
+#pragma mark - Session Controller
 ///--------------------------------------
 
 + (PFSessionController *)sessionController;

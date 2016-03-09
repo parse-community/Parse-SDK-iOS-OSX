@@ -10,9 +10,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import <Parse/PFConstants.h>
+
+PF_OSX_UNAVAILABLE_WARNING
+PF_WATCH_UNAVAILABLE_WARNING
+
 typedef void(^PFAlertViewCompletion)(NSUInteger selectedOtherButtonIndex);
 
-@interface PFAlertView : NSObject
+PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFAlertView : NSObject
 
 + (void)showAlertWithTitle:(NSString *)title
                    message:(NSString *)message

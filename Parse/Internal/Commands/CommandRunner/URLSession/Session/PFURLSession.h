@@ -13,7 +13,7 @@
 
 @class BFCancellationToken;
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFRESTCommand;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -33,10 +33,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) id<PFURLSessionDelegate> delegate;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithConfiguration:(NSURLSessionConfiguration *)configuration
                              delegate:(id<PFURLSessionDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
@@ -44,13 +46,13 @@ NS_ASSUME_NONNULL_BEGIN
                                 delegate:(id<PFURLSessionDelegate>)delegate;
 
 ///--------------------------------------
-/// @name Teardown
+#pragma mark - Teardown
 ///--------------------------------------
 
 - (void)invalidateAndCancel;
 
 ///--------------------------------------
-/// @name Network Requests
+#pragma mark - Network Requests
 ///--------------------------------------
 
 - (BFTask *)performDataURLRequestAsync:(NSURLRequest *)request

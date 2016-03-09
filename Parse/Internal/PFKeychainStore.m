@@ -33,7 +33,7 @@ NSString *const PFKeychainStoreDefaultService = @"com.parse.sdk";
 
 + (NSDictionary *)_keychainQueryTemplateForService:(NSString *)service {
     NSMutableDictionary *query = [NSMutableDictionary dictionary];
-    if ([service length]) {
+    if (service.length) {
         query[(__bridge NSString *)kSecAttrService] = service;
     }
     query[(__bridge NSString *)kSecClass] = (__bridge id)kSecClassGenericPassword;
@@ -52,10 +52,6 @@ NSString *const PFKeychainStoreDefaultService = @"com.parse.sdk";
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithService:(NSString *)service {
     self = [super init];
     if (!self) return nil;
@@ -64,7 +60,7 @@ NSString *const PFKeychainStoreDefaultService = @"com.parse.sdk";
     _keychainQueryTemplate = [[self class] _keychainQueryTemplateForService:service];
 
     NSString *queueLabel = [NSString stringWithFormat:@"com.parse.keychain.%@", service];
-    _synchronizationQueue = dispatch_queue_create([queueLabel UTF8String], DISPATCH_QUEUE_CONCURRENT);
+    _synchronizationQueue = dispatch_queue_create(queueLabel.UTF8String, DISPATCH_QUEUE_CONCURRENT);
     PFMarkDispatchQueue(_synchronizationQueue);
 
     return self;

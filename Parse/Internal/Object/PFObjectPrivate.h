@@ -18,7 +18,7 @@
 #import "PFMulticastDelegate.h"
 #import "PFObjectControlling.h"
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFCurrentUserController;
 @class PFFieldOperation;
 @class PFJSONCacheItem;
@@ -41,7 +41,7 @@
 @required
 
 ///--------------------------------------
-/// @name State
+#pragma mark - State
 ///--------------------------------------
 
 + (PFObjectState *)_newObjectStateWithParseClassName:(NSString *)className
@@ -51,10 +51,10 @@
 @optional
 
 ///--------------------------------------
-/// @name Before Save
+#pragma mark - Before Save
 ///--------------------------------------
 
-/*!
+/**
  Called before an object is going to be saved. Called in a context of object lock.
  Subclasses can override this method to do any custom updates before an object gets saved.
  */
@@ -67,10 +67,22 @@
 ///--------------------------------------
 
 // Extension for property methods.
-@interface PFObject ()
+@interface PFObject () {
+@protected
+    BOOL dirty;
 
-/*!
- @returns Current object state.
+    // An array of NSDictionary of NSString -> PFFieldOperation.
+    // Each dictionary has a subset of the object's keys as keys, and the
+    // changes to the value for that key as its value.
+    // There is always at least one dictionary of pending operations.
+    // Every time a save is started, a new dictionary is added to the end.
+    // Whenever a save completes, the new data is put into fetchedData, and
+    // a dictionary is removed from the start.
+    NSMutableArray *operationSetQueue;
+}
+
+/**
+ @return Current object state.
  */
 @property (nonatomic, copy) PFObjectState *_state;
 @property (nonatomic, copy) NSMutableSet *_availableKeys;
@@ -85,33 +97,32 @@
 
 - (PFObjectEstimatedData *)_estimatedData;
 
-#if PARSE_OSX_ONLY
+#if PF_TARGET_OS_OSX
 // Not available publicly, but available for testing
 
 - (instancetype)refresh;
 - (instancetype)refresh:(NSError **)error;
 - (void)refreshInBackgroundWithBlock:(PFObjectResultBlock)block;
-- (void)refreshInBackgroundWithTarget:(id)target selector:(SEL)selector;
 
 #endif
 
 ///--------------------------------------
-/// @name Validation
+#pragma mark - Validation
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(PFVoid) *)_validateFetchAsync NS_REQUIRES_SUPER;
-- (BFTask PF_GENERIC(PFVoid) *)_validateDeleteAsync NS_REQUIRES_SUPER;
+- (BFTask<PFVoid> *)_validateFetchAsync NS_REQUIRES_SUPER;
+- (BFTask<PFVoid> *)_validateDeleteAsync NS_REQUIRES_SUPER;
 
-/*!
+/**
  Validate the save eventually operation with the current state.
  The result of this task is ignored. The error/cancellation/exception will prevent `saveEventually`.
 
- @returns Task that encapsulates the validation.
+ @return Task that encapsulates the validation.
  */
-- (BFTask PF_GENERIC(PFVoid) *)_validateSaveEventuallyAsync NS_REQUIRES_SUPER;
+- (BFTask<PFVoid> *)_validateSaveEventuallyAsync NS_REQUIRES_SUPER;
 
 ///--------------------------------------
-/// @name Pin
+#pragma mark - Pin
 ///--------------------------------------
 - (BFTask *)_pinInBackgroundWithName:(NSString *)name includeChildren:(BOOL)includeChildren;
 + (BFTask *)_pinAllInBackground:(NSArray *)objects withName:(NSString *)name includeChildren:(BOOL)includeChildren;
@@ -131,12 +142,12 @@
 
 @interface PFObject (Private)
 
-/*!
+/**
  Returns the object that should be used to synchronize all internal data access.
  */
 - (NSObject *)lock;
 
-/*!
+/**
  Blocks until all outstanding operations have completed.
  */
 - (void)waitUntilFinished;
@@ -147,7 +158,7 @@
 #pragma mark - Static methods for Subclassing
 ///--------------------------------------
 
-/*!
+/**
  Unregisters a class registered using registerSubclass:
  If we ever expose thsi method publicly, we must change the underlying implementation
  to have stack behavior. Currently unregistering a custom class for a built-in will
@@ -181,7 +192,7 @@
 #pragma mark - Validations
 ///--------------------------------------
 - (void)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser;
-/*!
+/**
  Checks if Parse class name could be used to initialize a given instance of PFObject or it's subclass.
  */
 + (void)_assertValidInstanceClassName:(NSString *)className;
@@ -281,7 +292,7 @@
 #pragma mark - Subclass Helpers
 ///--------------------------------------
 
-/*!
+/**
  This method is called by -[PFObject init]; changes made to the object during this
  method will not mark the object as dirty. PFObject uses this method to to apply the
  default ACL; subclasses which override this method shold be sure to call the super
@@ -289,7 +300,7 @@
  */
 - (void)setDefaultValues;
 
-/*!
+/**
  This method allows subclasses to determine whether a default ACL should be applied
  to new instances.
  */

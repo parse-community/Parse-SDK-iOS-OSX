@@ -3,17 +3,18 @@ branches:
     - master
 language: objective-c
 os: osx
-osx_image: xcode7.1
+osx_image: xcode7.2
 env:
   global:
     - LC_CTYPE=en_US.UTF-8
     - LANG=en_US.UTF-8
   matrix:
-    - TEST_TYPE=ios
-    - TEST_TYPE=osx
-    - TEST_TYPE=deployment
-    - TEST_TYPE=starters
-    - TEST_TYPE=podspecs
+    - TEST_TYPE=iOS
+    - TEST_TYPE=OSX
+    - TEST_TYPE=Deployment
+    - TEST_TYPE=Starters
+    - TEST_TYPE=CocoaPods
+    - TEST_TYPE=Carthage
 git:
   submodules: false
 before_install:
@@ -22,11 +23,17 @@ install:
 - |
   if [ -n "$TEST_TYPE" ]; then
     bundle install
+    if [ "$TEST_TYPE" == "Carthage" ]; then
+      brew update
+      brew install carthage || brew upgrade carthage
+    fi
   fi
 script:
-- bundle exec rake test:$TEST_TYPE
+- |
+  TEST_TYPE=$(echo "$TEST_TYPE" | tr '[:upper:]' '[:lower:]')
+  bundle exec rake test:$TEST_TYPE
 after_success:
-- | 
+- |
   if [ "$TEST_TYPE" = "ios" ] || [ "$TEST_TYPE" = "osx" ]; then
     bash <(curl -s https://codecov.io/bash)
   fi

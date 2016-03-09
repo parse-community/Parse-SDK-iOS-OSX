@@ -26,12 +26,13 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushState : PFBaseState <NSC
 @property (nullable, nonatomic, copy, readonly) PFQueryState *queryState;
 
 @property (nullable, nonatomic, strong, readonly) NSDate *expirationDate;
-@property (nullable, nonatomic, copy, readonly) NSNumber *expirationTimeInterval;
+@property (nullable, nonatomic, strong, readonly) NSNumber *expirationTimeInterval;
+@property (nullable, nonatomic, strong, readonly) NSDate *pushDate;
 
 @property (nullable, nonatomic, copy, readonly) NSDictionary *payload;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)initWithState:(nullable PFPushState *)state;

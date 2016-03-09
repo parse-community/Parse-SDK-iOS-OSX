@@ -45,7 +45,7 @@
 #pragma mark - PFPersistenceGroup
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSData *)*)getDataAsyncForKey:(NSString *)key {
+- (BFTask<NSData *> *)getDataAsyncForKey:(NSString *)key {
     return [_dataAccessQueue enqueue:^id(BFTask *task) {
         return [[self _loadUserDefaultsIfNeededAsync] continueWithSuccessBlock:^id(BFTask *task) {
             return _dataDictionary[key];

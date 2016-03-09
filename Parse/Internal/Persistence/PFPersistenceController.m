@@ -52,7 +52,7 @@ static NSString *const PFUserDefaultsPersistenceParseKey = @"com.parse";
 #pragma mark - Persistence
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(id<PFPersistenceGroup>)*)getPersistenceGroupAsync {
+- (BFTask<id<PFPersistenceGroup>> *)getPersistenceGroupAsync {
     return [_dataQueue enqueue:^id(BFTask *task) {
         if (_persistenceGroup) {
             return _persistenceGroup;
@@ -65,14 +65,14 @@ static NSString *const PFUserDefaultsPersistenceParseKey = @"com.parse";
 #pragma mark - Load
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(id<PFPersistenceGroup>)*)_loadPersistenceGroup {
+- (BFTask<id<PFPersistenceGroup>> *)_loadPersistenceGroup {
     return [[BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
 #if TARGET_OS_TV
         return [self _createUserDefaultsPersistenceGroup];
 #else
         return [self _createFilePersistenceGroup];
 #endif
-    }] continueWithSuccessBlock:^id(BFTask PF_GENERIC(id<PFPersistenceGroup>)*task) {
+    }] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
         id<PFPersistenceGroup> group = task.result;
         return [_groupValidationHandler(group) continueWithSuccessBlock:^id(BFTask *_) {
             _persistenceGroup = group;
@@ -85,7 +85,7 @@ static NSString *const PFUserDefaultsPersistenceParseKey = @"com.parse";
 #pragma mark - File Group
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(id<PFPersistenceGroup>)*)_createFilePersistenceGroup {
+- (BFTask<id<PFPersistenceGroup>> *)_createFilePersistenceGroup {
     return [[BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         NSString *storagePath = [self _filePersistenceGroupStoragePath];
         return [[PFFileManager createDirectoryIfNeededAsyncAtPath:storagePath] continueWithSuccessBlock:^id(BFTask *task) {
@@ -111,7 +111,7 @@ static NSString *const PFUserDefaultsPersistenceParseKey = @"com.parse";
 #else
     if (self.applicationGroupIdentifier) {
         NSURL *containerPath = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:self.applicationGroupIdentifier];
-        directoryPath = [[containerPath path] stringByAppendingPathComponent:PFFilePersistenceParseDirectoryName];
+        directoryPath = [containerPath.path stringByAppendingPathComponent:PFFilePersistenceParseDirectoryName];
         directoryPath = [directoryPath stringByAppendingPathComponent:self.applicationIdentifier];
     } else {
         NSString *library = [NSHomeDirectory() stringByAppendingPathComponent:@"Library"];
@@ -126,7 +126,7 @@ static NSString *const PFUserDefaultsPersistenceParseKey = @"com.parse";
 #pragma mark - UserDefaults Group
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(id<PFPersistenceGroup>)*)_createUserDefaultsPersistenceGroup {
+- (BFTask<id<PFPersistenceGroup>> *)_createUserDefaultsPersistenceGroup {
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         return [[PFUserDefaultsPersistenceGroup alloc] initWithKey:PFUserDefaultsPersistenceParseKey];
     }];

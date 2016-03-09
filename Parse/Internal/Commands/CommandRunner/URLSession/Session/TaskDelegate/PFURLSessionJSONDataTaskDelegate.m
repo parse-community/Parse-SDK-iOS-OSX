@@ -55,7 +55,7 @@
         errorDictionary[NSUnderlyingErrorKey] = self.error;
         errorDictionary[@"temporary"] = @(self.response.statusCode >= 500 || self.response.statusCode < 400);
 
-        NSString *description = [self.error localizedDescription] ?: [self.error localizedFailureReason];
+        NSString *description = self.error.localizedDescription ?: self.error.localizedFailureReason;
         if (description) {
             errorDictionary[@"error"] = description;
         }

@@ -32,10 +32,6 @@ static NSString *const PFKeyValueCacheDiskCachePathKey = @"path";
 
 @implementation PFKeyValueCacheEntry
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithValue:(NSString *)value {
     return [self initWithValue:value creationTime:[NSDate date]];
 }
@@ -72,10 +68,6 @@ static NSString *const PFKeyValueCacheDiskCachePathKey = @"path";
 ///--------------------------------------
 #pragma mark - Init
 ///--------------------------------------
-
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
 
 - (instancetype)initWithCacheDirectoryPath:(NSString *)path {
     return [self initWithCacheDirectoryURL:[NSURL fileURLWithPath:path]
@@ -120,8 +112,8 @@ static NSString *const PFKeyValueCacheDiskCachePathKey = @"path";
 }
 
 - (void)setObject:(NSString *)value forKey:(NSString *)key {
-    NSUInteger keyBytes = [key maximumLengthOfBytesUsingEncoding:[key fastestEncoding]];
-    NSUInteger valueBytes = [value maximumLengthOfBytesUsingEncoding:[value fastestEncoding]];
+    NSUInteger keyBytes = [key maximumLengthOfBytesUsingEncoding:key.fastestEncoding];
+    NSUInteger valueBytes = [value maximumLengthOfBytesUsingEncoding:value.fastestEncoding];
 
     if ((keyBytes + valueBytes) < self.maxMemoryCacheBytesPerRecord) {
         [self.memoryCache setObject:[PFKeyValueCacheEntry cacheEntryWithValue:value] forKey:key];
@@ -217,7 +209,7 @@ static NSString *const PFKeyValueCacheDiskCachePathKey = @"path";
 ///--------------------------------------
 
 - (NSString *)_diskCacheEntryForURL:(NSURL *)url {
-    NSData *bytes = [self.fileManager contentsAtPath:[url path]];
+    NSData *bytes = [self.fileManager contentsAtPath:url.path];
     if (!bytes) {
         return nil;
     }
@@ -227,7 +219,7 @@ static NSString *const PFKeyValueCacheDiskCachePathKey = @"path";
 }
 
 - (void)_createDiskCacheEntry:(NSString *)value atURL:(NSURL *)url {
-    NSString *path = [url path];
+    NSString *path = url.path;
     NSData *bytes = [value dataUsingEncoding:NSUTF8StringEncoding];
     NSDate *creationDate = [NSDate date];
 
@@ -256,8 +248,8 @@ static NSString *const PFKeyValueCacheDiskCachePathKey = @"path";
     }
 
     NSDate *modificationDate = [self _modificationDateOfCacheEntryAtURL:_cacheDirectoryURL];
-    NSTimeInterval knownInterval = [_lastDiskCacheModDate timeIntervalSinceReferenceDate];
-    NSTimeInterval actualInterval = [modificationDate timeIntervalSinceReferenceDate];
+    NSTimeInterval knownInterval = _lastDiskCacheModDate.timeIntervalSinceReferenceDate;
+    NSTimeInterval actualInterval = modificationDate.timeIntervalSinceReferenceDate;
 
     // NOTE: Most file systems (HFS) can only store up to 1 second of precision, whereas NSDate is super high resolution
     // Yes, this is actually really bad to have hard coded, as this does give some window where we can get unwanted
@@ -280,7 +272,7 @@ static NSString *const PFKeyValueCacheDiskCachePathKey = @"path";
     _lastDiskCacheSize = 0;
     _lastDiskCacheAttributes = [[NSMutableArray alloc] init];
 
-    NSDirectoryEnumerator *enumerator = [self.fileManager enumeratorAtPath:[_cacheDirectoryURL path]];
+    NSDirectoryEnumerator *enumerator = [self.fileManager enumeratorAtPath:_cacheDirectoryURL.path];
     NSString *path = nil;
 
     while ((path = [enumerator nextObject]) != nil) {
@@ -322,12 +314,12 @@ static NSString *const PFKeyValueCacheDiskCachePathKey = @"path";
     }
 
     while (_lastDiskCacheAttributes.count > _maxDiskCacheRecords || _lastDiskCacheSize > _maxDiskCacheBytes) {
-        NSDictionary *attributes = [_lastDiskCacheAttributes firstObject];
+        NSDictionary *attributes = _lastDiskCacheAttributes.firstObject;
         NSString *toRemove = attributes[PFKeyValueCacheDiskCachePathKey];
         NSNumber *fileSize = attributes[NSFileSize];
 
         [self.fileManager removeItemAtURL:[self _cacheURLForKey:toRemove] error:NULL];
-        _lastDiskCacheSize -= [fileSize unsignedIntegerValue];
+        _lastDiskCacheSize -= fileSize.unsignedIntegerValue;
 
         [_lastDiskCacheAttributes removeObjectAtIndex:0];
     }

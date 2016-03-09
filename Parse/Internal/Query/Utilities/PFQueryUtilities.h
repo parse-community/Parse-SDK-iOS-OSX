@@ -12,29 +12,29 @@
 @interface PFQueryUtilities : NSObject
 
 ///--------------------------------------
-/// @name Predicate
+#pragma mark - Predicate
 ///--------------------------------------
 
-/*!
+/**
  Takes an arbitrary predicate and normalizes it to a form that can easily be converted to a `PFQuery`.
  */
 + (NSPredicate *)predicateByNormalizingPredicate:(NSPredicate *)predicate;
 
 ///--------------------------------------
-/// @name Regex
+#pragma mark - Regex
 ///--------------------------------------
 
-/*!
+/**
  Converts a string into a regex that matches it.
 
  @param string String to convert from.
 
- @returns Query regex string from a string.
+ @return Query regex string from a string.
  */
 + (NSString *)regexStringForString:(NSString *)string;
 
 ///--------------------------------------
-/// @name Errors
+#pragma mark - Errors
 ///--------------------------------------
 
 + (NSError *)objectNotFoundError;

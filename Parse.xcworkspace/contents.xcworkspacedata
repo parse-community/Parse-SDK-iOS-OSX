@@ -8,7 +8,10 @@
       location = "container:"
       name = "Vendor">
       <FileRef
-         location = "group:Vendor/OCMock/Source/OCMock.xcodeproj">
+         location = "group:Carthage/Checkouts/Bolts-iOS/Bolts.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/OCMock/Source/OCMock.xcodeproj">
       </FileRef>
    </Group>
    <Group
@@ -39,6 +42,13 @@
          name = "watchOS">
          <FileRef
             location = "group:ParseStarterProject/watchOS/ParseStarterProject-Swift/ParseStarter-Swift.xcodeproj">
+         </FileRef>
+      </Group>
+      <Group
+         location = "container:"
+         name = "tvOS">
+         <FileRef
+            location = "group:ParseStarterProject/tvOS/ParseStarterProject-Swift/ParseStarter-Swift.xcodeproj">
          </FileRef>
       </Group>
    </Group>

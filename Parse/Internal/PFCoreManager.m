@@ -14,6 +14,7 @@
 #import "PFCloudCodeController.h"
 #import "PFConfigController.h"
 #import "PFCurrentUserController.h"
+#import "PFDefaultACLController.h"
 #import "PFFileController.h"
 #import "PFLocationManager.h"
 #import "PFMacros.h"
@@ -45,6 +46,7 @@
 @implementation PFCoreManager
 
 @synthesize locationManager = _locationManager;
+@synthesize defaultACLController = _defaultACLController;
 
 @synthesize queryController = _queryController;
 @synthesize fileController = _fileController;
@@ -69,10 +71,6 @@
 ///--------------------------------------
 #pragma mark - Init
 ///--------------------------------------
-
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
 
 - (instancetype)initWithDataSource:(id<PFCoreManagerDataSource>)dataSource {
     self = [super init];
@@ -104,6 +102,21 @@
         manager = _locationManager;
     });
     return manager;
+}
+
+///--------------------------------------
+#pragma mark - DefaultACLController
+///--------------------------------------
+
+- (PFDefaultACLController *)defaultACLController {
+    __block PFDefaultACLController *controller = nil;
+    dispatch_sync(_controllerAccessQueue, ^{
+        if (!_defaultACLController) {
+            _defaultACLController = [PFDefaultACLController controllerWithDataSource:self];
+        }
+        controller = _defaultACLController;
+    });
+    return controller;
 }
 
 ///--------------------------------------

@@ -72,7 +72,7 @@
 }
 
 - (void)open {
-    _fd = open([_path UTF8String], O_RDONLY | O_NONBLOCK);
+    _fd = open(_path.UTF8String, O_RDONLY | O_NONBLOCK);
     [_inputStream open];
 }
 

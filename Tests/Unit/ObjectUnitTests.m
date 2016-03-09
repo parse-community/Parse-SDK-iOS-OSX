@@ -184,6 +184,27 @@
     XCTAssertEqualObjects([object valueForKey:@"yarr"], @"yolo");
 }
 
+- (void)testKeyValueCodingFromDictionary {
+    NSString *string = @"foo";
+    NSNumber *number = @0.75;
+    NSDate *date = [NSDate date];
+    NSData *data = [@"foo" dataUsingEncoding:NSUTF8StringEncoding];
+    NSNull *null = [NSNull null];
+    NSDictionary *dictionary = @{ @"string" : string,
+                                  @"number" : number,
+                                  @"date" : date,
+                                  @"data" : data,
+                                  @"null" : null };
+
+    PFObject *object = [PFObject objectWithClassName:@"Test"];
+    [object setValuesForKeysWithDictionary:dictionary];
+    XCTAssertEqualObjects(string, object[@"string"]);
+    XCTAssertEqualObjects(number, object[@"number"]);
+    XCTAssertEqualObjects(date, object[@"date"]);
+    XCTAssertEqualObjects(null, object[@"null"]);
+    XCTAssertEqualObjects(data, object[@"data"]);
+}
+
 #pragma mark Fetch
 
 - (void)testFetchObjectWithoutObjectIdError {
@@ -268,7 +289,7 @@
                                           @"A" : objectA }
                                decoder:[PFDecoder objectDecoder]];
 
-    XCTAssertFalse([objectA isDirty]);
+    XCTAssertFalse(objectA.dirty);
 }
 
 @end

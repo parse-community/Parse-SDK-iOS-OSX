@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFKeyValueCache ()
 
 ///--------------------------------------
-/// @name Properties
+#pragma mark - Properties
 ///--------------------------------------
 
 @property (nullable, nonatomic, strong, readwrite) NSFileManager *fileManager;
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSUInteger maxMemoryCacheBytesPerRecord;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)initWithCacheDirectoryURL:(nullable NSURL *)url
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
                               memoryCache:(nullable NSCache *)cache NS_DESIGNATED_INITIALIZER;
 
 ///--------------------------------------
-/// @name Waiting
+#pragma mark - Waiting
 ///--------------------------------------
 
 - (void)waitForOutstandingOperations;
@@ -43,14 +43,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFKeyValueCacheEntry : NSObject
 
 ///--------------------------------------
-/// @name Properties
+#pragma mark - Properties
 ///--------------------------------------
 
 @property (atomic, copy, readonly) NSString *value;
 @property (atomic, strong, readonly) NSDate *creationTime;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 + (instancetype)cacheEntryWithValue:(NSString *)value;

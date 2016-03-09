@@ -14,7 +14,7 @@
 @interface PFObjectController ()
 
 ///--------------------------------------
-/// @name Fetch
+#pragma mark - Fetch
 ///--------------------------------------
 
 - (BFTask *)_runFetchCommand:(PFRESTCommand *)command forObject:(PFObject *)object;

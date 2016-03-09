@@ -20,7 +20,7 @@
 @compatibility_alias UIApplication NSApplication;
 #endif
 
-/*!
+/**
  `PFApplication` class provides a centralized way to get the information about the current application,
  or the environment it's running in. Please note, that all device specific things - should go to <PFDevice>.
  */

@@ -28,12 +28,12 @@
         parameters[@"where"] = queryParameters[@"where"];
     } else {
         if (state.channels) {
-            parameters[@"channels"] = [state.channels allObjects];
+            parameters[@"channels"] = state.channels.allObjects;
         }
     }
 
     // If there are no conditions set, then push to everyone by specifying empty query conditions.
-    if ([parameters count] == 0) {
+    if (parameters.count == 0) {
         parameters[@"where"] = @{};
     }
 
@@ -41,6 +41,10 @@
         parameters[@"expiration_time"] = [[PFDateFormatter sharedFormatter] preciseStringFromDate:state.expirationDate];
     } else if (state.expirationTimeInterval) {
         parameters[@"expiration_interval"] = state.expirationTimeInterval;
+    }
+
+    if (state.pushDate) {
+        parameters[@"push_time"] = [[PFDateFormatter sharedFormatter] preciseStringFromDate:state.pushDate];
     }
 
     // TODO (nlutsenko): Probably we need an assert here, as there is no reason to send push without message

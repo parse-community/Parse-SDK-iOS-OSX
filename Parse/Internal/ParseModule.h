@@ -9,18 +9,23 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol ParseModule <NSObject>
 
-- (void)parseDidInitializeWithApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey;
+- (void)parseDidInitializeWithApplicationId:(NSString *)applicationId clientKey:(nullable NSString *)clientKey;
 
 @end
 
 @interface ParseModuleCollection : NSObject <ParseModule>
 
+@property (nonatomic, assign, readonly) NSUInteger modulesCount;
+
 - (void)addParseModule:(id<ParseModule>)module;
 - (void)removeParseModule:(id<ParseModule>)module;
 
 - (BOOL)containsModule:(id<ParseModule>)module;
-- (NSUInteger)modulesCount;
 
 @end
+
+NS_ASSUME_NONNULL_END

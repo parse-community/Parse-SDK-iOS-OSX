@@ -68,7 +68,7 @@
     }
 
     @synchronized(runOnceLockObj) {
-        void(^runOnceBlock)(NSError *) = (void(^)(NSError *))[self.runOnceBlocks objectForKey:productIdentifier];
+        void(^runOnceBlock)(NSError *) = (void(^)(NSError *))self.runOnceBlocks[productIdentifier];
         if (runOnceBlock) {
             runOnceBlock(transaction.error);
             [self.runOnceBlocks removeObjectForKey:productIdentifier];

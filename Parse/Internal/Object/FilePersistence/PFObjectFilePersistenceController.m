@@ -23,10 +23,6 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
@@ -44,8 +40,8 @@
 #pragma mark - Objects
 ///--------------------------------------
 
-- (BFTask *)loadPersistentObjectAsyncForKey:(NSString *)key {
-    return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(id<PFPersistenceGroup>)*task) {
+- (BFTask<PFObject *> *)loadPersistentObjectAsyncForKey:(NSString *)key {
+    return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
         id<PFPersistenceGroup> group = task.result;
         __block PFObject *object = nil;
         return [[[[[group beginLockedContentAccessAsyncToDataForKey:key] continueWithSuccessBlock:^id(BFTask *_) {
@@ -58,12 +54,15 @@
             return nil;
         }] continueWithBlock:^id(BFTask *task) {
             return [group endLockedContentAccessAsyncToDataForKey:key];
-        }] continueWithSuccessResult:object];
+        }] continueWithSuccessBlock:^id(BFTask *task) {
+            // Finalize everything with object pointer.
+            return object;
+        }];
     }];
 }
 
 - (BFTask *)persistObjectAsync:(PFObject *)object forKey:(NSString *)key {
-    return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(id<PFPersistenceGroup>)*task) {
+    return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
         id<PFPersistenceGroup> group = task.result;
         return [[[group beginLockedContentAccessAsyncToDataForKey:key] continueWithSuccessBlock:^id(BFTask *_) {
             NSData *data = [PFObjectFileCoder dataFromObject:object usingEncoder:[PFPointerObjectEncoder objectEncoder]];
@@ -74,11 +73,22 @@
     }];
 }
 
+- (BFTask *)removePersistentObjectAsyncForKey:(NSString *)key {
+    return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
+        id<PFPersistenceGroup> group = task.result;
+        return [[[group beginLockedContentAccessAsyncToDataForKey:key] continueWithSuccessBlock:^id(BFTask *_) {
+            return [group removeDataAsyncForKey:key];
+        }] continueWithBlock:^id(BFTask *_) {
+            return [group endLockedContentAccessAsyncToDataForKey:key];
+        }];
+    }];
+}
+
 ///--------------------------------------
 #pragma mark - Private
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(id<PFPersistenceGroup>) *)_getPersistenceGroupAsync {
+- (BFTask<id<PFPersistenceGroup>> *)_getPersistenceGroupAsync {
     return [self.dataSource.persistenceController getPersistenceGroupAsync];
 }
 

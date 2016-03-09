@@ -22,7 +22,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFInstallationController : NSO
 @property (nonatomic, weak, readonly) id<PFObjectControllerProvider, PFCurrentInstallationControllerProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;

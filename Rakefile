@@ -13,7 +13,8 @@ require_relative 'Vendor/xctoolchain/Scripts/xctask/build_framework_task'
 script_folder = File.expand_path(File.dirname(__FILE__))
 build_folder = File.join(script_folder, 'build')
 release_folder = File.join(build_folder, 'release')
-bolts_build_folder = File.join(script_folder, 'Vendor', 'Bolts-ObjC', 'build')
+bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-iOS')
+bolts_build_folder = File.join(bolts_folder, 'build')
 
 module Constants
   require 'plist'
@@ -25,10 +26,15 @@ module Constants
     File.join(script_folder, 'Parse', 'Resources', 'Parse-iOS.Info.plist'),
     File.join(script_folder, 'Parse', 'Resources', 'Parse-OSX.Info.plist'),
     File.join(script_folder, 'Parse', 'Resources', 'Parse-watchOS.Info.plist'),
+    File.join(script_folder, 'Parse', 'Resources', 'Parse-tvOS.Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
-    File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift', 'Resources', 'Info.plist')
+    File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift', 'Resources', 'Info.plist'),
+    File.join(script_folder, 'ParseStarterProject', 'tvOS', 'ParseStarterProject-Swift', 'ParseStarter', 'Info.plist'),
+    File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter', 'Info.plist'),
+    File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter Extension', 'Info.plist'),
+    File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
   ]
 
   def self.current_version
@@ -115,17 +121,41 @@ namespace :build do
       exit(1)
     end
   end
+
+  desc 'Build tvOS framework.'
+  task :tvos do
+    task = XCTask::BuildFrameworkTask.new do |t|
+      t.directory = script_folder
+      t.build_directory = build_folder
+      t.framework_type = XCTask::FrameworkType::TVOS
+      t.framework_name = 'Parse.framework'
+
+      t.workspace = 'Parse.xcworkspace'
+      t.scheme = 'Parse-tvOS'
+      t.configuration = 'Release'
+    end
+    result = task.execute
+    unless result
+      puts 'Failed to build tvOS Framework.'
+      exit(1)
+    end
+  end
 end
 
 namespace :package do
   package_ios_name = 'Parse-iOS.zip'
   package_osx_name = 'Parse-OSX.zip'
+  package_tvos_name = 'Parse-tvOS.zip'
+  package_watchos_name = 'Parse-watchOS.zip'
   package_starter_ios_name = 'ParseStarterProject-iOS.zip'
   package_starter_osx_name = 'ParseStarterProject-OSX.zip'
+  package_starter_tvos_name = 'ParseStarterProject-tvOS.zip'
+  package_starter_watchos_name = 'ParseStarterProject-watchOS.zip'
 
   task :prepare do
     `rm -rf #{build_folder} && mkdir -p #{build_folder}`
     `rm -rf #{bolts_build_folder} && mkdir -p #{bolts_build_folder}`
+    `#{bolts_folder}/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos`
   end
 
   desc 'Build and package all frameworks for the release'
@@ -148,6 +178,22 @@ namespace :package do
     make_package(release_folder,
                  [osx_framework_path, bolts_path],
                  package_osx_name)
+
+   ## Build tvOS Framework
+   Rake::Task['build:tvos'].invoke
+   bolts_path = File.join(bolts_build_folder, 'tvOS', 'Bolts.framework')
+   tvos_framework_path = File.join(build_folder, 'Parse.framework')
+   make_package(release_folder,
+                [tvos_framework_path, bolts_path],
+                package_tvos_name)
+
+    ## Build watchOS Framework
+    Rake::Task['build:watchos'].invoke
+    bolts_path = File.join(bolts_build_folder, 'watchOS', 'Bolts.framework')
+    watchos_framework_path = File.join(build_folder, 'Parse.framework')
+    make_package(release_folder,
+                 [watchos_framework_path, bolts_path],
+                 package_watchos_name)
   end
 
   desc 'Build and package all starter projects for the release'
@@ -167,6 +213,30 @@ namespace :package do
     ]
     osx_framework_archive = File.join(release_folder, package_osx_name)
     make_starter_package(release_folder, osx_starters, osx_framework_archive, package_starter_osx_name)
+
+    tvos_starters = [
+      File.join(script_folder, 'ParseStarterProject', 'tvOS', 'ParseStarterProject-Swift')
+    ]
+    tvos_framework_archive = File.join(release_folder, package_tvos_name)
+    make_starter_package(release_folder, tvos_starters, tvos_framework_archive, package_starter_tvos_name)
+
+    watchos_starters = [
+      File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift')
+    ]
+    watchos_framework_archive = File.join(release_folder, package_watchos_name)
+    watchos_starters.each do |project_path|
+      `git clean -xfd #{project_path}`
+      `mkdir -p #{project_path}/Frameworks/iOS && mkdir -p #{project_path}/Frameworks/watchOS`
+      `cd #{project_path}/Frameworks/iOS && unzip -o #{ios_framework_archive}`
+      `cd #{project_path}/Frameworks/watchOS && unzip -o #{watchos_framework_archive}`
+      xcodeproj_path = Dir.glob(File.join(project_path, '*.xcodeproj'))[0]
+      prepare_xcodeproj(xcodeproj_path)
+    end
+    make_package(release_folder, watchos_starters, package_starter_watchos_name)
+    watchos_starters.each do |project_path|
+      `git clean -xfd #{project_path}`
+      `git checkout #{project_path}`
+    end
   end
 
   def make_package(target_path, items, archive_name)
@@ -209,7 +279,9 @@ namespace :package do
       if target.name == 'Bootstrap'
         target.remove_from_project
       else
-        target.dependencies.each(&:remove_from_project)
+        target.dependencies.each do |dependency|
+          dependency.remove_from_project if dependency.display_name == 'Bootstrap'
+        end
       end
     end
     project.save
@@ -266,7 +338,6 @@ namespace :test do
 
   desc 'Run Deployment Tests'
   task :deployment do |_|
-    Rake::Task['build:watchos'].invoke
     Rake::Task['package:frameworks'].invoke
     Rake::Task['package:starters'].invoke
   end
@@ -278,6 +349,7 @@ namespace :test do
                    'ParseStarterProject-Swift']
     osx_schemes = ['ParseOSXStarterProject',
                    'ParseOSXStarterProject-Swift']
+    tvos_schemes = ['ParseStarter-tvOS']
     watchos_schemes = ['ParseWatchStarter-watchOS']
 
     ios_schemes.each do |scheme|
@@ -288,6 +360,7 @@ namespace :test do
         t.scheme = scheme
         t.configuration = 'Debug'
         t.sdk = 'iphonesimulator'
+        t.destinations = ['"platform=iOS Simulator,name=iPhone 6s"']
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
@@ -315,7 +388,21 @@ namespace :test do
 
         t.scheme = scheme
         t.configuration = 'Debug'
-        t.destinations = ["\"platform=iOS Simulator,OS=9.1,name=iPhone 6s\"",]
+        t.destinations = ["\"platform=iOS Simulator,name=iPhone 6s\"",]
+
+        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+      results << task.execute
+    end
+    tvos_schemes.each do |scheme|
+      task = XCTask::BuildTask.new do |t|
+        t.directory = script_folder
+        t.workspace = 'Parse.xcworkspace'
+
+        t.scheme = scheme
+        t.configuration = 'Debug'
+        t.destinations = ["\"platform=tvOS Simulator,OS=9.0,name=Apple TV 1080p\"",]
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
@@ -332,7 +419,7 @@ namespace :test do
   end
 
   desc 'Run Podspec Lint'
-  task :podspecs do |_|
+  task :cocoapods do |_|
     podspecs = ['Parse.podspec']
     results = []
     system("pod repo update --silent")
@@ -345,6 +432,14 @@ namespace :test do
         puts 'Podspec Tests Failed!'
         exit(1)
       end
+    end
+  end
+
+  desc 'Run Carthage Build'
+  task :carthage do |_|
+    if !system('carthage build --no-skip-current')
+      puts 'Carthage Tests Failed!'
+      exit(1)
     end
   end
 end

@@ -59,7 +59,7 @@
         return;
     }
 
-    int progress = (int)(self.downloadedBytes / (CGFloat)self.response.expectedContentLength * 100);
+    int progress = (int)(self.downloadedBytes / (double)self.response.expectedContentLength * 100);
     _progressBlock(progress);
 }
 

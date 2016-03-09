@@ -31,10 +31,6 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initForDataTask:(NSURLSessionDataTask *)dataTask
           withCancellationToken:(BFCancellationToken *)cancellationToken {
     self = [super init];
@@ -104,7 +100,7 @@
 }
 
 - (void)_writeDataOutputStreamData:(NSData *)data {
-    NSInteger length = [data length];
+    NSInteger length = data.length;
     while (YES) {
         NSInteger bytesWritten = 0;
         if ([self.dataOutputStream hasSpaceAvailable]) {

@@ -12,10 +12,10 @@
 #import "BFTask+Private.h"
 #import "PFObject.h"
 #import "PFObjectFilePersistenceController.h"
-#import "PFUnitTestCase.h"
+#import "PFTestCase.h"
 #import "PFPersistenceController.h"
 
-@interface ObjectFilePersistenceControllerTests : PFUnitTestCase
+@interface ObjectFilePersistenceControllerTests : PFTestCase
 
 @end
 
@@ -57,8 +57,6 @@
     controller = [PFObjectFilePersistenceController controllerWithDataSource:dataSource];
     XCTAssertNotNil(controller);
     XCTAssertEqual((id)controller.dataSource, dataSource);
-
-    PFAssertThrowsInconsistencyException([PFObjectFilePersistenceController new]);
 }
 
 - (void)testLoadPersistentObject {
@@ -112,6 +110,27 @@
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[controller persistObjectAsync:object forKey:@"object"] continueWithSuccessBlock:^id(BFTask *task) {
+        XCTAssertNil(task.result);
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
+
+    OCMVerifyAll(group);
+}
+
+- (void)testRemovePersistenceObjectForKey {
+    id dataSource = [self mockedDataSource];
+    id group = [[[dataSource persistenceController] getPersistenceGroupAsync] waitForResult:nil];
+
+    OCMExpect([group beginLockedContentAccessAsyncToDataForKey:@"object"]).andReturn([BFTask taskWithResult:nil]);
+    OCMExpect([group removeDataAsyncForKey:@"object"]).andReturn([BFTask taskWithResult:nil]);
+    OCMExpect([group endLockedContentAccessAsyncToDataForKey:@"object"]).andReturn([BFTask taskWithResult:nil]);
+
+    PFObjectFilePersistenceController *controller = [PFObjectFilePersistenceController controllerWithDataSource:dataSource];
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[controller removePersistentObjectAsyncForKey:@"object"] continueWithSuccessBlock:^id(BFTask *task) {
         XCTAssertNil(task.result);
         [expectation fulfill];
         return nil;

@@ -127,7 +127,7 @@
     PFObject *object = [PFObject objectWithClassName:@"Yarr"];
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[store pinObjectsAsync:@[ object ] withPinName:@"Yolo" includeChildren:YES] continueWithSuccessBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, @YES);
+        XCTAssertNil(task.result);
         XCTAssertEqualObjects(pin.objects, @[ object ]);
         [expectation fulfill];
         return nil;
@@ -155,7 +155,7 @@
     PFObject *object = [PFObject objectWithClassName:@"Yarr"];
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[store pinObjectsAsync:@[ object ] withPinName:@"Yolo" includeChildren:YES] continueWithSuccessBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, @YES);
+        XCTAssertNil(task.result);
         XCTAssertEqualObjects(pin.objects, (@[ existingObject, object ]));
         [expectation fulfill];
         return nil;
@@ -170,7 +170,7 @@
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[store pinObjectsAsync:nil withPinName:@"Yolo" includeChildren:YES] continueWithSuccessBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, @YES);
+        XCTAssertNil(task.result);
         [expectation fulfill];
         return nil;
     }];
@@ -195,7 +195,7 @@
     PFObject *object = [PFObject objectWithClassName:@"Yarr"];
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[store pinObjectsAsync:@[ object ] withPinName:@"Yolo" includeChildren:NO] continueWithSuccessBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, @YES);
+        XCTAssertNil(task.result);
         XCTAssertEqualObjects(pin.objects, (@[ object ]));
         [expectation fulfill];
         return nil;
@@ -221,7 +221,7 @@
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[store unpinObjectsAsync:@[ object ] withPinName:@"Yolo"] continueWithSuccessBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, @YES);
+        XCTAssertNil(task.result);
         [expectation fulfill];
         return nil;
     }];
@@ -246,7 +246,7 @@
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[store unpinObjectsAsync:@[ object ] withPinName:@"Yolo"] continueWithSuccessBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, @YES);
+        XCTAssertNil(task.result);
         [expectation fulfill];
         return nil;
     }];
@@ -260,7 +260,7 @@
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[store unpinObjectsAsync:nil withPinName:@"Yolo"] continueWithSuccessBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, @YES);
+        XCTAssertNil(task.result);
         [expectation fulfill];
         return nil;
     }];
@@ -278,7 +278,7 @@
     PFObject *object = [PFObject objectWithClassName:@"Yarr"];
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[store unpinObjectsAsync:@[ object ] withPinName:@"Yolo"] continueWithSuccessBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, @YES);
+        XCTAssertNil(task.result);
         [expectation fulfill];
         return nil;
     }];
@@ -300,7 +300,7 @@
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[store unpinAllObjectsAsyncWithPinName:@"Yolo"] continueWithSuccessBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, @YES);
+        XCTAssertNil(task.result);
         [expectation fulfill];
         return nil;
     }];

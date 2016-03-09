@@ -11,7 +11,7 @@
 
 @interface PFInstallationIdentifierStore (Private)
 
-/*!
+/**
  Clears in-memory cached installation identifier, if any.
  */
 - (BFTask *)_clearCachedInstallationIdentifierAsync;

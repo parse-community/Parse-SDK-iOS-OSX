@@ -31,6 +31,15 @@
     return self;
 }
 
+- (instancetype)initWithState:(PFUserState *)state mutatingBlock:(PFUserStateMutationBlock)block {
+    self = [self initWithState:state];
+    if (!self) return nil;
+
+    block((PFMutableUserState *)self);
+
+    return self;
+}
+
 + (instancetype)stateWithState:(PFUserState *)state {
     return [super stateWithState:state];
 }
@@ -43,6 +52,14 @@
     NSMutableDictionary *dictionary = [[super dictionaryRepresentationWithObjectEncoder:objectEncoder] mutableCopy];
     [dictionary removeObjectForKey:PFUserPasswordRESTKey];
     return dictionary;
+}
+
+///--------------------------------------
+#pragma mark - Mutating
+///--------------------------------------
+
+- (PFUserState *)copyByMutatingWithBlock:(PFUserStateMutationBlock)block {
+    return [[PFUserState alloc] initWithState:self mutatingBlock:block];
 }
 
 ///--------------------------------------

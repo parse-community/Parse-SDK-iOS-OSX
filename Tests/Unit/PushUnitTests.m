@@ -134,7 +134,7 @@
     XCTAssertTrue([pushA isEqual:pushB]);
     XCTAssertEqual([pushA hash], [pushB hash]);
 
-    NSDictionary *payload = @{ @"foo": @"bar" };
+    NSDictionary *payload = @{ @"foo" : @"bar" };
     [pushA setData:payload];
     XCTAssertFalse([pushA isEqual:pushB]);
 
@@ -176,7 +176,7 @@
     [pushB expireAfterTimeInterval:interval];
     XCTAssertEqual([pushA hash], [pushB hash]);
 
-    NSDictionary *payload = @{ @"foo": @"bar" };
+    NSDictionary *payload = @{ @"foo" : @"bar" };
     [pushA setData:payload];
     [pushB setData:payload];
     XCTAssertEqual([pushA hash], [pushB hash]);
@@ -261,7 +261,11 @@
     };
 
     self.expectationToFulfuill = backgroundTargetSelectorExpectation;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [thePush sendPushInBackgroundWithTarget:self selector:@selector(validateObjectResults:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }
@@ -307,10 +311,13 @@
     };
 
     self.expectationToFulfuill = toChannelTargetSelectorExpectation;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFPush sendPushMessageToChannelInBackground:channelName
                                      withMessage:message
                                           target:self
                                         selector:@selector(validateObjectResults:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }
@@ -348,10 +355,13 @@
     };
 
     self.expectationToFulfuill = toChannelTargetSelectorExpectation;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFPush sendPushDataToChannelInBackground:channelName
                                      withData:payload
                                        target:self
                                      selector:@selector(validateObjectResults:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }
@@ -459,7 +469,10 @@
     };
 
     self.expectationToFulfuill = subscribeTargetSelectorExpectation;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFPush getSubscribedChannelsInBackgroundWithTarget:self selector:@selector(validateObjectResults:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }
@@ -482,7 +495,7 @@
 
         return task;
     }] waitUntilFinished];
-    [PFPush subscribeToChannelInBackground:channel block:^(BOOL succeeded, NSError *__nullable error) {
+    [PFPush subscribeToChannelInBackground:channel block:^(BOOL succeeded, NSError *_Nullable error) {
         XCTAssertTrue(succeeded);
         XCTAssertNil(error);
 
@@ -496,9 +509,13 @@
     };
 
     self.expectationToFulfuill = subscribeTargetSelectorExpectation;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFPush subscribeToChannelInBackground:channel
                                     target:self
                                   selector:@selector(validateObjectResults:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }
@@ -521,7 +538,7 @@
 
         return task;
     }] waitUntilFinished];
-    [PFPush unsubscribeFromChannelInBackground:channel block:^(BOOL succeeded, NSError *__nullable error) {
+    [PFPush unsubscribeFromChannelInBackground:channel block:^(BOOL succeeded, NSError *_Nullable error) {
         XCTAssertTrue(succeeded);
         XCTAssertNil(error);
 
@@ -535,9 +552,13 @@
     };
 
     self.expectationToFulfuill = unsubscribeTargetSelectorExpectation;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFPush unsubscribeFromChannelInBackground:channel
                                         target:self
                                       selector:@selector(validateObjectResults:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }
@@ -579,6 +600,58 @@
     [push setPushToAndroid:YES];
 
 #pragma clang diagnostic pop
+}
+
+- (void)testSetQueryAndChannelFails {
+    PFQuery *query = [PFInstallation query];
+    NSArray *channels = @[ @"foo", @"bar" ];
+
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:query];
+    PFAssertThrowsInvalidArgumentException([push setChannel:@"foo"]);
+
+    push = [[PFPush alloc] init];
+    [push setQuery:query];
+    PFAssertThrowsInvalidArgumentException([push setChannels:channels]);
+
+    push = [[PFPush alloc] init];
+    [push setChannels:channels];
+    PFAssertThrowsInvalidArgumentException([push setQuery:query]);
+
+    push = [[PFPush alloc] init];
+    [push setChannel:@"foo"];
+    PFAssertThrowsInvalidArgumentException([push setQuery:query]);
+}
+
+- (void)testPushWithLimitQueryFails {
+    PFQuery *query = [PFInstallation query];
+    query.limit = 10;
+
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:query];
+    [push setMessage:@"hello this is a test"];
+    PFAssertThrowsInvalidArgumentException([push sendPush:nil]);
+}
+
+- (void)testPushWithOrderQueryFails {
+    PFQuery *query = [PFInstallation query];
+    [query orderByAscending:@"deviceToken"];
+
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:query];
+    [push setMessage:@"hello this is a test"];
+    PFAssertThrowsInvalidArgumentException([push sendPush:nil]);
+}
+
+- (void)testPushWithSkipQueryFails {
+    PFQuery *query = [PFInstallation query];
+    [query whereKey:@"deviceType" equalTo:@"ios"];
+    query.skip = 10;
+
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:query];
+    [push setMessage:@"hello this is a test"];
+    PFAssertThrowsInvalidArgumentException([push sendPush:nil]);
 }
 
 @end

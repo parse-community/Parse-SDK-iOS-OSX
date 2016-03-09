@@ -16,6 +16,7 @@
 #import "PFLogging.h"
 #import "PFMacros.h"
 #import "PFWeakValue.h"
+#import "Parse_Private.h"
 
 @interface PFReachability () {
     dispatch_queue_t _synchronizationQueue;
@@ -65,7 +66,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
         }
     }
 
-#if TARGET_OS_IPHONE
+#if !PF_TARGET_OS_OSX
     if (((flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN) &&
         ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0)) {
         // ... but WWAN connections are OK if the calling application
@@ -83,10 +84,6 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithURL:(NSURL *)url {
     self = [super init];
     if (!self) return nil;
@@ -102,9 +99,8 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
     static PFReachability *reachability;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *serverUrlAsString = [NSString stringWithFormat:@"%@/%ld", kPFParseServer, (long)PARSE_API_VERSION];
-        NSURL *serverUrl = [NSURL URLWithString:serverUrlAsString];
-        reachability = [[self alloc] initWithURL:serverUrl];
+        NSURL *url = [NSURL URLWithString:[Parse _currentManager].configuration.server];
+        reachability = [[self alloc] initWithURL:url];
     });
     return reachability;
 }
@@ -192,7 +188,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 
 - (void)_startMonitoringReachabilityWithURL:(NSURL *)url {
     dispatch_barrier_async(_synchronizationQueue, ^{
-        _networkReachability = SCNetworkReachabilityCreateWithName(NULL, [[url host] UTF8String]);
+        _networkReachability = SCNetworkReachabilityCreateWithName(NULL, url.host.UTF8String);
         if (_networkReachability != NULL) {
             // Set the initial flags
             SCNetworkReachabilityFlags flags;

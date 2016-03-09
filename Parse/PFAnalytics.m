@@ -10,6 +10,10 @@
 #import "PFAnalytics.h"
 #import "PFAnalytics_Private.h"
 
+#if PF_TARGET_OS_OSX
+#import <AppKit/AppKit.h>
+#endif
+
 #import "BFTask+Private.h"
 #import "PFAnalyticsController.h"
 #import "PFAssert.h"
@@ -24,7 +28,7 @@
 #pragma mark - App-Open / Push Analytics
 ///--------------------------------------
 
-+ (BFTask PF_GENERIC(NSNumber *)*)trackAppOpenedWithLaunchOptions:(nullable NSDictionary *)launchOptions {
++ (BFTask<NSNumber *> *)trackAppOpenedWithLaunchOptions:(nullable NSDictionary *)launchOptions {
 #if TARGET_OS_WATCH || TARGET_OS_TV
     NSDictionary *userInfo = nil;
 #elif TARGET_OS_IOS
@@ -41,7 +45,7 @@
     [[self trackAppOpenedWithLaunchOptions:launchOptions] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }
 
-+ (BFTask PF_GENERIC(NSNumber *)*)trackAppOpenedWithRemoteNotificationPayload:(nullable NSDictionary *)userInfo {
++ (BFTask<NSNumber *> *)trackAppOpenedWithRemoteNotificationPayload:(nullable NSDictionary *)userInfo {
     return [[[PFUser _getCurrentUserSessionTokenAsync] continueWithBlock:^id(BFTask *task) {
         NSString *sessionToken = task.result;
         PFAnalyticsController *controller = [Parse _currentManager].analyticsController;
@@ -58,7 +62,7 @@
 #pragma mark - Custom Analytics
 ///--------------------------------------
 
-+ (BFTask PF_GENERIC(NSNumber *)*)trackEvent:(NSString *)name {
++ (BFTask<NSNumber *> *)trackEvent:(NSString *)name {
     return [self trackEvent:name dimensions:nil];
 }
 
@@ -66,8 +70,8 @@
     [self trackEventInBackground:name dimensions:nil block:block];
 }
 
-+ (BFTask PF_GENERIC(NSNumber *)*)trackEvent:(NSString *)name
-                                  dimensions:(nullable NSDictionary PF_GENERIC(NSString *, NSString *) *)dimensions {
++ (BFTask<NSNumber *> *)trackEvent:(NSString *)name
+                        dimensions:(nullable NSDictionary<NSString *, NSString *> *)dimensions {
     PFParameterAssert([[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length],
                       @"A name for the custom event must be provided.");
     [dimensions enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -83,7 +87,7 @@
 }
 
 + (void)trackEventInBackground:(NSString *)name
-                    dimensions:(nullable NSDictionary PF_GENERIC(NSString *, NSString *) *)dimensions
+                    dimensions:(nullable NSDictionary<NSString *, NSString *> *)dimensions
                          block:(nullable PFBooleanResultBlock)block {
     [[self trackEvent:name dimensions:dimensions] thenCallBackOnMainThreadWithBoolValueAsync:block];
 }

@@ -52,8 +52,8 @@ static NSSet *protectedKeys;
     [super removeObjectForKey:PFInstallationKeyDeviceToken];
 }
 
-- (BFTask PF_GENERIC(PFVoid) *)_validateDeleteAsync {
-    return [[super _validateDeleteAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(PFVoid) *task) {
+- (BFTask<PFVoid> *)_validateDeleteAsync {
+    return [[super _validateDeleteAsync] continueWithSuccessBlock:^id(BFTask<PFVoid> *task) {
         NSError *error = [PFErrorUtilities errorWithCode:kPFErrorCommandUnavailable
                                                  message:@"Installation cannot be deleted"];
         return [BFTask taskWithError:error];
@@ -210,7 +210,7 @@ static NSSet *protectedKeys;
      onlyIfDifferent:YES];
 }
 
-- (void)setChannels:(NSArray *)channels {
+- (void)setChannels:(NSArray<NSString *> *)channels {
     [self _setObject:channels forKey:PFInstallationKeyChannels onlyIfDifferent:YES];
 }
 
@@ -276,7 +276,7 @@ static NSSet *protectedKeys;
 }
 
 - (void)_updateVersionInfoFromDevice {
-    NSDictionary *appInfo = [[NSBundle mainBundle] infoDictionary];
+    NSDictionary *appInfo = [NSBundle mainBundle].infoDictionary;
     NSString *appName = appInfo[(__bridge NSString *)kCFBundleNameKey];
     NSString *appVersion = appInfo[(__bridge NSString *)kCFBundleVersionKey];
     NSString *appIdentifier = appInfo[(__bridge NSString *)kCFBundleIdentifierKey];
@@ -298,10 +298,10 @@ static NSSet *protectedKeys;
     }
 }
 
-/*!
- @abstract Save localeIdentifier in the following format: [language code]-[COUNTRY CODE].
+/**
+ Save localeIdentifier in the following format: [language code]-[COUNTRY CODE].
 
- @discussion The language codes are two-letter lowercase ISO language codes (such as "en") as defined by
+ The language codes are two-letter lowercase ISO language codes (such as "en") as defined by
  <a href="http://en.wikipedia.org/wiki/ISO_639-1">ISO 639-1</a>.
  The country codes are two-letter uppercase ISO country codes (such as "US") as defined by
  <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">ISO 3166-1</a>.

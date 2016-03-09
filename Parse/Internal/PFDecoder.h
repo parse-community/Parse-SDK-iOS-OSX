@@ -13,12 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PFDecoder : NSObject
 
-/*!
+/**
  Globally available shared instance of PFDecoder.
  */
 + (PFDecoder *)objectDecoder;
 
-/*!
+/**
  Takes a complex object that was deserialized and converts encoded
  dictionaries into the proper Parse types. This is the inverse of
  encodeObject:allowUnsaved:allowObjects:seenObjects:.
@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-/*!
+/**
  Extends the normal JSON to PFObject decoding to also deal with placeholders for new objects
  that have been saved offline.
  */
@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-/*!
+/**
  A subclass of PFDecoder which can keep PFObject that has been fetched instead of creating a new instance.
  */
 @interface PFKnownParseObjectDecoder : PFDecoder

@@ -11,13 +11,16 @@
 
 #import <Parse/PFObject.h>
 #import <Parse/PFSubclassing.h>
+#import <Parse/PFUser.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*!
+@class PFRelation<ObjectType : PFObject *>;
+
+/**
  The `PFRole` class represents a Role on the Parse server.
- `PFRoles` represent groupings of <PFUser> objects for the purposes of granting permissions
- (e.g. specifying a <PFACL> for a <PFObject>).
+ `PFRoles` represent groupings of `PFUser` objects for the purposes of granting permissions
+ (e.g. specifying a `PFACL` for a `PFObject`).
  Roles are specified by their sets of child users and child roles,
  all of which are granted any permissions that the parent role has.
 
@@ -26,36 +29,36 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFRole : PFObject <PFSubclassing>
 
 ///--------------------------------------
-/// @name Creating a New Role
+#pragma mark - Creating a New Role
 ///--------------------------------------
 
-/*!
- @abstract Constructs a new `PFRole` with the given name.
+/**
+ Constructs a new `PFRole` with the given name.
  If no default ACL has been specified, you must provide an ACL for the role.
 
  @param name The name of the Role to create.
  */
 - (instancetype)initWithName:(NSString *)name;
 
-/*!
- @abstract Constructs a new `PFRole` with the given name.
+/**
+ Constructs a new `PFRole` with the given name.
 
  @param name The name of the Role to create.
  @param acl The ACL for this role. Roles must have an ACL.
  */
 - (instancetype)initWithName:(NSString *)name acl:(nullable PFACL *)acl;
 
-/*!
- @abstract Constructs a new `PFRole` with the given name.
+/**
+ Constructs a new `PFRole` with the given name.
 
- @discussion If no default ACL has been specified, you must provide an ACL for the role.
+ If no default ACL has been specified, you must provide an ACL for the role.
 
  @param name The name of the Role to create.
  */
 + (instancetype)roleWithName:(NSString *)name;
 
-/*!
- @abstract Constructs a new `PFRole` with the given name.
+/**
+ Constructs a new `PFRole` with the given name.
 
  @param name The name of the Role to create.
  @param acl The ACL for this role. Roles must have an ACL.
@@ -63,36 +66,36 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)roleWithName:(NSString *)name acl:(nullable PFACL *)acl;
 
 ///--------------------------------------
-/// @name Role-specific Properties
+#pragma mark - Role-specific Properties
 ///--------------------------------------
 
-/*!
- @abstract Gets or sets the name for a role.
+/**
+ Gets or sets the name for a role.
 
- @discussion This value must be set before the role has been saved to the server,
+ This value must be set before the role has been saved to the server,
  and cannot be set once the role has been saved.
 
  @warning A role's name can only contain alphanumeric characters, `_`, `-`, and spaces.
  */
 @property (nonatomic, copy) NSString *name;
 
-/*!
- @abstract Gets the <PFRelation> for the <PFUser> objects that are direct children of this role.
+/**
+ Gets the `PFRelation` for the `PFUser` objects that are direct children of this role.
 
- @discussion These users are granted any privileges that this role has been granted
+ These users are granted any privileges that this role has been granted
  (e.g. read or write access through ACLs). You can add or remove users from
  the role through this relation.
  */
-@property (nonatomic, strong, readonly) PFRelation *users;
+@property (nonatomic, strong, readonly) PFRelation<PFUser *> *users;
 
-/*!
- @abstract Gets the <PFRelation> for the `PFRole` objects that are direct children of this role.
+/**
+ Gets the `PFRelation` for the `PFRole` objects that are direct children of this role.
 
- @discussion These roles' users are granted any privileges that this role has been granted
+ These roles' users are granted any privileges that this role has been granted
  (e.g. read or write access through ACLs). You can add or remove child roles
  from this role through this relation.
  */
-@property (nonatomic, strong, readonly) PFRelation *roles;
+@property (nonatomic, strong, readonly) PFRelation<PFRole *> *roles;
 
 @end
 

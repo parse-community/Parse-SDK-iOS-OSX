@@ -86,12 +86,12 @@
 
 - (NSString *)stringWithNativeAccessor {
     usedNativeAccessor = YES;
-    return [self objectForKey:@"stringWithNativeAccessor"];
+    return self[@"stringWithNativeAccessor"];
 }
 
 - (void)setStringWithNativeMutator:(NSString *)aString {
     usedNativeMutator = YES;
-    [self setObject:aString forKey:@"stringWithNativeMutator"];
+    self[@"stringWithNativeMutator"] = aString;
 }
 @end
 
@@ -130,7 +130,7 @@
 
     NSString *idValue = @"foo";
     object.idProperty = idValue;
-    XCTAssertEqualObjects(@"foo", [object objectForKey:@"idProperty"]);
+    XCTAssertEqualObjects(@"foo", object[@"idProperty"]);
     XCTAssertEqualObjects(@"foo", object.idProperty);
     XCTAssertEqual(idValue, object.idProperty, @"Should use retain semantics");
 }
@@ -151,38 +151,38 @@
 
     // Boxed primitives
     object.shortProperty = 1;
-    XCTAssertEqualObjects(@1, [object objectForKey:@"shortProperty"]);
+    XCTAssertEqualObjects(@1, object[@"shortProperty"]);
     XCTAssertEqual((short)1, object.shortProperty);
 
     object.ushortProperty = 2;
-    XCTAssertEqualObjects(@2, [object objectForKey:@"ushortProperty"]);
+    XCTAssertEqualObjects(@2, object[@"ushortProperty"]);
     XCTAssertEqual((unsigned short)2, object.ushortProperty);
 
     object.intProperty = 3;
-    XCTAssertEqualObjects(@3, [object objectForKey:@"intProperty"]);
+    XCTAssertEqualObjects(@3, object[@"intProperty"]);
     XCTAssertEqual((int)3, object.intProperty);
 
     object.uintProperty = 4;
-    XCTAssertEqualObjects(@4, [object objectForKey:@"uintProperty"]);
+    XCTAssertEqualObjects(@4, object[@"uintProperty"]);
     XCTAssertEqual((unsigned int)4, object.uintProperty);
 
     object.longProperty = 5;
-    XCTAssertEqualObjects(@5, [object objectForKey:@"longProperty"]);
+    XCTAssertEqualObjects(@5, object[@"longProperty"]);
     XCTAssertEqual((long)5, object.longProperty);
 
     object.ulongProperty = 6;
-    XCTAssertEqualObjects(@6, [object objectForKey:@"ulongProperty"]);
+    XCTAssertEqualObjects(@6, object[@"ulongProperty"]);
     XCTAssertEqual((unsigned long)6, object.ulongProperty);
 }
 
 - (void)testBoxedFloatingPointProperties {
     PFTestObject *object = [[PFTestObject alloc] initWithClassName:@"Test"];
     object.floatProperty = 1.5;
-    XCTAssertEqualObjects(@1.5f, [object objectForKey:@"floatProperty"]);
+    XCTAssertEqualObjects(@1.5f, object[@"floatProperty"]);
     XCTAssertEqual(1.5f, object.floatProperty);
 
     object.doubleProperty = 1.75;
-    XCTAssertEqualObjects(@1.75, [object objectForKey:@"doubleProperty"]);
+    XCTAssertEqualObjects(@1.75, object[@"doubleProperty"]);
     XCTAssertEqual(1.75, object.doubleProperty);
 }
 
@@ -191,7 +191,7 @@
 
     object.boolProperty = YES;
     XCTAssertTrue(object.boolProperty);
-    XCTAssertEqualObjects(@YES, [object objectForKey:@"boolProperty"]);
+    XCTAssertEqualObjects(@YES, object[@"boolProperty"]);
     object.boolProperty = NO;
 
     // HOORAY! Boxing makes if statements work like most users expect they would
@@ -203,7 +203,7 @@
 
     object.x = 1;
     XCTAssertEqual(object.x, 1);
-    XCTAssertEqualObjects(@1, [object objectForKey:@"x"]);
+    XCTAssertEqualObjects(@1, object[@"x"]);
 }
 
 - (void)testPascalCaseProperties {
@@ -211,7 +211,7 @@
 
     object.PascalCaseProperty = 1;
     XCTAssertEqual(object.PascalCaseProperty, 1);
-    XCTAssertEqualObjects(@1, [object objectForKey:@"PascalCaseProperty"]);
+    XCTAssertEqualObjects(@1, object[@"PascalCaseProperty"]);
 }
 
 - (void)testIvarObjectProperties {
@@ -223,7 +223,7 @@
     object.ivarId = @"World!";
     XCTAssertEqualObjects(@"World!", object->ivarId);
 
-    XCTAssertNil([object objectForKey:@"ivarId"]);
+    XCTAssertNil(object[@"ivarId"]);
 }
 
 - (void)testIvarPrimitiveProperties {
@@ -235,7 +235,7 @@
     object.ivarInt = 6;
     XCTAssertEqual(6, object->ivarInt);
 
-    XCTAssertNil([object objectForKey:@"ivarInt"]);
+    XCTAssertNil(object[@"ivarInt"]);
 
     // Test something that's not a bus width
     object->ivarShort = 42;
@@ -247,7 +247,7 @@
     XCTAssertEqual((unsigned short)0xBABE, object->ivarShort);
 #pragma clang diagnostic pop
 
-    XCTAssertNil([object objectForKey:@"ivarShort"]);
+    XCTAssertNil(object[@"ivarShort"]);
 }
 
 - (void)testCXXBoolProperties {
@@ -287,9 +287,9 @@
 - (void)testObjectPropertiesAreRemovedWhenNilled {
     PFTestObject *object = [[PFTestObject alloc] initWithClassName:@"Test"];
     object.stringCopyProperty = @"Hello, world!";
-    XCTAssertTrue([[object allKeys] containsObject:@"stringCopyProperty"]);
+    XCTAssertTrue([object.allKeys containsObject:@"stringCopyProperty"]);
     object.stringCopyProperty = nil;
-    XCTAssertFalse([[object allKeys] containsObject:@"stringCopyProperty"]);
+    XCTAssertFalse([object.allKeys containsObject:@"stringCopyProperty"]);
 }
 
 // I'm not so sure the mutator is a good idea, but it'd be good to ensure that at least the
@@ -297,10 +297,10 @@
 - (void)testObjectPropertiesDontChokeOnNSNull {
     PFTestObject *object = [[PFTestObject alloc] initWithClassName:@"Test"];
     object.stringCopyProperty = (NSString *)[NSNull null];
-    XCTAssertTrue([[object allKeys] containsObject:@"stringCopyProperty"]);
+    XCTAssertTrue([object.allKeys containsObject:@"stringCopyProperty"]);
     XCTAssertEqual((NSString *)nil, object.stringCopyProperty);
     object.stringCopyProperty = nil;
-    XCTAssertFalse([[object allKeys] containsObject:@"stringCopyProperty"]);
+    XCTAssertFalse([object.allKeys containsObject:@"stringCopyProperty"]);
 }
 
 - (void)testBoxedPropertiesDontChokeOnNSNull {

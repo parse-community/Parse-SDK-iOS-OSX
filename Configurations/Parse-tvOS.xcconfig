@@ -11,13 +11,12 @@
 #include "Shared/Product/Framework.xcconfig"
 
 PRODUCT_NAME = Parse
+PRODUCT_BUNDLE_IDENTIFIER = com.parse.tvos
 
 MACH_O_TYPE = staticlib
 APPLICATION_EXTENSION_API_ONLY = YES
 DEFINES_MODULE = YES
 
 OTHER_LDFLAGS = $(inherited) -ObjC
-
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR) $(VENDOR_DIR)/Bolts-ObjC/build/tvOS/
 
 INFOPLIST_FILE = $(PROJECT_DIR)/Parse/Resources/Parse-tvOS.Info.plist

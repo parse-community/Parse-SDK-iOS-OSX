@@ -15,7 +15,7 @@
 extern NSString *const PFPinKeyName;
 extern NSString *const PFPinKeyObjects;
 
-/*!
+/**
  PFPin represent internal pin implementation of PFObject's `pin`.
  */
 @interface PFPin : PFObject<PFSubclassing>
@@ -24,7 +24,7 @@ extern NSString *const PFPinKeyObjects;
 @property (nonatomic, strong) NSMutableArray *objects;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)initWithName:(NSString *)name;

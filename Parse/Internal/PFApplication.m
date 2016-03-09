@@ -35,7 +35,7 @@
 ///--------------------------------------
 
 - (BOOL)isAppStoreEnvironment {
-#if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
+#if TARGET_OS_IOS && !TARGET_IPHONE_SIMULATOR
     return ([[NSBundle mainBundle] pathForResource:@"embedded" ofType:@"mobileprovision"] == nil);
 #endif
 
@@ -43,7 +43,7 @@
 }
 
 - (BOOL)isExtensionEnvironment {
-    return [[[NSBundle mainBundle] bundlePath] hasSuffix:@".appex"];
+    return [[NSBundle mainBundle].bundlePath hasSuffix:@".appex"];
 }
 
 - (NSInteger)iconBadgeNumber {

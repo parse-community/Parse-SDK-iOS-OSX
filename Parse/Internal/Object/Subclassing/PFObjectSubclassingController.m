@@ -175,8 +175,8 @@ static PFObjectSubclassingController *defaultController_;
     PFConsistencyAssert(invocation.methodSignature.numberOfArguments == 2, @"Getter should take no arguments!");
     PFConsistencyAssert(invocation.methodSignature.methodReturnType[0] != 'v', @"A getter cannot return void!");
 
-    const char *methodReturnType = [invocation.methodSignature methodReturnType];
-    void *returnValueBytes = alloca([invocation.methodSignature methodReturnLength]);
+    const char *methodReturnType = invocation.methodSignature.methodReturnType;
+    void *returnValueBytes = alloca(invocation.methodSignature.methodReturnLength);
 
     if (propertyInfo.ivar) {
         object_getIvarValue_safe(object, propertyInfo.ivar, returnValueBytes, propertyInfo.associationType);

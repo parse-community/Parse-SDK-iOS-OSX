@@ -13,7 +13,7 @@
 
 #import "PFDataProvider.h"
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFSession;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -23,14 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) id<PFCommandRunnerProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource;
 + (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider>)dataSource;
 
 ///--------------------------------------
-/// @name Current Session
+#pragma mark - Current Session
 ///--------------------------------------
 
 - (BFTask *)getCurrentSessionAsyncWithSessionToken:(nullable NSString *)sessionToken;

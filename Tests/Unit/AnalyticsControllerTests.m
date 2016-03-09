@@ -60,15 +60,23 @@
     id dataSource = [self dataSourceMockWithCommandResult:nil];
     PFAnalyticsController *controller = [PFAnalyticsController controllerWithDataSource:dataSource];
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
     PFAssertThrowsInvalidArgumentException([controller trackEventAsyncWithName:nil dimensions:nil sessionToken:nil]);
+#pragma clang diagnostic pop
+
     PFAssertThrowsInvalidArgumentException([controller trackEventAsyncWithName:@" " dimensions:nil sessionToken:nil]);
     PFAssertThrowsInvalidArgumentException([controller trackEventAsyncWithName:@"\n" dimensions:nil sessionToken:nil]);
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-literal-conversion"
     PFAssertThrowsInvalidArgumentException([controller trackEventAsyncWithName:@"f"
                                                                     dimensions:@{ @2 : @"five" }
                                                                   sessionToken:nil]);
     PFAssertThrowsInvalidArgumentException([controller trackEventAsyncWithName:@"f"
                                                                     dimensions:@{ @"num" : @5 }
                                                                   sessionToken:nil]);
+#pragma clang diagnostic pop
 }
 
 - (void)testTrackEventParameters {
@@ -103,7 +111,7 @@
     [[controller trackEventAsyncWithName:@"a"
                               dimensions:nil
                             sessionToken:nil] continueWithSuccessBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, @YES);
+        XCTAssertNil(task.result);
         [expectation fulfill];
         return nil;
     }];
@@ -140,7 +148,7 @@
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[controller trackAppOpenedEventAsyncWithRemoteNotificationPayload:nil
                                                           sessionToken:nil] continueWithSuccessBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, @YES);
+        XCTAssertNil(task.result);
         [expectation fulfill];
         return nil;
     }];

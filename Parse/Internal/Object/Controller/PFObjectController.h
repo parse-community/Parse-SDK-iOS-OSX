@@ -12,8 +12,7 @@
 #import "PFDataProvider.h"
 #import "PFObjectControlling.h"
 
-
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFObject;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -23,10 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) id<PFCommandRunnerProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 + (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider>)dataSource;
 

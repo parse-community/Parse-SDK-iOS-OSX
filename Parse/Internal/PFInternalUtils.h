@@ -22,8 +22,6 @@
 + (NSString *)parseServerURLString;
 + (void)setParseServer:(NSString *)server;
 
-+ (NSNumber *)fileSizeOfFileAtPath:(NSString *)filePath error:(NSError **)error;
-
 /**
  Clears system time zone cache, gets the name of the time zone
  and caches it. This method is completely thread-safe.
@@ -53,7 +51,7 @@
  **/
 + (id)traverseObject:(id)object usingBlock:(id (^)(id object))block;
 
-/*!
+/**
  This method will split an array into multiple arrays, each with up to maximum components count.
 
  @param array      Array to split.

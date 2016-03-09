@@ -15,9 +15,10 @@
 #import "PFMacros.h"
 
 @class BFCancellationToken;
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFFileState;
 @class PFFileStagingController;
+@class PFFileDataStream;
 
 @interface PFFileController : NSObject
 
@@ -28,33 +29,34 @@
 @property (nonatomic, copy, readonly) NSString *cacheFilesDirectoryPath;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource;
 
-
 ///--------------------------------------
-/// @name Download
+#pragma mark - Download
 ///--------------------------------------
 
-/*!
+/**
  Downloads a file asynchronously with a given state.
 
  @param fileState         File state to download the file for.
  @param cancellationToken Cancellation token.
  @param progressBlock     Progress block to call (optional).
 
- @returns `BFTask` with a result set to `nil`.
+ @return `BFTask` with a result set to `nil`.
  */
-- (BFTask *)downloadFileAsyncWithState:(PFFileState *)fileState
-                     cancellationToken:(BFCancellationToken *)cancellationToken
-                         progressBlock:(PFProgressBlock)progressBlock;
+- (BFTask<PFVoid> *)downloadFileAsyncWithState:(PFFileState *)fileState
+                             cancellationToken:(BFCancellationToken *)cancellationToken
+                                 progressBlock:(PFProgressBlock)progressBlock;
 
-/*!
+/**
  Downloads a file asynchronously with a given state and yields a stream to the live download of that file.
 
  @param fileState File state to download the file for.
@@ -63,15 +65,15 @@
 
  @return `BFTask` with a result set to live `NSInputStream` of the file.
  */
-- (BFTask *)downloadFileStreamAsyncWithState:(PFFileState *)fileState
-                           cancellationToken:(BFCancellationToken *)cancellationToken
-                               progressBlock:(PFProgressBlock)progressBlock;
+- (BFTask<PFFileDataStream *> *)downloadFileStreamAsyncWithState:(PFFileState *)fileState
+                                               cancellationToken:(BFCancellationToken *)cancellationToken
+                                                   progressBlock:(PFProgressBlock)progressBlock;
 
 ///--------------------------------------
-/// @name Upload
+#pragma mark - Upload
 ///--------------------------------------
 
-/*!
+/**
  Uploads a file asynchronously from file path for a given file state.
 
  @param fileState         File state to upload the file for.
@@ -80,19 +82,19 @@
  @param cancellationToken Cancellation token.
  @param progressBlock     Progress block to call (optional).
 
- @returns `BFTask` with a result set to `PFFileState` of uploaded file.
+ @return `BFTask` with a result set to `PFFileState` of uploaded file.
  */
-- (BFTask *)uploadFileAsyncWithState:(PFFileState *)fileState
-                      sourceFilePath:(NSString *)sourceFilePath
-                        sessionToken:(NSString *)sessionToken
-                   cancellationToken:(BFCancellationToken *)cancellationToken
-                       progressBlock:(PFProgressBlock)progressBlock;
+- (BFTask<PFFileState *> *)uploadFileAsyncWithState:(PFFileState *)fileState
+                                     sourceFilePath:(NSString *)sourceFilePath
+                                       sessionToken:(NSString *)sessionToken
+                                  cancellationToken:(BFCancellationToken *)cancellationToken
+                                      progressBlock:(PFProgressBlock)progressBlock;
 
 ///--------------------------------------
-/// @name Cache
+#pragma mark - Cache
 ///--------------------------------------
 
-- (BFTask *)clearFileCacheAsync;
+- (BFTask<PFVoid> *)clearFileCacheAsync;
 
 - (NSString *)cachedFilePathForFileState:(PFFileState *)fileState;
 

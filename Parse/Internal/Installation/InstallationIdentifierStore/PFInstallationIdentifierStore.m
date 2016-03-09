@@ -37,10 +37,6 @@ static NSString *const PFInstallationIdentifierFileName = @"installationId";
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
@@ -55,7 +51,7 @@ static NSString *const PFInstallationIdentifierFileName = @"installationId";
 #pragma mark - Accessors
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSString *)*)getInstallationIdentifierAsync {
+- (BFTask<NSString *> *)getInstallationIdentifierAsync {
     return [_taskQueue enqueue:^id(BFTask *_) {
         if (!self.installationIdentifier) {
             return [self _loadInstallationIdentifierAsync];
@@ -67,7 +63,7 @@ static NSString *const PFInstallationIdentifierFileName = @"installationId";
 - (BFTask *)clearInstallationIdentifierAsync {
     return [_taskQueue enqueue:^id(BFTask *_) {
         self.installationIdentifier = nil;
-        return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(id<PFPersistenceGroup>)*task) {
+        return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
             id<PFPersistenceGroup> group = task.result;
             return [[[group beginLockedContentAccessAsyncToDataForKey:PFInstallationIdentifierFileName] continueWithSuccessBlock:^id(BFTask *_) {
                 return [group removeDataAsyncForKey:PFInstallationIdentifierFileName];
@@ -89,8 +85,8 @@ static NSString *const PFInstallationIdentifierFileName = @"installationId";
 #pragma mark - Disk Operations
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSString *)*)_loadInstallationIdentifierAsync {
-    return (BFTask PF_GENERIC(NSString *)*)[[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask PF_GENERIC(id<PFPersistenceGroup>)*task) {
+- (BFTask<NSString *> *)_loadInstallationIdentifierAsync {
+    return (BFTask<NSString *> *)[[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
         id<PFPersistenceGroup> group = task.result;
         return [[[[group beginLockedContentAccessAsyncToDataForKey:PFInstallationIdentifierFileName] continueWithSuccessBlock:^id(BFTask *_) {
             return [group getDataAsyncForKey:PFInstallationIdentifierFileName];
@@ -104,10 +100,10 @@ static NSString *const PFInstallationIdentifierFileName = @"installationId";
                     return installationId;
                 }
             }
-            installationId = [[[NSUUID UUID] UUIDString] lowercaseString];
+            installationId = [NSUUID UUID].UUIDString.lowercaseString;
             return [[group setDataAsync:[installationId dataUsingEncoding:NSUTF8StringEncoding]
-                                forKey:PFInstallationIdentifierFileName] continueWithSuccessResult:installationId];
-        }] continueWithBlock:^id(BFTask PF_GENERIC(NSString *)*task) {
+                                 forKey:PFInstallationIdentifierFileName] continueWithSuccessResult:installationId];
+        }] continueWithBlock:^id(BFTask <NSString *>*task) {
             [group endLockedContentAccessAsyncToDataForKey:PFInstallationIdentifierFileName];
             self.installationIdentifier = task.result;
             return self.installationIdentifier;
@@ -115,7 +111,7 @@ static NSString *const PFInstallationIdentifierFileName = @"installationId";
     }];
 }
 
-- (BFTask PF_GENERIC(id<PFPersistenceGroup>)*)_getPersistenceGroupAsync {
+- (BFTask<id<PFPersistenceGroup>> *)_getPersistenceGroupAsync {
     return [self.dataSource.persistenceController getPersistenceGroupAsync];
 }
 

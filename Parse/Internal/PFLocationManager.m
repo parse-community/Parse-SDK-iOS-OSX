@@ -41,7 +41,7 @@
     dispatch_block_t block = ^{
         manager = [[CLLocationManager alloc] init];
     };
-    if ([[NSThread currentThread] isMainThread]) {
+    if ([NSThread currentThread].isMainThread) {
         block();
     } else {
         dispatch_sync(dispatch_get_main_queue(), block);
@@ -133,7 +133,7 @@
 ///--------------------------------------
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation *location = [locations lastObject];
+    CLLocation *location = locations.lastObject;
 
     [manager stopUpdatingLocation];
 

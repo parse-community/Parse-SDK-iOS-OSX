@@ -54,8 +54,8 @@
     if (_parent != parent || ![self.parentClassName isEqualToString:parent.parseClassName] ||
         ![self.parentObjectId isEqualToString:parent.objectId]) {
         _parent = parent;
-        _parentClassName = [[parent parseClassName] copy];
-        _parentObjectId = [[parent objectId] copy];
+        _parentClassName = [parent.parseClassName copy];
+        _parentObjectId = [parent.objectId copy];
     }
 }
 

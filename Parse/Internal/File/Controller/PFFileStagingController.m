@@ -26,10 +26,6 @@ static NSString *const PFFileStagingControllerDirectoryName_ = @"PFFileStaging";
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithDataSource:(id<PFFileManagerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
@@ -60,7 +56,7 @@ static NSString *const PFFileStagingControllerDirectoryName_ = @"PFFileStaging";
 
 - (BFTask *)stageFileAsyncAtPath:(NSString *)filePath name:(NSString *)name uniqueId:(uint64_t)uniqueId {
     return [_taskQueue enqueue:^id(BFTask *task) {
-        return [[PFFileManager createDirectoryIfNeededAsyncAtPath:[self stagedFilesDirectoryPath]] continueWithBlock:^id(BFTask *task) {
+        return [[PFFileManager createDirectoryIfNeededAsyncAtPath:self.stagedFilesDirectoryPath] continueWithBlock:^id(BFTask *task) {
             NSString *destinationPath = [self stagedFilePathForFileWithName:name uniqueId:uniqueId];
             return [[PFFileManager copyItemAsyncAtPath:filePath toPath:destinationPath] continueWithSuccessResult:destinationPath];
         }];
@@ -69,7 +65,7 @@ static NSString *const PFFileStagingControllerDirectoryName_ = @"PFFileStaging";
 
 - (BFTask *)stageFileAsyncWithData:(NSData *)fileData name:(NSString *)name uniqueId:(uint64_t)uniqueId {
     return [_taskQueue enqueue:^id(BFTask *task) {
-        return [[PFFileManager createDirectoryIfNeededAsyncAtPath:[self stagedFilesDirectoryPath]] continueWithBlock:^id(BFTask *task) {
+        return [[PFFileManager createDirectoryIfNeededAsyncAtPath:self.stagedFilesDirectoryPath] continueWithBlock:^id(BFTask *task) {
             NSString *destinationPath = [self stagedFilePathForFileWithName:name uniqueId:uniqueId];
             return [[PFFileManager writeDataAsync:fileData toFile:destinationPath] continueWithSuccessResult:destinationPath];
         }];
@@ -78,7 +74,7 @@ static NSString *const PFFileStagingControllerDirectoryName_ = @"PFFileStaging";
 
 - (NSString *)stagedFilePathForFileWithName:(NSString *)name uniqueId:(uint64_t)uniqueId {
     NSString *fileName = [NSString stringWithFormat:@"%llX_%@", uniqueId, name];
-    return [[self stagedFilesDirectoryPath] stringByAppendingPathComponent:fileName];
+    return [self.stagedFilesDirectoryPath stringByAppendingPathComponent:fileName];
 }
 
 ///--------------------------------------
@@ -87,7 +83,7 @@ static NSString *const PFFileStagingControllerDirectoryName_ = @"PFFileStaging";
 
 - (BFTask *)_clearStagedFilesAsync {
     return [_taskQueue enqueue:^id(BFTask *task) {
-        NSString *stagedFilesDirectoryPath = [self stagedFilesDirectoryPath];
+        NSString *stagedFilesDirectoryPath = self.stagedFilesDirectoryPath;
         return [PFFileManager removeItemAtPathAsync:stagedFilesDirectoryPath withFileLock:NO];
     }];
 }

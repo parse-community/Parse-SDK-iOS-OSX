@@ -30,12 +30,6 @@
     [[self logInInBackground] thenCallBackOnMainThreadAsync:block];
 }
 
-+ (void)logInWithTarget:(id)target selector:(SEL)selector {
-    [self logInWithBlock:^(PFUser *user, NSError *error) {
-        [PFInternalUtils safePerformSelector:selector withTarget:target object:user object:error];
-    }];
-}
-
 ///--------------------------------------
 #pragma mark - Link
 ///--------------------------------------
@@ -86,6 +80,16 @@ static PFAnonymousAuthenticationProvider *authenticationProvider_;
 + (PFUser *)_lazyLogIn {
     PFAnonymousAuthenticationProvider *provider = [self _authenticationProvider];
     return [PFUser logInLazyUserWithAuthType:PFAnonymousUserAuthenticationType authData:provider.authData];
+}
+
+@end
+
+@implementation PFAnonymousUtils (Deprecated)
+
++ (void)logInWithTarget:(nullable id)target selector:(nullable SEL)selector {
+    [self logInWithBlock:^(PFUser *user, NSError *error) {
+        [PFInternalUtils safePerformSelector:selector withTarget:target object:user object:error];
+    }];
 }
 
 @end

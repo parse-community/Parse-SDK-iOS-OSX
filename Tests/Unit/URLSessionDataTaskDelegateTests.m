@@ -37,8 +37,6 @@
     XCTAssertNotNil(delegate);
     XCTAssertEqual(mockedTask, delegate.dataTask);
     XCTAssertNotNil(delegate.resultTask);
-
-    PFAssertThrowsInconsistencyException([PFURLSessionJSONDataTaskDelegate new]);
 }
 
 - (void)testCancel {

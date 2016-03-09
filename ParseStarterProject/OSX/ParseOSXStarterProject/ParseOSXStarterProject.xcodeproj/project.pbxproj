@@ -220,7 +220,7 @@
 		978816B2163F1D6F00C613D2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Parse;
 				TargetAttributes = {
 					81993FCE1B69ABA70077D6B9 = {
@@ -271,7 +271,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ ! -d \"Bolts.framework\" ]]; then\n  cp -R ../../../Vendor/Bolts-ObjC/build/osx/Bolts.framework .\nfi\n\nrm -rf Parse.framework\ncp -R $BUILT_PRODUCTS_DIR/Parse.framework .\n";
+			shellScript = "if [[ ! -d \"Bolts.framework\" ]]; then\n  ../../../Carthage/Checkouts/Bolts-iOS/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\n  cp -R ../../../Carthage/Checkouts/Bolts-iOS/build/osx/Bolts.framework .\nfi\n\nrm -rf Parse.framework\ncp -R $BUILT_PRODUCTS_DIR/Parse.framework .\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -348,6 +348,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -401,6 +402,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.parse.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ParseOSXStarterProject;
 				WRAPPER_EXTENSION = app;
 			};
@@ -416,6 +418,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.parse.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ParseOSXStarterProject;
 				WRAPPER_EXTENSION = app;
 			};

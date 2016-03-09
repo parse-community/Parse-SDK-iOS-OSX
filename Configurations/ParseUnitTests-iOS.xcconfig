@@ -12,13 +12,12 @@
 
 PRODUCT_NAME = ParseUnitTests-iOS
 PRODUCT_MODULE_NAME = ParseUnitTests
+PRODUCT_BUNDLE_IDENTIFIER = com.parse.unit.ios
+
+IPHONEOS_DEPLOYMENT_TARGET = 8.0
 
 INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/ParseUnitTests-iOS-Info.plist
-LIBRARY_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR)
 
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(VENDOR_DIR)/Bolts-ObjC/build/ios
-
-HEADER_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR)
 USER_HEADER_SEARCH_PATHS = $(inherited) $(PARSE_DIR)/Parse/Internal/**
 
 // Swift

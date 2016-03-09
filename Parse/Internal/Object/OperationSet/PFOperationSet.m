@@ -34,7 +34,7 @@ static NSString *const PFOperationSetKeyACL = @"ACL";
 ///--------------------------------------
 
 - (instancetype)init {
-    return [self initWithUUID:[[NSUUID UUID] UUIDString]];
+    return [self initWithUUID:[NSUUID UUID].UUIDString];
 }
 
 - (instancetype)initWithUUID:(NSString *)uuid {
@@ -102,7 +102,7 @@ static NSString *const PFOperationSetKeyACL = @"ACL";
 
     NSNumber *saveEventuallyFlag = mutableData[PFOperationSetKeyIsSaveEventually];
     if (saveEventuallyFlag) {
-        operationSet.saveEventually = [saveEventuallyFlag boolValue];
+        operationSet.saveEventually = saveEventuallyFlag.boolValue;
         [mutableData removeObjectForKey:PFOperationSetKeyIsSaveEventually];
     }
 
@@ -141,7 +141,7 @@ static NSString *const PFOperationSetKeyACL = @"ACL";
 }
 
 - (NSUInteger)count {
-    return [self.dictionary count];
+    return self.dictionary.count;
 }
 
 - (NSEnumerator *)keyEnumerator {

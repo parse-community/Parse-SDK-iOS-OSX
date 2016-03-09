@@ -25,7 +25,7 @@ extern const double EARTH_RADIUS_KILOMETERS;
  */
 - (NSDictionary *)encodeIntoDictionary;
 
-/*!
+/**
  Creates an GeoPoint from its encoded format.
  */
 + (instancetype)geoPointWithDictionary:(NSDictionary *)dictionary;

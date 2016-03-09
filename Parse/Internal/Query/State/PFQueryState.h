@@ -30,7 +30,7 @@
 @property (nonatomic, assign, readonly) NSInteger skip;
 
 ///--------------------------------------
-/// @name Remote + Caching Options
+#pragma mark - Remote + Caching Options
 ///--------------------------------------
 
 @property (nonatomic, assign, readonly) PFCachePolicy cachePolicy;
@@ -39,15 +39,15 @@
 @property (nonatomic, assign, readonly) BOOL trace;
 
 ///--------------------------------------
-/// @name Local Datastore Options
+#pragma mark - Local Datastore Options
 ///--------------------------------------
 
-/*!
+/**
  If ignoreACLs is enabled, we don't check ACLs when querying from LDS. We also don't grab
  `PFUser currentUser` since it's unnecessary when ignoring ACLs.
  */
 @property (nonatomic, assign, readonly) BOOL shouldIgnoreACLs;
-/*!
+/**
  This is currently unused, but is here to allow future querying across objects that are in the
  process of being deleted eventually.
  */
@@ -56,7 +56,7 @@
 @property (nonatomic, copy, readonly) NSString *localDatastorePinName;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)initWithState:(PFQueryState *)state;

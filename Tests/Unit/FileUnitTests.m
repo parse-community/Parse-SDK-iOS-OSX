@@ -140,29 +140,29 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     PFFile *file = [PFFile fileWithData:[NSData data]];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
-    XCTAssertTrue(file.isDataAvailable);
+    XCTAssertTrue(file.dirty);
+    XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithData:[NSData data] contentType:@"content-type"];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
-    XCTAssertTrue(file.isDataAvailable);
+    XCTAssertTrue(file.dirty);
+    XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithName:@"name" data:[NSData data]];
     XCTAssertEqualObjects(file.name, @"name");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
-    XCTAssertTrue(file.isDataAvailable);
+    XCTAssertTrue(file.dirty);
+    XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithName:nil contentsAtPath:[self sampleFilePath]];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
-    XCTAssertTrue(file.isDataAvailable);
+    XCTAssertTrue(file.dirty);
+    XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     NSError *error = nil;
@@ -170,37 +170,23 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     XCTAssertNil(error);
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
-    XCTAssertTrue(file.isDataAvailable);
+    XCTAssertTrue(file.dirty);
+    XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithName:nil data:[NSData data] contentType:@"content-type"];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
-    XCTAssertTrue(file.isDataAvailable);
+    XCTAssertTrue(file.dirty);
+    XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
     file = [PFFile fileWithName:nil data:[NSData data] contentType:@"content-type" error:&error];
     XCTAssertNil(error);
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
-    XCTAssertTrue(file.isDirty);
-    XCTAssertTrue(file.isDataAvailable);
-}
-
-- (void)testConstructorWithTooLargeData {
-    NSMutableData *data = [NSMutableData dataWithLength:(10 * 1048576 + 1)];
-
-    NSError *error = nil;
-    PFFile *file = [PFFile fileWithName:@"testFile"
-                                   data:data
-                            contentType:nil
-                                  error:&error];
-
-    XCTAssertNil(file);
-    XCTAssertEqualObjects(NSCocoaErrorDomain, error.domain);
-    XCTAssertEqual(NSFileReadTooLargeError, error.code);
+    XCTAssertTrue(file.dirty);
+    XCTAssertTrue(file.dataAvailable);
 }
 
 - (void)testConstructorWithNilData {
@@ -286,7 +272,11 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     OCMStub([verifier verifyObject:@YES error:nil]).andDo(^(NSInvocation *invocation) {
         [expectation fulfill];
     });
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [file saveInBackgroundWithTarget:verifier selector:@selector(verifyObject:error:)];
+#pragma clang diagnostic pop
 
     [self waitForTestExpectations];
 }
@@ -417,7 +407,11 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     OCMStub([verifier verifyObject:expectedData error:nil]).andDo(^(NSInvocation *invocation) {
         [expectation fulfill];
     });
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [file getDataInBackgroundWithTarget:verifier selector:@selector(verifyObject:error:)];
+#pragma clang diagnostic pop
 
     wait_next;
     expectation = [self expectationForSelector:@selector(getDataDownloadStreamInBackground)];

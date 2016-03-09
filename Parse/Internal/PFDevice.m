@@ -24,7 +24,7 @@
 #include <dirent.h>
 
 static NSString *PFDeviceSysctlByName(NSString *name) {
-    const char *charName = [name UTF8String];
+    const char *charName = name.UTF8String;
     NSString *string = nil;
     size_t size = 0;
     char *answer = NULL;
@@ -42,7 +42,11 @@ static NSString *PFDeviceSysctlByName(NSString *name) {
         if (sysctlbyname(charName, answer, &size, NULL, 0) != 0) {
             break;
         }
-        string = [[NSString alloc] initWithBytes:answer length:size encoding:NSASCIIStringEncoding];
+
+        // We need to check if the string is null-terminated or not.
+        // Documentation is silent on this fact, but in practice it actually is usually null-terminated.
+        size_t length = size - (answer[size - 1] == '\0');
+        string = [[NSString alloc] initWithBytes:answer length:length encoding:NSASCIIStringEncoding];
     } while(0);
 
     free(answer);
@@ -129,7 +133,7 @@ static NSString *PFDeviceSysctlByName(NSString *name) {
 
 - (BOOL)isJailbroken {
     BOOL jailbroken = NO;
-#if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
+#if TARGET_OS_IOS && !TARGET_IPHONE_SIMULATOR
     DIR *dir = opendir("/");
     if (dir != NULL) {
         jailbroken = YES;

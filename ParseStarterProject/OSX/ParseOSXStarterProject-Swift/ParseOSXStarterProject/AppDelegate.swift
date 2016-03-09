@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let defaultACL: PFACL = PFACL()
         // If you would like all objects to be private by default, remove this line.
-        defaultACL.setPublicReadAccess(true)
+        defaultACL.publicReadAccess = true
 
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
 

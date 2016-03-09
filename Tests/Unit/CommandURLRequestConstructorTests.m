@@ -16,6 +16,7 @@
 #import "PFInstallationIdentifierStore.h"
 #import "PFRESTCommand.h"
 #import "PFTestCase.h"
+#import "Parse_Private.h"
 
 @interface CommandURLRequestConstructorTests : PFTestCase
 
@@ -41,18 +42,18 @@
 
 - (void)testConstructors {
     id providerMock = [self mockedInstallationidentifierStoreProviderWithInstallationIdentifier:nil];
-    PFCommandURLRequestConstructor *constructor = [[PFCommandURLRequestConstructor alloc] initWithDataSource:providerMock];
-    XCTAssertNotNil(constructor);
-    XCTAssertEqual((id)constructor.dataSource, providerMock);
+    NSURL *url = [NSURL URLWithString:@"https://parse.com/123"];
 
-    constructor = [PFCommandURLRequestConstructor constructorWithDataSource:providerMock];
+    PFCommandURLRequestConstructor *constructor = [PFCommandURLRequestConstructor constructorWithDataSource:providerMock serverURL:url];
     XCTAssertNotNil(constructor);
     XCTAssertEqual((id)constructor.dataSource, providerMock);
+    XCTAssertEqual(constructor.serverURL, url);
 }
 
 - (void)testDataURLRequest {
     id providerMock = [self mockedInstallationidentifierStoreProviderWithInstallationIdentifier:@"installationId"];
-    PFCommandURLRequestConstructor *constructor = [[PFCommandURLRequestConstructor alloc] initWithDataSource:providerMock];
+    NSURL *url = [NSURL URLWithString:@"https://parse.com/123"];
+    PFCommandURLRequestConstructor *constructor = [PFCommandURLRequestConstructor constructorWithDataSource:providerMock serverURL:url];
 
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                                      httpMethod:PFHTTPRequestMethodPOST
@@ -61,7 +62,7 @@
     command.additionalRequestHeaders = @{ @"CustomHeader" : @"CustomValue" };
 
     NSURLRequest *request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
-    XCTAssertTrue([[request.URL absoluteString] containsString:@"/1/yolo"]);
+    XCTAssertTrue([[request.URL absoluteString] containsString:@"/123/yolo"]);
     XCTAssertEqualObjects(request.allHTTPHeaderFields, (@{ PFCommandHeaderNameInstallationId : @"installationId",
                                                            PFCommandHeaderNameSessionToken : @"yarr",
                                                            PFHTTPRequestHeaderNameContentType : @"application/json; charset=utf-8",
@@ -72,7 +73,8 @@
 
 - (void)testDataURLRequestMethodOverride {
     id providerMock = [self mockedInstallationidentifierStoreProviderWithInstallationIdentifier:@"installationId"];
-    PFCommandURLRequestConstructor *constructor = [[PFCommandURLRequestConstructor alloc] initWithDataSource:providerMock];
+    NSURL *url = [NSURL URLWithString:@"https://parse.com/123"];
+    PFCommandURLRequestConstructor *constructor = [PFCommandURLRequestConstructor constructorWithDataSource:providerMock serverURL:url];
 
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                                      httpMethod:PFHTTPRequestMethodGET
@@ -105,7 +107,8 @@
 
 - (void)testDataURLRequestBodyEncoding {
     id providerMock = [self mockedInstallationidentifierStoreProviderWithInstallationIdentifier:@"installationId"];
-    PFCommandURLRequestConstructor *constructor = [[PFCommandURLRequestConstructor alloc] initWithDataSource:providerMock];
+    NSURL *url = [NSURL URLWithString:@"https://parse.com/123"];
+    PFCommandURLRequestConstructor *constructor = [PFCommandURLRequestConstructor constructorWithDataSource:providerMock serverURL:url];
 
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                                      httpMethod:PFHTTPRequestMethodPOST
@@ -119,7 +122,8 @@
 
 - (void)testFileUploadURLRequest {
     id providerMock = [self mockedInstallationidentifierStoreProviderWithInstallationIdentifier:@"installationId"];
-    PFCommandURLRequestConstructor *constructor = [[PFCommandURLRequestConstructor alloc] initWithDataSource:providerMock];
+    NSURL *url = [NSURL URLWithString:@"https://parse.com/123"];
+    PFCommandURLRequestConstructor *constructor = [PFCommandURLRequestConstructor constructorWithDataSource:providerMock serverURL:url];
 
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                                      httpMethod:PFHTTPRequestMethodPOST
