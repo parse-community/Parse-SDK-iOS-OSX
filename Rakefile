@@ -13,7 +13,7 @@ require_relative 'Vendor/xctoolchain/Scripts/xctask/build_framework_task'
 script_folder = File.expand_path(File.dirname(__FILE__))
 build_folder = File.join(script_folder, 'build')
 release_folder = File.join(build_folder, 'release')
-bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-iOS')
+bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-ObjC')
 bolts_build_folder = File.join(bolts_folder, 'build')
 
 module Constants

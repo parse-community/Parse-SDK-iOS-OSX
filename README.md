@@ -98,7 +98,7 @@ of patent rights can be found in the PATENTS file in the same directory.
  [releases]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/releases
  [contributing]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/blob/master/CONTRIBUTING.md
 
- [bolts-framework]: https://github.com/BoltsFramework/Bolts-iOS
+ [bolts-framework]: https://github.com/BoltsFramework/Bolts-ObjC
  [ocmock-framework]: http://ocmock.org
 
  [build-status-svg]: https://img.shields.io/travis/ParsePlatform/Parse-SDK-iOS-OSX/master.svg

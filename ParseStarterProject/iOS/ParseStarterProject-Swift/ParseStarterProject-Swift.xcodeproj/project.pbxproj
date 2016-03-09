@@ -219,7 +219,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Remove the compiled version of Bolts.framework as we need a static one\nrm -r $BUILT_PRODUCTS_DIR/Bolts.framework\n\nif [[ ! -d \"Bolts.framework\" ]]; then\n  ../../../Carthage/Checkouts/Bolts-iOS/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\n  cp -R ../../../Carthage/Checkouts/Bolts-iOS/build/ios/Bolts.framework .\nfi\n";
+			shellScript = "# Remove the compiled version of Bolts.framework as we need a static one\nrm -r $BUILT_PRODUCTS_DIR/Bolts.framework\n\nif [[ ! -d \"Bolts.framework\" ]]; then\n  ../../../Carthage/Checkouts/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\n  cp -R ../../../Carthage/Checkouts/Bolts-ObjC/build/ios/Bolts.framework .\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
