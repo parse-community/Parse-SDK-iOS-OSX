@@ -9,7 +9,7 @@
 
 #import <OCMock/OCMock.h>
 
-#import <Bolts/BFTask.h>
+@import Bolts.BFTask;
 
 #import "PFAnalyticsController.h"
 #import "PFUnitTestCase.h"
@@ -101,6 +101,8 @@
 }
 
 - (void)testTrackEventDimensionsValidation {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-literal-conversion"
     PFAssertThrowsInvalidArgumentException([PFAnalytics trackEvent:@"a" dimensions:@{ @2 : @"yolo" }]);
     PFAssertThrowsInvalidArgumentException([PFAnalytics trackEvent:@"a" dimensions:@{ @"yolo" : @2 }]);
     PFAssertThrowsInvalidArgumentException([PFAnalytics trackEventInBackground:@"a"
@@ -109,6 +111,7 @@
     PFAssertThrowsInvalidArgumentException([PFAnalytics trackEventInBackground:@"a"
                                                                     dimensions:@{ @2 : @"yolo" }
                                                                          block:nil]);
+#pragma clang diagnostic pop
 }
 
 - (void)testTrackAppOpenedWithLaunchOptionsViaTask {

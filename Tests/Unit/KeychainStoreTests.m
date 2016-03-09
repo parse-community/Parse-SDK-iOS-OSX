@@ -75,9 +75,9 @@
     NSArray *retrievedComplexObject = self.testStore[@"complexObject"];
     XCTAssertTrue([retrievedComplexObject isKindOfClass:[NSArray class]], @"Complex object should properly retrieve");
 
-    for (NSUInteger i = 0; i < [retrievedComplexObject count]; i++) {
-        id object = [complexObject objectAtIndex:i];
-        id retrievedObject = [retrievedComplexObject objectAtIndex:i];
+    for (NSUInteger i = 0; i < retrievedComplexObject.count; i++) {
+        id object = complexObject[i];
+        id retrievedObject = retrievedComplexObject[i];
 
         XCTAssertTrue([object isEqual:retrievedObject],
                      @"Keychain store should properly retrieve objects of class - %@", [object class]);

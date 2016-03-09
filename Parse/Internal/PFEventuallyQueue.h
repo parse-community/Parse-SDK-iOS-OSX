@@ -9,54 +9,59 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
 #import "PFMacros.h"
 #import "PFNetworkCommand.h"
 
-@class BFTask;
+@class BFTask<__covariant BFGenericType>;
+@class PFEventuallyPin;
 @class PFEventuallyQueueTestHelper;
 @class PFObject;
-@protocol PFCommandRunning;
+@protocol PFCommandRunnerProvider;
 
 extern NSUInteger const PFEventuallyQueueDefaultMaxAttemptsCount;
 extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 
 @interface PFEventuallyQueue : NSObject
 
-@property (nonatomic, strong, readonly) id<PFCommandRunning> commandRunner;
+@property (nonatomic, weak, readonly) id<PFCommandRunnerProvider> dataSource;
 
 @property (nonatomic, assign, readonly) NSUInteger maxAttemptsCount;
 @property (nonatomic, assign, readonly) NSTimeInterval retryInterval;
 
 @property (nonatomic, assign, readonly) NSUInteger commandCount;
 
-/*!
+/**
  Controls whether the queue should monitor network reachability and pause itself when there is no connection.
  Default: `YES`.
  */
-@property (atomic, assign, readonly) BOOL monitorsReachability;
+@property (atomic, assign, readonly) BOOL monitorsReachability PF_WATCH_UNAVAILABLE;
 @property (nonatomic, assign, readonly, getter=isConnected) BOOL connected;
 
 // Gets notifications of various events happening in the command cache, so that tests can be synchronized.
 @property (nonatomic, strong, readonly) PFEventuallyQueueTestHelper *testHelper;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                     maxAttemptsCount:(NSUInteger)attemptsCount
-                        retryInterval:(NSTimeInterval)retryInterval NS_DESIGNATED_INITIALIZER;
++ (instancetype)new NS_UNAVAILABLE;
+
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource
+                  maxAttemptsCount:(NSUInteger)attemptsCount
+                     retryInterval:(NSTimeInterval)retryInterval NS_DESIGNATED_INITIALIZER;
 
 ///--------------------------------------
-/// @name Running Commands
+#pragma mark - Running Commands
 ///--------------------------------------
 
 - (BFTask *)enqueueCommandInBackground:(id<PFNetworkCommand>)command;
 - (BFTask *)enqueueCommandInBackground:(id<PFNetworkCommand>)command withObject:(PFObject *)object;
 
 ///--------------------------------------
-/// @name Controlling Queue
+#pragma mark - Controlling Queue
 ///--------------------------------------
 
 - (void)start NS_REQUIRES_SUPER;

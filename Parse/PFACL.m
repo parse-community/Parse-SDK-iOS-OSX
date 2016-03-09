@@ -21,6 +21,8 @@
 #import "PFRole.h"
 #import "PFUser.h"
 #import "PFUserPrivate.h"
+#import "Parse_Private.h"
+#import "PFCoreManager.h"
 
 static NSString *const PFACLPublicKey_ = @"*";
 static NSString *const PFACLUnresolvedKey_ = @"*unresolved";
@@ -54,27 +56,30 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 ///--------------------------------------
 
 + (instancetype)ACL {
-    return [[PFACL alloc] init];
+    return [[self alloc] init];
 }
 
 + (instancetype)ACLWithUser:(PFUser *)user {
-    PFACL *acl = [PFACL ACL];
+    PFACL *acl = [self ACL];
     [acl setReadAccess:YES forUser:user];
     [acl setWriteAccess:YES forUser:user];
     return acl;
 }
 
 + (instancetype)ACLWithDictionary:(NSDictionary *)dictionary {
-    return [[PFACL alloc] initWithDictionary:dictionary];
+    return [[self alloc] initWithDictionary:dictionary];
 }
 
 + (PFACL *)defaultACL {
-    return [[[PFDefaultACLController defaultController] getDefaultACLAsync] waitForResult:NULL
-                                                                    withMainThreadWarning:NO];
+    PFDefaultACLController *controller = [Parse _currentManager].coreManager.defaultACLController;
+    return [[controller getDefaultACLAsync] waitForResult:NULL withMainThreadWarning:NO];
 }
 
 + (void)setDefaultACL:(PFACL *)acl withAccessForCurrentUser:(BOOL)currentUserAccess {
-    [[PFDefaultACLController defaultController] setDefaultACLAsync:acl withCurrentUserAccess:currentUserAccess];
+    PFDefaultACLController *controller = [Parse _currentManager].coreManager.defaultACLController;
+    // TODO: (nlutsenko) Remove this in favor of assert on `_currentManager`.
+    PFConsistencyAssert(controller, @"Can't set default ACL before Parse is initialized.");
+    [controller setDefaultACLAsync:acl withCurrentUserAccess:currentUserAccess];
 }
 
 - (void)setShared:(BOOL)newShared {
@@ -86,8 +91,9 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 - (BOOL)isShared {
     return self.state.shared;
 }
+
 - (instancetype)createUnsharedCopy {
-    PFACL *newACL = [PFACL ACLWithDictionary:self.state.permissions];
+    PFACL *newACL = [[self class] ACLWithDictionary:self.state.permissions];
     if (unresolvedUser) {
         [newACL setReadAccess:[self getReadAccessForUser:unresolvedUser] forUser:unresolvedUser];
         [newACL setWriteAccess:[self getWriteAccessForUser:unresolvedUser] forUser:unresolvedUser];
@@ -143,15 +149,15 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [self init];
-    if (self) {
-        // We iterate over the input ACL rather than just copying to
-        // permissionsById so that we can ensure it is the right format.
-        [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *userId, NSDictionary *permissions, BOOL *stop) {
-            [permissions enumerateKeysAndObjectsUsingBlock:^(NSString *accessType, id obj, BOOL *stop) {
-                [self setAccess:accessType to:[obj boolValue] forUserId:userId];
-            }];
+    if (!self) return nil;
+
+    // We iterate over the input ACL rather than just copying to
+    // permissionsById so that we can ensure it is the right format.
+    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *userId, NSDictionary *permissions, BOOL *stop) {
+        [permissions enumerateKeysAndObjectsUsingBlock:^(NSString *accessType, id obj, BOOL *stop) {
+            [self setAccess:accessType to:[obj boolValue] forUserId:userId];
         }];
-    }
+    }];
 
     return self;
 }
@@ -269,7 +275,7 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 - (void)setReadAccess:(BOOL)allowed forUser:(PFUser *)user {
     NSString *objectId = user.objectId;
     if (!objectId) {
-        if ([user isLazy]) {
+        if (user._lazy) {
             [self setUnresolvedReadAccess:allowed forUser:user];
             return;
         }
@@ -295,7 +301,7 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 - (void)setWriteAccess:(BOOL)allowed forUser:(PFUser *)user {
     NSString *objectId = user.objectId;
     if (!objectId) {
-        if ([user isLazy]) {
+        if (user._lazy) {
             [self setUnresolvedWriteAccess:allowed forUser:user];
             return;
         }
@@ -342,29 +348,21 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 #pragma mark - NSObject
 ///--------------------------------------
 
-- (BOOL)isEqualToACL:(PFACL *)acl {
-    if (!acl) {
-        return NO;
-    }
-
-    return [self.state isEqual:acl.state] && [PFObjectUtilities isObject:self->unresolvedUser
-                                                           equalToObject:acl->unresolvedUser];
-}
-
 - (BOOL)isEqual:(id)object {
     if (object == self) {
         return YES;
     }
-
     if (![object isKindOfClass:[PFACL class]]) {
         return NO;
     }
 
-    return [self isEqualToACL:object];
+    PFACL *acl = (PFACL *)object;
+    return [self.state isEqual:acl.state] && [PFObjectUtilities isObject:self->unresolvedUser
+                                                           equalToObject:acl->unresolvedUser];
 }
 
 - (NSUInteger)hash {
-    return [self.state hash] ^ [unresolvedUser hash];
+    return self.state.hash ^ unresolvedUser.hash;
 }
 
 ///--------------------------------------

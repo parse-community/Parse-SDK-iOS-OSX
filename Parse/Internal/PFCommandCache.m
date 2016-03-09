@@ -46,37 +46,37 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
 
 @implementation PFCommandCache
 
+@dynamic dataSource;
+
 ///--------------------------------------
 #pragma mark - Init
 ///--------------------------------------
 
-+ (instancetype)newDefaultCommandCacheWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                                        cacheFolderPath:(NSString *)cacheFolderPath {
++ (instancetype)newDefaultCommandCacheWithCommonDataSource:(id<PFCommandRunnerProvider>)dataSource
+                                            coreDataSource:(id<PFObjectLocalIdStoreProvider>)coreDataSource
+                                           cacheFolderPath:(NSString *)cacheFolderPath {
     NSString *diskCachePath = [cacheFolderPath stringByAppendingPathComponent:_PFCommandCacheDiskCacheDirectoryName];
-    diskCachePath = [diskCachePath stringByStandardizingPath];
-    PFCommandCache *cache = [[PFCommandCache alloc] initWithCommandRunner:commandRunner
-                                                         maxAttemptsCount:PFEventuallyQueueDefaultMaxAttemptsCount
-                                                            retryInterval:PFEventuallyQueueDefaultTimeoutRetryInterval
-                                                            diskCachePath:diskCachePath
-                                                            diskCacheSize:PFCommandCacheDefaultDiskCacheSize];
+    diskCachePath = diskCachePath.stringByStandardizingPath;
+    PFCommandCache *cache = [[PFCommandCache alloc] initWithDataSource:dataSource
+                                                        coreDataSource:coreDataSource
+                                                      maxAttemptsCount:PFEventuallyQueueDefaultMaxAttemptsCount
+                                                         retryInterval:PFEventuallyQueueDefaultTimeoutRetryInterval
+                                                         diskCachePath:diskCachePath
+                                                         diskCacheSize:PFCommandCacheDefaultDiskCacheSize];
     [cache start];
     return cache;
 }
 
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                     maxAttemptsCount:(NSUInteger)attemptsCount
-                        retryInterval:(NSTimeInterval)retryInterval {
-    PFNotDesignatedInitializer();
-}
-
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                     maxAttemptsCount:(NSUInteger)attemptsCount
-                        retryInterval:(NSTimeInterval)retryInterval
-                        diskCachePath:(NSString *)diskCachePath
-                        diskCacheSize:(unsigned long long)diskCacheSize {
-    self = [super initWithCommandRunner:commandRunner maxAttemptsCount:attemptsCount retryInterval:retryInterval];
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource
+                    coreDataSource:(id<PFObjectLocalIdStoreProvider>)coreDataSource
+                  maxAttemptsCount:(NSUInteger)attemptsCount
+                     retryInterval:(NSTimeInterval)retryInterval
+                     diskCachePath:(NSString *)diskCachePath
+                     diskCacheSize:(unsigned long long)diskCacheSize {
+    self = [super initWithDataSource:dataSource maxAttemptsCount:attemptsCount retryInterval:retryInterval];
     if (!self) return nil;
 
+    _coreDataSource = coreDataSource;
     _diskCachePath = diskCachePath;
     _diskCacheSize = diskCacheSize;
     _fileCounter = 0;
@@ -96,7 +96,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
     [super removeAllCommands];
 
     NSArray *commandIdentifiers = [self _pendingCommandIdentifiers];
-    NSMutableArray *tasks = [NSMutableArray arrayWithCapacity:[commandIdentifiers count]];
+    NSMutableArray *tasks = [NSMutableArray arrayWithCapacity:commandIdentifiers.count];
 
     for (NSString *identifier in commandIdentifiers) {
         BFTask *task = [self _removeFileForCommandWithIdentifier:identifier];
@@ -127,7 +127,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
             PFCommandCachePrefixString,
             (unsigned long long)[NSDate timeIntervalSinceReferenceDate],
             _fileCounter++,
-            [[NSUUID UUID] UUIDString]];
+            [NSUUID UUID].UUIDString];
 }
 
 - (NSArray *)_pendingCommandIdentifiers {
@@ -151,7 +151,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
 
     if (innerError || !jsonData) {
         NSString *message = [NSString stringWithFormat:@"Failed to read command from cache. %@",
-                             innerError ? [innerError localizedDescription] : @""];
+                             innerError ? innerError.localizedDescription : @""];
         innerError = [PFErrorUtilities errorWithCode:kPFErrorInternalServer
                                              message:message];
         if (error) {
@@ -165,7 +165,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
                                                       error:&innerError];
     if (innerError) {
         NSString *message = [NSString stringWithFormat:@"Failed to deserialiaze command from cache. %@",
-                             [innerError localizedDescription]];
+                             innerError.localizedDescription];
         innerError = [PFErrorUtilities errorWithCode:kPFErrorInternalServer
                                              message:message];
     } else {
@@ -205,7 +205,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
         if (dictionaryResult != nil) {
             NSString *objectId = dictionaryResult[@"objectId"];
             if (objectId) {
-                [[Parse _currentManager].coreManager.objectLocalIdStore setObjectId:objectId forLocalId:command.localId];
+                [self.coreDataSource.objectLocalIdStore setObjectId:objectId forLocalId:command.localId];
             }
         }
     }
@@ -227,17 +227,26 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         NSUInteger size = requiredSize;
 
-        NSMutableDictionary *commandSizes = [NSMutableDictionary dictionary];
+        NSMutableDictionary<NSString *, NSNumber *> *commandSizes = [NSMutableDictionary dictionary];
 
         [[PFMultiProcessFileLockController sharedController] beginLockedContentAccessForFileAtPath:self.diskCachePath];
-        NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtPath:self.diskCachePath];
 
-        NSString *identifier = nil;
-        while ((identifier = [enumerator nextObject])) {
-            NSNumber *fileSize = [enumerator fileAttributes][NSFileSize];
-            if (fileSize) {
-                commandSizes[identifier] = fileSize;
-                size += [fileSize unsignedIntegerValue];
+        NSDictionary *directoryAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:self.diskCachePath error:nil];
+        if ([directoryAttributes[NSFileSize] unsignedLongLongValue] > self.diskCacheSize) {
+            NSDirectoryEnumerator<NSURL *> *enumerator = [[NSFileManager defaultManager] enumeratorAtURL:[NSURL fileURLWithPath:self.diskCachePath]
+                                                                              includingPropertiesForKeys:@[ NSURLFileSizeKey ]
+                                                                                                 options:NSDirectoryEnumerationSkipsSubdirectoryDescendants
+                                                                                            errorHandler:nil];
+            NSURL *fileURL = nil;
+            while ((fileURL = [enumerator nextObject])) {
+                NSNumber *fileSize = nil;
+                if (![fileURL getResourceValue:&fileSize forKey:NSURLFileSizeKey error:nil]) {
+                    continue;
+                }
+                if (fileSize) {
+                    commandSizes[fileURL.path.lastPathComponent] = fileSize;
+                    size += fileSize.unsignedIntegerValue;
+                }
             }
         }
 
@@ -245,7 +254,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
 
         if (size > self.diskCacheSize) {
             // Get identifiers and sort them to remove oldest commands first
-            NSArray *identifiers = [[commandSizes allKeys] sortedArrayUsingSelector:@selector(compare:)];
+            NSArray<NSString *> *identifiers = [commandSizes.allKeys sortedArrayUsingSelector:@selector(compare:)];
             for (NSString *identifier in identifiers) @autoreleasepool {
                 [self _removeFileForCommandWithIdentifier:identifier];
                 size -= [commandSizes[identifier] unsignedIntegerValue];
@@ -257,7 +266,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
             }
         }
 
-        return [BFTask taskWithResult:nil];
+        return nil;
     }];
 }
 
@@ -284,7 +293,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
         NSData *data = [NSJSONSerialization dataWithJSONObject:[command dictionaryRepresentation]
                                                        options:0
                                                          error:&error];
-        NSUInteger commandSize = [data length];
+        NSUInteger commandSize = data.length;
         if (commandSize > self.diskCacheSize) {
             error = [PFErrorUtilities errorWithCode:kPFErrorInternalServer
                                             message:@"Failed to run command, because it's too big."];

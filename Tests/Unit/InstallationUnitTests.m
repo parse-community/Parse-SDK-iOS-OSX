@@ -27,20 +27,18 @@
     PFInstallation *installation = [PFInstallation currentInstallation];
     installation.deviceToken = @"11433856eed2f1285fb3aa11136718c1198ed5647875096952c66bf8cb976306";
 
-    PFAssertThrowsInvalidArgumentException(installation[@"deviceType"] = @"android",
-                                           @"Should throw an exception for trying to change deviceType.");
-    PFAssertThrowsInvalidArgumentException(installation[@"installationId"] = @"a"
-                                           @"Should throw an exception for trying to change installationId.");
+    PFAssertThrowsInvalidArgumentException(installation[@"deviceType"] = @"android");
+    PFAssertThrowsInvalidArgumentException(installation[@"installationId"] = @"a");
+    PFAssertThrowsInvalidArgumentException(installation[@"localeIdentifier"] = @"a");
 }
 
 - (void)testInstallationImmutableFieldsCannotBeDeleted {
     PFInstallation *installation = [PFInstallation currentInstallation];
     installation.deviceToken = @"11433856eed2f1285fb3aa11136718c1198ed5647875096952c66bf8cb976306";
 
-    PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"deviceType"],
-                                           @"Should throw an exception for trying to delete deviceType.");
-    PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"installationId"],
-                                           @"Should throw an exception for trying to delete installationId.");
+    PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"deviceType"]);
+    PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"installationId"]);
+    PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"localeIdentifier"]);
 }
 
 @end

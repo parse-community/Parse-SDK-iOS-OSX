@@ -15,7 +15,7 @@
 //TODO: (nlutsenko) Re-consider using singleton here.
 + (instancetype)sharedController;
 
-/*!
+/**
  Increments the content access counter by 1.
  If the count was 0 - this will try to acquire the file lock first.
 
@@ -23,7 +23,7 @@
  */
 - (void)beginLockedContentAccessForFileAtPath:(NSString *)filePath;
 
-/*!
+/**
  Decrements the content access counter by 1.
  If the count reaches 0 - the lock is going to be released.
 

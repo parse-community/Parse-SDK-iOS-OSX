@@ -9,14 +9,16 @@
 
 #import <Foundation/Foundation.h>
 
-@class BFTask;
+#import <Parse/PFConstants.h>
+
+@class BFTask<__covariant BFGenericType>;
 
 @interface PFTaskQueue : NSObject
 
 // The lock for this task queue.
 @property (nonatomic, strong, readonly) NSObject *mutex;
 
-/*!
+/**
  Enqueues a task created by the given block. Then block is given a task to
  await once state is snapshotted (e.g. after capturing session tokens at the
  time of the save call. Awaiting this task will wait for the created task's

@@ -11,10 +11,12 @@
 #include "Shared/Product/Framework.xcconfig"
 
 PRODUCT_NAME = Parse
+PRODUCT_BUNDLE_IDENTIFIER = com.parse.ios
+APPLICATION_EXTENSION_API_ONLY = YES
 
 MACH_O_TYPE = staticlib
 DEFINES_MODULE = YES
 
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR) $(VENDOR_DIR)/Bolts-ObjC/build/ios/
+INFOPLIST_FILE = $(PROJECT_DIR)/Parse/Resources/Parse-iOS.Info.plist
 
-INFOPLIST_FILE = $(PARSE_DIR)/Parse/Resources/Framework.plist
+OTHER_CFLAGS[sdk=iphoneos9.*] = $(inherited) -fembed-bitcode

@@ -13,13 +13,7 @@
 
 #import "PFConstants.h"
 #import "PFGeoPoint.h"
-
-#if !TARGET_OS_IPHONE
-
-// To let us compile for OSX.
-@compatibility_alias UIApplication NSApplication;
-
-#endif
+#import "PFApplication.h"
 
 @interface PFLocationManager () <CLLocationManagerDelegate>
 
@@ -47,7 +41,7 @@
     dispatch_block_t block = ^{
         manager = [[CLLocationManager alloc] init];
     };
-    if ([[NSThread currentThread] isMainThread]) {
+    if ([NSThread currentThread].isMainThread) {
         block();
     } else {
         dispatch_sync(dispatch_get_main_queue(), block);
@@ -66,7 +60,7 @@
 
 - (instancetype)initWithSystemLocationManager:(CLLocationManager *)manager {
     return [self initWithSystemLocationManager:manager
-                                   application:[UIApplication sharedApplication]
+                                   application:[PFApplication currentApplication].systemApplication
                                         bundle:[NSBundle mainBundle]];
 }
 
@@ -102,9 +96,25 @@
         [self.blockSet addObject:[handler copy]];
     }
 
-#if TARGET_OS_IPHONE
+    //
+    // Abandon hope all ye who enter here.
+    // Apparently, the CLLocationManager API is different for iOS/OSX/watchOS/tvOS up to the point,
+    // where encapsulating pieces together just makes much more sense
+    // than hard to human-parse compiled out pieces of the code.
+    // This looks duplicated, slightly, but very much intentional.
+    //
+#if TARGET_OS_WATCH
+    if ([self.bundle objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"] != nil) {
+        [self.locationManager requestWhenInUseAuthorization];
+    } else {
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    [self.locationManager requestLocation];
+#elif TARGET_OS_TV
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager requestLocation];
+#elif TARGET_OS_IOS
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
-
         if (self.application.applicationState != UIApplicationStateBackground &&
             [self.bundle objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"] != nil) {
             [self.locationManager requestWhenInUseAuthorization];
@@ -112,21 +122,19 @@
             [self.locationManager requestAlwaysAuthorization];
         }
     }
-#endif
-
     [self.locationManager startUpdatingLocation];
+#elif PF_TARGET_OS_OSX
+    [self.locationManager startUpdatingLocation];
+#endif
 }
 
 ///--------------------------------------
 #pragma mark - CLLocationManagerDelegate
 ///--------------------------------------
 
-// TODO: (nlutsenko) Remove usage of this method, when we drop support for OSX 10.8
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-implementations"
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation {
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *location = locations.lastObject;
+
     [manager stopUpdatingLocation];
 
     NSMutableSet *callbacks = [NSMutableSet setWithCapacity:1];
@@ -134,21 +142,9 @@
         [callbacks setSet:self.blockSet];
         [self.blockSet removeAllObjects];
     }
-    for (void(^block)(CLLocation *, NSError *) in callbacks) {
-        block(newLocation, nil);
+    for (PFLocationManagerLocationUpdateBlock block in callbacks) {
+        block(location, nil);
     }
-}
-#pragma clang diagnostic pop
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation *location = [locations lastObject];
-    CLLocation *oldLocation = [locations count] > 1 ? [locations objectAtIndex:[locations count] - 2] : nil;
-
-    // TODO: (nlutsenko) Remove usage of this method, when we drop support for OSX 10.8 (didUpdateLocations is 10.9+)
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [self locationManager:manager didUpdateToLocation:location fromLocation:oldLocation];
-#pragma clang diagnostic pop
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {

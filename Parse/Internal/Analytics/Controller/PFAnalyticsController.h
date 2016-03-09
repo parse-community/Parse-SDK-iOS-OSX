@@ -9,50 +9,60 @@
 
 #import <Foundation/Foundation.h>
 
-@class BFTask;
-@class PFEventuallyQueue;
+#import <Parse/PFConstants.h>
+
+#import "PFDataProvider.h"
+#import "PFMacros.h"
+
+@class BFTask<__covariant BFGenericType>;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface PFAnalyticsController : NSObject
 
-@property (nonatomic, strong, readonly) PFEventuallyQueue *eventuallyQueue;
+@property (nonatomic, weak, readonly) id<PFEventuallyQueueProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithEventuallyQueue:(PFEventuallyQueue *)eventuallyQueue NS_DESIGNATED_INITIALIZER;
++ (instancetype)new NS_UNAVAILABLE;
 
-+ (instancetype)controllerWithEventuallyQueue:(PFEventuallyQueue *)eventuallyQueue;
+- (instancetype)initWithDataSource:(id<PFEventuallyQueueProvider>)dataSource NS_DESIGNATED_INITIALIZER;
+
++ (instancetype)controllerWithDataSource:(id<PFEventuallyQueueProvider>)dataSource;
 
 ///--------------------------------------
-/// @name Track Event
+#pragma mark - Track Event
 ///--------------------------------------
 
-/*!
- @abstract Tracks this application being launched. If this happened as the result of the
+/**
+ Tracks this application being launched. If this happened as the result of the
  user opening a push notification, this method sends along information to
  correlate this open with that push.
 
  @param payload      The Remote Notification payload.
  @param sessionToken Current user session token.
 
- @returns `BFTask` with result set to `@YES`.
+ @return `BFTask` with result set to `@YES`.
  */
-- (BFTask *)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(NSDictionary *)payload
-                                                     sessionToken:(NSString *)sessionToken;
+- (BFTask<PFVoid> *)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(nullable NSDictionary *)payload
+                                                             sessionToken:(nullable NSString *)sessionToken;
 
-/*!
- @abstract Tracks the occurrence of a custom event with additional dimensions.
+/**
+ Tracks the occurrence of a custom event with additional dimensions.
 
  @param name         Event name.
  @param dimensions   `NSDictionary` of information by which to segment this event.
  @param sessionToken Current user session token.
 
- @returns `BFTask` with result set to `@YES`.
+ @return `BFTask` with result set to `@YES`.
  */
-- (BFTask *)trackEventAsyncWithName:(NSString *)name
-                         dimensions:(NSDictionary *)dimensions
-                       sessionToken:(NSString *)sessionToken;
+- (BFTask<PFVoid> *)trackEventAsyncWithName:(NSString *)name
+                                 dimensions:(nullable NSDictionary<NSString *, NSString *> *)dimensions
+                               sessionToken:(nullable NSString *)sessionToken;
 
 @end
+
+NS_ASSUME_NONNULL_END

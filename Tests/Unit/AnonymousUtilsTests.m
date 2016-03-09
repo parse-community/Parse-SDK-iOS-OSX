@@ -15,6 +15,7 @@
 #import "PFUnitTestCase.h"
 #import "PFUserAuthenticationController.h"
 #import "Parse_Private.h"
+#import "PFAnonymousAuthenticationProvider.h"
 
 @protocol AnonymousUtilsObserver <NSObject>
 
@@ -27,6 +28,21 @@
 @end
 
 @implementation AnonymousUtilsTests
+
+- (void)setUp {
+    [super setUp];
+
+    // Put this into setUp to make sure our state is fully clean.
+    [PFAnonymousUtils _clearAuthenticationProvider];
+}
+
+- (void)tearDown {
+    // Clear the manager first - to make sure we don't have any mocks set.
+    [Parse _clearCurrentManager];
+    [PFAnonymousUtils _clearAuthenticationProvider];
+
+    [super tearDown];
+}
 
 ///--------------------------------------
 #pragma mark - Helpers
@@ -44,18 +60,14 @@
 
 - (void)testInitialize {
     id authController = [self mockedUserAuthenticationController];
+    OCMExpect([authController registerAuthenticationDelegate:[OCMArg isNotNil] forAuthType:@"anonymous"]);
 
-    __block id provider = nil;
-    OCMExpect([authController authenticationProviderForAuthType:@"anonymous"]);
-    OCMExpect([authController registerAuthenticationProvider:[OCMArg checkWithBlock:^BOOL(id obj) {
-        provider = obj;
-        return [[[obj class] authType] isEqualToString:@"anonymous"];
-    }]]);
+    PFAnonymousAuthenticationProvider *provider = [PFAnonymousUtils _authenticationProvider];
+    XCTAssertNotNil(provider);
+    XCTAssertEqual(provider, [PFAnonymousUtils _authenticationProvider]);
 
     provider = [PFAnonymousUtils _authenticationProvider];
     XCTAssertNotNil(provider);
-
-    OCMStub([authController authenticationProviderForAuthType:@"anonymous"]).andReturn(provider);
     XCTAssertEqual(provider, [PFAnonymousUtils _authenticationProvider]);
 
     OCMVerifyAll(authController);
@@ -63,13 +75,11 @@
 
 - (void)testLogInViaTask {
     id authController = [self mockedUserAuthenticationController];
-    OCMExpect([authController authenticationProviderForAuthType:@"anonymous"]).andReturn(nil);
-    OCMExpect([authController registerAuthenticationProvider:[OCMArg checkWithBlock:^BOOL(id obj) {
-        return [[[obj class] authType] isEqualToString:@"anonymous"];
-    }]]);
+    OCMStub([authController authenticationDelegateForAuthType:@"anonymous"]).andReturn([[PFAnonymousAuthenticationProvider alloc] init]);
+    OCMExpect([authController registerAuthenticationDelegate:[OCMArg isNotNil] forAuthType:@"anonymous"]);
 
     PFUser *user = [PFUser user];
-    [OCMExpect([authController logInUserAsyncWithAuthType:@"anonymous"]) andReturn:[BFTask taskWithResult:user]];
+    OCMExpect([authController logInUserAsyncWithAuthType:@"anonymous" authData:[OCMArg isNotNil]]).andReturn([BFTask taskWithResult:user]);
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[PFAnonymousUtils logInInBackground] continueWithSuccessBlock:^id(BFTask *task) {
@@ -83,13 +93,11 @@
 
 - (void)testLogInViaBlock {
     id authController = [self mockedUserAuthenticationController];
-    OCMExpect([authController authenticationProviderForAuthType:@"anonymous"]).andReturn(nil);
-    OCMExpect([authController registerAuthenticationProvider:[OCMArg checkWithBlock:^BOOL(id obj) {
-        return [[[obj class] authType] isEqualToString:@"anonymous"];
-    }]]);
+    OCMStub([authController authenticationDelegateForAuthType:@"anonymous"]).andReturn([[PFAnonymousAuthenticationProvider alloc] init]);
+    OCMExpect([authController registerAuthenticationDelegate:[OCMArg isNotNil] forAuthType:@"anonymous"]);
 
     PFUser *user = [PFUser user];
-    [OCMExpect([authController logInUserAsyncWithAuthType:@"anonymous"]) andReturn:[BFTask taskWithResult:user]];
+    OCMExpect([authController logInUserAsyncWithAuthType:@"anonymous" authData:[OCMArg isNotNil]]).andReturn([BFTask taskWithResult:user]);
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [PFAnonymousUtils logInWithBlock:^(PFUser *resultUser, NSError *error) {
@@ -103,13 +111,11 @@
 
 - (void)testLogInViaTargetSelector {
     id authController = [self mockedUserAuthenticationController];
-    OCMExpect([authController authenticationProviderForAuthType:@"anonymous"]).andReturn(nil);
-    OCMExpect([authController registerAuthenticationProvider:[OCMArg checkWithBlock:^BOOL(id obj) {
-        return [[[obj class] authType] isEqualToString:@"anonymous"];
-    }]]);
+    OCMStub([authController authenticationDelegateForAuthType:@"anonymous"]).andReturn([[PFAnonymousAuthenticationProvider alloc] init]);
+    OCMExpect([authController registerAuthenticationDelegate:[OCMArg isNotNil] forAuthType:@"anonymous"]);
 
     PFUser *user = [PFUser user];
-    [OCMExpect([authController logInUserAsyncWithAuthType:@"anonymous"]) andReturn:[BFTask taskWithResult:user]];
+    OCMExpect([authController logInUserAsyncWithAuthType:@"anonymous" authData:[OCMArg isNotNil]]).andReturn([BFTask taskWithResult:user]);
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
 
@@ -117,7 +123,12 @@
     OCMExpect([observer callbackWithUser:user error:nil]).andDo(^(NSInvocation *invocation) {
         [expectation fulfill];
     });
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFAnonymousUtils logInWithTarget:observer selector:@selector(callbackWithUser:error:)];
+#pragma clang diagnostic pop
+
     [self waitForTestExpectations];
     OCMVerifyAll(authController);
 }

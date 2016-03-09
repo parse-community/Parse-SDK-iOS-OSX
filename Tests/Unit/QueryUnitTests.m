@@ -9,7 +9,7 @@
 
 #import <OCMock/OCMock.h>
 
-#import <Bolts/BFTask.h>
+@import Bolts.BFTask;
 
 #import "PFCoreManager.h"
 #import "PFMacros.h"
@@ -695,7 +695,11 @@
         [expectation fulfill];
     });
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [query getObjectInBackgroundWithId:@"yarr" target:verifier selector:@selector(verifyObject:error:)];
+#pragma clang diagnostic pop
+
     [self waitForTestExpectations];
 }
 
@@ -847,7 +851,11 @@
         [expectation fulfill];
     });
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [query findObjectsInBackgroundWithTarget:verifier selector:@selector(verifyArray:error:)];
+#pragma clang diagnostic pop
+
     [self waitForTestExpectations];
 }
 
@@ -1050,7 +1058,11 @@
         [expectation fulfill];
     });
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [query getFirstObjectInBackgroundWithTarget:verifier selector:@selector(verifyObject:error:)];
+#pragma clang diagnostic pop
+
     [self waitForTestExpectations];
 }
 
@@ -1160,7 +1172,11 @@
         [expectation fulfill];
     });
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [query countObjectsInBackgroundWithTarget:verifier selector:@selector(verifyNumber:error:)];
+#pragma clang diagnostic pop
+
     [self waitForTestExpectations];
 }
 
@@ -1215,6 +1231,23 @@
     [query ignoreACLs];
 
     XCTAssertTrue(query.state.shouldIgnoreACLs);
+}
+
+- (void)testIgnoreACLsOnNetworkQuery {
+    [[Parse _currentManager] clearEventuallyQueue];
+    [Parse _clearCurrentManager];
+    [Parse enableLocalDatastore];
+    [Parse setApplicationId:@"a" clientKey:@"b"];
+
+    PFQuery *query = [[PFQuery queryWithClassName:@"TestObject"] ignoreACLs];
+    PFAssertThrowsInconsistencyException([query findObjectsInBackground]);
+    PFAssertThrowsInconsistencyException([query findObjectsInBackgroundWithBlock:nil]);
+    PFAssertThrowsInconsistencyException([query countObjectsInBackground]);
+    PFAssertThrowsInconsistencyException([query countObjectsInBackgroundWithBlock:nil]);
+    PFAssertThrowsInconsistencyException([query getObjectInBackgroundWithId:@"1234"]);
+    PFAssertThrowsInconsistencyException([query getObjectInBackgroundWithId:@"1234" block:nil]);
+    PFAssertThrowsInconsistencyException([query getFirstObjectInBackground]);
+    PFAssertThrowsInconsistencyException([query getFirstObjectInBackgroundWithBlock:nil]);
 }
 
 #pragma mark Copying

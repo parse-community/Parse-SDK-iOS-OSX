@@ -12,11 +12,7 @@
 #import <Bolts/BFExecutor.h>
 #import <Bolts/BFTaskCompletionSource.h>
 
-#if TARGET_OS_IPHONE
-#import <Parse/PFLogging.h>
-#else
-#import <ParseOSX/PFLogging.h>
-#endif
+#import "PFLogging.h"
 
 @implementation BFExecutor (Background)
 
@@ -33,28 +29,36 @@
 
 @implementation BFTask (Private)
 
-- (instancetype)continueAsyncWithBlock:(BFContinuationBlock)block {
+- (BFTask *)continueAsyncWithBlock:(BFContinuationBlock)block {
     return [self continueWithExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:block];
 }
 
-- (instancetype)continueAsyncWithSuccessBlock:(BFContinuationBlock)block {
+- (BFTask *)continueAsyncWithSuccessBlock:(BFContinuationBlock)block {
     return [self continueWithExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withSuccessBlock:block];
 }
 
-- (instancetype)continueWithResult:(id)result {
+- (BFTask *)continueImmediatelyWithBlock:(BFContinuationBlock)block {
+    return [self continueWithExecutor:[BFExecutor immediateExecutor] withBlock:block];
+}
+
+- (BFTask *)continueImmediatelyWithSuccessBlock:(BFContinuationBlock)block {
+    return [self continueWithExecutor:[BFExecutor immediateExecutor] withSuccessBlock:block];
+}
+
+- (BFTask *)continueWithResult:(id)result {
     return [self continueWithBlock:^id(BFTask *task) {
         return result;
     }];
 }
 
-- (instancetype)continueWithSuccessResult:(id)result {
+- (BFTask *)continueWithSuccessResult:(id)result {
     return [self continueWithSuccessBlock:^id(BFTask *task) {
         return result;
     }];
 }
 
-- (instancetype)continueWithMainThreadResultBlock:(PFIdResultBlock)resultBlock
-                               executeIfCancelled:(BOOL)executeIfCancelled {
+- (BFTask *)continueWithMainThreadResultBlock:(PFIdResultBlock)resultBlock
+                           executeIfCancelled:(BOOL)executeIfCancelled {
     if (!resultBlock) {
         return self;
     }
@@ -80,8 +84,8 @@
                             }];
 }
 
-- (instancetype)continueWithMainThreadBooleanResultBlock:(PFBooleanResultBlock)resultBlock
-                                      executeIfCancelled:(BOOL)executeIfCancelled {
+- (BFTask *)continueWithMainThreadBooleanResultBlock:(PFBooleanResultBlock)resultBlock
+                                  executeIfCancelled:(BOOL)executeIfCancelled {
     return [self continueWithMainThreadResultBlock:^(id object, NSError *error) {
         resultBlock([object boolValue], error);
     } executeIfCancelled:executeIfCancelled];

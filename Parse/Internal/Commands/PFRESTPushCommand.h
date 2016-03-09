@@ -9,11 +9,16 @@
 
 #import "PFRESTCommand.h"
 
+#import <Parse/PFConstants.h>
+
+PF_TV_UNAVAILABLE_WARNING
+PF_WATCH_UNAVAILABLE_WARNING
+
 @class PFPushState;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PFRESTPushCommand : PFRESTCommand
+PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFRESTPushCommand : PFRESTCommand
 
 + (instancetype)sendPushCommandWithPushState:(PFPushState *)state
                                 sessionToken:(nullable NSString *)sessionToken;

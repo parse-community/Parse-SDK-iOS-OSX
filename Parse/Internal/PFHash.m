@@ -49,12 +49,15 @@ extern NSUInteger PFLongHash(unsigned long long l) {
 extern NSString *PFMD5HashFromData(NSData *data) {
     unsigned char md[CC_MD5_DIGEST_LENGTH];
 
-    __block CC_MD5_CTX _ctx;
-    CC_MD5_Init(&_ctx);
+    // NOTE: `__block` variables of a struct type seem to be bugged. The compiler emits instructions to read
+    // from the stack past where they're supposed to exist. This fixes that, by only using a traditional pointer.
+    CC_MD5_CTX ctx_val = { 0 };
+    CC_MD5_CTX *ctx_ptr = &ctx_val;
+    CC_MD5_Init(ctx_ptr);
     [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
-        CC_MD5_Update(&_ctx , bytes, (CC_LONG)byteRange.length);
+        CC_MD5_Update(ctx_ptr , bytes, (CC_LONG)byteRange.length);
     }];
-    CC_MD5_Final(md, &_ctx);
+    CC_MD5_Final(md, ctx_ptr);
 
     NSString *string = [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
                         md[0], md[1],

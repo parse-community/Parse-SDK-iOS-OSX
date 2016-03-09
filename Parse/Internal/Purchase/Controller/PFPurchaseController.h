@@ -11,17 +11,24 @@
 
 #import <Parse/PFConstants.h>
 
-@class BFTask;
+#import "PFDataProvider.h"
+
+PF_OSX_UNAVAILABLE_WARNING
+PF_WATCH_UNAVAILABLE_WARNING
+
+@class BFTask<__covariant BFGenericType>;
 @class PFFileManager;
 @class PFPaymentTransactionObserver;
+@class PFProductsRequestResult;
+
 @protocol PFCommandRunning;
 @class SKPaymentQueue;
 @class SKPaymentTransaction;
 
-@interface PFPurchaseController : NSObject
+PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchaseController : NSObject
 
-@property (nonatomic, strong, readonly) id<PFCommandRunning> commandRunner;
-@property (nonatomic, strong, readonly) PFFileManager *fileManager;
+@property (nonatomic, weak, readonly) id<PFCommandRunnerProvider, PFFileManagerProvider> dataSource;
+@property (nonatomic, strong, readonly) NSBundle *bundle;
 
 @property (nonatomic, strong) SKPaymentQueue *paymentQueue;
 @property (nonatomic, strong, readonly) PFPaymentTransactionObserver *transactionObserver;
@@ -29,18 +36,18 @@
 @property (nonatomic, assign) Class productsRequestClass;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                          fileManager:(PFFileManager *)fileManager NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource
+                            bundle:(NSBundle *)bundle NS_DESIGNATED_INITIALIZER;
 
-+ (instancetype)controllerWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                                fileManager:(PFFileManager *)fileManager;
++ (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource
+                                  bundle:(NSBundle *)bundle;
 
 ///--------------------------------------
-/// @name Products
+#pragma mark - Products
 ///--------------------------------------
 
 - (BFTask *)findProductsAsyncWithIdentifiers:(NSSet *)productIdentifiers;

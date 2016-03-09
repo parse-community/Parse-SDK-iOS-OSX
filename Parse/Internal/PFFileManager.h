@@ -9,8 +9,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
+#import "PFMacros.h"
+
 @class BFExecutor;
-@class BFTask;
+@class BFTask<__covariant BFGenericType>;
 
 typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
     PFFileManagerOptionSkipBackup = 1 << 0,
@@ -19,7 +23,7 @@ typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
 @interface PFFileManager : NSObject
 
 ///--------------------------------------
-/// @name Class
+#pragma mark - Class
 ///--------------------------------------
 
 + (BOOL)isApplicationGroupContainerReachableForGroupIdentifier:(NSString *)applicationGroup;
@@ -33,6 +37,7 @@ typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
 + (BFTask *)writeDataAsync:(NSData *)data toFile:(NSString *)filePath;
 
 + (BFTask *)copyItemAsyncAtPath:(NSString *)fromPath toPath:(NSString *)toPath;
++ (BFTask *)moveItemAsyncAtPath:(NSString *)fromPath toPath:(NSString *)toPath;
 
 + (BFTask *)moveContentsOfDirectoryAsyncAtPath:(NSString *)fromPath
                              toDirectoryAtPath:(NSString *)toPath
@@ -43,14 +48,16 @@ typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
 + (BFTask *)removeDirectoryContentsAsyncAtPath:(NSString *)path;
 
 ///--------------------------------------
-/// @name Instance
+#pragma mark - Instance
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithApplicationIdentifier:(NSString *)applicationIdentifier
                    applicationGroupIdentifier:(NSString *)applicationGroupIdentifier NS_DESIGNATED_INITIALIZER;
 
-/*!
+/**
  Returns <Application Home>/Library/Private Documents/Parse
  for non-user generated data that shouldn't be deleted by iOS, such as "offline data".
 
@@ -58,9 +65,8 @@ typedef NS_OPTIONS(uint8_t, PFFileManagerOptions) {
  */
 - (NSString *)parseDefaultDataDirectoryPath;
 - (NSString *)parseLocalSandboxDataDirectoryPath;
-- (NSString *)parseDataDirectoryPath_DEPRECATED;
 
-/*!
+/**
  The path including directories that we save data to for a given filename.
  If the file isn't found in the new "Private Documents" location, but is in the old "Documents" location,
  moves it and returns the new location.

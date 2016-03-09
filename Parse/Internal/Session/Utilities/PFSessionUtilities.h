@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFSessionUtilities : NSObject
 
 ///--------------------------------------
-/// @name Session Token
+#pragma mark - Session Token
 ///--------------------------------------
 
 + (BOOL)isSessionTokenRevocable:(nullable NSString *)sessionToken;

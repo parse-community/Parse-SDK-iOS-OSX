@@ -9,8 +9,8 @@
 
 #import <OCMock/OCMock.h>
 
-#import <Bolts/BFCancellationTokenSource.h>
-#import <Bolts/BFTask.h>
+@import Bolts.BFCancellationTokenSource;
+@import Bolts.BFTask;
 
 #import "PFCommandResult.h"
 #import "PFCommandRunningConstants.h"
@@ -28,32 +28,36 @@
 
 - (void)testConstructors {
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
+    NSURL *url = [NSURL URLWithString:@"https://parse.com/123"];
 
     PFURLSessionCommandRunner *commandRunner = [[PFURLSessionCommandRunner alloc] initWithDataSource:mockedDataSource
                                                                                        applicationId:@"appId"
-                                                                                           clientKey:@"clientKey"];
+                                                                                           clientKey:@"clientKey"
+                                                                                           serverURL:url];
     XCTAssertNotNil(commandRunner);
     XCTAssertEqual(mockedDataSource, (id)commandRunner.dataSource);
     XCTAssertEqualObjects(@"appId", commandRunner.applicationId);
     XCTAssertEqualObjects(@"clientKey", commandRunner.clientKey);
     XCTAssertEqual(commandRunner.initialRetryDelay, PFCommandRunningDefaultRetryDelay);
+    XCTAssertEqual(commandRunner.serverURL, url);
 
     commandRunner = [PFURLSessionCommandRunner commandRunnerWithDataSource:mockedDataSource
                                                              applicationId:@"appId"
-                                                                 clientKey:@"clientKey"];
+                                                                 clientKey:@"clientKey"
+                                                                 serverURL:url];
     XCTAssertNotNil(commandRunner);
     XCTAssertEqual(mockedDataSource, (id)commandRunner.dataSource);
     XCTAssertEqualObjects(@"appId", commandRunner.applicationId);
     XCTAssertEqualObjects(@"clientKey", commandRunner.clientKey);
     XCTAssertEqual(commandRunner.initialRetryDelay, PFCommandRunningDefaultRetryDelay);
-
-    PFAssertThrowsInconsistencyException([PFURLSessionCommandRunner new]);
+    XCTAssertEqual(commandRunner.serverURL, url);
 }
 
 - (void)testRunCommand {
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
     id mockedSession = PFStrictClassMock([PFURLSession class]);
     id mockedRequestConstructor = PFStrictClassMock([PFCommandURLRequestConstructor class]);
+    id mockedNotificationCenter = PFStrictClassMock([NSNotificationCenter class]);
 
     id mockedCommand = PFStrictClassMock([PFRESTCommand class]);
     id mockedCommandResult = PFStrictClassMock([PFCommandResult class]);
@@ -62,7 +66,7 @@
 
     OCMStub([mockedCommand resolveLocalIds]);
 
-    OCMStub([mockedRequestConstructor dataURLRequestForCommand:mockedCommand]).andReturn(urlRequest);
+    OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
     [OCMExpect([mockedSession performDataURLRequestAsync:urlRequest
                                               forCommand:mockedCommand
                                        cancellationToken:nil]) andReturn:[BFTask taskWithResult:mockedCommandResult]];
@@ -71,7 +75,8 @@
 
     PFURLSessionCommandRunner *commandRunner = [[PFURLSessionCommandRunner alloc] initWithDataSource:mockedDataSource
                                                                                              session:mockedSession
-                                                                                  requestConstructor:mockedRequestConstructor];
+                                                                                  requestConstructor:mockedRequestConstructor
+                                                                                  notificationCenter:mockedNotificationCenter];
 
     XCTestExpectation *expecatation = [self currentSelectorTestExpectation];
     [[commandRunner runCommandAsync:mockedCommand withOptions:0] continueWithBlock:^id(BFTask *task) {
@@ -89,6 +94,7 @@
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
     id mockedSession = PFStrictClassMock([PFURLSession class]);
     id mockedRequestConstructor = PFStrictClassMock([PFCommandURLRequestConstructor class]);
+    id mockedNotificationCenter = PFStrictClassMock([NSNotificationCenter class]);
 
     id mockedCommand = PFStrictClassMock([PFRESTCommand class]);
 
@@ -96,7 +102,8 @@
 
     PFURLSessionCommandRunner *commandRunner = [[PFURLSessionCommandRunner alloc] initWithDataSource:mockedDataSource
                                                                                              session:mockedSession
-                                                                                  requestConstructor:mockedRequestConstructor];
+                                                                                  requestConstructor:mockedRequestConstructor
+                                                                                  notificationCenter:mockedNotificationCenter];
 
     BFCancellationTokenSource *cancellationToken = [BFCancellationTokenSource cancellationTokenSource];
     [cancellationToken cancel];
@@ -117,6 +124,7 @@
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
     id mockedSession = PFStrictClassMock([PFURLSession class]);
     id mockedRequestConstructor = PFStrictClassMock([PFCommandURLRequestConstructor class]);
+    id mockedNotificationCenter = PFStrictClassMock([NSNotificationCenter class]);
 
     id mockedCommand = PFStrictClassMock([PFRESTCommand class]);
 
@@ -128,7 +136,7 @@
     __block int performDataURLRequestCount = 0;
 
     OCMStub([mockedCommand resolveLocalIds]);
-    OCMStub([mockedRequestConstructor dataURLRequestForCommand:mockedCommand]).andReturn(urlRequest);
+    OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
 
     [OCMStub([mockedSession performDataURLRequestAsync:urlRequest
                                             forCommand:mockedCommand
@@ -140,7 +148,8 @@
 
     PFURLSessionCommandRunner *commandRunner = [[PFURLSessionCommandRunner alloc] initWithDataSource:mockedDataSource
                                                                                              session:mockedSession
-                                                                                  requestConstructor:mockedRequestConstructor];
+                                                                                  requestConstructor:mockedRequestConstructor
+                                                                                  notificationCenter:mockedNotificationCenter];
     commandRunner.initialRetryDelay = DBL_MIN; // Lets not needlessly sleep here.
 
     XCTestExpectation *expecatation = [self currentSelectorTestExpectation];
@@ -162,6 +171,7 @@
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
     id mockedSession = PFStrictClassMock([PFURLSession class]);
     id mockedRequestConstructor = PFStrictClassMock([PFCommandURLRequestConstructor class]);
+    id mockedNotificationCenter = PFStrictClassMock([NSNotificationCenter class]);
 
     id mockedCommand = PFStrictClassMock([PFRESTCommand class]);
     id mockedCommandResult = PFStrictClassMock([PFCommandResult class]);
@@ -176,9 +186,9 @@
 
     OCMStub([mockedCommand resolveLocalIds]);
 
-    OCMExpect([mockedRequestConstructor fileUploadURLRequestForCommand:mockedCommand
-                                                       withContentType:@"content-type"
-                                                 contentSourceFilePath:@"content-path"]).andReturn(urlRequest);
+    OCMExpect([mockedRequestConstructor getFileUploadURLRequestAsyncForCommand:mockedCommand
+                                                               withContentType:@"content-type"
+                                                         contentSourceFilePath:@"content-path"]).andReturn([BFTask taskWithResult:urlRequest]);
 
     [OCMExpect([mockedSession performFileUploadURLRequestAsync:urlRequest
                                                     forCommand:mockedCommand
@@ -191,7 +201,8 @@
 
     PFURLSessionCommandRunner *commandRunner = [[PFURLSessionCommandRunner alloc] initWithDataSource:mockedDataSource
                                                                                              session:mockedSession
-                                                                                  requestConstructor:mockedRequestConstructor];
+                                                                                  requestConstructor:mockedRequestConstructor
+                                                                                  notificationCenter:mockedNotificationCenter];
 
     XCTestExpectation *expecatation = [self currentSelectorTestExpectation];
     [[commandRunner runFileUploadCommandAsync:mockedCommand
@@ -213,6 +224,7 @@
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
     id mockedSession = PFStrictClassMock([PFURLSession class]);
     id mockedRequestConstructor = PFStrictClassMock([PFCommandURLRequestConstructor class]);
+    id mockedNotificationCenter = PFStrictClassMock([NSNotificationCenter class]);
 
     id mockedCommand = PFStrictClassMock([PFRESTCommand class]);
     id mockedCommandResult = PFStrictClassMock([PFCommandResult class]);
@@ -221,7 +233,7 @@
 
     OCMExpect([mockedCommand resolveLocalIds]);
 
-    OCMStub([mockedRequestConstructor dataURLRequestForCommand:mockedCommand]).andReturn(urlRequest);
+    OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
     [OCMStub([mockedSession performDataURLRequestAsync:urlRequest
                                             forCommand:mockedCommand
                                      cancellationToken:nil]) andReturn:[BFTask taskWithResult:mockedCommandResult]];
@@ -230,7 +242,8 @@
 
     PFURLSessionCommandRunner *commandRunner = [[PFURLSessionCommandRunner alloc] initWithDataSource:mockedDataSource
                                                                                              session:mockedSession
-                                                                                  requestConstructor:mockedRequestConstructor];
+                                                                                  requestConstructor:mockedRequestConstructor
+                                                                                  notificationCenter:mockedNotificationCenter];
 
     XCTestExpectation *expecatation = [self currentSelectorTestExpectation];
     [[commandRunner runCommandAsync:mockedCommand withOptions:0] continueWithBlock:^id(BFTask *task) {

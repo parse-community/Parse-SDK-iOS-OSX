@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <libkern/OSAtomic.h>
+@import Darwin.libkern.OSAtomic;
 
 #import "PFBaseState.h"
 #import "PFTestCase.h"

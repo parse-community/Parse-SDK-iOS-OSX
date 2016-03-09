@@ -9,72 +9,78 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
 #import "PFDataProvider.h"
+#import "PFMacros.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BFTask;
+@class BFTask<__covariant BFGenericType>;
+@class PFPin;
 
 @interface PFPinningObjectStore : NSObject
 
 @property (nonatomic, weak, readonly) id<PFOfflineStoreProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithDataSource:(id<PFOfflineStoreProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 + (instancetype)storeWithDataSource:(id<PFOfflineStoreProvider>)dataSource;
 
 ///--------------------------------------
-/// @name Pin
+#pragma mark - Pin
 ///--------------------------------------
 
-/*!
+/**
  Gets pin with name equals to given name.
 
  @param name Pin Name.
 
- @returns `BFTask` with `PFPin` result if pinning succeeds.
+ @return `BFTask` with `PFPin` result if pinning succeeds.
  */
-- (BFTask *)fetchPinAsyncWithName:(NSString *)name;
+- (BFTask<PFPin *> *)fetchPinAsyncWithName:(NSString *)name;
 
-/*!
+/**
  Pins given objects to the pin. Creates new pin if the pin with such name is not found.
 
  @param objects         Array of `PFObject`s to pin.
  @param name            Pin Name.
  @param includeChildren Whether children of `objects` should be pinned as well.
 
- @returns `BFTask` with `@YES` result.
+ @return `BFTask` with no result.
  */
-- (BFTask *)pinObjectsAsync:(nullable NSArray *)objects
-                withPinName:(NSString *)name
-            includeChildren:(BOOL)includeChildren;
+- (BFTask<PFVoid> *)pinObjectsAsync:(nullable NSArray *)objects
+                        withPinName:(NSString *)name
+                    includeChildren:(BOOL)includeChildren;
 
 ///--------------------------------------
-/// @name Unpin
+#pragma mark - Unpin
 ///--------------------------------------
 
-/*!
+/**
  Unpins given array of objects from the pin.
 
  @param objects Objects to unpin.
  @param name    Pin name.
 
- @returns `BFTask` with `@YES` result.
+ @return `BFTask` with no result.
  */
-- (BFTask *)unpinObjectsAsync:(nullable NSArray *)objects withPinName:(NSString *)name;
+- (BFTask<PFVoid> *)unpinObjectsAsync:(nullable NSArray *)objects withPinName:(NSString *)name;
 
-/*!
+/**
  Unpins all objects from the pin.
 
  @param name Pin name.
 
- @returns `BFTask` with `YES` result.
+ @return `BFTask` with no result.
  */
-- (BFTask *)unpinAllObjectsAsyncWithPinName:(NSString *)name;
+- (BFTask<PFVoid> *)unpinAllObjectsAsyncWithPinName:(NSString *)name;
 
 @end
 

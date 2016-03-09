@@ -9,24 +9,30 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
 #import "PFBaseState.h"
+
+PF_TV_UNAVAILABLE_WARNING
+PF_WATCH_UNAVAILABLE_WARNING
 
 @class PFQueryState;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PFPushState : PFBaseState <NSCopying, NSMutableCopying>
+PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushState : PFBaseState <NSCopying, NSMutableCopying>
 
 @property (nullable, nonatomic, copy, readonly) NSSet *channels;
 @property (nullable, nonatomic, copy, readonly) PFQueryState *queryState;
 
 @property (nullable, nonatomic, strong, readonly) NSDate *expirationDate;
-@property (nullable, nonatomic, copy, readonly) NSNumber *expirationTimeInterval;
+@property (nullable, nonatomic, strong, readonly) NSNumber *expirationTimeInterval;
+@property (nullable, nonatomic, strong, readonly) NSDate *pushDate;
 
 @property (nullable, nonatomic, copy, readonly) NSDictionary *payload;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)initWithState:(nullable PFPushState *)state;

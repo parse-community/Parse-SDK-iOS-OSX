@@ -8,6 +8,7 @@
  */
 
 #import "PFConfig.h"
+#import "PFConfig_Private.h"
 
 #import "BFTask+Private.h"
 #import "PFConfigController.h"
@@ -60,14 +61,6 @@ NSString *const PFConfigParametersRESTKey = @"params";
 #pragma mark - Fetch
 ///--------------------------------------
 
-+ (PFConfig *)getConfig {
-    return [self getConfig:nil];
-}
-
-+ (PFConfig *)getConfig:(NSError **)error {
-    return [[self getConfigInBackground] waitForResult:error];
-}
-
 + (BFTask *)getConfigInBackground {
     PFCurrentUserController *controller = [Parse _currentManager].coreManager.currentUserController;
     return [[controller getCurrentUserSessionTokenAsync] continueWithBlock:^id(BFTask *task) {
@@ -95,7 +88,7 @@ NSString *const PFConfigParametersRESTKey = @"params";
 #pragma mark Equality Testing
 
 - (NSUInteger)hash {
-    return [_parametersDictionary hash];
+    return _parametersDictionary.hash;
 }
 
 - (BOOL)isEqual:(id)object {
@@ -103,11 +96,29 @@ NSString *const PFConfigParametersRESTKey = @"params";
         PFConfig *other = object;
 
         // Compare pointers first, to account for nil dictionary
-        return self.parametersDictionary == other.parametersDictionary ||
-            [self.parametersDictionary isEqual:other.parametersDictionary];
+        return (self.parametersDictionary == other.parametersDictionary ||
+                [self.parametersDictionary isEqual:other.parametersDictionary]);
     }
 
     return NO;
+}
+
+@end
+
+///--------------------------------------
+#pragma mark - Synchronous
+///--------------------------------------
+
+@implementation PFConfig (Synchronous)
+
+#pragma mark Retrieving Config
+
++ (PFConfig *)getConfig {
+    return [self getConfig:nil];
+}
+
++ (PFConfig *)getConfig:(NSError **)error {
+    return [[self getConfigInBackground] waitForResult:error];
 }
 
 @end

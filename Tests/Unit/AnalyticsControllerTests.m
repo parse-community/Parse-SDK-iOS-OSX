@@ -26,12 +26,18 @@
 #pragma mark - Helpers
 ///--------------------------------------
 
-- (PFEventuallyQueue *)eventuallyQueueMockWithCommandResult:(PFCommandResult *)result {
-    BFTask *task = [BFTask taskWithResult:result];
+- (id<PFEventuallyQueueProvider>)dataSourceMock {
+    id queueMock = PFStrictClassMock([PFEventuallyQueue class]);
+    id dataSource = PFStrictProtocolMock(@protocol(PFEventuallyQueueProvider));
+    OCMStub([dataSource eventuallyQueue]).andReturn(queueMock);
+    return dataSource;
+}
 
-    id queueMock = PFClassMock([PFEventuallyQueue class]);
-    OCMStub([queueMock enqueueCommandInBackground:OCMOCK_ANY]).andReturn(task);
-    return queueMock;
+- (id<PFEventuallyQueueProvider>)dataSourceMockWithCommandResult:(PFCommandResult *)result {
+    id dataSource = [self dataSourceMock];
+    id queue = [dataSource eventuallyQueue];
+    OCMStub([queue enqueueCommandInBackground:OCMOCK_ANY]).andReturn([BFTask taskWithResult:result]);
+    return dataSource;
 }
 
 ///--------------------------------------
@@ -39,34 +45,43 @@
 ///--------------------------------------
 
 - (void)testConstructors {
-    PFEventuallyQueue *queue = [self eventuallyQueueMockWithCommandResult:nil];
+    id dataSource = [self dataSourceMock];
 
-    PFAnalyticsController *controller = [[PFAnalyticsController alloc] initWithEventuallyQueue:queue];
+    PFAnalyticsController *controller = [[PFAnalyticsController alloc] initWithDataSource:dataSource];
     XCTAssertNotNil(controller);
-    XCTAssertEqual(controller.eventuallyQueue, queue);
+    XCTAssertEqual((id)controller.dataSource, dataSource);
 
-    controller = [PFAnalyticsController controllerWithEventuallyQueue:queue];
+    controller = [PFAnalyticsController controllerWithDataSource:dataSource];
     XCTAssertNotNil(controller);
-    XCTAssertEqual(controller.eventuallyQueue, queue);
+    XCTAssertEqual((id)controller.dataSource, dataSource);
 }
 
 - (void)testTrackEventWithInvalidParameters {
-    PFEventuallyQueue *queue = [self eventuallyQueueMockWithCommandResult:nil];
-    PFAnalyticsController *controller = [PFAnalyticsController controllerWithEventuallyQueue:queue];
+    id dataSource = [self dataSourceMockWithCommandResult:nil];
+    PFAnalyticsController *controller = [PFAnalyticsController controllerWithDataSource:dataSource];
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
     PFAssertThrowsInvalidArgumentException([controller trackEventAsyncWithName:nil dimensions:nil sessionToken:nil]);
+#pragma clang diagnostic pop
+
     PFAssertThrowsInvalidArgumentException([controller trackEventAsyncWithName:@" " dimensions:nil sessionToken:nil]);
     PFAssertThrowsInvalidArgumentException([controller trackEventAsyncWithName:@"\n" dimensions:nil sessionToken:nil]);
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-literal-conversion"
     PFAssertThrowsInvalidArgumentException([controller trackEventAsyncWithName:@"f"
-                                                                    dimensions:@{ @2: @"five" }
+                                                                    dimensions:@{ @2 : @"five" }
                                                                   sessionToken:nil]);
     PFAssertThrowsInvalidArgumentException([controller trackEventAsyncWithName:@"f"
                                                                     dimensions:@{ @"num" : @5 }
                                                                   sessionToken:nil]);
+#pragma clang diagnostic pop
 }
 
 - (void)testTrackEventParameters {
-    id queue = PFStrictClassMock([PFEventuallyQueue class]);
+    id dataSource = [self dataSourceMock];
+    id queue = [dataSource eventuallyQueue];
     OCMExpect([queue enqueueCommandInBackground:[OCMArg checkWithBlock:^BOOL(id obj) {
         PFRESTCommand *command = obj;
 
@@ -77,7 +92,7 @@
         return YES;
     }]]);
 
-    PFAnalyticsController *controller = [PFAnalyticsController controllerWithEventuallyQueue:queue];
+    PFAnalyticsController *controller = [PFAnalyticsController controllerWithDataSource:dataSource];
     [[controller trackEventAsyncWithName:@"boom"
                               dimensions:@{ @"yarr" : @"yolo" }
                             sessionToken:@"argh"] waitUntilFinished];
@@ -89,14 +104,14 @@
     PFCommandResult *result = [PFCommandResult commandResultWithResult:@{}
                                                           resultString:nil
                                                           httpResponse:nil];
-    PFEventuallyQueue *queue = [self eventuallyQueueMockWithCommandResult:result];
-    PFAnalyticsController *controller = [PFAnalyticsController controllerWithEventuallyQueue:queue];
+    id dataSource = [self dataSourceMockWithCommandResult:result];
+    PFAnalyticsController *controller = [PFAnalyticsController controllerWithDataSource:dataSource];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[controller trackEventAsyncWithName:@"a"
-                             dimensions:nil
-                           sessionToken:nil] continueWithSuccessBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, @YES);
+                              dimensions:nil
+                            sessionToken:nil] continueWithSuccessBlock:^id(BFTask *task) {
+        XCTAssertNil(task.result);
         [expectation fulfill];
         return nil;
     }];
@@ -104,7 +119,8 @@
 }
 
 - (void)testTrackAppOpenedParameters {
-    id queue = PFStrictClassMock([PFEventuallyQueue class]);
+    id dataSource = [self dataSourceMock];
+    id queue = [dataSource eventuallyQueue];
     OCMExpect([queue enqueueCommandInBackground:[OCMArg checkWithBlock:^BOOL(id obj) {
         PFRESTCommand *command = obj;
 
@@ -115,9 +131,9 @@
         return YES;
     }]]);
 
-    PFAnalyticsController *controller = [PFAnalyticsController controllerWithEventuallyQueue:queue];
-    [[controller trackAppOpenedEventAsyncWithRemoteNotificationPayload:@{ @"aps" : @{ @"alert" : @"yolo" } }
-                                                         sessionToken:@"argh"] waitUntilFinished];
+    PFAnalyticsController *controller = [PFAnalyticsController controllerWithDataSource:dataSource];
+    [[controller trackAppOpenedEventAsyncWithRemoteNotificationPayload:@{ @"aps" : @{@"alert" : @"yolo"} }
+                                                          sessionToken:@"argh"] waitUntilFinished];
 
     OCMVerifyAll(queue);
 }
@@ -126,13 +142,13 @@
     PFCommandResult *result = [PFCommandResult commandResultWithResult:@{}
                                                           resultString:nil
                                                           httpResponse:nil];
-    PFEventuallyQueue *queue = [self eventuallyQueueMockWithCommandResult:result];
-    PFAnalyticsController *controller = [PFAnalyticsController controllerWithEventuallyQueue:queue];
+    id dataSource = [self dataSourceMockWithCommandResult:result];
+    PFAnalyticsController *controller = [PFAnalyticsController controllerWithDataSource:dataSource];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[controller trackAppOpenedEventAsyncWithRemoteNotificationPayload:nil
                                                           sessionToken:nil] continueWithSuccessBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, @YES);
+        XCTAssertNil(task.result);
         [expectation fulfill];
         return nil;
     }];

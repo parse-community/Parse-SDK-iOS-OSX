@@ -13,14 +13,26 @@
 NS_ASSUME_NONNULL_BEGIN
 
 ///--------------------------------------
-/// @name Object
+#pragma mark - Default ACL
+///--------------------------------------
+
+@class PFDefaultACLController;
+
+@protocol PFDefaultACLControllerProvider <NSObject>
+
+@property (nonatomic, strong, readonly) PFDefaultACLController *defaultACLController;
+
+@end
+
+///--------------------------------------
+#pragma mark - Object
 ///--------------------------------------
 
 @class PFObjectController;
 
 @protocol PFObjectControllerProvider <NSObject>
 
-@property (nonatomic, strong) PFObjectController *objectController;
+@property (null_resettable, nonatomic, strong) PFObjectController *objectController;
 
 @end
 
@@ -36,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PFObjectFilePersistenceControllerProvider <NSObject>
 
-@property (nonatomic, strong, readonly) PFObjectFilePersistenceController *objectFilePersistenceController;
+@property (null_resettable, nonatomic, strong, readonly) PFObjectFilePersistenceController *objectFilePersistenceController;
 
 @end
 
@@ -44,19 +56,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PFObjectLocalIdStoreProvider <NSObject>
 
-@property (nonatomic, strong) PFObjectLocalIdStore *objectLocalIdStore;
+@property (null_resettable, nonatomic, strong) PFObjectLocalIdStore *objectLocalIdStore;
 
 @end
 
 ///--------------------------------------
-/// @name User
+#pragma mark - User
 ///--------------------------------------
 
 @class PFUserAuthenticationController;
 
 @protocol PFUserAuthenticationControllerProvider <NSObject>
 
-@property (nonatomic, strong) PFUserAuthenticationController *userAuthenticationController;
+@property (null_resettable, nonatomic, strong) PFUserAuthenticationController *userAuthenticationController;
 
 @end
 
@@ -64,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PFCurrentUserControllerProvider <NSObject>
 
-@property (nonatomic, strong) PFCurrentUserController *currentUserController;
+@property (null_resettable, nonatomic, strong) PFCurrentUserController *currentUserController;
 
 @end
 
@@ -72,19 +84,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PFUserControllerProvider <NSObject>
 
-@property (nonatomic, strong) PFUserController *userController;
+@property (null_resettable, nonatomic, strong) PFUserController *userController;
 
 @end
 
 ///--------------------------------------
-/// @name Installation
+#pragma mark - Installation
 ///--------------------------------------
 
 @class PFCurrentInstallationController;
 
 @protocol PFCurrentInstallationControllerProvider <NSObject>
 
-@property (nonatomic, strong) PFCurrentInstallationController *currentInstallationController;
+@property (null_resettable, nonatomic, strong) PFCurrentInstallationController *currentInstallationController;
 
 @end
 
@@ -92,7 +104,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PFInstallationControllerProvider <NSObject>
 
-@property (nonatomic, strong) PFInstallationController *installationController;
+@property (null_resettable, nonatomic, strong) PFInstallationController *installationController;
 
 @end
 

@@ -19,7 +19,7 @@
 static NSString *const _PFFileManagerParseDirectoryName = @"Parse";
 
 static NSDictionary *_PFFileManagerDefaultDirectoryFileAttributes() {
-#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#if !PF_TARGET_OS_OSX
     return @{ NSFileProtectionKey : NSFileProtectionCompleteUntilFirstUserAuthentication };
 #else
     return nil;
@@ -28,7 +28,7 @@ static NSDictionary *_PFFileManagerDefaultDirectoryFileAttributes() {
 
 static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
     NSDataWritingOptions options = NSDataWritingAtomic;
-#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#if !PF_TARGET_OS_OSX
     options |= NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication;
 #endif
     return options;
@@ -92,7 +92,7 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
             }
         }
 
-#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#if TARGET_OS_IOS || TARGET_OS_WATCH // No backups for Apple TV, since everything is cache.
         if (options & PFFileManagerOptionSkipBackup) {
             [self _skipBackupOnPath:path];
         }
@@ -105,6 +105,17 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         NSError *error = nil;
         [[NSFileManager defaultManager] copyItemAtPath:fromPath toPath:toPath error:&error];
+        if (error) {
+            return [BFTask taskWithError:error];
+        }
+        return nil;
+    }];
+}
+
++ (BFTask *)moveItemAsyncAtPath:(NSString *)fromPath toPath:(NSString *)toPath {
+    return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+        NSError *error = nil;
+        [[NSFileManager defaultManager] moveItemAtPath:fromPath toPath:toPath error:&error];
         if (error) {
             return [BFTask taskWithError:error];
         }
@@ -131,11 +142,11 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
         return contents;
     }] continueWithSuccessBlock:^id(BFTask *task) {
         NSArray *contents = task.result;
-        if ([contents count] == 0) {
+        if (contents.count == 0) {
             return nil;
         }
 
-        NSMutableArray *tasks = [NSMutableArray arrayWithCapacity:[contents count]];
+        NSMutableArray *tasks = [NSMutableArray arrayWithCapacity:contents.count];
         for (NSString *path in contents) {
             BFTask *task = [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
                 NSError *error = nil;
@@ -219,10 +230,6 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
 
 #pragma mark Init
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithApplicationIdentifier:(NSString *)applicationIdentifier
                    applicationGroupIdentifier:(NSString *)applicationGroupIdentifier {
     self = [super init];
@@ -239,20 +246,20 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
 - (NSString *)parseDefaultDataDirectoryPath {
     // NSHomeDirectory: Returns the path to either the user's or application's
     // home directory, depending on the platform. Sandboxed by default on iOS.
-#if PARSE_IOS_ONLY
-    NSString *directoryPath = nil;
-    if (self.applicationGroupIdentifier) {
-        NSURL *containerPath = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:self.applicationGroupIdentifier];
-        directoryPath = [[containerPath path] stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
-        directoryPath = [directoryPath stringByAppendingPathComponent:self.applicationIdentifier];
-    } else {
-        return [self parseLocalSandboxDataDirectoryPath];
-    }
-#else
+#if PF_TARGET_OS_OSX
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString *directoryPath = [paths firstObject];
     directoryPath = [directoryPath stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
     directoryPath = [directoryPath stringByAppendingPathComponent:self.applicationIdentifier];
+#else
+    NSString *directoryPath = nil;
+    if (self.applicationGroupIdentifier) {
+        NSURL *containerPath = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:self.applicationGroupIdentifier];
+        directoryPath = [containerPath.path stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
+        directoryPath = [directoryPath stringByAppendingPathComponent:self.applicationIdentifier];
+    } else {
+        return [self parseLocalSandboxDataDirectoryPath];
+    }
 #endif
 
     BFTask *createDirectoryTask = [[self class] createDirectoryIfNeededAsyncAtPath:directoryPath
@@ -264,7 +271,9 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
 }
 
 - (NSString *)parseLocalSandboxDataDirectoryPath {
-#if TARGET_OS_IPHONE
+#if PF_TARGET_OS_OSX
+    return [self parseDefaultDataDirectoryPath];
+#else
     NSString *library = [NSHomeDirectory() stringByAppendingPathComponent:@"Library"];
     NSString *privateDocuments = [library stringByAppendingPathComponent:@"Private Documents"];
     NSString *directoryPath = [privateDocuments stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
@@ -274,61 +283,24 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
     [createDirectoryTask waitForResult:nil withMainThreadWarning:NO];
 
     return directoryPath;
-#else
-    return [self parseDefaultDataDirectoryPath];
 #endif
 }
 
-- (NSString *)parseDataDirectoryPath_DEPRECATED {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
-    NSString *parseDirPath = [documentsDirectory stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
-
-    // If this old directory is still on disk, but empty, delete it.
-    if ([[NSFileManager defaultManager] fileExistsAtPath:parseDirPath]) {
-        NSError *error = nil;
-        NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:parseDirPath error:&error];
-        if (error == nil && [contents count] == 0) {
-            [[NSFileManager defaultManager] removeItemAtPath:parseDirPath error:nil];
-        }
-    }
-
-    return parseDirPath;
-}
-
 - (NSString *)parseDataItemPathForPathComponent:(NSString *)pathComponent {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-
-    NSString *currentLocation = [[self parseDefaultDataDirectoryPath] stringByAppendingPathComponent:pathComponent];
-    if (![fileManager fileExistsAtPath:currentLocation]) {
-        NSString *deprecatedDir = [self parseDataDirectoryPath_DEPRECATED];
-        NSString *deprecatedLocation = [deprecatedDir stringByAppendingPathComponent:pathComponent];
-        if ([fileManager fileExistsAtPath:deprecatedLocation]) {
-            [fileManager moveItemAtPath:deprecatedLocation toPath:currentLocation error:nil];
-            // If the deprecated dir is still on disk, delete it.
-            if ([fileManager fileExistsAtPath:deprecatedDir]) {
-                NSError *error = nil;
-                NSArray *contents = [fileManager contentsOfDirectoryAtPath:deprecatedDir error:&error];
-                if (!error && [contents count] == 0) {
-                    [fileManager removeItemAtPath:deprecatedDir error:nil];
-                }
-            }
-        }
-    }
-    return currentLocation;
+    return [[self parseDefaultDataDirectoryPath] stringByAppendingPathComponent:pathComponent];
 }
 
 - (NSString *)parseCacheItemPathForPathComponent:(NSString *)component {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *folderPath = [paths firstObject];
+    NSString *folderPath = paths.firstObject;
     folderPath = [folderPath stringByAppendingPathComponent:_PFFileManagerParseDirectoryName];
-#if !TARGET_OS_IPHONE
+#if PF_TARGET_OS_OSX
     // We append the applicationId in case the OS X application isn't sandboxed,
     // to avoid collisions in the generic ~/Library/Caches/Parse/------ dir.
     folderPath = [folderPath stringByAppendingPathComponent:self.applicationIdentifier];
 #endif
     folderPath = [folderPath stringByAppendingPathComponent:component];
-    return [folderPath stringByStandardizingPath];
+    return folderPath.stringByStandardizingPath;
 }
 
 ///--------------------------------------

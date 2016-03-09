@@ -21,13 +21,19 @@
 #import "PFLogging.h"
 #import "PFMacros.h"
 #import "PFRESTCommand.h"
-#import "PFReachability.h"
 #import "PFTaskQueue.h"
+
+#if !TARGET_OS_WATCH
+#import "PFReachability.h"
+#endif
 
 NSUInteger const PFEventuallyQueueDefaultMaxAttemptsCount = 5;
 NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 
-@interface PFEventuallyQueue () <PFReachabilityListener>
+@interface PFEventuallyQueue ()
+#if !TARGET_OS_WATCH
+<PFReachabilityListener>
+#endif
 
 @property (atomic, assign, readwrite) BOOL monitorsReachability;
 @property (atomic, assign, getter=isRunning) BOOL running;
@@ -40,36 +46,30 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
-- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
-                     maxAttemptsCount:(NSUInteger)attemptsCount
-                        retryInterval:(NSTimeInterval)retryInterval {
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource
+                  maxAttemptsCount:(NSUInteger)attemptsCount
+                     retryInterval:(NSTimeInterval)retryInterval {
     self = [super init];
     if (!self) return nil;
 
-    _commandRunner = commandRunner;
+    _dataSource = dataSource;
     _maxAttemptsCount = attemptsCount;
     _retryInterval = retryInterval;
 
     // Set up all the queues
     NSString *queueBaseLabel = [NSString stringWithFormat:@"com.parse.%@", NSStringFromClass([self class])];
 
-    _synchronizationQueue = dispatch_queue_create([[NSString stringWithFormat:@"%@.synchronization",
-                                                    queueBaseLabel] UTF8String],
+    _synchronizationQueue = dispatch_queue_create([NSString stringWithFormat:@"%@.synchronization", queueBaseLabel].UTF8String,
                                                   DISPATCH_QUEUE_SERIAL);
     PFMarkDispatchQueue(_synchronizationQueue);
     _synchronizationExecutor = [BFExecutor executorWithDispatchQueue:_synchronizationQueue];
 
-    _processingQueue = dispatch_queue_create([[NSString stringWithFormat:@"%@.processing",
-                                               queueBaseLabel] UTF8String],
+    _processingQueue = dispatch_queue_create([NSString stringWithFormat:@"%@.processing", queueBaseLabel].UTF8String,
                                              DISPATCH_QUEUE_SERIAL);
     PFMarkDispatchQueue(_processingQueue);
 
     _processingQueueSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, _processingQueue);
-
+    
     _commandEnqueueTaskQueue = [[PFTaskQueue alloc] init];
 
     _taskCompletionSources = [NSMutableDictionary dictionary];
@@ -168,7 +168,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 }
 
 - (NSUInteger)commandCount {
-    return [[self _pendingCommandIdentifiers] count];
+    return [self _pendingCommandIdentifiers].count;
 }
 
 ///--------------------------------------
@@ -260,8 +260,8 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 
         if (error) {
             BOOL permanent = (![error.userInfo[@"temporary"] boolValue] &&
-                              ([[error domain] isEqualToString:PFParseErrorDomain] ||
-                               [error code] != kPFErrorConnectionFailed));
+                              ([error.domain isEqualToString:PFParseErrorDomain] ||
+                               error.code != kPFErrorConnectionFailed));
 
             if (!permanent) {
                 PFLogWarning(PFLoggingTagCommon,
@@ -322,7 +322,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 
 - (BFTask *)_runCommand:(id<PFNetworkCommand>)command withIdentifier:(NSString *)identifier {
     if ([command isKindOfClass:[PFRESTCommand class]]) {
-        return [self.commandRunner runCommandAsync:(PFRESTCommand *)command withOptions:0];
+        return [self.dataSource.commandRunner runCommandAsync:(PFRESTCommand *)command withOptions:0];
     }
 
     NSString *reason = [NSString stringWithFormat:@"Can't find a compatible runner for command %@.", command];
@@ -360,6 +360,9 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 ///--------------------------------------
 
 - (void)_startMonitoringNetworkReachability {
+#if TARGET_OS_WATCH
+    self.connected = YES;
+#else
     if (self.monitorsReachability) {
         return;
     }
@@ -369,31 +372,27 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 
     // Set the initial connected status
     self.connected = ([PFReachability sharedParseReachability].currentState != PFReachabilityStateNotReachable);
+#endif
 }
 
 - (void)_stopMonitoringNetworkReachability {
+#if !TARGET_OS_WATCH
     if (!self.monitorsReachability) {
         return;
     }
 
     [[PFReachability sharedParseReachability] removeListener:self];
 
-    if (_reachability != NULL) {
-        SCNetworkReachabilitySetCallback(_reachability, NULL, NULL);
-        SCNetworkReachabilitySetDispatchQueue(_reachability, NULL);
-        CFRelease(_reachability);
-        _reachability = NULL;
-    }
-
     self.monitorsReachability = NO;
     self.connected = YES;
+#endif
 }
 
 ///--------------------------------------
 #pragma mark - Accessors
 ///--------------------------------------
 
-/*! Manually sets the network connection status. */
+/** Manually sets the network connection status. */
 - (void)setConnected:(BOOL)connected {
     BFTaskCompletionSource *barrier = [BFTaskCompletionSource taskCompletionSource];
     dispatch_async(_processingQueue, ^{
@@ -421,7 +420,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 #pragma mark - Test Helper Method
 ///--------------------------------------
 
-/*! Makes this command cache forget all the state it keeps during a single run of the app. */
+/** Makes this command cache forget all the state it keeps during a single run of the app. */
 - (void)_simulateReboot {
     // Make sure there is no command pending enqueuing
     [[[[_commandEnqueueTaskQueue enqueue:^BFTask *(BFTask *toAwait) {
@@ -436,12 +435,12 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     }] waitUntilFinished];
 }
 
-/*! Test helper to return how many commands are being retained in memory by the cache. */
+/** Test helper to return how many commands are being retained in memory by the cache. */
 - (int)_commandsInMemory {
-    return (int)[_taskCompletionSources count];
+    return (int)_taskCompletionSources.count;
 }
 
-/*! Called by PFObject whenever an object has been updated after a saveEventually. */
+/** Called by PFObject whenever an object has been updated after a saveEventually. */
 - (void)_notifyTestHelperObjectUpdated {
     [self.testHelper notify:PFEventuallyQueueEventObjectUpdated];
 }
@@ -454,6 +453,8 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     _retryInterval = retryInterval;
 }
 
+#if !TARGET_OS_WATCH
+
 ///--------------------------------------
 #pragma mark - Reachability
 ///--------------------------------------
@@ -463,6 +464,8 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
         self.connected = (state != PFReachabilityStateNotReachable);
     }
 }
+
+#endif
 
 @end
 

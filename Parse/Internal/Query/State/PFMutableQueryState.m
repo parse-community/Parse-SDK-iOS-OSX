@@ -151,6 +151,14 @@
     }
 }
 
+- (void)includeKeys:(NSArray<NSString *> *)keys {
+    if (!_includedKeys) {
+        _includedKeys = [NSMutableSet setWithArray:keys];
+    } else {
+        [_includedKeys addObjectsFromArray:keys];
+    }
+}
+
 ///--------------------------------------
 #pragma mark - Selected Keys
 ///--------------------------------------

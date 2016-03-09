@@ -13,14 +13,14 @@
 #import "PFAssert.h"
 #import "PFConfig_Private.h"
 #import "PFDecoder.h"
-#import "PFFileManager.h"
+#import "PFPersistenceController.h"
 #import "PFJSONSerialization.h"
+#import "PFAsyncTaskQueue.h"
 
 static NSString *const PFConfigCurrentConfigFileName_ = @"config";
 
 @interface PFCurrentConfigController () {
-    dispatch_queue_t _dataQueue;
-    BFExecutor *_dataExecutor;
+    PFAsyncTaskQueue *_dataTaskQueue;
     PFConfig *_currentConfig;
 }
 
@@ -34,24 +34,19 @@ static NSString *const PFConfigCurrentConfigFileName_ = @"config";
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
-- (instancetype)initWithFileManager:(PFFileManager *)fileManager {
+- (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
 
-    _dataQueue = dispatch_queue_create("com.parse.config.current", DISPATCH_QUEUE_SERIAL);
-    _dataExecutor = [BFExecutor executorWithDispatchQueue:_dataQueue];
+    _dataTaskQueue = [[PFAsyncTaskQueue alloc] init];
 
-    _fileManager = fileManager;
+    _dataSource = dataSource;
 
     return self;
 }
 
-+ (instancetype)controllerWithFileManager:(PFFileManager *)fileManager {
-    return [[self alloc] initWithFileManager:fileManager];
++ (instancetype)controllerWithDataSource:(id<PFPersistenceControllerProvider>)dataSource {
+    return [[self alloc] initWithDataSource:dataSource];
 }
 
 ///--------------------------------------
@@ -59,19 +54,12 @@ static NSString *const PFConfigCurrentConfigFileName_ = @"config";
 ///--------------------------------------
 
 - (BFTask *)getCurrentConfigAsync {
-    return [BFTask taskFromExecutor:_dataExecutor withBlock:^id{
+    return [_dataTaskQueue enqueue:^id(BFTask *_) {
         if (!_currentConfig) {
-            NSError *error = nil;
-            NSData *jsonData = [NSData dataWithContentsOfFile:self.configFilePath
-                                                      options:NSDataReadingMappedIfSafe
-                                                        error:&error];
-            if (error == nil && [jsonData length] != 0) {
-                NSDictionary *dictionary = [PFJSONSerialization JSONObjectFromData:jsonData];
-                NSDictionary *decodedDictionary = [[PFDecoder objectDecoder] decodeObject:dictionary];
-                _currentConfig = [[PFConfig alloc] initWithFetchedConfig:decodedDictionary];
-            } else {
-                _currentConfig = [[PFConfig alloc] init];
-            }
+            return [[self _loadConfigAsync] continueWithSuccessBlock:^id(BFTask<PFConfig *> *task) {
+                _currentConfig = task.result;
+                return _currentConfig;
+            }];
         }
         return _currentConfig;
     }];
@@ -79,35 +67,62 @@ static NSString *const PFConfigCurrentConfigFileName_ = @"config";
 
 - (BFTask *)setCurrentConfigAsync:(PFConfig *)config {
     @weakify(self);
-    return [BFTask taskFromExecutor:_dataExecutor withBlock:^id{
+    return [_dataTaskQueue enqueue:^id(BFTask *_) {
         @strongify(self);
         _currentConfig = config;
 
         NSDictionary *configParameters = @{ PFConfigParametersRESTKey : (config.parametersDictionary ?: @{}) };
         id encodedObject = [[PFPointerObjectEncoder objectEncoder] encodeObject:configParameters];
         NSData *jsonData = [PFJSONSerialization dataFromJSONObject:encodedObject];
-        return [PFFileManager writeDataAsync:jsonData toFile:self.configFilePath];
+        return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
+            return [task.result setDataAsync:jsonData forKey:PFConfigCurrentConfigFileName_];
+        }];
     }];
 }
 
 - (BFTask *)clearCurrentConfigAsync {
     @weakify(self);
-    return [BFTask taskFromExecutor:_dataExecutor withBlock:^id{
+    return [_dataTaskQueue enqueue:^id(BFTask *_) {
         @strongify(self);
         _currentConfig = nil;
-        return [PFFileManager removeItemAtPathAsync:self.configFilePath];
+        return [[self.dataSource.persistenceController getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
+            return [task.result removeDataAsyncForKey:PFConfigCurrentConfigFileName_];
+        }];
     }];
 }
 
 - (BFTask *)clearMemoryCachedCurrentConfigAsync {
-    return [BFTask taskFromExecutor:_dataExecutor withBlock:^id{
+    return [_dataTaskQueue enqueue:^id(BFTask *_) {
         _currentConfig = nil;
         return nil;
     }];
 }
 
-- (NSString *)configFilePath {
-    return [self.fileManager parseDataItemPathForPathComponent:PFConfigCurrentConfigFileName_];
+///--------------------------------------
+#pragma mark - Data
+///--------------------------------------
+
+- (BFTask<PFConfig *> *)_loadConfigAsync {
+    return [[[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
+        return [task.result getDataAsyncForKey:PFConfigCurrentConfigFileName_];
+    }] continueWithSuccessBlock:^id(BFTask *task) {
+        if (task.result) {
+            NSDictionary *dictionary = [PFJSONSerialization JSONObjectFromData:task.result];
+            if (dictionary) {
+                NSDictionary *decodedDictionary = [[PFDecoder objectDecoder] decodeObject:dictionary];
+                return [[PFConfig alloc] initWithFetchedConfig:decodedDictionary];
+            }
+        }
+        return [[PFConfig alloc] init];
+    }];
+}
+
+///--------------------------------------
+#pragma mark - Convenience
+///--------------------------------------
+
+- (BFTask<id<PFPersistenceGroup>> *)_getPersistenceGroupAsync {
+    return [self.dataSource.persistenceController getPersistenceGroupAsync];
 }
 
 @end

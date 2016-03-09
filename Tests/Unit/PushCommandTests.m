@@ -85,6 +85,20 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertEqualObjects(command.sessionToken, @"yarr");
 }
 
+- (void)testPushCommandPushDate {
+    PFMutablePushState *state = [[PFMutablePushState alloc] init];
+    state.pushDate = [NSDate dateWithTimeIntervalSinceNow:1.0];
+
+    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr"];
+    XCTAssertNotNil(command);
+    XCTAssertEqualObjects(command.httpPath, @"push");
+    XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
+    XCTAssertNil(command.parameters[@"expiration_time"]);
+    XCTAssertNil(command.parameters[@"expiration_interval"]);
+    XCTAssertNotNil(command.parameters[@"push_time"]);
+    XCTAssertEqualObjects(command.sessionToken, @"yarr");
+}
+
 - (void)testPushCommandPayload {
     PFMutablePushState *state = [[PFMutablePushState alloc] init];
     state.payload = @{ @"alert" : @"yolo" };

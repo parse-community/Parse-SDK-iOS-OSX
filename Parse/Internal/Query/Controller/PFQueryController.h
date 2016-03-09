@@ -9,12 +9,16 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
 #import "PFDataProvider.h"
 
 @class BFCancellationToken;
-@class BFTask;
+
+@class BFTask<__covariant BFGenericType>;
 @class PFQueryState;
 @class PFRESTCommand;
+@class PFCommandResult;
 @class PFUser;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -24,19 +28,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) id<PFCommandRunnerProvider> commonDataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithCommonDataSource:(id<PFCommandRunnerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)controllerWithCommonDataSource:(id<PFCommandRunnerProvider>)dataSource;
 
 ///--------------------------------------
-/// @name Find
+#pragma mark - Find
 ///--------------------------------------
 
-/*!
+/**
  Finds objects from network or LDS for any given query state.
  Supports cancellation and ACLed changes for a specific user.
 
@@ -44,17 +50,17 @@ NS_ASSUME_NONNULL_BEGIN
  @param cancellationToken Cancellation token or `nil`.
  @param user              `user` to use for ACLs or `nil`.
 
- @returns Task that resolves to `NSArray` of `PFObject`s.
+ @return Task that resolves to `NSArray` of `PFObject`s.
  */
 - (BFTask *)findObjectsAsyncForQueryState:(PFQueryState *)queryState
                     withCancellationToken:(nullable BFCancellationToken *)cancellationToken
                                      user:(nullable PFUser *)user; // TODO: (nlutsenko) Pass `PFUserState` instead of user.
 
 ///--------------------------------------
-/// @name Count
+#pragma mark - Count
 ///--------------------------------------
 
-/*!
+/**
  Counts objects from network or LDS for any given query state.
  Supports cancellation and ACLed changes for a specific user.
 
@@ -62,14 +68,14 @@ NS_ASSUME_NONNULL_BEGIN
  @param cancellationToken Cancellation token or `nil`.
  @param user              `user` to use for ACLs or `nil`.
 
- @returns Task that resolves to `NSNumber` with a count of results.
+ @return Task that resolves to `NSNumber` with a count of results.
  */
 - (BFTask *)countObjectsAsyncForQueryState:(PFQueryState *)queryState
                      withCancellationToken:(nullable BFCancellationToken *)cancellationToken
                                       user:(nullable PFUser *)user; // TODO: (nlutsenko) Pass `PFUserState` instead of user.
 
 ///--------------------------------------
-/// @name Caching
+#pragma mark - Caching
 ///--------------------------------------
 
 - (NSString *)cacheKeyForQueryState:(PFQueryState *)queryState sessionToken:(nullable NSString *)sessionToken;
@@ -82,14 +88,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PFQueryControllerSubclass <NSObject>
 
-/*!
+/**
  Implementation should run a command on a network runner.
 
  @param command           Command to run.
  @param cancellationToken Cancellation token.
  @param queryState        Query state to run command for.
 
- @returns `BFTask` instance with result of `PFCommandResult`.
+ @return `BFTask` instance with result of `PFCommandResult`.
  */
 - (BFTask *)runNetworkCommandAsync:(PFRESTCommand *)command
              withCancellationToken:(nullable BFCancellationToken *)cancellationToken

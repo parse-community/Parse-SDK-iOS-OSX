@@ -14,9 +14,11 @@
 #import "PFCommandResult.h"
 #import "PFCommandRunning.h"
 #import "PFHTTPRequest.h"
-#import "PFObject.h"
+#import "PFObjectPrivate.h"
 #import "PFObjectBatchController.h"
+#import "PFObjectState.h"
 #import "PFRESTCommand.h"
+#import "PFRESTObjectBatchCommand.h"
 #import "PFUnitTestCase.h"
 
 @interface ObjectBatchControllerTests : PFUnitTestCase
@@ -52,6 +54,8 @@
     XCTAssertEqual((id)controller.dataSource, dataSource);
 }
 
+#pragma mark Fetch
+
 - (void)testFetchAll {
     id<PFCommandRunnerProvider> dataSource = [self mockedDataSource];
     id commandRunner = dataSource.commandRunner;
@@ -81,7 +85,7 @@
     [self waitForTestExpectations];
 
     XCTAssertEqualObjects(object[@"a"], @"b");
-    XCTAssertTrue([object isDataAvailable]);
+    XCTAssertTrue(object.dataAvailable);
     OCMVerifyAll(commandRunner);
 }
 
@@ -124,16 +128,100 @@
     [self waitForTestExpectations];
 
     XCTAssertEqualObjects(object[@"a"], @"b");
-    XCTAssertTrue([object isDataAvailable]);
+    XCTAssertTrue(object.dataAvailable);
     OCMVerifyAll(commandRunner);
 }
+
+#pragma mark Delete
+
+- (void)testDeleteAll {
+    id<PFCommandRunnerProvider> dataSource = [self mockedDataSource];
+    id commandRunner = dataSource.commandRunner;
+    OCMStub([commandRunner serverURL]).andReturn([NSURL URLWithString:@"https://api.parse.com/1"]);
+
+    NSString *sessionToken = [[NSUUID UUID] UUIDString];
+
+    NSArray *result = @[ @{ @"success" : @{} }, @{ @"success" : @{} } ];
+    [commandRunner mockCommandResult:result forCommandsPassingTest:^BOOL(PFRESTCommand *command) {
+        XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
+        XCTAssertEqualObjects(command.parameters, (@{ @"requests" : @[ @{ @"method" : @"DELETE",
+                                                                          @"path" : @"/1/classes/Yolo/id1" },
+                                                                       @{ @"method" : @"DELETE",
+                                                                          @"path" : @"/1/classes/Yolo/id2" }] }));
+        XCTAssertEqualObjects(command.sessionToken, sessionToken);
+        return YES;
+    }];
+
+    PFObjectBatchController *controller = [[PFObjectBatchController alloc] initWithDataSource:dataSource];
+    NSArray *objects = @[ [PFObject objectWithoutDataWithClassName:@"Yolo" objectId:@"id1"],
+                          [PFObject objectWithoutDataWithClassName:@"Yolo" objectId:@"id2"] ];
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[controller deleteObjectsAsync:objects withSessionToken:sessionToken] continueWithSuccessBlock:^id(BFTask *task) {
+        XCTAssertEqual(task.result, objects);
+        for (PFObject *object in objects) {
+            XCTAssertTrue(object._state.deleted);
+        }
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
+}
+
+- (void)testDeleteAllWithoutObjects {
+    id dataSource = [self mockedDataSource];
+    PFObjectBatchController *controller = [PFObjectBatchController controllerWithDataSource:dataSource];
+
+    XCTAssertEqualObjects([[controller deleteObjectsAsync:@[] withSessionToken:nil] waitForResult:nil], @[]);
+    XCTAssertNil([[controller deleteObjectsAsync:nil withSessionToken:nil] waitForResult:nil]);
+}
+
+- (void)testDeleteAllError {
+    id<PFCommandRunnerProvider> dataSource = [self mockedDataSource];
+    id commandRunner = dataSource.commandRunner;
+    OCMStub([commandRunner serverURL]).andReturn([NSURL URLWithString:@"https://api.parse.com/1"]);
+
+    NSString *sessionToken = [[NSUUID UUID] UUIDString];
+
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:PFRESTObjectBatchCommandSubcommandsLimit];
+    while (result.count < PFRESTObjectBatchCommandSubcommandsLimit) {
+        [result addObject:@{ @"error" : @{@"code" : @(kPFErrorObjectNotFound), @"error" : @"yolo"} }];
+    }
+    [commandRunner mockCommandResult:result forCommandsPassingTest:^BOOL(PFRESTCommand *command) {
+        XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
+        XCTAssertEqual([command.parameters[@"requests"] count], PFRESTObjectBatchCommandSubcommandsLimit);
+        XCTAssertEqualObjects(command.sessionToken, sessionToken);
+        return YES;
+    }];
+
+    PFObjectBatchController *controller = [[PFObjectBatchController alloc] initWithDataSource:dataSource];
+
+    NSMutableArray *objects = [NSMutableArray arrayWithCapacity:PFRESTObjectBatchCommandSubcommandsLimit * 3];
+    while (objects.count < PFRESTObjectBatchCommandSubcommandsLimit * 3) {
+        PFObject *object = [PFObject objectWithoutDataWithClassName:@"Yolo" objectId:[[NSUUID UUID] UUIDString]];
+        [objects addObject:object];
+    }
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[controller deleteObjectsAsync:objects withSessionToken:sessionToken] continueWithBlock:^id(BFTask *task) {
+        NSError *error = task.error;
+        XCTAssertNotNil(error);
+        XCTAssertEqualObjects(error.domain, BFTaskErrorDomain);
+        XCTAssertEqual([error.userInfo[@"errors"] count], objects.count);
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
+}
+
+#pragma mark Utilities
 
 - (void)testUniqueObjects {
     PFObject *object = [PFObject objectWithoutDataWithClassName:@"Yarr" objectId:@"123"];
     PFObject *fetchedObject = [PFObject objectWithClassName:@"Yarr"];
     fetchedObject.objectId = @"yarr";
 
-    NSArray *array = [PFObjectBatchController uniqueObjectsArrayFromArray:@[ object, object, fetchedObject]
+    NSArray *array = [PFObjectBatchController uniqueObjectsArrayFromArray:@[ object, object, fetchedObject ]
                                                       omitObjectsWithData:NO];
     XCTAssertEqual(array.count, 2);
     XCTAssertTrue([array containsObject:object]);
@@ -145,7 +233,7 @@
     PFObject *fetchedObject = [PFObject objectWithClassName:@"Yarr"];
     fetchedObject.objectId = @"yarr";
 
-    NSArray *array = [PFObjectBatchController uniqueObjectsArrayFromArray:@[ object, object, fetchedObject]
+    NSArray *array = [PFObjectBatchController uniqueObjectsArrayFromArray:@[ object, object, fetchedObject ]
                                                       omitObjectsWithData:YES];
     XCTAssertEqualObjects(array, @[ object ]);
 }
@@ -170,6 +258,25 @@
                                                                              omitObjectsWithData:NO]));
     PFAssertThrowsInvalidArgumentException(([PFObjectBatchController uniqueObjectsArrayFromArray:@[ object, object2 ]
                                                                              omitObjectsWithData:YES]));
+}
+
+- (void)testUniqueObjectsUsingFilter {
+    PFObject *nonUniqueObject = [PFObject objectWithClassName:@"Yolo"];
+    NSArray *array = @[ nonUniqueObject,
+                        [PFObject objectWithClassName:@"Yarr"],
+                        nonUniqueObject ];
+    NSArray *filteredArray = [PFObjectBatchController uniqueObjectsArrayFromArray:array usingFilter:^BOOL(PFObject *object) {
+        return [object.parseClassName isEqualToString:@"Yolo"];
+    }];
+
+    XCTAssertNotNil(filteredArray);
+    XCTAssertEqualObjects(filteredArray, @[ nonUniqueObject ]);
+
+    filteredArray = [PFObjectBatchController uniqueObjectsArrayFromArray:@[] usingFilter:^BOOL(PFObject *object) {
+        return YES;
+    }];
+    XCTAssertNotNil(filteredArray);
+    XCTAssertEqualObjects(filteredArray, @[]);
 }
 
 @end

@@ -32,12 +32,11 @@
 - (void)_taskDidFinish {
     NSData *data = [self.dataOutputStream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
 
-    NSString *resultString = nil;
     id result = nil;
 
     NSError *jsonError = nil;
     if (data) {
-        resultString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        self.responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         result = [NSJSONSerialization JSONObjectWithData:data
                                                  options:0
                                                    error:&jsonError];
@@ -52,29 +51,39 @@
     if (self.error) {
         NSMutableDictionary *errorDictionary = [NSMutableDictionary dictionary];
         errorDictionary[@"code"] = @(kPFErrorConnectionFailed);
-        errorDictionary[@"error"] = [self.error localizedDescription];
         errorDictionary[@"originalError"] = self.error;
+        errorDictionary[NSUnderlyingErrorKey] = self.error;
         errorDictionary[@"temporary"] = @(self.response.statusCode >= 500 || self.response.statusCode < 400);
+
+        NSString *description = self.error.localizedDescription ?: self.error.localizedFailureReason;
+        if (description) {
+            errorDictionary[@"error"] = description;
+        }
+
         self.error = [PFErrorUtilities errorFromResult:errorDictionary];
         [super _taskDidFinish];
         return;
     }
 
-    if ([result isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *resultDictionary = (NSDictionary *)result;
-        if (resultDictionary[@"error"]) {
-            NSMutableDictionary *errorDictionary = [NSMutableDictionary dictionaryWithDictionary:resultDictionary];
-            errorDictionary[@"temporary"] = @(self.response.statusCode >= 500 || self.response.statusCode < 400);
-            self.error = [PFErrorUtilities errorFromResult:errorDictionary];
-            [super _taskDidFinish];
-            return;
+    if (self.response.statusCode >= 200) {
+        if (self.response.statusCode < 400) {
+            PFCommandResult *commandResult = [PFCommandResult commandResultWithResult:result
+                                                                         resultString:self.responseString
+                                                                         httpResponse:self.response];
+            self.result = commandResult;
+        } else if ([result isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *resultDictionary = (NSDictionary *)result;
+            if (resultDictionary[@"error"]) {
+                NSMutableDictionary *errorDictionary = [NSMutableDictionary dictionaryWithDictionary:resultDictionary];
+                errorDictionary[@"temporary"] = @(self.response.statusCode >= 500 || self.response.statusCode < 400);
+                self.error = [PFErrorUtilities errorFromResult:errorDictionary];
+            }
         }
     }
 
-    PFCommandResult *commandResult = [PFCommandResult commandResultWithResult:result
-                                                                 resultString:resultString
-                                                                 httpResponse:self.response];
-    self.result = commandResult;
+    if (!self.result && !self.error) {
+        self.error = [PFErrorUtilities errorWithCode:kPFErrorInternalServer message:self.responseString];
+    }
     [super _taskDidFinish];
 }
 

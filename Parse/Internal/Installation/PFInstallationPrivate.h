@@ -9,11 +9,10 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
 #import <Parse/PFInstallation.h>
-#else
-#import <ParseOSX/PFInstallation.h>
-#endif
+
+PF_TV_UNAVAILABLE_WARNING
+PF_WATCH_UNAVAILABLE_WARNING
 
 @interface PFInstallation (Private)
 

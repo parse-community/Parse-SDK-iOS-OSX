@@ -9,13 +9,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class BFTask;
+#import <Parse/PFConstants.h>
+
+#import "PFMacros.h"
+
+@class BFTask<__covariant BFGenericType>;
 @class PFObject;
 @class PFOfflineStore;
 @class PFSQLiteDatabase;
 
 ///--------------------------------------
-/// @name Encoders
+#pragma mark - Encoders
 ///--------------------------------------
 
 @interface PFEncoder : NSObject
@@ -27,21 +31,21 @@
 
 @end
 
-/*!
+/**
  Encoding strategy that rejects PFObject.
  */
 @interface PFNoObjectEncoder : PFEncoder
 
 @end
 
-/*!
+/**
  Encoding strategy that encodes PFObject to PFPointer with objectId or with localId.
  */
 @interface PFPointerOrLocalIdObjectEncoder : PFEncoder
 
 @end
 
-/*!
+/**
  Encoding strategy that encodes PFObject to PFPointer with objectId and rejects
  unsaved PFObject.
  */
@@ -49,7 +53,7 @@
 
 @end
 
-/*!
+/**
  Encoding strategy that can encode objects that are available offline. After using this encoder,
  you must call encodeFinished and wait for its result to be finished before the results of the
  encoding will be valid.

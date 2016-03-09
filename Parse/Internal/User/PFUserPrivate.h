@@ -9,39 +9,29 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
-# import <Parse/PFUser.h>
-#else
-# import <ParseOSX/PFUser.h>
-#endif
+#import <Parse/PFUser.h>
 
-#import "PFAuthenticationProvider.h"
+#import "PFMacros.h"
 
 extern NSString *const PFUserCurrentUserFileName;
 extern NSString *const PFUserCurrentUserPinName;
 extern NSString *const PFUserCurrentUserKeychainItemName;
 
-@class BFTask;
+@class BFTask<__covariant BFGenericType>;
 @class PFCommandResult;
+@class PFUserController;
 
 @interface PFUser (Private)
 
 ///--------------------------------------
-/// @name Current User
+#pragma mark - Current User
 ///--------------------------------------
 + (BFTask *)_getCurrentUserSessionTokenAsync;
 + (NSString *)currentSessionToken;
 
 - (void)synchronizeAllAuthData;
 
-- (void)checkSignUpParams;
-
-+ (BFTask *)_logInWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
 - (BFTask *)_handleServiceLoginCommandResult:(PFCommandResult *)result;
-
-- (BFTask *)_linkWithAuthTypeInBackground:(NSString *)authType authData:(NSDictionary *)authData;
-
-- (BFTask *)_unlinkWithAuthTypeInBackground:(NSString *)authType;
 
 - (void)synchronizeAuthDataWithAuthType:(NSString *)authType;
 
@@ -51,31 +41,36 @@ extern NSString *const PFUserCurrentUserKeychainItemName;
 - (void)restoreAnonymity:(id)data;
 
 ///--------------------------------------
-/// @name Revocable Session
+#pragma mark - Revocable Session
 ///--------------------------------------
 + (BOOL)_isRevocableSessionEnabled;
 + (void)_setRevocableSessionEnabled:(BOOL)enabled;
 
++ (PFUserController *)userController;
+
 @end
 
 // Private Properties
-@interface PFUser () {
-    BOOL isCurrentUser;
-    NSMutableDictionary *authData;
-    NSMutableSet *linkedServiceNames;
-    BOOL isLazy;
-}
+@interface PFUser ()
 
-// This earmarks the user as being an "identity" user. This will make saves write through
-// to the currentUser singleton and disk object
-@property (nonatomic, assign) BOOL isCurrentUser;
+@property (nonatomic, strong, readonly) NSMutableDictionary<NSString *, id> *authData;
+@property (nonatomic, strong, readonly) NSMutableSet<NSString *> *linkedServiceNames;
 
-@property (strong, readonly) NSMutableDictionary *authData;
-@property (strong, readonly) NSMutableSet *linkedServiceNames;
-@property (nonatomic, assign) BOOL isLazy;
+/**
+ This earmarks the user as being an "identity" user.
+ This will make saves write through to the currentUser singleton and disk object
+ */
+@property (nonatomic, assign) BOOL _current;
+@property (nonatomic, assign) BOOL _lazy;
 
 - (BOOL)_isAuthenticatedWithCurrentUser:(PFUser *)currentUser;
 
 - (BFTask *)_logOutAsync;
+
+///--------------------------------------
+#pragma mark - Third-party Authentication (Private)
+///--------------------------------------
+
++ (void)_unregisterAuthenticationDelegateForAuthType:(NSString *)authType;
 
 @end

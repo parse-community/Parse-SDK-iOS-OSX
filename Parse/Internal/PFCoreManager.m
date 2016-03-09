@@ -13,10 +13,9 @@
 #import "PFCachedQueryController.h"
 #import "PFCloudCodeController.h"
 #import "PFConfigController.h"
-#import "PFCurrentInstallationController.h"
 #import "PFCurrentUserController.h"
+#import "PFDefaultACLController.h"
 #import "PFFileController.h"
-#import "PFInstallationController.h"
 #import "PFLocationManager.h"
 #import "PFMacros.h"
 #import "PFObjectBatchController.h"
@@ -31,6 +30,11 @@
 #import "PFUserAuthenticationController.h"
 #import "PFUserController.h"
 
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
+#import "PFCurrentInstallationController.h"
+#import "PFInstallationController.h"
+#endif
+
 @interface PFCoreManager () {
     dispatch_queue_t _locationManagerAccessQueue;
     dispatch_queue_t _controllerAccessQueue;
@@ -42,6 +46,7 @@
 @implementation PFCoreManager
 
 @synthesize locationManager = _locationManager;
+@synthesize defaultACLController = _defaultACLController;
 
 @synthesize queryController = _queryController;
 @synthesize fileController = _fileController;
@@ -54,18 +59,18 @@
 @synthesize pinningObjectStore = _pinningObjectStore;
 @synthesize userAuthenticationController = _userAuthenticationController;
 @synthesize sessionController = _sessionController;
-@synthesize currentInstallationController = _currentInstallationController;
 @synthesize currentUserController = _currentUserController;
 @synthesize userController = _userController;
+
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
+@synthesize currentInstallationController = _currentInstallationController;
 @synthesize installationController = _installationController;
+#endif
+
 
 ///--------------------------------------
 #pragma mark - Init
 ///--------------------------------------
-
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
 
 - (instancetype)initWithDataSource:(id<PFCoreManagerDataSource>)dataSource {
     self = [super init];
@@ -97,6 +102,21 @@
         manager = _locationManager;
     });
     return manager;
+}
+
+///--------------------------------------
+#pragma mark - DefaultACLController
+///--------------------------------------
+
+- (PFDefaultACLController *)defaultACLController {
+    __block PFDefaultACLController *controller = nil;
+    dispatch_sync(_controllerAccessQueue, ^{
+        if (!_defaultACLController) {
+            _defaultACLController = [PFDefaultACLController controllerWithDataSource:self];
+        }
+        controller = _defaultACLController;
+    });
+    return controller;
 }
 
 ///--------------------------------------
@@ -155,7 +175,7 @@
     __block PFCloudCodeController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
         if (!_cloudCodeController) {
-            _cloudCodeController = [[PFCloudCodeController alloc] initWithCommandRunner:self.dataSource.commandRunner];
+            _cloudCodeController = [[PFCloudCodeController alloc] initWithDataSource:self.dataSource];
         }
         controller = _cloudCodeController;
     });
@@ -176,9 +196,7 @@
     __block PFConfigController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
         if (!_configController) {
-            id<PFCoreManagerDataSource> dataSource = self.dataSource;
-            _configController = [[PFConfigController alloc] initWithFileManager:dataSource.fileManager
-                                                                  commandRunner:dataSource.commandRunner];
+            _configController = [[PFConfigController alloc] initWithDataSource:self.dataSource];
         }
         controller = _configController;
     });
@@ -305,7 +323,7 @@
     __block PFUserAuthenticationController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
         if (!_userAuthenticationController) {
-            _userAuthenticationController = [[PFUserAuthenticationController alloc] init];
+            _userAuthenticationController = [PFUserAuthenticationController controllerWithDataSource:self];
         }
         controller = _userAuthenticationController;
     });
@@ -339,6 +357,8 @@
     });
 }
 
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
+
 ///--------------------------------------
 #pragma mark - Current Installation Controller
 ///--------------------------------------
@@ -365,6 +385,8 @@
         _currentInstallationController = controller;
     });
 }
+
+#endif
 
 ///--------------------------------------
 #pragma mark - Current User Controller
@@ -393,6 +415,8 @@
     });
 }
 
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
+
 ///--------------------------------------
 #pragma mark - Installation Controller
 ///--------------------------------------
@@ -414,6 +438,8 @@
     });
 }
 
+#endif
+
 ///--------------------------------------
 #pragma mark - User Controller
 ///--------------------------------------
@@ -421,7 +447,7 @@
 - (PFUserController *)userController {
     __block PFUserController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_installationController) {
+        if (!_userController) {
             _userController = [PFUserController controllerWithCommonDataSource:self.dataSource
                                                                 coreDataSource:self];
         }

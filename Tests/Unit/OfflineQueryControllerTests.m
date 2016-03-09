@@ -9,8 +9,8 @@
 
 #import <OCMock/OCMock.h>
 
-#import <Bolts/BFCancellationTokenSource.h>
-#import <Bolts/BFTask.h>
+@import Bolts.BFCancellationTokenSource;
+@import Bolts.BFTask;
 
 #import "OCMock+Parse.h"
 #import "PFCommandResult.h"
@@ -23,10 +23,10 @@
 #import "PFPin.h"
 #import "PFPinningObjectStore.h"
 #import "PFRelationPrivate.h"
-#import "PFUnitTestCase.h"
+#import "PFTestCase.h"
 #import "PFUser.h"
 
-@interface OfflineQueryControllerTests : PFUnitTestCase
+@interface OfflineQueryControllerTests : PFTestCase
 
 @end
 
@@ -52,11 +52,6 @@
     XCTAssertNotNil(offlineQueryController);
     XCTAssertEqual((id)offlineQueryController.commonDataSource, mockedProvider);
     XCTAssertEqual((id)offlineQueryController.coreDataSource, objectStoreProvider);
-}
-
-- (void)testBadConstructor {
-    id<PFCoreManagerDataSource> mockedProvider = PFStrictProtocolMock(@protocol(PFCoreManagerDataSource));
-    XCTAssertThrows([(id)[PFOfflineQueryController alloc] initWithCommonDataSource:mockedProvider]);
 }
 
 - (void)testFindObjectsLDS {

@@ -11,9 +11,12 @@
 
 #import "PFPushPrivate.h"
 
+PF_TV_UNAVAILABLE_WARNING
+PF_WATCH_UNAVAILABLE_WARNING
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PFPushUtilities : NSObject <PFPushInternalUtils>
+PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushUtilities : NSObject <PFPushInternalUtils>
 
 @end
 

@@ -9,7 +9,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class BFTask;
+#import <Parse/PFConstants.h>
+
+#import "PFMacros.h"
+
+@class BFTask<__covariant BFGenericType>;
 @class PFObject;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -17,32 +21,32 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol PFObjectControlling <NSObject>
 
 ///--------------------------------------
-/// @name Fetch
+#pragma mark - Fetch
 ///--------------------------------------
 
-/*!
+/**
  Fetches an object asynchronously.
 
  @param object       Object to fetch.
  @param sessionToken Session token to use.
 
- @returns `BFTask` with result set to `PFObject`.
+ @return `BFTask` with result set to `PFObject`.
  */
 - (BFTask *)fetchObjectAsync:(PFObject *)object withSessionToken:(nullable NSString *)sessionToken;
 
 - (BFTask *)processFetchResultAsync:(NSDictionary *)result forObject:(PFObject *)object;
 
 ///--------------------------------------
-/// @name Delete
+#pragma mark - Delete
 ///--------------------------------------
 
-/*!
+/**
  Deletes an object asynchronously.
 
  @param object       Object to fetch.
  @param sessionToken Session token to use.
 
- @returns `BFTask` with result set to `nil`.
+ @return `BFTask` with result set to `nil`.
  */
 - (BFTask *)deleteObjectAsync:(PFObject *)object withSessionToken:(nullable NSString *)sessionToken;
 

@@ -9,18 +9,13 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
 #import <Parse/PFObject.h>
 #import <Parse/PFSubclassing.h>
-#else
-#import <ParseOSX/PFObject.h>
-#import <ParseOSX/PFSubclassing.h>
-#endif
 
 extern NSString *const PFPinKeyName;
 extern NSString *const PFPinKeyObjects;
 
-/*!
+/**
  PFPin represent internal pin implementation of PFObject's `pin`.
  */
 @interface PFPin : PFObject<PFSubclassing>
@@ -29,7 +24,7 @@ extern NSString *const PFPinKeyObjects;
 @property (nonatomic, strong) NSMutableArray *objects;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)initWithName:(NSString *)name;

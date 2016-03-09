@@ -10,6 +10,7 @@
 #import "PFMutablePushState.h"
 #import "PFQueryState.h"
 #import "PFTestCase.h"
+#import "PFAssert.h"
 
 @interface PushStateTests : PFTestCase
 
@@ -27,6 +28,7 @@
     state.queryState = [[PFQueryState alloc] init];
     state.expirationDate = [NSDate date];
     state.expirationTimeInterval = @1.0;
+    state.pushDate = [NSDate dateWithTimeIntervalSinceNow:120];
     state.payload = @{ @"alert" : @"yarr" };
     return [state copy];
 }
@@ -36,6 +38,7 @@
     XCTAssertEqualObjects(state.queryState, differentState.queryState);
     XCTAssertEqualObjects(state.expirationDate, differentState.expirationDate);
     XCTAssertEqualObjects(state.expirationTimeInterval, differentState.expirationTimeInterval);
+    XCTAssertEqualObjects(state.pushDate, differentState.pushDate);
     XCTAssertEqualObjects(state.payload, differentState.payload);
 }
 
@@ -50,7 +53,7 @@
     XCTAssertNil(state.queryState);
     XCTAssertNil(state.expirationDate);
     XCTAssertNil(state.expirationTimeInterval);
-    XCTAssertNil(state.expirationTimeInterval);
+    XCTAssertNil(state.pushDate);
 
     state = [[PFMutablePushState alloc] init];
     XCTAssertNotNil(state);
@@ -58,7 +61,7 @@
     XCTAssertNil(state.queryState);
     XCTAssertNil(state.expirationDate);
     XCTAssertNil(state.expirationTimeInterval);
-    XCTAssertNil(state.expirationTimeInterval);
+    XCTAssertNil(state.pushDate);
 }
 
 - (void)testInitWithState {
@@ -123,6 +126,24 @@
 
     [state setPayloadWithMessage:nil];
     XCTAssertNil(state.payload);
+}
+
+- (void)testSetPushTimeValidation {
+    PFMutablePushState *state = [[PFMutablePushState alloc] init];
+    PFAssertThrowsInvalidArgumentException(state.pushDate = [NSDate distantPast]);
+    PFAssertThrowsInvalidArgumentException(state.pushDate = [NSDate distantFuture]);
+    
+    NSDate *slightlyPast = [NSDate dateWithTimeIntervalSinceNow:-1];
+    PFAssertThrowsInvalidArgumentException(state.pushDate = slightlyPast);
+    
+    NSDateComponents *toAdd = [[NSDateComponents alloc] init];
+    toAdd.day = 13;
+    NSDate *withinTwoWeeks = [[NSCalendar currentCalendar] dateByAddingComponents:toAdd toDate:[NSDate date] options:0];
+    XCTAssertNoThrow(state.pushDate = withinTwoWeeks);
+    toAdd.day = 14;
+    toAdd.minute = 1;
+    NSDate *beyondTwoWeeks = [[NSCalendar currentCalendar] dateByAddingComponents:toAdd toDate:[NSDate date] options:0];
+    PFAssertThrowsInvalidArgumentException(state.pushDate = beyondTwoWeeks);
 }
 
 @end

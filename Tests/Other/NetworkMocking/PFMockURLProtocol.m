@@ -72,7 +72,7 @@ static PFTestSwizzledMethod *_swizzledURLSessionMethod;
     }
     [_mocksArray addObject:mock];
 
-    if ([_mocksArray count] == 1) {
+    if (_mocksArray.count == 1) {
         [NSURLProtocol registerClass:self];
         Class cls = NSClassFromString(@"__NSCFURLSessionConfiguration") ?: [NSURLSessionConfiguration class];
         _swizzledURLSessionMethod = [PFTestSwizzlingUtilities swizzleMethod:@selector(protocolClasses)

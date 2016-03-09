@@ -21,13 +21,13 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		8129E46E1B841A5C00309634 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8129E46D1B841A5C00309634 /* Parse.framework */; };
+		8129E4701B841AEE00309634 /* Parse.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8129E46D1B841A5C00309634 /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		814C3AD21B69887B00E307BB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 814C3ACE1B69887B00E307BB /* MainMenu.xib */; };
 		814C3AD31B69887B00E307BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 814C3AD01B69887B00E307BB /* Images.xcassets */; };
 		81CC85BE1A49F2E00076DE19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC85BD1A49F2E00076DE19 /* AppDelegate.swift */; };
 		81CC85DA1A49F3D70076DE19 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81CC85D81A49F3D70076DE19 /* Bolts.framework */; };
-		81CC85DB1A49F3D70076DE19 /* ParseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81CC85D91A49F3D70076DE19 /* ParseOSX.framework */; };
 		81CC85DF1A49F53C0076DE19 /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 81CC85D81A49F3D70076DE19 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		81CC85E01A49F53C0076DE19 /* ParseOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 81CC85D91A49F3D70076DE19 /* ParseOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,21 +47,21 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8129E4701B841AEE00309634 /* Parse.framework in CopyFiles */,
 				81CC85DF1A49F53C0076DE19 /* Bolts.framework in CopyFiles */,
-				81CC85E01A49F53C0076DE19 /* ParseOSX.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8129E46D1B841A5C00309634 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		814C3ACF1B69887B00E307BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		814C3AD01B69887B00E307BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		814C3AD11B69887B00E307BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81CC85B81A49F2E00076DE19 /* ParseOSXStarterProject-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ParseOSXStarterProject-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81CC85BD1A49F2E00076DE19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81CC85D81A49F3D70076DE19 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		81CC85D91A49F3D70076DE19 /* ParseOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseOSX.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8129E46E1B841A5C00309634 /* Parse.framework in Frameworks */,
 				81CC85DA1A49F3D70076DE19 /* Bolts.framework in Frameworks */,
-				81CC85DB1A49F3D70076DE19 /* ParseOSX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,8 +116,8 @@
 		81CC85DC1A49F3DA0076DE19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8129E46D1B841A5C00309634 /* Parse.framework */,
 				81CC85D81A49F3D70076DE19 /* Bolts.framework */,
-				81CC85D91A49F3D70076DE19 /* ParseOSX.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -150,7 +150,8 @@
 		81CC85B01A49F2E00076DE19 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Parse;
 				TargetAttributes = {
 					81993FD51B69AC760077D6B9 = {
@@ -204,7 +205,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ ! -d \"Bolts.framework\" ]]; then\n  cp -R ../../../Vendor/Bolts-ObjC/build/osx/Bolts.framework .\nfi\n\nrm -rf ParseOSX.framework\ncp -R $BUILT_PRODUCTS_DIR/ParseOSX.framework .\n";
+			shellScript = "if [[ ! -d \"Bolts.framework\" ]]; then\n  ../../../Carthage/Checkouts/Bolts-iOS/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\n  cp -R ../../../Carthage/Checkouts/Bolts-iOS/build/osx/Bolts.framework .\nfi\n\nrm -rf Parse.framework\ncp -R $BUILT_PRODUCTS_DIR/Parse.framework .\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -271,9 +272,9 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -313,7 +314,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -342,6 +342,7 @@
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.parse.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "ParseOSXStarterProject-Swift";
 			};
 			name = Debug;
@@ -357,6 +358,7 @@
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.parse.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "ParseOSXStarterProject-Swift";
 			};
 			name = Release;

@@ -16,10 +16,10 @@
 #import "PFObjectPrivate.h"
 #import "PFRESTCommand.h"
 #import "PFSessionController.h"
-#import "PFUnitTestCase.h"
+#import "PFTestCase.h"
 #import "Parse_Private.h"
 
-@interface SessionControllerTests : PFUnitTestCase
+@interface SessionControllerTests : PFTestCase
 
 @end
 

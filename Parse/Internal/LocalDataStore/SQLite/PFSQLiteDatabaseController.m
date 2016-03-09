@@ -25,10 +25,6 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithFileManager:(PFFileManager *)fileManager {
     self = [super init];
     if (!self) return nil;

@@ -112,7 +112,7 @@
         }
             break;
         case kPFCachePolicyCacheThenNetwork:
-            PFConsistencyAssert(NO, @"kPFCachePolicyCacheThenNetwork is not implmented as a runner.");
+            PFConsistencyAssert(NO, @"kPFCachePolicyCacheThenNetwork is not implemented as a runner.");
             break;
         default:
             PFConsistencyAssert(NO, @"Unrecognized cache policy: %d", queryState.cachePolicy);
@@ -199,7 +199,7 @@
 - (BFTask *)_saveCommandResultAsync:(PFCommandResult *)result forCommandCacheKey:(NSString *)cacheKey {
     NSString *resultString = result.resultString;
     if (resultString) {
-        [self.commonDataSource.keyValueCache setObject:resultString forKey:cacheKey];
+        self.commonDataSource.keyValueCache[cacheKey] = resultString;
     }
     // Roll-forward the original result.
     return [BFTask taskWithResult:result];

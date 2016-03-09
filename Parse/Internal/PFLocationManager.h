@@ -9,10 +9,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
 @class CLLocation;
 @class CLLocationManager;
 
-#if TARGET_OS_IPHONE
+#if !PF_TARGET_OS_OSX
 
 @class UIApplication;
 
@@ -20,7 +22,7 @@
 
 typedef void(^PFLocationManagerLocationUpdateBlock)(CLLocation *location, NSError *error);
 
-/*!
+/**
  PFLocationManager is an internal class which wraps a CLLocationManager and
  returns an updated CLLocation via the provided block.
 
@@ -39,7 +41,7 @@ typedef void(^PFLocationManagerLocationUpdateBlock)(CLLocation *location, NSErro
 
 - (instancetype)initWithSystemLocationManager:(CLLocationManager *)manager;
 
-#if TARGET_OS_IPHONE
+#if !PF_TARGET_OS_OSX
 
 - (instancetype)initWithSystemLocationManager:(CLLocationManager *)manager
                                   application:(UIApplication *)application

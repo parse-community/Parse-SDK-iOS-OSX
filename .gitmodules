@@ -1,6 +1,9 @@
-[submodule "Vendor/Bolts-ObjC"]
-	path = Vendor/Bolts-ObjC
+[submodule "Vendor/xctoolchain"]
+	path = Vendor/xctoolchain
+	url = https://github.com/ParsePlatform/xctoolchain.git
+[submodule "Carthage/Checkouts/Bolts-iOS"]
+	path = Carthage/Checkouts/Bolts-iOS
 	url = https://github.com/BoltsFramework/Bolts-iOS.git
-[submodule "Vendor/OCMock"]
-	path = Vendor/OCMock
-	url = https://github.com/erikdoe/ocmock.git
+[submodule "Carthage/Checkouts/OCMock"]
+	path = Carthage/Checkouts/OCMock
+	url = https://github.com/erikdoe/OCMock.git

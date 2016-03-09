@@ -212,7 +212,6 @@
 				09ABC06913A1D52D009C3FCF /* Sources */,
 				09ABC06A13A1D52D009C3FCF /* Frameworks */,
 				09ABC06B13A1D52D009C3FCF /* Resources */,
-				81A6CA5F1A2EA3D600297C39 /* Upload Symbol Files */,
 			);
 			buildRules = (
 			);
@@ -230,7 +229,7 @@
 		09ABC06413A1D52D009C3FCF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0720;
 				TargetAttributes = {
 					814C3AE61B69A87F00E307BB = {
 						CreatedOnToolsVersion = 6.4;
@@ -283,21 +282,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ ! -d \"Bolts.framework\" ]]; then\n  cp -R ../../../Vendor/Bolts-ObjC/build/ios/Bolts.framework .\nfi\n";
-		};
-		81A6CA5F1A2EA3D600297C39 /* Upload Symbol Files */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Upload Symbol Files";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script will upload symbol files for your application,\n# so all your crash reports are going to be symbolicated\n\n# Important!\n# Before using the script, please initialize CloudCode folder and replace <path_to_cloudcode_folder> with the path to it\n#\n# Read more on Parse.com - https://parse.com/apps/quickstart#analytics/crashreporting/ios/\n############################################################\n\n\n# export PATH=/usr/local/bin:$PATH\n# cd <path_to_cloudcode_folder>\n\n# parse symbols -p \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n";
+			shellScript = "# Remove the compiled version of Bolts.framework as we need a static one\nrm -r $BUILT_PRODUCTS_DIR/Bolts.framework\n\nif [[ ! -d \"Bolts.framework\" ]]; then\n    ../../../Carthage/Checkouts/Bolts-iOS/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\n  cp -R ../../../Carthage/Checkouts/Bolts-iOS/build/ios/Bolts.framework .\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

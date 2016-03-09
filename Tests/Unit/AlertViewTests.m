@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 #import <OCMock/OCMock.h>
 
@@ -44,6 +44,7 @@
     id mockedApplication = PFStrictClassMock([UIApplication class]);
     UIWindow *mockedWindow = PFStrictClassMock([UIWindow class]);
     UIViewController *mockedViewController = PFStrictClassMock([UIViewController class]);
+    OCMStub(mockedViewController.presentedViewController).andReturn(nil);
 
     // Using .andReturn() here will result in a retain cycle, which will cause our mocked shared application to
     // persist across tests.
@@ -102,7 +103,7 @@
                   cancelButtonTitle:@"Cancel"
                   otherButtonTitles:@[ @"Yes", @"No" ]
                          completion:^(NSUInteger selectedOtherButtonIndex) {
-                             XCTAssertEqual(selectedOtherButtonIndex, -1);
+                             XCTAssertEqual(selectedOtherButtonIndex, NSNotFound);
 
                              [expectation fulfill];
                          }];
@@ -147,7 +148,7 @@
             [delegate alertView:self clickedButtonAtIndex:0];
         });
 
-        OCMStub([mockedAlertView firstOtherButtonIndex]).andReturn(1);
+        OCMStub([mockedAlertView cancelButtonIndex]).andReturn(0);
 
         XCTestExpectation *expectation = [self currentSelectorTestExpectation];
         [PFAlertView showAlertWithTitle:@"Title"
@@ -155,7 +156,7 @@
                       cancelButtonTitle:@"Cancel"
                       otherButtonTitles:@[ @"Yes", @"No" ]
                              completion:^(NSUInteger selectedOtherButtonIndex) {
-                                 XCTAssertEqual(selectedOtherButtonIndex, -1);
+                                 XCTAssertEqual(selectedOtherButtonIndex, NSNotFound);
 
                                  [expectation fulfill];
                              }];

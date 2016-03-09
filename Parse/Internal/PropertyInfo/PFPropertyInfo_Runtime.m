@@ -12,7 +12,7 @@
 #import <objc/message.h>
 #import <objc/runtime.h>
 
-/*!
+/**
  This macro is really interesting. Because ARC will insert implicit retains, releases and other memory managment code
  that we don't want here, we have to basically trick ARC into treating the functions we want as functions with type
  `void *`. The way we do that is actually via the linker - instead of coming up with some crazy macro to forward all

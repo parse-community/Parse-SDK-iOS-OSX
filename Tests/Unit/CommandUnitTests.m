@@ -15,6 +15,7 @@
 #import "PFURLSessionCommandRunner.h"
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
+#import "ParseClientConfiguration_Private.h"
 
 @interface CommandUnitTests : PFUnitTestCase
 
@@ -54,7 +55,8 @@
     NSError *error = nil;
     PFURLSessionCommandRunner *commandRunner = [PFURLSessionCommandRunner commandRunnerWithDataSource:[Parse _currentManager]
                                                                                         applicationId:[Parse getApplicationId]
-                                                                                            clientKey:[Parse getClientKey]];
+                                                                                            clientKey:[Parse getClientKey]
+                                                                                            serverURL:[NSURL URLWithString:_ParseDefaultServerURLString]];
     [[commandRunner runCommandAsync:command
                         withOptions:PFCommandRunningOptionRetryIfFailed] waitForResult:&error];
 
@@ -83,7 +85,8 @@
     NSError *error = nil;
     PFURLSessionCommandRunner *commandRunner = [PFURLSessionCommandRunner commandRunnerWithDataSource:[Parse _currentManager]
                                                                                         applicationId:[Parse getApplicationId]
-                                                                                            clientKey:[Parse getClientKey]];
+                                                                                            clientKey:[Parse getClientKey]
+                                                                                            serverURL:[NSURL URLWithString:_ParseDefaultServerURLString]];
     commandRunner.initialRetryDelay = DBL_MIN;
     [[commandRunner runCommandAsync:command
                         withOptions:PFCommandRunningOptionRetryIfFailed] waitForResult:&error];

@@ -10,9 +10,14 @@
 #import <Foundation/Foundation.h>
 #import <StoreKit/StoreKit.h>
 
-@class BFTask;
+#import <Parse/PFConstants.h>
 
-@interface PFProductsRequestResult : NSObject
+PF_OSX_UNAVAILABLE_WARNING
+PF_WATCH_UNAVAILABLE_WARNING
+
+@class BFTask<__covariant BFGenericType>;
+
+PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFProductsRequestResult : NSObject
 
 @property (nonatomic, copy, readonly) NSSet *validProducts;
 @property (nonatomic, copy, readonly) NSSet *invalidProductIdentifiers;
@@ -21,7 +26,7 @@
 
 @end
 
-/*!
+/**
  * This class is responsible for handling the first part of an IAP handshake.
  * It sends a request to iTunes Connect with a set of product identifiers, and iTunes returns
  * with a list of valid and invalid products. The class then proceeds to call the completion block passed in.

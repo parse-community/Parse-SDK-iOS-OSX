@@ -9,20 +9,24 @@
 
 #import "PFPushState.h"
 
+PF_TV_UNAVAILABLE_WARNING
+PF_WATCH_UNAVAILABLE_WARNING
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PFMutablePushState : PFPushState
+PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFMutablePushState : PFPushState
 
 @property (nullable, nonatomic, copy, readwrite) NSSet *channels;
 @property (nullable, nonatomic, copy, readwrite) PFQueryState *queryState;
 
 @property (nullable, nonatomic, strong, readwrite) NSDate *expirationDate;
-@property (nullable, nonatomic, copy, readwrite) NSNumber *expirationTimeInterval;
+@property (nullable, nonatomic, strong, readwrite) NSNumber *expirationTimeInterval;
+@property (nullable, nonatomic, strong, readwrite) NSDate *pushDate;
 
 @property (nullable, nonatomic, copy, readwrite) NSDictionary *payload;
 
 ///--------------------------------------
-/// @name Payload
+#pragma mark - Payload
 ///--------------------------------------
 
 - (void)setPayloadWithMessage:(nullable NSString *)message;

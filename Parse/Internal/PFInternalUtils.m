@@ -33,9 +33,10 @@
 #import "PFJSONSerialization.h"
 #import "PFMultiProcessFileLockController.h"
 #import "PFHash.h"
+#import "Parse_Private.h"
+#import "ParseClientConfiguration_Private.h"
 
-#if PARSE_IOS_ONLY
-#import "PFNetworkActivityIndicatorManager.h"
+#if TARGET_OS_IOS
 #import "PFProduct.h"
 #endif
 
@@ -45,11 +46,7 @@ static NSString *parseServer_;
 
 + (void)initialize {
     if (self == [PFInternalUtils class]) {
-        [self setParseServer:kPFParseServer];
-
-#if PARSE_IOS_ONLY
-        [PFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-#endif
+        [self setParseServer:_ParseDefaultServerURLString];
     }
 }
 
@@ -90,49 +87,43 @@ static NSString *parseServer_;
 #pragma clang diagnostic pop
 }
 
-+ (NSNumber *)fileSizeOfFileAtPath:(NSString *)filePath error:(NSError **)error {
-    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath
-                                                                                error:error];
-    return attributes[NSFileSize];
-}
-
 ///--------------------------------------
 #pragma mark - Serialization
 ///--------------------------------------
 
 + (NSNumber *)addNumber:(NSNumber *)first withNumber:(NSNumber *)second {
-    const char *objcType = [first objCType];
+    const char *objcType = first.objCType;
 
     if (strcmp(objcType, @encode(BOOL)) == 0) {
-        return @([first boolValue] + [second boolValue]);
+        return @(first.boolValue + second.boolValue);
     } else if (strcmp(objcType, @encode(char)) == 0) {
-        return @([first charValue] + [second charValue]);
+        return @(first.charValue + second.charValue);
     } else if (strcmp(objcType, @encode(double)) == 0) {
-        return @([first doubleValue] + [second doubleValue]);
+        return @(first.doubleValue + second.doubleValue);
     } else if (strcmp(objcType, @encode(float)) == 0) {
-        return @([first floatValue] + [second floatValue]);
+        return @(first.floatValue + second.floatValue);
     } else if (strcmp(objcType, @encode(int)) == 0) {
-        return @([first intValue] + [second intValue]);
+        return @(first.intValue + second.intValue);
     } else if (strcmp(objcType, @encode(long)) == 0) {
-        return @([first longValue] + [second longValue]);
+        return @(first.longValue + second.longValue);
     } else if (strcmp(objcType, @encode(long long)) == 0) {
-        return @([first longLongValue] + [second longLongValue]);
+        return @(first.longLongValue + second.longLongValue);
     } else if (strcmp(objcType, @encode(short)) == 0) {
-        return @([first shortValue] + [second shortValue]);
+        return @(first.shortValue + second.shortValue);
     } else if (strcmp(objcType, @encode(unsigned char)) == 0) {
-        return @([first unsignedCharValue] + [second unsignedCharValue]);
+        return @(first.unsignedCharValue + second.unsignedCharValue);
     } else if (strcmp(objcType, @encode(unsigned int)) == 0) {
-        return @([first unsignedIntValue] + [second unsignedIntValue]);
+        return @(first.unsignedIntValue + second.unsignedIntValue);
     } else if (strcmp(objcType, @encode(unsigned long)) == 0) {
-        return @([first unsignedLongValue] + [second unsignedLongValue]);
+        return @(first.unsignedLongValue + second.unsignedLongValue);
     } else if (strcmp(objcType, @encode(unsigned long long)) == 0) {
-        return @([first unsignedLongLongValue] + [second unsignedLongLongValue]);
+        return @(first.unsignedLongLongValue + second.unsignedLongLongValue);
     } else if (strcmp(objcType, @encode(unsigned short)) == 0) {
-        return @([first unsignedShortValue] + [second unsignedShortValue]);
+        return @(first.unsignedShortValue + second.unsignedShortValue);
     }
 
     // Fall back to int?
-    return @([first intValue] + [second intValue]);
+    return @(first.intValue + second.intValue);
 }
 
 ///--------------------------------------
@@ -169,11 +160,11 @@ static NSString *parseServer_;
 + (void)appendDictionary:(NSDictionary *)dictionary toString:(NSMutableString *)string {
     [string appendString:@"{"];
 
-    NSArray *keys = [[dictionary allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    NSArray *keys = [dictionary.allKeys sortedArrayUsingSelector:@selector(compare:)];
     for (NSString *key in keys) {
         [string appendFormat:@"%@:", key];
 
-        id value = [dictionary objectForKey:key];
+        id value = dictionary[key];
         [self appendObject:value toString:string];
 
         [string appendString:@","];
@@ -192,7 +183,7 @@ static NSString *parseServer_;
 }
 
 + (void)appendNumber:(NSNumber *)number toString:(NSMutableString *)string {
-    [string appendFormat:@"%@", [number stringValue]];
+    [string appendFormat:@"%@", number.stringValue];
 }
 
 + (void)appendNullToString:(NSMutableString *)string {
@@ -207,7 +198,7 @@ static NSString *parseServer_;
         }
         [seen addObject:object];
 
-        for (NSString *key in [(PFObject *)object allKeys]) {
+        for (NSString *key in ((PFObject *)object).allKeys) {
             [self traverseObject:object[key] usingBlock:block seenObjects:seen];
         }
 
@@ -242,15 +233,15 @@ static NSString *parseServer_;
 }
 
 + (NSArray *)arrayBySplittingArray:(NSArray *)array withMaximumComponentsPerSegment:(NSUInteger)components {
-    if ([array count] <= components) {
+    if (array.count <= components) {
         return @[ array ];
     }
 
     NSMutableArray *splitArray = [NSMutableArray array];
     NSInteger index = 0;
 
-    while (index < [array count]) {
-        NSInteger length = MIN([array count] - index, components);
+    while (index < array.count) {
+        NSInteger length = MIN(array.count - index, components);
 
         NSArray *subarray = [array subarrayWithRange:NSMakeRange(index, length)];
         [splitArray addObject:subarray];
@@ -271,33 +262,6 @@ static NSString *parseServer_;
     }
     return [NSString stringWithFormat:format,
             args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]];
-}
-
-@end
-
-// A PFJSONCacheItem is a pairing of a json string with its hash value.
-// This is used by our mutable container checking.
-@implementation PFJSONCacheItem
-
-- (instancetype)initWithObject:(id)object {
-    if (self = [super init]) {
-        NSObject *encoded = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:object];
-        NSData *jsonData = [PFJSONSerialization dataFromJSONObject:encoded];
-        _hashValue = PFMD5HashFromData(jsonData);
-    }
-    return self;
-}
-
-- (BOOL)isEqual:(id)otherCache {
-    if (![otherCache isKindOfClass:[PFJSONCacheItem class]]) {
-        return NO;
-    }
-
-    return [self.hashValue isEqualToString:[otherCache hashValue]];
-}
-
-+ (PFJSONCacheItem *)cacheFromObject:(id)object {
-    return [[PFJSONCacheItem alloc] initWithObject:object];
 }
 
 @end

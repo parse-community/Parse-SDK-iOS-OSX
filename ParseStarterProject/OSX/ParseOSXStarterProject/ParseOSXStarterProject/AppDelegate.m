@@ -7,9 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <ParseOSX/Parse.h>
-
 #import "AppDelegate.h"
+
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
@@ -31,7 +31,7 @@
     PFACL *defaultACL = [PFACL ACL];
 
     // If you would like all objects to be private by default, remove this line.
-    [defaultACL setPublicReadAccess:YES];
+    defaultACL.publicReadAccess = YES;
 
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
 

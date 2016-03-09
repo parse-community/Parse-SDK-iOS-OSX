@@ -9,31 +9,39 @@
 
 #import "PFMulticastDelegate.h"
 
+@interface PFMulticastDelegate () {
+    NSMutableArray *_callbacks;
+}
+
+@end
+
 @implementation PFMulticastDelegate
 
 - (instancetype)init {
-    if (self = [super init]) {
-        callbacks = [[NSMutableArray alloc] init];
-    }
+    self = [super init];
+    if (!self) return nil;
+
+    _callbacks = [[NSMutableArray alloc] init];
+
     return self;
 }
 
 - (void)subscribe:(void(^)(id result, NSError *error))block {
-    [callbacks addObject:block];
+    [_callbacks addObject:block];
 }
 
 - (void)unsubscribe:(void(^)(id result, NSError *error))block {
-    [callbacks removeObject:block];
+    [_callbacks removeObject:block];
 }
 
 - (void)invoke:(id)result error:(NSError *)error {
-    NSArray *callbackCopy = [callbacks copy];
+    NSArray *callbackCopy = [_callbacks copy];
     for (void (^block)(id result, NSError *error) in callbackCopy) {
         block(result, error);
     }
 }
 - (void)clear {
-    [callbacks removeAllObjects];
+    [_callbacks removeAllObjects];
 }
 
 @end

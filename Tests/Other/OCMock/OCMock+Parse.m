@@ -9,14 +9,14 @@
 
 #import "OCMock+Parse.h"
 
-#import <Bolts/BFTask.h>
+@import Bolts.BFTask;
 
 #import "PFCommandResult.h"
 #import "PFCommandRunning.h"
 
 @implementation OCMockObject (PFCOmmandRunning)
 
-- (void)mockCommandResult:(id)result forCommandsPassingTest:(BOOL (^)(id obj))block {
+- (void)mockCommandResult:(id)result forCommandsPassingTest:(BOOL (^)(PFRESTCommand *command))block {
     PFCommandResult *commandResult = [PFCommandResult commandResultWithResult:result
                                                                  resultString:nil
                                                                  httpResponse:nil];

@@ -1,0 +1,24 @@
+//
+// Copyright (c) 2015-present, Parse, LLC.
+// All rights reserved.
+//
+// This source code is licensed under the BSD-style license found in the
+// LICENSE file in the root directory of this source tree. An additional grant
+// of patent rights can be found in the PATENTS file in the same directory.
+//
+
+#include "Shared/Platform/iOS.xcconfig"
+#include "Shared/Product/Framework.xcconfig"
+
+PRODUCT_NAME = Parse
+PRODUCT_BUNDLE_IDENTIFIER = com.parse.ios
+DEFINES_MODULE = YES
+
+IPHONEOS_DEPLOYMENT_TARGET = 8.0
+
+MACH_O_TYPE = mh_dylib
+DYLIB_INSTALL_NAME_BASE = @rpath
+
+INFOPLIST_FILE = $(PROJECT_DIR)/Parse/Resources/Parse-iOS.Info.plist
+
+OTHER_CFLAGS[sdk=iphoneos9.*] = $(inherited) -fembed-bitcode

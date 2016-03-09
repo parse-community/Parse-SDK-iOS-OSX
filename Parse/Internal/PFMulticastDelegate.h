@@ -9,15 +9,12 @@
 
 #import <Foundation/Foundation.h>
 
-/*!
+/**
  Represents an event that can be subscribed to by multiple observers.
  */
-@interface PFMulticastDelegate : NSObject {
-@private
-    NSMutableArray *callbacks;
-}
+@interface PFMulticastDelegate : NSObject
 
-/*!
+/**
  Subscribes a block for callback.
 
  Important: if you ever plan to be able to unsubscribe the block, you must copy the block

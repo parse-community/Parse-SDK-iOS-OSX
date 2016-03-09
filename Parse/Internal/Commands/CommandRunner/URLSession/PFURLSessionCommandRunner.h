@@ -16,6 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFURLSessionCommandRunner : NSObject <PFCommandRunning>
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
++ (instancetype)commandRunnerWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
+                              retryAttempts:(NSUInteger)retryAttempts
+                              applicationId:(NSString *)applicationId
+                                  clientKey:(nullable NSString *)clientKey
+                                  serverURL:(NSURL *)serverURL;
 
 @end
 

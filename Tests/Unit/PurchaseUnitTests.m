@@ -9,17 +9,20 @@
 
 #import <OCMock/OCMock.h>
 
-#import <Bolts/BFTask.h>
+@import Bolts.BFTask;
 
 #import "PFCommandRunning.h"
 #import "PFFileManager.h"
 #import "PFPaymentTransactionObserver_Private.h"
-#import "PFPurchase.h"
 #import "PFPurchaseController.h"
 #import "PFTestSKPaymentTransaction.h"
 #import "PFTestSKProduct.h"
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
+
+@protocol PurchaseControllerDataSource <PFCommandRunnerProvider, PFFileManagerProvider>
+
+@end
 
 @interface PurchaseUnitTests : PFUnitTestCase
 
@@ -32,11 +35,14 @@
 ///--------------------------------------
 
 - (PFPurchaseController *)mockedPurchaseController {
-    id<PFCommandRunning> commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
-    PFFileManager *fileManager = PFStrictClassMock([PFFileManager class]);
+    id dataSource = PFStrictProtocolMock(@protocol(PurchaseControllerDataSource));
+    id commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
+    OCMStub([dataSource commandRunner]).andReturn(commandRunner);
+    id fileManager = PFStrictClassMock([PFFileManager class]);
+    OCMStub([dataSource fileManager]).andReturn(fileManager);
+    id bundle = PFStrictClassMock([NSBundle class]);
 
-    PFPurchaseController *purchaseController = PFPartialMock([[PFPurchaseController alloc] initWithCommandRunner:commandRunner
-                                                                                                      fileManager:fileManager]);
+    PFPurchaseController *purchaseController = PFPartialMock([PFPurchaseController controllerWithDataSource:dataSource bundle:bundle]);
 
     SKPaymentQueue *paymentQueue = PFClassMock([SKPaymentQueue class]);
     purchaseController.paymentQueue = paymentQueue;
@@ -153,13 +159,15 @@
     PFPurchaseController *mockedPurchaseController = [self mockedPurchaseController];
     [Parse _currentManager].purchaseController = mockedPurchaseController;
 
+    PFProduct *product = [PFProduct object];
+
     NSString *somePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
 
     OCMStub([mockedPurchaseController assetContentPathForProductWithIdentifier:OCMOCK_ANY
                                                                       fileName:OCMOCK_ANY]).andReturn(somePath);
 
 
-    XCTAssertNil([PFPurchase assetContentPathForProduct:nil]);
+    XCTAssertNil([PFPurchase assetContentPathForProduct:product]);
 
     NSError *error;
     [@"" writeToFile:somePath atomically:YES
@@ -167,7 +175,7 @@
                error:&error];
 
     XCTAssertNil(error);
-    XCTAssertNotNil([PFPurchase assetContentPathForProduct:nil]);
+    XCTAssertNotNil([PFPurchase assetContentPathForProduct:product]);
 }
 
 @end

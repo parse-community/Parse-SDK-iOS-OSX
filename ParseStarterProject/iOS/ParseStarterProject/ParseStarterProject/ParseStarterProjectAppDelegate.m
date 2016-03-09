@@ -15,9 +15,6 @@
 // If you are using Facebook, uncomment this line
 // #import <ParseFacebookUtils/PFFacebookUtils.h>
 
-// If you want to use Crash Reporting - uncomment this line
-// #import <ParseCrashReporting/ParseCrashReporting.h>
-
 #import "ParseStarterProjectAppDelegate.h"
 #import "ParseStarterProjectViewController.h"
 
@@ -32,9 +29,6 @@
     [Parse enableLocalDatastore];
 
     // ****************************************************************************
-    // Uncomment this line if you want to enable Crash Reporting
-    // [ParseCrashReporting enable];
-    //
     // Uncomment and fill in with your Parse credentials:
     // [Parse setApplicationId:@"your_application_id" clientKey:@"your_client_key"];
     //
@@ -48,7 +42,7 @@
     PFACL *defaultACL = [PFACL ACL];
 
     // If you would like all objects to be private by default, remove this line.
-    [defaultACL setPublicReadAccess:YES];
+    defaultACL.publicReadAccess = YES;
 
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
 
@@ -63,7 +57,7 @@
         // In that case, we skip tracking here to avoid double counting the app-open.
         BOOL preBackgroundPush = ![application respondsToSelector:@selector(backgroundRefreshStatus)];
         BOOL oldPushHandlerOnly = ![self respondsToSelector:@selector(application:didReceiveRemoteNotification:fetchCompletionHandler:)];
-        BOOL noPushPayload = ![launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        BOOL noPushPayload = !launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
         if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
             [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
         }

@@ -9,15 +9,9 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
-# import <Parse/Parse.h>
-#else
-# import <ParseOSX/Parse.h>
-#endif
+#import <Parse/Parse.h>
 
 #import "PFAssert.h"
-#import "PFAuthenticationProvider.h"
-#import "PFBlockRetryer.h"
 #import "PFCommandCache.h"
 #import "PFEventuallyQueue.h"
 #import "PFFieldOperation.h"

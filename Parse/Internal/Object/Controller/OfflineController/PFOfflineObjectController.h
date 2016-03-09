@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) id<PFCommandRunnerProvider, PFOfflineStoreProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)initWithDataSource:(id<PFCommandRunnerProvider, PFOfflineStoreProvider>)dataSource NS_DESIGNATED_INITIALIZER;

@@ -9,15 +9,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFDataProvider.h"
-#if TARGET_OS_IPHONE
 #import <Parse/PFConstants.h>
-#else
-#import <ParseOSX/PFConstants.h>
-#endif
+
+#import "PFDataProvider.h"
 
 @class BFCancellationToken;
-@class BFTask;
+@class BFTask<__covariant BFGenericType>;
+@class PFCommandResult;
 @class PFRESTCommand;
 @protocol PFNetworkCommand;
 
@@ -35,50 +33,53 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSString *applicationId;
 @property (nonatomic, copy, readonly) NSString *clientKey;
+@property (nonatomic, strong, readonly) NSURL *serverURL;
 
 @property (nonatomic, assign) NSTimeInterval initialRetryDelay;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                      applicationId:(NSString *)applicationId
-                         clientKey:(NSString *)clientKey;
+                         clientKey:(nullable NSString *)clientKey
+                         serverURL:(NSURL *)serverURL;
 + (instancetype)commandRunnerWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                               applicationId:(NSString *)applicationId
-                                  clientKey:(NSString *)clientKey;
+                                  clientKey:(nullable NSString *)clientKey
+                                  serverURL:(NSURL *)serverURL;
 
 ///--------------------------------------
-/// @name Data Commands
+#pragma mark - Data Commands
 ///--------------------------------------
 
-/*!
+/**
  Run command.
 
  @param command   Command to run.
  @param options   Options to use to run command.
 
- @returns `BFTask` with result set to `PFCommandResult`.
+ @return `BFTask` with result set to `PFCommandResult`.
  */
 - (BFTask *)runCommandAsync:(PFRESTCommand *)command
                 withOptions:(PFCommandRunningOptions)options;
 
-/*!
+/**
  Run command.
 
  @param command           Command to run.
  @param options           Options to use to run command.
  @param cancellationToken Operation to use as a cancellation token.
 
- @returns `BFTask` with result set to `PFCommandResult`.
+ @return `BFTask` with result set to `PFCommandResult`.
  */
 - (BFTask *)runCommandAsync:(PFRESTCommand *)command
                 withOptions:(PFCommandRunningOptions)options
           cancellationToken:(nullable BFCancellationToken *)cancellationToken;
 
 ///--------------------------------------
-/// @name File Commands
+#pragma mark - File Commands
 ///--------------------------------------
 
 - (BFTask *)runFileUploadCommandAsync:(PFRESTCommand *)command

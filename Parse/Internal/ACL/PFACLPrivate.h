@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFACL.h"
+#import <Parse/PFACL.h>
 
 @class PFUser;
 
@@ -27,7 +27,7 @@
  */
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
-/*!
+/**
  Creates an ACL from its encoded format.
  */
 + (instancetype)ACLWithDictionary:(NSDictionary *)dictionary;

@@ -9,15 +9,15 @@
 
 #import <OCMock/OCMock.h>
 
-#import <Bolts/BFTask.h>
+@import Bolts.BFTask;
 
 #import "PFCurrentInstallationController.h"
 #import "PFInstallation.h"
 #import "PFMacros.h"
 #import "PFPushChannelsController.h"
-#import "PFUnitTestCase.h"
+#import "PFTestCase.h"
 
-@interface PushChannelsControllerTests : PFUnitTestCase
+@interface PushChannelsControllerTests : PFTestCase
 
 @end
 

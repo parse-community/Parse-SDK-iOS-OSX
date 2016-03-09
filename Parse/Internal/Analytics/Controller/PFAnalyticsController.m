@@ -15,49 +15,55 @@
 #import "PFEventuallyQueue.h"
 #import "PFRESTAnalyticsCommand.h"
 
+@interface PFAnalyticsController ()
+
+@property (nonatomic, weak, readonly) PFEventuallyQueue *eventuallyQueue;
+
+@end
+
 @implementation PFAnalyticsController
 
 ///--------------------------------------
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
-- (instancetype)initWithEventuallyQueue:(PFEventuallyQueue *)eventuallyQueue {
+- (instancetype)initWithDataSource:(id<PFEventuallyQueueProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
 
-    _eventuallyQueue = eventuallyQueue;
+    _dataSource = dataSource;
 
     return self;
 }
 
-+ (instancetype)controllerWithEventuallyQueue:(PFEventuallyQueue *)eventuallyQueue {
-    return [[self alloc] initWithEventuallyQueue:eventuallyQueue];
++ (instancetype)controllerWithDataSource:(id<PFEventuallyQueueProvider>)dataSource {
+    return [[self alloc] initWithDataSource:dataSource];
 }
 
 ///--------------------------------------
 #pragma mark - Track Event
 ///--------------------------------------
 
-- (BFTask *)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(NSDictionary *)payload
-                                                     sessionToken:(NSString *)sessionToken {
-    // If the Remote Notification payload had a message sent along with it, make
-    // sure to send that along so the server can identify "app opened from push"
-    // instead.
-    id alert = payload[@"aps"][@"alert"];
-    NSString *pushDigest = (alert ? [PFAnalyticsUtilities md5DigestFromPushPayload:alert] : nil);
+- (BFTask<PFVoid> *)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(nullable NSDictionary *)payload
+                                                             sessionToken:(nullable NSString *)sessionToken {
+    @weakify(self);
+    return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+        @strongify(self);
+        // If the Remote Notification payload had a message sent along with it, make
+        // sure to send that along so the server can identify "app opened from push"
+        // instead.
+        id alert = payload[@"aps"][@"alert"];
+        NSString *pushDigest = (alert ? [PFAnalyticsUtilities md5DigestFromPushPayload:alert] : nil);
 
-    PFRESTCommand *command = [PFRESTAnalyticsCommand trackAppOpenedEventCommandWithPushHash:pushDigest
-                                                                               sessionToken:sessionToken];
-    return [[self.eventuallyQueue enqueueCommandInBackground:command] continueWithSuccessResult:@YES];
+        PFRESTCommand *command = [PFRESTAnalyticsCommand trackAppOpenedEventCommandWithPushHash:pushDigest
+                                                                                   sessionToken:sessionToken];
+        return [self.eventuallyQueue enqueueCommandInBackground:command];
+    }] continueWithSuccessResult:nil];
 }
 
-- (BFTask *)trackEventAsyncWithName:(NSString *)name
-                         dimensions:(NSDictionary *)dimensions
-                       sessionToken:(NSString *)sessionToken {
+- (BFTask<PFVoid> *)trackEventAsyncWithName:(NSString *)name
+                                 dimensions:(nullable NSDictionary<NSString *, NSString *> *)dimensions
+                               sessionToken:(nullable NSString *)sessionToken {
     PFParameterAssert([[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length],
                       @"A name for the custom event must be provided.");
 
@@ -69,14 +75,22 @@
     }
 
     @weakify(self);
-    return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+    return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
         NSDictionary *encodedDimensions = [[PFNoObjectEncoder objectEncoder] encodeObject:dimensions];
         PFRESTCommand *command = [PFRESTAnalyticsCommand trackEventCommandWithEventName:name
                                                                              dimensions:encodedDimensions
                                                                            sessionToken:sessionToken];
-        return [[self.eventuallyQueue enqueueCommandInBackground:command] continueWithSuccessResult:@YES];
-    }];
+        return [self.eventuallyQueue enqueueCommandInBackground:command];
+    }] continueWithSuccessResult:nil];
+}
+
+///--------------------------------------
+#pragma mark - Accessors
+///--------------------------------------
+
+- (PFEventuallyQueue *)eventuallyQueue {
+    return self.dataSource.eventuallyQueue;
 }
 
 @end

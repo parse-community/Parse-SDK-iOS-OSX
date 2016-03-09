@@ -9,13 +9,12 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
 #import <Parse/PFPush.h>
-#else
-#import <ParseOSX/PFPush.h>
-#endif
 
 #import "PFMacros.h"
+
+PF_TV_UNAVAILABLE_WARNING
+PF_WATCH_UNAVAILABLE_WARNING
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,9 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSString *)getDeviceTokenFromKeychain;
 + (void)clearDeviceToken;
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS
 
-+ (void)showAlertViewWithTitle:(nullable NSString *)title message:(nullable NSString *)message;
++ (void)showAlertViewWithTitle:(nullable NSString *)title message:(nullable NSString *)message NS_EXTENSION_UNAVAILABLE_IOS("");
 + (void)playVibrate;
 + (void)playAudioWithName:(nullable NSString *)audioName;
 

@@ -37,21 +37,21 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
-- (instancetype)initWithConfiguration:(NSURLSessionConfiguration *)configuration {
+- (instancetype)initWithConfiguration:(NSURLSessionConfiguration *)configuration
+                             delegate:(id<PFURLSessionDelegate>)delegate {
     // NOTE: cast to id suppresses warning about designated initializer.
     return [(id)self initWithURLSession:[NSURLSession sessionWithConfiguration:configuration
                                                                      delegate:self
-                                                                delegateQueue:nil]];
+                                                                delegateQueue:nil]
+                               delegate:delegate];
 }
 
-- (instancetype)initWithURLSession:(NSURLSession *)session {
+- (instancetype)initWithURLSession:(NSURLSession *)session
+                          delegate:(id<PFURLSessionDelegate>)delegate {
     self = [super init];
     if (!self) return nil;
 
+    _delegate = delegate;
     _urlSession = session;
 
     _sessionTaskQueue = dispatch_queue_create("com.parse.urlSession.tasks", DISPATCH_QUEUE_SERIAL);
@@ -62,12 +62,14 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
     return self;
 }
 
-+ (instancetype)sessionWithConfiguration:(NSURLSessionConfiguration *)configuration {
-    return [[self alloc] initWithConfiguration:configuration];
++ (instancetype)sessionWithConfiguration:(NSURLSessionConfiguration *)configuration
+                                delegate:(id<PFURLSessionDelegate>)delegate {
+    return [[self alloc] initWithConfiguration:configuration delegate:delegate];
 }
 
-+ (instancetype)sessionWithURLSession:(nonnull NSURLSession *)session {
-    return [[self alloc] initWithURLSession:session];
++ (instancetype)sessionWithURLSession:(nonnull NSURLSession *)session
+                             delegate:(id<PFURLSessionDelegate>)delegate {
+    return [[self alloc] initWithURLSession:session delegate:delegate];
 }
 
 ///--------------------------------------
@@ -161,6 +163,8 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
 }
 
 - (BFTask *)_performDataTask:(NSURLSessionDataTask *)dataTask withDelegate:(PFURLSessionDataTaskDelegate *)delegate {
+    [self.delegate urlSession:self willPerformURLRequest:dataTask.originalRequest];
+
     @weakify(self);
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         @strongify(self);
@@ -169,6 +173,11 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
 
         BFTask *resultTask = [delegate.resultTask continueWithBlock:^id(BFTask *task) {
             @strongify(self);
+            [self.delegate urlSession:self
+                 didPerformURLRequest:dataTask.originalRequest
+                      withURLResponse:delegate.response
+                       responseString:delegate.responseString];
+
             [self _removeDelegateForTaskWithIdentifier:taskIdentifier];
             return task;
         }];
@@ -182,7 +191,7 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
 #pragma mark - Private
 ///--------------------------------------
 
-- (PFURLSessionDataTaskDelegate *)_taskDelegateForDataTask:(NSURLSessionDataTask *)task {
+- (PFURLSessionDataTaskDelegate *)_taskDelegateForTask:(NSURLSessionTask *)task {
     __block PFURLSessionDataTaskDelegate *delegate = nil;
     dispatch_sync(_delegatesAccessQueue, ^{
         delegate = _delegatesDictionary[@(task.taskIdentifier)];
@@ -207,11 +216,11 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
 ///--------------------------------------
 
 - (void)URLSession:(NSURLSession *)session
-              task:(NSURLSessionDataTask *)task
+              task:(NSURLSessionTask *)task
    didSendBodyData:(int64_t)bytesSent
     totalBytesSent:(int64_t)totalBytesSent
 totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
-    PFURLSessionDataTaskDelegate *delegate = [self _taskDelegateForDataTask:task];
+    PFURLSessionDataTaskDelegate *delegate = [self _taskDelegateForTask:task];
     [delegate URLSession:session
                     task:task
          didSendBodyData:bytesSent
@@ -219,8 +228,8 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
 totalBytesExpectedToSend:totalBytesExpectedToSend];
 }
 
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionDataTask *)task didCompleteWithError:(NSError *)error {
-    PFURLSessionDataTaskDelegate *delegate = [self _taskDelegateForDataTask:task];
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+    PFURLSessionDataTaskDelegate *delegate = [self _taskDelegateForTask:task];
     [delegate URLSession:session task:task didCompleteWithError:error];
 }
 
@@ -232,12 +241,12 @@ totalBytesExpectedToSend:totalBytesExpectedToSend];
           dataTask:(NSURLSessionDataTask *)dataTask
 didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
-    PFURLSessionDataTaskDelegate *delegate = [self _taskDelegateForDataTask:dataTask];
+    PFURLSessionDataTaskDelegate *delegate = [self _taskDelegateForTask:dataTask];
     [delegate URLSession:session dataTask:dataTask didReceiveResponse:response completionHandler:completionHandler];
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
-    PFURLSessionDataTaskDelegate *delegate = [self _taskDelegateForDataTask:dataTask];
+    PFURLSessionDataTaskDelegate *delegate = [self _taskDelegateForTask:dataTask];
     [delegate URLSession:session dataTask:dataTask didReceiveData:data];
 }
 

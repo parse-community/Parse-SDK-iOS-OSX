@@ -9,11 +9,14 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFConstants.h>
+
 #import "PFCoreDataProvider.h"
 #import "PFCurrentObjectControlling.h"
 #import "PFDataProvider.h"
+#import "PFMacros.h"
 
-@class BFTask;
+@class BFTask<__covariant BFGenericType>;
 @class PFUser;
 
 typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
@@ -22,25 +25,27 @@ typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
 
 @interface PFCurrentUserController : NSObject <PFCurrentObjectControlling>
 
-@property (nonatomic, weak, readonly) id<PFKeychainStoreProvider, PFFileManagerProvider> commonDataSource;
+@property (nonatomic, weak, readonly) id<PFKeychainStoreProvider> commonDataSource;
 @property (nonatomic, weak, readonly) id<PFObjectFilePersistenceControllerProvider> coreDataSource;
 
 @property (atomic, assign) BOOL automaticUsersEnabled;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithStorageType:(PFCurrentObjectStorageType)storageType
-                   commonDataSource:(id<PFKeychainStoreProvider, PFFileManagerProvider>)commonDataSource
+                   commonDataSource:(id<PFKeychainStoreProvider>)commonDataSource
                      coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource NS_DESIGNATED_INITIALIZER;
 + (instancetype)controllerWithStorageType:(PFCurrentObjectStorageType)storageType
-                         commonDataSource:(id<PFKeychainStoreProvider, PFFileManagerProvider>)commonDataSource
+                         commonDataSource:(id<PFKeychainStoreProvider>)commonDataSource
                            coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource;
 
 ///--------------------------------------
-/// @name User
+#pragma mark - User
 ///--------------------------------------
 
 - (BFTask *)getCurrentUserAsyncWithOptions:(PFCurrentUserLoadingOptions)options;
@@ -48,7 +53,7 @@ typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
 - (BFTask *)logOutCurrentUserAsync;
 
 ///--------------------------------------
-/// @name Session Token
+#pragma mark - Session Token
 ///--------------------------------------
 
 - (BFTask *)getCurrentUserSessionTokenAsync;

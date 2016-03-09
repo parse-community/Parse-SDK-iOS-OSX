@@ -16,10 +16,10 @@
 #import "PFFieldOperation.h"
 #import "PFInternalUtils.h"
 
-NSString *const PFOperationSetKeyUUID = @"__uuid";
-NSString *const PFOperationSetKeyIsSaveEventually = @"__isSaveEventually";
-NSString *const PFOperationSetKeyUpdatedAt = @"__updatedAt";
-NSString *const PFOperationSetKeyACL = @"ACL";
+static NSString *const PFOperationSetKeyUUID = @"__uuid";
+static NSString *const PFOperationSetKeyIsSaveEventually = @"__isSaveEventually";
+static NSString *const PFOperationSetKeyUpdatedAt = @"__updatedAt";
+static NSString *const PFOperationSetKeyACL = @"ACL";
 
 @interface PFOperationSet()
 
@@ -34,7 +34,7 @@ NSString *const PFOperationSetKeyACL = @"ACL";
 ///--------------------------------------
 
 - (instancetype)init {
-    return [self initWithUUID:[[NSUUID UUID] UUIDString]];
+    return [self initWithUUID:[NSUUID UUID].UUIDString];
 }
 
 - (instancetype)initWithUUID:(NSString *)uuid {
@@ -102,7 +102,7 @@ NSString *const PFOperationSetKeyACL = @"ACL";
 
     NSNumber *saveEventuallyFlag = mutableData[PFOperationSetKeyIsSaveEventually];
     if (saveEventuallyFlag) {
-        operationSet.saveEventually = [saveEventuallyFlag boolValue];
+        operationSet.saveEventually = saveEventuallyFlag.boolValue;
         [mutableData removeObjectForKey:PFOperationSetKeyIsSaveEventually];
     }
 
@@ -141,7 +141,7 @@ NSString *const PFOperationSetKeyACL = @"ACL";
 }
 
 - (NSUInteger)count {
-    return [self.dictionary count];
+    return self.dictionary.count;
 }
 
 - (NSEnumerator *)keyEnumerator {
@@ -163,6 +163,11 @@ NSString *const PFOperationSetKeyACL = @"ACL";
 
 - (void)removeObjectForKey:(id)key {
     [self.dictionary removeObjectForKey:key];
+    self.updatedAt = [NSDate date];
+}
+
+- (void)removeAllObjects {
+    [self.dictionary removeAllObjects];
     self.updatedAt = [NSDate date];
 }
 

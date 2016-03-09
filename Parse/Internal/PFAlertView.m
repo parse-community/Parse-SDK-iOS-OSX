@@ -9,8 +9,6 @@
 
 #import "PFAlertView.h"
 
-#import <UIKit/UIKit.h>
-
 @interface PFAlertView () <UIAlertViewDelegate>
 
 @property (nonatomic, copy) PFAlertViewCompletion completion;
@@ -33,10 +31,16 @@
                                                                                          message:message
                                                                                   preferredStyle:UIAlertControllerStyleAlert];
 
-        void (^alertActionHandler)(UIAlertAction *) = [^(UIAlertAction *action){
-            // This block intentionally retains alertController, and releases it afterwards.
-            NSUInteger index = [alertController.actions indexOfObject:action];
-            completion(index - 1);
+        void (^alertActionHandler)(UIAlertAction *) = [^(UIAlertAction *action) {
+            if (completion) {
+                // This block intentionally retains alertController, and releases it afterwards.
+                if (action.style == UIAlertActionStyleCancel) {
+                    completion(NSNotFound);
+                } else {
+                    NSUInteger index = [alertController.actions indexOfObject:action];
+                    completion(index - 1);
+                }
+            }
             alertController = nil;
         } copy];
 
@@ -47,14 +51,18 @@
         for (NSString *buttonTitle in otherButtonTitles) {
             [alertController addAction:[UIAlertAction actionWithTitle:buttonTitle
                                                                 style:UIAlertActionStyleDefault
-                                                            handler:alertActionHandler]];
+                                                              handler:alertActionHandler]];
         }
 
         UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
         UIViewController *viewController = keyWindow.rootViewController;
+        while (viewController.presentedViewController) {
+            viewController = viewController.presentedViewController;
+        }
 
         [viewController presentViewController:alertController animated:YES completion:nil];
     } else {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
         __block PFAlertView *pfAlertView = [[self alloc] init];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                             message:message
@@ -76,8 +84,11 @@
 
         alertView.delegate = pfAlertView;
         [alertView show];
+#endif
     }
 }
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
 
 ///--------------------------------------
 #pragma mark - UIAlertViewDelegate
@@ -85,8 +96,14 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (self.completion) {
-        self.completion(buttonIndex - alertView.firstOtherButtonIndex);
+        if (buttonIndex == alertView.cancelButtonIndex) {
+            self.completion(NSNotFound);
+        } else {
+            self.completion(buttonIndex - 1);
+        }
     }
 }
+
+#endif
 
 @end

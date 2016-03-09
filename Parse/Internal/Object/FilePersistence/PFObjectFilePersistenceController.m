@@ -11,12 +11,11 @@
 
 #import "BFTask+Private.h"
 #import "PFAssert.h"
-#import "PFFileManager.h"
 #import "PFJSONSerialization.h"
 #import "PFMacros.h"
-#import "PFMultiProcessFileLockController.h"
 #import "PFObjectFileCoder.h"
 #import "PFObjectPrivate.h"
+#import "PFPersistenceController.h"
 
 @implementation PFObjectFilePersistenceController
 
@@ -24,11 +23,7 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
-- (instancetype)initWithDataSource:(id<PFFileManagerProvider>)dataSource {
+- (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
 
@@ -37,7 +32,7 @@
     return self;
 }
 
-+ (instancetype)controllerWithDataSource:(id<PFFileManagerProvider>)dataSource {
++ (instancetype)controllerWithDataSource:(id<PFPersistenceControllerProvider>)dataSource {
     return [[self alloc] initWithDataSource:dataSource];
 }
 
@@ -45,54 +40,56 @@
 #pragma mark - Objects
 ///--------------------------------------
 
-- (BFTask *)loadPersistentObjectAsyncForKey:(NSString *)key {
-    @weakify(self);
-    return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
-        @strongify(self);
-
-        NSString *path = [self.dataSource.fileManager parseDataItemPathForPathComponent:key];
-        [[PFMultiProcessFileLockController sharedController] beginLockedContentAccessForFileAtPath:path];
-        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-            [[PFMultiProcessFileLockController sharedController] endLockedContentAccessForFileAtPath:path];
+- (BFTask<PFObject *> *)loadPersistentObjectAsyncForKey:(NSString *)key {
+    return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
+        id<PFPersistenceGroup> group = task.result;
+        __block PFObject *object = nil;
+        return [[[[[group beginLockedContentAccessAsyncToDataForKey:key] continueWithSuccessBlock:^id(BFTask *_) {
+            return [group getDataAsyncForKey:key];
+        }] continueWithSuccessBlock:^id(BFTask *task) {
+            NSData *data = task.result;
+            if (data) {
+                object = [PFObjectFileCoder objectFromData:data usingDecoder:[PFDecoder objectDecoder]];
+            }
             return nil;
-        }
-
-        NSError *error = nil;
-        NSData *jsonData = [NSData dataWithContentsOfFile:path
-                                                  options:NSDataReadingMappedIfSafe
-                                                    error:&error];
-        [[PFMultiProcessFileLockController sharedController] endLockedContentAccessForFileAtPath:path];
-
-        if (error) {
-            return [BFTask taskWithError:error];
-        }
-        return jsonData;
-    }] continueWithSuccessBlock:^id(BFTask *task) {
-        NSData *jsonData = task.result;
-        if (jsonData) {
-            PFObject *object = [PFObjectFileCoder objectFromData:jsonData usingDecoder:[PFDecoder objectDecoder]];
+        }] continueWithBlock:^id(BFTask *task) {
+            return [group endLockedContentAccessAsyncToDataForKey:key];
+        }] continueWithSuccessBlock:^id(BFTask *task) {
+            // Finalize everything with object pointer.
             return object;
-        }
-
-        return nil;
+        }];
     }];
 }
 
 - (BFTask *)persistObjectAsync:(PFObject *)object forKey:(NSString *)key {
-    @weakify(self);
-    return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
-        @strongify(self);
-
-        NSData *data = [PFObjectFileCoder dataFromObject:object usingEncoder:[PFPointerObjectEncoder objectEncoder]];
-
-        NSString *filePath = [self.dataSource.fileManager parseDataItemPathForPathComponent:key];
-        [[PFMultiProcessFileLockController sharedController] beginLockedContentAccessForFileAtPath:filePath];
-
-        return [[PFFileManager writeDataAsync:data toFile:filePath] continueWithBlock:^id(BFTask *task) {
-            [[PFMultiProcessFileLockController sharedController] endLockedContentAccessForFileAtPath:filePath];
-            return nil;
+    return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
+        id<PFPersistenceGroup> group = task.result;
+        return [[[group beginLockedContentAccessAsyncToDataForKey:key] continueWithSuccessBlock:^id(BFTask *_) {
+            NSData *data = [PFObjectFileCoder dataFromObject:object usingEncoder:[PFPointerObjectEncoder objectEncoder]];
+            return [group setDataAsync:data forKey:key];
+        }] continueWithBlock:^id(BFTask *task) {
+            return [group endLockedContentAccessAsyncToDataForKey:key];
         }];
     }];
+}
+
+- (BFTask *)removePersistentObjectAsyncForKey:(NSString *)key {
+    return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
+        id<PFPersistenceGroup> group = task.result;
+        return [[[group beginLockedContentAccessAsyncToDataForKey:key] continueWithSuccessBlock:^id(BFTask *_) {
+            return [group removeDataAsyncForKey:key];
+        }] continueWithBlock:^id(BFTask *_) {
+            return [group endLockedContentAccessAsyncToDataForKey:key];
+        }];
+    }];
+}
+
+///--------------------------------------
+#pragma mark - Private
+///--------------------------------------
+
+- (BFTask<id<PFPersistenceGroup>> *)_getPersistenceGroupAsync {
+    return [self.dataSource.persistenceController getPersistenceGroupAsync];
 }
 
 @end

@@ -21,8 +21,7 @@
 ///--------------------------------------
 
 - (void)testConstructorsClassNameValidation {
-    PFAssertThrowsInvalidArgumentException([[PFUser alloc] initWithClassName:@"notuserclass"],
-                                           @"Should throw an exception for invalid classname");
+    PFAssertThrowsInvalidArgumentException([[PFUser alloc] initWithClassName:@"notuserclass"]);
 }
 
 - (void)testImmutableFieldsCannotBeChanged {
@@ -38,6 +37,40 @@
     PFUser *user = [PFUser object];
     PFAssertThrowsInvalidArgumentException([user removeObjectForKey:@"username"]);
     PFAssertThrowsInvalidArgumentException([user removeObjectForKey:@"sessionToken"]);
+}
+
+#pragma mark Sign Up
+
+- (void)testUserCannotSignUpWithoutUsername {
+    PFUser *user = [PFUser user];
+    user.password = @"yolo";
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[user signUpInBackground] continueWithBlock:^id(BFTask *task) {
+        XCTAssertTrue(task.faulted);
+        XCTAssertEqualObjects(task.error.domain, PFParseErrorDomain);
+        XCTAssertEqual(task.error.code, kPFErrorUsernameMissing);
+        XCTAssertNotNil(task.error.userInfo[NSLocalizedDescriptionKey]);
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
+}
+
+- (void)testUserCannotSignUpWithoutPassword {
+    PFUser *user = [PFUser user];
+    user.username = @"yolo";
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[user signUpInBackground] continueWithBlock:^id(BFTask *task) {
+        XCTAssertTrue(task.faulted);
+        XCTAssertEqualObjects(task.error.domain, PFParseErrorDomain);
+        XCTAssertEqual(task.error.code, kPFErrorUserPasswordMissing);
+        XCTAssertNotNil(task.error.userInfo[NSLocalizedDescriptionKey]);
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
 }
 
 @end

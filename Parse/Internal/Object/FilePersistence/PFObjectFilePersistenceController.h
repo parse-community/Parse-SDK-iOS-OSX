@@ -9,44 +9,58 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFDataProvider.h"
+#import <Parse/PFConstants.h>
 
-@class BFTask;
+#import "PFDataProvider.h"
+#import "PFMacros.h"
+
+@class BFTask<__covariant BFGenericType>;
 @class PFObject;
 
 @interface PFObjectFilePersistenceController : NSObject
 
-@property (nonatomic, weak, readonly) id<PFFileManagerProvider> dataSource;
+@property (nonatomic, weak, readonly) id<PFPersistenceControllerProvider> dataSource;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithDataSource:(id<PFFileManagerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
-+ (instancetype)controllerWithDataSource:(id<PFFileManagerProvider>)dataSource;
++ (instancetype)new NS_UNAVAILABLE;
+
+- (instancetype)initWithDataSource:(id<PFPersistenceControllerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
++ (instancetype)controllerWithDataSource:(id<PFPersistenceControllerProvider>)dataSource;
 
 ///--------------------------------------
-/// @name Objects
+#pragma mark - Objects
 ///--------------------------------------
 
-/*!
+/**
  Loads and creates a PFObject from file.
 
  @param key File name to use.
 
- @returns `BFTask` with `PFObject` or `nil` result.
+ @return `BFTask` with `PFObject` or `nil` result.
  */
-- (BFTask *)loadPersistentObjectAsyncForKey:(NSString *)key;
+- (BFTask<PFObject *> *)loadPersistentObjectAsyncForKey:(NSString *)key;
 
-/*!
+/**
  Saves a given object to a file with name.
 
  @param object Object to save.
  @param key    File name to use.
 
- @returns `BFTask` with `nil` result.
+ @return `BFTask` with `nil` result.
  */
 - (BFTask *)persistObjectAsync:(PFObject *)object forKey:(NSString *)key;
+
+/**
+ Removes a given object.
+
+ @param key Key to use.
+
+ @return `BFTask` with `nil` result.
+ */
+- (BFTask *)removePersistentObjectAsyncForKey:(NSString *)key;
 
 @end

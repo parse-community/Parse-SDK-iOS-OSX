@@ -15,7 +15,6 @@
 #import "PFAnonymousUtils_Private.h"
 #import "PFAssert.h"
 #import "PFAsyncTaskQueue.h"
-#import "PFFileManager.h"
 #import "PFKeychainStore.h"
 #import "PFMutableUserState.h"
 #import "PFObjectFilePersistenceController.h"
@@ -42,12 +41,8 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithStorageType:(PFCurrentObjectStorageType)storageType
-                   commonDataSource:(id<PFKeychainStoreProvider, PFFileManagerProvider>)commonDataSource
+                   commonDataSource:(id<PFKeychainStoreProvider>)commonDataSource
                      coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource {
     self = [super init];
     if (!self) return nil;
@@ -63,7 +58,7 @@
 }
 
 + (instancetype)controllerWithStorageType:(PFCurrentObjectStorageType)dataStorageType
-                         commonDataSource:(id<PFKeychainStoreProvider, PFFileManagerProvider>)commonDataSource
+                         commonDataSource:(id<PFKeychainStoreProvider>)commonDataSource
                            coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource {
     return [[self alloc] initWithStorageType:dataStorageType
                             commonDataSource:commonDataSource
@@ -82,9 +77,10 @@
     return [self getCurrentUserAsyncWithOptions:options];
 }
 
-- (BFTask *)saveCurrentObjectAsync:(PFUser *)object {
+- (BFTask *)saveCurrentObjectAsync:(PFObject *)object {
+    PFUser *user = (PFUser *)object;
     return [_dataTaskQueue enqueue:^id(BFTask *task) {
-        return [self _saveCurrentUserAsync:object];
+        return [self _saveCurrentUserAsync:user];
     }];
 }
 
@@ -120,12 +116,11 @@
         return [[[[self _loadCurrentUserFromDiskAsync] continueWithSuccessBlock:^id(BFTask *task) {
             PFUser *user = task.result;
             // If the object was not yet saved, but is already linked with AnonymousUtils - it means it is lazy.
-            // So mark it's state as `isLazy` and make it `dirty`
+            // So mark it's state as `lazy` and make it `dirty`
             if (!user.objectId && [PFAnonymousUtils isLinkedWithUser:user]) {
-                user.isLazy = YES;
+                user._lazy = YES;
                 [user _setDirty:YES];
             }
-            [user setIsCurrentUser:YES];
             return user;
         }] continueWithBlock:^id(BFTask *task) {
             dispatch_barrier_sync(_dataQueue, ^{
@@ -159,7 +154,7 @@
         }
         return [[task continueWithBlock:^id(BFTask *task) {
             @synchronized (user.lock) {
-                [user setIsCurrentUser:YES];
+                user._current = YES;
                 [user synchronizeAllAuthData];
             }
             return [self _saveCurrentUserToDiskAsync:user];
@@ -185,8 +180,7 @@
                 userLogoutTask = [BFTask taskWithResult:nil];
             }
 
-            NSString *filePath = [self.commonDataSource.fileManager parseDataItemPathForPathComponent:PFUserCurrentUserFileName];
-            BFTask *fileTask = [PFFileManager removeItemAtPathAsync:filePath];
+            BFTask *fileTask = [self.coreDataSource.objectFilePersistenceController removePersistentObjectAsyncForKey:PFUserCurrentUserFileName];
             BFTask *unpinTask = nil;
 
             if (self.storageType == PFCurrentObjectStorageTypeOfflineStore) {
@@ -225,11 +219,10 @@
         // Silence the warning if we are loading from LDS
         task = [[query findObjectsInBackground] continueWithSuccessBlock:^id(BFTask *task) {
             NSArray *results = task.result;
-            if ([results count] == 1) {
-                return [BFTask taskWithResult:results.firstObject];
-            } else if ([results count] != 0) {
-                return [[PFObject unpinAllObjectsInBackgroundWithName:PFUserCurrentUserPinName]
-                        continueWithSuccessResult:nil];
+            if (results.count == 1) {
+                return results.firstObject;
+            } else if (results.count != 0) {
+                return [[PFObject unpinAllObjectsInBackgroundWithName:PFUserCurrentUserPinName] continueWithSuccessResult:nil];
             }
 
             // Backward compatibility if we previously have non-LDS currentUser.
@@ -249,6 +242,7 @@
     }
     return [task continueWithSuccessBlock:^id(BFTask *task) {
         PFUser *user = task.result;
+        user._current = YES;
         return [[self _loadSensitiveUserDataAsync:user
                          fromKeychainItemWithName:PFUserCurrentUserKeychainItemName] continueWithSuccessResult:user];
     }];
@@ -310,7 +304,7 @@
             if (user.sessionToken) {
                 userData[PFUserSessionTokenRESTKey] = [user.sessionToken copy];
             }
-            if ([user.authData count]) {
+            if (user.authData.count) {
                 userData[PFUserAuthDataRESTKey] = [user.authData copy];
             }
         }

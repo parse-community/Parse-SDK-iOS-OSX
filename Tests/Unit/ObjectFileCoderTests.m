@@ -41,7 +41,7 @@
     XCTAssertEqualObjects(object.parseClassName, @"Yolo");
     XCTAssertEqualObjects(object.objectId, @"100500");
     XCTAssertEqualObjects(object[@"yarr"], @"pff");
-    XCTAssertFalse(object.isDirty);
+    XCTAssertFalse(object.dirty);
 }
 
 @end

@@ -7,9 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-/*!
+/**
  Because OCMock is not thread-safe, let's create our own class that implements NSCache.
  Note that we don't inherit from NSCache, so we still get 'strict mock' functionality. We cannot do expectations
  this way, however.

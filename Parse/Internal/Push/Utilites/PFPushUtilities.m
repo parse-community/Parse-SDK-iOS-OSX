@@ -11,10 +11,10 @@
 
 #import <dlfcn.h>
 
-#if TARGET_OS_IPHONE
-
+#if TARGET_OS_IOS
 #import <AudioToolbox/AudioToolbox.h>
 
+#import "PFAlertView.h"
 #endif
 
 #import "PFInstallationPrivate.h"
@@ -54,25 +54,25 @@
     [[[PFKeychainStore alloc] initWithService:@"ParsePush"] removeObjectForKey:@"ParsePush"];
 }
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS
 
-+ (void)showAlertViewWithTitle:(NSString *)title
-                       message:(NSString *)message {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                    message:message
-                                                   delegate:nil
-                                          cancelButtonTitle:NSLocalizedString(@"OK",
-                                                                              @"Default alert cancel button title.")
-                                          otherButtonTitles:nil];
-    [alert show];
++ (void)showAlertViewWithTitle:(nullable NSString *)title message:(nullable NSString *)message NS_EXTENSION_UNAVAILABLE_IOS("") {
+    NSString *cancelButtonTitle = NSLocalizedStringFromTableInBundle(@"OK", @"Parse",
+                                                                     [NSBundle bundleForClass:[self class]],
+                                                                     @"Default alert view cancel button title.");
+    [PFAlertView showAlertWithTitle:title
+                            message:message
+                  cancelButtonTitle:cancelButtonTitle
+                  otherButtonTitles:nil
+                         completion:nil];
 }
 
 + (void)playAudioWithName:(NSString *)audioFileName {
     SystemSoundID soundId = -1;
 
     if (audioFileName) {
-        NSURL *bundlePath = [[NSBundle mainBundle] URLForResource:[audioFileName stringByDeletingPathExtension]
-                                                    withExtension:[audioFileName pathExtension]];
+        NSURL *bundlePath = [[NSBundle mainBundle] URLForResource:audioFileName.stringByDeletingPathExtension
+                                                    withExtension:audioFileName.pathExtension];
 
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)bundlePath, &soundId);
     }

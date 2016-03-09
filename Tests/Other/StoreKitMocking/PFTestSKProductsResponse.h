@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <StoreKit/StoreKit.h>
+@import StoreKit;
 
 @interface PFTestSKProductsResponse : SKProductsResponse
 

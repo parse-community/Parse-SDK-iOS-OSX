@@ -9,13 +9,15 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFAuthenticationProvider.h"
+#import <Parse/PFUserAuthenticationDelegate.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PFAnonymousAuthenticationProvider : NSObject <PFAuthenticationProvider>
+extern NSString *const PFAnonymousUserAuthenticationType;
 
-/*!
+@interface PFAnonymousAuthenticationProvider : NSObject <PFUserAuthenticationDelegate>
+
+/**
  Gets auth data with a fresh UUID.
  */
 @property (nonatomic, copy, readonly) NSDictionary *authData;

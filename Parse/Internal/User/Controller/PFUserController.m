@@ -26,7 +26,7 @@
 ///--------------------------------------
 
 - (instancetype)initWithCommonDataSource:(id<PFCommandRunnerProvider>)commonDataSource
-                          coreDataSource:(id<PFObjectControllerProvider, PFCurrentUserControllerProvider>)coreDataSource {
+                          coreDataSource:(id<PFCurrentUserControllerProvider>)coreDataSource {
     self = [super init];
     if (!self) return nil;
 
@@ -37,7 +37,7 @@
 }
 
 + (instancetype)controllerWithCommonDataSource:(id<PFCommandRunnerProvider>)commonDataSource
-                                coreDataSource:(id<PFObjectControllerProvider, PFCurrentUserControllerProvider>)coreDataSource {
+                                coreDataSource:(id<PFCurrentUserControllerProvider>)coreDataSource {
     return [[self alloc] initWithCommonDataSource:commonDataSource
                                    coreDataSource:coreDataSource];
 }
