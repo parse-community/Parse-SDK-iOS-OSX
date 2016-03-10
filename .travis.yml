@@ -14,7 +14,6 @@ env:
     - TEST_TYPE=Deployment
     - TEST_TYPE=Starters
     - TEST_TYPE=CocoaPods
-    - TEST_TYPE=Carthage
 git:
   submodules: false
 before_install:
