@@ -394,7 +394,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "../../../Carthage/Checkouts/Bolts-iOS/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\n\nif [[ ! -d \"Frameworks/iOS/Bolts.framework\" ]]; then\n  mkdir -p Frameworks/iOS\n  cp -R ../../../Carthage/Checkouts/Bolts-iOS/build/ios/Bolts.framework ./Frameworks/iOS\nfi\n\nif [[ ! -d \"Frameworks/watchOS/Bolts.framework\" ]]; then\n  mkdir -p Frameworks/watchOS\n  cp -R ../../../Carthage/Checkouts/Bolts-iOS/build/watchOS/Bolts.framework ./Frameworks/watchOS\nfi\n";
+			shellScript = "../../../Carthage/Checkouts/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\n\nif [[ ! -d \"Frameworks/iOS/Bolts.framework\" ]]; then\n  mkdir -p Frameworks/iOS\n  cp -R ../../../Carthage/Checkouts/Bolts-ObjC/build/ios/Bolts.framework ./Frameworks/iOS\nfi\n\nif [[ ! -d \"Frameworks/watchOS/Bolts.framework\" ]]; then\n  mkdir -p Frameworks/watchOS\n  cp -R ../../../Carthage/Checkouts/Bolts-ObjC/build/watchOS/Bolts.framework ./Frameworks/watchOS\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

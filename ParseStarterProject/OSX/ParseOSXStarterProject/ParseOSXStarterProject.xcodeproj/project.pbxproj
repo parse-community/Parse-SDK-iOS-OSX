@@ -271,7 +271,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ ! -d \"Bolts.framework\" ]]; then\n  ../../../Carthage/Checkouts/Bolts-iOS/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\n  cp -R ../../../Carthage/Checkouts/Bolts-iOS/build/osx/Bolts.framework .\nfi\n\nrm -rf Parse.framework\ncp -R $BUILT_PRODUCTS_DIR/Parse.framework .\n";
+			shellScript = "if [[ ! -d \"Bolts.framework\" ]]; then\n  ../../../Carthage/Checkouts/Bolts-ObjC/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos\n  cp -R ../../../Carthage/Checkouts/Bolts-ObjC/build/osx/Bolts.framework .\nfi\n\nrm -rf Parse.framework\ncp -R $BUILT_PRODUCTS_DIR/Parse.framework .\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

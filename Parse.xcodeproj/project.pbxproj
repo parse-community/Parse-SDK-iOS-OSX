@@ -3414,7 +3414,7 @@
 		81EB6632198A7FA600851598 /* PFConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFConfig.h; sourceTree = "<group>"; };
 		81EB6633198A7FA600851598 /* PFConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFConfig.m; sourceTree = "<group>"; };
 		81EBF34B1B33E82200991947 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		81EC57761C34D0C4002DF851 /* Bolts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bolts.xcodeproj; path = "Carthage/Checkouts/Bolts-iOS/Bolts.xcodeproj"; sourceTree = "<group>"; };
+		81EC57761C34D0C4002DF851 /* Bolts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bolts.xcodeproj; path = "Carthage/Checkouts/Bolts-ObjC/Bolts.xcodeproj"; sourceTree = "<group>"; };
 		81EDD4D11B59A6EC002F69C0 /* PFCommandRunning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFCommandRunning.h; sourceTree = "<group>"; };
 		81EEE1AE1B446D600087AC4D /* PFCurrentUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFCurrentUserController.h; sourceTree = "<group>"; };
 		81EEE1AF1B446D600087AC4D /* PFCurrentUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFCurrentUserController.m; sourceTree = "<group>"; };
