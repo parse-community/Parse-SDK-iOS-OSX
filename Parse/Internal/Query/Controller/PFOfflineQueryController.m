@@ -19,6 +19,7 @@
 #import "PFQueryState.h"
 #import "PFRESTCommand.h"
 #import "PFRelationPrivate.h"
+#import "PFQueryConstants.h"
 
 @interface PFOfflineQueryController () {
     PFOfflineStore *_offlineStore; // TODO: (nlutsenko) Lazy-load this via self.dataSource.
@@ -63,7 +64,7 @@
                                                                  user:user];
     }
 
-    NSDictionary *relationCondition = queryState.conditions[@"$relatedTo"];
+    NSDictionary *relationCondition = queryState.conditions[PFQueryKeyRelatedTo];
     if (relationCondition) {
         PFObject *object = relationCondition[@"object"];
         NSString *key = relationCondition[@"key"];
