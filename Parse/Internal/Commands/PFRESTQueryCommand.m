@@ -14,6 +14,7 @@
 #import "PFHTTPRequest.h"
 #import "PFQueryPrivate.h"
 #import "PFQueryState.h"
+#import "PFQueryConstants.h"
 
 @implementation PFRESTQueryCommand
 
@@ -133,7 +134,7 @@
     if (conditions.count > 0) {
         NSMutableDictionary *whereData = [[NSMutableDictionary alloc] init];
         [conditions enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            if ([key isEqualToString:@"$or"]) {
+            if ([key isEqualToString:PFQueryKeyOr]) {
                 NSArray *array = (NSArray *)obj;
                 NSMutableArray *newArray = [NSMutableArray array];
                 for (PFQuery *subquery in array) {
