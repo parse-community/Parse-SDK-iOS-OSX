@@ -77,7 +77,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
 
  @return A `PFObject` instance without data.
  */
-+ (instancetype)objectWithoutDataWithClassName:(NSString *)className objectId:(nullable NSString *)objectId;
++ (instancetype)objectWithoutDataWithClassName:(NSString *)className
+                                      objectId:(nullable NSString *)objectId NS_SWIFT_NAME(init(withoutDataWithClassName:objectId:));
 
 ///--------------------------------------
 #pragma mark - Managing Object Properties
