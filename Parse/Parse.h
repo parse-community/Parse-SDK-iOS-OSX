@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The current configuration in use by the SDK. Returns nil if the SDK has not been initialized yet.
  */
-+ (ParseClientConfiguration *)currentConfiguration;
++ (nullable ParseClientConfiguration *)currentConfiguration;
 
 /**
  The current application id that was used to configure Parse framework.
