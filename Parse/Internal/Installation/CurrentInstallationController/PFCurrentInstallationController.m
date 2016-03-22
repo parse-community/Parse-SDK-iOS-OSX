@@ -100,37 +100,33 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
             return nil;
         }] continueWithBlock:^id(BFTask *task) {
             @strongify(self);
-            if (task.faulted) {
-                return task;
-            }
 
-            PFInstallation *installation = task.result;
-            //TODO: (nlutsenko) Make it not terrible aka actually use task chaining here.
-            NSString *installationId = [[self.installationIdentifierStore getInstallationIdentifierAsync] waitForResult:nil];
-            installationId = installationId.lowercaseString;
-            if (!installation || ![installationId isEqualToString:installation.installationId]) {
-                // If there's no installation object, or the object's installation
-                // ID doesn't match this device's installation ID, create a new
-                // installation. Try to keep track of the previously stored device
-                // token: if there was an installation already stored just re-use
-                // its device token, otherwise try loading from the keychain (where
-                // old SDKs stored the token). Discard the old installation.
-                NSString *oldDeviceToken = nil;
-                if (installation) {
-                    oldDeviceToken = installation.deviceToken;
-                } else {
-                    oldDeviceToken = [[PFPush pushInternalUtilClass] getDeviceTokenFromKeychain];
+            __block PFInstallation *installation = task.result;
+            return [[self.installationIdentifierStore getInstallationIdentifierAsync] continueWithBlock:^id _Nullable(BFTask<NSString *> * _Nonnull task) {
+                NSString *installationId = task.result.lowercaseString;
+                if (!installation || ![installationId isEqualToString:installation.installationId]) {
+                    // If there's no installation object, or the object's installation
+                    // ID doesn't match this device's installation ID, create a new
+                    // installation. Try to keep track of the previously stored device
+                    // token: if there was an installation already stored just re-use
+                    // its device token, otherwise try loading from the keychain (where
+                    // old SDKs stored the token). Discard the old installation.
+                    NSString *oldDeviceToken = nil;
+                    if (installation) {
+                        oldDeviceToken = installation.deviceToken;
+                    } else {
+                        oldDeviceToken = [[PFPush pushInternalUtilClass] getDeviceTokenFromKeychain];
+                    }
+
+                    installation = [PFInstallation object];
+                    installation.deviceType = kPFDeviceType;
+                    installation.installationId = installationId;
+                    if (oldDeviceToken) {
+                        installation.deviceToken = oldDeviceToken;
+                    }
                 }
-
-                installation = [PFInstallation object];
-                installation.deviceType = kPFDeviceType;
-                installation.installationId = installationId;
-                if (oldDeviceToken) {
-                    installation.deviceToken = oldDeviceToken;
-                }
-            }
-
-            return installation;
+                return installation;
+            }];
         }] continueWithBlock:^id(BFTask *task) {
             dispatch_barrier_sync(_dataQueue, ^{
                 _currentInstallation = task.result;
