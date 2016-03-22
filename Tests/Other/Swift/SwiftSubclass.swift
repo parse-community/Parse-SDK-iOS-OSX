@@ -10,14 +10,14 @@
 import Foundation
 
 @objc
-public class SwiftSubclass : PFObject, PFSubclassing {
-    @NSManaged public var primitiveProperty : Int;
-    @NSManaged public var objectProperty : AnyObject?;
+public class SwiftSubclass: PFObject, PFSubclassing {
+    @NSManaged public var primitiveProperty: Int
+    @NSManaged public var objectProperty: AnyObject?
 
-    @NSManaged public var relationProperty : PFRelation?;
-    @NSManaged public var badProperty : CGPoint;
+    @NSManaged public var relationProperty: PFRelation?
+    @NSManaged public var badProperty: CGPoint
 
     public static func parseClassName() -> String {
-        return "SwiftSubclass";
+        return "SwiftSubclass"
     }
 }
