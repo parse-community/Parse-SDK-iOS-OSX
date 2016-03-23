@@ -18,6 +18,3 @@ INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/ParseUnitTests-OSX-Info.plist
 LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/Frameworks @loader_path/Frameworks
 
 USER_HEADER_SEARCH_PATHS = $(inherited) $(PARSE_DIR)/Parse/Internal/**
-
-// Swift
-SWIFT_OBJC_BRIDGING_HEADER = $(SRCROOT)/Tests/Other/Swift/ParseUnitTests-OSX-Bridging-Header.h

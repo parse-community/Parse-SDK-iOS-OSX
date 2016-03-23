@@ -2634,7 +2634,6 @@
 		F5B0B30C1B449F1D00F3EBC4 /* PFLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 97E18AE41623835600B17A67 /* PFLocationManager.h */; };
 		F5B0B30D1B449F1D00F3EBC4 /* PFAsyncTaskQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C8F2BE1B1F7E6B00CD98E7 /* PFAsyncTaskQueue.h */; };
 		F5B0B30E1B449F1D00F3EBC4 /* PFBaseState.h in Headers */ = {isa = PBXBuildFile; fileRef = F586B34E1B1E3BD70082E3BD /* PFBaseState.h */; };
-		F5B0B3131B44A05100F3EBC4 /* PFPaymentTransactionObserver_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B0B3121B44A05100F3EBC4 /* PFPaymentTransactionObserver_Private.h */; };
 		F5B0B3151B44A21100F3EBC4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B0B3141B44A21100F3EBC4 /* SystemConfiguration.framework */; };
 		F5B0B3161B44A22300F3EBC4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0942999C139C613700DFA018 /* SystemConfiguration.framework */; };
 		F5B0B3171B44A2CA00F3EBC4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498C29FE1551DC450034BB80 /* StoreKit.framework */; };
@@ -3017,8 +3016,6 @@
 		810ECA6F1B573853002944D4 /* PFRelationPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRelationPrivate.h; sourceTree = "<group>"; };
 		810ECC611B573B96002944D4 /* ParseUnitTests-iOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ParseUnitTests-iOS-Info.plist"; sourceTree = "<group>"; };
 		810ECC621B573B96002944D4 /* ParseUnitTests-OSX-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ParseUnitTests-OSX-Info.plist"; sourceTree = "<group>"; };
-		810ECC6C1B573C6B002944D4 /* ParseUnitTests-iOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ParseUnitTests-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
-		810ECC6D1B573C6B002944D4 /* ParseUnitTests-OSX-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ParseUnitTests-OSX-Bridging-Header.h"; sourceTree = "<group>"; };
 		810ECC6E1B573C6B002944D4 /* SwiftSubclass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSubclass.swift; sourceTree = "<group>"; };
 		810ECC721B573CC5002944D4 /* OCMock+Parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCMock+Parse.h"; sourceTree = "<group>"; };
 		810ECC731B573CC5002944D4 /* OCMock+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCMock+Parse.m"; sourceTree = "<group>"; };
@@ -3947,8 +3944,6 @@
 		810ECC6B1B573C6B002944D4 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
-				810ECC6C1B573C6B002944D4 /* ParseUnitTests-iOS-Bridging-Header.h */,
-				810ECC6D1B573C6B002944D4 /* ParseUnitTests-OSX-Bridging-Header.h */,
 				810ECC6E1B573C6B002944D4 /* SwiftSubclass.swift */,
 			);
 			path = Swift;
@@ -5730,7 +5725,6 @@
 				81329E8E1AE1E8840071EE3E /* PFReachability.h in Headers */,
 				81CA29F01C28ECFD00C4F34A /* PFUser+Deprecated.h in Headers */,
 				81C7F4AC1AF42BD9007B5418 /* PFMutableQueryState.h in Headers */,
-				F5B0B3131B44A05100F3EBC4 /* PFPaymentTransactionObserver_Private.h in Headers */,
 				81CB7F991B17970400DC601D /* PFPushState_Private.h in Headers */,
 				81C7F4A21AF4220A007B5418 /* PFMutableFileState.h in Headers */,
 				8124C8AC1B27D5D600758E00 /* PFSessionUtilities.h in Headers */,
