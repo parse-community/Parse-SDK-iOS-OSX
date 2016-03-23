@@ -11,13 +11,14 @@
 
 #import <objc/runtime.h>
 
+#import <Parse/PFObject.h>
+#import <Parse/PFSubclassing.h>
+
 #import "PFAssert.h"
 #import "PFMacros.h"
-#import "PFObject.h"
 #import "PFObjectSubclassInfo.h"
 #import "PFPropertyInfo_Private.h"
 #import "PFPropertyInfo_Runtime.h"
-#import "PFSubclassing.h"
 
 // CFNumber does not use number type 0, we take advantage of that here.
 #define kCFNumberTypeUnknown 0

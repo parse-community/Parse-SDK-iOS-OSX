@@ -19,6 +19,3 @@ IPHONEOS_DEPLOYMENT_TARGET = 8.0
 INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/ParseUnitTests-iOS-Info.plist
 
 USER_HEADER_SEARCH_PATHS = $(inherited) $(PARSE_DIR)/Parse/Internal/**
-
-// Swift
-SWIFT_OBJC_BRIDGING_HEADER = $(SRCROOT)/Tests/Other/Swift/ParseUnitTests-iOS-Bridging-Header.h

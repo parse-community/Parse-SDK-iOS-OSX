@@ -9,6 +9,8 @@
 
 import Foundation
 
+import Parse
+
 @objc
 public class SwiftSubclass: PFObject, PFSubclassing {
     @NSManaged public var primitiveProperty: Int
@@ -19,5 +21,9 @@ public class SwiftSubclass: PFObject, PFSubclassing {
 
     public static func parseClassName() -> String {
         return "SwiftSubclass"
+    }
+
+    func test_validateSwiftImport() {
+        let _ = SwiftSubclass(withoutDataWithObjectId: "")
     }
 }
