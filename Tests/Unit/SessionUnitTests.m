@@ -15,6 +15,7 @@
 #import "PFSession_Private.h"
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
+#import "PFObjectSubclassingController.h"
 
 @interface SessionUnitTests : PFUnitTestCase
 
@@ -44,12 +45,13 @@
 ///--------------------------------------
 
 - (void)testSessionClassIsRegistered {
+    [[Parse _currentManager] clearEventuallyQueue];
+    [Parse _clearCurrentManager];
+    [PFObjectSubclassingController clearDefaultController];
+
     [PFObject unregisterSubclass:[PFSession class]];
     [Parse setApplicationId:@"a" clientKey:@"b"];
     XCTAssertNotNil([PFSession query]);
-
-    [[Parse _currentManager] clearEventuallyQueue];
-    [Parse _clearCurrentManager];
 }
 
 - (void)testConstructorsClassNameValidation {
