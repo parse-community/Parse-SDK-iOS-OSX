@@ -8,34 +8,21 @@
  */
 
 #import "PFInstallationIdentifierStore_Private.h"
-#import "PFTestCase.h"
+#import "PFUnitTestCase.h"
 #import "Parse_Private.h"
 #import "BFTask+Private.h"
 
-@interface InstallationIdentifierUnitTests : PFTestCase
+@interface InstallationIdentifierUnitTests : PFUnitTestCase
 
 @end
 
 @implementation InstallationIdentifierUnitTests
 
 ///--------------------------------------
-#pragma mark - XCTestCase
-///--------------------------------------
-
-- (void)tearDown {
-    [[Parse _currentManager] clearEventuallyQueue];
-    [[[Parse _currentManager].installationIdentifierStore clearInstallationIdentifierAsync] waitForResult:nil];
-    [Parse _clearCurrentManager];
-
-    [super tearDown];
-}
-
-///--------------------------------------
 #pragma mark - Tests
 ///--------------------------------------
 
 - (void)testNewInstallationIdentifierIsLowercase {
-    [Parse setApplicationId:@"b" clientKey:@"c"];
     PFInstallationIdentifierStore *store = [Parse _currentManager].installationIdentifierStore;
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
@@ -51,7 +38,6 @@
 }
 
 - (void)testCachedInstallationId {
-    [Parse setApplicationId:@"b" clientKey:@"c"];
     PFInstallationIdentifierStore *store = [Parse _currentManager].installationIdentifierStore;
 
     [[store _clearCachedInstallationIdentifierAsync] waitForResult:nil];
