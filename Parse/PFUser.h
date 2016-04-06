@@ -46,6 +46,13 @@ typedef void(^PFUserLogoutResultBlock)(NSError *_Nullable error);
 + (nullable instancetype)currentUser;
 
 /**
+ *Asynchronously* loads the currently logged in user from disk and returns a task that encapsulates it.
+
+ @return The task that encapsulates the work being done.
+ */
++ (BFTask<__kindof PFUser *> *)getCurrentUserInBackground;
+
+/**
  The session token for the `PFUser`.
 
  This is set by the server upon successful authentication.

@@ -780,8 +780,11 @@ static BOOL revocableSessionEnabled_;
 }
 
 + (instancetype)currentUser {
-    PFCurrentUserController *controller = [[self class] currentUserController];
-    return [[controller getCurrentObjectAsync] waitForResult:nil withMainThreadWarning:NO];
+    return [[self getCurrentUserInBackground] waitForResult:nil withMainThreadWarning:NO];
+}
+
++ (BFTask<__kindof PFUser *> *)getCurrentUserInBackground {
+    return [[[self class] currentUserController] getCurrentObjectAsync];
 }
 
 - (BOOL)_current {
