@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         PFUser.enableAutomaticUser()
 
-        let defaultACL = PFACL();
+        let defaultACL = PFACL()
         defaultACL.publicReadAccess = true // If you would like all objects to be private by default, remove this line.
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
 

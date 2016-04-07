@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         PFUser.enableAutomaticUser()
 
-        let defaultACL = PFACL();
+        let defaultACL = PFACL()
 
         // If you would like all objects to be private by default, remove this line.
         defaultACL.publicReadAccess = true
@@ -52,42 +52,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // "content_available" was used to trigger a background push (introduced in iOS 7).
             // In that case, we skip tracking here to avoid double counting the app-open.
 
-            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
-            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
-            var noPushPayload = false;
+            let oldPushHandlerOnly = !respondsToSelector(#selector(UIApplicationDelegate.application(_:didReceiveRemoteNotification:fetchCompletionHandler:)))
+            var noPushPayload = false
             if let options = launchOptions {
-                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;
+                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil
             }
-            if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
+            if oldPushHandlerOnly || noPushPayload {
                 PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
             }
         }
 
-        //
-        //  Swift 1.2
-        //
-        //        if application.respondsToSelector("registerUserNotificationSettings:") {
-        //            let userNotificationTypes = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
-        //            let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
-        //            application.registerUserNotificationSettings(settings)
-        //            application.registerForRemoteNotifications()
-        //        } else {
-        //            let types = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
-        //            application.registerForRemoteNotificationTypes(types)
-        //        }
-
-        //
-        //  Swift 2.0
-        //
-        //        if #available(iOS 8.0, *) {
-        //            let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
-        //            let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
-        //            application.registerUserNotificationSettings(settings)
-        //            application.registerForRemoteNotifications()
-        //        } else {
-        //            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
-        //            application.registerForRemoteNotificationTypes(types)
-        //        }
+        if #available(iOS 8.0, *) {
+            let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
+            let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        } else {
+            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
+            application.registerForRemoteNotificationTypes(types)
+        }
 
         return true
     }
@@ -103,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
             if succeeded {
-                print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n");
+                print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n")
             } else {
                 print("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.\n", error)
             }

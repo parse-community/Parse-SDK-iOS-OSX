@@ -14,7 +14,7 @@ import Parse
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    @IBOutlet weak var window: NSWindow!
+    @IBOutlet weak var window: NSWindow?
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Enable storing and querying data from Local Datastore.
@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // ****************************************************************************
         // Uncomment and fill in with your Parse credentials:
-        // [Parse setApplicationId:@"your_application_id" clientKey:@"your_client_key"];
+        // Parse.setApplicationId("your_application_id", clientKey: "your_client_key")
         // ****************************************************************************
 
         PFUser.enableAutomaticUser()
@@ -37,9 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // ****************************************************************************
         // Uncomment these lines to register for Push Notifications.
         //
-        // let types = NSRemoteNotificationType.Alert |
-        //             NSRemoteNotificationType.Badge |
-        //             NSRemoteNotificationType.Sound;
+        // let types: NSRemoteNotificationType = [.Alert, .Badge, .Sound]
         // NSApplication.sharedApplication().registerForRemoteNotificationTypes(types)
         //
         // ****************************************************************************
@@ -54,7 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
             if succeeded {
-                print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n");
+                print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n")
             } else {
                 print("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.\n", error)
             }
@@ -68,13 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // ****************************************************************************
     // Uncomment these lines to track Push Notifications open rate in Analytics.
     //
-    //  Swift 1.2
-    //    func application(application: NSApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-    //        PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
-    //    }
-    //
-    //  Swift 2.0
-    //    func application(application: NSApplication, didReceiveRemoteNotification userInfo: [String : AnyObject]) {
-    //        PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
-    //    }
+    // func application(application: NSApplication, didReceiveRemoteNotification userInfo: [String : AnyObject]) {
+    //   PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+    // }
 }
