@@ -40,8 +40,11 @@ NSString *const PFConfigParametersRESTKey = @"params";
 #pragma mark Public
 
 + (PFConfig *)currentConfig {
-    return [[[self _configController].currentConfigController getCurrentConfigAsync] waitForResult:nil
-                                                                             withMainThreadWarning:NO];
+    return [[self getCurrentConfigInBackground] waitForResult:nil withMainThreadWarning:NO];
+}
+
++ (BFTask<PFConfig *> *)getCurrentConfigInBackground {
+    return [[self _configController].currentConfigController getCurrentConfigAsync];
 }
 
 ///--------------------------------------

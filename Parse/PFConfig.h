@@ -38,6 +38,15 @@ typedef void(^PFConfigResultBlock)(PFConfig *_Nullable config, NSError *_Nullabl
  */
 + (PFConfig *)currentConfig;
 
+/**
+ Returns the task that encapsulates the most recently fetched config.
+
+ If there was no config fetched - this method will return an empty instance of `PFConfig`.
+
+ @return Task that encapsulates current, last fetched instance of PFConfig.
+ */
++ (BFTask<PFConfig *> *)getCurrentConfigInBackground;
+
 ///--------------------------------------
 #pragma mark - Retrieving Config
 ///--------------------------------------
