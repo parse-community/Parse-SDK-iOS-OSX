@@ -142,7 +142,7 @@ NS_ASSUME_NONNULL_BEGIN
  store a data point at the time of invocation with the given event name. The
  event will be sent at some unspecified time in the future, even if Parse is currently inaccessible.
 
- @discussionDimensions will allow segmentation of the occurrences of this custom event.
+ @discussion Dimensions will allow segmentation of the occurrences of this custom event.
  Keys and values should be NSStrings, and will throw otherwise.
 
  To track a user signup along with additional metadata, consider the following:
