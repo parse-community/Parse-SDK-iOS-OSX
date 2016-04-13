@@ -25,17 +25,17 @@
 @implementation PFFieldOperation
 
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder {
-    PFConsistencyAssert(NO, @"Operation is invalid.");
+    PFConsistencyAssertionFailure(@"Operation is invalid.");
     return nil;
 }
 
 - (PFFieldOperation *)mergeWithPrevious:(PFFieldOperation *)previous {
-    PFConsistencyAssert(NO, @"Operation is invalid.");
+    PFConsistencyAssertionFailure(@"Operation is invalid.");
     return nil;
 }
 
 - (id)applyToValue:(id)oldValue forKey:(NSString *)key {
-    PFConsistencyAssert(NO, @"Operation is invalid.");
+    PFConsistencyAssertionFailure(@"Operation is invalid.");
     return nil;
 }
 
@@ -153,7 +153,7 @@
                                               withNumber:((PFIncrementOperation *)previous).amount];
         return [PFIncrementOperation incrementWithAmount:newAmount];
     }
-    [NSException raise:NSInternalInconsistencyException format:@"Operation is invalid after previous operation."];
+    PFConsistencyAssertionFailure(@"This operation is invalid after previous operation.");
     return nil;
 }
 
@@ -208,7 +208,7 @@
             NSArray *newArray = [oldArray arrayByAddingObjectsFromArray:self.objects];
             return [PFSetOperation setWithValue:newArray];
         } else {
-            [NSException raise:NSInternalInconsistencyException format:@"You can't add an item to a non-array."];
+            PFConsistencyAssertionFailure(@"Unable to add an item to a non-array.");
             return nil;
         }
     } else if ([previous isKindOfClass:[PFAddOperation class]]) {
@@ -216,7 +216,7 @@
         [newObjects addObjectsFromArray:self.objects];
         return [[self class] addWithObjects:newObjects];
     }
-    [NSException raise:NSInternalInconsistencyException format:@"Operation is invalid after previous operation."];
+    PFConsistencyAssertionFailure(@"This operation is invalid after previous operation.");
     return nil;
 }
 
@@ -226,7 +226,7 @@
     } else if ([oldValue isKindOfClass:[NSArray class]]) {
         return [((NSArray *)oldValue)arrayByAddingObjectsFromArray:self.objects];
     }
-    [NSException raise:NSInternalInconsistencyException format:@"Operation is invalid after previous operation."];
+    PFConsistencyAssertionFailure(@"This operation is invalid after previous operation.");
     return nil;
 }
 
@@ -267,14 +267,14 @@
             NSArray *oldArray = (((PFSetOperation *)previous).value);
             return [PFSetOperation setWithValue:[self applyToValue:oldArray forKey:nil]];
         } else {
-            [NSException raise:NSInternalInconsistencyException format:@"You can't add an item to a non-array."];
+            PFConsistencyAssertionFailure(@"Unable to add an item to a non-array.");
             return nil;
         }
     } else if ([previous isKindOfClass:[PFAddUniqueOperation class]]) {
         NSArray *previousObjects = ((PFAddUniqueOperation *)previous).objects;
         return [[self class] addUniqueWithObjects:[self applyToValue:previousObjects forKey:nil]];
     }
-    [NSException raise:NSInternalInconsistencyException format:@"Operation is invalid after previous operation."];
+    PFConsistencyAssertionFailure(@"This operation is invalid after previous operation.");
     return nil;
 }
 
@@ -302,7 +302,7 @@
         }
         return newValue;
     }
-    [NSException raise:NSInternalInconsistencyException format:@"Operation is invalid after previous operation."];
+    PFConsistencyAssertionFailure(@"This operation is invalid after previous operation.");
     return nil;
 }
 
@@ -336,14 +336,14 @@
     if (!previous) {
         return self;
     } else if ([previous isKindOfClass:[PFDeleteOperation class]]) {
-        [NSException raise:NSInternalInconsistencyException format:@"You can't remove items from a deleted array."];
+        PFConsistencyAssertionFailure(@"Unable to remove items from a deleted array.");
         return nil;
     } else if ([previous isKindOfClass:[PFSetOperation class]]) {
         if ([((PFSetOperation *)previous).value isKindOfClass:[NSArray class]]) {
             NSArray *oldArray = ((PFSetOperation *)previous).value;
             return [PFSetOperation setWithValue:[self applyToValue:oldArray forKey:nil]];
         } else {
-            [NSException raise:NSInternalInconsistencyException format:@"You can't add an item to a non-array."];
+            PFConsistencyAssertionFailure(@"Unable to add an item to a non-array.");
             return nil;
         }
     } else if ([previous isKindOfClass:[PFRemoveOperation class]]) {
@@ -351,7 +351,7 @@
         return [PFRemoveOperation removeWithObjects:newObjects];
     }
 
-    [NSException raise:NSInternalInconsistencyException format:@"Operation is invalid after previous operation."];
+    PFConsistencyAssertionFailure(@"This operation is invalid after previous operation.");
     return nil;
 }
 
@@ -379,7 +379,7 @@
         }
         return newValue;
     }
-    [NSException raise:NSInternalInconsistencyException format:@"Operation is invalid after previous operation."];
+    PFConsistencyAssertionFailure(@"This operation is invalid after previous operation.");
     return nil;
 }
 
@@ -474,8 +474,7 @@
     if (removeDict) {
         return removeDict;
     }
-
-    [NSException raise:NSInternalInconsistencyException format:@"A PFRelationOperation was created without any data."];
+    PFConsistencyAssertionFailure(@"A PFRelationOperation was created without any data.");
     return nil;
 }
 
@@ -535,7 +534,7 @@
             }
         }
     } else {
-        [NSException raise:NSInternalInconsistencyException format:@"Operation is invalid after previous operation."];
+        PFConsistencyAssertionFailure(@"This operation is invalid after previous operation.");
         return nil;
     }
 
