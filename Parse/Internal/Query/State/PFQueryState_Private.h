@@ -9,6 +9,17 @@
 
 #import "PFQueryState.h"
 
+#import "PFMacros.h"
+
+/**
+ Returns NSString representation of a property on PFQueryState.
+
+ @param NAME The name of the property.
+
+ @return NSString representaiton of a given property.
+ */
+#define PFQueryStatePropertyName(NAME) @keypath(PFQueryState, NAME)
+
 @interface PFQueryState () {
 @protected
     NSString *_parseClassName;

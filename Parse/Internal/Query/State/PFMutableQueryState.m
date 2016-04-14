@@ -11,6 +11,7 @@
 #import "PFQueryConstants.h"
 
 #import "PFQueryState_Private.h"
+#import "PFMacros.h"
 
 @interface PFMutableQueryState () {
     NSMutableDictionary<NSString *, id> *_conditions;
@@ -47,10 +48,10 @@
 + (NSDictionary *)propertyAttributes {
     NSMutableDictionary *attributes = [[super propertyAttributes] mutableCopy];
 
-    attributes[@"conditions"] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
-    attributes[@"sortKeys"] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
-    attributes[@"includedKeys"] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
-    attributes[@"extraOptions"] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
+    attributes[PFQueryStatePropertyName(conditions)] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
+    attributes[PFQueryStatePropertyName(sortKeys)] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
+    attributes[PFQueryStatePropertyName(includedKeys)] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
+    attributes[PFQueryStatePropertyName(extraOptions)] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
 
     return attributes;
 }
