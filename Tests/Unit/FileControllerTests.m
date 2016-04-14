@@ -497,7 +497,33 @@
     [self waitForTestExpectations];
 }
 
-- (void)testClearCaches {
+- (void)testClearFileCache {
+    id mockedDataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
+    id mockedFileManager = PFStrictClassMock([PFFileManager class]);
+
+    NSString *temporaryPath = [self temporaryDirectory];
+    NSString *downloadsPath = [temporaryPath stringByAppendingPathComponent:@"downloads"];
+
+    OCMStub([mockedDataSource fileManager]).andReturn(mockedFileManager);
+    OCMStub([mockedFileManager parseLocalSandboxDataDirectoryPath]).andReturn(temporaryPath);
+    OCMStub([mockedFileManager parseCacheItemPathForPathComponent:@"PFFileCache"]).andReturn(downloadsPath);
+
+    PFFileController *fileController = [PFFileController controllerWithDataSource:mockedDataSource];
+    PFFileState *fileState = [[PFMutableFileState alloc] initWithName:@"sampleData"
+                                                            urlString:temporaryPath
+                                                             mimeType:@"application/octet-stream"];
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[fileController clearFileCacheAsyncForFileWithState:fileState] continueWithBlock:^id(BFTask *task) {
+        XCTAssertNil(task.error);
+        [expectation fulfill];
+        return nil;
+    }];
+
+    [self waitForTestExpectations];
+}
+
+- (void)testClearAllFilesCache {
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
     id mockedFileManager = PFStrictClassMock([PFFileManager class]);
 
@@ -511,7 +537,7 @@
     PFFileController *fileController = [PFFileController controllerWithDataSource:mockedDataSource];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[fileController clearFileCacheAsync] continueWithBlock:^id(BFTask *task) {
+    [[fileController clearAllFileCacheAsync] continueWithBlock:^id(BFTask *task) {
         XCTAssertNil(task.error);
         [expectation fulfill];
         return nil;
