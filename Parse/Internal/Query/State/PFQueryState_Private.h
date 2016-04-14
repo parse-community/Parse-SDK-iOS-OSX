@@ -13,13 +13,13 @@
 @protected
     NSString *_parseClassName;
 
-    NSDictionary *_conditions;
+    NSDictionary<NSString *, id> *_conditions;
 
-    NSArray *_sortKeys;
+    NSArray<NSString *> *_sortKeys;
 
-    NSSet *_includedKeys;
-    NSSet *_selectedKeys;
-    NSDictionary *_extraOptions;
+    NSSet<NSString *> *_includedKeys;
+    NSSet<NSString *> *_selectedKeys;
+    NSDictionary<NSString *, NSString *> *_extraOptions;
 
     NSInteger _limit;
     NSInteger _skip;

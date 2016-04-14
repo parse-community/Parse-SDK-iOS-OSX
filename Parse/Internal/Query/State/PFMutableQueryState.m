@@ -13,10 +13,10 @@
 #import "PFQueryState_Private.h"
 
 @interface PFMutableQueryState () {
-    NSMutableDictionary *_conditions;
-    NSMutableArray *_sortKeys;
-    NSMutableSet *_includedKeys;
-    NSMutableDictionary *_extraOptions;
+    NSMutableDictionary<NSString *, id> *_conditions;
+    NSMutableArray<NSString *> *_sortKeys;
+    NSMutableSet<NSString *> *_includedKeys;
+    NSMutableDictionary<NSString *, NSString *> *_extraOptions;
 }
 
 @end
@@ -133,7 +133,7 @@
     }
 }
 
-- (void)addSortKeysFromSortDescriptors:(NSArray *)sortDescriptors {
+- (void)addSortKeysFromSortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
     [_sortKeys removeAllObjects];
     for (NSSortDescriptor *sortDescriptor in sortDescriptors) {
         [self addSortKey:sortDescriptor.key ascending:sortDescriptor.ascending];
@@ -164,7 +164,7 @@
 #pragma mark - Selected Keys
 ///--------------------------------------
 
-- (void)selectKeys:(NSArray *)keys {
+- (void)selectKeys:(NSArray<NSString *> *)keys {
     if (keys) {
         _selectedKeys = (_selectedKeys ? [_selectedKeys setByAddingObjectsFromArray:keys] : [NSSet setWithArray:keys]);
     } else {
