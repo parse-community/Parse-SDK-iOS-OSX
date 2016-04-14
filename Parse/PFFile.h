@@ -366,6 +366,24 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)cancel;
 
+///--------------------------------------
+#pragma mark - Cache
+///--------------------------------------
+
+/**
+ Clears all cached data for this file.
+
+ @return The task, with the result set to `nil` if the operation succeeds.
+ */
+- (BFTask *)clearCachedDataInBackground;
+
+/**
+ Clears all cached data for all downloaded files.
+
+ @return The task, with the result set to `nil` if the operation succeeds.
+ */
++ (BFTask *)clearAllCachedDataInBackground;
+
 @end
 
 NS_ASSUME_NONNULL_END
