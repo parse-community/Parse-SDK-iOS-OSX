@@ -200,6 +200,15 @@
     XCTAssertEqualObjects(state.includedKeys, includedKeys);
 }
 
+- (void)testIncludeMultipleKeys {
+    PFMutableQueryState *state = [[PFMutableQueryState alloc] initWithParseClassName:@"Yarr"];
+    [state includeKeys:@[ @"a", @"b", @"c" ]];
+    [state includeKey:@"a"];
+
+    NSSet *includedKeys = PF_SET(@"a", @"b", @"c");
+    XCTAssertEqualObjects(state.includedKeys, includedKeys);
+}
+
 - (void)testSelectKeys {
     PFMutableQueryState *state = [[PFMutableQueryState alloc] initWithParseClassName:@"Yarr"];
 
