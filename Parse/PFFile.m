@@ -217,6 +217,20 @@
     }];
 }
 
+#pragma mark Cache
+
+- (BFTask *)clearCachedDataInBackground {
+    @weakify(self);
+    return [self.taskQueue enqueue:^id(BFTask *_) {
+        @strongify(self);
+        return [[[[self class] fileController] clearFileCacheAsyncForFileWithState:self.state] continueWithSuccessResult:nil];
+    }];
+}
+
++ (BFTask *)clearAllCachedDataInBackground {
+    return [[[self fileController] clearAllFileCacheAsync] continueWithSuccessResult:nil];
+}
+
 ///--------------------------------------
 #pragma mark - Private
 ///--------------------------------------
