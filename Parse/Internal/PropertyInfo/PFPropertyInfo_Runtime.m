@@ -12,6 +12,8 @@
 #import <objc/message.h>
 #import <objc/runtime.h>
 
+#import "PFAssert.h"
+
 /**
  This macro is really interesting. Because ARC will insert implicit retains, releases and other memory managment code
  that we don't want here, we have to basically trick ARC into treating the functions we want as functions with type
@@ -45,7 +47,7 @@ void object_getIvarValue_safe(__unsafe_unretained id obj, Ivar ivar, void *toMem
 
     switch (associationType) {
         case PFPropertyInfoAssociationTypeDefault:
-            [NSException raise:NSInvalidArgumentException format:@"Invalid association type Default!"];
+            PFParameterAssertionFailure(@"Invalid association type `Default`.");
             break;
 
         case PFPropertyInfoAssociationTypeAssign: {
@@ -86,7 +88,7 @@ void object_setIvarValue_safe(__unsafe_unretained id obj, Ivar ivar, void *fromM
 
     switch (associationType) {
         case PFPropertyInfoAssociationTypeDefault:
-            [NSException raise:NSInvalidArgumentException format:@"Invalid association type Default!"];
+            PFParameterAssertionFailure(@"Invalid association type `Default`.");
             return;
 
         case PFPropertyInfoAssociationTypeAssign: {

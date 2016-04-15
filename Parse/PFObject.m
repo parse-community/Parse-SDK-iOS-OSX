@@ -78,7 +78,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         }
     }
 
-    PFParameterAssert(NO, @"PFObject values may not have class: %@", [object class]);
+    PFParameterAssertionFailure(@"PFObject values may not have class: %@", [object class]);
 }
 
 @interface PFObject () <PFObjectPrivateSubclass> {
@@ -252,8 +252,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 seenNew = [NSSet set];
             } else {
                 if ([seenNew containsObject:object]) {
-                    [NSException raise:NSInternalInconsistencyException
-                                format:@"Found a circular dependency when saving."];
+                    PFConsistencyAssertionFailure(@"Found a circular dependency when saving.");
                 }
                 seenNew = [seenNew setByAddingObject:object];
             }
@@ -425,8 +424,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             // We do cycle-detection when building the list of objects passed to this
             // function, so this should never get called.  But we should check for it
             // anyway, so that we get an exception instead of an infinite loop.
-            [NSException raise:NSInternalInconsistencyException
-                        format:@"Unable to save a PFObject with a relation to a cycle."];
+            PFConsistencyAssertionFailure(@"Unable to save a PFObject with a relation to a cycle.");
         }
 
         // If a lazy user is one of the objects in the array, resolve its laziness now and
@@ -554,18 +552,16 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 // Just like deepSaveAsync, but uses saveEventually instead of saveAsync.
 // Because you shouldn't wait for saveEventually calls to complete, this
 // does not return any operation.
-+ (BFTask *)_enqueueSaveEventuallyChildrenOfObject:(PFObject *)object
-                                       currentUser:(PFUser *)currentUser {
++ (BFTask *)_enqueueSaveEventuallyChildrenOfObject:(PFObject *)object currentUser:(PFUser *)currentUser {
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         NSMutableSet *uniqueObjects = [NSMutableSet set];
         NSMutableSet *uniqueFiles = [NSMutableSet set];
         [self collectDirtyChildren:object children:uniqueObjects files:uniqueFiles currentUser:currentUser];
         for (PFFile *file in uniqueFiles) {
             if (!file.url) {
-                NSException *exception = [NSException exceptionWithName:NSInternalInconsistencyException
-                                                                 reason:@"Unable to saveEventually a PFObject with a relation to a new, unsaved PFFile."
-                                                               userInfo:nil];
-                return [BFTask taskWithException:exception];
+                NSError *error = [PFErrorUtilities errorWithCode:kPFErrorUnsavedFile
+                                                         message:@"Unable to saveEventually a PFObject with a relation to a new, unsaved PFFile."];
+                return [BFTask taskWithError:error];
             }
         }
 
@@ -593,8 +589,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 // We do cycle-detection when building the list of objects passed to this
                 // function, so this should never get called.  But we should check for it
                 // anyway, so that we get an exception instead of an infinite loop.
-                [NSException raise:NSInternalInconsistencyException
-                            format:@"Unable to save a PFObject with a relation to a cycle."];
+                PFConsistencyAssertionFailure(@"Unable to save a PFObject with a relation to a cycle.");
             }
 
             // If a lazy user is one of the objects in the array, resolve its laziness now and
@@ -762,8 +757,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         // But if it has local ids that haven't been resolved yet, then that's not going to
         // be possible.
         if (!newObjectId) {
-            [NSException raise:NSInternalInconsistencyException
-                        format:@"Tried to save an object with a pointer to a new, unsaved object."];
+            PFConsistencyAssertionFailure(@"Tried to save an object with a pointer to a new, unsaved object.");
         }
 
         // Nil out the localId so that the new objectId won't be saved back to the PFObjectLocalIdStore.
@@ -1128,11 +1122,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
  */
 - (BFTask *)_enqueueSaveEventuallyOperationAsync:(PFOperationSet *)operationSet {
     if (!operationSet.isSaveEventually) {
-        NSString *message = @"This should only be used to enqueue saveEventually operation sets";
-        NSException *exception = [NSException exceptionWithName:NSInternalInconsistencyException
-                                                         reason:message
-                                                       userInfo:nil];
-        return [BFTask taskWithException:exception];
+        NSError *error = [PFErrorUtilities errorWithCode:kPFErrorOperationForbidden
+                                                 message:@"Unable to enqueue non-saveEventually operation set."];
+        return [BFTask taskWithError:error];
     }
 
     return [self.taskQueue enqueue:^BFTask *(BFTask *toAwait) {

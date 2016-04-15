@@ -55,9 +55,6 @@
             // Returning this empty object is strictly wrong, but we have to have *something*
             // to put into an object's mutable container cache, and this is just about the
             // best we can do right now.
-            //
-            // [NSException raise:NSInternalInconsistencyException
-            //             format:@"Tried to serialize an unsaved file."];
             return @{ @"__type" : @"File" };
         }
         return @{
@@ -122,7 +119,7 @@
 }
 
 - (id)encodeParseObject:(PFObject *)object {
-    [NSException raise:NSInternalInconsistencyException format:@"PFObjects are not allowed here."];
+    PFConsistencyAssertionFailure(@"PFObjects are not allowed here.");
     return nil;
 }
 

@@ -281,10 +281,10 @@
         }
     });
     if (uuid == nil) {
-        NSException *exception = [NSException exceptionWithName:NSInternalInconsistencyException
-                                                         reason:@"Either operationSet or eventuallyPin must be set"
-                                                       userInfo:nil];
-        return [BFTask taskWithException:exception];
+        NSError *error = [PFErrorUtilities errorWithCode:kPFErrorIncorrectType
+                                                 message:@"Either operationSet or eventuallyPin must be set"
+                                               shouldLog:NO];
+        return [BFTask taskWithError:error];
     }
     return [BFTask taskWithResult:nil];
 }

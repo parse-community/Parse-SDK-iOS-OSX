@@ -325,11 +325,10 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
         return [self.dataSource.commandRunner runCommandAsync:(PFRESTCommand *)command withOptions:0];
     }
 
-    NSString *reason = [NSString stringWithFormat:@"Can't find a compatible runner for command %@.", command];
-    NSException *exception = [NSException exceptionWithName:NSInternalInconsistencyException
-                                                     reason:reason
-                                                   userInfo:nil];
-    return [BFTask taskWithException:exception];
+    NSError *error = [PFErrorUtilities errorWithCode:kPFErrorInternalServer
+                                             message:[NSString stringWithFormat:@"Can't find a compatible runner for command %@.", command]
+                                           shouldLog:NO];
+    return [BFTask taskWithError:error];
 }
 
 - (BFTask *)_didFinishRunningCommand:(id<PFNetworkCommand>)command
