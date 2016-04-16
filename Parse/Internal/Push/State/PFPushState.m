@@ -14,6 +14,8 @@
 #import "PFQueryState.h"
 #import "PFAssert.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation PFPushState
 
 ///--------------------------------------
@@ -21,23 +23,23 @@
 ///--------------------------------------
 
 + (NSDictionary *)propertyAttributes {
-    return @{ @"channels": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-              @"queryState": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-              @"expirationDate": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeStrong],
-              @"expirationTimeInterval": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeStrong],
-              @"pushDate": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeStrong],
-              @"payload": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy] };
+    return @{ PFPushStatePropertyName(channels): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+              PFPushStatePropertyName(queryState): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+              PFPushStatePropertyName(expirationDate): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeStrong],
+              PFPushStatePropertyName(expirationTimeInterval): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeStrong],
+              PFPushStatePropertyName(pushDate): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeStrong],
+              PFPushStatePropertyName(payload): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy] };
 }
 
 ///--------------------------------------
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)initWithState:(PFPushState *)state {
+- (instancetype)initWithState:(nullable PFPushState *)state {
     return [super initWithState:state];
 }
 
-+ (instancetype)stateWithState:(PFPushState *)state {
++ (instancetype)stateWithState:(nullable PFPushState *)state {
     return [super stateWithState:state];
 }
 
@@ -45,7 +47,7 @@
 #pragma mark - NSCopying
 ///--------------------------------------
 
-- (void)setPushDate:(NSDate *)pushDate {
+- (void)setPushDate:(nullable NSDate *)pushDate {
     if (self.pushDate != pushDate) {
         NSTimeInterval interval = pushDate.timeIntervalSinceNow;
         PFParameterAssert(interval > 0, @"Can't set the scheduled push time in the past.");
@@ -58,7 +60,7 @@
 #pragma mark - NSCopying
 ///--------------------------------------
 
-- (id)copyWithZone:(NSZone *)zone {
+- (id)copyWithZone:(nullable NSZone *)zone {
     return [[PFPushState allocWithZone:zone] initWithState:self];
 }
 
@@ -66,8 +68,10 @@
 #pragma mark - NSMutableCopying
 ///--------------------------------------
 
-- (id)mutableCopyWithZone:(NSZone *)zone {
+- (id)mutableCopyWithZone:(nullable NSZone *)zone {
     return [[PFMutablePushState allocWithZone:zone] initWithState:self];
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
