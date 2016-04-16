@@ -47,9 +47,9 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSu
  If this installation is not stored on disk this method will create a new `PFInstallation`
  with `deviceType` and `installationId` fields set to those of the current installation.
 
- @result Returns a `PFInstallation` that represents the currently-running installation.
+ @result Returns a `PFInstallation` that represents the currently-running installation if it could be loaded from disk, otherwise - `nil`.
  */
-+ (instancetype)currentInstallation;
++ (nullable instancetype)currentInstallation;
 
 /**
  *Asynchronously* loads the currently-running installation from disk and returns an instance of it.
