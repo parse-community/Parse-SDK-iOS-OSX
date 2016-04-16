@@ -28,11 +28,9 @@ static NSString *const _PFFileStateSecureDomain = @"files.parsetfss.com";
 ///--------------------------------------
 
 + (NSDictionary *)propertyAttributes {
-    return @{
-        @"name" : [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-        @"urlString" : [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-        @"mimeType" : [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-    };
+    return @{ PFFileStatePropertyName(name) : [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+              PFFileStatePropertyName(urlString) : [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+              PFFileStatePropertyName(mimeType) : [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy] };
 }
 
 ///--------------------------------------
