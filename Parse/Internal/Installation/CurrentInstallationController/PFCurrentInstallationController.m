@@ -102,7 +102,7 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
             @strongify(self);
 
             __block PFInstallation *installation = task.result;
-            return [[self.installationIdentifierStore getInstallationIdentifierAsync] continueWithBlock:^id _Nullable(BFTask<NSString *> * _Nonnull task) {
+            return [[self.installationIdentifierStore getInstallationIdentifierAsync] continueWithSuccessBlock:^id _Nullable(BFTask<NSString *> * _Nonnull task) {
                 NSString *installationId = task.result.lowercaseString;
                 if (!installation || ![installationId isEqualToString:installation.installationId]) {
                     // If there's no installation object, or the object's installation
