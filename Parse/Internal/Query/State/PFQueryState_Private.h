@@ -9,17 +9,28 @@
 
 #import "PFQueryState.h"
 
+#import "PFMacros.h"
+
+/**
+ Returns NSString representation of a property on PFQueryState.
+
+ @param NAME The name of the property.
+
+ @return NSString representaiton of a given property.
+ */
+#define PFQueryStatePropertyName(NAME) @keypath(PFQueryState, NAME)
+
 @interface PFQueryState () {
 @protected
     NSString *_parseClassName;
 
-    NSDictionary *_conditions;
+    NSDictionary<NSString *, id> *_conditions;
 
-    NSArray *_sortKeys;
+    NSArray<NSString *> *_sortKeys;
 
-    NSSet *_includedKeys;
-    NSSet *_selectedKeys;
-    NSDictionary *_extraOptions;
+    NSSet<NSString *> *_includedKeys;
+    NSSet<NSString *> *_selectedKeys;
+    NSDictionary<NSString *, NSString *> *_extraOptions;
 
     NSInteger _limit;
     NSInteger _skip;
