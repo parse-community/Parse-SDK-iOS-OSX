@@ -28,7 +28,7 @@
 + (NSDictionary *)propertyAttributes {
     NSMutableDictionary *parentAttributes = [[super propertyAttributes] mutableCopy];
 
-    parentAttributes[@"knownObjects"] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
+    parentAttributes[PFRelationStatePropertyName(knownObjects)] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
 
     return parentAttributes;
 }

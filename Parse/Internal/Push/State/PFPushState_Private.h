@@ -9,6 +9,15 @@
 
 #import "PFPushState.h"
 
+/**
+ Returns NSString representation of a property.
+
+ @param NAME The name of the property.
+
+ @return NSString representation of a given property.
+ */
+#define PFPushStatePropertyName(NAME) @keypath(PFPushState, NAME)
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PFPushState ()
