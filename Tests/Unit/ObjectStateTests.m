@@ -166,6 +166,17 @@
     XCTAssertEqualObjects(mutableState.serverData, @{ @"foo": @"bar" });
 }
 
+- (void)testDeleteFromServerData {
+    PFMutableObjectState *mutableState = [[PFMutableObjectState alloc] init];
+    XCTAssertEqualObjects(mutableState.serverData, @{});
+
+    [mutableState setServerDataObject:@"foo" forKey:@"bar"];
+    XCTAssertEqualObjects(mutableState.serverData, @{ @"bar": @"foo" });
+
+    [mutableState setServerDataObject:[PFDeleteOperation new] forKey:@"bar"];
+    XCTAssertEqualObjects(mutableState.serverData, @{});
+}
+
 - (void)testEncode {
     PFMutableObjectState *mutableState = [[PFMutableObjectState alloc] init];
     mutableState.objectId = @"objectId";
