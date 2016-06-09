@@ -178,6 +178,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                                    PFOfflineStoreKeyOfJSON, PFOfflineStoreTableOfObjects, PFOfflineStoreKeyOfUUID];
                 return [database executeQueryAsync:query withArgumentsInArray:@[ uuid ] block:^id(PFSQLiteDatabaseResult *_Nonnull result) {
                     if (![result next]) {
+                         [[NSNotificationCenter defaultCenter] postNotificationName:@"non-existent-uuid" object:uuid];
                         [NSException raise:NSInternalInconsistencyException
                                     format:@"Attempted to find non-existent uuid %@.", uuid];
                     }
@@ -909,6 +910,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     __block NSString *objectId = nil;
     return [[database executeQueryAsync:query withArgumentsInArray:@[ uuid ] block:^id(PFSQLiteDatabaseResult *result) {
         if (![result next]) {
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"non-existent-uuid" object:uuid];
             [NSException raise:NSInternalInconsistencyException
                         format:@"Attempted to find non-existent uuid %@", uuid]; // TODO: (nlutsenko) Convert to errors.
         }
