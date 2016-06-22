@@ -13,12 +13,17 @@ import Parse
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidFinishLaunching() {
-        // Enable storing and querying data from Local Datastore.
-        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
-        Parse.enableLocalDatastore()
-
-        // Make sure to replace with your Parse app credentials:
-        Parse.setApplicationId("your_application_id", clientKey: "your_client_key")
+        
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = "your_application_id"
+            $0.clientKey     = "your_client_key"
+            $0.server        = "https://YOUR_PARSE_SERVER/parse"
+            
+            // Enable storing and querying data from Local Datastore.
+            // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
+            $0.enableLocalDatastore = true
+        }
+        Parse.initializeWithConfiguration(configuration)
 
         // Track application opened event in Analytics
         PFAnalytics.trackAppOpenedWithLaunchOptions(nil)
