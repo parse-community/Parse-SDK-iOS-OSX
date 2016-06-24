@@ -1633,11 +1633,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 }
 
 + (instancetype)objectWithClassName:(NSString *)className dictionary:(NSDictionary *)dictionary {
-    PFObject *object = [self objectWithClassName:className];
-    [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        object[key] = obj;
-    }];
-    return object;
+    return [self _objectFromDictionary:dictionary defaultClassName:className completeData:YES];
 }
 
 + (instancetype)objectWithoutDataWithClassName:(NSString *)className objectId:(NSString *)objectId {
