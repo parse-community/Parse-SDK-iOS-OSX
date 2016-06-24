@@ -1633,7 +1633,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 }
 
 + (instancetype)objectWithClassName:(NSString *)className dictionary:(NSDictionary *)dictionary {
-    return [self _objectFromDictionary:dictionary defaultClassName:className completeData:YES];
+    PFObject *object = [self objectWithClassName:className];
+    [object _mergeAfterSaveWithResult:dictionary decoder:[PFDecoder objectDecoder]];
+    return object;
 }
 
 + (instancetype)objectWithoutDataWithClassName:(NSString *)className objectId:(NSString *)objectId {
