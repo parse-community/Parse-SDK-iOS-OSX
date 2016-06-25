@@ -17,14 +17,16 @@
 #pragma mark NSApplicationDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-    // Enable storing and querying data from Local Datastore.
-    // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
-    [Parse enableLocalDatastore];
 
-    // ****************************************************************************
-    // Uncomment and fill in with your Parse credentials:
-    // [Parse setApplicationId:@"your_application_id" clientKey:@"your_client_key"];
-    // ****************************************************************************
+    [Parse initializeWithConfiguration:[ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+        configuration.applicationId = @"your_application_id";
+        configuration.clientKey     = "your_client_key"
+        configuration.server = @"https://YOUR_PARSE_SERVER/parse";
+        
+        // Enable storing and querying data from Local Datastore.
+        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
+        configuration.localDatastoreEnabled = true
+    }]];
 
     [PFUser enableAutomaticUser];
 

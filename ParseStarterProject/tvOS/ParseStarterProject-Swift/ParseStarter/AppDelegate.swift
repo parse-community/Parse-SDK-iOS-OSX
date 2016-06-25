@@ -21,12 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--------------------------------------
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // ****************************************************************************
-        //
-        // Uncomment and fill in with your Parse credentials:
-        // Parse.setApplicationId("your_application_id", clientKey: "your_client_key")
-        //
-        // ****************************************************************************
+        
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = "your_application_id"
+            $0.clientKey     = "your_client_key"
+            $0.server        = "https://YOUR_PARSE_SERVER/parse"
+        }
+        Parse.initializeWithConfiguration(configuration)
 
         PFUser.enableAutomaticUser()
 
