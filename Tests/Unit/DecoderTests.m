@@ -106,7 +106,7 @@
     XCTAssertTrue([relation _hasKnownObject:object]);
 }
 
-- (void)testDecodingFiles {
+- (void)testDecodingFilesUnsecure {
     PFDecoder *decoder = [[PFDecoder alloc] init];
 
     NSDictionary *decoded = [decoder decodeObject:@{ @"file" : @{@"__type" : @"File",
@@ -121,6 +121,25 @@
     XCTAssertEqualObjects(file.name, @"yolo.png");
     XCTAssertEqualObjects(file.url, @"http://yarr.com/yolo.png");
 }
+
+
+- (void)testDecodingFilesSecure {
+    PFDecoder *decoder = [[PFDecoder alloc] init];
+    
+    NSDictionary *decoded = [decoder decodeObject:@{ @"file" : @{@"__type" : @"File",
+                                                                 @"name" : @"yolo.png",
+                                                                 @"url" : @"https://yarr.com/yolo.png"} }];
+    XCTAssertNotNil(decoded);
+    
+    PFFile *file = decoded[@"file"];
+    XCTAssertNotNil(file);
+    PFAssertIsKindOfClass(file, [PFFile class]);
+    
+    XCTAssertEqualObjects(file.name, @"yolo.png");
+    XCTAssertEqualObjects(file.url, @"https://yarr.com/yolo.png");
+}
+
+
 
 - (void)testDecodingPointers {
     PFDecoder *decoder = [[PFDecoder alloc] init];
