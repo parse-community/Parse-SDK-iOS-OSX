@@ -2997,7 +2997,6 @@
 		8083B859155DAB1B0023EEFA /* PFRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRelation.h; sourceTree = "<group>"; };
 		8083B85A155DAB1B0023EEFA /* PFRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFRelation.m; sourceTree = "<group>"; };
 		810154FE1BB382F800D7C7BD /* Parse-watchOS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Parse-watchOS.xcconfig"; path = "Configurations/Parse-watchOS.xcconfig"; sourceTree = SOURCE_ROOT; };
-		810155041BB3830500D7C7BD /* watchOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = watchOS.xcconfig; sourceTree = "<group>"; };
 		810156691BB3832700D7C7BD /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8101A14619ACDA97008BB503 /* PFAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAlertView.h; sourceTree = "<group>"; };
 		8101A14719ACDA97008BB503 /* PFAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAlertView.m; sourceTree = "<group>"; };
@@ -3324,7 +3323,7 @@
 		81BF4AB51B0BF3E500A3D75B /* PFConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFConfigController.m; sourceTree = "<group>"; };
 		81BF4ABA1B0BF64B00A3D75B /* PFCurrentConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFCurrentConfigController.h; sourceTree = "<group>"; };
 		81BF4ABB1B0BF64B00A3D75B /* PFCurrentConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFCurrentConfigController.m; sourceTree = "<group>"; };
-		81C09F861AF97A490043B49C /* ParseUnitTests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ParseUnitTests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81C09F861AF97A490043B49C /* ParseUnitTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ParseUnitTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C1EE471AE1EF960031C438 /* PFWeakValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFWeakValue.h; sourceTree = "<group>"; };
 		81C1EE481AE1EF960031C438 /* PFWeakValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFWeakValue.m; sourceTree = "<group>"; };
 		81C3821C19CCA89E0066284A /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3401,6 +3400,18 @@
 		81D843C71B012FBA007CEBCB /* PFCloudCodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFCloudCodeController.h; sourceTree = "<group>"; };
 		81D843C81B012FBA007CEBCB /* PFCloudCodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFCloudCodeController.m; sourceTree = "<group>"; };
 		81D8E75F1B7323ED004B014C /* HashTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HashTests.m; sourceTree = "<group>"; };
+		81DCD13D1D2DA080002501A2 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		81DCD13F1D2DA080002501A2 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
+		81DCD1401D2DA080002501A2 /* macOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = macOS.xcconfig; sourceTree = "<group>"; };
+		81DCD1411D2DA080002501A2 /* tvOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = tvOS.xcconfig; sourceTree = "<group>"; };
+		81DCD1421D2DA080002501A2 /* watchOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = watchOS.xcconfig; sourceTree = "<group>"; };
+		81DCD1441D2DA080002501A2 /* Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Application.xcconfig; sourceTree = "<group>"; };
+		81DCD1451D2DA080002501A2 /* DynamicFramework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DynamicFramework.xcconfig; sourceTree = "<group>"; };
+		81DCD1461D2DA080002501A2 /* LogicTests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = LogicTests.xcconfig; sourceTree = "<group>"; };
+		81DCD1471D2DA080002501A2 /* StaticFramework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = StaticFramework.xcconfig; sourceTree = "<group>"; };
+		81DCD1491D2DA080002501A2 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		81DCD14A1D2DA080002501A2 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		81DCD14B1D2DA080002501A2 /* Warnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
 		81DDB90B199A3EC200B50F35 /* ParseModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseModule.h; sourceTree = "<group>"; };
 		81DDB90C199A3EC200B50F35 /* ParseModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseModule.m; sourceTree = "<group>"; };
 		81DEF07D199C42A300D86A21 /* PFFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFile.h; sourceTree = "<group>"; };
@@ -3481,18 +3492,9 @@
 		F5556A171B66F47900410837 /* PFURLSession_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFURLSession_Private.h; sourceTree = "<group>"; };
 		F556643F1C10F37E006DEC12 /* ParseClientConfiguration_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParseClientConfiguration_Private.h; sourceTree = "<group>"; };
 		F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Parse-iOS.xcconfig"; sourceTree = "<group>"; };
-		F55ABB541B4F39DA00A0ECD5 /* Parse-OSX.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Parse-OSX.xcconfig"; sourceTree = "<group>"; };
+		F55ABB541B4F39DA00A0ECD5 /* Parse-macOS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Parse-macOS.xcconfig"; sourceTree = "<group>"; };
 		F55ABB591B4F39DA00A0ECD5 /* ParseUnitTests-iOS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "ParseUnitTests-iOS.xcconfig"; sourceTree = "<group>"; };
-		F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-OSX.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "ParseUnitTests-OSX.xcconfig"; sourceTree = "<group>"; };
-		F55ABB5C1B4F39DA00A0ECD5 /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
-		F55ABB601B4F39DA00A0ECD5 /* iOS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
-		F55ABB611B4F39DA00A0ECD5 /* OSX.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX.xcconfig; sourceTree = "<group>"; };
-		F55ABB631B4F39DA00A0ECD5 /* Application.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Application.xcconfig; sourceTree = "<group>"; };
-		F55ABB641B4F39DA00A0ECD5 /* Framework.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
-		F55ABB651B4F39DA00A0ECD5 /* UnitTest.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = UnitTest.xcconfig; sourceTree = "<group>"; };
-		F55ABB671B4F39DA00A0ECD5 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
-		F55ABB681B4F39DA00A0ECD5 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
-		F55ABB691B4F39DA00A0ECD5 /* Warnings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
+		F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "ParseUnitTests-macOS.xcconfig"; sourceTree = "<group>"; };
 		F55ABB7F1B4F3B1E00A0ECD5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		F55ABB811B4F3B3200A0ECD5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 		F55C740B1B631557000EDAFA /* PFURLSessionCommandRunner_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFURLSessionCommandRunner_Private.h; sourceTree = "<group>"; };
@@ -3826,7 +3828,7 @@
 				97010FAC1630B18F00AB761E /* Parse.framework */,
 				81C3821C19CCA89E0066284A /* Parse.framework */,
 				816F449B1A8E8933009CDB32 /* ParseUnitTests-iOS.xctest */,
-				81C09F861AF97A490043B49C /* ParseUnitTests-OSX.xctest */,
+				81C09F861AF97A490043B49C /* ParseUnitTests-macOS.xctest */,
 				810156691BB3832700D7C7BD /* Parse.framework */,
 				815F24151BD04D150054659F /* Parse.framework */,
 				81C5845D1C3B0A98000063C6 /* Parse.framework */,
@@ -4924,6 +4926,49 @@
 			path = CloudCode;
 			sourceTree = "<group>";
 		};
+		81DCD13C1D2DA080002501A2 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				81DCD13D1D2DA080002501A2 /* Common.xcconfig */,
+				81DCD13E1D2DA080002501A2 /* Platform */,
+				81DCD1431D2DA080002501A2 /* Product */,
+				81DCD1481D2DA080002501A2 /* Project */,
+				81DCD14B1D2DA080002501A2 /* Warnings.xcconfig */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		81DCD13E1D2DA080002501A2 /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				81DCD13F1D2DA080002501A2 /* iOS.xcconfig */,
+				81DCD1401D2DA080002501A2 /* macOS.xcconfig */,
+				81DCD1411D2DA080002501A2 /* tvOS.xcconfig */,
+				81DCD1421D2DA080002501A2 /* watchOS.xcconfig */,
+			);
+			path = Platform;
+			sourceTree = "<group>";
+		};
+		81DCD1431D2DA080002501A2 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				81DCD1441D2DA080002501A2 /* Application.xcconfig */,
+				81DCD1451D2DA080002501A2 /* DynamicFramework.xcconfig */,
+				81DCD1461D2DA080002501A2 /* LogicTests.xcconfig */,
+				81DCD1471D2DA080002501A2 /* StaticFramework.xcconfig */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		81DCD1481D2DA080002501A2 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				81DCD1491D2DA080002501A2 /* Debug.xcconfig */,
+				81DCD14A1D2DA080002501A2 /* Release.xcconfig */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
 		81E033551B573F3E00B25168 /* NetworkMocking */ = {
 			isa = PBXGroup;
 			children = (
@@ -5100,57 +5145,16 @@
 			children = (
 				F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */,
 				81C582DE1C3B0A40000063C6 /* Parse-iOS-Dynamic.xcconfig */,
-				F55ABB541B4F39DA00A0ECD5 /* Parse-OSX.xcconfig */,
+				F55ABB541B4F39DA00A0ECD5 /* Parse-macOS.xcconfig */,
 				815F24171BD04D310054659F /* Parse-tvOS.xcconfig */,
 				81C582DF1C3B0A40000063C6 /* Parse-tvOS-Dynamic.xcconfig */,
 				810154FE1BB382F800D7C7BD /* Parse-watchOS.xcconfig */,
 				81C582E01C3B0A40000063C6 /* Parse-watchOS-Dynamic.xcconfig */,
 				F55ABB591B4F39DA00A0ECD5 /* ParseUnitTests-iOS.xcconfig */,
-				F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-OSX.xcconfig */,
-				F55ABB5B1B4F39DA00A0ECD5 /* Shared */,
+				F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */,
+				81DCD13C1D2DA080002501A2 /* Shared */,
 			);
 			path = Configurations;
-			sourceTree = "<group>";
-		};
-		F55ABB5B1B4F39DA00A0ECD5 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				F55ABB5C1B4F39DA00A0ECD5 /* Common.xcconfig */,
-				F55ABB691B4F39DA00A0ECD5 /* Warnings.xcconfig */,
-				F55ABB5F1B4F39DA00A0ECD5 /* Platform */,
-				F55ABB621B4F39DA00A0ECD5 /* Product */,
-				F55ABB661B4F39DA00A0ECD5 /* Project */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		F55ABB5F1B4F39DA00A0ECD5 /* Platform */ = {
-			isa = PBXGroup;
-			children = (
-				F55ABB601B4F39DA00A0ECD5 /* iOS.xcconfig */,
-				F55ABB611B4F39DA00A0ECD5 /* OSX.xcconfig */,
-				810155041BB3830500D7C7BD /* watchOS.xcconfig */,
-			);
-			path = Platform;
-			sourceTree = "<group>";
-		};
-		F55ABB621B4F39DA00A0ECD5 /* Product */ = {
-			isa = PBXGroup;
-			children = (
-				F55ABB631B4F39DA00A0ECD5 /* Application.xcconfig */,
-				F55ABB641B4F39DA00A0ECD5 /* Framework.xcconfig */,
-				F55ABB651B4F39DA00A0ECD5 /* UnitTest.xcconfig */,
-			);
-			path = Product;
-			sourceTree = "<group>";
-		};
-		F55ABB661B4F39DA00A0ECD5 /* Project */ = {
-			isa = PBXGroup;
-			children = (
-				F55ABB671B4F39DA00A0ECD5 /* Debug.xcconfig */,
-				F55ABB681B4F39DA00A0ECD5 /* Release.xcconfig */,
-			);
-			path = Project;
 			sourceTree = "<group>";
 		};
 		F5ADB9C31B6C5028002A819E /* Cache */ = {
@@ -6742,9 +6746,9 @@
 			productReference = 816F449B1A8E8933009CDB32 /* ParseUnitTests-iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		81C09F501AF97A490043B49C /* ParseUnitTests-OSX */ = {
+		81C09F501AF97A490043B49C /* ParseUnitTests-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 81C09F831AF97A490043B49C /* Build configuration list for PBXNativeTarget "ParseUnitTests-OSX" */;
+			buildConfigurationList = 81C09F831AF97A490043B49C /* Build configuration list for PBXNativeTarget "ParseUnitTests-macOS" */;
 			buildPhases = (
 				81C09F511AF97A490043B49C /* Sources */,
 				81C09F761AF97A490043B49C /* Frameworks */,
@@ -6758,9 +6762,9 @@
 				811167471B8402DA003CB026 /* PBXTargetDependency */,
 				81AB68C81B7E7F2A0053210E /* PBXTargetDependency */,
 			);
-			name = "ParseUnitTests-OSX";
+			name = "ParseUnitTests-macOS";
 			productName = ParseTests;
-			productReference = 81C09F861AF97A490043B49C /* ParseUnitTests-OSX.xctest */;
+			productReference = 81C09F861AF97A490043B49C /* ParseUnitTests-macOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		81C3821B19CCA89E0066284A /* Parse-iOS */ = {
@@ -6843,9 +6847,9 @@
 			productReference = 81C5870F1C3B0AA9000063C6 /* Parse.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		97010FAB1630B18F00AB761E /* Parse-OSX */ = {
+		97010FAB1630B18F00AB761E /* Parse-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 97010FB41630B18F00AB761E /* Build configuration list for PBXNativeTarget "Parse-OSX" */;
+			buildConfigurationList = 97010FB41630B18F00AB761E /* Build configuration list for PBXNativeTarget "Parse-macOS" */;
 			buildPhases = (
 				97010FB71630B1B800AB761E /* Generate Localizable Strings */,
 				97010FA81630B18F00AB761E /* Sources */,
@@ -6858,7 +6862,7 @@
 			dependencies = (
 				81101B331C34D1AC00AA3734 /* PBXTargetDependency */,
 			);
-			name = "Parse-OSX";
+			name = "Parse-macOS";
 			productName = ParseMac;
 			productReference = 97010FAC1630B18F00AB761E /* Parse.framework */;
 			productType = "com.apple.product-type.framework";
@@ -6904,8 +6908,8 @@
 				81C3821B19CCA89E0066284A /* Parse-iOS */,
 				81C582E11C3B0A98000063C6 /* Parse-iOS-Dynamic */,
 				816F441B1A8E8933009CDB32 /* ParseUnitTests-iOS */,
-				97010FAB1630B18F00AB761E /* Parse-OSX */,
-				81C09F501AF97A490043B49C /* ParseUnitTests-OSX */,
+				97010FAB1630B18F00AB761E /* Parse-macOS */,
+				81C09F501AF97A490043B49C /* ParseUnitTests-macOS */,
 				815F22AF1BD04D150054659F /* Parse-tvOS */,
 				81C5845F1C3B0AA1000063C6 /* Parse-tvOS-Dynamic */,
 				810155051BB3832700D7C7BD /* Parse-watchOS */,
@@ -8527,7 +8531,7 @@
 		};
 		811167471B8402DA003CB026 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 97010FAB1630B18F00AB761E /* Parse-OSX */;
+			target = 97010FAB1630B18F00AB761E /* Parse-macOS */;
 			targetProxy = 811167461B8402DA003CB026 /* PBXContainerItemProxy */;
 		};
 		8111674C1B8402DF003CB026 /* PBXTargetDependency */ = {
@@ -8591,14 +8595,14 @@
 /* Begin XCBuildConfiguration section */
 		09D3366B139C54940098E916 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F55ABB671B4F39DA00A0ECD5 /* Debug.xcconfig */;
+			baseConfigurationReference = 81DCD1491D2DA080002501A2 /* Debug.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
 		09D3366C139C54940098E916 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F55ABB681B4F39DA00A0ECD5 /* Release.xcconfig */;
+			baseConfigurationReference = 81DCD14A1D2DA080002501A2 /* Release.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
@@ -8647,14 +8651,14 @@
 		};
 		81C09F841AF97A490043B49C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-OSX.xcconfig */;
+			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
 		81C09F851AF97A490043B49C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-OSX.xcconfig */;
+			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
@@ -8717,14 +8721,14 @@
 		};
 		97010FB51630B18F00AB761E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F55ABB541B4F39DA00A0ECD5 /* Parse-OSX.xcconfig */;
+			baseConfigurationReference = F55ABB541B4F39DA00A0ECD5 /* Parse-macOS.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
 		97010FB61630B18F00AB761E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F55ABB541B4F39DA00A0ECD5 /* Parse-OSX.xcconfig */;
+			baseConfigurationReference = F55ABB541B4F39DA00A0ECD5 /* Parse-macOS.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
@@ -8768,7 +8772,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		81C09F831AF97A490043B49C /* Build configuration list for PBXNativeTarget "ParseUnitTests-OSX" */ = {
+		81C09F831AF97A490043B49C /* Build configuration list for PBXNativeTarget "ParseUnitTests-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				81C09F841AF97A490043B49C /* Debug */,
@@ -8813,7 +8817,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		97010FB41630B18F00AB761E /* Build configuration list for PBXNativeTarget "Parse-OSX" */ = {
+		97010FB41630B18F00AB761E /* Build configuration list for PBXNativeTarget "Parse-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				97010FB51630B18F00AB761E /* Debug */,
