@@ -448,6 +448,9 @@
 
 - (NSString *)url {
     __block NSString *url = nil;
+    
+    if (self.state.urlString == nil) return nil;
+    
     [self _performDataAccessBlock:^{
         
         NSURLComponents *components = [NSURLComponents componentsWithString:self.state.urlString];
