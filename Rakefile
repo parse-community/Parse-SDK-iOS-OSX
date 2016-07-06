@@ -103,8 +103,8 @@ namespace :build do
     end
   end
 
-  desc 'Build OS X framework.'
-  task :osx do
+  desc 'Build macOS framework.'
+  task :macos do
     task = XCTask::BuildFrameworkTask.new do |t|
       t.directory = script_folder
       t.build_directory = build_folder
@@ -112,12 +112,12 @@ namespace :build do
       t.framework_name = 'Parse.framework'
 
       t.workspace = 'Parse.xcworkspace'
-      t.scheme = 'Parse-OSX'
+      t.scheme = 'Parse-macOS'
       t.configuration = 'Release'
     end
     result = task.execute
     unless result
-      puts 'Failed to build OS X Framework.'
+      puts 'Failed to build macOS Framework.'
       exit(1)
     end
   end
@@ -144,7 +144,7 @@ end
 
 namespace :package do
   package_ios_name = 'Parse-iOS.zip'
-  package_osx_name = 'Parse-OSX.zip'
+  package_macos_name = 'Parse-macOS.zip'
   package_tvos_name = 'Parse-tvOS.zip'
   package_watchos_name = 'Parse-watchOS.zip'
   package_starter_ios_name = 'ParseStarterProject-iOS.zip'
@@ -171,13 +171,13 @@ namespace :package do
                  [ios_framework_path, bolts_path],
                  package_ios_name)
 
-    ## Build OS X Framework
-    Rake::Task['build:osx'].invoke
+    ## Build macOS Framework
+    Rake::Task['build:macos'].invoke
     bolts_path = File.join(bolts_build_folder, 'osx', 'Bolts.framework')
     osx_framework_path = File.join(build_folder, 'Parse.framework')
     make_package(release_folder,
                  [osx_framework_path, bolts_path],
-                 package_osx_name)
+                 package_macos_name)
 
    ## Build tvOS Framework
    Rake::Task['build:tvos'].invoke
@@ -211,7 +211,7 @@ namespace :package do
       File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject'),
       File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift')
     ]
-    osx_framework_archive = File.join(release_folder, package_osx_name)
+    osx_framework_archive = File.join(release_folder, package_macos_name)
     make_starter_package(release_folder, osx_starters, osx_framework_archive, package_starter_osx_name)
 
     tvos_starters = [
@@ -314,13 +314,13 @@ namespace :test do
     end
   end
 
-  desc 'Run OS X Tests'
-  task :osx do |_, args|
+  desc 'Run macOS Tests'
+  task :macos do |_, args|
     task = XCTask::BuildTask.new do |t|
       t.directory = script_folder
       t.workspace = 'Parse.xcworkspace'
 
-      t.scheme = 'Parse-OSX'
+      t.scheme = 'Parse-macOS'
       t.sdk = 'macosx'
       t.destinations = ['arch=x86_64']
       t.configuration = 'Debug'
