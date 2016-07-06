@@ -138,4 +138,26 @@
     XCTAssertNil(state.secureURLString);
 }
 
+- (void)testSecureURLStringUsingS3AdapterHost {
+    PFMutableFileState *state = [[PFMutableFileState alloc] initWithName:@"a"
+                                                               urlString:@"http://s3.amazonaws.com/bucket/yolo.txt"
+                                                                mimeType:nil];
+    XCTAssertEqualObjects(state.urlString, @"http://s3.amazonaws.com/bucket/yolo.txt");
+    XCTAssertEqualObjects(state.secureURLString, @"https://s3.amazonaws.com/bucket/yolo.txt");
+    
+    state.urlString = @"https://s3.amazonaws.com/bucket/yolo.txt";
+    XCTAssertEqualObjects(state.urlString, @"https://s3.amazonaws.com/bucket/yolo.txt");
+    XCTAssertEqualObjects(state.secureURLString, @"https://s3.amazonaws.com/bucket/yolo.txt");
+    
+    state.urlString = @"http://s3.amazonaws.com/bucket/yolo2.txt";
+    XCTAssertEqualObjects(state.urlString, @"http://s3.amazonaws.com/bucket/yolo2.txt");
+    XCTAssertEqualObjects(state.secureURLString, @"https://s3.amazonaws.com/bucket/yolo2.txt");
+    
+    state.urlString = nil;
+    XCTAssertNil(state.urlString);
+    XCTAssertNil(state.secureURLString);
+}
+
+
+
 @end
