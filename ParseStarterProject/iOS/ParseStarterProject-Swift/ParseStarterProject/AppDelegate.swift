@@ -24,14 +24,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--------------------------------------
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Enable storing and querying data from Local Datastore.
-        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
-        Parse.enableLocalDatastore()
+        // ****************************************************************************
+        // Initialize Parse SDK
+        // ****************************************************************************
+
+        let configuration = ParseClientConfiguration {
+            // Add your Parse applicationId:
+            $0.applicationId = "your_application_id"
+            // Uncomment and add your clientKey (it's not required if you are using Parse Server):
+            $0.clientKey = "your_client_key"
+
+            // Uncomment the following line and change to your Parse Server address;
+            $0.server = "https://YOUR_PARSE_SERVER/parse"
+
+            // Enable storing and querying data from Local Datastore.
+            // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
+            $0.localDatastoreEnabled = true
+        }
+        Parse.initializeWithConfiguration(configuration)
 
         // ****************************************************************************
-        // Uncomment and fill in with your Parse credentials:
-        // Parse.setApplicationId("your_application_id", clientKey: "your_client_key")
-        //
         // If you are using Facebook, uncomment and add your FacebookAppID to your bundle's plist as
         // described here: https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/
         // Uncomment the line inside ParseStartProject-Bridging-Header and the following line here:
