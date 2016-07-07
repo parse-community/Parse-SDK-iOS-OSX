@@ -256,7 +256,7 @@ static BOOL revocableSessionEnabled_;
         BFTask *signUpTask = task;
 
         // Bail-out early, but still make sure that super class handled the result
-        if (task.error || task.cancelled || task.exception) {
+        if (task.faulted || task.cancelled) {
             return [[super handleSaveResultAsync:nil] continueWithBlock:^id(BFTask *task) {
                 return signUpTask;
             }];
@@ -520,7 +520,7 @@ static BOOL revocableSessionEnabled_;
                     [currentUser rebuildEstimatedData];
 
                     return [[[[currentUser saveInBackground] continueWithBlock:^id(BFTask *task) {
-                        if (task.error || task.cancelled || task.exception) {
+                        if (task.faulted || task.cancelled) {
                             @synchronized ([currentUser lock]) {
                                 if (oldUsername) {
                                     currentUser.username = oldUsername;

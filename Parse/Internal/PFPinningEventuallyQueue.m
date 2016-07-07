@@ -212,7 +212,7 @@
             [_eventuallyPinUUIDQueue removeObject:identifier];
         });
 
-        if (resultTask.cancelled || resultTask.exception || resultTask.error) {
+        if (resultTask.cancelled || resultTask.faulted) {
             return resultTask;
         }
 
