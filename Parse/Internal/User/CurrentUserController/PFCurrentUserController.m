@@ -106,7 +106,7 @@
 		if (currentUser) {
 			// Verify that the current user matches our expected registered subclass
 			Class expectedClass = [[PFObjectSubclassingController defaultController] subclassForParseClassName:@"_User"];
-			if(expectedClass == [currentUser class]){
+			if([currentUser isKindOfClass:expectedClass]){
 				return currentUser;
 			} else {
 				matchesDisk = NO;
