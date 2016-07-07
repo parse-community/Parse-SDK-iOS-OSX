@@ -22,6 +22,7 @@
 #import "PFQuery.h"
 #import "PFUserConstants.h"
 #import "PFUserPrivate.h"
+#import "PFObjectSubclassingController.h"
 
 @interface PFCurrentUserController () {
     dispatch_queue_t _dataQueue;
@@ -102,9 +103,16 @@
             matchesDisk = _currentUserMatchesDisk;
             currentUser = _currentUser;
         });
-        if (currentUser) {
-            return currentUser;
-        }
+		if (currentUser) {
+			// Verify that the current user matches our expected registered subclass
+			Class expectedClass = [[PFObjectSubclassingController defaultController] subclassForParseClassName:@"_User"];
+			if(expectedClass == [currentUser class]){
+				return currentUser;
+			} else {
+				matchesDisk = NO;
+				currentUser = nil;
+			}
+		}
 
         if (matchesDisk) {
             if (options & PFCurrentUserLoadingOptionCreateLazyIfNotAvailable) {
