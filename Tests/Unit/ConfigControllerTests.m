@@ -17,12 +17,29 @@
 #import "PFConfig.h"
 #import "PFConfigController.h"
 #import "PFTestCase.h"
+#import "PFPersistenceController.h"
+#import "PFPersistenceGroup.h"
+
+@protocol ConfigControllerDataSource <PFCommandRunnerProvider, PFPersistenceControllerProvider>
+
+@end
 
 @interface ConfigControllerTests : PFTestCase
 
 @end
 
 @implementation ConfigControllerTests
+
+///--------------------------------------
+#pragma mark - Helpers
+///--------------------------------------
+
+- (PFPersistenceController *)mockedPersistenceController {
+    id controller = PFStrictClassMock([PFPersistenceController class]);
+    id group = PFProtocolMock(@protocol(PFPersistenceGroup));
+    OCMStub([controller getPersistenceGroupAsync]).andReturn([BFTask taskWithResult:group]);
+    return controller;
+}
 
 ///--------------------------------------
 #pragma mark - Tests
@@ -50,8 +67,9 @@
               forCommandsPassingTest:^BOOL(id obj) {
                   return YES;
               }];
-    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
+    id dataSource = PFStrictProtocolMock(@protocol(ConfigControllerDataSource));
     OCMStub([dataSource commandRunner]).andReturn(commandRunner);
+    OCMStub([dataSource persistenceController]).andReturn([self mockedPersistenceController]);
 
     PFConfigController *configController = [[PFConfigController alloc] initWithDataSource:dataSource];
 
