@@ -272,8 +272,6 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
             [tcs cancel];
         } else if (task.error != nil) {
             [tcs setError:task.error];
-        } else if (task.exception != nil) {
-            [tcs setException:task.exception];
         } else {
             [tcs setResult:object];
         }
@@ -431,7 +429,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                                     user:user
                                      pin:pin
                                  isCount:YES] continueWithSuccessBlock:^id(BFTask *task) {
-        if (!task.cancelled && !task.error && !task.exception) {
+        if (!task.cancelled && !task.faulted) {
             NSArray *result = task.result;
             return @(result.count);
         }

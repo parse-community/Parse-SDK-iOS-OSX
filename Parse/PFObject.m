@@ -505,13 +505,13 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                             }];
 
                             return [[BFTask taskForCompletionOfAllTasks:handleSaveTasks] continueAsyncWithBlock:^id(BFTask *task) {
-                                if (commandRunnerTask.error || commandRunnerTask.cancelled || commandRunnerTask.exception) {
+                                if (commandRunnerTask.faulted || commandRunnerTask.cancelled) {
                                     return commandRunnerTask;
                                 }
 
                                 // Reiterate saveAll tasks, return first error.
                                 for (BFTask *handleSaveTask in handleSaveTasks) {
-                                    if (handleSaveTask.error || handleSaveTask.exception) {
+                                    if (handleSaveTask.faulted) {
                                         return handleSaveTask;
                                     }
                                 }
@@ -525,20 +525,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             }
 
             return [[BFTask taskForCompletionOfAllTasks:tasks] continueWithBlock:^id(BFTask *task) {
-                // Return the first exception, instead of the aggregated one
-                // for the sake of compatability with old versions
-
-                if ([task.exception.name isEqualToString:BFTaskMultipleExceptionsException]) {
-                    NSException *firstException = [task.exception.userInfo[@"exceptions"] firstObject];
-                    if (firstException) {
-                        return [BFTask taskWithException:firstException];
-                    }
-                }
-
-                if (task.error || task.cancelled || task.exception) {
+                if (task.cancelled || task.faulted) {
                     return task;
                 }
-
                 return @YES;
             }];
         }];
@@ -856,7 +845,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             BFTask *resultTask = [BFTask taskWithResult:object];
 
             // Only delete if we successfully pin it so that it retries the migration next time.
-            if (!task.error && !task.exception && !task.cancelled) {
+            if (!task.faulted && !task.cancelled) {
                 NSString *path = [[Parse _currentManager].fileManager parseDataItemPathForPathComponent:fileName];
                 return [[PFFileManager removeItemAtPathAsync:path] continueWithBlock:^id(BFTask *task) {
                     // We don't care if it fails to delete the file, so return the
@@ -1098,7 +1087,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 }
                 saveTask = [saveTask continueWithBlock:^id(BFTask *task) {
                     @try {
-                        if (!task.isCancelled && !task.exception && !task.error) {
+                        if (!task.isCancelled && !task.faulted) {
                             PFCommandResult *result = task.result;
                             // PFPinningEventuallyQueue handle save result directly.
                             if (![Parse _currentManager].offlineStoreLoaded) {
@@ -1405,7 +1394,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                     return [[Parse _currentManager].commandRunner runCommandAsync:command
                                                                       withOptions:PFCommandRunningOptionRetryIfFailed];
                 }] continueAsyncWithBlock:^id(BFTask *task) {
-                    if (task.isCancelled || task.exception || task.error) {
+                    if (task.cancelled || task.faulted) {
                         // If there was an error, we want to roll forward the save changes before rethrowing.
                         BFTask *commandRunnerTask = task;
                         return [[self handleSaveResultAsync:nil] continueWithBlock:^id(BFTask *task) {

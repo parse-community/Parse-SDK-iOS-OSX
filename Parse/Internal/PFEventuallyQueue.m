@@ -106,12 +106,10 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
             return [[[self _enqueueCommandInBackground:command
                                                 object:object
                                             identifier:identifier] continueWithBlock:^id(BFTask *task) {
-                if (task.error || task.exception || task.cancelled) {
+                if (task.faulted || task.cancelled) {
                     [self.testHelper notify:PFEventuallyQueueEventCommandNotEnqueued];
                     if (task.error) {
                         taskCompletionSource.error = task.error;
-                    } else if (task.exception) {
-                        taskCompletionSource.exception = task.exception;
                     } else if (task.cancelled) {
                         [taskCompletionSource cancel];
                     }
@@ -305,8 +303,6 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
         // Notify anyone waiting that the operation is completed.
         if (resultTask.error) {
             taskCompletionSource.error = resultTask.error;
-        } else if (resultTask.exception) {
-            taskCompletionSource.exception = resultTask.exception;
         } else if (resultTask.cancelled) {
             [taskCompletionSource cancel];
         } else {
@@ -340,7 +336,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
         [_taskCompletionSources removeObjectForKey:identifier];
     });
 
-    if (resultTask.exception || resultTask.error || resultTask.cancelled) {
+    if (resultTask.faulted || resultTask.cancelled) {
         [self.testHelper notify:PFEventuallyQueueEventCommandFailed];
     } else {
         [self.testHelper notify:PFEventuallyQueueEventCommandSucceded];

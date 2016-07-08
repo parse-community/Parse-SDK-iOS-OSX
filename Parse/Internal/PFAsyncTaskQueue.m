@@ -50,12 +50,7 @@
         _tail = [_tail continueAsyncWithBlock:block];
         [_tail continueAsyncWithBlock:^id(BFTask *task) {
             if (task.faulted) {
-                NSError *error = task.error;
-                if (error) {
-                    [source trySetError:error];
-                } else {
-                    [source trySetException:task.exception];
-                }
+                [source trySetError:task.error];
             } else if (task.cancelled) {
                 [source trySetCancelled];
             } else {
