@@ -16,30 +16,14 @@
 #import "PFObjectPrivate.h"
 #import "PFRESTCommand.h"
 #import "PFSessionController.h"
-#import "PFTestCase.h"
+#import "PFUnitTestCase.h"
 #import "Parse_Private.h"
 
-@interface SessionControllerTests : PFTestCase
+@interface SessionControllerTests : PFUnitTestCase
 
 @end
 
 @implementation SessionControllerTests
-
-///--------------------------------------
-#pragma mark - XCTestCase
-///--------------------------------------
-
-- (void)setUp {
-    [super setUp];
-
-    [PFSession registerSubclass];
-}
-
-- (void)tearDown {
-    [PFObject unregisterSubclass:[PFSession class]];
-
-    [super tearDown];
-}
 
 ///--------------------------------------
 #pragma mark - Helpers

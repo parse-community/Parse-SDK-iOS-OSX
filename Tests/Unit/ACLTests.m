@@ -13,10 +13,10 @@
 #import "PFMacros.h"
 #import "PFObjectPrivate.h"
 #import "PFRole.h"
-#import "PFTestCase.h"
+#import "PFUnitTestCase.h"
 #import "PFUserPrivate.h"
 
-@interface ACLTests : PFTestCase
+@interface ACLTests : PFUnitTestCase
 
 @end
 
@@ -210,8 +210,6 @@
 
 
 - (void)testACLRequiresObjectId {
-    [PFUser registerSubclass];
-
     PFACL *acl = [PFACL ACL];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wnonnull"

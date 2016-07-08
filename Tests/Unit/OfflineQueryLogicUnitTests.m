@@ -29,12 +29,11 @@
 - (void)setUp {
     [super setUp];
 
-    [PFUser registerSubclass];
     _user = [PFUser user];
 }
 
 - (void)tearDown {
-    [PFObject unregisterSubclass:[PFUser class]];
+    _user = nil;
 
     [super tearDown];
 }

@@ -42,6 +42,7 @@ PFPersistenceControllerProvider>
 <PFLocationManagerProvider,
 PFDefaultACLControllerProvider,
 PFObjectControllerProvider,
+PFObjectSubclassingControllerProvider,
 PFObjectBatchController,
 PFObjectFilePersistenceControllerProvider,
 PFPinningObjectStoreProvider,
