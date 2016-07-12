@@ -11,13 +11,12 @@
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
-            buildForAnalyzing = "YES"
-            hideIssues = "NO">
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "97010FAB1630B18F00AB761E"
                BuildableName = "Parse.framework"
-               BlueprintName = "Parse-OSX"
+               BlueprintName = "Parse-macOS"
                ReferencedContainer = "container:../../../Parse.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,8 +25,7 @@
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
-            buildForAnalyzing = "YES"
-            hideIssues = "NO">
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "81CC85B71A49F2E00076DE19"

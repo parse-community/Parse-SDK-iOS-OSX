@@ -8,15 +8,12 @@
 //
 
 #include "Shared/Platform/tvOS.xcconfig"
-#include "Shared/Product/Framework.xcconfig"
+#include "Shared/Product/DynamicFramework.xcconfig"
 
 PRODUCT_NAME = Parse
 PRODUCT_BUNDLE_IDENTIFIER = com.parse.tvos
-DEFINES_MODULE = YES
-
-MACH_O_TYPE = mh_dylib
-DYLIB_INSTALL_NAME_BASE = @rpath
-
-OTHER_LDFLAGS = $(inherited) -ObjC
 
 INFOPLIST_FILE = $(PROJECT_DIR)/Parse/Resources/Parse-tvOS.Info.plist
+
+// TODO: (nlutsenko) Cleanup source code so we can safely ignore local variable shadow warnings.
+GCC_WARN_SHADOW = NO

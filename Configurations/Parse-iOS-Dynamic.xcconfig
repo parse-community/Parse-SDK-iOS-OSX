@@ -8,17 +8,14 @@
 //
 
 #include "Shared/Platform/iOS.xcconfig"
-#include "Shared/Product/Framework.xcconfig"
+#include "Shared/Product/DynamicFramework.xcconfig"
 
 PRODUCT_NAME = Parse
 PRODUCT_BUNDLE_IDENTIFIER = com.parse.ios
-DEFINES_MODULE = YES
 
 IPHONEOS_DEPLOYMENT_TARGET = 8.0
 
-MACH_O_TYPE = mh_dylib
-DYLIB_INSTALL_NAME_BASE = @rpath
-
 INFOPLIST_FILE = $(PROJECT_DIR)/Parse/Resources/Parse-iOS.Info.plist
 
-OTHER_CFLAGS[sdk=iphoneos9.*] = $(inherited) -fembed-bitcode
+// TODO: (nlutsenko) Cleanup source code so we can safely ignore local variable shadow warnings.
+GCC_WARN_SHADOW = NO

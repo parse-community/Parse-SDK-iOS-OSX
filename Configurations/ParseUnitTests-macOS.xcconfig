@@ -7,14 +7,16 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 
-#include "Shared/Platform/OSX.xcconfig"
-#include "Shared/Product/UnitTest.xcconfig"
+#include "Shared/Platform/macOS.xcconfig"
+#include "Shared/Product/LogicTests.xcconfig"
 
-PRODUCT_NAME = ParseUnitTests-OSX
+PRODUCT_NAME = ParseUnitTests-macOS
 PRODUCT_MODULE_NAME = ParseUnitTests
-PRODUCT_BUNDLE_IDENTIFIER = com.parse.unit.osx
+PRODUCT_BUNDLE_IDENTIFIER = com.parse.unit.macOS
 
 INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/ParseUnitTests-OSX-Info.plist
-LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/Frameworks @loader_path/Frameworks
 
 USER_HEADER_SEARCH_PATHS = $(inherited) $(PARSE_DIR)/Parse/Internal/**
+
+// TODO: (nlutsenko) Cleanup source code so we can safely ignore local variable shadow warnings.
+GCC_WARN_SHADOW = NO
