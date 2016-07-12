@@ -7,10 +7,13 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <OCMock/OCMock.h>
+
 #import "PFInstallationIdentifierStore_Private.h"
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
 #import "BFTask+Private.h"
+#import "PFPersistenceController.h"
 
 @interface InstallationIdentifierUnitTests : PFUnitTestCase
 
@@ -66,6 +69,30 @@
         [store getInstallationIdentifierAsync];
         [store clearInstallationIdentifierAsync];
     });
+}
+
+- (void)testInstallationIdentifierPropagatesErrorOnPersistenceFailure {
+    id<PFPersistenceGroup> group = PFStrictProtocolMock(@protocol(PFPersistenceGroup));
+    OCMStub([group beginLockedContentAccessAsyncToDataForKey:[OCMArg isNotNil]]).andReturn([BFTask taskWithResult:nil]);
+    OCMStub([group endLockedContentAccessAsyncToDataForKey:[OCMArg isNotNil]]).andReturn([BFTask taskWithResult:nil]);
+    OCMStub([group getDataAsyncForKey:[OCMArg isNotNil]]).andReturn([BFTask taskWithResult:nil]);
+    OCMStub([group setDataAsync:[OCMArg isNotNil] forKey:[OCMArg isNotNil]]).andReturn([BFTask taskWithError:[[NSError alloc] init]]);
+
+    PFPersistenceController *persistenceController = PFStrictClassMock([PFPersistenceController class]);
+    OCMStub([persistenceController getPersistenceGroupAsync]).andReturn([BFTask taskWithResult:group]);
+
+    id<PFPersistenceControllerProvider> dataSource = PFStrictProtocolMock(@protocol(PFPersistenceControllerProvider));
+    OCMStub([dataSource persistenceController]).andReturn(persistenceController);
+
+    PFInstallationIdentifierStore *store = [[PFInstallationIdentifierStore alloc] initWithDataSource:dataSource];
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[store getInstallationIdentifierAsync] continueWithBlock:^id _Nullable(BFTask<NSString *> * _Nonnull t) {
+        XCTAssertTrue(t.faulted);
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
 }
 
 @end
