@@ -379,10 +379,10 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
             // Scary, I know!
             for (Class kls = bundleClass; kls != nil; kls = class_getSuperclass(kls)) {
                 if (kls == pfObjectClass) {
-                    // Do class_conformsToProtocol as late in the checking as possible, as its SUUUPER slow.
+                    // Do -conformsToProtocol: as late in the checking as possible, as its SUUUPER slow.
                     // Behind the scenes this is a strcmp (lolwut?)
-                    if (class_conformsToProtocol(bundleClass, @protocol(PFSubclassing)) &&
-                        !class_conformsToProtocol(bundleClass, @protocol(PFSubclassingSkipAutomaticRegistration))) {
+                    if ([bundleClass conformsToProtocol:@protocol(PFSubclassing)] &&
+                        ![bundleClass conformsToProtocol:@protocol(PFSubclassingSkipAutomaticRegistration)]) {
                         [self _rawRegisterSubclass:bundleClass];
                     }
                     break;
