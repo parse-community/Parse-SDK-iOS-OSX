@@ -340,6 +340,12 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
 
 - (void)_registerSubclassesInBundle:(NSBundle *)bundle {
     PFConsistencyAssert(bundle.loaded, @"Cannot register subclasses in a bundle that hasn't been loaded!");
+
+    const char *executablePath = bundle.executablePath.UTF8String;
+    if (executablePath == NULL) {
+        return;
+    }
+
     dispatch_sync(_registeredSubclassesAccessQueue, ^{
         Class pfObjectClass = [PFObject class];
 
@@ -352,7 +358,7 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
         // just use a simple array here.
         char potentialPaths[2][PATH_MAX] = { };
 
-        strncpy(potentialPaths[0], bundle.executablePath.UTF8String, PATH_MAX);
+        strncpy(potentialPaths[0], executablePath, PATH_MAX);
         realpath(potentialPaths[0], potentialPaths[1]);
 
         const char **classNames = NULL;
