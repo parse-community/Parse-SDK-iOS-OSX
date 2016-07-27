@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The current client key that was used to configure Parse framework.
  */
-+ (NSString *)getClientKey;
++ (nullable NSString *)getClientKey;
 
 ///--------------------------------------
 #pragma mark - Enabling Local Datastore

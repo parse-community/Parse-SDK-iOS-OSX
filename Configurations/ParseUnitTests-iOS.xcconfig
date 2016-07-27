@@ -8,7 +8,7 @@
 //
 
 #include "Shared/Platform/iOS.xcconfig"
-#include "Shared/Product/UnitTest.xcconfig"
+#include "Shared/Product/LogicTests.xcconfig"
 
 PRODUCT_NAME = ParseUnitTests-iOS
 PRODUCT_MODULE_NAME = ParseUnitTests
@@ -20,5 +20,5 @@ INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/ParseUnitTests-iOS-Info.plist
 
 USER_HEADER_SEARCH_PATHS = $(inherited) $(PARSE_DIR)/Parse/Internal/**
 
-// Swift
-SWIFT_OBJC_BRIDGING_HEADER = $(SRCROOT)/Tests/Other/Swift/ParseUnitTests-iOS-Bridging-Header.h
+// TODO: (nlutsenko) Cleanup source code so we can safely ignore local variable shadow warnings.
+GCC_WARN_SHADOW = NO

@@ -65,9 +65,9 @@ static NSString *const PFInstallationIdentifierFileName = @"installationId";
         self.installationIdentifier = nil;
         return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
             id<PFPersistenceGroup> group = task.result;
-            return [[[group beginLockedContentAccessAsyncToDataForKey:PFInstallationIdentifierFileName] continueWithSuccessBlock:^id(BFTask *_) {
+            return [[[group beginLockedContentAccessAsyncToDataForKey:PFInstallationIdentifierFileName] continueWithSuccessBlock:^id(BFTask *t) {
                 return [group removeDataAsyncForKey:PFInstallationIdentifierFileName];
-            }] continueWithBlock:^id(BFTask *task) {
+            }] continueWithBlock:^id(BFTask *t) {
                 return [group endLockedContentAccessAsyncToDataForKey:PFInstallationIdentifierFileName];
             }];
         }];
@@ -88,10 +88,10 @@ static NSString *const PFInstallationIdentifierFileName = @"installationId";
 - (BFTask<NSString *> *)_loadInstallationIdentifierAsync {
     return (BFTask<NSString *> *)[[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
         id<PFPersistenceGroup> group = task.result;
-        return [[[[group beginLockedContentAccessAsyncToDataForKey:PFInstallationIdentifierFileName] continueWithSuccessBlock:^id(BFTask *_) {
+        return [[[[[group beginLockedContentAccessAsyncToDataForKey:PFInstallationIdentifierFileName] continueWithSuccessBlock:^id(BFTask *_) {
             return [group getDataAsyncForKey:PFInstallationIdentifierFileName];
-        }] continueWithSuccessBlock:^id(BFTask *task) {
-            NSData *data = task.result;
+        }] continueWithSuccessBlock:^id(BFTask *t) {
+            NSData *data = t.result;
             NSString *installationId = nil;
             if (data) {
                 installationId = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -103,9 +103,11 @@ static NSString *const PFInstallationIdentifierFileName = @"installationId";
             installationId = [NSUUID UUID].UUIDString.lowercaseString;
             return [[group setDataAsync:[installationId dataUsingEncoding:NSUTF8StringEncoding]
                                  forKey:PFInstallationIdentifierFileName] continueWithSuccessResult:installationId];
-        }] continueWithBlock:^id(BFTask <NSString *>*task) {
+        }] continueWithBlock:^id(BFTask<NSString *> *t) {
             [group endLockedContentAccessAsyncToDataForKey:PFInstallationIdentifierFileName];
-            self.installationIdentifier = task.result;
+            return t;
+        }] continueWithSuccessBlock:^id _Nullable(BFTask<NSString *> * _Nonnull t) {
+            self.installationIdentifier = t.result;
             return self.installationIdentifier;
         }];
     }];

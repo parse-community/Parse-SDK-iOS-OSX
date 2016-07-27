@@ -13,26 +13,22 @@
 #import "PFMutableFileState.h"
 #import "PFPropertyInfo.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 static NSString *const _PFFileStateSecureDomain = @"files.parsetfss.com";
 
-@interface PFFileState ()
-
-@property (nonatomic, copy, readwrite) NSString *secureURLString;
-
-@end
-
 @implementation PFFileState
+
+@synthesize secureURLString = _secureURLString;
 
 ///--------------------------------------
 #pragma mark - PFBaseStateSubclass
 ///--------------------------------------
 
 + (NSDictionary *)propertyAttributes {
-    return @{
-        @"name" : [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-        @"urlString" : [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-        @"mimeType" : [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-    };
+    return @{ PFFileStatePropertyName(name) : [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+              PFFileStatePropertyName(urlString) : [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+              PFFileStatePropertyName(mimeType) : [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy] };
 }
 
 ///--------------------------------------
@@ -43,7 +39,9 @@ static NSString *const _PFFileStateSecureDomain = @"files.parsetfss.com";
     return [super initWithState:state];
 }
 
-- (instancetype)initWithName:(NSString *)name urlString:(NSString *)urlString mimeType:(NSString *)mimeType {
+- (instancetype)initWithName:(nullable NSString *)name
+                   urlString:(nullable NSString *)urlString
+                    mimeType:(nullable NSString *)mimeType {
     self = [super init];
     if (!self) return nil;
 
@@ -58,14 +56,14 @@ static NSString *const _PFFileStateSecureDomain = @"files.parsetfss.com";
 #pragma mark - Accessors
 ///--------------------------------------
 
-- (void)setUrlString:(NSString *)urlString {
+- (void)setUrlString:(nullable NSString *)urlString {
     if (self.urlString != urlString) {
         _urlString = [urlString copy];
         _secureURLString = nil; // Invalidate variable cache
     }
 }
 
-- (NSString *)secureURLString {
+- (nullable NSString *)secureURLString {
     if (_secureURLString) {
         return _secureURLString;
     }
@@ -95,12 +93,14 @@ static NSString *const _PFFileStateSecureDomain = @"files.parsetfss.com";
 #pragma mark - Mutable Copying
 ///--------------------------------------
 
-- (id)copyWithZone:(NSZone *)zone {
+- (id)copyWithZone:(nullable NSZone *)zone {
     return [[PFFileState allocWithZone:zone] initWithState:self];
 }
 
-- (instancetype)mutableCopyWithZone:(NSZone *)zone {
+- (instancetype)mutableCopyWithZone:(nullable NSZone *)zone {
     return [[PFMutableFileState allocWithZone:zone] initWithState:self];
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

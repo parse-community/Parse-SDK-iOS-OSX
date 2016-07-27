@@ -17,7 +17,7 @@ typedef void (^PFACLStateMutationBlock)(PFMutableACLState *);
 
 @interface PFACLState : PFBaseState<PFBaseStateSubclass, NSCopying, NSMutableCopying>
 
-@property (nonatomic, copy, readonly) NSDictionary *permissions;
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, id> *permissions;
 @property (nonatomic, assign, readonly, getter=isShared) BOOL shared;
 
 ///--------------------------------------

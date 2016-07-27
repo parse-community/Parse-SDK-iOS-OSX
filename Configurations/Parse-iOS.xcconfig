@@ -8,15 +8,13 @@
 //
 
 #include "Shared/Platform/iOS.xcconfig"
-#include "Shared/Product/Framework.xcconfig"
+#include "Shared/Product/StaticFramework.xcconfig"
 
 PRODUCT_NAME = Parse
 PRODUCT_BUNDLE_IDENTIFIER = com.parse.ios
 APPLICATION_EXTENSION_API_ONLY = YES
 
-MACH_O_TYPE = staticlib
-DEFINES_MODULE = YES
-
 INFOPLIST_FILE = $(PROJECT_DIR)/Parse/Resources/Parse-iOS.Info.plist
 
-OTHER_CFLAGS[sdk=iphoneos9.*] = $(inherited) -fembed-bitcode
+// TODO: (nlutsenko) Cleanup source code so we can safely ignore local variable shadow warnings.
+GCC_WARN_SHADOW = NO

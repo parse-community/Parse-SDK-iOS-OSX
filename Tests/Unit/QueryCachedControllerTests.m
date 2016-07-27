@@ -294,7 +294,7 @@
     [[controller findObjectsAsyncForQueryState:state
                          withCancellationToken:nil
                                           user:nil] continueWithBlock:^id(BFTask *task) {
-        XCTAssertNotNil(task.exception);
+        XCTAssertNotNil(task.error);
         [expectation fulfill];
         return nil;
     }];
@@ -310,7 +310,7 @@
     [[controller findObjectsAsyncForQueryState:state
                          withCancellationToken:nil
                                           user:nil] continueWithBlock:^id(BFTask *task) {
-        XCTAssertNotNil(task.exception);
+        XCTAssertNotNil(task.error);
         [expectation fulfill];
         return nil;
     }];

@@ -19,14 +19,12 @@
 ///--------------------------------------
 
 + (NSDictionary *)propertyAttributes {
-    return @{
-        @"parent": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeWeak],
-        @"parentClassName": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-        @"parentObjectId": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-        @"targetClass": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-        @"knownObjects": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-        @"key": [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
-    };
+    return @{ PFRelationStatePropertyName(parent): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeWeak],
+              PFRelationStatePropertyName(parentClassName): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+              PFRelationStatePropertyName(parentObjectId): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+              PFRelationStatePropertyName(targetClass): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+              PFRelationStatePropertyName(knownObjects): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+              PFRelationStatePropertyName(key): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy] };
 }
 
 ///--------------------------------------

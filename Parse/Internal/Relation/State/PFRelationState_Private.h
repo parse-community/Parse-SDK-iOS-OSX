@@ -9,6 +9,17 @@
 
 #import "PFRelationState.h"
 
+#import "PFMacros.h"
+
+/**
+ Returns NSString representation of a property.
+
+ @param NAME The name of the property.
+
+ @return NSString representation of a given property.
+ */
+#define PFRelationStatePropertyName(NAME) @keypath(PFRelationState, NAME)
+
 @interface PFRelationState() {
 @protected
     __weak PFObject *_parent;

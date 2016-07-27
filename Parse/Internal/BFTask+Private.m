@@ -65,21 +65,13 @@
     return [self continueWithExecutor:[BFExecutor mainThreadExecutor]
                             withBlock:^id(BFTask *task) {
                                 BFTaskCompletionSource *tcs = [BFTaskCompletionSource taskCompletionSource];
-
                                 @try {
-                                    if (self.exception) {
-                                        //TODO: (nlutsenko) Add more context, by passing a `_cmd` from the caller method
-                                        PFLogException(self.exception);
-                                        @throw self.exception;
-                                    }
-
                                     if (!self.cancelled || executeIfCancelled) {
                                         resultBlock(self.result, self.error);
                                     }
                                 } @finally {
                                     tcs.result = nil;
                                 }
-
                                 return tcs.task;
                             }];
 }
@@ -121,8 +113,6 @@
     }
     if (self.cancelled) {
         return nil;
-    } else if (self.exception) {
-        @throw self.exception;
     }
     if (self.error && error) {
         *error = self.error;

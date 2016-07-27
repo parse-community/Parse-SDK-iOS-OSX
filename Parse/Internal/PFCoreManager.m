@@ -53,6 +53,7 @@
 @synthesize cloudCodeController = _cloudCodeController;
 @synthesize configController = _configController;
 @synthesize objectController = _objectController;
+@synthesize objectSubclassingController = _objectSubclassingController;
 @synthesize objectBatchController = _objectBatchController;
 @synthesize objectFilePersistenceController = _objectFilePersistenceController;
 @synthesize objectLocalIdStore = _objectLocalIdStore;
@@ -232,6 +233,28 @@
 - (void)setObjectController:(PFObjectController *)controller {
     dispatch_sync(_controllerAccessQueue, ^{
         _objectController = controller;
+    });
+}
+
+///--------------------------------------
+#pragma mark - ObjectSubclassingController
+///--------------------------------------
+
+- (PFObjectSubclassingController *)objectSubclassingController {
+    __block PFObjectSubclassingController *controller = nil;
+    dispatch_sync(_controllerAccessQueue, ^{
+        if (!_objectSubclassingController) {
+            _objectSubclassingController = [[PFObjectSubclassingController alloc] init];
+            [_objectSubclassingController scanForUnregisteredSubclasses:YES];
+        }
+        controller = _objectSubclassingController;
+    });
+    return controller;
+}
+
+- (void)setObjectSubclassingController:(PFObjectSubclassingController *)objectSubclassingController {
+    dispatch_sync(_controllerAccessQueue, ^{
+        _objectSubclassingController = objectSubclassingController;
     });
 }
 

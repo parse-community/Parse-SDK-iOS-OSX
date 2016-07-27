@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A new `PFObject` without data.
  */
-+ (instancetype)objectWithoutDataWithObjectId:(nullable NSString *)objectId;
++ (instancetype)objectWithoutDataWithObjectId:(nullable NSString *)objectId PF_SWIFT_UNAVAILABLE;
 
 /**
  Create a query which returns objects of this type.

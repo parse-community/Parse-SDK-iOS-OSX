@@ -11,13 +11,16 @@
 
 #import <objc/runtime.h>
 
+#import <Parse/PFObject.h>
+#import <Parse/PFSubclassing.h>
+
 #import "PFAssert.h"
 #import "PFMacros.h"
 #import "PFObject.h"
+#import "PFObject+Subclass.h"
 #import "PFObjectSubclassInfo.h"
 #import "PFPropertyInfo_Private.h"
 #import "PFPropertyInfo_Runtime.h"
-#import "PFSubclassing.h"
 
 // CFNumber does not use number type 0, we take advantage of that here.
 #define kCFNumberTypeUnknown 0
@@ -79,9 +82,8 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
     dispatch_queue_t _registeredSubclassesAccessQueue;
     NSMutableDictionary *_registeredSubclasses;
     NSMutableDictionary *_unregisteredSubclasses;
+    id<NSObject> _bundleLoadedSubscriptionToken;
 }
-
-static PFObjectSubclassingController *defaultController_;
 
 ///--------------------------------------
 #pragma mark - Init
@@ -98,15 +100,10 @@ static PFObjectSubclassingController *defaultController_;
     return self;
 }
 
-+ (instancetype)defaultController {
-    if (!defaultController_) {
-        defaultController_ = [[PFObjectSubclassingController alloc] init];
-    }
-    return defaultController_;
-}
-
-+ (void)clearDefaultController {
-    defaultController_ = nil;
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:_bundleLoadedSubscriptionToken
+                                                    name:NSBundleDidLoadNotification
+                                                  object:nil];
 }
 
 ///--------------------------------------
@@ -119,6 +116,33 @@ static PFObjectSubclassingController *defaultController_;
         result = [_registeredSubclasses[parseClassName] subclass];
     });
     return result;
+}
+
+- (void)scanForUnregisteredSubclasses:(BOOL)shouldSubscribe {
+    // NOTE: Potential race-condition here - if another thread dynamically loads a bundle, we may end up accidentally
+    // Skipping a bundle. Not entirely sure of the best solution to that here.
+    if (shouldSubscribe && _bundleLoadedSubscriptionToken == nil) {
+        @weakify(self);
+        _bundleLoadedSubscriptionToken = [[NSNotificationCenter defaultCenter] addObserverForName:NSBundleDidLoadNotification
+                                                                                           object:nil
+                                                                                            queue:nil
+                                                                                       usingBlock:^(NSNotification *note) {
+                                                                                           @strongify(self);
+                                                                                           [self _registerSubclassesInBundle:note.object];
+                                                                                       }];
+    }
+    NSArray *bundles = [[NSBundle allFrameworks] arrayByAddingObjectsFromArray:[NSBundle allBundles]];
+    for (NSBundle *bundle in bundles) {
+        // Skip bundles that aren't loaded yet.
+        if (!bundle.loaded || !bundle.executablePath) {
+            continue;
+        }
+        // Filter out any system bundles
+        if ([bundle.bundlePath hasPrefix:@"/System/"] || [bundle.bundlePath hasPrefix:@"/Library/"]) {
+            continue;
+        }
+        [self _registerSubclassesInBundle:bundle];
+    }
 }
 
 - (void)registerSubclass:(Class<PFSubclassing>)kls {
@@ -312,6 +336,67 @@ static PFObjectSubclassingController *defaultController_;
         subclassInfo = [PFObjectSubclassInfo subclassInfoWithSubclass:kls];
     }
     _registeredSubclasses[[kls parseClassName]] = subclassInfo;
+}
+
+- (void)_registerSubclassesInBundle:(NSBundle *)bundle {
+    PFConsistencyAssert(bundle.loaded, @"Cannot register subclasses in a bundle that hasn't been loaded!");
+
+    const char *executablePath = bundle.executablePath.UTF8String;
+    if (executablePath == NULL) {
+        return;
+    }
+
+    dispatch_sync(_registeredSubclassesAccessQueue, ^{
+        Class pfObjectClass = [PFObject class];
+
+        // There are two different paths that we will need to check for the bundle, depending on the platform.
+        // - First, we need to check the raw executable path fom the bundle.
+        //   This should be valid for most frameworks on macOS, and iOS/watchOS/tvOS simulators.
+        // - Second, we need to check the symlink resolved path - including /private/var on iOS.
+        //   This should be valid for iOS, watchOS, and tvOS devices.
+        // In case there are other platforms that require checking multiple paths that we add support for,
+        // just use a simple array here.
+        char potentialPaths[2][PATH_MAX] = { };
+
+        strncpy(potentialPaths[0], executablePath, PATH_MAX);
+        realpath(potentialPaths[0], potentialPaths[1]);
+
+        const char **classNames = NULL;
+        unsigned bundleClassCount = 0;
+
+        for (int i = 0; i < sizeof(potentialPaths) / sizeof(*potentialPaths); i++) {
+            classNames = objc_copyClassNamesForImage(potentialPaths[i], &bundleClassCount);
+            if (bundleClassCount) {
+                break;
+            }
+
+            free(classNames);
+            classNames = NULL;
+        }
+
+        for (unsigned i = 0; i < bundleClassCount; i++) {
+            Class bundleClass = objc_getClass(classNames[i]);
+            // For obvious reasons, don't register the PFObject class.
+            if (bundleClass == pfObjectClass) {
+                continue;
+            }
+            // NOTE: Cannot use isSubclassOfClass here. Some classes may be part of a system bundle (even
+            // though we attempt to filter those out) that may be an internal class which doesn't inherit from NSObject.
+            // Scary, I know!
+            for (Class kls = bundleClass; kls != nil; kls = class_getSuperclass(kls)) {
+                if (kls == pfObjectClass) {
+                    // Do -conformsToProtocol: as late in the checking as possible, as its SUUUPER slow.
+                    // Behind the scenes this is a strcmp (lolwut?)
+                    if ([bundleClass conformsToProtocol:@protocol(PFSubclassing)] &&
+                        ![bundleClass conformsToProtocol:@protocol(PFSubclassingSkipAutomaticRegistration)]) {
+                        [self _rawRegisterSubclass:bundleClass];
+                    }
+                    break;
+                }
+            }
+        }
+        free(classNames);
+    });
 }
 
 @end

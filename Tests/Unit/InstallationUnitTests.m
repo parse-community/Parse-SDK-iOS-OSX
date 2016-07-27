@@ -8,20 +8,14 @@
  */
 
 #import "PFInstallation.h"
-#import "PFTestCase.h"
+#import "PFUnitTestCase.h"
 #import "Parse.h"
 
-@interface InstallationUnitTests : PFTestCase
+@interface InstallationUnitTests : PFUnitTestCase
 
 @end
 
 @implementation InstallationUnitTests
-
-+ (void)setUp {
-    [super setUp];
-
-    [Parse setApplicationId:@"a" clientKey:@"a"];
-}
 
 - (void)testInstallationImmutableFieldsCannotBeChanged {
     PFInstallation *installation = [PFInstallation currentInstallation];

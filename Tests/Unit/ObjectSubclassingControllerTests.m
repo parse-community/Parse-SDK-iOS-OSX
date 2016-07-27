@@ -7,21 +7,22 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "PFObject+Subclass.h"
+#import <Parse/PFObject+Subclass.h>
+#import <Parse/PFRelation.h>
+#import <Parse/PFSubclassing.h>
+
 #import "PFObjectPrivate.h"
 #import "PFObjectSubclassingController.h"
-#import "PFRelation.h"
-#import "PFSubclassing.h"
 #import "PFUnitTestCase.h"
 #import "ParseUnitTests-Swift.h"
 
-@interface TestSubclass : PFObject<PFSubclassing>
+@interface TestSubclass : PFObject<PFSubclassingSkipAutomaticRegistration>
 @end
 
-@interface NotSubclass : PFObject<PFSubclassing>
+@interface NotSubclass : PFObject<PFSubclassingSkipAutomaticRegistration>
 @end
 
-@interface PropertySubclass : PFObject<PFSubclassing> {
+@interface PropertySubclass : PFObject<PFSubclassingSkipAutomaticRegistration> {
 @public
     id _ivarProperty;
 }

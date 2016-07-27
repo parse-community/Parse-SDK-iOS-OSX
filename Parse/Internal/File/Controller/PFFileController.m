@@ -259,7 +259,18 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
     return [self.dataSource.fileManager parseCacheItemPathForPathComponent:PFFileControllerCacheDirectoryName_];
 }
 
-- (BFTask<PFVoid> *)clearFileCacheAsync {
+- (BFTask<PFVoid> *)clearFileCacheAsyncForFileWithState:(PFFileState *)fileState {
+    return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
+        NSString *filePath = [self cachedFilePathForFileState:fileState];
+        if (!filePath) {
+            return nil;
+        }
+        // No need to lock on this, since we are removing from a cache directory.
+        return [PFFileManager removeItemAtPathAsync:filePath withFileLock:NO];
+    }];
+}
+
+- (BFTask<PFVoid> *)clearAllFileCacheAsync {
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         NSString *path = self.cacheFilesDirectoryPath;
         if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
