@@ -106,22 +106,6 @@
 @implementation ObjectSubclassPropertiesTests
 
 ///--------------------------------------
-#pragma mark - XCTestCase
-///--------------------------------------
-
-- (void)setUp {
-    [super setUp];
-
-    [PFTestObject registerSubclass];
-}
-
-- (void)tearDown {
-    [PFObject unregisterSubclass:[PFTestObject class]];
-
-    [super tearDown];
-}
-
-///--------------------------------------
 #pragma mark - Tests
 ///--------------------------------------
 

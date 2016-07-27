@@ -17,14 +17,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow?
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Enable storing and querying data from Local Datastore.
-        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
-        Parse.enableLocalDatastore()
+        // ****************************************************************************
+        // Initialize Parse SDK
+        // ****************************************************************************
 
-        // ****************************************************************************
-        // Uncomment and fill in with your Parse credentials:
-        // Parse.setApplicationId("your_application_id", clientKey: "your_client_key")
-        // ****************************************************************************
+        let configuration = ParseClientConfiguration {
+            // Add your Parse applicationId:
+            $0.applicationId = "your_application_id"
+            // Uncomment and add your clientKey (it's not required if you are using Parse Server):
+            $0.clientKey = "your_client_key"
+
+            // Uncomment the following line and change to your Parse Server address;
+            $0.server = "https://YOUR_PARSE_SERVER/parse"
+
+            // Enable storing and querying data from Local Datastore.
+            // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
+            $0.localDatastoreEnabled = true
+        }
+        Parse.initializeWithConfiguration(configuration)
 
         PFUser.enableAutomaticUser()
 

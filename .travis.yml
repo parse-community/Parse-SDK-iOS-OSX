@@ -10,7 +10,7 @@ env:
     - LANG=en_US.UTF-8
   matrix:
     - TEST_TYPE=iOS
-    - TEST_TYPE=OSX
+    - TEST_TYPE=macOS
     - TEST_TYPE=Deployment
     - TEST_TYPE=Starters
     - TEST_TYPE=CocoaPods
@@ -29,10 +29,10 @@ install:
   fi
 script:
 - |
-  TEST_TYPE=$(echo "$TEST_TYPE" | tr '[:upper:]' '[:lower:]')
-  bundle exec rake test:$TEST_TYPE
+  RAKE_TASK_NAME=$(echo "$TEST_TYPE" | tr '[:upper:]' '[:lower:]')
+  bundle exec rake test:$RAKE_TASK_NAME
 after_success:
 - |
-  if [ "$TEST_TYPE" = "ios" ] || [ "$TEST_TYPE" = "osx" ]; then
+  if [ "$TEST_TYPE" = iOS ] || [ "$TEST_TYPE" = macOS ]; then
     bash <(curl -s https://codecov.io/bash)
   fi

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Parse'
-  s.version          = '1.13.0'
+  s.version          = '1.14.2'
   s.license          =  { :type => 'BSD', :file => 'LICENSE' }
   s.homepage         = 'https://www.parse.com/'
   s.summary          = 'A library that gives you access to the powerful Parse cloud platform from your iOS/OS X/watchOS/tvOS app.'
@@ -85,5 +85,5 @@ Pod::Spec.new do |s|
 
   s.libraries        = 'z', 'sqlite3'
 
-  s.dependency 'Bolts/Tasks', '~> 1.7'
+  s.dependency 'Bolts/Tasks', '~> 1.8'
 end
