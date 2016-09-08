@@ -268,7 +268,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             // Recurse into this object's children looking for dirty children.
             // We only need to look at the child object's current estimated data,
             // because that's the only data that might need to be saved now.
-            toSearch = [object->_estimatedData.dictionaryRepresentation copy];
+            toSearch = [object._estimatedData.dictionaryRepresentation copy];
         }
 
         [self collectDirtyChildren:toSearch
