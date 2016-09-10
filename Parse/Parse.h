@@ -21,6 +21,7 @@
 #import <Parse/PFConfig+Synchronous.h>
 #import <Parse/PFConstants.h>
 #import <Parse/PFDecoder.h>
+#import <Parse/PFEncoder.h>
 #import <Parse/PFFile.h>
 #import <Parse/PFFile+Deprecated.h>
 #import <Parse/PFFile+Synchronous.h>
