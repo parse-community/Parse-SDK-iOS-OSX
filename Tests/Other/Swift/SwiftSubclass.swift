@@ -12,11 +12,11 @@ import Foundation
 import Parse
 
 @objc
-public class SwiftSubclass: PFObject, PFSubclassing {
+open class SwiftSubclass: PFObject, PFSubclassing {
     @NSManaged public var primitiveProperty: Int
     @NSManaged public var objectProperty: AnyObject?
 
-    @NSManaged public var relationProperty: PFRelation?
+    @NSManaged public var relationProperty: PFRelation<PFObject>?
     @NSManaged public var badProperty: CGPoint
 
     public static func parseClassName() -> String {
