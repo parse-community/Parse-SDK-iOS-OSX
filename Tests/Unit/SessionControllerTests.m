@@ -26,6 +26,22 @@
 @implementation SessionControllerTests
 
 ///--------------------------------------
+#pragma mark XCTestCase
+///--------------------------------------
+
+- (void)setUp {
+    [super setUp];
+
+    [PFSession registerSubclass];
+}
+
+- (void)tearDown {
+    [PFObject unregisterSubclass:[PFSession class]];
+
+    [super tearDown];
+}
+
+///--------------------------------------
 #pragma mark - Helpers
 ///--------------------------------------
 

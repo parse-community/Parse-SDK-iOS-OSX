@@ -210,6 +210,8 @@
 
 
 - (void)testACLRequiresObjectId {
+    [PFUser registerSubclass];
+
     PFACL *acl = [PFACL ACL];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wnonnull"

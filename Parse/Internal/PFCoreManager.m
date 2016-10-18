@@ -245,7 +245,6 @@
     dispatch_sync(_controllerAccessQueue, ^{
         if (!_objectSubclassingController) {
             _objectSubclassingController = [[PFObjectSubclassingController alloc] init];
-            [_objectSubclassingController scanForUnregisteredSubclasses:YES];
         }
         controller = _objectSubclassingController;
     });

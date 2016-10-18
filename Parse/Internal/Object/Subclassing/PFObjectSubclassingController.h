@@ -18,8 +18,6 @@
 #pragma mark - Registration
 ///--------------------------------------
 
-- (void)scanForUnregisteredSubclasses:(BOOL)shouldSubscribe;
-
 - (Class<PFSubclassing>)subclassForParseClassName:(NSString *)parseClassName;
 - (void)registerSubclass:(Class<PFSubclassing>)kls;
 - (void)unregisterSubclass:(Class<PFSubclassing>)kls;

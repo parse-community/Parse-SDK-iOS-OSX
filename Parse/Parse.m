@@ -80,6 +80,22 @@ static ParseClientConfiguration *currentParseConfiguration_;
 
     currentParseManager_ = manager;
 
+    PFObjectSubclassingController *subclassingController = [PFObject subclassingController];
+    // Register built-in subclasses of PFObject so they get used.
+    // We're forced to register subclasses directly this way, in order to prevent a deadlock.
+    // If we ever switch to bundle scanning, this code can go away.
+    [subclassingController registerSubclass:[PFUser class]];
+    [subclassingController registerSubclass:[PFSession class]];
+    [subclassingController registerSubclass:[PFRole class]];
+    [subclassingController registerSubclass:[PFPin class]];
+    [subclassingController registerSubclass:[PFEventuallyPin class]];
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
+    [subclassingController registerSubclass:[PFInstallation class]];
+#endif
+#if TARGET_OS_IOS || TARGET_OS_TV
+    [subclassingController registerSubclass:[PFProduct class]];
+#endif
+
 #if TARGET_OS_IOS
     [PFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 #endif

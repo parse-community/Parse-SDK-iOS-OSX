@@ -18,6 +18,24 @@
 @implementation PinUnitTests
 
 ///--------------------------------------
+#pragma mark XCTestCase
+///--------------------------------------
+
+- (void)setUp {
+    [super setUp];
+
+    [Parse enableLocalDatastore];
+    [Parse setApplicationId:@"a" clientKey:@"b"];
+}
+
+- (void)tearDown {
+    [[Parse _currentManager] clearEventuallyQueue];
+    [Parse _clearCurrentManager];
+
+    [super tearDown];
+}
+
+///--------------------------------------
 #pragma mark - Tests
 ///--------------------------------------
 
