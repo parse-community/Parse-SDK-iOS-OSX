@@ -16,13 +16,13 @@
 #import "PFUnitTestCase.h"
 #import "ParseUnitTests-Swift.h"
 
-@interface TestSubclass : PFObject<PFSubclassingSkipAutomaticRegistration>
+@interface TestSubclass : PFObject<PFSubclassing>
 @end
 
-@interface NotSubclass : PFObject<PFSubclassingSkipAutomaticRegistration>
+@interface NotSubclass : PFObject<PFSubclassing>
 @end
 
-@interface PropertySubclass : PFObject<PFSubclassingSkipAutomaticRegistration> {
+@interface PropertySubclass : PFObject<PFSubclassing> {
 @public
     id _ivarProperty;
 }

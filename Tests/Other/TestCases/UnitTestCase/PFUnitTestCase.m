@@ -11,6 +11,7 @@
 
 #import "PFObjectSubclassingController.h"
 #import "Parse_Private.h"
+#import "PFCoreManager.h"
 
 @interface PFUnitTestCase ()
 
@@ -42,6 +43,7 @@
 - (void)tearDown {
     [[Parse _currentManager] clearEventuallyQueue];
     [Parse _clearCurrentManager];
+    [Parse _currentManager].coreManager.objectSubclassingController = nil;
 
     [super tearDown];
 }

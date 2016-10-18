@@ -132,15 +132,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-/*!
- This protocol exists ONLY so that, if you absolutely need it, you can perform manual subclass registration
- via `[Subclass registerSubclass]`. Note that any calls to `registerSubclass` must happen after parse has been
- initialized already. This should only ever be needed in the scenario where you may be dynamically creation new 
- Objective-C classes for parse objects, or you are doing conditional subclass registration (e.g. only register class A 
- if config setting 'foo' is defined, otherwise register B).
- */
-@protocol PFSubclassingSkipAutomaticRegistration <PFSubclassing>
-
-@end
-
 NS_ASSUME_NONNULL_END
