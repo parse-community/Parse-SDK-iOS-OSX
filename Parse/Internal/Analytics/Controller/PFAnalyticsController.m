@@ -53,7 +53,13 @@
         // sure to send that along so the server can identify "app opened from push"
         // instead.
         id alert = payload[@"aps"][@"alert"];
-        NSString *pushDigest = (alert ? [PFAnalyticsUtilities md5DigestFromPushPayload:alert] : nil);
+        NSString *pushDigest = nil;
+        if (alert) {
+            pushDigest = payload[@"push_hash"];
+            if(!pushDigest) {
+                pushDigest = [PFAnalyticsUtilities md5DigestFromPushPayload:alert];
+            }
+        }
 
         PFRESTCommand *command = [PFRESTAnalyticsCommand trackAppOpenedEventCommandWithPushHash:pushDigest
                                                                                    sessionToken:sessionToken];
