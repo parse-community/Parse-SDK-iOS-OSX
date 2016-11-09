@@ -128,6 +128,7 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
                                                                                             queue:nil
                                                                                        usingBlock:^(NSNotification *note) {
                                                                                            @strongify(self);
+                                                                                           [(NSBundle*)note.object load]; // Ensure bundle is completely loaded first
                                                                                            [self _registerSubclassesInBundle:note.object];
                                                                                        }];
     }
