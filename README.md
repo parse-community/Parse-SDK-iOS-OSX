@@ -19,7 +19,9 @@ For more information Parse and its features, see [the website][parse.com] and [g
 ## Getting Started
 
 To use parse, head on over to the [releases][releases] page, and download the latest build.
-And you're off! Take a look at the public [documentation][docs] and start building.
+And you're off!. Take a look at the public [documentation][docs] & [API][api] and start building.
+
+Notice the API docs aren't totally up to date when it comes to latest Swift signature of the methods and more importantly regarding [Push Notifications](http://blog.parse.com/learn/engineering/the-dangerous-world-of-client-push/) which are **no longer supported by Parse server**, keep an eye on [its repo](https://github.com/ParsePlatform/parse-server)
 
 **Other Installation Options**
 
@@ -88,7 +90,8 @@ of patent rights can be found in the PATENTS file in the same directory.
 ```
 
  [parse.com]: https://www.parse.com/products/ios
- [docs]: https://www.parse.com/docs/ios/guide
+ [docs]: https://parseplatform.github.io/docs/ios/guide/
+ [api]: https://parseplatform.github.io/Parse-SDK-iOS-OSX/api/
  [blog]: https://blog.parse.com/
 
  [parseui-link]: https://github.com/ParsePlatform/ParseUI-iOS
