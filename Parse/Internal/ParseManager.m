@@ -27,6 +27,7 @@
 #import "PFUser.h"
 #import "PFURLSessionCommandRunner.h"
 #import "PFPersistenceController.h"
+#import "PFApplication.h"
 
 #if !TARGET_OS_WATCH && !TARGET_OS_TV
 #import "PFPushManager.h"
@@ -216,7 +217,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     __block PFKeychainStore *store = nil;
     dispatch_sync(_keychainStoreAccessQueue, ^{
         if (!_keychainStore) {
-            NSString *bundleIdentifier = (self.configuration.keychainApplicationBundleIdentifier ?: (self.configuration.containingApplicationBundleIdentifier ?: [NSBundle mainBundle].bundleIdentifier));
+            NSString *bundleIdentifier = (self.configuration.containingApplicationBundleIdentifier ?: [NSBundle mainBundle].bundleIdentifier);
             NSString *service = [NSString stringWithFormat:@"%@.%@", bundleIdentifier, PFKeychainStoreDefaultService];
             _keychainStore = [[PFKeychainStore alloc] initWithService:service];
         }
@@ -450,7 +451,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     // There is no need to migrate anything on OSX, since we are using globally available folder.
 #if TARGET_OS_IOS
     // Do nothing if there is no application group container or containing application is specified.
-    if (!self.configuration.applicationGroupIdentifier || self.configuration.containingApplicationBundleIdentifier) {
+    if (!self.configuration.applicationGroupIdentifier || [PFApplication currentApplication].extensionEnvironment) {
         return;
     }
 

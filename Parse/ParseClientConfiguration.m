@@ -82,24 +82,15 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
 }
 
 - (void)setContainingApplicationBundleIdentifier:(NSString *)containingApplicationBundleIdentifier {
-    PFParameterAssert([PFApplication currentApplication].extensionEnvironment,
-                      @"'containingApplicationBundleIdentifier' cannot be set in non-extension environment");
     PFParameterAssert(containingApplicationBundleIdentifier.length,
                       @"'containingApplicationBundleIdentifier' should not be nil.");
 
     _containingApplicationBundleIdentifier = containingApplicationBundleIdentifier;
 }
 
-- (void)setKeychainApplicationBundleIdentifier:(NSString *)keychainApplicationBundleIdentifier {
-    PFParameterAssert(keychainApplicationBundleIdentifier.length,
-                      @"'keychainApplicationBundleIdentifier' should not be nil.");
-    _keychainApplicationBundleIdentifier = keychainApplicationBundleIdentifier;
-}
-
 - (void)_resetDataSharingIdentifiers {
     _applicationGroupIdentifier = nil;
     _containingApplicationBundleIdentifier = nil;
-    _keychainApplicationBundleIdentifier = nil;
 }
 
 ///--------------------------------------
@@ -122,7 +113,6 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
             self.localDatastoreEnabled == other.localDatastoreEnabled &&
             [PFObjectUtilities isObject:self.applicationGroupIdentifier equalToObject:other.applicationGroupIdentifier] &&
             [PFObjectUtilities isObject:self.containingApplicationBundleIdentifier equalToObject:other.containingApplicationBundleIdentifier] &&
-            [PFObjectUtilities isObject:self.keychainApplicationBundleIdentifier equalToObject:other.keychainApplicationBundleIdentifier] &&
             self.networkRetryAttempts == other.networkRetryAttempts);
 }
 
@@ -139,7 +129,6 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
         configuration->_localDatastoreEnabled = self->_localDatastoreEnabled;
         configuration->_applicationGroupIdentifier = [self->_applicationGroupIdentifier copy];
         configuration->_containingApplicationBundleIdentifier = [self->_containingApplicationBundleIdentifier copy];
-        configuration->_keychainApplicationBundleIdentifier = [self->_keychainApplicationBundleIdentifier copy];
         configuration->_networkRetryAttempts = self->_networkRetryAttempts;
     }];
 }
