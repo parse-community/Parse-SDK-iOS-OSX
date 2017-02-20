@@ -79,6 +79,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nullable, nonatomic, copy) NSString *containingApplicationBundleIdentifier PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE;
 
+/**
+ When set, controls the bundle identifier used for keychain access.
+ This is useful when the other applications in your app group
+ want to share logins and they are not app extensions.
+ */
+@property (nullable, nonatomic, copy) NSString *keychainApplicationBundleIdentifier PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE;
+
 ///--------------------------------------
 #pragma mark - Other Properties
 ///--------------------------------------
@@ -149,6 +156,13 @@ NS_ASSUME_NONNULL_BEGIN
  @warning This property should only be set from inside an extension environment.
  */
 @property (nullable, nonatomic, copy, readonly) NSString *containingApplicationBundleIdentifier;
+
+/**
+ When set, controls the bundle identifier used for keychain access.
+ This is useful when the other applications in your app group 
+ want to share logins and they are not app extensions.
+ */
+@property (nullable, nonatomic, copy, readonly) NSString *keychainApplicationBundleIdentifier;
 
 ///--------------------------------------
 #pragma mark - Other Properties
