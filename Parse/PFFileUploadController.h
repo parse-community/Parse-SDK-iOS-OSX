@@ -29,12 +29,14 @@
  Uploads a file asynchronously from file path for a given file state.
  
  @param sourceFilePath    Path to the file to upload.
- @param mimeType          The file's mimetype.
+ @param fileName          The PFFile's fileName.
+ @param mimeType          The PFFile's mime type.
  @param progressBlock     Progress block to call (optional).
  
  @return `BFTask` with a success result set to `PFFileUploadResult` containing the url and name of the uploaded file.
  */
 -(BFTask<PFFileUploadResult *> *)uploadSourceFilePath:(NSString *)sourceFilePath
-                                    mimeType:(NSString *)mimeType
-                                   progressBlock:(PFProgressBlock)progressBlock;
+                                             fileName:(NSString *)fileName
+                                             mimeType:(NSString *)mimeType
+                                        progressBlock:(PFProgressBlock)progressBlock;
 @end

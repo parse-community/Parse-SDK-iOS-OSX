@@ -223,8 +223,9 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
     if (uploadController) {
         @weakify(self);
         return [[uploadController uploadSourceFilePath:sourceFilePath
-                                  mimeType:fileState.mimeType
-                                 progressBlock:progressBlock]
+                                              fileName:fileState.name
+                                              mimeType:fileState.mimeType
+                                         progressBlock:progressBlock]
                 continueWithSuccessBlock:^id(BFTask<PFFileUploadResult *> *task) {
                     @strongify(self);
                     PFFileUploadResult *result = task.result;
