@@ -8,15 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Bolts/BFTask.h>
-
-/**
- Response provided by a custom `PFFileUploadController`.
- */
-@interface PFFileUploadResult : NSObject
-@property (strong, nonatomic) NSString *url;
-@property (strong, nonatomic) NSString *name;
-@end
-
+#import "PFFileUploadResult.h"
 
 /**
  A policy interface for overriding the default upload behavior of uploading a PFFile
