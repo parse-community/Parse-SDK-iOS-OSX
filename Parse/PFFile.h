@@ -13,6 +13,8 @@
 
 #import <Parse/PFConstants.h>
 
+#import "PFFileUploadController.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -150,6 +152,11 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 #pragma mark - Storing Data with Parse
 ///--------------------------------------
+
+/**
+ Sets a custom upload controller that synchronously uploads the file using its own policy.
+ */
+@property (nonatomic, strong, readwrite, nullable) id<PFFileUploadController> uploadController;
 
 /**
  Saves the file *asynchronously*.

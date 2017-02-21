@@ -2566,6 +2566,7 @@
 		97DE045A16321492007154E8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97DE045916321492007154E8 /* Security.framework */; };
 		97DE045C163214C0007154E8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97DE045B163214C0007154E8 /* SystemConfiguration.framework */; };
 		97EB055516F7CCE400E09147 /* PFAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 9739513916B9D28E0010B884 /* PFAnalytics.m */; };
+		B141169E1E5BC24B00F70D7A /* PFFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */; };
 		F50C66331B33A708001941A6 /* PFPushUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F50C66311B33A708001941A6 /* PFPushUtilities.h */; };
 		F50C66341B33A708001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
 		F50C667C1B34B231001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
@@ -3470,6 +3471,7 @@
 		97DE045B163214C0007154E8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		97E18AE41623835600B17A67 /* PFLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLocationManager.h; sourceTree = "<group>"; };
 		97E18AE51623835600B17A67 /* PFLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLocationManager.m; sourceTree = "<group>"; };
+		B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileUploadController.h; sourceTree = "<group>"; };
 		E9BBE98E16D18E5800CD7B52 /* PFObject+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PFObject+Subclass.h"; path = "Parse/PFObject+Subclass.h"; sourceTree = SOURCE_ROOT; };
 		E9E81E8316EEF93E001D034F /* PFSubclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFSubclassing.h; sourceTree = "<group>"; };
 		F50C66311B33A708001941A6 /* PFPushUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPushUtilities.h; sourceTree = "<group>"; };
@@ -3662,6 +3664,7 @@
 				816A646B1C29DA680029B197 /* PFFile+Synchronous.h */,
 				81CA29DC1C28EA7400C4F34A /* PFFile+Deprecated.h */,
 				81DEF07E199C42A300D86A21 /* PFFile.m */,
+				B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */,
 				09B119F614880776002B5594 /* PFGeoPoint.h */,
 				09B119F714880776002B5594 /* PFGeoPoint.m */,
 				44B78E11157D21B000A5E97F /* PFInstallation.h */,
@@ -5663,6 +5666,7 @@
 				F5B0B2F21B449F1D00F3EBC4 /* ParseModule.h in Headers */,
 				F5B0B2F31B449F1D00F3EBC4 /* PFAssert.h in Headers */,
 				814BCDF11B4DF63600007B7F /* PFUserState.h in Headers */,
+				B141169E1E5BC24B00F70D7A /* PFFileUploadController.h in Headers */,
 				F5B0B2F81B449F1D00F3EBC4 /* PFDecoder.h in Headers */,
 				F5B0B2FA1B449F1D00F3EBC4 /* PFGeoPointPrivate.h in Headers */,
 				810749AE1B74662B00682EEB /* PFURLSessionFileDownloadTaskDelegate.h in Headers */,
