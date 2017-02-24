@@ -1,25 +1,19 @@
 //
-//  PFUploadController.h
+//  PFRESTFileUploadController.h
 //  Parse
 //
-//  Created by Ken Cooper on 2/20/17.
+//  Created by Ken Cooper on 2/23/17.
 //  Copyright © 2017 Parse Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <Bolts/BFTask.h>
-#import "PFFileUploadResult.h"
-#import "PFFileController.h"
+#import "PFFileUploadController.h"
+
+@interface PFRESTFileUploadController : NSObject <PFFileUploadController>
 
 /**
- A policy interface for overriding the default upload behavior of uploading a PFFile
- to application's parse server. Allows for direct uploads to other file storage
- providers.
- */
-@protocol PFFileUploadController <NSObject>
-
-/**
- Uploads a file asynchronously from file path for a given file state.
+ Uploads a file asynchronously from file path for a given file state to
+ the configured Parse Server using REST. The default PFFileUploadController.
  
  @param sourceFilePath    Path to the file to upload.
  @param fileName          The PFFile's fileName.

@@ -297,7 +297,6 @@
                                    sourceFilePath:self.stagedFilePath
                                      sessionToken:sessionToken
                                 cancellationToken:cancellationToken
-                                 uploadController:self.uploadController
                                     progressBlock:progressBlock] continueWithSuccessBlock:^id(BFTask *task) {
         @strongify(self);
         [self _performDataAccessBlock:^{

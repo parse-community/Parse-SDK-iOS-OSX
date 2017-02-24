@@ -13,7 +13,6 @@
 
 #import "PFDataProvider.h"
 #import "PFMacros.h"
-#import "PFFileUploadController.h"
 
 @class BFCancellationToken;
 @class BFTask<__covariant BFGenericType>;
@@ -81,7 +80,6 @@
  @param sourceFilePath    Source file path.
  @param sessionToken      Session token to use.
  @param cancellationToken Cancellation token.
- @param uploadController  Custom uploadController.
  @param progressBlock     Progress block to call (optional).
 
  @return `BFTask` with a result set to `PFFileState` of uploaded file.
@@ -90,7 +88,6 @@
                                      sourceFilePath:(NSString *)sourceFilePath
                                        sessionToken:(NSString *)sessionToken
                                   cancellationToken:(BFCancellationToken *)cancellationToken
-                                   uploadController:(id<PFFileUploadController> _Nullable) uploadController
                                       progressBlock:(PFProgressBlock)progressBlock;
 
 ///--------------------------------------
