@@ -128,20 +128,12 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
                                                                                             queue:nil
                                                                                        usingBlock:^(NSNotification *note) {
                                                                                            @strongify(self);
-                                                                                           [self _registerSubclassesInBundle:note.object];
+                                                                                           [self _registerSubclassesInLoadedBundle:note.object];
                                                                                        }];
     }
     NSArray *bundles = [[NSBundle allFrameworks] arrayByAddingObjectsFromArray:[NSBundle allBundles]];
     for (NSBundle *bundle in bundles) {
-        // Skip bundles that aren't loaded yet.
-        if (!bundle.loaded || !bundle.executablePath) {
-            continue;
-        }
-        // Filter out any system bundles
-        if ([bundle.bundlePath hasPrefix:@"/System/"] || [bundle.bundlePath hasPrefix:@"/Library/"]) {
-            continue;
-        }
-        [self _registerSubclassesInBundle:bundle];
+        [self _registerSubclassesInLoadedBundle:bundle];
     }
 }
 
@@ -336,6 +328,18 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
         subclassInfo = [PFObjectSubclassInfo subclassInfoWithSubclass:kls];
     }
     _registeredSubclasses[[kls parseClassName]] = subclassInfo;
+}
+
+- (void)_registerSubclassesInLoadedBundle:(NSBundle *)bundle {
+    // Skip bundles that aren't loaded yet.
+    if (!bundle.loaded || !bundle.executablePath) {
+        return;
+    }
+    // Filter out any system bundles
+    if ([bundle.bundlePath hasPrefix:@"/System/"] || [bundle.bundlePath hasPrefix:@"/Library/"] || [bundle.bundlePath rangeOfString:@"iPhoneSimulator.sdk"].location != NSNotFound) {
+        return;
+    }
+    [self _registerSubclassesInBundle:bundle];
 }
 
 - (void)_registerSubclassesInBundle:(NSBundle *)bundle {
