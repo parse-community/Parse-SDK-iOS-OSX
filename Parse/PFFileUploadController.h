@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <Bolts/BFTask.h>
 #import "PFFileUploadResult.h"
-#import "PFFileController.h"
 
 /**
  A policy interface for overriding the default upload behavior of uploading a PFFile
@@ -26,7 +25,6 @@
  @param mimeType          The PFFile's mime type.
  @param sessionToken      The current users's session token.
  @param cancellationToken Cancellation token.
- @param fileController    The PFFileController initiating the upload.
  @param progressBlock     Progress block to call (optional).
  
  @return `BFTask` with a success result set to `PFFileUploadResult` containing the url and name of the uploaded file.
@@ -36,6 +34,5 @@
                                                       mimeType:(NSString * _Nullable)mimeType
                                                   sessionToken:(NSString * _Nonnull)sessionToken
                                              cancellationToken:(BFCancellationToken * _Nonnull)cancellationToken
-                                                fileController:(PFFileController *_Nonnull)fileController
                                                  progressBlock:(PFProgressBlock _Nonnull)progressBlock;
 @end

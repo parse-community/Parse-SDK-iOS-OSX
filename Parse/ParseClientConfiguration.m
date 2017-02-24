@@ -16,7 +16,6 @@
 #import "PFFileManager.h"
 #import "PFHash.h"
 #import "PFObjectUtilities.h"
-#import "PFRESTFileUploadController.h"
 
 NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
 
@@ -36,7 +35,6 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
 
     _networkRetryAttempts = PFCommandRunningDefaultMaxAttemptsCount;
     _server = [_ParseDefaultServerURLString copy];
-    _fileUploadController = [[PFRESTFileUploadController alloc]init];
 
     return self;
 }

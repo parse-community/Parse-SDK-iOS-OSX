@@ -2566,20 +2566,6 @@
 		97DE045A16321492007154E8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97DE045916321492007154E8 /* Security.framework */; };
 		97DE045C163214C0007154E8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97DE045B163214C0007154E8 /* SystemConfiguration.framework */; };
 		97EB055516F7CCE400E09147 /* PFAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 9739513916B9D28E0010B884 /* PFAnalytics.m */; };
-		B13468771E5FB70F009971EF /* PFRESTFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B13468751E5FB70F009971EF /* PFRESTFileUploadController.h */; };
-		B13468781E5FB70F009971EF /* PFRESTFileUploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13468761E5FB70F009971EF /* PFRESTFileUploadController.m */; };
-		B13468861E5FF3E2009971EF /* PFRESTFileUploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13468761E5FB70F009971EF /* PFRESTFileUploadController.m */; };
-		B13468921E5FF3E3009971EF /* PFRESTFileUploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13468761E5FB70F009971EF /* PFRESTFileUploadController.m */; };
-		B13468931E5FF3E4009971EF /* PFRESTFileUploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13468761E5FB70F009971EF /* PFRESTFileUploadController.m */; };
-		B13468941E5FF3E5009971EF /* PFRESTFileUploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13468761E5FB70F009971EF /* PFRESTFileUploadController.m */; };
-		B13468951E5FF3E6009971EF /* PFRESTFileUploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13468761E5FB70F009971EF /* PFRESTFileUploadController.m */; };
-		B13468961E5FF3E7009971EF /* PFRESTFileUploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13468761E5FB70F009971EF /* PFRESTFileUploadController.m */; };
-		B13468971E5FF3EA009971EF /* PFRESTFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B13468751E5FB70F009971EF /* PFRESTFileUploadController.h */; };
-		B13468981E5FF3EB009971EF /* PFRESTFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B13468751E5FB70F009971EF /* PFRESTFileUploadController.h */; };
-		B13468991E5FF3EC009971EF /* PFRESTFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B13468751E5FB70F009971EF /* PFRESTFileUploadController.h */; };
-		B134689A1E5FF3ED009971EF /* PFRESTFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B13468751E5FB70F009971EF /* PFRESTFileUploadController.h */; };
-		B134689B1E5FF3EE009971EF /* PFRESTFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B13468751E5FB70F009971EF /* PFRESTFileUploadController.h */; };
-		B134689C1E5FF3EE009971EF /* PFRESTFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B13468751E5FB70F009971EF /* PFRESTFileUploadController.h */; };
 		B141169E1E5BC24B00F70D7A /* PFFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */; };
 		B14116F41E5D075C00F70D7A /* PFFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */; };
 		B14116F51E5D075E00F70D7A /* PFFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */; };
@@ -3505,8 +3491,6 @@
 		97DE045B163214C0007154E8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		97E18AE41623835600B17A67 /* PFLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLocationManager.h; sourceTree = "<group>"; };
 		97E18AE51623835600B17A67 /* PFLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLocationManager.m; sourceTree = "<group>"; };
-		B13468751E5FB70F009971EF /* PFRESTFileUploadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRESTFileUploadController.h; sourceTree = "<group>"; };
-		B13468761E5FB70F009971EF /* PFRESTFileUploadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFRESTFileUploadController.m; sourceTree = "<group>"; };
 		B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileUploadController.h; sourceTree = "<group>"; };
 		B14116FB1E5D078E00F70D7A /* PFFileUploadResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFileUploadResult.m; sourceTree = "<group>"; };
 		B141170A1E5D081500F70D7A /* PFFileUploadResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileUploadResult.h; sourceTree = "<group>"; };
@@ -5073,8 +5057,6 @@
 				F50E486C1B83ED270055094D /* PFFileStagingController.h */,
 				F50E486D1B83ED270055094D /* PFFileStagingController.m */,
 				B14116FB1E5D078E00F70D7A /* PFFileUploadResult.m */,
-				B13468751E5FB70F009971EF /* PFRESTFileUploadController.h */,
-				B13468761E5FB70F009971EF /* PFRESTFileUploadController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5347,7 +5329,6 @@
 				810155ED1BB3832700D7C7BD /* PFRESTCommand_Private.h in Headers */,
 				81CA29F81C28ED2300C4F34A /* PFObject+Deprecated.h in Headers */,
 				810155EE1BB3832700D7C7BD /* PFObjectState.h in Headers */,
-				B134689B1E5FF3EE009971EF /* PFRESTFileUploadController.h in Headers */,
 				810155EF1BB3832700D7C7BD /* PFHTTPRequest.h in Headers */,
 				810155F01BB3832700D7C7BD /* PFRESTCommand.h in Headers */,
 				810155F11BB3832700D7C7BD /* PFCloud.h in Headers */,
@@ -5565,7 +5546,6 @@
 				815F23A41BD04D150054659F /* PFMutableQueryState.h in Headers */,
 				815F23A51BD04D150054659F /* PFPaymentTransactionObserver_Private.h in Headers */,
 				815F23A71BD04D150054659F /* PFMutableFileState.h in Headers */,
-				B13468991E5FF3EC009971EF /* PFRESTFileUploadController.h in Headers */,
 				815F23A81BD04D150054659F /* PFSessionUtilities.h in Headers */,
 				815F23A91BD04D150054659F /* PFGeoPoint.h in Headers */,
 				815F23AA1BD04D150054659F /* PFLogger.h in Headers */,
@@ -5844,7 +5824,6 @@
 				812145771AA4A4C1000B23F5 /* PFSession.h in Headers */,
 				91115EF91A097AF30092D1C9 /* PFEventuallyPin.h in Headers */,
 				91DF24961A09BAF100CFC7D4 /* PFPinningEventuallyQueue.h in Headers */,
-				B13468771E5FB70F009971EF /* PFRESTFileUploadController.h in Headers */,
 				8196D58D1B0BD23B000465A1 /* PFCoreManager.h in Headers */,
 				812714881AE6F1270076AE8D /* ParseManager.h in Headers */,
 				816A646C1C29DA680029B197 /* PFFile+Synchronous.h in Headers */,
@@ -6047,7 +6026,6 @@
 				81C5840D1C3B0A98000063C6 /* PFQuery.h in Headers */,
 				81C5840E1C3B0A98000063C6 /* PFQueryUtilities.h in Headers */,
 				81C5840F1C3B0A98000063C6 /* PFQueryPrivate.h in Headers */,
-				B13468971E5FF3EA009971EF /* PFRESTFileUploadController.h in Headers */,
 				81C584101C3B0A98000063C6 /* PFPushState.h in Headers */,
 				81C584111C3B0A98000063C6 /* PFCommandURLRequestConstructor.h in Headers */,
 				81C584121C3B0A98000063C6 /* PFFilePersistenceGroup.h in Headers */,
@@ -6226,7 +6204,6 @@
 				81C5854E1C3B0AA1000063C6 /* PFMutableQueryState.h in Headers */,
 				81C5854F1C3B0AA1000063C6 /* PFPaymentTransactionObserver_Private.h in Headers */,
 				81C585501C3B0AA1000063C6 /* PFMutableFileState.h in Headers */,
-				B134689A1E5FF3ED009971EF /* PFRESTFileUploadController.h in Headers */,
 				81C585511C3B0AA1000063C6 /* PFSessionUtilities.h in Headers */,
 				81C585521C3B0AA1000063C6 /* PFGeoPoint.h in Headers */,
 				81C585531C3B0AA1000063C6 /* PFLogger.h in Headers */,
@@ -6417,7 +6394,6 @@
 				81C586991C3B0AA9000063C6 /* PFRESTCommand_Private.h in Headers */,
 				81C5869A1C3B0AA9000063C6 /* PFObject+Deprecated.h in Headers */,
 				81C5869B1C3B0AA9000063C6 /* PFObjectState.h in Headers */,
-				B134689C1E5FF3EE009971EF /* PFRESTFileUploadController.h in Headers */,
 				81C5869C1C3B0AA9000063C6 /* PFHTTPRequest.h in Headers */,
 				81C5869D1C3B0AA9000063C6 /* PFRESTCommand.h in Headers */,
 				81C5869E1C3B0AA9000063C6 /* PFCloud.h in Headers */,
@@ -6632,7 +6608,6 @@
 				81329E8F1AE1E8840071EE3E /* PFReachability.h in Headers */,
 				8166FC8A1B503794003841A2 /* PFInstallationPrivate.h in Headers */,
 				8166FCB91B503886003841A2 /* PFPin.h in Headers */,
-				B13468981E5FF3EB009971EF /* PFRESTFileUploadController.h in Headers */,
 				815EE94719FAD12F0076FE5D /* PFRESTQueryCommand.h in Headers */,
 				81F0E89A19E6F83E00812A88 /* PFRole.h in Headers */,
 				F5E8DE1A1B29100000EEA594 /* PFRelationState.h in Headers */,
@@ -7424,7 +7399,6 @@
 				810155961BB3832700D7C7BD /* PFErrorUtilities.m in Sources */,
 				810155971BB3832700D7C7BD /* PFAnonymousUtils.m in Sources */,
 				810155981BB3832700D7C7BD /* PFDefaultACLController.m in Sources */,
-				B13468951E5FF3E6009971EF /* PFRESTFileUploadController.m in Sources */,
 				810155991BB3832700D7C7BD /* PFMutableQueryState.m in Sources */,
 				8101559A1BB3832700D7C7BD /* PFURLSession.m in Sources */,
 				8101559C1BB3832700D7C7BD /* PFUserFileCodingLogic.m in Sources */,
@@ -7485,7 +7459,6 @@
 				815F22E41BD04D150054659F /* PFFileManager.m in Sources */,
 				815F22E61BD04D150054659F /* PFPinningEventuallyQueue.m in Sources */,
 				815F22E71BD04D150054659F /* PFRESTQueryCommand.m in Sources */,
-				B13468931E5FF3E4009971EF /* PFRESTFileUploadController.m in Sources */,
 				815F22E81BD04D150054659F /* PFRESTSessionCommand.m in Sources */,
 				815F22E91BD04D150054659F /* PFPropertyInfo.m in Sources */,
 				815F22EB1BD04D150054659F /* PFMutableObjectState.m in Sources */,
@@ -7951,7 +7924,6 @@
 				81C3827019CCADA00066284A /* PFDecoder.m in Sources */,
 				81C3824719CCAD2C0066284A /* PFInstallation.m in Sources */,
 				B14117031E5D078E00F70D7A /* PFFileUploadResult.m in Sources */,
-				B13468781E5FB70F009971EF /* PFRESTFileUploadController.m in Sources */,
 				F586B3511B1E3BD70082E3BD /* PFBaseState.m in Sources */,
 				91115EFA1A097AF30092D1C9 /* PFEventuallyPin.m in Sources */,
 				F5C42CD61B34F68C00C720D8 /* PFObjectSubclassingController.m in Sources */,
@@ -8113,7 +8085,6 @@
 				81C583621C3B0A98000063C6 /* PFDecoder.m in Sources */,
 				81C583631C3B0A98000063C6 /* PFInstallation.m in Sources */,
 				B14117041E5D078E00F70D7A /* PFFileUploadResult.m in Sources */,
-				B13468861E5FF3E2009971EF /* PFRESTFileUploadController.m in Sources */,
 				81C583641C3B0A98000063C6 /* PFBaseState.m in Sources */,
 				81C583651C3B0A98000063C6 /* PFEventuallyPin.m in Sources */,
 				81C583661C3B0A98000063C6 /* PFObjectSubclassingController.m in Sources */,
@@ -8197,7 +8168,6 @@
 				81C584921C3B0AA1000063C6 /* PFFileManager.m in Sources */,
 				81C584931C3B0AA1000063C6 /* PFPinningEventuallyQueue.m in Sources */,
 				81C584941C3B0AA1000063C6 /* PFRESTQueryCommand.m in Sources */,
-				B13468941E5FF3E5009971EF /* PFRESTFileUploadController.m in Sources */,
 				81C584951C3B0AA1000063C6 /* PFRESTSessionCommand.m in Sources */,
 				81C584961C3B0AA1000063C6 /* PFPropertyInfo.m in Sources */,
 				81C584971C3B0AA1000063C6 /* PFMutableObjectState.m in Sources */,
@@ -8429,7 +8399,6 @@
 				81C586451C3B0AA9000063C6 /* PFErrorUtilities.m in Sources */,
 				81C586461C3B0AA9000063C6 /* PFAnonymousUtils.m in Sources */,
 				81C586471C3B0AA9000063C6 /* PFDefaultACLController.m in Sources */,
-				B13468961E5FF3E7009971EF /* PFRESTFileUploadController.m in Sources */,
 				81C586481C3B0AA9000063C6 /* PFMutableQueryState.m in Sources */,
 				81C586491C3B0AA9000063C6 /* PFURLSession.m in Sources */,
 				81C5864A1C3B0AA9000063C6 /* PFUserFileCodingLogic.m in Sources */,
@@ -8504,7 +8473,6 @@
 				9701108C1630B45800AB761E /* PFUser.m in Sources */,
 				F5C6B38B1B83F7A100690F3A /* PFFileStagingController.m in Sources */,
 				81E7A2281B6042BD006CB680 /* PFObjectFileCodingLogic.m in Sources */,
-				B13468921E5FF3E3009971EF /* PFRESTFileUploadController.m in Sources */,
 				818ADC7B1BE1A8BA00C8006C /* PFFilePersistenceGroup.m in Sources */,
 				8166FCEB1B504083003841A2 /* PFPushManager.m in Sources */,
 				819A4B0B1A67330200D01241 /* PFHash.m in Sources */,
