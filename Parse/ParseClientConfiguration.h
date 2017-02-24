@@ -129,7 +129,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The custom upload controller that synchronously uploads PFFiles using its own policy.
  */
-@property (nonatomic, copy, readonly, nullable) id<PFFileUploadController> fileUploadController;
+@property (nonatomic, strong, readonly, nullable) id<PFFileUploadController> fileUploadController;
 
 ///--------------------------------------
 #pragma mark - Enabling Local Datastore
