@@ -6874,7 +6874,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Parse Inc.";
 				TargetAttributes = {
 					81C3821B19CCA89E0066284A = {
@@ -8597,6 +8597,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81DCD1491D2DA080002501A2 /* Debug.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 			};
 			name = Debug;
 		};
@@ -8604,6 +8606,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81DCD14A1D2DA080002501A2 /* Release.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 			};
 			name = Release;
 		};
@@ -8667,6 +8671,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
 		};
@@ -8674,6 +8679,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
 		};

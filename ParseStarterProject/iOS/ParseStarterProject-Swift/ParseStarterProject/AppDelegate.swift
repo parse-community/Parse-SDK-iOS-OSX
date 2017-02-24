@@ -75,10 +75,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        let types: UIUserNotificationType = [.alert, .badge, .sound]
-        let settings = UIUserNotificationSettings(types: types, categories: nil)
-        application.registerUserNotificationSettings(settings)
-        application.registerForRemoteNotifications()
+        if #available(iOS 10.0, *) {
+            // iOS 10+
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+                print("Notifications access granted: \(granted.description)")
+            }
+            application.registerForRemoteNotifications()
+        } else {
+            // iOS 8, 9
+            let types: UIUserNotificationType = [.alert, .badge, .sound]
+            let settings = UIUserNotificationSettings(types: types, categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        }
 
         return true
     }
@@ -96,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if succeeded {
                 print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n")
             } else {
-                print("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.\n", error)
+                print("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.\n", error!)
             }
         }
     }
