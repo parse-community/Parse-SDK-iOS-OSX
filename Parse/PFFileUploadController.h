@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <Bolts/BFTask.h>
-#import "PFFileUploadResult.h"
 
 /**
  A policy interface for overriding the default upload behavior of uploading a PFFile

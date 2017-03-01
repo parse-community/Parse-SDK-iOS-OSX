@@ -10,7 +10,8 @@
 #import <Foundation/Foundation.h>
 
 #import <Parse/PFConstants.h>
-#import "PFFileUploadController.h"
+
+@protocol PFFileUploadController;
 
 NS_ASSUME_NONNULL_BEGIN
 
