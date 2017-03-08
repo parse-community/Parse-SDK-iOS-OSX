@@ -332,7 +332,7 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
 
 - (void)_registerSubclassesInLoadedBundle:(NSBundle *)bundle {
     // Skip bundles that aren't loaded yet.
-    if (!bundle.loaded || !bundle.executablePath) {
+    if (![bundle isKindOfClass:NSBundle.class] || !bundle.loaded || !bundle.executablePath) {
         return;
     }
     // Filter out any system bundles
