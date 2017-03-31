@@ -332,7 +332,7 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
 
 - (void)_registerSubclassesInLoadedBundle:(NSBundle *)bundle {
     // Skip bundles that aren't loaded yet.
-    if (!bundle.loaded || !bundle.executablePath) {
+    if (![bundle isKindOfClass:NSBundle.class] || !bundle.loaded || !bundle.executablePath) {
         return;
     }
     // Filter out any system bundles
@@ -343,7 +343,7 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
 }
 
 - (void)_registerSubclassesInBundle:(NSBundle *)bundle {
-    PFConsistencyAssert(bundle.loaded, @"Cannot register subclasses in a bundle that hasn't been loaded!");
+    PFConsistencyAssert(bundle.loaded, @"Cannot register subclasses in an unloaded bundle: %@", bundle);
 
     const char *executablePath = bundle.executablePath.UTF8String;
     if (executablePath == NULL) {
