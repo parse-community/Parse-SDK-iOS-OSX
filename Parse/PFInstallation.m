@@ -29,6 +29,7 @@
 #import "Parse_Private.h"
 #import "PFErrorUtilities.h"
 #import "PFObjectState_Private.h"
+#import "PFObjectConstants.h"
 
 @implementation PFInstallation (Private)
 
@@ -37,7 +38,8 @@ static NSSet *protectedKeys;
 + (void)initialize {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        protectedKeys = PF_SET(PFInstallationKeyDeviceType,
+        protectedKeys = PF_SET(PFObjectObjectIdRESTKey,
+                               PFInstallationKeyDeviceType,
                                PFInstallationKeyInstallationId,
                                PFInstallationKeyTimeZone,
                                PFInstallationKeyLocaleIdentifier,
