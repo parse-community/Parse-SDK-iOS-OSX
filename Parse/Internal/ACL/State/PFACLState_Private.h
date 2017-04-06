@@ -26,7 +26,7 @@
     BOOL _shared;
 }
 
-@property (nonatomic, copy, readwrite) NSDictionary<NSString *, id> *permissions;
+@property (nonatomic, strong, readwrite) NSDictionary<NSString *, id> *permissions;
 @property (nonatomic, assign, readwrite, getter=isShared) BOOL shared;
 
 @end

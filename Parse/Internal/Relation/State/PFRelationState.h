@@ -17,7 +17,7 @@
 @property (nonatomic, copy, readonly) NSString *parentClassName;
 @property (nonatomic, copy, readonly) NSString *parentObjectId;
 @property (nonatomic, copy, readonly) NSString *targetClass;
-@property (nonatomic, copy, readonly) NSSet *knownObjects;
+@property (nonatomic, strong, readonly) NSSet *knownObjects;
 @property (nonatomic, copy, readonly) NSString *key;
 
 ///--------------------------------------
