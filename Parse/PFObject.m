@@ -776,7 +776,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                                    defaultClassName:defaultClassName
                                        completeData:(selectedKeys == nil)
                                             decoder:[PFDecoder objectDecoder]];
-    [result->_availableKeys addObjectsFromArray:selectedKeys];
+    if (selectedKeys) {
+        [result->_availableKeys addObjectsFromArray:selectedKeys];
+    }
     return result;
 }
 
@@ -964,7 +966,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 }
 
                 PFOperationSet *localOperationSet = [self unsavedChanges];
-                if (localOperationSet.updatedAt != nil &&
+                if (localOperationSet.updatedAt != nil && remoteOperationSet.updatedAt != nil &&
                     [localOperationSet.updatedAt compare:remoteOperationSet.updatedAt] != NSOrderedAscending) {
                     [localOperationSet mergeOperationSet:remoteOperationSet];
                 } else {
@@ -1304,7 +1306,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 state.updatedAt = state.createdAt;
             }
         }];
-        [_availableKeys addObjectsFromArray:result.allKeys];
+        if (result.allKeys) {
+            [_availableKeys addObjectsFromArray:result.allKeys];
+        }
 
         dirty = NO;
     }
