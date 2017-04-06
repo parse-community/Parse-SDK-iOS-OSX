@@ -58,7 +58,7 @@ static inline NSString *stringByCapitalizingFirstCharacter(NSString *string) {
         _ivar = class_getInstanceVariable(kls, safeStringWithPropertyAttributeValue(objcProperty, "V").UTF8String);
         if (_ivar) break;
 
-        // Walk the superclass heirarchy for the property definition. Because property attributes are not inherited
+        // Walk the superclass hierarchy for the property definition. Because property attributes are not inherited
         // (but property definitions *are*), we must be careful to ensure that the variable was never actually
         // implemented and synthesized in a superclass. Note if the same property is synthesized in multiple classes
         // with different iVars, we take the class furthest from the root class as the 'source of truth'.
