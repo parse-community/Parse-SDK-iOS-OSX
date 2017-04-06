@@ -127,7 +127,7 @@ static NSString *const PFKeyValueCacheDiskCachePathKey = @"path";
     });
 }
 
-- (NSString *)objectForKey:(NSString *)key maxAge:(NSTimeInterval)maxAge {
+- (nullable NSString *)objectForKey:(NSString *)key maxAge:(NSTimeInterval)maxAge {
     NSURL *cacheURL = [self _cacheURLForKey:key];
     PFKeyValueCacheEntry *cacheEntry = [self.memoryCache objectForKey:key];
 

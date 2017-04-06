@@ -791,7 +791,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
  @param decoder Decoder used to decode the dictionary.
  */
 + (id)_objectFromDictionary:(NSDictionary *)dictionary
-           defaultClassName:(NSString *)defaultClassName
+           defaultClassName:(nonnull NSString *)defaultClassName
                completeData:(BOOL)completeData
                     decoder:(PFDecoder *)decoder {
     NSString *objectId = nil;
@@ -800,7 +800,8 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         objectId = dictionary[@"objectId"];
         className = dictionary[@"className"] ?: defaultClassName;
     }
-    PFObject *object = [PFObject objectWithoutDataWithClassName:className objectId:objectId];
+    // Temp fix for nil className possibility:
+    PFObject *object = [PFObject objectWithoutDataWithClassName:className ?: @"" objectId:objectId];
     [object _mergeAfterFetchWithResult:dictionary decoder:decoder completeData:completeData];
     return object;
 }

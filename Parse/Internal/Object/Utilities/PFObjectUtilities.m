@@ -18,7 +18,7 @@
 #pragma mark - Operations
 ///--------------------------------------
 
-+ (id)newValueByApplyingFieldOperation:(PFFieldOperation *)operation
++ (nullable id)newValueByApplyingFieldOperation:(PFFieldOperation *)operation
                           toDictionary:(NSMutableDictionary *)dictionary
                                 forKey:(NSString *)key {
     id oldValue = dictionary[key];
