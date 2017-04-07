@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.summary          = 'A library that gives you access to the powerful Parse cloud platform from your iOS/OS X/watchOS/tvOS app.'
   s.authors          = 'Parse'
 
-  s.source           = { :git => "https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/parse-community/Parse-SDK-iOS-OSX.git", :tag => s.version.to_s }
 
   s.platform = :ios, :osx, :tvos, :watchos
   s.ios.deployment_target = '7.0'
