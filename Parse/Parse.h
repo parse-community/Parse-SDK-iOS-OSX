@@ -39,6 +39,8 @@
 #import <Parse/PFUser+Synchronous.h>
 #import <Parse/PFUser+Deprecated.h>
 #import <Parse/PFUserAuthenticationDelegate.h>
+#import <Parse/PFFileUploadResult.h>
+#import <Parse/PFFileUploadController.h>
 
 #if TARGET_OS_IOS
 
