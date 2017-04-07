@@ -24,6 +24,8 @@
 #import "PFMacros.h"
 #import "PFRESTFileCommand.h"
 #import "PFErrorUtilities.h"
+#import "Parse.h"
+#import "PFFileUploadController.h"
 
 static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
 
@@ -218,21 +220,41 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
         return [BFTask taskWithError:error];
     }
 
-    PFRESTFileCommand *command = [PFRESTFileCommand uploadCommandForFileWithName:fileState.name sessionToken:sessionToken];
-    @weakify(self);
-    return [[self.dataSource.commandRunner runFileUploadCommandAsync:command
-                                                     withContentType:fileState.mimeType
-                                               contentSourceFilePath:sourceFilePath
-                                                             options:PFCommandRunningOptionRetryIfFailed
-                                                   cancellationToken:cancellationToken
-                                                       progressBlock:progressBlock] continueWithSuccessBlock:^id(BFTask<PFCommandResult *> *task) {
-        @strongify(self);
-        PFCommandResult *result = task.result;
-        PFFileState *fileState = [[PFFileState alloc] initWithName:result.result[@"name"]
-                                                         urlString:result.result[@"url"]
-                                                          mimeType:nil];
-        return [[self _cacheFileAsyncWithState:fileState atPath:sourceFilePath] continueWithSuccessResult:fileState];
-    }];
+    
+    id<PFFileUploadController> customFileUploadController = Parse.currentConfiguration.fileUploadController;
+    if (customFileUploadController) {
+        @weakify(self);
+        return [[customFileUploadController uploadSourceFilePath:sourceFilePath
+                                              fileName:fileState.name
+                                              mimeType:fileState.mimeType
+                                                    sessionToken:sessionToken
+                                               cancellationToken:cancellationToken
+                                         progressBlock:progressBlock]
+                continueWithSuccessBlock:^id(BFTask<PFFileUploadResult *> *task) {
+                    @strongify(self);
+                    PFFileUploadResult *result = task.result;
+                    PFFileState *fileState = [[PFFileState alloc] initWithName:result.name
+                                                                     urlString:result.url
+                                                                      mimeType:nil];
+                    return [[self _cacheFileAsyncWithState:fileState atPath:sourceFilePath] continueWithSuccessResult:fileState];
+                }];
+    } else {
+        PFRESTFileCommand *command = [PFRESTFileCommand uploadCommandForFileWithName:fileState.name sessionToken:sessionToken];
+        @weakify(self);
+        return [[self.dataSource.commandRunner runFileUploadCommandAsync:command
+                                                         withContentType:fileState.mimeType
+                                                   contentSourceFilePath:sourceFilePath
+                                                                 options:PFCommandRunningOptionRetryIfFailed
+                                                       cancellationToken:cancellationToken
+                                                           progressBlock:progressBlock] continueWithSuccessBlock:^id(BFTask<PFCommandResult *> *task) {
+            @strongify(self);
+            PFCommandResult *result = task.result;
+            PFFileState *fileState = [[PFFileState alloc] initWithName:result.result[@"name"]
+                                                             urlString:result.result[@"url"]
+                                                              mimeType:nil];
+            return [[self _cacheFileAsyncWithState:fileState atPath:sourceFilePath] continueWithSuccessResult:fileState];
+        }];
+    }
 }
 
 ///--------------------------------------
