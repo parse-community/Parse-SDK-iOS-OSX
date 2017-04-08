@@ -1005,12 +1005,10 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
             && newObjectId == nil) {
             NSString *key = [self _generateKeyForClassName:object.parseClassName objectId:oldObjectId];
             [self.classNameAndObjectIdToObjectMap removeObjectForKey:key];
-        } else {
-            PFConsistencyAssert([oldObjectId isEqualToString:newObjectId], @"objectIds cannot be changed in offline mode.");
+            return;
         }
-#else
-      PFConsistencyAssert([oldObjectId isEqualToString:newObjectId], @"objectIds cannot be changed in offline mode.");
 #endif
+        PFConsistencyAssert([oldObjectId isEqualToString:newObjectId], @"objectIds cannot be changed in offline mode.");
         return;
     }
 
