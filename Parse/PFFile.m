@@ -524,7 +524,8 @@
 }
 
 - (NSData *)getData:(NSError **)error {
-    return [[self getDataInBackground] waitForResult:error];
+    BOOL enableWarning = !self.isDataAvailable;
+    return [[self getDataInBackground] waitForResult:error withMainThreadWarning:enableWarning];
 }
 
 - (NSInputStream *)getDataStream {
@@ -532,7 +533,8 @@
 }
 
 - (NSInputStream *)getDataStream:(NSError **)error {
-    return [[self getDataStreamInBackground] waitForResult:error];
+    BOOL enableWarning = !self.isDataAvailable;
+    return [[self getDataStreamInBackground] waitForResult:error withMainThreadWarning:enableWarning];
 }
 
 @end
