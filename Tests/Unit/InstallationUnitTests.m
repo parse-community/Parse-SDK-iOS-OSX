@@ -29,8 +29,8 @@
     PFAssertThrowsInvalidArgumentException(installation[@"objectId"] = @"abc");
 }
 
-- (void)testReSaveInstallation {
-    
+- (void)testObjectNotFoundWhenSave {
+#if TARGET_OS_IOS
     // enable LDS
     [[Parse _currentManager]loadOfflineStoreWithOptions:0];
     
@@ -46,11 +46,18 @@
     
     BFTask *mockedTask = [BFTask taskWithError:[NSError errorWithDomain:@"" code:kPFErrorObjectNotFound userInfo:nil]];
     
-    OCMStub([commandRunner runCommandAsync:[OCMArg any] withOptions:PFCommandRunningOptionRetryIfFailed]).andReturn(mockedTask);
+    __block int callCount = 0;
+    OCMStub([commandRunner runCommandAsync:[OCMArg any] withOptions:PFCommandRunningOptionRetryIfFailed])
+    .andReturn(mockedTask)
+    .andDo(^(NSInvocation *invocation) {
+        callCount++;
+    });
     
     installation.deviceToken = @"11433856eed2f1285fb3aa11136718c1198ed5647875096952c66bf8cb976306";
     [installation save];
     OCMVerifyAll(commandRunner);
+    XCTAssertEqual(2, callCount);
+#endif
 }
 
 - (void)testInstallationImmutableFieldsCannotBeChanged {
