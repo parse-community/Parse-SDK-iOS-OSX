@@ -33,6 +33,8 @@
 #if TARGET_OS_IOS
     // enable LDS
     [[Parse _currentManager]loadOfflineStoreWithOptions:0];
+    PFOfflineStore *offlineStoreSpy = PFPartialMock([Parse _currentManager].offlineStore);
+    [Parse _currentManager].offlineStore = offlineStoreSpy;
     
     // create and save installation
     PFInstallation *installation = [PFInstallation currentInstallation];
@@ -44,7 +46,7 @@
     id commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
     [Parse _currentManager].commandRunner = commandRunner;
     
-    BFTask *mockedTask = [BFTask taskWithError:[NSError errorWithDomain:@"" code:kPFErrorObjectNotFound userInfo:nil]];
+    BFTask *mockedTask = [BFTask taskWithError:[NSError errorWithDomain:@"Object Not Found" code:kPFErrorObjectNotFound userInfo:nil]];
     
     __block int callCount = 0;
     OCMStub([commandRunner runCommandAsync:[OCMArg any] withOptions:PFCommandRunningOptionRetryIfFailed])
@@ -57,6 +59,8 @@
     [installation save];
     OCMVerifyAll(commandRunner);
     XCTAssertEqual(2, callCount);
+    OCMVerify([offlineStoreSpy updateObjectIdForObject:installation oldObjectId:nil newObjectId:@"abc"]);
+    OCMVerify([offlineStoreSpy updateObjectIdForObject:installation oldObjectId:@"abc" newObjectId:nil]);
 #endif
 }
 
