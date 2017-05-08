@@ -1004,7 +1004,9 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         if ([object isKindOfClass:[PFInstallation class]]
             && newObjectId == nil) {
             NSString *key = [self _generateKeyForClassName:object.parseClassName objectId:oldObjectId];
-            [self.classNameAndObjectIdToObjectMap removeObjectForKey:key];
+            @synchronized(self.lock) {
+                [self.classNameAndObjectIdToObjectMap removeObjectForKey:key];
+            }
             return;
         }
 #endif
