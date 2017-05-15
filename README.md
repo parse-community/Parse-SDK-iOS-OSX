@@ -14,7 +14,7 @@
 [![Join Chat][gitter-svg]][gitter-link]
 
 A library that gives you access to the powerful Parse cloud platform from your iOS or OS X app.
-For more information Parse and its features, see [the website][parse.com] and [getting started][docs].
+For more information about Parse and its features, see [the blog][blog] and public [documentation][docs].
 
 ## Getting Started
 
@@ -89,9 +89,8 @@ of patent rights can be found in the PATENTS file in the same directory.
 
 As of April 5, 2017, Parse, LLC has transferred this code to the parse-community organization, and will no longer be contributing to or distributing this code. 
 
- [parse.com]: https://www.parse.com/products/ios
- [docs]: https://www.parse.com/docs/ios/guide
- [blog]: https://blog.parse.com/
+ [docs]: http://docs.parseplatform.org/ios/guide/
+ [blog]: http://blog.parse.com/
 
  [parseui-link]: https://github.com/parse-community/ParseUI-iOS
  [parsefacebookutils-link]: https://github.com/parse-community/ParseFacebookUtils-iOS
