@@ -281,7 +281,7 @@ static NSSet *protectedKeys;
 - (void)_updateVersionInfoFromDevice {
     NSDictionary *appInfo = [NSBundle mainBundle].infoDictionary;
     NSString *appName = appInfo[(__bridge NSString *)kCFBundleNameKey];
-    NSString *appVersion = appInfo[(__bridge NSString *)kCFBundleVersionKey];
+    NSString *appVersion = appInfo[@"CFBundleShortVersionString"];
     NSString *appIdentifier = appInfo[(__bridge NSString *)kCFBundleIdentifierKey];
     // It's possible that the app was created without an info.plist and we just
     // cannot get the data we need.
