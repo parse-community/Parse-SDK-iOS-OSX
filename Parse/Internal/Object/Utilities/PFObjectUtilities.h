@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Operations
 ///--------------------------------------
 
-+ (id)newValueByApplyingFieldOperation:(PFFieldOperation *)operation
++ (nullable id)newValueByApplyingFieldOperation:(PFFieldOperation *)operation
                           toDictionary:(NSMutableDictionary *)dictionary
                                 forKey:(NSString *)key;
 + (void)applyOperationSet:(PFOperationSet *)operationSet toDictionary:(NSMutableDictionary *)dictionary;

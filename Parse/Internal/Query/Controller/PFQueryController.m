@@ -127,7 +127,7 @@
 #pragma mark - Caching
 ///--------------------------------------
 
-- (NSString *)cacheKeyForQueryState:(PFQueryState *)queryState sessionToken:(NSString *)sessionToken {
+- (nullable NSString *)cacheKeyForQueryState:(PFQueryState *)queryState sessionToken:(NSString *)sessionToken {
     return nil;
 }
 

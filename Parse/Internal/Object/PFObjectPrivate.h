@@ -85,7 +85,7 @@
  @return Current object state.
  */
 @property (nonatomic, copy) PFObjectState *_state;
-@property (nonatomic, copy) NSMutableSet *_availableKeys;
+@property (nonatomic, strong) NSMutableSet *_availableKeys;
 
 - (instancetype)initWithObjectState:(PFObjectState *)state;
 + (instancetype)objectWithClassName:(NSString *)className

@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Caching
 ///--------------------------------------
 
-- (NSString *)cacheKeyForQueryState:(PFQueryState *)queryState sessionToken:(nullable NSString *)sessionToken;
+- (nullable NSString *)cacheKeyForQueryState:(PFQueryState *)queryState sessionToken:(nullable NSString *)sessionToken;
 - (BOOL)hasCachedResultForQueryState:(PFQueryState *)queryState sessionToken:(nullable NSString *)sessionToken;
 
 - (void)clearCachedResultForQueryState:(PFQueryState *)queryState sessionToken:(nullable NSString *)sessionToken;

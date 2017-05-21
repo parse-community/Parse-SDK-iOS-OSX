@@ -373,7 +373,7 @@
     [subclassingController forwardObjectInvocation:invocation withObject:target];
     __unsafe_unretained PFRelation *returnValue = nil;
     [invocation getReturnValue:&returnValue];
-    XCTAssertTrue([returnValue isKindOfClass:[PFRelation class]]);
+    XCTAssertTrue([returnValue isKindOfClass:[PFRelation class]], @"return value was %@", [returnValue class] ? NSStringFromClass([returnValue class]) : @"nil");
 
     invocation = [self _forwardingInvocationForTarget:target
                                              selector:@selector(badProperty)

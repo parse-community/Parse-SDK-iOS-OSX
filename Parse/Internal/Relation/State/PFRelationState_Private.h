@@ -33,7 +33,7 @@
 @property (nonatomic, copy, readwrite) NSString *parentClassName;
 @property (nonatomic, copy, readwrite) NSString *parentObjectId;
 @property (nonatomic, copy, readwrite) NSString *targetClass;
-@property (nonatomic, copy, readwrite) NSSet *knownObjects;
+@property (nonatomic, strong, readwrite) NSSet *knownObjects;
 @property (nonatomic, copy, readwrite) NSString *key;
 
 @end

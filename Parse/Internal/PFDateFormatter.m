@@ -69,7 +69,7 @@
 #pragma mark - String from Date
 ///--------------------------------------
 
-- (NSString *)preciseStringFromDate:(NSDate *)date {
+- (nullable NSString *)preciseStringFromDate:(NSDate *)date {
     __block NSString *string = nil;
     NSTimeInterval interval = date.timeIntervalSince1970;
     dispatch_sync(_synchronizationQueue, ^{

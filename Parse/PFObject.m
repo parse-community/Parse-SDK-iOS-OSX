@@ -776,7 +776,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                                    defaultClassName:defaultClassName
                                        completeData:(selectedKeys == nil)
                                             decoder:[PFDecoder objectDecoder]];
-    [result->_availableKeys addObjectsFromArray:selectedKeys];
+    if (selectedKeys) {
+        [result->_availableKeys addObjectsFromArray:selectedKeys];
+    }
     return result;
 }
 
@@ -789,7 +791,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
  @param decoder Decoder used to decode the dictionary.
  */
 + (id)_objectFromDictionary:(NSDictionary *)dictionary
-           defaultClassName:(NSString *)defaultClassName
+           defaultClassName:(nonnull NSString *)defaultClassName
                completeData:(BOOL)completeData
                     decoder:(PFDecoder *)decoder {
     NSString *objectId = nil;
@@ -798,7 +800,8 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         objectId = dictionary[@"objectId"];
         className = dictionary[@"className"] ?: defaultClassName;
     }
-    PFObject *object = [PFObject objectWithoutDataWithClassName:className objectId:objectId];
+    // Temp fix for nil className possibility:
+    PFObject *object = [PFObject objectWithoutDataWithClassName:className ?: @"" objectId:objectId];
     [object _mergeAfterFetchWithResult:dictionary decoder:decoder completeData:completeData];
     return object;
 }
@@ -964,7 +967,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 }
 
                 PFOperationSet *localOperationSet = [self unsavedChanges];
-                if (localOperationSet.updatedAt != nil &&
+                if (localOperationSet.updatedAt != nil && remoteOperationSet.updatedAt != nil &&
                     [localOperationSet.updatedAt compare:remoteOperationSet.updatedAt] != NSOrderedAscending) {
                     [localOperationSet mergeOperationSet:remoteOperationSet];
                 } else {
@@ -1304,7 +1307,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 state.updatedAt = state.createdAt;
             }
         }];
-        [_availableKeys addObjectsFromArray:result.allKeys];
+        if (result.allKeys) {
+            [_availableKeys addObjectsFromArray:result.allKeys];
+        }
 
         dirty = NO;
     }

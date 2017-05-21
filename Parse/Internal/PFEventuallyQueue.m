@@ -73,7 +73,9 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     _commandEnqueueTaskQueue = [[PFTaskQueue alloc] init];
 
     _taskCompletionSources = [NSMutableDictionary dictionary];
-    _testHelper = [[PFEventuallyQueueTestHelper alloc] init];
+    
+    // we don't want your leaky test helper
+//    _testHelper = [[PFEventuallyQueueTestHelper alloc] init];
 
     [self _startMonitoringNetworkReachability];
 

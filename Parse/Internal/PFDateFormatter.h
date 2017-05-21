@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Formatted `NSString` representation.
  */
-- (NSString *)preciseStringFromDate:(NSDate *)date;
+- (nullable NSString *)preciseStringFromDate:(NSDate *)date;
 
 ///--------------------------------------
 #pragma mark - Date from String
