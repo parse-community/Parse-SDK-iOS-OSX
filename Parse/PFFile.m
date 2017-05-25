@@ -448,8 +448,19 @@
 
 - (NSString *)url {
     __block NSString *url = nil;
+    
+    if (self.state.urlString == nil) return nil;
+    
     [self _performDataAccessBlock:^{
-        url = self.state.secureURLString;
+        
+        NSURLComponents *components = [NSURLComponents componentsWithString:self.state.urlString];
+        NSString *scheme = components.scheme;
+        if ([scheme isEqualToString:@"http"]) {
+            url = self.state.urlString;
+        } else {
+            url = self.state.secureURLString;
+        }
+        
     }];
     return url;
 }
