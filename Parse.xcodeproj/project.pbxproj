@@ -2566,6 +2566,13 @@
 		97DE045A16321492007154E8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97DE045916321492007154E8 /* Security.framework */; };
 		97DE045C163214C0007154E8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97DE045B163214C0007154E8 /* SystemConfiguration.framework */; };
 		97EB055516F7CCE400E09147 /* PFAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 9739513916B9D28E0010B884 /* PFAnalytics.m */; };
+		A6E2958C1E96173D009917BF /* ParseManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E295801E961727009917BF /* ParseManagerPrivate.h */; };
+		A6E2958D1E96173F009917BF /* ParseManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E295801E961727009917BF /* ParseManagerPrivate.h */; };
+		A6E2958E1E961741009917BF /* ParseManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E295801E961727009917BF /* ParseManagerPrivate.h */; };
+		A6E2958F1E961742009917BF /* ParseManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E295801E961727009917BF /* ParseManagerPrivate.h */; };
+		A6E295901E961744009917BF /* ParseManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E295801E961727009917BF /* ParseManagerPrivate.h */; };
+		A6E295911E961744009917BF /* ParseManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E295801E961727009917BF /* ParseManagerPrivate.h */; };
+		A6E295921E961744009917BF /* ParseManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E295801E961727009917BF /* ParseManagerPrivate.h */; };
 		B141169E1E5BC24B00F70D7A /* PFFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B14116F41E5D075C00F70D7A /* PFFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B14116F51E5D075E00F70D7A /* PFFileUploadController.h in Headers */ = {isa = PBXBuildFile; fileRef = B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -3491,6 +3498,7 @@
 		97DE045B163214C0007154E8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		97E18AE41623835600B17A67 /* PFLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLocationManager.h; sourceTree = "<group>"; };
 		97E18AE51623835600B17A67 /* PFLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLocationManager.m; sourceTree = "<group>"; };
+		A6E295801E961727009917BF /* ParseManagerPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParseManagerPrivate.h; sourceTree = "<group>"; };
 		B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileUploadController.h; sourceTree = "<group>"; };
 		B14116FB1E5D078E00F70D7A /* PFFileUploadResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFileUploadResult.m; sourceTree = "<group>"; };
 		B141170A1E5D081500F70D7A /* PFFileUploadResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileUploadResult.h; sourceTree = "<group>"; };
@@ -3759,6 +3767,7 @@
 				09EEA1351435143500E3A3FA /* ParseInternal.h */,
 				81A245F11B1FB188006A6953 /* PFDataProvider.h */,
 				812714861AE6F1270076AE8D /* ParseManager.h */,
+				A6E295801E961727009917BF /* ParseManagerPrivate.h */,
 				812714871AE6F1270076AE8D /* ParseManager.m */,
 				8124C8811B27542A00758E00 /* PFCoreDataProvider.h */,
 				8196D58B1B0BD23B000465A1 /* PFCoreManager.h */,
@@ -5418,6 +5427,7 @@
 				810156481BB3832700D7C7BD /* PFURLSessionDataTaskDelegate.h in Headers */,
 				81CA29D21C28DF8F00C4F34A /* PFAnonymousUtils+Deprecated.h in Headers */,
 				810156491BB3832700D7C7BD /* PFDateFormatter.h in Headers */,
+				A6E295911E961744009917BF /* ParseManagerPrivate.h in Headers */,
 				8101564A1BB3832700D7C7BD /* PFCloudCodeController.h in Headers */,
 				8101564B1BB3832700D7C7BD /* PFMultiProcessFileLockController.h in Headers */,
 				8101564C1BB3832700D7C7BD /* PFCurrentUserController.h in Headers */,
@@ -5580,6 +5590,7 @@
 				815F23C51BD04D150054659F /* PFURLSessionCommandRunner.h in Headers */,
 				815F23C61BD04D150054659F /* PFRESTObjectCommand.h in Headers */,
 				815F23C71BD04D150054659F /* PFCommandRunning.h in Headers */,
+				A6E2958F1E961742009917BF /* ParseManagerPrivate.h in Headers */,
 				815F23C81BD04D150054659F /* PFRESTCloudCommand.h in Headers */,
 				815F23C91BD04D150054659F /* PFProduct.h in Headers */,
 				815F23CA1BD04D150054659F /* PFQuery.h in Headers */,
@@ -5685,6 +5696,7 @@
 				818AAA7619D36B1C00FC1B3C /* PFFile.h in Headers */,
 				816AC9BA1A3F48250031D94C /* PFApplication.h in Headers */,
 				F5B0B2EC1B449F1D00F3EBC4 /* BFTask+Private.h in Headers */,
+				A6E2958C1E96173D009917BF /* ParseManagerPrivate.h in Headers */,
 				F5B0B2ED1B449F1D00F3EBC4 /* PFCategoryLoader.h in Headers */,
 				F5B0B2EE1B449F1D00F3EBC4 /* PFThreadsafety.h in Headers */,
 				F5B0B2EF1B449F1D00F3EBC4 /* PFRelationState_Private.h in Headers */,
@@ -6031,6 +6043,7 @@
 				81C584121C3B0A98000063C6 /* PFFilePersistenceGroup.h in Headers */,
 				81C584131C3B0A98000063C6 /* PFRESTQueryCommand.h in Headers */,
 				81C584141C3B0A98000063C6 /* PFACLState_Private.h in Headers */,
+				A6E2958D1E96173F009917BF /* ParseManagerPrivate.h in Headers */,
 				81C584151C3B0A98000063C6 /* PFConfig+Synchronous.h in Headers */,
 				81C584161C3B0A98000063C6 /* PFObject.h in Headers */,
 				81C584171C3B0A98000063C6 /* PFPushUtilities.h in Headers */,
@@ -6238,6 +6251,7 @@
 				81C585701C3B0AA1000063C6 /* PFURLSessionCommandRunner.h in Headers */,
 				81C585711C3B0AA1000063C6 /* PFRESTObjectCommand.h in Headers */,
 				81C585721C3B0AA1000063C6 /* PFCommandRunning.h in Headers */,
+				A6E295901E961744009917BF /* ParseManagerPrivate.h in Headers */,
 				81C585731C3B0AA1000063C6 /* PFRESTCloudCommand.h in Headers */,
 				81C585741C3B0AA1000063C6 /* PFProduct.h in Headers */,
 				81C585751C3B0AA1000063C6 /* PFQuery.h in Headers */,
@@ -6483,6 +6497,7 @@
 				81C586EF1C3B0AA9000063C6 /* PFURLSessionDataTaskDelegate.h in Headers */,
 				81C586F01C3B0AA9000063C6 /* PFAnonymousUtils+Deprecated.h in Headers */,
 				81C586F11C3B0AA9000063C6 /* PFDateFormatter.h in Headers */,
+				A6E295921E961744009917BF /* ParseManagerPrivate.h in Headers */,
 				81C586F21C3B0AA9000063C6 /* PFCloudCodeController.h in Headers */,
 				81C586F31C3B0AA9000063C6 /* PFMultiProcessFileLockController.h in Headers */,
 				81C586F41C3B0AA9000063C6 /* PFCurrentUserController.h in Headers */,
@@ -6558,6 +6573,7 @@
 				F5B0B3261B44A33100F3EBC4 /* PFAssert.h in Headers */,
 				F5B0B3271B44A33100F3EBC4 /* PFAsyncTaskQueue.h in Headers */,
 				F5B0B3281B44A33100F3EBC4 /* PFBaseState.h in Headers */,
+				A6E2958E1E961741009917BF /* ParseManagerPrivate.h in Headers */,
 				F51535091B57240900C49F56 /* PFMutableACLState.h in Headers */,
 				F5B0B32B1B44A33100F3EBC4 /* PFCoreDataProvider.h in Headers */,
 				814881611B795CD4008763BF /* PFMultiProcessFileLock.h in Headers */,
