@@ -174,7 +174,9 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 ///--------------------------------------
 
 - (void)start {
+    @weakify(self)
     dispatch_source_set_event_handler(_processingQueueSource, ^{
+        @strongify(self)
         [self _runCommands];
     });
     [self resume];
