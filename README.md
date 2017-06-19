@@ -14,12 +14,14 @@
 [![Join Chat][gitter-svg]][gitter-link]
 
 A library that gives you access to the powerful Parse cloud platform from your iOS or OS X app.
-For more information Parse and its features, see [the website][parse.com] and [getting started][docs].
+For more information about Parse and its features, see [the blog][blog] and public [documentation][docs].
 
 ## Getting Started
 
 To use parse, head on over to the [releases][releases] page, and download the latest build.
-And you're off! Take a look at the public [documentation][docs] and start building.
+And you're off!. Take a look at the public [documentation][docs] & [API][api] and start building.
+
+Notice the API docs aren't totally up to date when it comes to latest Swift signature of the methods and more importantly regarding [Push Notifications](http://blog.parse.com/learn/engineering/the-dangerous-world-of-client-push/) which are **no longer supported by Parse server**, keep an eye on [its repo](https://github.com/ParsePlatform/parse-server)
 
 **Other Installation Options**
 
@@ -36,7 +38,7 @@ And you're off! Take a look at the public [documentation][docs] and start buildi
  
    Add the following line to your Cartfile:
    ```
-   github "ParsePlatform/Parse-SDK-iOS-OSX"
+   github "parse-community/Parse-SDK-iOS-OSX"
    ```
    Run `carthage update`, and you should now have the latest version of Parse SDK in your Carthage folder.
 
@@ -87,28 +89,30 @@ LICENSE file in the root directory of this source tree. An additional grant
 of patent rights can be found in the PATENTS file in the same directory.
 ```
 
- [parse.com]: https://www.parse.com/products/ios
- [docs]: https://www.parse.com/docs/ios/guide
- [blog]: https://blog.parse.com/
+As of April 5, 2017, Parse, LLC has transferred this code to the parse-community organization, and will no longer be contributing to or distributing this code. 
 
- [parseui-link]: https://github.com/ParsePlatform/ParseUI-iOS
- [parsefacebookutils-link]: https://github.com/ParsePlatform/ParseFacebookUtils-iOS
- [parsetwitterutils-link]: https://github.com/ParsePlatform/ParseTwitterUtils-iOS
+ [docs]: http://docs.parseplatform.org/ios/guide/
+ [blog]: http://blog.parse.com/
+ [api]: http://parseplatform.org/Parse-SDK-iOS-OSX/api/
 
- [releases]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/releases
- [contributing]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/blob/master/CONTRIBUTING.md
+ [parseui-link]: https://github.com/parse-community/ParseUI-iOS
+ [parsefacebookutils-link]: https://github.com/parse-community/ParseFacebookUtils-iOS
+ [parsetwitterutils-link]: https://github.com/parse-community/ParseTwitterUtils-iOS
+
+ [releases]: https://github.com/parse-community/Parse-SDK-iOS-OSX/releases
+ [contributing]: https://github.com/parse-community/Parse-SDK-iOS-OSX/blob/master/CONTRIBUTING.md
 
  [bolts-framework]: https://github.com/BoltsFramework/Bolts-ObjC
  [ocmock-framework]: http://ocmock.org
 
- [build-status-svg]: https://img.shields.io/travis/ParsePlatform/Parse-SDK-iOS-OSX/master.svg
- [build-status-link]: https://travis-ci.org/ParsePlatform/Parse-SDK-iOS-OSX/branches
+ [build-status-svg]: https://img.shields.io/travis/parse-community/Parse-SDK-iOS-OSX/master.svg
+ [build-status-link]: https://travis-ci.org/parse-community/Parse-SDK-iOS-OSX/branches
 
- [coverage-status-svg]: https://img.shields.io/codecov/c/github/ParsePlatform/Parse-SDK-iOS-OSX/master.svg
- [coverage-status-link]: https://codecov.io/github/ParsePlatform/Parse-SDK-iOS-OSX?branch=master
+ [coverage-status-svg]: https://img.shields.io/codecov/c/github/parse-community/Parse-SDK-iOS-OSX/master.svg
+ [coverage-status-link]: https://codecov.io/github/parse-community/Parse-SDK-iOS-OSX?branch=master
 
  [license-svg]: https://img.shields.io/badge/license-BSD-lightgrey.svg
- [license-link]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/blob/master/LICENSE
+ [license-link]: https://github.com/parse-community/Parse-SDK-iOS-OSX/blob/master/LICENSE
 
  [podspec-svg]: https://img.shields.io/cocoapods/v/Parse.svg
  [podspec-link]: https://cocoapods.org/pods/Parse
@@ -119,7 +123,7 @@ of patent rights can be found in the PATENTS file in the same directory.
  [platforms-svg]: http://img.shields.io/cocoapods/p/Parse.svg?style=flat
 
  [dependencies-svg]: https://img.shields.io/badge/dependencies-2-yellowgreen.svg
- [dependencies-link]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/blob/master/Vendor
+ [dependencies-link]: https://github.com/parse-community/Parse-SDK-iOS-OSX/blob/master/Vendor
 
  [references-svg]: https://www.versioneye.com/objective-c/parse/reference_badge.svg
  [references-link]: https://www.versioneye.com/objective-c/parse/references
