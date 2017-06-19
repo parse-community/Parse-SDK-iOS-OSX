@@ -45,6 +45,17 @@
     XCTAssertEqualObjects(operation.amount, @100500);
 }
 
+- (void)testDecodingDeleteOperation {
+    PFDecoder *decoder = [[PFDecoder alloc] init];
+
+    NSDictionary *decoded = [decoder decodeObject:@{ @"key" : @{@"__op" : @"Delete"} }];
+    XCTAssertNotNil(decoded);
+
+    id operation = decoded[@"key"];
+    XCTAssertNotNil(operation);
+    PFAssertIsKindOfClass(operation, [PFDeleteOperation class]);
+}
+
 - (void)testDecodingDates {
     PFDecoder *decoder = [[PFDecoder alloc] init];
 
