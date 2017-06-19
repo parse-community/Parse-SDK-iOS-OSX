@@ -112,7 +112,8 @@
     OCMVerifyAll(mockedAlertController);
 }
 
-- (void)testShowWithoutAlertViewController {
+
+- (void)disabledTestShowWithoutAlertViewController {
     id mockedAlertView = PFStrictClassMock([UIAlertView class]);
 
     PFTestSwizzledMethod *swizzledMethod = [PFTestSwizzlingUtilities swizzleClassMethod:@selector(class)

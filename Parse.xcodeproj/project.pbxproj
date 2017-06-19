@@ -3852,6 +3852,7 @@
 				099C082113AC013900D71869 /* Tests */,
 				09D3364C139C54940098E916 /* Frameworks */,
 				09D3364B139C54940098E916 /* Products */,
+				4AAB99061EE6D7E50073D7A7 /* Recovered References */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -3907,6 +3908,16 @@
 				8101A14719ACDA97008BB503 /* PFAlertView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		4AAB99061EE6D7E50073D7A7 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				F5B0B3121B44A05100F3EBC4 /* PFPaymentTransactionObserver_Private.h */,
+				97DE045B163214C0007154E8 /* SystemConfiguration.framework */,
+				97DE045016321428007154E8 /* CoreLocation.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		7C83A03B15B4A609005E2C8E /* Commands */ = {
@@ -6931,11 +6942,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Parse Inc.";
 				TargetAttributes = {
+					810155051BB3832700D7C7BD = {
+						LastSwiftMigration = 0830;
+					};
+					816F441B1A8E8933009CDB32 = {
+						LastSwiftMigration = 0900;
+					};
 					81C3821B19CCA89E0066284A = {
 						CreatedOnToolsVersion = 6.0.1;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -8661,6 +8679,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81DCD1491D2DA080002501A2 /* Debug.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 			};
 			name = Debug;
 		};
@@ -8668,6 +8688,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81DCD14A1D2DA080002501A2 /* Release.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 			};
 			name = Release;
 		};
@@ -8675,6 +8697,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 810154FE1BB382F800D7C7BD /* Parse-watchOS.xcconfig */;
 			buildSettings = {
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -8682,6 +8705,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 810154FE1BB382F800D7C7BD /* Parse-watchOS.xcconfig */;
 			buildSettings = {
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -8731,6 +8755,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -8738,6 +8768,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
