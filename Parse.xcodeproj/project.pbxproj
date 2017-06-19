@@ -2534,19 +2534,19 @@
 		96FAF7AD1D84441900EAB299 /* PFDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF79F1D8443E300EAB299 /* PFDecoder.m */; };
 		96FAF7AE1D84441900EAB299 /* PFDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF79F1D8443E300EAB299 /* PFDecoder.m */; };
 		96FAF7AF1D84441A00EAB299 /* PFDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF79F1D8443E300EAB299 /* PFDecoder.m */; };
-		96FAF7B81D84461D00EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; };
+		96FAF7B81D84461D00EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96FAF7B91D84461D00EAB299 /* PFEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF7B71D84461D00EAB299 /* PFEncoder.m */; };
 		96FAF7BA1D84462700EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; };
 		96FAF7BB1D84462700EAB299 /* PFEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF7B71D84461D00EAB299 /* PFEncoder.m */; };
-		96FAF7BC1D84462700EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; };
+		96FAF7BC1D84462700EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96FAF7BD1D84462700EAB299 /* PFEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF7B71D84461D00EAB299 /* PFEncoder.m */; };
-		96FAF7BE1D84462800EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; };
+		96FAF7BE1D84462800EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96FAF7BF1D84462800EAB299 /* PFEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF7B71D84461D00EAB299 /* PFEncoder.m */; };
-		96FAF7C01D84462900EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; };
+		96FAF7C01D84462900EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96FAF7C11D84462900EAB299 /* PFEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF7B71D84461D00EAB299 /* PFEncoder.m */; };
-		96FAF7C21D84462900EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; };
+		96FAF7C21D84462900EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96FAF7C31D84462900EAB299 /* PFEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF7B71D84461D00EAB299 /* PFEncoder.m */; };
-		96FAF7C41D84462900EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; };
+		96FAF7C41D84462900EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96FAF7C51D84462900EAB299 /* PFEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF7B71D84461D00EAB299 /* PFEncoder.m */; };
 		970110691630B44200AB761E /* PFCommandCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FDDCB14E1B1BD00A77007 /* PFCommandCache.m */; };
 		9701106E1630B44200AB761E /* PFInternalUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 09809FB21434F98C00EC3E74 /* PFInternalUtils.m */; };
@@ -5718,7 +5718,6 @@
 				F5B0B2F31B449F1D00F3EBC4 /* PFAssert.h in Headers */,
 				814BCDF11B4DF63600007B7F /* PFUserState.h in Headers */,
 				B141169E1E5BC24B00F70D7A /* PFFileUploadController.h in Headers */,
-				F5B0B2F81B449F1D00F3EBC4 /* PFDecoder.h in Headers */,
 				B141170B1E5D081500F70D7A /* PFFileUploadResult.h in Headers */,
 				F5B0B2FA1B449F1D00F3EBC4 /* PFGeoPointPrivate.h in Headers */,
 				810749AE1B74662B00682EEB /* PFURLSessionFileDownloadTaskDelegate.h in Headers */,
