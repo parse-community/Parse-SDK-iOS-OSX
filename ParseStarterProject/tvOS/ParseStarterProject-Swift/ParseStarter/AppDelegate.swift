@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - UIApplicationDelegate
     //--------------------------------------
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // ****************************************************************************
         // Initialize Parse SDK
         // ****************************************************************************
@@ -34,13 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Uncomment the following line and change to your Parse Server address;
             $0.server = "https://YOUR_PARSE_SERVER/parse"
         }
-        Parse.initializeWithConfiguration(configuration)
+        Parse.initialize(with: configuration)
 
         PFUser.enableAutomaticUser()
 
         let defaultACL = PFACL()
-        defaultACL.publicReadAccess = true // If you would like all objects to be private by default, remove this line.
-        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
+        defaultACL.getPublicReadAccess = true // If you would like all objects to be private by default, remove this line.
+        PFACL.setDefault(defaultACL, withAccessForCurrentUser: true)
 
         return true
     }
