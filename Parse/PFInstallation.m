@@ -28,6 +28,8 @@
 #import "PFQueryPrivate.h"
 #import "Parse_Private.h"
 #import "PFErrorUtilities.h"
+#import "PFObjectState_Private.h"
+#import "PFObjectConstants.h"
 
 @implementation PFInstallation (Private)
 
@@ -36,7 +38,8 @@ static NSSet *protectedKeys;
 + (void)initialize {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        protectedKeys = PF_SET(PFInstallationKeyDeviceType,
+        protectedKeys = PF_SET(PFObjectObjectIdRESTKey,
+                               PFInstallationKeyDeviceType,
                                PFInstallationKeyInstallationId,
                                PFInstallationKeyTimeZone,
                                PFInstallationKeyLocaleIdentifier,
@@ -81,6 +84,14 @@ static NSSet *protectedKeys;
 
 - (NSString *)displayClassName {
     return NSStringFromClass([PFInstallation class]);
+}
+
+///--------------------------------------
+#pragma mark - Properties
+///--------------------------------------
+
+- (void) setObjectId:(NSString *)objectId {
+    PFParameterAssertionFailure(@"Installation's objectIds cannot be changed");
 }
 
 ///--------------------------------------
@@ -223,16 +234,13 @@ static NSSet *protectedKeys;
 
 - (BFTask *)saveAsync:(BFTask *)toAwait {
     return [[super saveAsync:toAwait] continueWithBlock:^id(BFTask *task) {
-        // Do not attempt to resave an object if LDS is enabled, since changing objectId is not allowed.
-        if ([Parse _currentManager].offlineStoreLoaded) {
-            return task;
-        }
-
         if (task.error.code == kPFErrorObjectNotFound) {
             @synchronized (self.lock) {
                 // Retry the fetch as a save operation because this Installation was deleted on the server.
                 // We always want [currentInstallation save] to succeed.
-                self.objectId = nil;
+                PFObjectState *state = [PFObjectState stateWithState:self._state];
+                state.objectId = nil;
+                self._state = state;
                 [self _markAllFieldsDirty];
                 return [super saveAsync:nil];
             }
