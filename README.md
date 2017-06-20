@@ -19,7 +19,9 @@ For more information about Parse and its features, see [the blog][blog] and publ
 ## Getting Started
 
 To use parse, head on over to the [releases][releases] page, and download the latest build.
-And you're off! Take a look at the public [documentation][docs] and start building.
+And you're off!. Take a look at the public [documentation][docs] & [API][api] and start building.
+
+Notice the API docs aren't totally up to date when it comes to latest Swift signature of the methods and more importantly regarding [Push Notifications](http://blog.parse.com/learn/engineering/the-dangerous-world-of-client-push/) which are **no longer supported by Parse server**, keep an eye on [its repo](https://github.com/ParsePlatform/parse-server)
 
 **Other Installation Options**
 
@@ -91,6 +93,7 @@ As of April 5, 2017, Parse, LLC has transferred this code to the parse-community
 
  [docs]: http://docs.parseplatform.org/ios/guide/
  [blog]: http://blog.parse.com/
+ [api]: http://parseplatform.org/Parse-SDK-iOS-OSX/api/
 
  [parseui-link]: https://github.com/parse-community/ParseUI-iOS
  [parsefacebookutils-link]: https://github.com/parse-community/ParseFacebookUtils-iOS

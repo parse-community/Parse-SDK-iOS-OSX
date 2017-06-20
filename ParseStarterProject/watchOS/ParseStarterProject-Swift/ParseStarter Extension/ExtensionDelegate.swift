@@ -28,12 +28,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
             // Enable storing and querying data from Local Datastore.
             // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
-            $0.localDatastoreEnabled = true
+            $0.isLocalDatastoreEnabled = true
         }
-        Parse.initializeWithConfiguration(configuration)
+        Parse.initialize(with: configuration)
 
         // Track application opened event in Analytics
-        PFAnalytics.trackAppOpenedWithLaunchOptions(nil)
+        PFAnalytics.trackAppOpened(launchOptions: nil)
     }
 
     func applicationDidBecomeActive() {
