@@ -415,6 +415,16 @@
     XCTAssertEqualObjects(query.state.conditions, (@{ @"yolo" : @{@"$within" : @{@"$box" : @[ geoPoint1, geoPoint2 ]}} }));
 }
 
+- (void)testWhereKeyWithinPolygon {
+    PFGeoPoint *geoPoint1 = [PFGeoPoint geoPointWithLatitude:10.0 longitude:20.0];
+    PFGeoPoint *geoPoint2 = [PFGeoPoint geoPointWithLatitude:20.0 longitude:30.0];
+    PFGeoPoint *geoPoint3 = [PFGeoPoint geoPointWithLatitude:30.0 longitude:40.0];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"a"];
+    [query whereKey:@"yolo" withinPolygon:@[geoPoint1, geoPoint2, geoPoint3]];
+    XCTAssertEqualObjects(query.state.conditions, (@{ @"yolo" : @{@"$geoWithin" : @{@"$polygon" : @[ geoPoint1, geoPoint2, geoPoint3 ]}} }));
+}
+
 - (void)testWhereKeyMatchesRegex {
     PFQuery *query = [PFQuery queryWithClassName:@"a"];
     [query whereKey:@"yolo" matchesRegex:@"yarr"];

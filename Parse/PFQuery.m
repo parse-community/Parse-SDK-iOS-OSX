@@ -301,6 +301,11 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     return [self whereKey:key condition:PFQueryKeyWithin object:dictionary];
 }
 
+- (instancetype)whereKey:(NSString *)key withinPolygon:(NSArray<PFGeoPoint *> *)points {
+    NSDictionary *dictionary = @{ PFQueryOptionKeyPolygon : points };
+    return [self whereKey:key condition:PFQueryKeyGeoWithin object:dictionary];
+}
+
 - (instancetype)whereKey:(NSString *)key matchesRegex:(NSString *)regex {
     return [self whereKey:key condition:PFQueryKeyRegex object:regex];
 }
