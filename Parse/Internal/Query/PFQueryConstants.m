@@ -19,6 +19,7 @@ NSString *const PFQueryKeyNotContainedIn = @"$nin";
 NSString *const PFQueryKeyContainsAll = @"$all";
 NSString *const PFQueryKeyNearSphere = @"$nearSphere";
 NSString *const PFQueryKeyWithin = @"$within";
+NSString *const PFQueryKeyGeoWithin = @"$geoWithin";
 NSString *const PFQueryKeyRegex = @"$regex";
 NSString *const PFQueryKeyExists = @"$exists";
 NSString *const PFQueryKeyInQuery = @"$inQuery";
@@ -33,4 +34,5 @@ NSString *const PFQueryKeyObject = @"object";
 
 NSString *const PFQueryOptionKeyMaxDistance = @"$maxDistance";
 NSString *const PFQueryOptionKeyBox = @"$box";
+NSString *const PFQueryOptionKeyPolygon = @"$polygon";
 NSString *const PFQueryOptionKeyRegexOptions = @"$options";
