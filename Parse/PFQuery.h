@@ -311,7 +311,8 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *_Nullable obje
 /**
  * Add a constraint to the query that requires a particular key's
  * coordinates be contained within and on the bounds of a given polygon
- * Supports closed and open (last point is connected to first) paths
+ * Supports closed and open (last point is connected to first) paths.
+ * (Requires parse-server@2.5.0)
  *
  * Polygon must have at least 3 points
  *
