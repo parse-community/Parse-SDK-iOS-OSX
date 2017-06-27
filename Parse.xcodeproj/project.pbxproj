@@ -2536,7 +2536,7 @@
 		96FAF7AF1D84441A00EAB299 /* PFDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF79F1D8443E300EAB299 /* PFDecoder.m */; };
 		96FAF7B81D84461D00EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96FAF7B91D84461D00EAB299 /* PFEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF7B71D84461D00EAB299 /* PFEncoder.m */; };
-		96FAF7BA1D84462700EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; };
+		96FAF7BA1D84462700EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96FAF7BB1D84462700EAB299 /* PFEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF7B71D84461D00EAB299 /* PFEncoder.m */; };
 		96FAF7BC1D84462700EAB299 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FAF7B61D84461D00EAB299 /* PFEncoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96FAF7BD1D84462700EAB299 /* PFEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF7B71D84461D00EAB299 /* PFEncoder.m */; };
