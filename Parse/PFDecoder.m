@@ -15,6 +15,7 @@
 #import "PFFieldOperationDecoder.h"
 #import "PFFile_Private.h"
 #import "PFGeoPointPrivate.h"
+#import "PFPolygonPrivate.h"
 #import "PFInternalUtils.h"
 #import "PFMacros.h"
 #import "PFObjectPrivate.h"
@@ -55,6 +56,9 @@
 
         } else if ([type isEqualToString:@"GeoPoint"]) {
             return [PFGeoPoint geoPointWithDictionary:dictionary];
+
+        } else if ([type isEqualToString:@"Polygon"]) {
+            return [PFPolygon polygonWithDictionary:dictionary];
 
         } else if ([type isEqualToString:@"Relation"]) {
             return [PFRelation relationFromDictionary:dictionary withDecoder:self];

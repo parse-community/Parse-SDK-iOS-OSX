@@ -26,6 +26,7 @@
 #import <Parse/PFFile+Deprecated.h>
 #import <Parse/PFFile+Synchronous.h>
 #import <Parse/PFGeoPoint.h>
+#import <Parse/PFPolygon.h>
 #import <Parse/PFObject.h>
 #import <Parse/PFObject+Subclass.h>
 #import <Parse/PFObject+Synchronous.h>

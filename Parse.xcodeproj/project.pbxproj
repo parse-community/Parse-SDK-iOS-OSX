@@ -21,6 +21,12 @@
 		403093761C81F0B200CF09F8 /* PFQueryConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */; };
 		403093771C81F0B200CF09F8 /* PFQueryConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */; };
 		403093781C81F0B200CF09F8 /* PFQueryConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */; };
+		702F3A0A1F1179D40043DD72 /* PFPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 702F3A081F1179D40043DD72 /* PFPolygon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		702F3A0B1F1179D40043DD72 /* PFPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 702F3A091F1179D40043DD72 /* PFPolygon.m */; };
+		709EC32E1F143B8F00C55549 /* PolygonUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 702F3A171F11807B0043DD72 /* PolygonUnitTests.m */; };
+		709EC3301F143C4700C55549 /* PFPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 702F3A081F1179D40043DD72 /* PFPolygon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		709EC3341F143E0500C55549 /* PFPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 702F3A091F1179D40043DD72 /* PFPolygon.m */; };
+		709EC3361F1491EA00C55549 /* PFPolygonPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 709EC3351F1491EA00C55549 /* PFPolygonPrivate.h */; };
 		7CBC8DA116D594F800AEC66D /* PFTaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF213BB16D41D980065CF1A /* PFTaskQueue.m */; };
 		8101550A1BB3832700D7C7BD /* PFWeakValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1EE481AE1EF960031C438 /* PFWeakValue.m */; };
 		8101550B1BB3832700D7C7BD /* PFUserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 814BCDF01B4DF63600007B7F /* PFUserState.m */; };
@@ -3014,6 +3020,10 @@
 		63CBA36B1612829C0062C84A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		64C47802147336C70092082F /* PFACL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFACL.h; sourceTree = "<group>"; };
 		64C47803147336C70092082F /* PFACL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFACL.m; sourceTree = "<group>"; };
+		702F3A081F1179D40043DD72 /* PFPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPolygon.h; sourceTree = "<group>"; };
+		702F3A091F1179D40043DD72 /* PFPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPolygon.m; sourceTree = "<group>"; };
+		702F3A171F11807B0043DD72 /* PolygonUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolygonUnitTests.m; sourceTree = "<group>"; };
+		709EC3351F1491EA00C55549 /* PFPolygonPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPolygonPrivate.h; sourceTree = "<group>"; };
 		7C1FDDCA14E1B1BD00A77007 /* PFCommandCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFCommandCache.h; sourceTree = "<group>"; };
 		7C1FDDCB14E1B1BD00A77007 /* PFCommandCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFCommandCache.m; sourceTree = "<group>"; };
 		7C9455DE15B8793F0037A86D /* PFCommandResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFCommandResult.h; sourceTree = "<group>"; };
@@ -3709,6 +3719,8 @@
 				816A64701C29DC000029B197 /* PFObject+Synchronous.h */,
 				81CA29F41C28ED2300C4F34A /* PFObject+Deprecated.h */,
 				0925ABEE13D791770095FEFA /* PFObject.m */,
+				702F3A081F1179D40043DD72 /* PFPolygon.h */,
+				702F3A091F1179D40043DD72 /* PFPolygon.m */,
 				499E425515B6409000A2C28E /* PFProduct.h */,
 				499E425615B6409000A2C28E /* PFProduct.m */,
 				49FDE2EC158C138F00126F64 /* PFPurchase.h */,
@@ -3796,6 +3808,7 @@
 				819A4B061A67330200D01241 /* PFHash.h */,
 				819A4B071A67330200D01241 /* PFHash.m */,
 				09B119FB1488429D002B5594 /* PFGeoPointPrivate.h */,
+				709EC3351F1491EA00C55549 /* PFPolygonPrivate.h */,
 				09809FB11434F98C00EC3E74 /* PFInternalUtils.h */,
 				09809FB21434F98C00EC3E74 /* PFInternalUtils.m */,
 				813E76981B7A9BD000FA3294 /* PFErrorUtilities.h */,
@@ -4308,6 +4321,7 @@
 				814916091B66D44500EFD14F /* ParseSetupUnitTests.m */,
 				8149160A1B66D44500EFD14F /* PinningObjectStoreTests.m */,
 				8149160B1B66D44500EFD14F /* PinUnitTests.m */,
+				702F3A171F11807B0043DD72 /* PolygonUnitTests.m */,
 				8149160C1B66D44500EFD14F /* ProductTests.m */,
 				8149160D1B66D44500EFD14F /* PropertyInfoTests.m */,
 				8149160E1B66D44500EFD14F /* PurchaseControllerTests.m */,
@@ -5679,6 +5693,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				702F3A0A1F1179D40043DD72 /* PFPolygon.h in Headers */,
 				8124C8731B26B9E700758E00 /* PFPinningObjectStore.h in Headers */,
 				810B7D761A0291FF003C0909 /* PFMacros.h in Headers */,
 				815E764D1BDF168A00E1DF8E /* PFPersistenceController.h in Headers */,
@@ -5891,6 +5906,7 @@
 				81443B331A27838500F3FD17 /* PFDevice.h in Headers */,
 				81C7F4B41AF42BD9007B5418 /* PFQueryState_Private.h in Headers */,
 				F5C42CD41B34F68C00C720D8 /* PFObjectSubclassingController.h in Headers */,
+				709EC3361F1491EA00C55549 /* PFPolygonPrivate.h in Headers */,
 				8143E65D1AFC1BA5008C4E06 /* PFOfflineQueryController.h in Headers */,
 				818AAA8119D36B1C00FC1B3C /* PFUser.h in Headers */,
 				96FAF7A01D8443E300EAB299 /* PFDecoder.h in Headers */,
@@ -5904,6 +5920,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				709EC3301F143C4700C55549 /* PFPolygon.h in Headers */,
 				B14116F41E5D075C00F70D7A /* PFFileUploadController.h in Headers */,
 				81C583801C3B0A98000063C6 /* PFPinningObjectStore.h in Headers */,
 				81C583811C3B0A98000063C6 /* PFMacros.h in Headers */,
@@ -7592,6 +7609,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				709EC32E1F143B8F00C55549 /* PolygonUnitTests.m in Sources */,
 				814916CB1B66D44600EFD14F /* RelationStateTests.m in Sources */,
 				8149167D1B66D44600EFD14F /* ObjectBatchCommandTests.m in Sources */,
 				814916691B66D44600EFD14F /* FileUnitTests.m in Sources */,
@@ -7974,6 +7992,7 @@
 				818ADC7A1BE1A8BA00C8006C /* PFFilePersistenceGroup.m in Sources */,
 				8166FCEA1B504083003841A2 /* PFPushManager.m in Sources */,
 				8166FCB61B503886003841A2 /* PFOfflineStore.m in Sources */,
+				702F3A0B1F1179D40043DD72 /* PFPolygon.m in Sources */,
 				8166FCBE1B503886003841A2 /* PFSQLiteDatabase.m in Sources */,
 				81C3824919CCAD2C0066284A /* PFProduct.m in Sources */,
 				81C3823F19CCAD2C0066284A /* Parse.m in Sources */,
@@ -8143,6 +8162,7 @@
 				81C583791C3B0A98000063C6 /* PFDefaultACLController.m in Sources */,
 				81C5837A1C3B0A98000063C6 /* PFMutableQueryState.m in Sources */,
 				81C5837B1C3B0A98000063C6 /* PFURLSession.m in Sources */,
+				709EC3341F143E0500C55549 /* PFPolygon.m in Sources */,
 				81C5837C1C3B0A98000063C6 /* PFPurchase.m in Sources */,
 				81C5837D1C3B0A98000063C6 /* PFUserFileCodingLogic.m in Sources */,
 			);
