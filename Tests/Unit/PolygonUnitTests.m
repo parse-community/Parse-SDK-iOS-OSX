@@ -10,6 +10,7 @@
 @import CoreLocation.CLLocation;
 
 #import "PFPolygon.h"
+#import "PFEncoder.h"
 #import "PFGeoPoint.h"
 #import "PFPolygonPrivate.h"
 #import "PFTestCase.h"
@@ -39,6 +40,18 @@
     NSDictionary *dictionary = [polygon encodeIntoDictionary];
     XCTAssertNotNil(dictionary);
 
+    PFPolygon *polygonFromDictionary = [PFPolygon polygonWithDictionary:dictionary];
+    XCTAssertEqualObjects(polygonFromDictionary, polygon);
+    XCTAssertEqual(polygon.coordinates, polygonFromDictionary.coordinates);
+}
+
+- (void)testPolygonPFEncoding {
+    PFPolygon *polygon = [PFPolygon polygonWithCoordinates:_testPoints];
+    
+    PFEncoder *encoder = [[PFEncoder alloc] init];
+    NSDictionary *dictionary = [encoder encodeObject:polygon];
+    XCTAssertNotNil(dictionary);
+    
     PFPolygon *polygonFromDictionary = [PFPolygon polygonWithDictionary:dictionary];
     XCTAssertEqualObjects(polygonFromDictionary, polygon);
     XCTAssertEqual(polygon.coordinates, polygonFromDictionary.coordinates);
@@ -74,9 +87,7 @@
 
 - (void)testNSCopying {
     PFPolygon *polygon = [PFPolygon polygonWithCoordinates:_testPoints];
-
     PFPolygon *polygonCopy = [polygon copy];
-
     XCTAssertEqualObjects(polygonCopy.coordinates, polygon.coordinates, @"Coordinates should be the same.");
 }
 
@@ -91,7 +102,6 @@
 }
 
 - (void)testPolygonDescription {
-
     PFPolygon *polygon = [PFPolygon polygonWithCoordinates:_testPoints];
     NSString *description = [polygon description];
     XCTAssertNotNil(description);
