@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Parse  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="Parse  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">Parse Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/parse-community/Parse-SDK-iOS-OSX"><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">Parse Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Parse  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/Parse.html">Parse</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='parse-sdk-for-ios-os-x-watchos-tvos' class='heading'>Parse SDK for iOS/OS X/watchOS/tvOS</h1>
+
+<p><img src="http://img.shields.io/cocoapods/p/Parse.svg?style=flat" alt="Platforms">
+<a href="https://github.com/parse-community/Parse-SDK-iOS-OSX/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-BSD-lightgrey.svg" alt="License"></a></p>
+
+<p><a href="https://cocoapods.org/pods/Parse"><img src="https://img.shields.io/cocoapods/v/Parse.svg" alt="Podspec"></a>
+<a href="carthage-link"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
+<a href="https://github.com/parse-community/Parse-SDK-iOS-OSX/blob/master/Vendor"><img src="https://img.shields.io/badge/dependencies-2-yellowgreen.svg" alt="Dependencies"></a>
+<a href="https://www.versioneye.com/objective-c/parse/references"><img src="https://www.versioneye.com/objective-c/parse/reference_badge.svg" alt="References"></a></p>
+
+<p><a href="https://travis-ci.org/parse-community/Parse-SDK-iOS-OSX/branches"><img src="https://img.shields.io/travis/parse-community/Parse-SDK-iOS-OSX/master.svg" alt="Build Status"></a>
+<a href="https://codecov.io/github/parse-community/Parse-SDK-iOS-OSX?branch=master"><img src="https://img.shields.io/codecov/c/github/parse-community/Parse-SDK-iOS-OSX/master.svg" alt="Coverage Status"></a></p>
+
+<p><a href="https://gitter.im/ParsePlatform/Chat"><img src="https://img.shields.io/badge/gitter-join%20chat%20%E2%86%92-brightgreen.svg" alt="Join Chat"></a></p>
+
+<p>A library that gives you access to the powerful Parse cloud platform from your iOS or OS X app.
+For more information about Parse and its features, see <a href="http://blog.parse.com/">the blog</a> and public <a href="http://docs.parseplatform.org/ios/guide/">documentation</a>.</p>
+<h2 id='getting-started' class='heading'>Getting Started</h2>
+
+<p>To use parse, head on over to the <a href="https://github.com/parse-community/Parse-SDK-iOS-OSX/releases">releases</a> page, and download the latest build.
+And you&rsquo;re off!. Take a look at the public <a href="http://docs.parseplatform.org/ios/guide/">documentation</a> &amp; <a href="http://parseplatform.org/Parse-SDK-iOS-OSX/api/">API</a> and start building.</p>
+
+<p>Notice the API docs aren&rsquo;t totally up to date when it comes to latest Swift signature of the methods and more importantly regarding <a href="http://blog.parse.com/learn/engineering/the-dangerous-world-of-client-push/">Push Notifications</a> which are <strong>no longer supported by Parse server</strong>, keep an eye on <a href="https://github.com/ParsePlatform/parse-server">its repo</a></p>
+
+<p><strong>Other Installation Options</strong></p>
+
+<ul>
+<li><strong><a href="https://cocoapods.org">CocoaPods</a></strong></li>
+</ul>
+
+<p>Add the following line to your Podfile:</p>
+<pre class="highlight ruby"><code>   <span class="n">pod</span> <span class="s1">'Parse'</span>
+</code></pre>
+
+<p>Run <code>pod install</code>, and you should now have the latest parse release.</p>
+
+<ul>
+<li><strong><a href="https://github.com/carthage/carthage">Carthage</a></strong></li>
+</ul>
+
+<p>Add the following line to your Cartfile:</p>
+<pre class="highlight plaintext"><code>   github "parse-community/Parse-SDK-iOS-OSX"
+</code></pre>
+
+<p>Run <code>carthage update</code>, and you should now have the latest version of Parse SDK in your Carthage folder.</p>
+
+<ul>
+<li><p><strong>Compiling for yourself</strong></p>
+
+<p>If you want to manually compile the SDK, clone it locally, and run the following commands in the root directory of the repository:</p>
+<pre class="highlight plaintext"><code># To pull in extra dependencies (Bolts and OCMock)
+git submodule update --init --recursive
+
+# To install all the gems
+bundle install
+
+# Build &amp; Package the Frameworks
+rake package:frameworks
+</code></pre>
+
+<p>Compiled frameworks will be in 2 archives: <code>Parse-iOS.zip</code> and <code>Parse-OSX.zip</code> inside the <code>build/release</code> folder, and you can link them as you&rsquo;d please.</p></li>
+<li><p><strong>Using Parse as a sub-project</strong></p>
+
+<p>You can also include parse as a subproject inside of your application if you&rsquo;d prefer, although we do not recommend this, as it will increase your indexing time significantly. To do so, just drag and drop the Parse.xcodeproj file into your workspace. Note that unit tests will be unavailable if you use Parse like this, as OCMock will be unable to be found.</p></li>
+</ul>
+<h2 id='how-do-i-contribute' class='heading'>How Do I Contribute?</h2>
+
+<p>We want to make contributing to this project as easy and transparent as possible. Please refer to the <a href="https://github.com/parse-community/Parse-SDK-iOS-OSX/blob/master/CONTRIBUTING.md">Contribution Guidelines</a>.</p>
+<h2 id='dependencies' class='heading'>Dependencies</h2>
+
+<p>We use the following libraries as dependencies inside of Parse:</p>
+
+<ul>
+<li><a href="https://github.com/BoltsFramework/Bolts-ObjC">Bolts</a>, for task management.</li>
+<li><a href="http://ocmock.org">OCMock</a>, for unit testing.</li>
+</ul>
+<h2 id='other-parse-projects' class='heading'>Other Parse Projects</h2>
+
+<ul>
+<li><a href="https://github.com/parse-community/ParseUI-iOS">ParseUI for iOS</a></li>
+<li><a href="https://github.com/parse-community/ParseFacebookUtils-iOS">ParseFacebookUtils for iOS</a></li>
+<li><a href="https://github.com/parse-community/ParseTwitterUtils-iOS">ParseTwitterUtils for iOS</a></li>
+</ul>
+<h2 id='license' class='heading'>License</h2>
+<pre class="highlight plaintext"><code>Copyright (c) 2015-present, Parse, LLC.
+All rights reserved.
+
+This source code is licensed under the BSD-style license found in the
+LICENSE file in the root directory of this source tree. An additional grant
+of patent rights can be found in the PATENTS file in the same directory.
+</code></pre>
+
+<p>As of April 5, 2017, Parse, LLC has transferred this code to the parse-community organization, and will no longer be contributing to or distributing this code. </p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="http://parseplatform.org" target="_blank" rel="external">Parse</a>. All rights reserved. (Last updated: 2017-07-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
