@@ -445,6 +445,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 #endif
                            ];
         [[BFTask taskForCompletionOfAllTasks:tasks] waitUntilFinished]; // Wait synchronously to make sure we are blocking preload queue.
+        [self eventuallyQueue];
 
         return nil;
     }];
