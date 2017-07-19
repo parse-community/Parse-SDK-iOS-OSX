@@ -197,6 +197,10 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     dispatch_suspend(_processingQueueSource);
 }
 
+- (void)stop {
+    dispatch_source_cancel(_processingQueueSource);
+}
+
 - (void)removeAllCommands {
     dispatch_sync(_synchronizationQueue, ^{
         [_taskCompletionSources removeAllObjects];

@@ -67,7 +67,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 - (void)start NS_REQUIRES_SUPER;
 - (void)resume NS_REQUIRES_SUPER;
 - (void)pause NS_REQUIRES_SUPER;
-
+- (void)stop NS_REQUIRES_SUPER;
 - (void)removeAllCommands NS_REQUIRES_SUPER;
 
 @end
