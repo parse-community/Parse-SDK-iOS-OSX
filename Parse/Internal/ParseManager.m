@@ -174,12 +174,15 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
                                 [PFPinningEventuallyQueue newDefaultPinningEventuallyQueueWithDataSource:self]
                                 :
                                 commandCache);
-
             // We still need to clear out the old command cache even if we're using Pinning in case
             // anything is left over when the user upgraded. Checking number of pending and then
             // clearing should be enough.
-            if (self.offlineStoreLoaded && commandCache.commandCount > 0) {
-                [commandCache removeAllCommands];
+            if (self.offlineStoreLoaded) {
+                if (commandCache.commandCount > 0) {
+                    [commandCache removeAllCommands];
+                }
+                // we won't need it after stop everything...
+                [commandCache stop];
             }
         }
 #endif
