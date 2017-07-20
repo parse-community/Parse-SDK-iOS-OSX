@@ -425,6 +425,14 @@
     XCTAssertEqualObjects(query.state.conditions, (@{ @"yolo" : @{@"$geoWithin" : @{@"$polygon" : @[ geoPoint1, geoPoint2, geoPoint3 ]}} }));
 }
 
+- (void)testWhereKeyPolygonContains {
+    PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLatitude:10.0 longitude:20.0];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"a"];
+    [query whereKey:@"yolo" polygonContains:geoPoint];
+    XCTAssertEqualObjects(query.state.conditions, (@{ @"yolo" : @{@"$geoIntersects" : @{@"$point" : geoPoint}} }));
+}
+
 - (void)testWhereKeyMatchesRegex {
     PFQuery *query = [PFQuery queryWithClassName:@"a"];
     [query whereKey:@"yolo" matchesRegex:@"yarr"];

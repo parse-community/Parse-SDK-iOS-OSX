@@ -16,6 +16,7 @@
 #import "PFEventuallyQueue.h"
 #import "PFFieldOperation.h"
 #import "PFGeoPointPrivate.h"
+#import "PFPolygonPrivate.h"
 #import "PFInternalUtils.h"
 #import "PFKeyValueCache.h"
 #import "PFObjectPrivate.h"
