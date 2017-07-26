@@ -50,7 +50,9 @@
 #if TARGET_OS_WATCH || TARGET_OS_TV
     return 0;
 #elif TARGET_OS_IOS
-    return self.systemApplication.applicationIconBadgeNumber;
+    __block NSInteger returnValue = 0;
+    dispatch_sync(dispatch_get_main_queue(), ^{ returnValue = self.systemApplication.applicationIconBadgeNumber; });
+    return returnValue;
 #elif PF_TARGET_OS_OSX
     // Make sure not to use `NSApp` here, because it doesn't work sometimes,
     // `NSApplication +sharedApplication` does though.
@@ -74,7 +76,7 @@
 - (void)setIconBadgeNumber:(NSInteger)iconBadgeNumber {
     if (self.iconBadgeNumber != iconBadgeNumber) {
 #if TARGET_OS_IOS
-        self.systemApplication.applicationIconBadgeNumber = iconBadgeNumber;
+        dispatch_sync(dispatch_get_main_queue(), ^{ self.systemApplication.applicationIconBadgeNumber = iconBadgeNumber; });
 #elif PF_TARGET_OS_OSX
         [[NSApplication sharedApplication] dockTile].badgeLabel = [@(iconBadgeNumber) stringValue];
 #endif
