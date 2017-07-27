@@ -140,6 +140,22 @@
 
 @end
 
+@interface PFObject ()
+
+/**
+ Constructs an object of the most specific class known to implement `+parseClassName`.
+
+ This method takes care to help `PFObject` subclasses be subclassed themselves.
+ For example, `PFUser.+object` returns a `PFUser` by default but will return an
+ object of a registered subclass instead if one is known.
+ A default implementation is provided by `PFObject` which should always be sufficient.
+
+ @return Returns the object that is instantiated.
+ */
++ (instancetype)object;
+
+@end
+
 @interface PFObject (Private)
 
 /**
