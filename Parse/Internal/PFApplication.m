@@ -51,7 +51,14 @@
     return 0;
 #elif TARGET_OS_IOS
     __block NSInteger returnValue = 0;
-    dispatch_sync(dispatch_get_main_queue(), ^{ returnValue = self.systemApplication.applicationIconBadgeNumber; });
+    dispatch_block_t block = ^{
+        returnValue = self.systemApplication.applicationIconBadgeNumber;
+    };
+    if ([NSThread currentThread].isMainThread) {
+        block();
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
     return returnValue;
 #elif PF_TARGET_OS_OSX
     // Make sure not to use `NSApp` here, because it doesn't work sometimes,
@@ -76,7 +83,14 @@
 - (void)setIconBadgeNumber:(NSInteger)iconBadgeNumber {
     if (self.iconBadgeNumber != iconBadgeNumber) {
 #if TARGET_OS_IOS
-        dispatch_sync(dispatch_get_main_queue(), ^{ self.systemApplication.applicationIconBadgeNumber = iconBadgeNumber; });
+        dispatch_block_t block = ^{
+            self.systemApplication.applicationIconBadgeNumber = iconBadgeNumber;
+        };
+        if ([NSThread currentThread].isMainThread) {
+            block();
+        } else {
+            dispatch_sync(dispatch_get_main_queue(), block);
+        }
 #elif PF_TARGET_OS_OSX
         [[NSApplication sharedApplication] dockTile].badgeLabel = [@(iconBadgeNumber) stringValue];
 #endif
