@@ -9,6 +9,7 @@
 
 #import "PFUnitTestCase.h"
 #import "PFUser.h"
+#import "PFObjectPrivate.h"
 
 @interface UserUnitTests : PFUnitTestCase
 
