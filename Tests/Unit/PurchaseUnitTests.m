@@ -19,6 +19,7 @@
 #import "PFTestSKProduct.h"
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
+#import "PFObjectPrivate.h"
 
 @protocol PurchaseControllerDataSource <PFCommandRunnerProvider, PFFileManagerProvider>
 
