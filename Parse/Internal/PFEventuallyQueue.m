@@ -383,7 +383,6 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     [[PFReachability sharedParseReachability] removeListener:self];
 
     self.monitorsReachability = NO;
-    self.connected = YES;
 #endif
 }
 
