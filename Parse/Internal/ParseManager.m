@@ -181,8 +181,8 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
                 if (commandCache.commandCount > 0) {
                     [commandCache removeAllCommands];
                 }
-                // we won't need it after stop everything...
-                [commandCache stop];
+                // we won't need it after, terminate...
+                [commandCache terminate];
             }
         }
 #endif
