@@ -405,9 +405,8 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     });
     if (connected) {
         dispatch_async(_synchronizationQueue, ^{
-            @strongify(self);
-            if (self->_retryingSemaphore) {
-                dispatch_semaphore_signal(self->_retryingSemaphore);
+            if (_retryingSemaphore) {
+                dispatch_semaphore_signal(_retryingSemaphore);
             }
         });
     }
