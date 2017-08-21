@@ -130,7 +130,9 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 }
 
 - (void)removeListener:(id<PFReachabilityListener>)listener {
+    @weakify(listener);
     dispatch_barrier_sync(_synchronizationQueue, ^{
+        @strongify(listener);
         [_listenersArray filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
             id weakObject = [evaluatedObject weakObject];
             return (weakObject == nil || weakObject == listener);
