@@ -21,7 +21,7 @@
 
 - (void)testHandlePushStringAlert {
     id mockedUtils = PFStrictProtocolMock(@protocol(PFPushInternalUtils));
-    OCMExpect([mockedUtils showAlertViewWithTitle:[OCMArg isNil] message:@"hello"]);
+    OCMExpect([mockedUtils showAlertViewWithTitle:@"ParseUnitTests-iOS-host" message:@"hello"]);
 
     // NOTE: Async parse preload step may call this selector.
     // Don't epxect it because it doesn't ALWAYs get to this point before returning from the method.
@@ -37,7 +37,7 @@
 
 - (void)testHandlePushDictionaryAlert {
     id mockedUtils = PFStrictProtocolMock(@protocol(PFPushInternalUtils));
-    OCMExpect([mockedUtils showAlertViewWithTitle:[OCMArg isNil] message:@"hello bob 1"]);
+    OCMExpect([mockedUtils showAlertViewWithTitle:@"ParseUnitTests-iOS-host" message:@"hello bob 1"]);
 
     // NOTE: Async parse preload step may call this selector.
     // Don't epxect it because it doesn't ALWAYs get to this point before returning from the method.
@@ -54,7 +54,7 @@
 
 - (void)testHandlePushWithNullSound {
     id mockedUtils = PFStrictProtocolMock(@protocol(PFPushInternalUtils));
-    OCMExpect([mockedUtils showAlertViewWithTitle:[OCMArg isNil] message:@"hello"]);
+    OCMExpect([mockedUtils showAlertViewWithTitle:@"ParseUnitTests-iOS-host" message:@"hello"]);
 
     // NOTE: Async parse preload step may call this selector.
     // Don't epxect it because it doesn't ALWAYs get to this point before returning from the method.
@@ -70,7 +70,7 @@
 
 - (void)testHandlePushWithDefaultSound {
     id mockedUtils = PFStrictProtocolMock(@protocol(PFPushInternalUtils));
-    OCMExpect([mockedUtils showAlertViewWithTitle:[OCMArg isNil] message:@"hello"]);
+    OCMExpect([mockedUtils showAlertViewWithTitle:@"ParseUnitTests-iOS-host" message:@"hello"]);
     OCMExpect([mockedUtils playVibrate]);
 
     // NOTE: Async parse preload step may call this selector.

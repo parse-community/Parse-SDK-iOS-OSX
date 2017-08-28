@@ -793,7 +793,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                completeData:(BOOL)completeData
                     decoder:(PFDecoder *)decoder {
     NSString *objectId = nil;
-    NSString *className = nil;
+    NSString *className = defaultClassName;
     if (dictionary != nil) {
         objectId = dictionary[@"objectId"];
         className = dictionary[@"className"] ?: defaultClassName;
