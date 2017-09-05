@@ -89,14 +89,13 @@
 - (void)setIconBadgeNumber:(NSInteger)iconBadgeNumber {
     if (self.iconBadgeNumber != iconBadgeNumber) {
 #if TARGET_OS_IOS
-        _iconBadgeNumber = iconBadgeNumber;
         dispatch_block_t block = ^{
             self.systemApplication.applicationIconBadgeNumber = iconBadgeNumber;
         };
         if ([NSThread currentThread].isMainThread) {
             block();
         } else {
-            dispatch_async(dispatch_get_main_queue(), block);
+            dispatch_sync(dispatch_get_main_queue(), block);
         }
 #elif PF_TARGET_OS_OSX
         [[NSApplication sharedApplication] dockTile].badgeLabel = [@(iconBadgeNumber) stringValue];
