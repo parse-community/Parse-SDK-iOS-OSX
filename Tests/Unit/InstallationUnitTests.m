@@ -9,6 +9,7 @@
 #import <OCMock/OCMock.h>
 
 #import "PFInstallation.h"
+#import "PFApplication.h"
 #import "PFUnitTestCase.h"
 #import "Parse.h"
 #import "Parse_Private.h"
@@ -80,6 +81,21 @@
     PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"deviceType"]);
     PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"installationId"]);
     PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"localeIdentifier"]);
+}
+
+- (void)testInstallationHasApplicationBadge {
+    [PFApplication currentApplication].systemApplication.applicationIconBadgeNumber = 10;
+    PFInstallation *installation = [PFInstallation currentInstallation];
+    PFAssertEqualInts(installation.badge, 10, @"Installation should have the same badge as application");
+}
+
+- (void)testInstallationSetsApplicationBadge {
+    [PFApplication currentApplication].systemApplication.applicationIconBadgeNumber = 20;
+    PFInstallation *installation = [PFInstallation currentInstallation];
+    installation.badge = 5;
+    PFAssertEqualInts(installation.badge, 5, @"Installation should have the same badge as application");
+    PFAssertEqualInts([PFApplication currentApplication].systemApplication.applicationIconBadgeNumber, 5, @"Installation should have the same badge as application");
+    PFAssertEqualInts([PFApplication currentApplication].iconBadgeNumber, 5, @"Installation should have the same badge as application");
 }
 
 @end
