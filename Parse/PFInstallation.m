@@ -279,24 +279,7 @@ static NSSet *protectedKeys;
 
 - (void)_updateBadgeFromDevice {
     // Get the application icon and update the installation if necessary.
-    __block NSNumber *applicationBadge;
-    dispatch_block_t block = ^{
-        applicationBadge = @([PFApplication currentApplication].iconBadgeNumber);
-    };
-
-    if ([NSThread currentThread].isMainThread) {
-        block();
-    } else {
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            block();
-            dispatch_semaphore_signal(semaphore);
-        });
-        dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_MSEC));
-        if (applicationBadge == nil) {
-            block();
-        }
-    }
+    NSNumber *applicationBadge = @([PFApplication currentApplication].iconBadgeNumber);
     NSNumber *installationBadge = [super objectForKey:PFInstallationKeyBadge];
     if (installationBadge == nil || ![applicationBadge isEqualToNumber:installationBadge]) {
         [super setObject:applicationBadge forKey:PFInstallationKeyBadge];
