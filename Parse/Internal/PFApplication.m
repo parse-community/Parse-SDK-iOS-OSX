@@ -40,8 +40,6 @@
 #if TARGET_OS_IOS
         [self.systemApplication addObserver:self forKeyPath:@"applicationIconBadgeNumber" options:NSKeyValueObservingOptionNew context:nil];
         _iconBadgeNumber = self.systemApplication.applicationIconBadgeNumber;
-#elif PF_TARGET_OS_OSX
-
 #endif
     }
     return self;
@@ -106,11 +104,13 @@
     }
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+#if TARGET_OS_IOS
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"applicationIconBadgeNumber"] && change) {
-        _iconBadgeNumber = [change[NSKeyValueChangeNewKey] integerValue];
+        _iconBadgeNumber = [change[@"new"] integerValue];
     }
 }
+#endif
 
 - (UIApplication *)systemApplication {
 #if TARGET_OS_WATCH
