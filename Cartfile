@@ -1,1 +1,1 @@
-github "flovilmart/Bolts-ObjC" "thread-sanitation"
+github "BoltsFramework/Bolts-ObjC" ~> 1.6
