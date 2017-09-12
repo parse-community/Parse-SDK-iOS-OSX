@@ -1096,7 +1096,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                         }
                         return task;
                     } @finally {
-                        [[Parse _currentManager].eventuallyQueue _notifyTestHelperObjectUpdated];
+                       
                     }
                 }];
                 return [BFTask taskWithResult:saveTask];

@@ -64,20 +64,7 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 - (void)_startMonitoringNetworkReachability;
 - (void)_stopMonitoringNetworkReachability;
 
-///--------------------------------------
-#pragma mark - Test Helper
-///--------------------------------------
-
-- (void)_setMaxAttemptsCount:(NSUInteger)attemptsCount;
-
-- (void)_setRetryInterval:(NSTimeInterval)retryInterval;
-
 - (void)_simulateReboot NS_REQUIRES_SUPER;
-
-- (int)_commandsInMemory;
-
-- (void)_notifyTestHelperObjectUpdated;
-
 @end
 
 @protocol PFEventuallyQueueSubclass <NSObject>
