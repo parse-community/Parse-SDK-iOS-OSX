@@ -16,7 +16,6 @@
 
 @class BFTask<__covariant BFGenericType>;
 @class PFEventuallyPin;
-@class PFEventuallyQueueTestHelper;
 @class PFObject;
 @protocol PFCommandRunnerProvider;
 
@@ -38,9 +37,6 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
  */
 @property (atomic, assign, readonly) BOOL monitorsReachability PF_WATCH_UNAVAILABLE;
 @property (nonatomic, assign, readonly, getter=isConnected) BOOL connected;
-
-// Gets notifications of various events happening in the command cache, so that tests can be synchronized.
-@property (nonatomic, strong, readonly) PFEventuallyQueueTestHelper *testHelper;
 
 ///--------------------------------------
 #pragma mark - Init
@@ -69,28 +65,5 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 - (void)pause NS_REQUIRES_SUPER;
 - (void)terminate NS_REQUIRES_SUPER;
 - (void)removeAllCommands NS_REQUIRES_SUPER;
-
-@end
-
-typedef enum {
-    PFEventuallyQueueEventCommandEnqueued, // A command was placed into the queue.
-    PFEventuallyQueueEventCommandNotEnqueued, // A command could not be placed into the queue.
-
-    PFEventuallyQueueEventCommandSucceded, // A command has successfully running on the server.
-    PFEventuallyQueueEventCommandFailed, // A command has failed on the server.
-
-    PFEventuallyQueueEventObjectUpdated, // An object's data was updated after a command completed.
-    PFEventuallyQueueEventObjectRemoved, // An object was removed because it was deleted before creation.
-
-    PFEventuallyQueueEventCount // The total number of items in this enum.
-} PFEventuallyQueueTestHelperEvent;
-
-@interface PFEventuallyQueueTestHelper : NSObject {
-    dispatch_semaphore_t events[PFEventuallyQueueEventCount];
-}
-
-- (void)clear;
-- (void)notify:(PFEventuallyQueueTestHelperEvent)event;
-- (BOOL)waitFor:(PFEventuallyQueueTestHelperEvent)event;
 
 @end
