@@ -145,7 +145,7 @@ typedef BOOL (^PFSubQueryMatcherBlock)(id object, NSArray *results);
         } else if ([key isEqualToString:@"updatedAt"] || [key isEqualToString:@"_updated_at"]) {
             return object.updatedAt;
         } else {
-            return object[key];
+            return key ? object[key] : nil;
         }
     } else if ([container isKindOfClass:[NSDictionary class]]) {
         return ((NSDictionary *)container)[key];
