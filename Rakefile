@@ -22,6 +22,8 @@ module Constants
   script_folder = File.expand_path(File.dirname(__FILE__))
 
   PARSE_CONSTANTS_HEADER = File.join(script_folder, 'Parse', 'PFConstants.h')
+  PARSE_PODSPEC = File.join(script_folder, 'Parse.podspec')
+
   PLISTS = [
     File.join(script_folder, 'Parse', 'Resources', 'Parse-iOS.Info.plist'),
     File.join(script_folder, 'Parse', 'Resources', 'Parse-OSX.Info.plist'),
@@ -54,6 +56,12 @@ module Constants
     PLISTS.each do |plist|
       update_info_plist_version(plist, version)
     end
+
+    podspec_file = File.open(PARSE_PODSPEC, 'r+')
+    podspec = podspec_file.read
+    podspec.gsub!(/(.*s.version\s*=\s*')(.*)(')/, "\\1#{version}\\3")
+    podspec_file.seek(0)
+    podspec_file.write(podspec)
   end
 
   def self.update_info_plist_version(plist_path, version)
@@ -156,6 +164,11 @@ namespace :package do
     `rm -rf #{build_folder} && mkdir -p #{build_folder}`
     `rm -rf #{bolts_build_folder} && mkdir -p #{bolts_build_folder}`
     `#{bolts_folder}/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos`
+  end
+
+  task :set_version, [:version] do |_, args|
+    version = args[:version] || Constants.current_version
+    Constants.update_version(version)
   end
 
   desc 'Build and package all frameworks for the release'
