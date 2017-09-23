@@ -310,7 +310,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 // @param error  The reason why it can't be serialized.
 + (BOOL)canBeSerializedAsValue:(id)value
                    afterSaving:(NSMutableArray *)saved
-                         error:(NSError **)error {
+                         error:(NSError * __autoreleasing *)error {
     if ([value isKindOfClass:[PFObject class]]) {
         PFObject *object = (PFObject *)value;
         if (!object.objectId && ![saved containsObject:object]) {
@@ -793,7 +793,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                completeData:(BOOL)completeData
                     decoder:(PFDecoder *)decoder {
     NSString *objectId = nil;
-    NSString *className = nil;
+    NSString *className = defaultClassName;
     if (dictionary != nil) {
         objectId = dictionary[@"objectId"];
         className = dictionary[@"className"] ?: defaultClassName;

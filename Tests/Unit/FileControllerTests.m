@@ -57,7 +57,7 @@
 
     OCMStub([mockedDataSource fileManager]).andReturn(mockedFileManager);
     OCMStub([mockedFileManager parseLocalSandboxDataDirectoryPath]).andReturn([self temporaryDirectory]);
-
+    OCMStub([mockedFileManager parseCacheItemPathForPathComponent:@"PFFileCache"]).andReturn([self temporaryDirectory]);
     return mockedDataSource;
 }
 

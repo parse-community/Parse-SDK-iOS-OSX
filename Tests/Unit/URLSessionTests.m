@@ -27,8 +27,8 @@
 @property (atomic, assign) NSUInteger taskIdentifier;
 @property (nonatomic, strong) NSURLRequest *originalRequest;
 
-@property (nonatomic, strong) void (^resumeBlock)();
-@property (nonatomic, strong) void (^cancelBlock)();
+@property (nonatomic, strong) void (^resumeBlock)(void);
+@property (nonatomic, strong) void (^cancelBlock)(void);
 
 @end
 

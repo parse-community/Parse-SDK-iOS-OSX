@@ -9,6 +9,7 @@
 #import <OCMock/OCMock.h>
 
 #import "PFInstallation.h"
+#import "PFApplication.h"
 #import "PFUnitTestCase.h"
 #import "Parse.h"
 #import "Parse_Private.h"
@@ -80,6 +81,33 @@
     PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"deviceType"]);
     PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"installationId"]);
     PFAssertThrowsInvalidArgumentException([installation removeObjectForKey:@"localeIdentifier"]);
+}
+
+- (void)testInstallationHasApplicationBadge {
+#if TARGET_OS_IOS
+    [PFApplication currentApplication].systemApplication.applicationIconBadgeNumber = 10;
+#elif PF_TARGET_OS_OSX
+    [[NSApplication sharedApplication] dockTile].badgeLabel = @"10";
+#endif
+    PFInstallation *installation = [PFInstallation currentInstallation];
+    PFAssertEqualInts(installation.badge, 10, @"Installation should have the same badge as application");
+}
+
+- (void)testInstallationSetsApplicationBadge {
+#if TARGET_OS_IOS
+    [PFApplication currentApplication].systemApplication.applicationIconBadgeNumber = 20;
+#elif PF_TARGET_OS_OSX
+    [[NSApplication sharedApplication] dockTile].badgeLabel = @"20";
+#endif
+    PFInstallation *installation = [PFInstallation currentInstallation];
+    installation.badge = 5;
+    PFAssertEqualInts(installation.badge, 5, @"Installation should have the same badge as application");
+    PFAssertEqualInts([PFApplication currentApplication].iconBadgeNumber, 5, @"Installation should have the same badge as application");
+#if TARGET_OS_IOS
+    PFAssertEqualInts([PFApplication currentApplication].systemApplication.applicationIconBadgeNumber, 5, @"Installation should have the same badge as application");
+#elif PF_TARGET_OS_OSX
+    PFAssertStringContains([[NSApplication sharedApplication] dockTile].badgeLabel, @"5");
+#endif
 }
 
 @end
