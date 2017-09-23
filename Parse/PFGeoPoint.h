@@ -57,6 +57,12 @@ typedef void(^PFGeoPointResultBlock)(PFGeoPoint *_Nullable geoPoint, NSError *_N
 /**
  Fetches the current device location and executes a block with a new `PFGeoPoint` object.
 
+ @discussion You should not block the main thread while calling this method, as underneath,
+ it makes a call to UIApplication.applicationState that requires to be on the main thread.
+
+ If you were to use a semaphore wait/signal to 'wait' for the result, you'd effectively deadlock
+ your app.
+
  @param resultBlock A block which takes the newly created `PFGeoPoint` as an argument.
  It should have the following argument signature: `^(PFGeoPoint *geoPoint, NSError *error)`
  */
