@@ -12,7 +12,7 @@ env:
     - TEST_TYPE=iOS
     - TEST_TYPE=macOS
     - TEST_TYPE=Deployment
-    - TEST_TYPE=Starters
+    - TEST_TYPE=Carthage
     - TEST_TYPE=CocoaPods
 git:
   submodules: false
