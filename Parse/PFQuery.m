@@ -311,7 +311,7 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     return [self whereKey:key condition:PFQueryKeyGeoIntersects object:dictionary];
 }
 
-- (instancetype)whereKey:(NSString *)key fullText:(NSString *)text {
+- (instancetype)whereKey:(NSString *)key matchesText:(NSString *)text {
     NSDictionary *dictionary = @{ PFQueryOptionKeySearch : @{PFQueryOptionKeyTerm : text} };
     return [self whereKey:key condition:PFQueryKeyText object:dictionary];
 }

@@ -201,11 +201,11 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *_Nullable obje
  string using Full Text Search
 
  @param key The key to be constrained.
- @param value the substring that the value must contain.
+ @param text the substring that the value must contain.
 
  @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
-- (instancetype)whereKey:(NSString *)key fullText:(NSString *)text;
+- (instancetype)whereKey:(NSString *)key matchesText:(NSString *)text;
 
 /**
  Add a constraint to the query that requires a particular key's object

@@ -433,9 +433,9 @@
     XCTAssertEqualObjects(query.state.conditions, (@{ @"yolo" : @{@"$geoIntersects" : @{@"$point" : geoPoint}} }));
 }
 
-- (void)testWhereKeyFullText {
+- (void)testWhereKeyMatchesText {
     PFQuery *query = [PFQuery queryWithClassName:@"a"];
-    [query whereKey:@"yolo" fullText:@"yarr"];
+    [query whereKey:@"yolo" matchesText:@"yarr"];
     XCTAssertEqualObjects(query.state.conditions, (@{ @"yolo" : @{@"$text" : @{@"$search" : @{@"$term" : @"yarr"} }} }));
 }
 
