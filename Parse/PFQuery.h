@@ -96,9 +96,9 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *_Nullable obje
 
 /**
  Make the query include `PFObject`s that have a reference stored at the provided keys.
- 
+
  @param keys The keys to load child `PFObject`s for.
- 
+
  @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)includeKeys:(NSArray<NSString *> *)keys;
@@ -195,6 +195,17 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *_Nullable obje
  @return The same instance of `PFQuery` as the receiver. This allows method chaining.
  */
 - (instancetype)whereKey:(NSString *)key notEqualTo:(id)object;
+
+/**
+ Add a constraint for finding string values that contain a provided
+ string using Full Text Search
+
+ @param key The key to be constrained.
+ @param text the substring that the value must contain.
+
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
+ */
+- (instancetype)whereKey:(NSString *)key matchesText:(NSString *)text;
 
 /**
  Add a constraint to the query that requires a particular key's object
