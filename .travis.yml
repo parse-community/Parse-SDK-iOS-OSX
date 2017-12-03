@@ -7,8 +7,9 @@ branches:
     - /^v?[0-9]+.[0-9]+.[0-9]+(-.*)?$/
 
 env:
-  - LC_CTYPE=en_US.UTF-8
-  - LANG=en_US.UTF-8
+  global:
+    - LC_CTYPE=en_US.UTF-8
+    - LANG=en_US.UTF-8
 
 git:
   submodules: false
@@ -19,9 +20,6 @@ jobs:
   include:
     - stage: test
       env:
-        global:
-          - LC_CTYPE=en_US.UTF-8
-          - LANG=en_US.UTF-8
         matrix:
           - TEST_TYPE=iOS
           - TEST_TYPE=macOS
