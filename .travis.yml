@@ -32,6 +32,16 @@ jobs:
       env: Deployment
       install: bundle install
       script: bundle exec rake test:deployment
+      deploy:
+        provider: releases
+        api_key:
+          secure: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+        file_glob: true
+        file: build/release/*
+        skip_cleanup: true
+        on:
+          tags: true
+          all_branches: true
     - stage: release
       env: Cocoapods
       install: bundle install
