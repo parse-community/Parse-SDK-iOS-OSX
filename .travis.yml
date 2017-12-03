@@ -48,7 +48,7 @@ jobs:
       script: bundle exec rake test:cocoapods
       deploy:
         provider: script
-        script: pod trunk push Parse.podspec
+        script: pod trunk push donotuse-testing.podspec
         on:
           tags: true
           all_branches: true
