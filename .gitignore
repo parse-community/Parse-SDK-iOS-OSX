@@ -30,6 +30,7 @@ xcuserdata
 Pods/
 Carthage/Build
 docs/
+./Bolts
 
 ## AppCode
 .idea/
