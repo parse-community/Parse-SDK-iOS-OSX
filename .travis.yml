@@ -25,22 +25,22 @@ jobs:
         matrix:
           - TEST_TYPE=iOS
           - TEST_TYPE=macOS
-        install: bundle install
-        script:
-        - |
-          RAKE_TASK_NAME=$(echo "$TEST_TYPE" | tr '[:upper:]' '[:lower:]')
-          bundle exec rake test:$RAKE_TASK_NAME
-        after_success:  bash <(curl -s https://codecov.io/bash)
+      install: bundle install
+      script:
+      - |
+        RAKE_TASK_NAME=$(echo "$TEST_TYPE" | tr '[:upper:]' '[:lower:]')
+        bundle exec rake test:$RAKE_TASK_NAME
+      after_success:  bash <(curl -s https://codecov.io/bash)
 
-      - stage: release
-        install: bundle install
-        script: bundle exec rake test:deployment
-      - stage: release
-        install: bundle install
-        script: bundle exec rake test:cocoapods
-      - stage: release
-        install:
-        - bundle install
-        - brew update
-        - brew install carthage || brew upgrade carthage
-        script: bundle exec rake test:carthage
+    - stage: release
+      install: bundle install
+      script: bundle exec rake test:deployment
+    - stage: release
+      install: bundle install
+      script: bundle exec rake test:cocoapods
+    - stage: release
+      install:
+      - bundle install
+      - brew update
+      - brew install carthage || brew upgrade carthage
+      script: bundle exec rake test:carthage
