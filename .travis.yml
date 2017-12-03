@@ -48,6 +48,7 @@ jobs:
       script: bundle exec rake test:cocoapods
       deploy:
         provider: script
+        skip_cleanup: true
         script: pod trunk push donotuse-testing.podspec
         on:
           tags: true
