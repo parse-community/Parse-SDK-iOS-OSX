@@ -4,7 +4,7 @@ jazzy \
   --author_url http://parseplatform.org \
   --github_url https://github.com/parse-community/Parse-SDK-iOS-OSX \
   --module-version 1.15.0 \
-  --framework-root Parse \
+  --framework-root . \
   --umbrella-header Parse/Parse.h \
-  --sdk iphoneos\
+  --sdk iphonesimulator\
   --module Parse
