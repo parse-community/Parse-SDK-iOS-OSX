@@ -49,7 +49,7 @@ jobs:
       deploy:
         provider: script
         skip_cleanup: true
-        script: pod trunk push donotuse-testing.podspec
+        script: bundle exec pod trunk push donotuse-testing.podspec
         on:
           tags: true
           all_branches: true
