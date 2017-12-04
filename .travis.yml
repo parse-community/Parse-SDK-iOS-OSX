@@ -45,8 +45,7 @@ jobs:
     - stage: release
       env: Cocoapods
       install: bundle install
-      # script: bundle exec rake test:cocoapods
-      script: skip
+      script: bundle exec rake test:cocoapods
       deploy:
         provider: script
         skip_cleanup: true
