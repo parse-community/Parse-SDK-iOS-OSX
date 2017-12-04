@@ -5,6 +5,7 @@ ver=`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Parse/Resourc
 
 jazzy \
   --objc \
+  --clean \
   --author Parse \
   --author_url http://parseplatform.org \
   --github_url https://github.com/parse-community/Parse-SDK-iOS-OSX \
@@ -16,6 +17,7 @@ jazzy \
   --exclude=./Bolts/* \
   --theme fullwidth \
   --skip-undocumented \
-  --module Parse
+  --module Parse \
+  --output docs/api
 
 rm -rf ./Bolts # cleanup temporary bolts
