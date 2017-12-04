@@ -11,37 +11,37 @@ git:
 before_install:
   - git submodule update --init --recursive
 
-# stage: test
-# env:
-#   global:
-#   - LC_CTYPE=en_US.UTF-8
-#   - LANG=en_US.UTF-8
-#   matrix:
-#   - TEST_TYPE=iOS
-#   - TEST_TYPE=macOS
-# install: bundle install
-# script:
-# - |
-#   RAKE_TASK_NAME=$(echo "$TEST_TYPE" | tr '[:upper:]' '[:lower:]')
-#   bundle exec rake test:$RAKE_TASK_NAME
-# after_success:  bash <(curl -s https://codecov.io/bash)
+stage: test
+env:
+  global:
+  - LC_CTYPE=en_US.UTF-8
+  - LANG=en_US.UTF-8
+  matrix:
+  - TEST_TYPE=iOS
+  - TEST_TYPE=macOS
+install: bundle install
+script:
+- |
+  RAKE_TASK_NAME=$(echo "$TEST_TYPE" | tr '[:upper:]' '[:lower:]')
+  bundle exec rake test:$RAKE_TASK_NAME
+after_success:  bash <(curl -s https://codecov.io/bash)
 
 jobs:
   include:
-    # - stage: release
-    #   env: Deployment
-    #   install: bundle install
-    #   script: bundle exec rake test:deployment
-    #   deploy:
-    #     provider: releases
-    #     api_key:
-    #       secure: $GITHUB_TOKEN # Set in travis-ci.org dashboard
-    #     file_glob: true
-    #     file: build/release/*
-    #     skip_cleanup: true
-    #     on:
-    #       tags: true
-    #       all_branches: true
+    - stage: release
+      env: Deployment
+      install: bundle install
+      script: bundle exec rake test:deployment
+      deploy:
+        provider: releases
+        api_key:
+          secure: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+        file_glob: true
+        file: build/release/*
+        skip_cleanup: true
+        on:
+          tags: true
+          all_branches: true
     - stage: release
       env: Cocoapods
       install: bundle install
@@ -54,10 +54,10 @@ jobs:
         on:
           tags: true
           all_branches: true
-    # - stage: release
-    #   env: Carthage
-    #   install:
-    #   - bundle install
-    #   - brew update
-    #   - brew install carthage || brew upgrade carthage
-    #   script: bundle exec rake test:carthage
+    - stage: release
+      env: Carthage
+      install:
+      - bundle install
+      - brew update
+      - brew install carthage || brew upgrade carthage
+      script: bundle exec rake test:carthage
