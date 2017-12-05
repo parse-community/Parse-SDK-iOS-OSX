@@ -6,3 +6,5 @@ gem 'naturally', '~> 1.3.2'
 gem 'xcpretty'
 gem 'xcodeproj'
 gem 'cocoapods'
+gem 'jazzy', '~> 0.9.0'
+
