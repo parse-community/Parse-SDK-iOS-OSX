@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/parse-community/Parse-SDK-iOS-OSX.git", :tag => s.version.to_s }
 
   s.platform = :ios, :osx, :tvos, :watchos
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.9'
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
@@ -86,5 +86,5 @@ Pod::Spec.new do |s|
 
   s.libraries        = 'z', 'sqlite3'
 
-  s.dependency 'Bolts/Tasks', '~> 1.8'
+  s.dependency 'Bolts/Tasks', '~> 1.9'
 end
