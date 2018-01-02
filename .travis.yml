@@ -1,6 +1,6 @@
 language: objective-c
 os: osx
-osx_image: xcode8.3
+osx_image: xcode9.2
 branches:
   only:
     - master
@@ -32,6 +32,8 @@ jobs:
       env: Deployment
       install: bundle install
       script:
+      # Create a simulator that match current SDK + name
+      - xcrun simctl create "Apple TV 1080p" com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p com.apple.CoreSimulator.SimRuntime.tvOS-11-2
       - bundle exec rake test:deployment
       - ./Scripts/jazzy.sh
       deploy:
