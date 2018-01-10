@@ -66,17 +66,20 @@ workflows:
     jobs:
       - ios
       - macos
-      - deployment
       - jazzy
-      - carthage:
-          requires:
-            - ios
-            - macos
+  nightly:
+    jobs:
+      - deployment
       - cocoapods:
           requires:
-            - ios
-            - macos
-
+            - deployment
+      - carthage:
+          requires:
+            - deployment
+    triggers:
+      - schedule:
+          cron: "0 1 * * *"
+          filters: *filter-only-master
   publish:
     jobs:
       - hold:
