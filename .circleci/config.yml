@@ -4,7 +4,7 @@ jobs:
 
     # Specify the Xcode version to use
     macos:
-      xcode: "9.2"
+      xcode: "9.1"
     shell: /bin/bash --login -eo pipefail
 
     steps:
