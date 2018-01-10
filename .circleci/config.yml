@@ -68,14 +68,14 @@ workflows:
       - macos
       - deployment
       - jazzy
-      - carthage
-        requires:
-          - ios
-          - macos
-      - cocoapods
-        requires:
-          - ios
-          - macos
+      - carthage:
+          requires:
+            - ios
+            - macos
+      - cocoapods:
+          requires:
+            - ios
+            - macos
 
   publish:
     jobs:
