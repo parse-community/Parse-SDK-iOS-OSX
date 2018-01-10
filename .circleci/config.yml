@@ -43,7 +43,7 @@ jobs:
 
 workflows:
   version: 2
-  test:
+  pr:
     jobs:
       - setup
       - test:
