@@ -1,0 +1,42 @@
+# iOS CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/ios-migrating-from-1-2/ for more details
+#
+version: 2
+jobs:
+  build:
+
+    # Specify the Xcode version to use
+    macos:
+      xcode: "9.2"
+    shell: /bin/bash --login -eo pipefail
+
+    steps:
+      - checkout
+      - run:
+          name: Git Submodules
+          command: git submodule update --init --recursive
+
+      # Install gems
+      - run:
+          name: Bundle Install
+          command: |
+            gem install bundler;
+            bundle install;
+
+      # Build the app and run tests
+      - run:
+          name: iOS Tests
+          command: bundle exec rake test:ios
+      - run:
+          name: MacOS Tests
+          command: bundle exec rake test:macos
+      - run:
+          name: CodeCov.sh
+          command: bash <(curl -s https://codecov.io/bash)
+      - run:
+          name: Test Deployment
+          command: |
+            xcrun simctl create "Apple TV 1080p" com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p com.apple.CoreSimulator.SimRuntime.tvOS-11-2
+            bundle exec rake test:deployment
+            ./Scripts/jazzy.sh
