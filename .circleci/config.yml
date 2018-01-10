@@ -1,7 +1,6 @@
 version: 2
 jobs:
-  build:
-
+  setup:
     # Specify the Xcode version to use
     macos:
       xcode: "9.0"
@@ -19,7 +18,8 @@ jobs:
           command: |
             gem install bundler
             bundle install
-
+  test:
+    steps:
       # Build the app and run tests
       - run:
           name: iOS Tests
@@ -35,6 +35,20 @@ jobs:
           command: |
             xcrun simctl create "Apple TV 1080p" com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p com.apple.CoreSimulator.SimRuntime.tvOS-11-2
             bundle exec rake test:deployment
+  docs:
+    steps:
       - run:
           name: Test Docs
           command: ./Scripts/jazzy.sh
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - setup
+      - test:
+        requires:
+          - setup
+      - docs:
+        requires:
+          - setup
