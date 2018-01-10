@@ -1,11 +1,4 @@
 version: 2
-checkout:
-  post: 
-    - git submodule update --init --recursive
-dependencies:
-  post:
-    - gem install bundler
-    - bundle install
 jobs:
   build:
 
@@ -15,6 +8,18 @@ jobs:
     shell: /bin/bash --login -eo pipefail
 
     steps:
+      - checkout
+      - run:
+          name: Git Submodules
+          command: git submodule update --init --recursive
+
+      # Install gems
+      - run:
+          name: Bundle Install
+          command: |
+            gem install bundler
+            bundle install
+
       # Build the app and run tests
       - run:
           name: iOS Tests
@@ -30,4 +35,6 @@ jobs:
           command: |
             xcrun simctl create "Apple TV 1080p" com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p com.apple.CoreSimulator.SimRuntime.tvOS-11-2
             bundle exec rake test:deployment
-            ./Scripts/jazzy.sh
+      - run:
+          name: Test Docs
+          command: ./Scripts/jazzy.sh
