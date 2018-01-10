@@ -33,24 +33,32 @@ jobs:
       - checkout
       - run: *prepare
       - run: |
-            xcrun simctl create "Apple TV 1080p" com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p com.apple.CoreSimulator.SimRuntime.tvOS-11-2
+            xcrun simctl create "Apple TV 1080p" com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p com.apple.CoreSimulator.SimRuntime.tvOS-11-0
             bundle exec rake test:deployment
   jazzy:
     <<: *defaults
     steps:
       - checkout
       - run: *prepare
-      - run:
-          name: Test Docs
-          command: ./Scripts/jazzy.sh
+      - run: ./Scripts/jazzy.sh
+  carthage:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: bundle exec rake test:carthage
+  cocoapods:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: bundle exec rake test:cocoapods
   publish-cocoapods:
     <<: *defaults
     steps:
       - checkout
       - run: *prepare
-      - run:
-          name: Test Docs
-          command: ./Scripts/publish.sh
+      - run: ./Scripts/publish.sh
 
 workflows:
   version: 2
@@ -60,10 +68,20 @@ workflows:
       - macos
       - deployment
       - jazzy
+      - carthage
+        requires:
+          - ios
+          - macos
+      - cocoapods
+        requires:
+          - ios
+          - macos
+
   publish:
     jobs:
       - hold:
           type: approval
+          filters: *filter-only-master
       - publish-cocoapods:
           requires:
             - hold
