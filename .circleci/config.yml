@@ -21,6 +21,7 @@ jobs:
       - checkout
       - run: *prepare
       - run: bundle exec rake test:ios
+      - run: bundle exec rake test:facebook_utils:ios
   macos:
     <<: *defaults
     steps:
