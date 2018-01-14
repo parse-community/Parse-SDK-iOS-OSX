@@ -21,14 +21,14 @@ module Constants
 
   script_folder = File.expand_path(File.dirname(__FILE__))
 
-  PARSE_CONSTANTS_HEADER = File.join(script_folder, 'Parse', 'PFConstants.h')
+  PARSE_CONSTANTS_HEADER = File.join(script_folder, 'Parse', 'Parse', 'PFConstants.h')
   PARSE_PODSPEC = File.join(script_folder, 'Parse.podspec')
 
   PLISTS = [
-    File.join(script_folder, 'Parse', 'Resources', 'Parse-iOS.Info.plist'),
-    File.join(script_folder, 'Parse', 'Resources', 'Parse-OSX.Info.plist'),
-    File.join(script_folder, 'Parse', 'Resources', 'Parse-watchOS.Info.plist'),
-    File.join(script_folder, 'Parse', 'Resources', 'Parse-tvOS.Info.plist'),
+    File.join(script_folder, 'Parse','Parse', 'Resources', 'Parse-iOS.Info.plist'),
+    File.join(script_folder, 'Parse','Parse', 'Resources', 'Parse-OSX.Info.plist'),
+    File.join(script_folder, 'Parse','Parse', 'Resources', 'Parse-watchOS.Info.plist'),
+    File.join(script_folder, 'Parse','Parse', 'Resources', 'Parse-tvOS.Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
@@ -95,12 +95,12 @@ namespace :build do
   desc 'Build watchOS framework.'
   task :watchos do
     task = XCTask::BuildFrameworkTask.new do |t|
-      t.directory = script_folder
+      t.directory = File.join(script_folder, 'Parse')
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::WATCHOS
       t.framework_name = 'Parse.framework'
 
-      t.workspace = 'Parse.xcworkspace'
+      t.workspace = '../Parse.xcworkspace'
       t.scheme = 'Parse-watchOS'
       t.configuration = 'Release'
     end
@@ -114,12 +114,12 @@ namespace :build do
   desc 'Build macOS framework.'
   task :macos do
     task = XCTask::BuildFrameworkTask.new do |t|
-      t.directory = script_folder
+      t.directory = File.join(script_folder, 'Parse')
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::OSX
       t.framework_name = 'Parse.framework'
 
-      t.workspace = 'Parse.xcworkspace'
+      t.workspace = '../Parse.xcworkspace'
       t.scheme = 'Parse-macOS'
       t.configuration = 'Release'
     end
@@ -133,12 +133,12 @@ namespace :build do
   desc 'Build tvOS framework.'
   task :tvos do
     task = XCTask::BuildFrameworkTask.new do |t|
-      t.directory = script_folder
+      t.directory = File.join(script_folder, 'Parse')
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::TVOS
       t.framework_name = 'Parse.framework'
 
-      t.workspace = 'Parse.xcworkspace'
+      t.workspace = '../Parse.xcworkspace'
       t.scheme = 'Parse-tvOS'
       t.configuration = 'Release'
     end
@@ -146,6 +146,45 @@ namespace :build do
     unless result
       puts 'Failed to build tvOS Framework.'
       exit(1)
+    end
+  end
+
+  namespace :facebook_utils do
+    desc 'Build iOS FacebookUtils framework.'
+    task :ios do
+      task = XCTask::BuildFrameworkTask.new do |t|
+        t.directory = File.join(script_folder, 'ParseFacebookUtils')
+        t.build_directory = File.join(build_folder, 'iOS')
+        t.framework_type = XCTask::FrameworkType::IOS
+        t.framework_name = 'ParseFacebookUtilsV4.framework'
+        t.workspace = '../Parse.xcworkspace'
+        t.scheme = 'ParseFacebookUtilsV4-iOS'
+        t.configuration = 'Release'
+      end
+  
+      result = task.execute
+      unless result
+        puts 'Failed to build iOS FacebookUtils Framework.'
+        exit(1)
+      end
+    end
+  
+    desc 'Build tvOS FacebookUtils framework.'
+    task :tvos do
+      task = XCTask::BuildFrameworkTask.new do |t|
+        t.directory = File.join(script_folder, 'ParseFacebookUtils')
+        t.build_directory = File.join(build_folder, 'tvOS')
+        t.framework_type = XCTask::FrameworkType::TVOS
+        t.framework_name = 'ParseFacebookUtilsV4.framework'
+        t.workspace = '../Parse.xcworkspace'
+        t.scheme = 'ParseFacebookUtilsV4-tvOS'
+        t.configuration = 'Release'
+      end
+      result = task.execute
+      unless result
+        puts 'Failed to build tvOS FacebookUtils Framework.'
+        exit(1)
+      end
     end
   end
 end
@@ -183,7 +222,11 @@ namespace :package do
     make_package(release_folder,
                  [ios_framework_path, bolts_path],
                  package_ios_name)
-
+    
+    Rake::Task['build:facebook_utils:ios'].invoke
+    ios_fb_utils_framework_path = File.join(build_folder, 'iOS', 'ParseFacebookUtilsV4.framework')
+    make_package(release_folder, [ios_fb_utils_framework_path], 'ParseFacebookUtils-iOS.zip')
+    
     ## Build macOS Framework
     Rake::Task['build:macos'].invoke
     bolts_path = File.join(bolts_build_folder, 'osx', 'Bolts.framework')
@@ -192,13 +235,17 @@ namespace :package do
                  [osx_framework_path, bolts_path],
                  package_macos_name)
 
-   ## Build tvOS Framework
-   Rake::Task['build:tvos'].invoke
-   bolts_path = File.join(bolts_build_folder, 'tvOS', 'Bolts.framework')
-   tvos_framework_path = File.join(build_folder, 'Parse.framework')
-   make_package(release_folder,
-                [tvos_framework_path, bolts_path],
-                package_tvos_name)
+    ## Build tvOS Framework
+    Rake::Task['build:tvos'].invoke
+    bolts_path = File.join(bolts_build_folder, 'tvOS', 'Bolts.framework')
+    tvos_framework_path = File.join(build_folder, 'Parse.framework')
+    make_package(release_folder,
+                  [tvos_framework_path, bolts_path],
+                  package_tvos_name)
+    
+    Rake::Task['build:facebook_utils:tvos'].invoke
+    tvos_fb_utils_framework_path = File.join(build_folder, 'tvOS', 'ParseFacebookUtilsV4.framework')
+    make_package(release_folder, [tvos_fb_utils_framework_path], 'ParseFacebookUtils-tvOS.zip')
 
     ## Build watchOS Framework
     Rake::Task['build:watchos'].invoke
@@ -345,6 +392,32 @@ namespace :test do
     unless task.execute
       puts 'OS X Tests Failed!'
       exit(1)
+    end
+  end
+
+  namespace :facebook_utils do
+    desc 'Build iOS FacebookUtils framework.'
+    task :ios do
+      task = XCTask::BuildTask.new do |t|
+        t.directory = script_folder
+        t.workspace = 'Parse.xcworkspace'
+
+        t.scheme = 'ParseFacebookUtilsV4-iOS'
+        t.sdk = 'iphonesimulator'
+        t.destinations = ["\"platform=iOS Simulator,OS=9.1,name=iPhone 6s\"",]
+        t.configuration = 'Debug'
+        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
+                                 "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
+  
+        t.actions = [XCTask::BuildAction::TEST]
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+  
+      result = task.execute
+      unless result
+        puts 'Failed to build iOS FacebookUtils Framework.'
+        exit(1)
+      end
     end
   end
 

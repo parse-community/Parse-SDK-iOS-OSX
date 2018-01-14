@@ -2,7 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Parse.xcodeproj">
+      location = "group:Parse/Parse.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ParseFacebookUtils/ParseFacebookUtils.xcodeproj">
    </FileRef>
    <Group
       location = "container:"

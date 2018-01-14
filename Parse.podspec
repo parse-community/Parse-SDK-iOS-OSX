@@ -15,76 +15,110 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
 
-  s.requires_arc = true
+  s.default_subspec = 'SDK'
+  
+  s.subspec 'SDK' do |s|
+    s.requires_arc = true
 
-  s.source_files = 'Parse/*.{h,m}',
-                   'Parse/Internal/**/*.{h,m}'
-  s.public_header_files = 'Parse/*.h'
+    s.source_files = 'Parse/Parse/*.{h,m}',
+                     'Parse/Parse/Internal/**/*.{h,m}'
+    s.public_header_files = 'Parse/Parse/*.h'
+  
+    s.ios.exclude_files = 'Parse/Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
+    s.osx.exclude_files = 'Parse/Parse/PFNetworkActivityIndicatorManager.{h,m}',
+                          'Parse/Parse/PFProduct.{h,m}',
+                          'Parse/Parse/PFPurchase.{h,m}',
+                          'Parse/Parse/Internal/PFAlertView.{h,m}',
+                          'Parse/Parse/Internal/Product/**/*.{h,m}',
+                          'Parse/Parse/Internal/Purchase/**/*.{h,m}',
+                          'Parse/Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
+    s.tvos.exclude_files = 'Parse/Parse/PFNetworkActivityIndicatorManager.{h,m}',
+                           'Parse/Parse/PFPush.{h,m}',
+                           'Parse/Parse/PFPush+Synchronous.{h,m}',
+                           'Parse/Parse/PFPush+Deprecated.{h,m}',
+                           'Parse/Parse/PFInstallation.{h,m}',
+                           'Parse/Parse/Internal/PFAlertView.{h,m}',
+                           'Parse/Parse/Internal/Push/**/*.{h,m}',
+                           'Parse/Parse/Internal/Installation/Controller/*.{h,m}',
+                           'Parse/Parse/Internal/Installation/Constants/*.{h,m}',
+                           'Parse/Parse/Internal/Installation/CurrentInstallationController/*.{h,m}',
+                           'Parse/Parse/Internal/Installation/PFInstallationPrivate.h',
+                           'Parse/Parse/Internal/Commands/PFRESTPushCommand.{h,m}'
+    s.watchos.exclude_files = 'Parse/Parse/PFNetworkActivityIndicatorManager.{h,m}',
+                              'Parse/Parse/PFProduct.{h,m}',
+                              'Parse/Parse/PFPurchase.{h,m}',
+                              'Parse/Parse/PFPush.{h,m}',
+                              'Parse/Parse/PFPush+Synchronous.{h,m}',
+                              'Parse/Parse/PFPush+Deprecated.{h,m}',
+                              'Parse/Parse/PFInstallation.{h,m}',
+                              'Parse/Parse/Internal/PFAlertView.{h,m}',
+                              'Parse/Parse/Internal/PFReachability.{h,m}',
+                              'Parse/Parse/Internal/Product/**/*.{h,m}',
+                              'Parse/Parse/Internal/Purchase/**/*.{h,m}',
+                              'Parse/Parse/Internal/Push/**/*.{h,m}',
+                              'Parse/Parse/Internal/Installation/Controller/*.{h,m}',
+                              'Parse/Parse/Internal/Installation/Constants/*.{h,m}',
+                              'Parse/Parse/Internal/Installation/CurrentInstallationController/*.{h,m}',
+                              'Parse/Parse/Internal/Installation/PFInstallationPrivate.h',
+                              'Parse/Parse/Internal/Commands/PFRESTPushCommand.{h,m}',
+                              'Parse/Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
+  
+    s.resources = 'Parse/Parse/Resources/en.lproj'
+  
+    s.ios.frameworks = 'AudioToolbox',
+                       'CFNetwork',
+                       'CoreGraphics',
+                       'CoreLocation',
+                       'QuartzCore',
+                       'Security',
+                       'StoreKit',
+                       'SystemConfiguration'
+    s.ios.weak_frameworks = 'Accounts',
+                            'Social'
+    s.osx.frameworks = 'ApplicationServices',
+                       'CFNetwork',
+                       'CoreGraphics',
+                       'CoreLocation',
+                       'QuartzCore',
+                       'Security',
+                       'SystemConfiguration'
+    s.tvos.frameworks = 'CoreLocation',
+                        'StoreKit',
+                        'SystemConfiguration',
+                        'Security'
+  
+    s.libraries        = 'z', 'sqlite3'
+  
+    s.dependency 'Bolts/Tasks', '~> 1.9'
+  end
 
-  s.ios.exclude_files = 'Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
-  s.osx.exclude_files = 'Parse/PFNetworkActivityIndicatorManager.{h,m}',
-                        'Parse/PFProduct.{h,m}',
-                        'Parse/PFPurchase.{h,m}',
-                        'Parse/Internal/PFAlertView.{h,m}',
-                        'Parse/Internal/Product/**/*.{h,m}',
-                        'Parse/Internal/Purchase/**/*.{h,m}',
-                        'Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
-  s.tvos.exclude_files = 'Parse/PFNetworkActivityIndicatorManager.{h,m}',
-                         'Parse/PFPush.{h,m}',
-                         'Parse/PFPush+Synchronous.{h,m}',
-                         'Parse/PFPush+Deprecated.{h,m}',
-                         'Parse/PFInstallation.{h,m}',
-                         'Parse/Internal/PFAlertView.{h,m}',
-                         'Parse/Internal/Push/**/*.{h,m}',
-                         'Parse/Internal/Installation/Controller/*.{h,m}',
-                         'Parse/Internal/Installation/Constants/*.{h,m}',
-                         'Parse/Internal/Installation/CurrentInstallationController/*.{h,m}',
-                         'Parse/Internal/Installation/PFInstallationPrivate.h',
-                         'Parse/Internal/Commands/PFRESTPushCommand.{h,m}'
-  s.watchos.exclude_files = 'Parse/PFNetworkActivityIndicatorManager.{h,m}',
-                            'Parse/PFProduct.{h,m}',
-                            'Parse/PFPurchase.{h,m}',
-                            'Parse/PFPush.{h,m}',
-                            'Parse/PFPush+Synchronous.{h,m}',
-                            'Parse/PFPush+Deprecated.{h,m}',
-                            'Parse/PFInstallation.{h,m}',
-                            'Parse/Internal/PFAlertView.{h,m}',
-                            'Parse/Internal/PFReachability.{h,m}',
-                            'Parse/Internal/Product/**/*.{h,m}',
-                            'Parse/Internal/Purchase/**/*.{h,m}',
-                            'Parse/Internal/Push/**/*.{h,m}',
-                            'Parse/Internal/Installation/Controller/*.{h,m}',
-                            'Parse/Internal/Installation/Constants/*.{h,m}',
-                            'Parse/Internal/Installation/CurrentInstallationController/*.{h,m}',
-                            'Parse/Internal/Installation/PFInstallationPrivate.h',
-                            'Parse/Internal/Commands/PFRESTPushCommand.{h,m}',
-                            'Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
-
-  s.resources = 'Parse/Resources/en.lproj'
-
-  s.ios.frameworks = 'AudioToolbox',
-                     'CFNetwork',
-                     'CoreGraphics',
-                     'CoreLocation',
-                     'QuartzCore',
-                     'Security',
-                     'StoreKit',
-                     'SystemConfiguration'
-  s.ios.weak_frameworks = 'Accounts',
-                          'Social'
-  s.osx.frameworks = 'ApplicationServices',
-                     'CFNetwork',
-                     'CoreGraphics',
-                     'CoreLocation',
-                     'QuartzCore',
-                     'Security',
-                     'SystemConfiguration'
-  s.tvos.frameworks = 'CoreLocation',
-                      'StoreKit',
-                      'SystemConfiguration',
-                      'Security'
-
-  s.libraries        = 'z', 'sqlite3'
-
-  s.dependency 'Bolts/Tasks', '~> 1.9'
+  s.subspec 'FacebookUtils' do |s|
+    s.platform = :ios, :tvos
+    s.ios.deployment_target = '8.0'
+    s.tvos.deployment_target = '9.0'
+    s.requires_arc = true
+  
+    s.public_header_files = 'ParseFacebookUtils/ParseFacebookUtils/*.h'
+    s.source_files = 'ParseFacebookUtils/ParseFacebookUtils/**/*.{h,m}'
+    s.exclude_files = 'ParseFacebookUtils/ParseFacebookUtils/ParseFacebookUtilsV4.h'
+    s.ios.exclude_files = 'ParseFacebookUtils/ParseFacebookUtils/Internal/AuthenticationProvider/tvOS/**/*.{h,m}'
+    s.tvos.exclude_files = 'ParseFacebookUtils/ParseFacebookUtils/Internal/AuthenticationProvider/iOS/**/*.{h,m}'
+  
+    s.frameworks        = 'AudioToolbox',
+                          'CFNetwork',
+                          'CoreGraphics',
+                          'CoreLocation',
+                          'QuartzCore',
+                          'Security',
+                          'SystemConfiguration'
+    s.ios.weak_frameworks = 'Accounts',
+                            'Social'
+    s.libraries        = 'z', 'sqlite3'
+  
+    s.dependency 'Parse/SDK'
+    s.dependency 'FBSDKCoreKit', '~> 4.28.0'
+    s.ios.dependency 'FBSDKLoginKit', '~> 4.28.0'
+    s.tvos.dependency 'FBSDKTVOSKit', '~> 4.28.0'
+    s.tvos.dependency 'FBSDKShareKit', '~> 4.28.0'
+  end
 end
