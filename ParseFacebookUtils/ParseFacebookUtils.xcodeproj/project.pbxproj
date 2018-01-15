@@ -799,11 +799,11 @@
 			projectRoot = "";
 			targets = (
 				D2AAC07D0554694100DB518D /* ParseFacebookUtilsV4-iOS */,
-				81CB98C51AB7905D00136FA5 /* ParseFacebookUtilsV4-UnitTests */,
-				F535C73A1B54B4A800A7D81E /* ParseFacebookTestApplicationV4 */,
 				81FE7F731C17790400E6BD34 /* ParseFacebookUtilsV4-tvOS */,
 				4AAEAA5B200C020E00AA7479 /* ParseFacebookUtilsV4-iOS-Dynamic */,
 				4AAEAA77200C022300AA7479 /* ParseFacebookUtilsV4-tvOS-Dynamic */,
+				81CB98C51AB7905D00136FA5 /* ParseFacebookUtilsV4-UnitTests */,
+				F535C73A1B54B4A800A7D81E /* ParseFacebookTestApplicationV4 */,
 			);
 		};
 /* End PBXProject section */
@@ -957,7 +957,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ ! -d $SRCROOT/Vendor/tvOS ]; then\n  mkdir $SRCROOT/Vendor/tvOS\nfi\n\ncd $SRCROOT/Vendor/tvOS\n\nif [[ ! -d \"Parse.framework\" || ! -d \"Bolts.framework\" ]]; then\n  ARCHIVE_NAME=Parse-tvOS.zip\n\n  LATEST_TAG=$(bash -l -c \"bundle exec pod spec cat Parse\" | grep version | head -n 1 | cut -d '\"' -f 4)\n  ARCHIVE_URL=\"https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/releases/download/${LATEST_TAG}/${ARCHIVE_NAME}\"\n  curl -L $ARCHIVE_URL -o $ARCHIVE_NAME\n\n  unzip $ARCHIVE_NAME\n  rm $ARCHIVE_NAME\nfi\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKTVOSKit.framework\" ]]; then\n  ARCHIVE_NAME=FBSDK.zip\n\n  ARCHIVE_URL=\"https://origincache.facebook.com/developers/resources/?id=FacebookSDKs-tvOS-current.zip\"\n  curl $ARCHIVE_URL -o $ARCHIVE_NAME\n\n  unzip $ARCHIVE_NAME -d fbsdk\n  mv fbsdk/FBSDKCoreKit.framework .\n  mv fbsdk/FBSDKTVOSKit.framework .\n\n  rm $ARCHIVE_NAME\n  rm -r fbsdk\nfi\n";
+			shellScript = "if [ ! -d $SRCROOT/Vendor/tvOS ]; then\n  mkdir $SRCROOT/Vendor/tvOS\nfi\n\ncd $SRCROOT/Vendor/tvOS\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKTVOSKit.framework\" ]]; then\n  ARCHIVE_NAME=FBSDK.zip\n\n  ARCHIVE_URL=\"https://origincache.facebook.com/developers/resources/?id=FacebookSDKs-tvOS-current.zip\"\n  curl $ARCHIVE_URL -o $ARCHIVE_NAME\n\n  unzip $ARCHIVE_NAME -d fbsdk\n  mv fbsdk/FBSDKCoreKit.framework .\n  mv fbsdk/FBSDKTVOSKit.framework .\n\n  rm $ARCHIVE_NAME\n  rm -r fbsdk\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		81FE7F751C17790400E6BD34 /* Generate Localizable Strings */ = {

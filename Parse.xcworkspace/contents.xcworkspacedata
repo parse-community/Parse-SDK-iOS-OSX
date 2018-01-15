@@ -7,6 +7,9 @@
    <FileRef
       location = "group:ParseFacebookUtils/ParseFacebookUtils.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:ParseTwitterUtils/ParseTwitterUtils.xcodeproj">
+   </FileRef>
    <Group
       location = "container:"
       name = "Vendor">

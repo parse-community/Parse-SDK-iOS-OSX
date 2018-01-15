@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
 
-  s.default_subspec = 'SDK'
+  s.default_subspec = 'Core'
   
-  s.subspec 'SDK' do |s|
+  s.subspec 'Core' do |s|
     s.requires_arc = true
 
     s.source_files = 'Parse/Parse/*.{h,m}',
@@ -63,7 +63,7 @@ Pod::Spec.new do |s|
                               'Parse/Parse/Internal/Commands/PFRESTPushCommand.{h,m}',
                               'Parse/Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
   
-    s.resources = 'Parse/Parse/Resources/en.lproj'
+    s.resource_bundle = { 'Parse' => 'Parse/Parse/Resources/en.lproj' }
   
     s.ios.frameworks = 'AudioToolbox',
                        'CFNetwork',
@@ -96,8 +96,6 @@ Pod::Spec.new do |s|
     s.platform = :ios, :tvos
     s.ios.deployment_target = '8.0'
     s.tvos.deployment_target = '9.0'
-    s.requires_arc = true
-  
     s.public_header_files = 'ParseFacebookUtils/ParseFacebookUtils/*.h'
     s.source_files = 'ParseFacebookUtils/ParseFacebookUtils/**/*.{h,m}'
     s.exclude_files = 'ParseFacebookUtils/ParseFacebookUtils/ParseFacebookUtilsV4.h'
@@ -115,10 +113,30 @@ Pod::Spec.new do |s|
                             'Social'
     s.libraries        = 'z', 'sqlite3'
   
-    s.dependency 'Parse/SDK'
+    s.dependency 'Parse/Core'
     s.dependency 'FBSDKCoreKit', '~> 4.28.0'
     s.ios.dependency 'FBSDKLoginKit', '~> 4.28.0'
     s.tvos.dependency 'FBSDKTVOSKit', '~> 4.28.0'
     s.tvos.dependency 'FBSDKShareKit', '~> 4.28.0'
+  end
+
+  s.subspec 'TwitterUtils' do |s|
+    s.platform = :ios
+    s.public_header_files = 'ParseTwitterUtils/ParseTwitterUtils/*.h'
+    s.source_files = 'ParseTwitterUtils/ParseTwitterUtils/**/*.{h,m}'
+    s.exclude_files = 'ParseTwitterUtils/ParseTwitterUtils/ParseTwitterUtils.h'
+    s.resource_bundle = { 'TwitterUtils' => 'ParseTwitterUtils/Resources/en.lproj' }
+    s.frameworks        = 'AudioToolbox',
+                          'CFNetwork',
+                          'CoreGraphics',
+                          'CoreLocation',
+                          'QuartzCore',
+                          'Security',
+                          'StoreKit',
+                          'SystemConfiguration'
+    s.weak_frameworks = 'Accounts',
+                        'Social'
+    s.libraries        = 'z', 'sqlite3'
+    s.dependency 'Parse/Core'
   end
 end
