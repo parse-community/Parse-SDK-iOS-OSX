@@ -28,19 +28,30 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
 
  - **[CocoaPods](https://cocoapods.org)**
 
-   Add the following line to your Podfile:
-   ```ruby
-   pod 'Parse'
-   ```
-   Run `pod install`, and you should now have the latest parse release.
+  Add the following line to your Podfile:
+  ```ruby
+  pod 'Parse'
+  ```
+  Run `pod install`, and you should now have the latest parse release.
 
-   If you wish to use the Facebook or Twitter, utils,
-   you can now leverage Cocoapods 'subspecs'
+  If you wish to use the Facebook or Twitter utils or ParseUI,
+  you can now leverage Cocoapods 'subspecs'
 
-   ```ruby
+  ```ruby
     pod 'Parse/FacebookUtils'
     pod 'Parse/TwitterUtils'
-   ```
+    pod 'Parse/UI
+  ```
+
+  Note that in this case, the Parse framework will contain all header, so you just have to use:
+
+  ```swift
+  import Parse
+  ```
+
+  ```objc
+  @import Parse;
+  ```
 
  - **[Carthage](https://github.com/carthage/carthage)**
 
@@ -50,7 +61,7 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
    ```
    Run `carthage update`, and you should now have the latest version of Parse SDK in your Carthage folder.
 
-   This will also compile the ParseTwitterUtils as well as ParseFacebookUtilsV4 frameworks.
+   This will also compile the ParseTwitterUtils, ParseFacebookUtilsV4 as well as ParseUI frameworks.
 
  - **Compiling for yourself**
 
