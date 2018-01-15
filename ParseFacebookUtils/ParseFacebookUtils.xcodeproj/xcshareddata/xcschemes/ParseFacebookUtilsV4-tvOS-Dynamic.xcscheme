@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4AAEAA77200C022300AA7479"
-               BuildableName = "ParseFacebookUtilsV4-tvOS-Dynamic.framework"
+               BuildableName = "ParseFacebookUtilsV4.framework"
                BlueprintName = "ParseFacebookUtilsV4-tvOS-Dynamic"
                ReferencedContainer = "container:ParseFacebookUtils.xcodeproj">
             </BuildableReference>
@@ -48,7 +48,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4AAEAA77200C022300AA7479"
-            BuildableName = "ParseFacebookUtilsV4-tvOS-Dynamic.framework"
+            BuildableName = "ParseFacebookUtilsV4.framework"
             BlueprintName = "ParseFacebookUtilsV4-tvOS-Dynamic"
             ReferencedContainer = "container:ParseFacebookUtils.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4AAEAA77200C022300AA7479"
-            BuildableName = "ParseFacebookUtilsV4-tvOS-Dynamic.framework"
+            BuildableName = "ParseFacebookUtilsV4.framework"
             BlueprintName = "ParseFacebookUtilsV4-tvOS-Dynamic"
             ReferencedContainer = "container:ParseFacebookUtils.xcodeproj">
          </BuildableReference>

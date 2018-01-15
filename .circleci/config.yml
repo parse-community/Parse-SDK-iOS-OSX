@@ -23,12 +23,14 @@ jobs:
       - run: bundle exec rake test:ios
       - run: bundle exec rake test:facebook_utils:ios
       - run: bundle exec rake test:twtitter_utils:ios
+      - run: bash <(curl -s https://codecov.io/bash)
   macos:
     <<: *defaults
     steps:
       - checkout
       - run: *prepare
       - run: bundle exec rake test:macos
+      - run: bash <(curl -s https://codecov.io/bash)
   deployment:
     <<: *defaults
     steps:
