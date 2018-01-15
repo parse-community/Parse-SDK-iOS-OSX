@@ -21,8 +21,6 @@ jobs:
       - checkout
       - run: *prepare
       - run: bundle exec rake test:ios
-      - run: bundle exec rake test:facebook_utils:ios
-      - run: bundle exec rake test:twitter_utils:ios
       - run: bash <(curl -s https://codecov.io/bash)
   macos:
     <<: *defaults
@@ -30,6 +28,20 @@ jobs:
       - checkout
       - run: *prepare
       - run: bundle exec rake test:macos
+      - run: bash <(curl -s https://codecov.io/bash)
+  facebook_utils:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: bundle exec rake test:facebook_utils:ios
+      - run: bash <(curl -s https://codecov.io/bash)
+  twitter_utils:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: bundle exec rake test:twitter_utils:ios
       - run: bash <(curl -s https://codecov.io/bash)
   deployment:
     <<: *defaults
@@ -70,6 +82,8 @@ workflows:
     jobs:
       - ios
       - macos
+      - facebook_utils
+      - twitter_utils
       - jazzy
       - carthage
       - cocoapods
