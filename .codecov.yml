@@ -5,7 +5,7 @@ coverage:
     - ParseFacebookUtils/Tests/.*
   status:
     patch: true
-    changes: true
+    changes: false
     project:
       default:
         target: 65
