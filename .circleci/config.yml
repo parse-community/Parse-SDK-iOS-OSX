@@ -23,7 +23,7 @@ jobs:
       - run: bundle exec rake test:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
-          path: build/reports/iphonesimulator.xml
+          path: build/reports
   macos:
     <<: *defaults
     steps:
@@ -32,7 +32,7 @@ jobs:
       - run: bundle exec rake test:macos
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
-          path: build/reports/macosx.xml
+          path: build/reports
   facebook_utils:
     <<: *defaults
     steps:
@@ -41,7 +41,7 @@ jobs:
       - run: bundle exec rake test:facebook_utils:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
-          path: build/reports/iphonesimulator.xml
+          path: build/reports
   twitter_utils:
     <<: *defaults
     steps:
@@ -50,7 +50,7 @@ jobs:
       - run: bundle exec rake test:twitter_utils:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
-          path: build/reports/iphonesimulator.xml
+          path: build/reports
   deployment:
     <<: *defaults
     steps:
