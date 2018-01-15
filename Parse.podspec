@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Parse'
-  s.version          = '1.15.4'
+  s.version          = '1.16.0'
   s.license          =  { :type => 'BSD', :file => 'LICENSE' }
   s.homepage         = 'http://parseplatform.org/'
   s.summary          = 'A library that gives you access to the powerful Parse cloud platform from your iOS/OS X/watchOS/tvOS app.'
@@ -94,7 +94,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'FacebookUtils' do |s|
     s.platform = :ios, :tvos
-    s.ios.deployment_target = '8.0'
+    s.ios.deployment_target = '9.0'
     s.tvos.deployment_target = '9.0'
     s.public_header_files = 'ParseFacebookUtils/ParseFacebookUtils/*.h'
     s.source_files = 'ParseFacebookUtils/ParseFacebookUtils/**/*.{h,m}'
@@ -112,7 +112,7 @@ Pod::Spec.new do |s|
     s.ios.weak_frameworks = 'Accounts',
                             'Social'
     s.libraries        = 'z', 'sqlite3'
-  
+
     s.dependency 'Parse/Core'
     s.dependency 'FBSDKCoreKit', '~> 4.28.0'
     s.ios.dependency 'FBSDKLoginKit', '~> 4.28.0'

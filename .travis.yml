@@ -3,7 +3,6 @@ os: osx
 osx_image: xcode9.2
 branches:
   only:
-    - master
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
 git:
   submodules: false
@@ -11,31 +10,12 @@ git:
 before_install:
   - git submodule update --init --recursive
 
-stage: test
-env:
-  global:
-  - LC_CTYPE=en_US.UTF-8
-  - LANG=en_US.UTF-8
-  matrix:
-  - TEST_TYPE=iOS
-  - TEST_TYPE=macOS
-install: bundle install
-script:
-- |
-  RAKE_TASK_NAME=$(echo "$TEST_TYPE" | tr '[:upper:]' '[:lower:]')
-  bundle exec rake test:$RAKE_TASK_NAME
-after_success:  bash <(curl -s https://codecov.io/bash)
-
 jobs:
   include:
     - stage: release
       env: Deployment
       install: bundle install
-      script:
-      # Create a simulator that match current SDK + name
-      - xcrun simctl create "Apple TV 1080p" com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p com.apple.CoreSimulator.SimRuntime.tvOS-11-2
-      - bundle exec rake test:deployment
-      - ./Scripts/jazzy.sh
+      script: skip
       deploy:
         - provider: releases
           api_key:
@@ -54,8 +34,7 @@ jobs:
             all_branches: true
     - stage: release
       env: Cocoapods
-      install: bundle install
-      script: bundle exec rake test:cocoapods
+      script: skip
       deploy:
         provider: script
         skip_cleanup: true
@@ -63,10 +42,3 @@ jobs:
         on:
           tags: true
           all_branches: true
-    - stage: release
-      env: Carthage
-      install:
-      - bundle install
-      - brew update
-      - brew install carthage || brew upgrade carthage
-      script: bundle exec rake test:carthage
