@@ -100,16 +100,6 @@ workflows:
       - twitter_utils
       - parseui
       - jazzy
-      - carthage:
-          requires:
-            - hold_carthage
-      - hold_carthage:
-          type: approval
-      - cocoapods:
-          requires:
-            - hold_cocoapods
-      - hold_cocoapods:
-          type: approval
   nightly:
     jobs:
       - deployment
