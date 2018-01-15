@@ -211,6 +211,72 @@ namespace :build do
       end
     end
   end
+
+  namespace :parseui do
+    task :framework do
+      task = XCTask::BuildFrameworkTask.new do |t|
+        t.directory = script_folder
+        t.build_directory = File.join(build_folder, 'iOS')
+        t.framework_type = XCTask::FrameworkType::IOS
+        t.framework_name = 'ParseUI.framework'
+        t.workspace = 'Parse.xcworkspace'
+        t.scheme = 'ParseUI'
+        t.configuration = 'Release'
+      end
+
+      result = task.execute
+      unless result
+        puts 'Failed to build ParseUI'
+        exit(1)
+      end
+    end
+
+    task :demo_objc do
+      task = XCTask::BuildTask.new do |t|
+        t.directory = script_folder
+        t.workspace = 'Parse.xcworkspace'
+
+        t.scheme = 'ParseUIDemo'
+        t.sdk = 'iphonesimulator'
+        t.destinations = ["\"platform=iOS Simulator,OS=10.3.1,name=iPhone 6s\"",]
+        t.configuration = 'Debug'
+        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
+                                 "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
+  
+        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+  
+      result = task.execute
+      unless result
+        puts 'Failed to build ParseUI Demo.'
+        exit(1)
+      end
+    end
+
+    task :demo_swift do
+      task = XCTask::BuildTask.new do |t|
+        t.directory = script_folder
+        t.workspace = 'Parse.xcworkspace'
+
+        t.scheme = 'ParseUIDemo-Swift'
+        t.sdk = 'iphonesimulator'
+        t.destinations = ["\"platform=iOS Simulator,OS=10.3.1,name=iPhone 6s\"",]
+        t.configuration = 'Debug'
+        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
+                                 "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
+  
+        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+  
+      result = task.execute
+      unless result
+        puts 'Failed to build iOS ParseUI Swift Demo.'
+        exit(1)
+      end
+    end
+  end
 end
 
 namespace :package do
@@ -222,6 +288,7 @@ namespace :package do
   package_starter_osx_name = 'ParseStarterProject-OSX.zip'
   package_starter_tvos_name = 'ParseStarterProject-tvOS.zip'
   package_starter_watchos_name = 'ParseStarterProject-watchOS.zip'
+  package_parseui_name = 'ParseUI.zip'
 
   task :prepare do
     `rm -rf #{build_folder} && mkdir -p #{build_folder}`
@@ -282,6 +349,12 @@ namespace :package do
     make_package(release_folder,
                  [watchos_framework_path, bolts_path],
                  package_watchos_name)
+
+    Rake::Task['build:parseui:framework'].invoke
+    parseui_framework_path = File.join(build_folder, 'ParseUI.framework')
+    make_package(release_folder,
+                [parseui_framework_path],
+                package_parseui_name)
   end
 
   desc 'Build and package all starter projects for the release'
@@ -470,6 +543,81 @@ namespace :test do
       result = task.execute
       unless result
         puts 'Failed to build iOS FacebookUtils Framework.'
+        exit(1)
+      end
+    end
+  end
+
+  namespace :parseui do
+    task :all do 
+      Rake::Task['test:parseui:framework'].invoke
+      Rake::Task['test:parseui:demo_objc'].invoke
+      Rake::Task['test:parseui:demo_swift'].invoke
+    end
+    
+    task :framework do
+      task = XCTask::BuildTask.new do |t|
+        t.directory = script_folder
+        t.workspace = 'Parse.xcworkspace'
+
+        t.scheme = 'ParseUI'
+        t.sdk = 'iphonesimulator'
+        t.destinations = ["\"platform=iOS Simulator,OS=10.3.1,name=iPhone 6s\"",]
+        t.configuration = 'Debug'
+  
+        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+
+      result = task.execute
+      unless result
+        puts 'Failed to build ParseUI'
+        exit(1)
+      end
+    end
+
+    task :demo_objc do
+      task = XCTask::BuildTask.new do |t|
+        t.directory = script_folder
+        t.workspace = 'Parse.xcworkspace'
+
+        t.scheme = 'ParseUIDemo'
+        t.sdk = 'iphonesimulator'
+        t.destinations = ["\"platform=iOS Simulator,OS=10.3.1,name=iPhone 6s\"",]
+        t.configuration = 'Debug'
+        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
+                                 "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
+  
+        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+  
+      result = task.execute
+      unless result
+        puts 'Failed to build ParseUI Demo.'
+        exit(1)
+      end
+    end
+
+    task :demo_swift do
+      task = XCTask::BuildTask.new do |t|
+        t.directory = script_folder
+        t.workspace = 'Parse.xcworkspace'
+
+        t.scheme = 'ParseUIDemo-Swift'
+        t.sdk = 'iphonesimulator'
+        t.destinations = ["\"platform=iOS Simulator,OS=10.3.1,name=iPhone 6s\"",]
+        t.configuration = 'Debug'
+        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
+                                 "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
+  
+        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+  
+      result = task.execute
+      unless result
+        puts 'Failed to build iOS ParseUI Swift Demo.'
         exit(1)
       end
     end

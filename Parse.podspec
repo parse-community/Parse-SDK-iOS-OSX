@@ -139,4 +139,33 @@ Pod::Spec.new do |s|
     s.libraries        = 'z', 'sqlite3'
     s.dependency 'Parse/Core'
   end
+
+  s.subspec 'UI' do |s|
+    s.platform              = :ios
+    s.requires_arc          = true
+    s.ios.deployment_target = '9.0'
+    s.source_files        = "ParseUI/**/*.{h,m}"
+    s.exclude_files = 'ParseUI/ParseUIDemo/**/*', 'ParseUI/Other/ParseUI.h'
+    s.public_header_files = 'ParseUI/Classes/LogInViewController/*.h',
+                            'ParseUI/Classes/SignUpViewController/*.h',
+                            'ParseUI/Classes/QueryTableViewController/*.h',
+                            'ParseUI/Classes/QueryCollectionViewController/*.h',
+                            'ParseUI/Classes/ProductTableViewController/*.h',
+                            'ParseUI/Classes/Views/*.h',
+                            'ParseUI/Classes/Cells/*.h',
+                            'ParseUI/Other/*.h'
+    s.resource_bundles    = { 'ParseUI' => ['ParseUI/Resources/Localization/*.lproj'] }
+    s.frameworks          = 'Foundation',
+                            'UIKit',
+                            'CoreGraphics',
+                            'QuartzCore'
+    s.dependency 'Parse/Core'
+  end
+
+  # prepare command for parseUI
+  s.prepare_command     = <<-CMD
+  ruby ParseUI/Scripts/convert_images.rb \
+        ParseUI/Resources/Images/ \
+        ParseUI/Generated/PFResources
+  CMD
 end

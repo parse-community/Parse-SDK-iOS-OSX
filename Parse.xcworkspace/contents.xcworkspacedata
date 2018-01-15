@@ -10,6 +10,9 @@
    <FileRef
       location = "group:ParseTwitterUtils/ParseTwitterUtils.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:ParseUI/ParseUI.xcodeproj">
+   </FileRef>
    <Group
       location = "container:"
       name = "Vendor">

@@ -1,0 +1,111 @@
+/* Additional */
+"Additional" = "Adicional";
+
+/* Password reset message in PFLogInViewController */
+"An email with reset instructions has been sent to '%@'." = "Um email com as instruções para redefinir a senha foi enviado para '%@'";
+
+/* Cancel */
+"Cancel" = "Cancelar";
+
+/* Downloading Error */
+"Downloading Error" = "Erro de Download";
+
+/* DOWNLOADING */
+"DOWNLOADING" = "FAZENDO DOWNLOAD";
+
+/* Email */
+"Email" = "Email";
+
+/* Error */
+"Error" = "Erro";
+
+/* Error occurred during deletion */
+"Error occurred during deletion" = "Ocorreu um erro ao apagar";
+
+/* Facebook */
+"Facebook" = "Facebook";
+
+/* Forgot Password? */
+"Forgot Password?" = "Esqueceu a senha?";
+
+/* INSTALLED */
+"INSTALLED" = "INSTALADO";
+
+/* Load more... */
+"Load more..." = "Carregar mais...";
+
+/* Loading message of PFQueryTableViewController */
+"Loading..." = "Carregando...";
+
+/* Log In */
+"Log In" = "Inicial Sessão";
+
+/* Log In with Facebook */
+"Log In with Facebook" = "Iniciar Sessão com o Facebook";
+
+/* Log In with Twitter */
+"Log In with Twitter" = "Iniciar Sessão com o Twitter";
+
+/* Login failed alert title in PFLogInViewController */
+"Login Failed" = "Falha ao Entrar";
+
+/* OK */
+"OK" = "OK";
+
+/* Password */
+"Password" = "Senha";
+
+/* Password too short error message in PFSignUpViewController */
+"Password must be at least %d characters." = "A senha deve ter ao menos %d caracteres.";
+
+/* Password reset success alert title in PFLogInViewController. */
+"Password Reset" = "Senha Redefinida";
+
+/* Password reset error alert title in PFLogInViewController. */
+"Password Reset Failed" = "Falha ao Redefinir a Senha";
+
+/* Password missing error message in PFSignUpViewController */
+"Please enter a password." = "Por favor insira a senha.";
+
+/* Username missing error message in PFSignUpViewController */
+"Please enter a username." = "Por favor insira o nome de usuário.";
+
+/* Email missing error message in PFSignUpViewController */
+"Please enter an email." = "Por favor insira o email.";
+
+/* Email request message in PFLogInViewController */
+"Please enter the email address for your account." = "Por favor insira o endereço de email da sua conta.";
+
+/* Generic login failed alert message in PFLogInViewController */
+"Please try again" = "Por favor tente novamente";
+
+/* Purchase Error */
+"Purchase Error" = "Erro na Compra";
+
+/* Forgot password title in PFLogInViewController */
+"Reset Password" = "Redefinir Senha";
+
+/* Sign Up */
+"Sign Up" = "Cadastre-se";
+
+/* Sign Up Error */
+"Sign Up Error" = "Erro no Cadastro";
+
+/* Email is taken error format in PFSignUpViewController. */
+"The email '%@' is taken. Please try using a different email." = "O email '%@' já estea cadastrado. Por favor tente com outro email";
+
+/* Invalid email address error message in PGSighUpViewController */
+"The email address is invalid. Please enter a valid email." = "O endereço de email é inválido. Por favor coloque um endereço válido de email.";
+
+/* Username taken error format in PFSignUpViewController */
+"The username '%@' is taken. Please try choosing a different username." = "O nome de usuário '%@' já está cadastrado. Por favir tente utilizando um nome de usuário diferente.";
+
+/* Invalid login credentials alert message in PFLogInViewController */
+"The username and password you entered don't match" = "O nome de usuário e a senha fornecidas não batem";
+
+/* Twitter */
+"Twitter" = "Twitter";
+
+/* Username */
+"Username" = "Nome de usuário";
+
