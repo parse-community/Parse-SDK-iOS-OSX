@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Whether the collection should use the built-in pull-to-refresh feature. Default - `YES`.
  */
-@property (nonatomic, assign) IBInspectable BOOL pullToRefreshEnabled;
+@property (nonatomic, assign) IBInspectable BOOL pullToRefreshEnabled NS_AVAILABLE_IOS(10.0);
 
 /**
  Whether the collection should use the built-in pagination feature. Default - `YES`.

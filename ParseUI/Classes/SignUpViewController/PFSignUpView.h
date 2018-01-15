@@ -38,15 +38,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 typedef NS_OPTIONS(NSInteger, PFSignUpFields) {
     /** Username and password fields. */
-    PFSignUpFieldsUsernameAndPassword = 0,
+    PFSignUpFieldsUsernameAndPassword = 1 << 0,
     /** Email field. */
-    PFSignUpFieldsEmail = 1 << 0,
+    PFSignUpFieldsEmail = 1 << 1,
     /** This field can be used for something else. */
-    PFSignUpFieldsAdditional = 1 << 1,
+    PFSignUpFieldsAdditional = 1 << 2,
     /** Sign Up Button */
-    PFSignUpFieldsSignUpButton = 1 << 2,
+    PFSignUpFieldsSignUpButton = 1 << 3,
     /** Dismiss Button */
-    PFSignUpFieldsDismissButton = 1 << 3,
+    PFSignUpFieldsDismissButton = 1 << 4,
     /** Default value. Combines Username, Password, Email, Sign Up and Dismiss Buttons. */
     PFSignUpFieldsDefault = (PFSignUpFieldsUsernameAndPassword |
                              PFSignUpFieldsEmail |

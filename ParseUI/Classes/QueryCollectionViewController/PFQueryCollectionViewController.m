@@ -125,12 +125,14 @@ static NSString *const PFQueryCollectionViewNextPageReusableViewIdentifier = @"n
             forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
                    withReuseIdentifier:PFQueryCollectionViewNextPageReusableViewIdentifier];
 
-    if (self.pullToRefreshEnabled) {
-        self.collectionView.refreshControl = [[UIRefreshControl alloc] init];
-        [self.collectionView.refreshControl addTarget:self
-                                action:@selector(_refreshControlValueChanged:)
-                      forControlEvents:UIControlEventValueChanged];
-        self.collectionView.alwaysBounceVertical = YES;
+    if (@available(iOS 10.0, *)) {
+        if (self.pullToRefreshEnabled) {
+            self.collectionView.refreshControl = [[UIRefreshControl alloc] init];
+            [self.collectionView.refreshControl addTarget:self
+                                                   action:@selector(_refreshControlValueChanged:)
+                                         forControlEvents:UIControlEventValueChanged];
+            self.collectionView.alwaysBounceVertical = YES;
+        }
     }
 }
 
@@ -197,7 +199,9 @@ static NSString *const PFQueryCollectionViewNextPageReusableViewIdentifier = @"n
     }
 
     BFContinuationBlock deletionHandlerBlock = ^id (BFTask *task) {
-        self.collectionView.refreshControl.enabled = YES;
+        if (@available(iOS 10.0, *)) {
+            self.collectionView.refreshControl.enabled = YES;
+        }
 
         if (task.error) {
             [self _handleDeletionError:task.error];
@@ -263,7 +267,9 @@ static NSString *const PFQueryCollectionViewNextPageReusableViewIdentifier = @"n
             }
 
             [self objectsDidLoad:error];
-            [self.collectionView.refreshControl endRefreshing];
+            if (@available(iOS 10.0, *)) {
+                [self.collectionView.refreshControl endRefreshing];
+            }
 
             if (error) {
                 [source trySetError:error];

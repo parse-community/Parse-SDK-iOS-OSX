@@ -88,8 +88,8 @@ static NSString *const PFProductMetadataPriceLocaleKey = @"priceLocale";
 
             cell.state = PFPurchaseTableViewCellStateDownloading;
             [PFPurchase downloadAssetForTransaction:transaction
-                                         completion:^(NSString *filePath, NSError *error) {
-                                             if (!error) {
+                                         completion:^(NSString *filePath, NSError *downloadError) {
+                                             if (!downloadError) {
                                                  cell.state = PFPurchaseTableViewCellStateDownloaded;
                                              } else {
                                                  cell.state = PFPurchaseTableViewCellStateNormal;
