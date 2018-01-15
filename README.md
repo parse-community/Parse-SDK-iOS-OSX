@@ -87,6 +87,7 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
     - `ParseFacebookUtils-iOS.zip`
     - `ParseFacebookUtils-tvOS.zip`
     - `ParseTwitterUtils-iOS.zip`
+    - `ParseUI.zip`
 
 
  - **Using Parse as a sub-project**
@@ -148,7 +149,7 @@ As of April 5, 2017, Parse, LLC has transferred this code to the parse-community
  [build-status-link]: https://travis-ci.org/parse-community/Parse-SDK-iOS-OSX/branches
 
  [circleci-status-svg]: https://circleci.com/gh/parse-community/Parse-SDK-iOS-OSX.svg?style=shield
- [circleci-status-link]: https://circleci.com/build-insights/gh/parse-community/ParseLiveQuery-iOS-OSX/master
+ [circleci-status-link]: https://circleci.com/build-insights/gh/parse-community/Parse-SDK-iOS-OSX/master
 
  [coverage-status-svg]: https://img.shields.io/codecov/c/github/parse-community/Parse-SDK-iOS-OSX/master.svg
  [coverage-status-link]: https://codecov.io/github/parse-community/Parse-SDK-iOS-OSX?branch=master
