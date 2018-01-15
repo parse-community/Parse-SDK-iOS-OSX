@@ -22,6 +22,7 @@ jobs:
       - run: *prepare
       - run: bundle exec rake test:ios
       - run: bundle exec rake test:facebook_utils:ios
+      - run: bundle exec rake test:twtitter_utils:ios
   macos:
     <<: *defaults
     steps:
@@ -68,6 +69,8 @@ workflows:
       - ios
       - macos
       - jazzy
+      - carthage
+      - cocoapods
   nightly:
     jobs:
       - deployment
