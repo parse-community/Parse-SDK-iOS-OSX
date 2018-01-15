@@ -3,6 +3,7 @@ os: osx
 osx_image: xcode9.2
 branches:
   only:
+    - master
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
 git:
   submodules: false
@@ -15,7 +16,8 @@ jobs:
     - stage: release
       env: Deployment
       install: bundle install
-      script: skip
+      script:
+      - ./Scripts/jazzy.sh
       deploy:
         - provider: releases
           api_key:
@@ -34,6 +36,7 @@ jobs:
             all_branches: true
     - stage: release
       env: Cocoapods
+      install: bundle install
       script: skip
       deploy:
         provider: script
