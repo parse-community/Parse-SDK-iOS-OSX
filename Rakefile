@@ -98,12 +98,12 @@ namespace :build do
   desc 'Build watchOS framework.'
   task :watchos do
     task = XCTask::BuildFrameworkTask.new do |t|
-      t.directory = File.join(script_folder, 'Parse')
+      t.directory = script_folder
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::WATCHOS
       t.framework_name = 'Parse.framework'
 
-      t.workspace = '../Parse.xcworkspace'
+      t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-watchOS'
       t.configuration = 'Release'
     end
@@ -117,12 +117,12 @@ namespace :build do
   desc 'Build macOS framework.'
   task :macos do
     task = XCTask::BuildFrameworkTask.new do |t|
-      t.directory = File.join(script_folder, 'Parse')
+      t.directory = script_folder
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::OSX
       t.framework_name = 'Parse.framework'
 
-      t.workspace = '../Parse.xcworkspace'
+      t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-macOS'
       t.configuration = 'Release'
     end
@@ -136,12 +136,12 @@ namespace :build do
   desc 'Build tvOS framework.'
   task :tvos do
     task = XCTask::BuildFrameworkTask.new do |t|
-      t.directory = File.join(script_folder, 'Parse')
+      t.directory = script_folder
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::TVOS
       t.framework_name = 'Parse.framework'
 
-      t.workspace = '../Parse.xcworkspace'
+      t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-tvOS'
       t.configuration = 'Release'
     end
@@ -156,11 +156,11 @@ namespace :build do
     desc 'Build iOS FacebookUtils framework.'
     task :ios do
       task = XCTask::BuildFrameworkTask.new do |t|
-        t.directory = File.join(script_folder, 'ParseFacebookUtils')
+        t.directory = script_folder
         t.build_directory = File.join(build_folder, 'iOS')
         t.framework_type = XCTask::FrameworkType::IOS
         t.framework_name = 'ParseFacebookUtilsV4.framework'
-        t.workspace = '../Parse.xcworkspace'
+        t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseFacebookUtilsV4-iOS'
         t.configuration = 'Release'
       end
@@ -175,11 +175,11 @@ namespace :build do
     desc 'Build tvOS FacebookUtils framework.'
     task :tvos do
       task = XCTask::BuildFrameworkTask.new do |t|
-        t.directory = File.join(script_folder, 'ParseFacebookUtils')
+        t.directory = script_folder
         t.build_directory = File.join(build_folder, 'tvOS')
         t.framework_type = XCTask::FrameworkType::TVOS
         t.framework_name = 'ParseFacebookUtilsV4.framework'
-        t.workspace = '../Parse.xcworkspace'
+        t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseFacebookUtilsV4-tvOS'
         t.configuration = 'Release'
       end
@@ -195,11 +195,11 @@ namespace :build do
     desc 'Build iOS TwitterUtils framework.'
     task :ios do
       task = XCTask::BuildFrameworkTask.new do |t|
-        t.directory = File.join(script_folder, 'ParseTwitterUtils')
+        t.directory = script_folder
         t.build_directory = File.join(build_folder, 'iOS')
         t.framework_type = XCTask::FrameworkType::IOS
         t.framework_name = 'ParseTwitterUtils.framework'
-        t.workspace = '../Parse.xcworkspace'
+        t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseTwitterUtils-iOS'
         t.configuration = 'Release'
       end
