@@ -93,8 +93,6 @@ workflows:
       - facebook_utils
       - twitter_utils
       - jazzy
-      - carthage
-      - cocoapods
   nightly:
     jobs:
       - deployment
