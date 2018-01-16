@@ -79,10 +79,11 @@
 		4A0ECC91200D9D3000BA84A3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94F6200D125A005D8F4B /* AudioToolbox.framework */; };
 		4A0ECC93200D9D3900BA84A3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC92200D9D3900BA84A3 /* CoreLocation.framework */; };
 		4A0ECC94200D9D4400BA84A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94E6200D05A5005D8F4B /* SystemConfiguration.framework */; };
+		4A0ECCAE200DA7F300BA84A3 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9497200D0329005D8F4B /* ParseUI.framework */; };
+		4A0ECCB2200DA92700BA84A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC73200D993000BA84A3 /* UIKit.framework */; };
 		4A9A941A200D01F1005D8F4B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A941E200D01F1005D8F4B /* Bolts.framework */; };
 		4A9A941B200D01F1005D8F4B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A941F200D01F1005D8F4B /* Parse.framework */; };
 		4A9A941D200D01F1005D8F4B /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9421200D01F1005D8F4B /* ParseTwitterUtils.framework */; };
-		4A9A949F200D0365005D8F4B /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9497200D0329005D8F4B /* ParseUI.framework */; };
 		4A9A94A0200D03AA005D8F4B /* PFResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A9424200D0226005D8F4B /* PFResources.m */; };
 		4A9A94A1200D03AA005D8F4B /* PFResources.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A9425200D0226005D8F4B /* PFResources.h */; };
 		4A9A94A2200D03B6005D8F4B /* PFProductTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A9428200D0226005D8F4B /* PFProductTableViewController.m */; };
@@ -143,7 +144,6 @@
 		4A9A94E5200D0598005D8F4B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94E4200D0598005D8F4B /* libsqlite3.tbd */; };
 		4A9A94E7200D05A5005D8F4B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94E6200D05A5005D8F4B /* SystemConfiguration.framework */; };
 		4A9A94E9200D05AA005D8F4B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94E8200D05AA005D8F4B /* Social.framework */; };
-		4A9A94EA200D068C005D8F4B /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9497200D0329005D8F4B /* ParseUI.framework */; };
 		4A9A94EB200D06A3005D8F4B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94E1200D056A005D8F4B /* FBSDKCoreKit.framework */; };
 		4A9A94EC200D06A3005D8F4B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94E0200D056A005D8F4B /* FBSDKLoginKit.framework */; };
 		4A9A94F3200D1241005D8F4B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94E4200D0598005D8F4B /* libsqlite3.tbd */; };
@@ -201,6 +201,23 @@
 		F57F3D271B0C050C0087F60B /* DeletionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D251B0C04EF0087F60B /* DeletionTableViewController.swift */; };
 		F57F3D291B0C05280087F60B /* DeletionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D281B0C05280087F60B /* DeletionCollectionViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4A0ECCAC200DA7D100BA84A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A9A9496200D0329005D8F4B;
+			remoteInfo = ParseUI;
+		};
+		4A0ECCB0200DA8DC00BA84A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A0ECBE4200D8C0200BA84A3;
+			remoteInfo = "ParseUI-Dynamic";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		06A1EF631BB6799700BA55EC /* ParseUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -405,13 +422,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A0ECCB2200DA92700BA84A3 /* UIKit.framework in Frameworks */,
 				4A9A94F7200D125A005D8F4B /* AudioToolbox.framework in Frameworks */,
 				4A9A94F5200D1252005D8F4B /* SystemConfiguration.framework in Frameworks */,
 				4A9A94F4200D1248005D8F4B /* Social.framework in Frameworks */,
 				4A0ECC70200D990500BA84A3 /* ParseTwitterUtils.framework in Frameworks */,
 				4A9A94F3200D1241005D8F4B /* libsqlite3.tbd in Frameworks */,
 				4A0ECC71200D991A00BA84A3 /* Parse.framework in Frameworks */,
-				4A9A94EA200D068C005D8F4B /* ParseUI.framework in Frameworks */,
 				4A9A94EB200D06A3005D8F4B /* FBSDKCoreKit.framework in Frameworks */,
 				4A0ECC72200D992600BA84A3 /* Bolts.framework in Frameworks */,
 				4A9A94EC200D06A3005D8F4B /* FBSDKLoginKit.framework in Frameworks */,
@@ -423,10 +440,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A0ECCAE200DA7F300BA84A3 /* ParseUI.framework in Frameworks */,
 				4A9A94E9200D05AA005D8F4B /* Social.framework in Frameworks */,
 				4A9A94E7200D05A5005D8F4B /* SystemConfiguration.framework in Frameworks */,
 				4A9A94E5200D0598005D8F4B /* libsqlite3.tbd in Frameworks */,
-				4A9A949F200D0365005D8F4B /* ParseUI.framework in Frameworks */,
 				4A0ECC6F200D98FE00BA84A3 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				4A9A94E2200D0574005D8F4B /* FBSDKCoreKit.framework in Frameworks */,
 				4A9A941A200D01F1005D8F4B /* Bolts.framework in Frameworks */,
@@ -1091,6 +1108,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4A0ECCB1200DA8DC00BA84A3 /* PBXTargetDependency */,
 			);
 			name = "ParseUIDemo-Swift";
 			productName = ParseUIDemo;
@@ -1109,6 +1127,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4A0ECCAD200DA7D100BA84A3 /* PBXTargetDependency */,
 			);
 			name = ParseUIDemo;
 			productName = ParseUIDemo;
@@ -1355,6 +1374,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4A0ECCAD200DA7D100BA84A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A9A9496200D0329005D8F4B /* ParseUI */;
+			targetProxy = 4A0ECCAC200DA7D100BA84A3 /* PBXContainerItemProxy */;
+		};
+		4A0ECCB1200DA8DC00BA84A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A0ECBE4200D8C0200BA84A3 /* ParseUI-Dynamic */;
+			targetProxy = 4A0ECCB0200DA8DC00BA84A3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4A9A9473200D0226005D8F4B /* ParseUI.strings */ = {
