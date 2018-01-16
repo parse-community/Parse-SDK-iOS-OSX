@@ -244,6 +244,8 @@
                                                    delay:delay * 2.0
                                              forAttempts:attempts - 1];
             } cancellationToken:cancellationToken];
+        } else if (task.error && task.error.code == kPFErrorInvalidSessionToken) {
+            [self.notificationCenter postNotificationName:PFInvalidSessionTokenNotification object:task userInfo:nil];
         }
         return task;
     } cancellationToken:cancellationToken];
