@@ -1,0 +1,21 @@
+//
+// Copyright (c) 2015-present, Parse, LLC.
+// All rights reserved.
+//
+// This source code is licensed under the BSD-style license found in the
+// LICENSE file in the root directory of this source tree. An additional grant
+// of patent rights can be found in the PATENTS file in the same directory.
+//
+
+#include "Shared/Platform/iOS.xcconfig"
+#include "Shared/Product/LogicTests.xcconfig"
+
+PRODUCT_NAME = ParseFacebookUtilsV4-UnitTests
+PRODUCT_BUNDLE_IDENTIFIER = com.parse.facebookutils-ios.unit
+
+IPHONEOS_DEPLOYMENT_TARGET = 8.0
+
+FRAMEWORK_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR) $(SRCROOT)/Vendor
+
+INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/Info.plist
+TEST_HOST = $(BUILT_PRODUCTS_DIR)/ParseFacebookTestApplicationV4.app/ParseFacebookTestApplicationV4

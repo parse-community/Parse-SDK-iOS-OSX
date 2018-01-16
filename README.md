@@ -9,12 +9,13 @@
 [![References][references-svg]][references-link]
 
 [![Build Status][build-status-svg]][build-status-link]
+[![Build Status][circleci-status-svg]][circleci-status-link]
 [![Coverage Status][coverage-status-svg]][coverage-status-link]
 
 [![Join Chat][gitter-svg]][gitter-link]
 
 A library that gives you access to the powerful Parse cloud platform from your iOS or OS X app.
-For more information about Parse and its features, see [the blog][blog] and public [documentation][docs].
+For more information about Parse and its features, see the public [documentation][docs].
 
 ## Getting Started
 
@@ -27,12 +28,30 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
 
  - **[CocoaPods](https://cocoapods.org)**
 
-   Add the following line to your Podfile:
-   ```ruby
-   pod 'Parse'
-   ```
-   Run `pod install`, and you should now have the latest parse release.
+  Add the following line to your Podfile:
+  ```ruby
+  pod 'Parse'
+  ```
+  Run `pod install`, and you should now have the latest parse release.
 
+  If you wish to use the Facebook or Twitter utils or ParseUI,
+  you can now leverage Cocoapods 'subspecs'
+
+  ```ruby
+    pod 'Parse/FacebookUtils'
+    pod 'Parse/TwitterUtils'
+    pod 'Parse/UI
+  ```
+
+  Note that in this case, the Parse framework will contain all headers and classes, so you just have to use:
+
+  ```swift
+  import Parse
+  ```
+
+  ```objc
+  @import Parse;
+  ```
 
  - **[Carthage](https://github.com/carthage/carthage)**
 
@@ -41,6 +60,8 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
    github "parse-community/Parse-SDK-iOS-OSX"
    ```
    Run `carthage update`, and you should now have the latest version of Parse SDK in your Carthage folder.
+
+   This will also compile the ParseTwitterUtils, ParseFacebookUtilsV4 as well as ParseUI frameworks.
 
  - **Compiling for yourself**
 
@@ -58,7 +79,16 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
         # Build & Package the Frameworks
         bundle exec rake package:frameworks
 
-    Compiled frameworks will be in 2 archives: `Parse-iOS.zip` and `Parse-OSX.zip` inside the `build/release` folder, and you can link them as you'd please.
+    Compiled frameworks will be in multiple archives inside the `build/release` folder: 
+    - `Parse-iOS.zip`
+    - `Parse-macOS.zip`
+    - `Parse-tvOS.zip`
+    - `Parse-watchOS.zip`
+    - `ParseFacebookUtils-iOS.zip`
+    - `ParseFacebookUtils-tvOS.zip`
+    - `ParseTwitterUtils-iOS.zip`
+    - `ParseUI.zip`
+
 
  - **Using Parse as a sub-project**
 
@@ -90,8 +120,6 @@ We use the following libraries as dependencies inside of Parse:
 ## Other Parse Projects
 
  - [ParseUI for iOS][parseui-link]
- - [ParseFacebookUtils for iOS][parsefacebookutils-link]
- - [ParseTwitterUtils for iOS][parsetwitterutils-link]
 
 ## License
 
@@ -107,12 +135,9 @@ of patent rights can be found in the PATENTS file in the same directory.
 As of April 5, 2017, Parse, LLC has transferred this code to the parse-community organization, and will no longer be contributing to or distributing this code.
 
  [docs]: http://docs.parseplatform.org/ios/guide/
- [blog]: http://blog.parse.com/
  [api]: http://parseplatform.org/Parse-SDK-iOS-OSX/api/
 
  [parseui-link]: https://github.com/parse-community/ParseUI-iOS
- [parsefacebookutils-link]: https://github.com/parse-community/ParseFacebookUtils-iOS
- [parsetwitterutils-link]: https://github.com/parse-community/ParseTwitterUtils-iOS
 
  [releases]: https://github.com/parse-community/Parse-SDK-iOS-OSX/releases
  [contributing]: https://github.com/parse-community/Parse-SDK-iOS-OSX/blob/master/CONTRIBUTING.md
@@ -122,6 +147,9 @@ As of April 5, 2017, Parse, LLC has transferred this code to the parse-community
 
  [build-status-svg]: https://img.shields.io/travis/parse-community/Parse-SDK-iOS-OSX/master.svg
  [build-status-link]: https://travis-ci.org/parse-community/Parse-SDK-iOS-OSX/branches
+
+ [circleci-status-svg]: https://circleci.com/gh/parse-community/Parse-SDK-iOS-OSX.svg?style=shield
+ [circleci-status-link]: https://circleci.com/build-insights/gh/parse-community/Parse-SDK-iOS-OSX/master
 
  [coverage-status-svg]: https://img.shields.io/codecov/c/github/parse-community/Parse-SDK-iOS-OSX/master.svg
  [coverage-status-link]: https://codecov.io/github/parse-community/Parse-SDK-iOS-OSX?branch=master
