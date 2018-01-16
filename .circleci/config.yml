@@ -83,12 +83,6 @@ jobs:
       - checkout
       - run: *prepare
       - run: bundle exec rake test:cocoapods
-  publish-cocoapods:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: *prepare
-      - run: ./Scripts/publish.sh
 
 workflows:
   version: 2
@@ -112,13 +106,4 @@ workflows:
     triggers:
       - schedule:
           cron: "0 1 * * *"
-          filters: *filter-only-master
-  publish:
-    jobs:
-      - hold:
-          type: approval
-          filters: *filter-only-master
-      - publish-cocoapods:
-          requires:
-            - hold
           filters: *filter-only-master
