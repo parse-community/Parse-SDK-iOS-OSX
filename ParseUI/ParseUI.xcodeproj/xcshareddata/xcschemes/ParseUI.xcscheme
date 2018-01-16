@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "81472F661A1AB33800FD6EED"
-               BuildableName = "ParseUIDemo.app"
-               BlueprintName = "ParseUIDemo"
+               BlueprintIdentifier = "4A9A9496200D0329005D8F4B"
+               BuildableName = "ParseUI.framework"
+               BlueprintName = "ParseUI"
                ReferencedContainer = "container:ParseUI.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,15 +30,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "81472F661A1AB33800FD6EED"
-            BuildableName = "ParseUIDemo.app"
-            BlueprintName = "ParseUIDemo"
-            ReferencedContainer = "container:ParseUI.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -53,16 +44,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "81472F661A1AB33800FD6EED"
-            BuildableName = "ParseUIDemo.app"
-            BlueprintName = "ParseUIDemo"
+            BlueprintIdentifier = "4A9A9496200D0329005D8F4B"
+            BuildableName = "ParseUI.framework"
+            BlueprintName = "ParseUI"
             ReferencedContainer = "container:ParseUI.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -72,16 +62,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "81472F661A1AB33800FD6EED"
-            BuildableName = "ParseUIDemo.app"
-            BlueprintName = "ParseUIDemo"
+            BlueprintIdentifier = "4A9A9496200D0329005D8F4B"
+            BuildableName = "ParseUI.framework"
+            BlueprintName = "ParseUI"
             ReferencedContainer = "container:ParseUI.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
