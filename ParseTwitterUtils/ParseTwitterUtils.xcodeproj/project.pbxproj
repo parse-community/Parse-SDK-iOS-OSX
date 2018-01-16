@@ -252,7 +252,6 @@
 				4A9A94FE200D12C9005D8F4B /* Bolts.framework */,
 				4A9A94FA200D12A2005D8F4B /* Bolts.framework */,
 				4AAEAACB200C2BBB00AA7479 /* OCMock.framework */,
-				813DFC8F1AB2513D00F25A08 /* User Frameworks */,
 				813DFC8E1AB2513300F25A08 /* System Frameworks */,
 			);
 			name = Frameworks;
@@ -304,13 +303,6 @@
 				816831121D1E16CC00315E21 /* UIKit.framework */,
 			);
 			name = "System Frameworks";
-			sourceTree = "<group>";
-		};
-		813DFC8F1AB2513D00F25A08 /* User Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "User Frameworks";
 			sourceTree = "<group>";
 		};
 		813DFC961AB2524C00F25A08 /* Resources */ = {
