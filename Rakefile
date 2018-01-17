@@ -351,7 +351,7 @@ namespace :package do
                  package_watchos_name)
 
     Rake::Task['build:parseui:framework'].invoke
-    parseui_framework_path = File.join(build_folder, 'ParseUI.framework')
+    parseui_framework_path = File.join(build_folder, 'iOS', 'ParseUI.framework')
     make_package(release_folder,
                 [parseui_framework_path],
                 package_parseui_name)
