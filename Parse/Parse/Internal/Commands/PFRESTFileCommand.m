@@ -23,7 +23,8 @@
     return [self commandWithHTTPPath:httpPath
                           httpMethod:PFHTTPRequestMethodPOST
                           parameters:nil
-                        sessionToken:sessionToken];
+                        sessionToken:sessionToken
+                               error:nil];
 }
 
 @end

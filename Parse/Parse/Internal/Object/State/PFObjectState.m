@@ -106,7 +106,7 @@
 #pragma mark - Coding
 ///--------------------------------------
 
-- (NSDictionary *)dictionaryRepresentationWithObjectEncoder:(PFEncoder *)objectEncoder {
+- (NSDictionary *)dictionaryRepresentationWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     if (self.objectId) {
         result[PFObjectObjectIdRESTKey] = self.objectId;
@@ -117,9 +117,21 @@
     if (self.updatedAt) {
         result[PFObjectUpdatedAtRESTKey] = [[PFDateFormatter sharedFormatter] preciseStringFromDate:self.updatedAt];
     }
+    __block NSError *encodingError;
+    __block BOOL failed = NO;
     [self.serverData enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        result[key] = [objectEncoder encodeObject:obj];
+        id encoded = [objectEncoder encodeObject:obj error:&encodingError];
+        if (!encoded && encodingError) {
+            *stop = YES;
+            failed = YES;
+            return;
+        }
+        result[key] = encoded;
     }];
+    if (failed && encodingError) {
+        *error = encodingError;
+        return nil;
+    }
     return [result copy];
 }
 

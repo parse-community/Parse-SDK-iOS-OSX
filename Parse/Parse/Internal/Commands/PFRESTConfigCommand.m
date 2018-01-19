@@ -18,7 +18,8 @@
     return [self commandWithHTTPPath:@"config"
                           httpMethod:PFHTTPRequestMethodGET
                           parameters:nil
-                        sessionToken:sessionToken];
+                        sessionToken:sessionToken
+                               error:nil];
 }
 
 + (instancetype)configUpdateCommandWithConfigParameters:(NSDictionary *)parameters
@@ -27,7 +28,8 @@
     return [self commandWithHTTPPath:@"config"
                           httpMethod:PFHTTPRequestMethodPUT
                           parameters:commandParameters
-                        sessionToken:sessionToken];
+                        sessionToken:sessionToken
+                               error:nil];
 }
 
 @end

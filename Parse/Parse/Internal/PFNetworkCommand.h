@@ -27,7 +27,7 @@
 ///--------------------------------------
 
 + (instancetype)commandFromDictionaryRepresentation:(NSDictionary *)dictionary;
-- (NSDictionary *)dictionaryRepresentation;
+- (NSDictionary *)dictionaryRepresentation:(NSError **)error;
 
 + (BOOL)isValidDictionaryRepresentation:(NSDictionary *)dictionary;
 
@@ -42,6 +42,6 @@
  has not yet been saved, and thus has no objectId, then this method raises an
  exception.
  */
-- (void)resolveLocalIds;
+- (BOOL)resolveLocalIds:(NSError **)error;
 
 @end

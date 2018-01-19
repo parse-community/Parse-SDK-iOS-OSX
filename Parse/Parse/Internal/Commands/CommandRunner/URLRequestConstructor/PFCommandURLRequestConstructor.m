@@ -71,7 +71,8 @@
             } else {
                 parameters = command.parameters;
             }
-            requestParameters = [[PFPointerObjectEncoder objectEncoder] encodeObject:parameters];
+            NSError *error = nil;
+            requestParameters = [[PFPointerObjectEncoder objectEncoder] encodeObject:parameters error:&error];
         }
 
         return [PFHTTPURLRequestConstructor urlRequestWithURL:url

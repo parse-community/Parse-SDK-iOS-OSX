@@ -58,7 +58,8 @@
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                                      httpMethod:PFHTTPRequestMethodPOST
                                                      parameters:@{ @"a" : @"b" }
-                                                   sessionToken:@"yarr"];
+                                                   sessionToken:@"yarr"
+                                                          error:nil];
     command.additionalRequestHeaders = @{ @"CustomHeader" : @"CustomValue" };
 
     NSURLRequest *request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
@@ -79,28 +80,32 @@
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                                      httpMethod:PFHTTPRequestMethodGET
                                                      parameters:@{ @"a" : @"b" }
-                                                   sessionToken:@"yarr"];
+                                                   sessionToken:@"yarr"
+                                                          error:nil];
     NSURLRequest *request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
 
     command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                       httpMethod:PFHTTPRequestMethodHEAD
                                       parameters:@{ @"a" : @"b" }
-                                    sessionToken:@"yarr"];
+                                    sessionToken:@"yarr"
+                                           error:nil];
     request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
 
     command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                       httpMethod:PFHTTPRequestMethodGET
                                       parameters:@{ @"a" : @"b" }
-                                    sessionToken:@"yarr"];
+                                    sessionToken:@"yarr"
+                                           error:nil];
     request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
 
     command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                       httpMethod:PFHTTPRequestMethodGET
                                       parameters:nil
-                                    sessionToken:@"yarr"];
+                                    sessionToken:@"yarr"
+                                           error:nil];
     request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     XCTAssertEqualObjects(request.HTTPMethod, @"GET");
 }
@@ -113,7 +118,8 @@
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                                      httpMethod:PFHTTPRequestMethodPOST
                                                      parameters:@{ @"a" : @100500 }
-                                                   sessionToken:@"yarr"];
+                                                   sessionToken:@"yarr"
+                                                          error:nil];
     NSURLRequest *request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     id json = [NSJSONSerialization JSONObjectWithData:request.HTTPBody options:0 error:nil];
     XCTAssertNotNil(json);
@@ -128,7 +134,8 @@
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                                      httpMethod:PFHTTPRequestMethodPOST
                                                      parameters:@{ @"a" : @100500 }
-                                                   sessionToken:@"yarr"];
+                                                   sessionToken:@"yarr"
+                                                          error:nil];
     NSURLRequest *request = [[constructor getFileUploadURLRequestAsyncForCommand:command
                                                                  withContentType:@"boom"
                                                            contentSourceFilePath:@"/dev/null"] waitForResult:nil];

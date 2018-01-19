@@ -16,12 +16,14 @@
 
 + (instancetype)commandForFunction:(NSString *)function
                     withParameters:(NSDictionary *)parameters
-                      sessionToken:(NSString *)sessionToken {
+                      sessionToken:(NSString *)sessionToken
+                             error:(NSError **)error {
     NSString *path = [NSString stringWithFormat:@"functions/%@", function];
     return [self commandWithHTTPPath:path
                           httpMethod:PFHTTPRequestMethodPOST
                           parameters:parameters
-                        sessionToken:sessionToken];
+                        sessionToken:sessionToken
+                               error:error];
 }
 
 @end

@@ -191,7 +191,7 @@
         @"a": @"b"
     };
 
-    NSDictionary *actual = [mutableState dictionaryRepresentationWithObjectEncoder:[PFEncoder objectEncoder]];
+    NSDictionary *actual = [mutableState dictionaryRepresentationWithObjectEncoder:[PFEncoder objectEncoder] error:nil];
     XCTAssertEqualObjects(actual, expected);
 }
 

@@ -42,7 +42,7 @@
 - (void)testGeoPointDictionaryEncoding {
     PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:10 longitude:20];
 
-    NSDictionary *dictionary = [point encodeIntoDictionary];
+    NSDictionary *dictionary = [point encodeIntoDictionary:nil];
     XCTAssertNotNil(dictionary);
 
     PFGeoPoint *pointFromDictionary = [PFGeoPoint geoPointWithDictionary:dictionary];

@@ -169,9 +169,10 @@ static BOOL revocableSessionEnabled_;
 }
 
 - (NSMutableDictionary *)_convertToDictionaryForSaving:(PFOperationSet *)changes
-                                     withObjectEncoder:(PFEncoder *)encoder {
+                                     withObjectEncoder:(PFEncoder *)encoder
+                                                 error:(NSError **)error {
     @synchronized([self lock]) {
-        NSMutableDictionary *serialized = [super _convertToDictionaryForSaving:changes withObjectEncoder:encoder];
+        NSMutableDictionary *serialized = [super _convertToDictionaryForSaving:changes withObjectEncoder:encoder error:error];
         if (self.authData.count > 0) {
             serialized[PFUserAuthDataRESTKey] = [self.authData copy];
         }
@@ -196,13 +197,15 @@ static BOOL revocableSessionEnabled_;
 #pragma mark - Sign Up
 ///--------------------------------------
 
-- (PFRESTCommand *)_currentSignUpCommandForChanges:(PFOperationSet *)changes {
+- (nullable PFRESTCommand *)_currentSignUpCommandForChanges:(PFOperationSet *)changes error:(NSError **)error {
     @synchronized([self lock]) {
         NSDictionary *parameters = [self _convertToDictionaryForSaving:changes
-                                                     withObjectEncoder:[PFPointerObjectEncoder objectEncoder]];
+                                                     withObjectEncoder:[PFPointerObjectEncoder objectEncoder] error:error];
+        PFBailIfError(parameters, error, nil);
         return [PFRESTUserCommand signUpUserCommandWithParameters:parameters
                                                  revocableSession:[[self class] _isRevocableSessionEnabled]
-                                                     sessionToken:self.sessionToken];
+                                                     sessionToken:self.sessionToken
+                                                            error:error];
     }
 }
 
@@ -211,13 +214,15 @@ static BOOL revocableSessionEnabled_;
 ///--------------------------------------
 
 // Constructs the command for user_signup_or_login. This is used for Facebook, Twitter, and other linking services.
-- (PFRESTCommand *)_currentServiceLoginCommandForChanges:(PFOperationSet *)changes {
+- (PFRESTCommand *)_currentServiceLoginCommandForChanges:(PFOperationSet *)changes error:(NSError **)error {
     @synchronized([self lock]) {
         NSDictionary *parameters = [self _convertToDictionaryForSaving:changes
-                                                     withObjectEncoder:[PFPointerObjectEncoder objectEncoder]];
+                                                     withObjectEncoder:[PFPointerObjectEncoder objectEncoder] error:error];
+        PFBailIfError(parameters, error, nil);
         return [PFRESTUserCommand serviceLoginUserCommandWithParameters:parameters
                                                        revocableSession:[[self class] _isRevocableSessionEnabled]
-                                                           sessionToken:self.sessionToken];
+                                                           sessionToken:self.sessionToken
+                                                                  error:error];
     }
 }
 
@@ -418,8 +423,10 @@ static BOOL revocableSessionEnabled_;
             }];
         }
 
+        NSError *error;
         // Otherwise, treat this as a SignUpOrLogIn
-        PFRESTCommand *command = [self _currentServiceLoginCommandForChanges:[self unsavedChanges]];
+        PFRESTCommand *command = [self _currentServiceLoginCommandForChanges:[self unsavedChanges] error:&error];
+        PFBailTaskIfError(command, error);
         [self startSave];
 
         return [[toAwait continueAsyncWithBlock:^id(BFTask *task) {
@@ -557,7 +564,9 @@ static BOOL revocableSessionEnabled_;
             }] continueWithSuccessBlock:^id(BFTask *task) {
                 // We need to construct the signup command lazily, because saving the children
                 // may change the way the object itself is serialized.
-                PFRESTCommand *command = [self _currentSignUpCommandForChanges:changes];
+                NSError *error;
+                PFRESTCommand *command = [self _currentSignUpCommandForChanges:changes error:&error];
+                PFBailTaskIfError(command, error);
                 return [[Parse _currentManager].commandRunner runCommandAsync:command
                                                                   withOptions:PFCommandRunningOptionRetryIfFailed];
             }] continueWithBlock:^id(BFTask *task) {
@@ -600,7 +609,8 @@ static BOOL revocableSessionEnabled_;
 
 - (PFRESTCommand *)_constructSaveCommandForChanges:(PFOperationSet *)changes
                                       sessionToken:(NSString *)token
-                                     objectEncoder:(PFEncoder *)encoder {
+                                     objectEncoder:(PFEncoder *)encoder
+                                             error:(NSError **)error {
     // If we are curent user - use the latest available session token, as it might have been changed since
     // this command was enqueued.
     if (self._current) {
@@ -608,7 +618,8 @@ static BOOL revocableSessionEnabled_;
     }
     return [super _constructSaveCommandForChanges:changes
                                      sessionToken:token
-                                    objectEncoder:encoder];
+                                    objectEncoder:encoder
+                                            error:error];
 }
 
 ///--------------------------------------
@@ -648,7 +659,8 @@ static BOOL revocableSessionEnabled_;
                                 operationSetUUIDs:(NSArray **)operationSetUUIDs
                                             state:(PFObjectState *)state
                                 operationSetQueue:(NSArray *)queue
-                          deletingEventuallyCount:(NSUInteger)deletingEventuallyCount {
+                          deletingEventuallyCount:(NSUInteger)deletingEventuallyCount
+                                            error:(NSError **)error {
     NSMutableArray *cleanQueue = [queue mutableCopy];
     [queue enumerateObjectsUsingBlock:^(PFOperationSet *operationSet, NSUInteger idx, BOOL *stop) {
         // Remove operations for `password` field, to not let it persist to LDS.
@@ -663,7 +675,8 @@ static BOOL revocableSessionEnabled_;
                                 operationSetUUIDs:operationSetUUIDs
                                             state:state
                                 operationSetQueue:cleanQueue
-                          deletingEventuallyCount:deletingEventuallyCount];
+                          deletingEventuallyCount:deletingEventuallyCount
+                                            error:error];
 }
 
 ///--------------------------------------
@@ -723,7 +736,9 @@ static BOOL revocableSessionEnabled_;
                 return self;
             }
 
-            PFRESTCommand *command = [PFRESTUserCommand upgradeToRevocableSessionCommandWithSessionToken:token];
+            NSError *error;
+            PFRESTCommand *command = [PFRESTUserCommand upgradeToRevocableSessionCommandWithSessionToken:token error:&error];
+            PFBailTaskIfError(command, error);
             return [[[Parse _currentManager].commandRunner runCommandAsync:command
                                                                withOptions:0] continueWithSuccessBlock:^id(BFTask *task) {
                 NSDictionary *dictionary = [task.result result];

@@ -178,7 +178,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                                    PFOfflineStoreKeyOfJSON, PFOfflineStoreTableOfObjects, PFOfflineStoreKeyOfUUID];
                 return [database executeQueryAsync:query withArgumentsInArray:@[ uuid ] block:^id(PFSQLiteDatabaseResult *_Nonnull result) {
                     if (![result next]) {
-                        PFConsistencyAssertionFailure(@"Attempted to find non-existent uuid %@. Please report this issue with stack traces and logs.", uuid);
+                        PFConsistencyErrorFailure(@"Attempted to find non-existent uuid %@. Please report this issue with stack traces and logs.", uuid);
                     }
                     return [result stringForColumnIndex:0];
                 }];
@@ -379,7 +379,9 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         PFOfflineObjectEncoder *encoder = [PFOfflineObjectEncoder objectEncoderWithOfflineStore:self database:database];
         // We don't care about operationSetUUIDs here
         NSArray *operationSetUUIDs = nil;
-        encoded = [object RESTDictionaryWithObjectEncoder:encoder operationSetUUIDs:&operationSetUUIDs];
+        NSError *error;
+        encoded = [object RESTDictionaryWithObjectEncoder:encoder operationSetUUIDs:&operationSetUUIDs error:&error];
+        PFBailTaskIfError(encoded, error);
         return [encoder encodeFinished];
     }] continueWithSuccessBlock:^id(BFTask *task) {
         // Time to actually save the object
@@ -616,7 +618,9 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         PFOfflineObjectEncoder *encoder = [PFOfflineObjectEncoder objectEncoderWithOfflineStore:self
                                                                                        database:database];
         NSArray *operationSetUUIDs = nil;
-        dataDictionary = [object RESTDictionaryWithObjectEncoder:encoder operationSetUUIDs:&operationSetUUIDs];
+        NSError *error;
+        dataDictionary = [object RESTDictionaryWithObjectEncoder:encoder operationSetUUIDs:&operationSetUUIDs error:&error];
+        PFBailTaskIfError(dataDictionary, error);
         return [encoder encodeFinished];
     }] continueWithSuccessBlock:^id(BFTask *task) {
         // Put it in database
@@ -905,7 +909,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     __block NSString *objectId = nil;
     return [[database executeQueryAsync:query withArgumentsInArray:@[ uuid ] block:^id(PFSQLiteDatabaseResult *result) {
         if (![result next]) {
-            PFConsistencyAssertionFailure(@"Attempted to find non-existent uuid %@. Please report this issue with stack traces and logs.", uuid);
+            PFConsistencyErrorFailure(@"Attempted to find non-existent uuid %@. Please report this issue with stack traces and logs.", uuid);
         }
 
         className = [result stringForColumnIndex:0];

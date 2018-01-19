@@ -72,7 +72,11 @@ static NSString *const PFConfigCurrentConfigFileName_ = @"config";
         _currentConfig = config;
 
         NSDictionary *configParameters = @{ PFConfigParametersRESTKey : (config.parametersDictionary ?: @{}) };
-        id encodedObject = [[PFPointerObjectEncoder objectEncoder] encodeObject:configParameters];
+        NSError *error;
+        id encodedObject = [[PFPointerObjectEncoder objectEncoder] encodeObject:configParameters error:&error];
+        if (!encodedObject && error) {
+            return [BFTask taskWithError:error];
+        }
         NSData *jsonData = [PFJSONSerialization dataFromJSONObject:encodedObject];
         return [[self _getPersistenceGroupAsync] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
             return [task.result setDataAsync:jsonData forKey:PFConfigCurrentConfigFileName_];

@@ -19,38 +19,44 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Find
 ///--------------------------------------
 
-+ (instancetype)findCommandForQueryState:(PFQueryState *)queryState withSessionToken:(nullable NSString *)sessionToken;
++ (nullable instancetype)findCommandForQueryState:(PFQueryState *)queryState
+                                 withSessionToken:(nullable NSString *)sessionToken
+                                            error:(NSError **)error;
 
-+ (instancetype)findCommandForClassWithName:(NSString *)className
-                                      order:(nullable NSString *)order
-                                 conditions:(nullable NSDictionary *)conditions
-                               selectedKeys:(nullable NSSet *)selectedKeys
-                               includedKeys:(nullable NSSet *)includedKeys
-                                      limit:(NSInteger)limit
-                                       skip:(NSInteger)skip
-                               extraOptions:(nullable NSDictionary *)extraOptions
-                             tracingEnabled:(BOOL)trace
-                               sessionToken:(nullable NSString *)sessionToken;
++ (nullable instancetype)findCommandForClassWithName:(NSString *)className
+                                               order:(nullable NSString *)order
+                                          conditions:(nullable NSDictionary *)conditions
+                                        selectedKeys:(nullable NSSet *)selectedKeys
+                                        includedKeys:(nullable NSSet *)includedKeys
+                                               limit:(NSInteger)limit
+                                                skip:(NSInteger)skip
+                                        extraOptions:(nullable NSDictionary *)extraOptions
+                                      tracingEnabled:(BOOL)trace
+                                        sessionToken:(nullable NSString *)sessionToken
+                                               error:(NSError **)error;
 
 ///--------------------------------------
 #pragma mark - Count
 ///--------------------------------------
 
-+ (instancetype)countCommandFromFindCommand:(PFRESTQueryCommand *)findCommand;
++ (nullable instancetype)countCommandFromFindCommand:(PFRESTQueryCommand *)findCommand
+                                               error:(NSError **)error;
 
 ///--------------------------------------
 #pragma mark - Parameters
 ///--------------------------------------
 
-+ (NSDictionary *)findCommandParametersForQueryState:(PFQueryState *)queryState;
-+ (NSDictionary *)findCommandParametersWithOrder:(nullable NSString *)order
-                                      conditions:(nullable NSDictionary *)conditions
-                                    selectedKeys:(nullable NSSet *)selectedKeys
-                                    includedKeys:(nullable NSSet *)includedKeys
-                                           limit:(NSInteger)limit
-                                            skip:(NSInteger)skip
-                                    extraOptions:(nullable NSDictionary *)extraOptions
-                                  tracingEnabled:(BOOL)trace;
++ (nullable NSDictionary *)findCommandParametersForQueryState:(PFQueryState *)queryState
+                                                        error:(NSError **)error;
++ (nullable NSDictionary *)findCommandParametersWithOrder:(nullable NSString *)order
+                                               conditions:(nullable NSDictionary *)conditions
+                                             selectedKeys:(nullable NSSet *)selectedKeys
+                                             includedKeys:(nullable NSSet *)includedKeys
+                                                    limit:(NSInteger)limit
+                                                     skip:(NSInteger)skip
+                                             extraOptions:(nullable NSDictionary *)extraOptions
+                                           tracingEnabled:(BOOL)trace
+                                                    error:(NSError **)error;
 
 @end
 

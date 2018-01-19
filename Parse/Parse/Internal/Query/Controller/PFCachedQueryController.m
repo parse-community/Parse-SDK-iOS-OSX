@@ -153,7 +153,8 @@
 ///--------------------------------------
 
 - (NSString *)cacheKeyForQueryState:(PFQueryState *)queryState sessionToken:(NSString *)sessionToken {
-    return [PFRESTQueryCommand findCommandForQueryState:queryState withSessionToken:sessionToken].cacheKey;
+    // TODO: @flovimart verify if safe
+    return [PFRESTQueryCommand findCommandForQueryState:queryState withSessionToken:sessionToken error:nil].cacheKey;
 }
 
 - (BOOL)hasCachedResultForQueryState:(PFQueryState *)queryState sessionToken:(NSString *)sessionToken {
