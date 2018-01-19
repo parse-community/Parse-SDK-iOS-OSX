@@ -38,11 +38,11 @@
 ///--------------------------------------
 
 - (NSString *)createLocalId;
-- (void)retainLocalIdOnDisk:(NSString *)localId;
-- (void)releaseLocalIdOnDisk:(NSString *)localId;
+- (void)retainLocalIdOnDisk:(NSString *)localId error:(NSError **)error;
+- (void)releaseLocalIdOnDisk:(NSString *)localId error:(NSError **)error;
 
-- (void)setObjectId:(NSString *)objectId forLocalId:(NSString *)localId;
-- (NSString *)objectIdForLocalId:(NSString *)localId;
+- (void)setObjectId:(NSString *)objectId forLocalId:(NSString *)localId error:(NSError **)error;
+- (NSString *)objectIdForLocalId:(NSString *)localId error:(NSError **)error;
 
 // For testing only.
 - (BOOL)clear;

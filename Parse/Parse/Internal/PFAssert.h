@@ -58,6 +58,18 @@ do { \
 } while(0)
 
 /**
+Sets a recoverable error for propagation
+ */
+#define PFConsistencyError(error, condition, rval, description, ...) \
+if (!(condition)) { \
+*error = [NSError errorWithDomain:PFParseErrorDomain\
+                    code:-1\
+                    userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:description, ##__VA_ARGS__]}];\
+return rval;\
+}
+
+
+/**
  Raises an `NSInternalInconsistencyException`. Use `description` to supply the way to fix the exception.
  */
 #define PFConsistencyAssertionFailure(description, ...) \
