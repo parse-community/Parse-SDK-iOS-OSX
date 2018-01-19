@@ -207,7 +207,7 @@
 ///--------------------------------------
 #pragma mark - Validations
 ///--------------------------------------
-- (void)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser;
+- (BOOL)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser error:(NSError **)error;
 /**
  Checks if Parse class name could be used to initialize a given instance of PFObject or it's subclass.
  */

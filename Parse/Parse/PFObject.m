@@ -461,8 +461,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                             PFRESTCommand *command = nil;
                             @synchronized ([object lock]) {
                                 [object _objectWillSave];
-                                [object _checkSaveParametersWithCurrentUser:currentUser];
                                 NSError *error;
+                                if (![object _checkSaveParametersWithCurrentUser:currentUser error:&error] && error) {
+                                    return error;
+                                }
                                 command = [object _constructSaveCommandForChanges:[object unsavedChanges]
                                                                      sessionToken:sessionToken
                                                                     objectEncoder:[PFPointerObjectEncoder objectEncoder]
@@ -716,8 +718,8 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 ///--------------------------------------
 
 // Validations that are done on save. For now, there is nothing.
-- (void)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser {
-    return;
+- (BOOL)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser error:(NSError **) error {
+    return YES;
 }
 
 /**
@@ -1091,18 +1093,21 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                     PFOperationSet *changes = [self unsavedChanges];
                     changes.saveEventually = YES;
                     [self startSave];
-                    [self _checkSaveParametersWithCurrentUser:currentUser];
                     NSError *error;
-                    PFRESTCommand *command = [self _constructSaveCommandForChanges:changes
-                                                                      sessionToken:sessionToken
-                                                                     objectEncoder:[PFPointerOrLocalIdObjectEncoder objectEncoder]
-                                                                             error:&error];
-                    if (!command && error) {
+                    if (![self _checkSaveParametersWithCurrentUser:currentUser error:&error] && error) {
                         saveTask = [BFTask taskWithError:error];
-                    } else {
-                        // Enqueue the eventually operation!
-                        saveTask = [[Parse _currentManager].eventuallyQueue enqueueCommandInBackground:command withObject:self];
-                        [self _enqueueSaveEventuallyOperationAsync:changes];
+                    } else  {
+                        PFRESTCommand *command = [self _constructSaveCommandForChanges:changes
+                                                                          sessionToken:sessionToken
+                                                                         objectEncoder:[PFPointerOrLocalIdObjectEncoder objectEncoder]
+                                                                                 error:&error];
+                        if (!command && error) {
+                            saveTask = [BFTask taskWithError:error];
+                        } else {
+                            // Enqueue the eventually operation!
+                            saveTask = [[Parse _currentManager].eventuallyQueue enqueueCommandInBackground:command withObject:self];
+                            [self _enqueueSaveEventuallyOperationAsync:changes];
+                        }
                     }
                 }
                 saveTask = [saveTask continueWithBlock:^id(BFTask *task) {
@@ -1410,8 +1415,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                     return childrenTask;
                 }
                 return [[childrenTask continueWithSuccessBlock:^id(BFTask *task) {
-                    [self _checkSaveParametersWithCurrentUser:currentUser];
                     NSError *error;
+                    if (![self _checkSaveParametersWithCurrentUser:currentUser error:&error] && error) {
+                        return error;
+                    }
                     PFRESTCommand *command = [self _constructSaveCommandForChanges:changes
                                                                       sessionToken:sessionToken
                                                                      objectEncoder:[PFPointerObjectEncoder objectEncoder]

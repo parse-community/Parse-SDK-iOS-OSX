@@ -134,15 +134,20 @@ static BOOL revocableSessionEnabled_;
 }
 
 // Checks the properties on the object before saving.
-- (void)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser {
+- (BOOL)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser error:(NSError **)error {
     @synchronized([self lock]) {
-        PFConsistencyAssert(self.objectId || self._lazy,
+        PFConsistencyError(error,
+                           self.objectId || self._lazy,
+                           NO,
                             @"User cannot be saved unless they are already signed up. Call signUp first.");
 
-        PFConsistencyAssert([self _isAuthenticatedWithCurrentUser:currentUser] ||
-                            [self.objectId isEqualToString:currentUser.objectId],
-                            @"User cannot be saved unless they have been authenticated via logIn or signUp", nil);
+        PFConsistencyError(error,
+                           [self _isAuthenticatedWithCurrentUser:currentUser] ||
+                           [self.objectId isEqualToString:currentUser.objectId],
+                           NO,
+                           @"User cannot be saved unless they have been authenticated via logIn or signUp");
     }
+    return YES;
 }
 
 // Checks the properties on the object before signUp.
