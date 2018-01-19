@@ -6826,6 +6826,9 @@
 						LastSwiftMigration = 0900;
 						TestTargetID = 4AE33A0A1F5451AD0088DCA0;
 					};
+					81C09F501AF97A490043B49C = {
+						LastSwiftMigration = 0920;
+					};
 					81C3821B19CCA89E0066284A = {
 						CreatedOnToolsVersion = 6.0.1;
 						LastSwiftMigration = 0830;
@@ -8588,6 +8591,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */;
 			buildSettings = {
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -8595,6 +8599,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */;
 			buildSettings = {
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
