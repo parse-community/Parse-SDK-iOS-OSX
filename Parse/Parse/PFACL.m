@@ -75,10 +75,10 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
     return [[controller getDefaultACLAsync] waitForResult:NULL withMainThreadWarning:NO];
 }
 
-+ (void)setDefaultACL:(PFACL *)acl withAccessForCurrentUser:(BOOL)currentUserAccess {
++ (void)setDefaultACL:(PFACL *)acl withAccessForCurrentUser:(BOOL)currentUserAccess error:(NSError **)error {
     PFDefaultACLController *controller = [Parse _currentManager].coreManager.defaultACLController;
     // TODO: (nlutsenko) Remove this in favor of assert on `_currentManager`.
-    PFConsistencyAssert(controller, @"Can't set default ACL before Parse is initialized.");
+    PFParameterAssert(controller, @"Can't set default ACL before Parse is initialized.");
     [controller setDefaultACLAsync:acl withCurrentUserAccess:currentUserAccess];
 }
 
