@@ -72,9 +72,9 @@ class DeletionTableViewController: PFQueryTableViewController, UIAlertViewDelega
             alertDialog.addAction(UIAlertAction(title: "Save", style: .default) { _ in
                 if let title = titleTextField.text {
                     let object = PFObject(className: self.parseClassName!, dictionary: [ "title": title ])
-                    object.saveInBackground().continueOnSuccessWith { _ -> AnyObject! in
+                    object.saveInBackground().continue(successBlock: { _ -> AnyObject! in
                         return self.loadObjects()
-                    }
+                    })
                 }
             })
 
@@ -110,9 +110,9 @@ class DeletionTableViewController: PFQueryTableViewController, UIAlertViewDelega
 
         if let title = alertView.textField(at: 0)?.text {
             let object = PFObject(className: self.parseClassName!, dictionary: [ "title": title ])
-            object.saveEventually().continueOnSuccessWith { _ -> AnyObject! in
+            object.saveEventually().continue(successBlock: { _ -> AnyObject! in
                 return self.loadObjects()
-            }
+            })
         }
     }
 }

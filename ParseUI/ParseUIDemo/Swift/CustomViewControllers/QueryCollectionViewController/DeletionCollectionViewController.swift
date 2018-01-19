@@ -72,9 +72,9 @@ class DeletionCollectionViewController: PFQueryCollectionViewController, UIAlert
             alertDialog.addAction(UIAlertAction(title: "Save", style: .default) { action in
                 if let title = titleTextField?.text {
                     let object = PFObject(className: self.parseClassName!, dictionary: [ "title": title ])
-                    object.saveEventually().continueOnSuccessWith { _ -> AnyObject! in
+                    object.saveEventually().continue(successBlock: { _ -> AnyObject! in
                         return self.loadObjects()
-                    }
+                    })
                 }
                 })
 
@@ -128,9 +128,9 @@ class DeletionCollectionViewController: PFQueryCollectionViewController, UIAlert
                 dictionary: [ "title": title ]
             )
             
-            object.saveEventually().continueOnSuccessWith { _ -> AnyObject! in
+            object.saveEventually().continue(successBlock: { _ -> AnyObject! in
                 return self.loadObjects()
-            }
+            })
         }
     }
 }
