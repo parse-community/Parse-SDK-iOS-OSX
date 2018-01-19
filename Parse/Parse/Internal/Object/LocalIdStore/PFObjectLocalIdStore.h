@@ -42,7 +42,7 @@
 - (void)releaseLocalIdOnDisk:(NSString *)localId error:(NSError **)error;
 
 - (void)setObjectId:(NSString *)objectId forLocalId:(NSString *)localId error:(NSError **)error;
-- (NSString *)objectIdForLocalId:(NSString *)localId error:(NSError **)error;
+- (NSString *)objectIdForLocalId:(NSString *)localId;
 
 // For testing only.
 - (BOOL)clear;

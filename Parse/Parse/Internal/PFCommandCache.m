@@ -205,7 +205,11 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
         if (dictionaryResult != nil) {
             NSString *objectId = dictionaryResult[@"objectId"];
             if (objectId) {
-                [self.coreDataSource.objectLocalIdStore setObjectId:objectId forLocalId:command.localId];
+                NSError *error;
+                [self.coreDataSource.objectLocalIdStore setObjectId:objectId forLocalId:command.localId error:&error];
+                if (error != nil) {
+                    return [BFTask taskWithError:error];
+                }
             }
         }
     }
