@@ -294,7 +294,9 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
         @strongify(self);
 
         NSError *error = nil;
-        NSData *data = [NSJSONSerialization dataWithJSONObject:[command dictionaryRepresentation]
+        NSDictionary *JSON = [command dictionaryRepresentation:&error];
+        PFBailTaskIfError(JSON, error);
+        NSData *data = [NSJSONSerialization dataWithJSONObject:JSON
                                                        options:0
                                                          error:&error];
         NSUInteger commandSize = data.length;

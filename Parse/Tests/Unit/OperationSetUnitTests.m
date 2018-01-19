@@ -53,7 +53,8 @@
     // Use default PFEncoding
     NSArray *operationSetUUIDs = nil;
     NSDictionary *restified = [operation1 RESTDictionaryUsingObjectEncoder:[PFPointerObjectEncoder objectEncoder]
-                                                         operationSetUUIDs:&operationSetUUIDs];
+                                                         operationSetUUIDs:&operationSetUUIDs
+                                                                     error:nil];
     // Check returned operationSetUUIDs
     XCTAssertNotNil(operationSetUUIDs);
     PFAssertEqualInts(1, operationSetUUIDs.count);

@@ -20,7 +20,8 @@
 - (void)testLogInCommand {
     PFRESTUserCommand *command = [PFRESTUserCommand logInUserCommandWithUsername:@"a"
                                                                         password:@"b"
-                                                                revocableSession:YES];
+                                                                revocableSession:YES
+                                                                           error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"login");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodGET);
@@ -33,7 +34,8 @@
 
     command = [PFRESTUserCommand logInUserCommandWithUsername:@"a"
                                                      password:@"b"
-                                             revocableSession:NO];
+                                             revocableSession:NO
+                                                        error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqual(command.additionalRequestHeaders.count, 0);
     XCTAssertFalse(command.revocableSessionEnabled);
@@ -42,7 +44,8 @@
 - (void)testServiceLoginCommandWithAuthTypeData {
     PFRESTUserCommand *command = [PFRESTUserCommand serviceLoginUserCommandWithAuthenticationType:@"a"
                                                                                authenticationData:@{ @"b" : @"c" }
-                                                                                 revocableSession:YES];
+                                                                                 revocableSession:YES
+                                                                                            error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"users");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
@@ -55,7 +58,8 @@
 
     command = [PFRESTUserCommand serviceLoginUserCommandWithAuthenticationType:@"a"
                                                             authenticationData:@{ @"b" : @"c" }
-                                                              revocableSession:NO];
+                                                              revocableSession:NO
+                                                                         error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqual(command.additionalRequestHeaders.count, 0);
     XCTAssertFalse(command.revocableSessionEnabled);
@@ -64,7 +68,8 @@
 - (void)testServiceLoginCommandWithParameters {
     PFRESTUserCommand *command = [PFRESTUserCommand serviceLoginUserCommandWithParameters:@{ @"authData" : @{@"b" : @"c"} }
                                                                          revocableSession:YES
-                                                                             sessionToken:@"Yarr"];
+                                                                             sessionToken:@"Yarr"
+                                                                                    error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"users");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
@@ -77,7 +82,8 @@
 
     command = [PFRESTUserCommand serviceLoginUserCommandWithParameters:@{ @"authData" : @{@"b" : @"c"} }
                                                       revocableSession:NO
-                                                          sessionToken:@"Yarr!"];
+                                                          sessionToken:@"Yarr!"
+                                                                 error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqual(command.additionalRequestHeaders.count, 0);
     XCTAssertFalse(command.revocableSessionEnabled);
@@ -86,7 +92,8 @@
 - (void)testSignUpCommand {
     PFRESTUserCommand *command = [PFRESTUserCommand signUpUserCommandWithParameters:@{ @"k" : @"v" }
                                                                    revocableSession:YES
-                                                                       sessionToken:@"Boom"];
+                                                                       sessionToken:@"Boom"
+                                                                              error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"users");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
@@ -97,14 +104,15 @@
 
     command = [PFRESTUserCommand signUpUserCommandWithParameters:@{ @"k" : @"v" }
                                                 revocableSession:NO
-                                                    sessionToken:@"Boom"];
+                                                    sessionToken:@"Boom"
+                                                           error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqual(command.additionalRequestHeaders.count, 0);
     XCTAssertFalse(command.revocableSessionEnabled);
 }
 
 - (void)testGetCurrentUserCommand {
-    PFRESTUserCommand *command = [PFRESTUserCommand getCurrentUserCommandWithSessionToken:@"yolo"];
+    PFRESTUserCommand *command = [PFRESTUserCommand getCurrentUserCommandWithSessionToken:@"yolo" error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"users/me");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodGET);
@@ -113,7 +121,7 @@
 }
 
 - (void)testUpgradeToRevocableSessionCommand {
-    PFRESTUserCommand *command = [PFRESTUserCommand upgradeToRevocableSessionCommandWithSessionToken:@"yolo"];
+    PFRESTUserCommand *command = [PFRESTUserCommand upgradeToRevocableSessionCommandWithSessionToken:@"yolo" error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"upgradeToRevocableSession");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
@@ -122,7 +130,7 @@
 }
 
 - (void)testLogOutUserCommand {
-    PFRESTUserCommand *command = [PFRESTUserCommand logOutUserCommandWithSessionToken:@"yolo"];
+    PFRESTUserCommand *command = [PFRESTUserCommand logOutUserCommandWithSessionToken:@"yolo" error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"logout");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
@@ -131,7 +139,7 @@
 }
 
 - (void)testResetPasswordCommand {
-    PFRESTUserCommand *command = [PFRESTUserCommand resetPasswordCommandForUserWithEmail:@"nlutsenko@me.com"];
+    PFRESTUserCommand *command = [PFRESTUserCommand resetPasswordCommandForUserWithEmail:@"nlutsenko@me.com" error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"requestPasswordReset");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);

@@ -20,7 +20,7 @@
 /*
  Gets the encoded format for a Polygon.
  */
-- (NSDictionary *)encodeIntoDictionary;
+- (NSDictionary *)encodeIntoDictionary:(NSError **)error;
 
 /**
  Creates a Polygon from its encoded format.

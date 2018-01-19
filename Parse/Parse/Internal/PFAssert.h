@@ -8,6 +8,7 @@
  */
 
 #import "PFMacros.h"
+#import "PFErrorUtilities.h"
 
 #ifndef Parse_PFAssert_h
 #define Parse_PFAssert_h
@@ -62,12 +63,17 @@ Sets a recoverable error for propagation
  */
 #define PFConsistencyError(error, condition, rval, description, ...) \
 if (!(condition)) { \
-*error = [NSError errorWithDomain:PFParseErrorDomain\
-                    code:-1\
-                    userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:description, ##__VA_ARGS__]}];\
+*error = [PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]];\
 return rval;\
 }
 
+#define PFBailIfError(condition, error, rval) \
+if (!(condition) && error) { \
+return rval;\
+}
+
+#define PFBailTaskIfError(condition, error) \
+PFBailIfError(condition, error, [BFTask taskWithError:error])
 
 /**
  Raises an `NSInternalInconsistencyException`. Use `description` to supply the way to fix the exception.
@@ -77,6 +83,14 @@ do {\
     [NSException raise:NSInternalInconsistencyException \
                 format:description, ##__VA_ARGS__]; \
 } while(0)
+
+/**
+ Returns a consistency error.
+ */
+#define PFConsistencyErrorFailure(description, ...) \
+return [PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]];
+
+
 
 /**
  Always raises `NSInternalInconsistencyException` with details

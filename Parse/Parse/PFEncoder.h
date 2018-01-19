@@ -24,8 +24,8 @@
 
 + (instancetype)objectEncoder;
 
-- (id)encodeObject:(id)object;
-- (id)encodeParseObject:(PFObject *)object;
+- (id)encodeObject:(id)object error:(NSError **)error;
+- (id)encodeParseObject:(PFObject *)object error:(NSError **)error;
 
 @end
 

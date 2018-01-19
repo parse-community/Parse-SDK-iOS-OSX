@@ -58,7 +58,8 @@ NS_ASSUME_NONNULL_BEGIN
     NSArray *commands = [self sampleObjectCommands];
     PFRESTObjectBatchCommand *command = [PFRESTObjectBatchCommand batchCommandWithCommands:commands
                                                                               sessionToken:@"yolo"
-                                                                                 serverURL:[NSURL URLWithString:@"https://api.parse.com/1"]];
+                                                                                 serverURL:[NSURL URLWithString:@"https://api.parse.com/1"]
+                                                                                     error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"batch");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
@@ -76,10 +77,12 @@ NS_ASSUME_NONNULL_BEGIN
     while (array.count < PFRESTObjectBatchCommandSubcommandsLimit) {
         [array addObjectsFromArray:[self sampleObjectCommands]];
     }
-
+    NSError *error;
     PFAssertThrowsInvalidArgumentException([PFRESTObjectBatchCommand batchCommandWithCommands:array
                                                                                  sessionToken:@"a"
-                                                                                    serverURL:[NSURL URLWithString:@"https://api.parse.com/1"]]);
+                                                                                    serverURL:[NSURL URLWithString:@"https://api.parse.com/1"]
+                                                                                        error:&error]);
+    XCTAssertNil(error);
 }
 
 @end

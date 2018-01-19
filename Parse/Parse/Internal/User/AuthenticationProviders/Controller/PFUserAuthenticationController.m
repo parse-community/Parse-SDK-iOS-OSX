@@ -52,8 +52,7 @@
 ///--------------------------------------
 
 - (void)registerAuthenticationDelegate:(id<PFUserAuthenticationDelegate>)delegate
-                           forAuthType:(NSString *)authType
-                                 error:(NSError **)error {
+                           forAuthType:(NSString *)authType {
     PFParameterAssert(delegate, @"Authentication delegate can't be `nil`.");
     PFParameterAssert(authType, @"`authType` can't be `nil`.");
     PFParameterAssert(![self authenticationDelegateForAuthType:authType],

@@ -30,7 +30,7 @@
 
 - (void)testFieldOperationEncoding {
     PFFieldOperation *operation = [[PFFieldOperation alloc] init];
-    XCTAssertThrows([operation encodeWithObjectEncoder:[PFEncoder objectEncoder]]);
+    XCTAssertThrows([operation encodeWithObjectEncoder:[PFEncoder objectEncoder] error:nil]);
 }
 
 - (void)testFieldOperationMerge {
@@ -82,10 +82,10 @@
 
 - (void)testSetOperationEncoding {
     PFEncoder *encoder = PFStrictClassMock([PFEncoder class]);
-    OCMStub([encoder encodeObject:[OCMArg isEqual:@"yarr"]]).andReturn(@"yolo");
+    OCMStub([encoder encodeObject:[OCMArg isEqual:@"yarr"] error:nil]).andReturn(@"yolo");
 
     PFSetOperation *operation = [PFSetOperation setWithValue:@"yarr"];
-    XCTAssertEqualObjects([operation encodeWithObjectEncoder:encoder], @"yolo");
+    XCTAssertEqualObjects([operation encodeWithObjectEncoder:encoder error:nil], @"yolo");
 }
 
 ///--------------------------------------
@@ -108,10 +108,10 @@
 - (void)testDeleteOperationEncoding {
     PFDeleteOperation *operation = [PFDeleteOperation operation];
 
-    NSDictionary *encoded = [operation encodeWithObjectEncoder:nil];
+    NSDictionary *encoded = [operation encodeWithObjectEncoder:nil error:nil];
     XCTAssertEqualObjects(encoded, @{ @"__op" : @"Delete" });
 
-    encoded = [operation encodeWithObjectEncoder:[PFEncoder objectEncoder]];
+    encoded = [operation encodeWithObjectEncoder:[PFEncoder objectEncoder] error:nil];
     XCTAssertEqualObjects(encoded, @{ @"__op" : @"Delete" });
 }
 
@@ -153,10 +153,10 @@
     NSDictionary *properEncodedDictionary = @{ @"__op" : @"Increment",
                                                @"amount" : @100500 };
 
-    NSDictionary *encoded = [operation encodeWithObjectEncoder:nil];
+    NSDictionary *encoded = [operation encodeWithObjectEncoder:nil error:nil];
     XCTAssertEqualObjects(encoded, properEncodedDictionary);
 
-    encoded = [operation encodeWithObjectEncoder:[PFEncoder objectEncoder]];
+    encoded = [operation encodeWithObjectEncoder:[PFEncoder objectEncoder] error:nil];
     XCTAssertEqualObjects(encoded, properEncodedDictionary);
 }
 
@@ -200,11 +200,11 @@
 
 - (void)testAddOperationEncoding {
     PFEncoder *encoder = PFStrictClassMock([PFEncoder class]);
-    OCMStub([encoder encodeObject:[OCMArg isEqual:@[ @"yarr" ]]]).andReturn(@"yolo");
+    OCMStub([encoder encodeObject:[OCMArg isEqual:@[ @"yarr" ]] error:nil]).andReturn(@"yolo");
 
     PFAddOperation *operation = [PFAddOperation addWithObjects:@[ @"yarr" ]];
-    XCTAssertThrows([operation encodeWithObjectEncoder:nil]);
-    XCTAssertEqualObjects([operation encodeWithObjectEncoder:encoder], (@{ @"__op" : @"Add",
+    XCTAssertThrows([operation encodeWithObjectEncoder:nil error:nil]);
+    XCTAssertEqualObjects([operation encodeWithObjectEncoder:encoder error:nil], (@{ @"__op" : @"Add",
                                                                            @"objects" : @"yolo" }));
 }
 
@@ -249,11 +249,11 @@
 
 - (void)testAddUniqueOperationEncoding {
     PFEncoder *encoder = PFStrictClassMock([PFEncoder class]);
-    OCMStub([encoder encodeObject:[OCMArg isEqual:@[ @"yarr" ]]]).andReturn(@"yolo");
+    OCMStub([encoder encodeObject:[OCMArg isEqual:@[ @"yarr" ]] error:nil]).andReturn(@"yolo");
 
     PFAddUniqueOperation *operation = [PFAddUniqueOperation addUniqueWithObjects:@[ @"yarr" ]];
-    XCTAssertThrows([operation encodeWithObjectEncoder:nil]);
-    XCTAssertEqualObjects([operation encodeWithObjectEncoder:encoder], (@{ @"__op" : @"AddUnique",
+    XCTAssertThrows([operation encodeWithObjectEncoder:nil error:nil]);
+    XCTAssertEqualObjects([operation encodeWithObjectEncoder:encoder error:nil], (@{ @"__op" : @"AddUnique",
                                                                            @"objects" : @"yolo" }));
 }
 
@@ -298,11 +298,11 @@
 
 - (void)testRemoveOperationEncoding {
     PFEncoder *encoder = PFStrictClassMock([PFEncoder class]);
-    OCMStub([encoder encodeObject:[OCMArg isEqual:@[ @"yarr" ]]]).andReturn(@"yolo");
+    OCMStub([encoder encodeObject:[OCMArg isEqual:@[ @"yarr" ]] error:nil]).andReturn(@"yolo");
 
     PFRemoveOperation *operation = [PFRemoveOperation removeWithObjects:@[ @"yarr" ]];
-    XCTAssertThrows([operation encodeWithObjectEncoder:nil]);
-    XCTAssertEqualObjects([operation encodeWithObjectEncoder:encoder], (@{ @"__op" : @"Remove",
+    XCTAssertThrows([operation encodeWithObjectEncoder:nil error:nil]);
+    XCTAssertEqualObjects([operation encodeWithObjectEncoder:encoder error:nil], (@{ @"__op" : @"Remove",
                                                                            @"objects" : @"yolo" }));
 }
 
@@ -362,28 +362,28 @@
 - (void)testRelationOperationEncoding {
     PFObject *object = [PFObject objectWithClassName:@"Yolo"];
     PFEncoder *encoder = PFStrictClassMock([PFEncoder class]);
-    OCMStub([encoder encodeObject:OCMOCK_ANY]).andReturn(@"yolo");
+    OCMStub([encoder encodeObject:OCMOCK_ANY error:nil]).andReturn(@"yolo");
 
     PFRelationOperation *operation = [PFRelationOperation addRelationToObjects:@[ object, object ]];
-    NSDictionary *encoded = [operation encodeWithObjectEncoder:encoder];
+    NSDictionary *encoded = [operation encodeWithObjectEncoder:encoder error:nil];
     XCTAssertEqualObjects(encoded, (@{ @"__op" : @"AddRelation",
                                        @"objects" : @[ @"yolo" ] }));
 
     operation = [PFRelationOperation removeRelationToObjects:@[ object, object ]];
-    encoded = [operation encodeWithObjectEncoder:encoder];
+    encoded = [operation encodeWithObjectEncoder:encoder error:nil];
     XCTAssertEqualObjects(encoded, (@{ @"__op" : @"RemoveRelation",
                                        @"objects" : @[ @"yolo" ] }));
 
     PFObject *anotherObject = [PFObject objectWithClassName:@"Yolo"];
 
     operation = (PFRelationOperation *)[operation mergeWithPrevious:[PFRelationOperation addRelationToObjects:@[ anotherObject ]]];
-    encoded = [operation encodeWithObjectEncoder:encoder];
+    encoded = [operation encodeWithObjectEncoder:encoder error:nil];
     XCTAssertEqualObjects(encoded, (@{ @"__op" : @"Batch",
                                        @"ops" : @[ @{@"__op" : @"AddRelation", @"objects" : @[ @"yolo" ]},
                                                    @{@"__op" : @"RemoveRelation", @"objects" : @[ @"yolo" ]} ] }));
 
-    XCTAssertThrows([[PFRelationOperation addRelationToObjects:@[]] encodeWithObjectEncoder:encoder]);
-    XCTAssertThrows([[PFRelationOperation removeRelationToObjects:@[]] encodeWithObjectEncoder:encoder]);
+    XCTAssertThrows([[PFRelationOperation addRelationToObjects:@[]] encodeWithObjectEncoder:encoder error:nil]);
+    XCTAssertThrows([[PFRelationOperation removeRelationToObjects:@[]] encodeWithObjectEncoder:encoder error:nil]);
 }
 
 - (void)testRelationOperationMerge {

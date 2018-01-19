@@ -23,7 +23,7 @@ extern const double EARTH_RADIUS_KILOMETERS;
 /*
  Gets the encoded format for an GeoPoint.
  */
-- (NSDictionary *)encodeIntoDictionary;
+- (NSDictionary *)encodeIntoDictionary:(NSError **)error;
 
 /**
  Creates an GeoPoint from its encoded format.

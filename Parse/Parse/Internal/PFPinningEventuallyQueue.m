@@ -169,7 +169,8 @@
             PFOperationSet *operationSet = _operationSetUUIDToOperationSet[eventuallyPin.operationSetUUID];
             return [eventuallyPin.object _constructSaveCommandForChanges:operationSet
                                                             sessionToken:eventuallyPin.sessionToken
-                                                           objectEncoder:[PFPointerObjectEncoder objectEncoder]];
+                                                           objectEncoder:[PFPointerObjectEncoder objectEncoder]
+                                                                   error:error];
         }
         case PFEventuallyPinTypeDelete:
             return [eventuallyPin.object _currentDeleteCommandWithSessionToken:eventuallyPin.sessionToken];

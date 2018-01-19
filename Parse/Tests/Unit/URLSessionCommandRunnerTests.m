@@ -64,7 +64,7 @@
 
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo.bar"]];
 
-    OCMStub([mockedCommand resolveLocalIds]);
+    OCMStub([mockedCommand resolveLocalIds:(NSError * __autoreleasing *)[OCMArg anyPointer]]).andReturn(YES);
 
     OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
     [OCMExpect([mockedSession performDataURLRequestAsync:urlRequest
@@ -135,7 +135,7 @@
 
     __block int performDataURLRequestCount = 0;
 
-    OCMStub([mockedCommand resolveLocalIds]);
+    OCMStub([mockedCommand resolveLocalIds:(NSError * __autoreleasing *)[OCMArg anyPointer]]).andReturn(YES);
     OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
 
     [OCMStub([mockedSession performDataURLRequestAsync:urlRequest
@@ -228,7 +228,7 @@
         lastProgress = progress;
     } copy];
 
-    OCMStub([mockedCommand resolveLocalIds]);
+    OCMStub([mockedCommand resolveLocalIds:(NSError * __autoreleasing *)[OCMArg anyPointer]]).andReturn(YES);
 
     OCMExpect([mockedRequestConstructor getFileUploadURLRequestAsyncForCommand:mockedCommand
                                                                withContentType:@"content-type"
@@ -275,7 +275,7 @@
 
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo.bar"]];
 
-    OCMExpect([mockedCommand resolveLocalIds]);
+    OCMExpect([mockedCommand resolveLocalIds:(NSError * __autoreleasing *)[OCMArg anyPointer]]).andReturn(YES);
 
     OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
     [OCMStub([mockedSession performDataURLRequestAsync:urlRequest

@@ -21,13 +21,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)logInUserCommandWithUsername:(NSString *)username
                                     password:(NSString *)password
-                            revocableSession:(BOOL)revocableSessionEnabled;
+                            revocableSession:(BOOL)revocableSessionEnabled
+                                       error:(NSError **)error;
 + (instancetype)serviceLoginUserCommandWithAuthenticationType:(NSString *)authenticationType
                                            authenticationData:(NSDictionary *)authenticationData
-                                             revocableSession:(BOOL)revocableSessionEnabled;
+                                             revocableSession:(BOOL)revocableSessionEnabled
+                                                        error:(NSError **)error;
 + (instancetype)serviceLoginUserCommandWithParameters:(NSDictionary *)parameters
                                      revocableSession:(BOOL)revocableSessionEnabled
-                                         sessionToken:(nullable NSString *)sessionToken;
+                                         sessionToken:(nullable NSString *)sessionToken
+                                                error:(NSError **)error;
 
 ///--------------------------------------
 #pragma mark - Sign Up
@@ -35,21 +38,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)signUpUserCommandWithParameters:(NSDictionary *)parameters
                                revocableSession:(BOOL)revocableSessionEnabled
-                                   sessionToken:(nullable NSString *)sessionToken;
+                                   sessionToken:(nullable NSString *)sessionToken
+                                          error:(NSError **)error;
 
 ///--------------------------------------
 #pragma mark - Current User
 ///--------------------------------------
 
-+ (instancetype)getCurrentUserCommandWithSessionToken:(NSString *)sessionToken;
-+ (instancetype)upgradeToRevocableSessionCommandWithSessionToken:(NSString *)sessionToken;
-+ (instancetype)logOutUserCommandWithSessionToken:(NSString *)sessionToken;
++ (instancetype)getCurrentUserCommandWithSessionToken:(NSString *)sessionToken error:(NSError **)error;
++ (instancetype)upgradeToRevocableSessionCommandWithSessionToken:(NSString *)sessionToken error:(NSError **)error;
++ (instancetype)logOutUserCommandWithSessionToken:(NSString *)sessionToken error:(NSError **)error;
 
 ///--------------------------------------
 #pragma mark - Password Rest
 ///--------------------------------------
 
-+ (instancetype)resetPasswordCommandForUserWithEmail:(NSString *)email;
++ (instancetype)resetPasswordCommandForUserWithEmail:(NSString *)email error:(NSError **)error;
 
 @end
 

@@ -104,7 +104,7 @@
 static NSString *const PFPolygonCodingTypeKey = @"__type";
 static NSString *const PFPolygonCodingCoordinatesKey = @"coordinates";
 
-- (NSDictionary *)encodeIntoDictionary {
+- (NSDictionary *)encodeIntoDictionary:(NSError **)error {
     return @{
              PFPolygonCodingTypeKey : @"Polygon",
              PFPolygonCodingCoordinatesKey : self.coordinates
@@ -173,7 +173,7 @@ static NSString *const PFPolygonCodingCoordinatesKey = @"coordinates";
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    NSDictionary *dictionary = [self encodeIntoDictionary];
+    NSDictionary *dictionary = [self encodeIntoDictionary:nil];
     [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [coder encodeObject:obj forKey:key];
     }];

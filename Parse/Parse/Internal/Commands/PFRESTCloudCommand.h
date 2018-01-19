@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)commandForFunction:(NSString *)function
                     withParameters:(nullable NSDictionary *)parameters
-                      sessionToken:(nullable NSString *)sessionToken;
+                      sessionToken:(nullable NSString *)sessionToken
+                             error:(NSError **)error;
 
 @end
 

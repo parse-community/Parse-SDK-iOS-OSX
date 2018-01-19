@@ -20,7 +20,7 @@
 /*
  Gets the encoded format for an ACL.
  */
-- (NSDictionary *)encodeIntoDictionary;
+- (NSDictionary *)encodeIntoDictionary:(NSError **)error;
 
 /*
  Creates a new ACL object from an existing dictionary.

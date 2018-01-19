@@ -17,7 +17,8 @@
     return [self commandWithHTTPPath:@"sessions/me"
                           httpMethod:PFHTTPRequestMethodGET
                           parameters:nil
-                        sessionToken:sessionToken];
+                        sessionToken:sessionToken
+                               error:nil];
 }
 
 @end

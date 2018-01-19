@@ -51,11 +51,12 @@ NSString *const PFRESTAnalyticsEventNameCrashReport = @"_CrashReport";
     if (!dictionary[@"at"]) {
         dictionary[@"at"] = [NSDate date];
     }
-
+    // TODO: flovilmart do not swallow error here
     return [self commandWithHTTPPath:httpPath
                           httpMethod:PFHTTPRequestMethodPOST
                           parameters:dictionary
-                        sessionToken:sessionToken];
+                        sessionToken:sessionToken
+                               error:nil];
 }
 
 @end
