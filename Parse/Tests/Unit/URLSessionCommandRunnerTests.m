@@ -17,6 +17,8 @@
 #import "PFCommandURLRequestConstructor.h"
 #import "PFRESTCommand.h"
 #import "PFTestCase.h"
+#import "PFObject.h"
+#import "PFObjectPrivate.h"
 #import "PFURLSession.h"
 #import "PFURLSessionCommandRunner_Private.h"
 
@@ -255,6 +257,16 @@
     [self waitForTestExpectations];
 
     OCMVerifyAll(mockedCommand);
+}
+
+- (void)testLocalIdResolutionFailure {
+    PFObject *object = [PFObject objectWithoutDataWithClassName:@"Yolo" localId:@"localId"];
+    id command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"object": object} sessionToken:nil error:nil];
+    NSError *error;
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a pointer to a new, unsaved object.");
 }
 
 @end
