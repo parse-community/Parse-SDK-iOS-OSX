@@ -64,7 +64,7 @@
 
         NSError *error;
         PFRESTCommand *command = [PFRESTQueryCommand findCommandForQueryState:queryState withSessionToken:sessionToken error:&error];
-        PFBailTaskIfError(command, error);
+        PFPreconditionReturnFailedTask(command, error);
         querySent = (queryState.trace ? [NSDate date] : nil);
         return [self runNetworkCommandAsync:command
                       withCancellationToken:cancellationToken
@@ -117,9 +117,9 @@
         PFRESTQueryCommand *findCommand = [PFRESTQueryCommand findCommandForQueryState:queryState
                                                                       withSessionToken:sessionToken
                                                                                  error:&error];
-        PFBailTaskIfError(findCommand, error);
+        PFPreconditionReturnFailedTask(findCommand, error);
         PFRESTCommand *countCommand = [PFRESTQueryCommand countCommandFromFindCommand:findCommand error:&error];
-        PFBailTaskIfError(countCommand, error);
+        PFPreconditionReturnFailedTask(countCommand, error);
         return [self runNetworkCommandAsync:countCommand
                       withCancellationToken:cancellationToken
                               forQueryState:queryState];

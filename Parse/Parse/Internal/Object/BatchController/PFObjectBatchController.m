@@ -57,7 +57,7 @@
         @strongify(self);
         NSError *error;
         PFRESTCommand *command = [self _fetchCommandForObjects:objects withSessionToken:sessionToken error:&error];
-        PFBailTaskIfError(command, error);
+        PFPreconditionReturnFailedTask(command, error);
         return [self.dataSource.commandRunner runCommandAsync:command
                                                   withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessBlock:^id(BFTask *task) {

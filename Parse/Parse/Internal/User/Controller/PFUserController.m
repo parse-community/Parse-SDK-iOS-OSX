@@ -52,7 +52,7 @@
         @strongify(self);
         NSError *error = nil;
         PFRESTCommand *command = [PFRESTUserCommand getCurrentUserCommandWithSessionToken:sessionToken error:&error];
-        PFBailTaskIfError(command, error);
+        PFPreconditionReturnFailedTask(command, error);
         return [self.commonDataSource.commandRunner runCommandAsync:command
                                                         withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessBlock:^id(BFTask *task) {
@@ -87,7 +87,7 @@
                                                                         password:password
                                                                 revocableSession:revocableSession
                                                                            error:&error];
-        PFBailTaskIfError(command, error);
+        PFPreconditionReturnFailedTask(command, error);
         return [self.commonDataSource.commandRunner runCommandAsync:command
                                                         withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessBlock:^id(BFTask *task) {
@@ -124,7 +124,7 @@
                                                                                authenticationData:authData
                                                                                  revocableSession:revocableSession
                                                                                             error:&error];
-        PFBailTaskIfError(command, error);
+        PFPreconditionReturnFailedTask(command, error);
         return [self.commonDataSource.commandRunner runCommandAsync:command
                                                         withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessBlock:^id(BFTask *task) {
@@ -151,7 +151,7 @@
         @strongify(self);
         NSError *error = nil;
         PFRESTCommand *command = [PFRESTUserCommand resetPasswordCommandForUserWithEmail:email error:&error];
-        PFBailTaskIfError(command, error);
+        PFPreconditionReturnFailedTask(command, error);
         return [self.commonDataSource.commandRunner runCommandAsync:command
                                                         withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessResult:nil];
@@ -167,7 +167,7 @@
         @strongify(self);
         NSError *error = nil;
         PFRESTCommand *command = [PFRESTUserCommand logOutUserCommandWithSessionToken:sessionToken error:&error];
-        PFBailTaskIfError(command, error);
+        PFPreconditionReturnFailedTask(command, error);
         return [self.commonDataSource.commandRunner runCommandAsync:command
                                                         withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessResult:nil];

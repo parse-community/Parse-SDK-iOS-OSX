@@ -95,7 +95,7 @@ static NSString *const PFEventuallyPinKeyCommand = @"command";
     NSError *error;
     NSDictionary *commandDictionary = (type == PFEventuallyPinTypeCommand ? [command dictionaryRepresentation:&error] : nil);
     if (type == PFEventuallyPinTypeCommand) {
-        PFBailTaskIfError(commandDictionary, error);
+        PFPreconditionReturnFailedTask(commandDictionary, error);
     }
     return [self _pinEventually:object
                            type:type

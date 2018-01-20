@@ -452,7 +452,7 @@
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:set.count];
     for (PFObject *object in set) {
         id encodedDict = [objectEncoder encodeObject:object error:error];
-        PFBailIfError(encodedDict, error, nil);
+        PFPreconditionBailOnError(encodedDict, error, nil);
         [array addObject:encodedDict];
     }
     return array;

@@ -73,7 +73,7 @@
             }
             NSError *error = nil;
             requestParameters = [[PFPointerObjectEncoder objectEncoder] encodeObject:parameters error:&error];
-            PFBailTaskIfError(requestParameters, error);
+            PFPreconditionReturnFailedTask(requestParameters, error);
         }
 
         return [PFHTTPURLRequestConstructor urlRequestWithURL:url

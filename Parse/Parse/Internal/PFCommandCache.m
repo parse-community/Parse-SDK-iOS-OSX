@@ -295,7 +295,7 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
 
         NSError *error = nil;
         NSDictionary *JSON = [command dictionaryRepresentation:&error];
-        PFBailTaskIfError(JSON, error);
+        PFPreconditionReturnFailedTask(JSON, error);
         NSData *data = [NSJSONSerialization dataWithJSONObject:JSON
                                                        options:0
                                                          error:&error];
