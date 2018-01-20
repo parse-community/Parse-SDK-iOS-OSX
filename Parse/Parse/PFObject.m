@@ -783,7 +783,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (BOOL)resolveLocalId:(NSError *__autoreleasing*)error {
     @synchronized (lock) {
-        PFConsistencyAssert(self.localId, @"Tried to resolve a localId for an object with no localId.");
+        if (!self.localId) {
+            PFConsistencyError(error, self.localId, NO , @"Tried to resolve a localId for an object with no localId.");
+        }
         NSString *newObjectId = [[Parse _currentManager].coreManager.objectLocalIdStore objectIdForLocalId:self.localId];
 
         // If we are resolving local ids, then this object is about to go over the network.

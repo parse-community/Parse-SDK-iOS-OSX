@@ -98,10 +98,12 @@
         __block BOOL hasErrored = NO;
         __block NSError *encodingError = nil;
         [object enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            dict[key] = [self encodeObject:obj error:&encodingError];
-            if (!dict[key] && encodingError) {
+            id result = [self encodeObject:obj error:&encodingError];
+            if (!result && encodingError) {
                 hasErrored = YES;
                 *stop = YES;
+            } else {
+                dict[key] = result;
             }
         }];
         if (hasErrored) {
