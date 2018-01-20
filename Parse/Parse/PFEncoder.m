@@ -33,7 +33,7 @@
     return encoder;
 }
 
-- (id)encodeObject:(id)object error:(NSError **) error {
+- (id)encodeObject:(id)object error:(NSError * __autoreleasing *) error {
     if ([object isKindOfClass:[PFObject class]]) {
         return [self encodeParseObject:object error:error];
     } else if ([object isKindOfClass:[NSData class]]) {
@@ -190,7 +190,7 @@
     return encoder;
 }
 
-- (id)encodeParseObject:(PFObject *)object error:(NSError **)error {
+- (id)encodeParseObject:(PFObject *)object error:(NSError * __autoreleasing *)error {
     PFConsistencyError(error, object.objectId, nil, @"Tried to save an object with a new, unsaved child.");
     return [super encodeParseObject:object error:error];
 }

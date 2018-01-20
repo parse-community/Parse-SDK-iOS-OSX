@@ -106,7 +106,7 @@
 #pragma mark - Coding
 ///--------------------------------------
 
-- (NSDictionary *)dictionaryRepresentationWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
+- (NSDictionary *)dictionaryRepresentationWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError * __autoreleasing *)error {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     if (self.objectId) {
         result[PFObjectObjectIdRESTKey] = self.objectId;

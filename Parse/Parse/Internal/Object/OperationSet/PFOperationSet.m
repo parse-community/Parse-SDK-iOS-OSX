@@ -74,7 +74,7 @@ static NSString *const PFOperationSetKeyACL = @"ACL";
 
 - (nullable NSDictionary *)RESTDictionaryUsingObjectEncoder:(PFEncoder *)objectEncoder
                                  operationSetUUIDs:(NSArray **)operationSetUUIDs
-                                             error:(NSError **)error {
+                                             error:(NSError * __autoreleasing *)error {
     NSMutableDictionary *operationSetResult = [[NSMutableDictionary alloc] init];
     __block NSError *encodingError;
     __block BOOL wasStopped = false;
