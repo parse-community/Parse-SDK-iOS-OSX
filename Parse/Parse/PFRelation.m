@@ -197,7 +197,7 @@ static NSString *const PFRelationKeyObjects = @"objects";
     NSMutableArray *encodedObjects = [NSMutableArray arrayWithCapacity:state.knownObjects.count];
     for (PFObject *knownObject in state.knownObjects) {
         id result = [[PFPointerObjectEncoder objectEncoder] encodeObject:knownObject error:error];
-        if (!result && error) {
+        if (!result) {
             return nil;
         }
         [encodedObjects addObject:result];

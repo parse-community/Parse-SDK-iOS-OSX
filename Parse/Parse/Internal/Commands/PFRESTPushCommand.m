@@ -26,7 +26,7 @@
 
     if (state.queryState) {
         NSDictionary *queryParameters = [PFRESTQueryCommand findCommandParametersForQueryState:state.queryState error:error];
-        if (!queryParameters && error) {
+        if (!queryParameters) {
             return nil;
         }
         parameters[@"where"] = queryParameters[@"where"];

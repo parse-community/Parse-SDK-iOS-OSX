@@ -74,7 +74,7 @@ static NSString *const PFConfigCurrentConfigFileName_ = @"config";
         NSDictionary *configParameters = @{ PFConfigParametersRESTKey : (config.parametersDictionary ?: @{}) };
         NSError *error;
         id encodedObject = [[PFPointerObjectEncoder objectEncoder] encodeObject:configParameters error:&error];
-        if (!encodedObject && error) {
+        if (!encodedObject) {
             return [BFTask taskWithError:error];
         }
         NSData *jsonData = [PFJSONSerialization dataFromJSONObject:encodedObject];

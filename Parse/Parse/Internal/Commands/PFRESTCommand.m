@@ -124,7 +124,7 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
     }
     if (self.parameters) {
         NSDictionary *parameters = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:self.parameters error:error];
-        if (!parameters && error) {
+        if (!parameters) {
             return nil;
         }
         dictionary[PFRESTCommandParametersEncodingKey] = parameters;
@@ -225,7 +225,7 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
 
     if ([[self class] forEachLocalIdIn:data doBlock:block]) {
         self.parameters = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:data error:error];
-        if (!self.parameters && error) {
+        if (!self.parameters) {
             return NO;
         }
     }
