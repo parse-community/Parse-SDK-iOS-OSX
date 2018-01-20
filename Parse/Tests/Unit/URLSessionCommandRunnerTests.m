@@ -313,4 +313,14 @@
     XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a pointer to a new, unsaved object.");
 }
 
+- (void)testLocalIdResolutionFailureWithNoLocalId {
+    PFObject *object = [PFObject objectWithClassName:@"Yolo"];
+    id command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"object": object} sessionToken:nil error:nil];
+    NSError *error;
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to resolve a localId for an object with no localId.");
+}
+
 @end
