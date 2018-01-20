@@ -232,10 +232,23 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
     return YES;
 }
 
-- (BOOL)resolveLocalIds:(NSError **)error {
-    if(![self forEachLocalId:^(PFObject *pointer) {
-        return [pointer resolveLocalId:nil];
-    } error: error]) {
+- (BOOL)resolveLocalIds:(NSError * __autoreleasing *)error {
+    __block NSError *firstError;
+    __block BOOL pointerResolutionFailed = NO;
+    BOOL paramEncodingFailed = [self forEachLocalId:^(PFObject *pointer) {
+        NSError *localError;
+        BOOL success = [pointer resolveLocalId:&localError];
+        if (!success && !firstError) {
+            firstError = localError;
+            pointerResolutionFailed = YES;
+        }
+        return YES;
+    } error: error];
+    if (paramEncodingFailed && *error) {
+        return NO;
+    }
+    if (pointerResolutionFailed && firstError) {
+        *error = firstError;
         return NO;
     }
     [self maybeChangeServerOperation];
