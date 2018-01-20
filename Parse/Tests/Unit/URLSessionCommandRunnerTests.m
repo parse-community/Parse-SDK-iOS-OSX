@@ -19,6 +19,7 @@
 #import "PFTestCase.h"
 #import "PFObject.h"
 #import "PFObjectPrivate.h"
+#import "PFFieldOperation.h"
 #import "PFURLSession.h"
 #import "PFURLSessionCommandRunner_Private.h"
 
@@ -277,6 +278,55 @@
     XCTAssertNotNil(error);
     XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
     XCTAssertEqualObjects(error.localizedDescription, @"Tried to resolve a localId for an object with no localId.");
+}
+
+- (void)testLocalIdResolutionWithArray {
+    PFObject *object = [PFObject objectWithClassName:@"Yolo"];
+    id command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"values":@[@(1), object]} sessionToken:nil error:nil];
+    NSError *error;
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to resolve a localId for an object with no localId.");
+}
+
+- (void)testLocalIdResolutionWithArrayAndMutlipleErrors {
+    PFObject *objectWithLocalId = [PFObject objectWithoutDataWithClassName:@"Yolo" localId:@"localId"];
+    PFObject *object = [PFObject objectWithClassName:@"Yolo"];
+    id command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"values":@[objectWithLocalId, object]} sessionToken:nil error:nil];
+    NSError *error;
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a pointer to a new, unsaved object.");
+}
+
+- (void)testLocalIdResolutionWithOperations {
+    NSError *error;
+    PFObject *objectWithLocalId = [PFObject objectWithoutDataWithClassName:@"Yolo" localId:@"localId"];
+    PFObject *object = [PFObject objectWithClassName:@"Yolo"];
+    PFAddOperation *addOperation = [PFAddOperation addWithObjects:@[objectWithLocalId, object]];
+    id command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"values":addOperation} sessionToken:nil error:nil];
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a pointer to a new, unsaved object.");
+
+    error = nil;
+
+    PFAddUniqueOperation *addUniqueOperation = [PFAddUniqueOperation addUniqueWithObjects:@[objectWithLocalId, object]];
+    command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"values":addUniqueOperation} sessionToken:nil error:nil];
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a pointer to a new, unsaved object.");
+
+    PFRemoveOperation *removeOperation = [PFRemoveOperation removeWithObjects:@[objectWithLocalId, object]];
+    command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"values":removeOperation} sessionToken:nil error:nil];
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a pointer to a new, unsaved object.");
 }
 
 @end
