@@ -204,41 +204,64 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
  @param seenNew  The set of new objects that have already been seen since the
  last existing object.
  */
-+ (void)collectDirtyChildren:(id)node
++ (BOOL)collectDirtyChildren:(id)node
                     children:(NSMutableSet *)dirtyChildren
                        files:(NSMutableSet *)dirtyFiles
                         seen:(NSSet *)seen
                      seenNew:(NSSet *)seenNew
-                 currentUser:(PFUser *)currentUser {
+                 currentUser:(PFUser *)currentUser
+                       error:(NSError * __autoreleasing *)error {
     if ([node isKindOfClass:[NSArray class]]) {
         for (id elem in node) {
+            NSError *localError;
+            BOOL succeeded;
             @autoreleasepool {
-                [self collectDirtyChildren:elem
-                                  children:dirtyChildren
-                                     files:dirtyFiles
-                                      seen:seen
-                                   seenNew:seenNew
-                               currentUser:currentUser];
+                succeeded = [self collectDirtyChildren:elem
+                                              children:dirtyChildren
+                                                 files:dirtyFiles
+                                                  seen:seen
+                                               seenNew:seenNew
+                                           currentUser:currentUser
+                                                 error:&localError];
+            }
+            if (!succeeded) {
+                *error = localError;
+                return NO;
             }
         }
     } else if ([node isKindOfClass:[NSDictionary class]]) {
+        __block BOOL wasStopped = NO;
+        __block NSError *localError;
         [node enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            [self collectDirtyChildren:obj
-                              children:dirtyChildren
-                                 files:dirtyFiles
-                                  seen:seen
-                               seenNew:seenNew
-                           currentUser:currentUser];
+            if (![self collectDirtyChildren:obj
+                                   children:dirtyChildren
+                                      files:dirtyFiles
+                                       seen:seen
+                                    seenNew:seenNew
+                                currentUser:currentUser
+                                      error:&localError]) {
+                *stop = YES;
+                wasStopped = YES;
+            }
         }];
+        if (wasStopped) {
+            *error = localError;
+            return NO;
+        }
     } else if ([node isKindOfClass:[PFACL class]]) {
         PFACL *acl = (PFACL *)node;
         if ([acl hasUnresolvedUser]) {
-            [self collectDirtyChildren:currentUser
-                              children:dirtyChildren
-                                 files:dirtyFiles
-                                  seen:seen
-                               seenNew:seenNew
-                           currentUser:currentUser];
+            NSError *localError;
+            if (![self collectDirtyChildren:currentUser
+                                   children:dirtyChildren
+                                      files:dirtyFiles
+                                       seen:seen
+                                    seenNew:seenNew
+                                currentUser:currentUser
+                                        error:&localError]) {
+                *error = localError;
+                return NO;
+            }
         }
 
     } else if ([node isKindOfClass:[PFObject class]]) {
@@ -251,8 +274,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             if (object.objectId) {
                 seenNew = [NSSet set];
             } else {
-                if ([seenNew containsObject:object]) {
-                    PFConsistencyAssertionFailure(@"Found a circular dependency when saving.");
+                if ([seenNew containsObject:object] && error) {
+                    *error = [PFErrorUtilities errorWithCode:kPFErrorInvalidPointer
+                                                     message:@"Found a circular dependency when saving."];
+                    return NO;
                 }
                 seenNew = [seenNew setByAddingObject:object];
             }
@@ -261,7 +286,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             // problem, but we shouldn't recurse any deeper, because it would be
             // an infinite recursion.
             if ([seen containsObject:object]) {
-                return;
+                return YES;
             }
             seen = [seen setByAddingObject:object];
 
@@ -271,12 +296,17 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             toSearch = [object._estimatedData.dictionaryRepresentation copy];
         }
 
-        [self collectDirtyChildren:toSearch
+        NSError *localError;
+        if (![self collectDirtyChildren:toSearch
                           children:dirtyChildren
                              files:dirtyFiles
                               seen:seen
                            seenNew:seenNew
-                       currentUser:currentUser];
+                            currentUser:currentUser
+                                  error:&localError]) {
+            *error = localError;
+            return NO;
+        }
 
         if ([object isDirty:NO]) {
             [dirtyChildren addObject:object];
@@ -287,20 +317,23 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             [dirtyFiles addObject:node];
         }
     }
+    return YES;
 }
 
 // Helper version of collectDirtyChildren:children:seen:seenNew so that callers
 // don't have to add the internally used parameters.
-+ (void)collectDirtyChildren:(id)child
++ (BOOL)collectDirtyChildren:(id)child
                     children:(NSMutableSet *)dirtyChildren
                        files:(NSMutableSet *)dirtyFiles
-                 currentUser:(PFUser *)currentUser {
-    [self collectDirtyChildren:child
-                      children:dirtyChildren
-                         files:dirtyFiles
-                          seen:[NSSet set]
-                       seenNew:[NSSet set]
-                   currentUser:currentUser];
+                 currentUser:(PFUser *)currentUser
+                       error:(NSError **)error {
+    return [self collectDirtyChildren:child
+                             children:dirtyChildren
+                                files:dirtyFiles
+                                 seen:[NSSet set]
+                              seenNew:[NSSet set]
+                          currentUser:currentUser
+                                error:error];
 }
 
 // Returns YES if the given object can be serialized for saving as a value
@@ -381,7 +414,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 + (BFTask *)_deepSaveAsyncChildrenOfObject:(id)object withCurrentUser:(PFUser *)currentUser sessionToken:(NSString *)sessionToken {
     NSMutableSet *uniqueObjects = [NSMutableSet set];
     NSMutableSet *uniqueFiles = [NSMutableSet set];
-    [self collectDirtyChildren:object children:uniqueObjects files:uniqueFiles currentUser:currentUser];
+    NSError *error;
+    if (![self collectDirtyChildren:object children:uniqueObjects files:uniqueFiles currentUser:currentUser error:&error]) {
+        return [BFTask taskWithError:error];
+    }
     // Remove object from the queue of objects to save as this method should only save children.
     if ([object isKindOfClass:[PFObject class]]) {
         [uniqueObjects removeObject:object];
@@ -553,7 +589,11 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         NSMutableSet *uniqueObjects = [NSMutableSet set];
         NSMutableSet *uniqueFiles = [NSMutableSet set];
-        [self collectDirtyChildren:object children:uniqueObjects files:uniqueFiles currentUser:currentUser];
+        NSError *error;
+        if (![self collectDirtyChildren:object children:uniqueObjects files:uniqueFiles currentUser:currentUser error:&error]) {
+            return [BFTask taskWithError:error];
+        }
+
         for (PFFile *file in uniqueFiles) {
             if (!file.url) {
                 NSError *error = [PFErrorUtilities errorWithCode:kPFErrorUnsavedFile

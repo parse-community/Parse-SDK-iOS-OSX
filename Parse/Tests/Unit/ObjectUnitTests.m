@@ -292,4 +292,40 @@
     XCTAssertFalse(objectA.dirty);
 }
 
+-(void)testSaveRelationToACycle {
+    PFObject *objectA = [PFObject objectWithClassName:@"A"];
+    PFObject *objectB = [PFObject objectWithClassName:@"B"];
+    objectA[@"B"] = objectB;
+    objectB[@"A"] = objectA;
+    NSError *error;
+    [objectA save:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Found a circular dependency when saving.");
+}
+-(void)testSaveRelationToACycleInAnArray {
+    PFObject *objectA = [PFObject objectWithClassName:@"A"];
+    PFObject *objectB = [PFObject objectWithClassName:@"B"];
+    objectA[@"B"] = objectB;
+    objectB[@"A"] = @[objectA];
+    NSError *error;
+    [objectA save:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Found a circular dependency when saving.");
+}
+
+-(void)testSaveRelationToACycleInANestedObject {
+    PFObject *objectA = [PFObject objectWithClassName:@"A"];
+    PFObject *objectB = [PFObject objectWithClassName:@"B"];
+    objectA[@"B"] = objectB;
+    objectB[@"A"] = @{@"a": objectA};
+    NSError *error;
+    [objectA save:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Found a circular dependency when saving.");
+}
+
+
 @end
