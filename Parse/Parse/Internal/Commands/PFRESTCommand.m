@@ -174,68 +174,72 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
     }
 }
 
-+ (BOOL)forEachLocalIdIn:(id)object doBlock:(BOOL(^)(PFObject *pointer, NSError **error))block error:(NSError **)error {
-    __block BOOL modified = NO;
++ (BOOL)forEachLocalIdIn:(id)object
+                 doBlock:(BOOL(^)(PFObject *pointer, BOOL *modified, NSError **error))block
+                modified:(BOOL *)modified error:(NSError **)error {
 
     // If this is a Pointer with a local id, try to resolve it.
     if ([object isKindOfClass:[PFObject class]] && !((PFObject *)object).objectId) {
-        return block(object, error);
+        __block BOOL blockModified = NO;
+        BOOL success = block(object, &blockModified, error);
+        if (blockModified) {
+            *modified = YES;
+        }
+        return success;
     }
 
     if ([object isKindOfClass:[NSDictionary class]]) {
         __block NSError *localError;
         __block BOOL hasFailed = NO;
         [object enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
-            if ([[self class] forEachLocalIdIn:obj doBlock:block error:&localError]) {
-                modified = YES;
-            }
-            if (localError) {
+            if (![[self class] forEachLocalIdIn:obj doBlock:block modified:modified error:&localError]) {
                 *stop = YES;
                 hasFailed = YES;
             }
         }];
         if (hasFailed && error) {
             *error = localError;
+            return NO;
         }
     } else if ([object isKindOfClass:[NSArray class]]) {
         for (id value in object) {
-            if ([[self class] forEachLocalIdIn:value doBlock:block error:error]) {
-                modified = YES;
+            if (![[self class] forEachLocalIdIn:value doBlock:block modified:modified error:error]) {
+                return NO;
             }
         }
     } else if ([object isKindOfClass:[PFAddOperation class]]) {
         for (id value in ((PFAddOperation *)object).objects) {
-            if ([[self class] forEachLocalIdIn:value doBlock:block error:error]) {
-                modified = YES;
+            if (![[self class] forEachLocalIdIn:value doBlock:block modified:modified  error:error]) {
+                return NO;
             }
         }
     } else if ([object isKindOfClass:[PFAddUniqueOperation class]]) {
         for (id value in ((PFAddUniqueOperation *)object).objects) {
-            if ([[self class] forEachLocalIdIn:value doBlock:block error:error]) {
-                modified = YES;
+            if (![[self class] forEachLocalIdIn:value doBlock:block modified:modified error:error]) {
+                return NO;
             }
         }
     } else if ([object isKindOfClass:[PFRemoveOperation class]]) {
         for (id value in ((PFRemoveOperation *)object).objects) {
-            if ([[self class] forEachLocalIdIn:value doBlock:block error:error]) {
-                modified = YES;
+            if (![[self class] forEachLocalIdIn:value doBlock:block modified:modified error:error]) {
+                return NO;
             }
         }
     }
-
-    return modified;
+    return YES;
 }
 
-- (BOOL)forEachLocalId:(BOOL(^)(PFObject *pointer, NSError **error))block error:(NSError **)error {
+- (BOOL)forEachLocalId:(BOOL(^)(PFObject *pointer, BOOL *modified, NSError **error))block error:(NSError **)error {
     NSDictionary *data = [[PFDecoder objectDecoder] decodeObject:self.parameters];
     if (!data) {
         return YES;
     }
-
-    if ([[self class] forEachLocalIdIn:data doBlock:block error:error]) {
-        if (error && *error) {
-            return NO;
-        }
+    BOOL modified = NO;
+    BOOL success = [[self class] forEachLocalIdIn:data doBlock:block modified:&modified error:error];
+    if (!success) {
+        return NO;
+    }
+    if (success) {
         self.parameters = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:data error:error];
         if (!self.parameters && error && *error) {
             return NO;
@@ -245,25 +249,16 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
 }
 
 - (BOOL)resolveLocalIds:(NSError * __autoreleasing *)error {
-    __block NSError *firstError;
-    __block BOOL pointerResolutionFailed = NO;
-    BOOL paramEncodingSucceeded = [self forEachLocalId:^(PFObject *pointer, NSError **error) {
+    BOOL paramEncodingSucceeded = [self forEachLocalId:^(PFObject *pointer, BOOL *modified, NSError **blockError) {
         NSError *localError;
         BOOL success = [pointer resolveLocalId:&localError];
+        *modified = YES;
         if (!success && localError) {
-            *error = localError;
-            pointerResolutionFailed = YES;
-            if (!firstError) {
-                firstError = localError;
-            }
+            *blockError = localError;
         }
-        return YES;
+        return success;
     } error: error];
     if (!paramEncodingSucceeded && *error) {
-        return NO;
-    }
-    if (pointerResolutionFailed && firstError) {
-        *error = firstError;
         return NO;
     }
     [self maybeChangeServerOperation];
