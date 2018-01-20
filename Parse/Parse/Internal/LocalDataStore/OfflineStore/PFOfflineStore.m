@@ -264,7 +264,10 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         NSArray *objectValues = offlineObjects.allValues;
         return [[BFTask taskForCompletionOfAllTasks:objectValues] continueWithSuccessBlock:^id(BFTask *task) {
             PFDecoder *decoder = [PFOfflineDecoder decoderWithOfflineObjects:offlineObjects];
-            [object mergeFromRESTDictionary:parsedJson withDecoder:decoder];
+            NSError *error;
+            if (![object mergeFromRESTDictionary:parsedJson withDecoder:decoder error:&error] && error) {
+                return [BFTask taskWithError:error];
+            }
             return nil;
         }];
     }] continueWithBlock:^id(BFTask *task) {

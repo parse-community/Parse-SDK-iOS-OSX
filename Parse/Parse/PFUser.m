@@ -631,7 +631,7 @@ static BOOL revocableSessionEnabled_;
 #pragma mark - REST operations
 ///--------------------------------------
 
-- (void)mergeFromRESTDictionary:(NSDictionary *)object withDecoder:(PFDecoder *)decoder {
+- (BOOL)mergeFromRESTDictionary:(NSDictionary *)object withDecoder:(PFDecoder *)decoder error:(NSError **)error {
     @synchronized([self lock]) {
         NSMutableDictionary *restDictionary = [object mutableCopy];
 
@@ -656,7 +656,7 @@ static BOOL revocableSessionEnabled_;
 
         self._state = state;
 
-        [super mergeFromRESTDictionary:restDictionary withDecoder:decoder];
+        return [super mergeFromRESTDictionary:restDictionary withDecoder:decoder error:error];
     }
 }
 

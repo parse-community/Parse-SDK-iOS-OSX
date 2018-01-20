@@ -927,7 +927,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return result;
 }
 
-- (void)mergeFromRESTDictionary:(NSDictionary *)object withDecoder:(PFDecoder *)decoder {
+- (BOOL)mergeFromRESTDictionary:(NSDictionary *)object withDecoder:(PFDecoder *)decoder error:(NSError **)error {
     @synchronized (lock) {
         BOOL mergeServerData = NO;
 
@@ -942,6 +942,8 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         } else if (!state.updatedAt) {
             mergeServerData = YES;
         }
+        __block BOOL hasFailed = NO;
+        __block NSError* remoteOpSetError = nil;
         [object enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             if ([key isEqualToString:PFObjectOperationsRESTKey]) {
                 PFOperationSet *remoteOperationSet = nil;
@@ -985,7 +987,13 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                     [localOperationSet.updatedAt compare:remoteOperationSet.updatedAt] != NSOrderedAscending) {
                     [localOperationSet mergeOperationSet:remoteOperationSet];
                 } else {
-                    PFConsistencyAssert(remoteOperationSet, @"'remoteOperationSet' should not be nil.");
+                    if (!remoteOperationSet) {
+                        NSString *message = [NSString stringWithFormat:@"'remoteOperationSet' should not be nil in object of class %@", self.parseClassName];
+                        remoteOpSetError = [PFErrorUtilities errorWithCode:-1 message:message];
+                        hasFailed = YES;
+                        *stop  = YES;
+                        return;
+                    }
                     NSUInteger index = [operationSetQueue indexOfObject:localOperationSet];
                     [remoteOperationSet mergeOperationSet:localOperationSet];
                     operationSetQueue[index] = remoteOperationSet;
@@ -1037,6 +1045,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             id decodedObject = [decoder decodeObject:obj];
             [state setServerDataObject:decodedObject forKey:key];
         }];
+        if (hasFailed && error) {
+            *error = remoteOpSetError;
+            return NO;
+        }
         if (state.updatedAt == nil && state.createdAt != nil) {
             state.updatedAt = state.createdAt;
         }
@@ -1053,6 +1065,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             }
         }
         [self rebuildEstimatedData];
+        return YES;
     }
 }
 
