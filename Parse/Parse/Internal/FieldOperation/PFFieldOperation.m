@@ -193,7 +193,7 @@
 
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error: error];
-    if (!encodedObjects) {
+    if (!encodedObjects && error && *error) {
         return nil;
     }
     return @{ @"__op" : @"Add",
@@ -256,7 +256,7 @@
 
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error:error];
-    if (!encodedObjects) {
+    if (!encodedObjects && error && *error) {
         return nil;
     }
     return @{ @"__op" : @"AddUnique",
@@ -334,7 +334,7 @@
 
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error:error];
-    if (!encodedObjects) {
+    if (!encodedObjects && error && *error) {
         return nil;
     }
     return @{ @"__op" : @"Remove",
