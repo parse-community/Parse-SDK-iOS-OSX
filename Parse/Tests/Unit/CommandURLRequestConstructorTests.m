@@ -157,4 +157,23 @@
     XCTAssertNotNil(headers[PFCommandHeaderNameAppDisplayVersion]);
 }
 
+- (void)testBailOnEncodingError {
+    id providerMock = [self mockedInstallationidentifierStoreProviderWithInstallationIdentifier:@"installationId"];
+    NSURL *url = [NSURL URLWithString:@"https://parse.com/123"];
+    PFCommandURLRequestConstructor *constructor = [PFCommandURLRequestConstructor constructorWithDataSource:providerMock serverURL:url];
+
+    PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
+                                                     httpMethod:PFHTTPRequestMethodPOST
+                                                     parameters:@{ @"a" : [PFObject objectWithClassName:@"MyObject"] }
+                                                   sessionToken:@"yarr"
+                                                          error:nil];
+    command.additionalRequestHeaders = @{ @"CustomHeader" : @"CustomValue" };
+    NSError *error;
+    NSURLRequest *request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:&error];
+    XCTAssertNil(request);
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a new, unsaved child.");
+}
+
 @end
