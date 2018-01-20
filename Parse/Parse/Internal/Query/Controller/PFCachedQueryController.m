@@ -153,7 +153,7 @@
 ///--------------------------------------
 
 - (NSString *)cacheKeyForQueryState:(PFQueryState *)queryState sessionToken:(NSString *)sessionToken {
-    // TODO: @flovimart verify if safe
+    // TODO (flovilmart): verify if safe to swallow error here
     return [PFRESTQueryCommand findCommandForQueryState:queryState withSessionToken:sessionToken error:nil].cacheKey;
 }
 
