@@ -68,12 +68,14 @@ return rval;\
 }
 
 #define PFBailIfError(condition, error, rval) \
-if (!(condition) && error) { \
+if (!(condition) && *error) { \
 return rval;\
 }
 
 #define PFBailTaskIfError(condition, error) \
-PFBailIfError(condition, error, [BFTask taskWithError:error])
+if (!(condition) && error) { \
+return [BFTask taskWithError:error];\
+}
 
 #define PFPrecondition(condition, description, ...) \
 if (!(condition)) { \

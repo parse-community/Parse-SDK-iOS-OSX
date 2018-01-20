@@ -99,7 +99,7 @@
         __block NSError *encodingError = nil;
         [object enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             dict[key] = [self encodeObject:obj error:&encodingError];
-            if (!dict[key]) {
+            if (!dict[key] && encodingError) {
                 hasErrored = YES;
                 *stop = YES;
             }

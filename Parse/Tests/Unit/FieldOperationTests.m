@@ -203,9 +203,7 @@
     OCMStub([encoder encodeObject:[OCMArg isEqual:@[ @"yarr" ]] error:nil]).andReturn(@"yolo");
 
     PFAddOperation *operation = [PFAddOperation addWithObjects:@[ @"yarr" ]];
-    NSError *error;
-    XCTAssertNil([operation encodeWithObjectEncoder:nil error:&error]);
-    XCTAssertNil(error);
+    XCTAssertThrows([operation encodeWithObjectEncoder:nil error:nil]);
     XCTAssertEqualObjects([operation encodeWithObjectEncoder:encoder error:nil], (@{ @"__op" : @"Add",
                                                                            @"objects" : @"yolo" }));
 }
@@ -254,9 +252,7 @@
     OCMStub([encoder encodeObject:[OCMArg isEqual:@[ @"yarr" ]] error:nil]).andReturn(@"yolo");
 
     PFAddUniqueOperation *operation = [PFAddUniqueOperation addUniqueWithObjects:@[ @"yarr" ]];
-    NSError *error;
-    XCTAssertNil([operation encodeWithObjectEncoder:nil error:&error]);
-    XCTAssertNil(error);
+    XCTAssertThrows([operation encodeWithObjectEncoder:nil error:nil]);
     XCTAssertEqualObjects([operation encodeWithObjectEncoder:encoder error:nil], (@{ @"__op" : @"AddUnique",
                                                                            @"objects" : @"yolo" }));
 }
@@ -305,9 +301,7 @@
     OCMStub([encoder encodeObject:[OCMArg isEqual:@[ @"yarr" ]] error:nil]).andReturn(@"yolo");
 
     PFRemoveOperation *operation = [PFRemoveOperation removeWithObjects:@[ @"yarr" ]];
-    NSError *error;
-    XCTAssertNil([operation encodeWithObjectEncoder:nil error:&error]);
-    XCTAssertNil(error);
+    XCTAssertThrows([operation encodeWithObjectEncoder:nil error:nil]);
     XCTAssertEqualObjects([operation encodeWithObjectEncoder:encoder error:nil], (@{ @"__op" : @"Remove",
                                                                            @"objects" : @"yolo" }));
 }

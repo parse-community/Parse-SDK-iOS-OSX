@@ -225,7 +225,7 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
 
     if ([[self class] forEachLocalIdIn:data doBlock:block]) {
         self.parameters = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:data error:error];
-        if (!self.parameters) {
+        if (!self.parameters && error && *error) {
             return NO;
         }
     }
