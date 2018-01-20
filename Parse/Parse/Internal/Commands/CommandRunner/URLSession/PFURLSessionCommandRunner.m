@@ -149,7 +149,7 @@
     return [self _performCommandRunningBlock:^id {
         NSError *error;
         BOOL success = [command resolveLocalIds:&error];
-        PFBailTaskIfError(success, error);
+        PFPreconditionReturnFailedTask(success, error);
         return [[self.requestConstructor getDataURLRequestAsyncForCommand:command] continueWithSuccessBlock:^id(BFTask <NSURLRequest *>*task) {
             return [_session performDataURLRequestAsync:task.result forCommand:command cancellationToken:cancellationToken];
         }];
@@ -172,7 +172,7 @@
 
         NSError *error;
         BOOL success = [command resolveLocalIds:&error];
-        PFBailTaskIfError(success, error);
+        PFPreconditionReturnFailedTask(success, error);
         return [[self.requestConstructor getFileUploadURLRequestAsyncForCommand:command
                                                                 withContentType:contentType
                                                           contentSourceFilePath:sourceFilePath] continueWithSuccessBlock:^id(BFTask<NSURLRequest *> *task) {

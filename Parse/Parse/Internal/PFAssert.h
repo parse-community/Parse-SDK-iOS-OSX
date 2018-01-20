@@ -58,33 +58,51 @@ do { \
     } \
 } while(0)
 
+/*
+ Returns an error with the description, if a condition isn't met
+ */
+#define PFPrecondition(condition, description, ...) \
+if (!(condition)) { \
+    return [PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]];\
+}
+
+/**
+ Returns a consistency error.
+ */
+#define PFPreconditionFailure(description, ...) \
+PFPrecondition(NO, description, ##__VA_ARGS__)
+
 /**
 Sets a recoverable error for propagation
  */
-#define PFConsistencyError(error, condition, rval, description, ...) \
+#define PFPreconditionBailAndSetError(condition, error, rval, description, ...) \
 if (!(condition) && error && *error == nil) { \
-*error =  [PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]];\
-return rval;\
+    *error =  [PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]];\
+    return rval;\
 }
 
-#define PFBailIfError(condition, error, rval) \
+/*
+ Returns the passed value if the condition isn't met and the *error is set
+ */
+#define PFPreconditionBailOnError(condition, error, rval) \
 if (!(condition) && *error) { \
-return rval;\
+    return rval;\
 }
 
-#define PFBailTaskIfError(condition, error) \
+/*
+ Returns an failed task with the passed error if a contition isn't met and the error is set
+ */
+#define PFPreconditionReturnFailedTask(condition, error) \
 if (!(condition) && error) { \
-return [BFTask taskWithError:error];\
+    return [BFTask taskWithError:error];\
 }
 
-#define PFPrecondition(condition, description, ...) \
-if (!(condition)) { \
-return [PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]];\
-}
-
+/*
+ Returns a failed BFTask with an error description if the condition isn't met
+ */
 #define PFPreconditionWithTask(condition, description, ...) \
 if (!(condition)) { \
-return [BFTask taskWithError:[PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]]];\
+    return [BFTask taskWithError:[PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]]];\
 }
 
 /**
@@ -95,13 +113,6 @@ do {\
     [NSException raise:NSInternalInconsistencyException \
                 format:description, ##__VA_ARGS__]; \
 } while(0)
-
-/**
- Returns a consistency error.
- */
-#define PFConsistencyErrorFailure(description, ...) \
-return [PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]];
-
 
 
 /**

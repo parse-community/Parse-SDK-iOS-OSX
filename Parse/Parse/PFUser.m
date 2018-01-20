@@ -136,16 +136,16 @@ static BOOL revocableSessionEnabled_;
 // Checks the properties on the object before saving.
 - (BOOL)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser error:(NSError **)error {
     @synchronized([self lock]) {
-        PFConsistencyError(error,
-                           self.objectId || self._lazy,
-                           NO,
-                            @"User cannot be saved unless they are already signed up. Call signUp first.");
+        PFPreconditionBailAndSetError(self.objectId || self._lazy,
+                                      error,
+                                      NO,
+                                      @"User cannot be saved unless they are already signed up. Call signUp first.");
 
-        PFConsistencyError(error,
-                           [self _isAuthenticatedWithCurrentUser:currentUser] ||
-                           [self.objectId isEqualToString:currentUser.objectId],
-                           NO,
-                           @"User cannot be saved unless they have been authenticated via logIn or signUp");
+        PFPreconditionBailAndSetError([self _isAuthenticatedWithCurrentUser:currentUser] ||
+                                      [self.objectId isEqualToString:currentUser.objectId],
+                                      error,
+                                      NO,
+                                      @"User cannot be saved unless they have been authenticated via logIn or signUp");
     }
     return YES;
 }
@@ -206,7 +206,7 @@ static BOOL revocableSessionEnabled_;
     @synchronized([self lock]) {
         NSDictionary *parameters = [self _convertToDictionaryForSaving:changes
                                                      withObjectEncoder:[PFPointerObjectEncoder objectEncoder] error:error];
-        PFBailIfError(parameters, error, nil);
+        PFPreconditionBailOnError(parameters, error, nil);
         return [PFRESTUserCommand signUpUserCommandWithParameters:parameters
                                                  revocableSession:[[self class] _isRevocableSessionEnabled]
                                                      sessionToken:self.sessionToken
@@ -223,7 +223,7 @@ static BOOL revocableSessionEnabled_;
     @synchronized([self lock]) {
         NSDictionary *parameters = [self _convertToDictionaryForSaving:changes
                                                      withObjectEncoder:[PFPointerObjectEncoder objectEncoder] error:error];
-        PFBailIfError(parameters, error, nil);
+        PFPreconditionBailOnError(parameters, error, nil);
         return [PFRESTUserCommand serviceLoginUserCommandWithParameters:parameters
                                                        revocableSession:[[self class] _isRevocableSessionEnabled]
                                                            sessionToken:self.sessionToken
@@ -431,7 +431,7 @@ static BOOL revocableSessionEnabled_;
         NSError *error;
         // Otherwise, treat this as a SignUpOrLogIn
         PFRESTCommand *command = [self _currentServiceLoginCommandForChanges:[self unsavedChanges] error:&error];
-        PFBailTaskIfError(command, error);
+        PFPreconditionReturnFailedTask(command, error);
         [self startSave];
 
         return [[toAwait continueAsyncWithBlock:^id(BFTask *task) {
@@ -571,7 +571,7 @@ static BOOL revocableSessionEnabled_;
                 // may change the way the object itself is serialized.
                 NSError *error;
                 PFRESTCommand *command = [self _currentSignUpCommandForChanges:changes error:&error];
-                PFBailTaskIfError(command, error);
+                PFPreconditionReturnFailedTask(command, error);
                 return [[Parse _currentManager].commandRunner runCommandAsync:command
                                                                   withOptions:PFCommandRunningOptionRetryIfFailed];
             }] continueWithBlock:^id(BFTask *task) {
@@ -743,7 +743,7 @@ static BOOL revocableSessionEnabled_;
 
             NSError *error;
             PFRESTCommand *command = [PFRESTUserCommand upgradeToRevocableSessionCommandWithSessionToken:token error:&error];
-            PFBailTaskIfError(command, error);
+            PFPreconditionReturnFailedTask(command, error);
             return [[[Parse _currentManager].commandRunner runCommandAsync:command
                                                                withOptions:0] continueWithSuccessBlock:^id(BFTask *task) {
                 NSDictionary *dictionary = [task.result result];
