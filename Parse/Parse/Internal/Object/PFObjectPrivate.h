@@ -253,8 +253,9 @@
                           deletingEventuallyCount:(NSUInteger)deletingEventuallyCount
                                             error:(NSError **)error;
 
-- (void)mergeFromRESTDictionary:(NSDictionary *)object
-                    withDecoder:(PFDecoder *)decoder;
+- (BOOL)mergeFromRESTDictionary:(NSDictionary *)object
+                    withDecoder:(PFDecoder *)decoder
+                          error:(NSError **)error;
 
 ///--------------------------------------
 #pragma mark - Data helpers
