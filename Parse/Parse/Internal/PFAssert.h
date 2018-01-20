@@ -75,6 +75,11 @@ return rval;\
 #define PFBailTaskIfError(condition, error) \
 PFBailIfError(condition, error, [BFTask taskWithError:error])
 
+#define PFPrecondition(condition, description, ...) \
+if (!(condition)) { \
+return [PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]];\
+}
+
 /**
  Raises an `NSInternalInconsistencyException`. Use `description` to supply the way to fix the exception.
  */
