@@ -209,7 +209,7 @@
     return parameters;
 }
 
-+ (nullable id)_encodeSubqueryIfNeeded:(id)object error:(NSError **)error {
++ (nullable id)_encodeSubqueryIfNeeded:(id)object error:(NSError * __autoreleasing *)error {
     if (![object isKindOfClass:[NSDictionary class]]) {
         return object;
     }

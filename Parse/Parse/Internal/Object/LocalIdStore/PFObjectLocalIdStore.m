@@ -134,7 +134,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
 /**
  * Grabs one entry in the local id map off the disk.
  */
-- (PFObjectLocalIdStoreMapEntry *)getMapEntry:(NSString *)localId error:(NSError **) error {
+- (PFObjectLocalIdStoreMapEntry *)getMapEntry:(NSString *)localId error:(NSError * __autoreleasing *) error {
 
     PFConsistencyError(error, [[self class] isLocalId:localId], nil, @"Tried to get invalid local id: \"%@\".", localId);
 
@@ -167,7 +167,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
 /**
  * Writes one entry to the local id map on disk.
  */
-- (BOOL)putMapEntry:(PFObjectLocalIdStoreMapEntry *)entry forLocalId:(NSString *)localId error:(NSError **)error {
+- (BOOL)putMapEntry:(PFObjectLocalIdStoreMapEntry *)entry forLocalId:(NSString *)localId error:(NSError * __autoreleasing *)error {
     PFConsistencyError(error, [[self class] isLocalId:localId], NO, @"Tried to get invalid local id: \"%@\".", localId);
 
     NSString *file = [_diskPath stringByAppendingPathComponent:localId];
@@ -178,7 +178,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
 /**
  * Removes an entry from the local id map on disk.
  */
-- (BOOL)removeMapEntry:(NSString *)localId error:(NSError **)error {
+- (BOOL)removeMapEntry:(NSString *)localId error:(NSError * __autoreleasing *)error {
     PFConsistencyError(error, [[self class] isLocalId:localId], NO, @"Tried to get invalid local id: \"%@\".", localId);
 
     NSString *file = [_diskPath stringByAppendingPathComponent:localId];

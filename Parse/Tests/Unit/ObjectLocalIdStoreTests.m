@@ -140,4 +140,19 @@
     XCTAssertEqual(expected, actual, @"The number should be parsed correctly.");
 }
 
+- (void)testInvalidLocalId {
+    id<PFFileManagerProvider> dataSource = [self mockedDataSource];
+    PFFileManager *fileManager = dataSource.fileManager;
+    OCMStub([fileManager parseDataItemPathForPathComponent:[OCMArg isNotNil]]).andReturn(NSTemporaryDirectory());
+
+    PFObjectLocalIdStore *store = [[PFObjectLocalIdStore alloc] initWithDataSource:dataSource];
+    NSError *error;
+    BOOL rval = [store retainLocalIdOnDisk:@"bad-local-id" error:&error];
+    XCTAssertFalse(rval);
+    XCTAssertNotNil(error.domain);
+    XCTAssertEqual(error.domain, PFParseErrorDomain);
+    XCTAssertEqual(error.code, -1);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to get invalid local id: \"bad-local-id\".");
+}
+
 @end
