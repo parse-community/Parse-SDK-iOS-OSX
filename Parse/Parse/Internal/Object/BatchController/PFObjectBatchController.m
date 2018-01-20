@@ -123,7 +123,7 @@
         for (NSArray *batch in objectBatches) {
             NSError *error;
             PFRESTCommand *command = [self _deleteCommandForObjects:batch withSessionToken:sessionToken serverURL:serverURL error:&error];
-            if (!command && error) {
+            if (!command) {
                 [tasks addObject:[BFTask taskWithError:error]];
                 continue;
             }

@@ -62,7 +62,7 @@ do { \
 Sets a recoverable error for propagation
  */
 #define PFConsistencyError(error, condition, rval, description, ...) \
-if (!(condition)) { \
+if (!(condition) && error) { \
 *error = [PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]];\
 return rval;\
 }

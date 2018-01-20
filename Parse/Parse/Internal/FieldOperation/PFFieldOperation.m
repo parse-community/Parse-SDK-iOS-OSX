@@ -193,7 +193,7 @@
 
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error: error];
-    if (!encodedObjects && error) {
+    if (!encodedObjects) {
         return nil;
     }
     return @{ @"__op" : @"Add",
@@ -256,7 +256,7 @@
 
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error:error];
-    if (!encodedObjects && error) {
+    if (!encodedObjects) {
         return nil;
     }
     return @{ @"__op" : @"AddUnique",
@@ -334,7 +334,7 @@
 
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error:error];
-    if (!encodedObjects && error) {
+    if (!encodedObjects) {
         return nil;
     }
     return @{ @"__op" : @"Remove",
@@ -463,7 +463,7 @@
     NSDictionary *removeDict = nil;
     if (self.relationsToAdd.count > 0) {
         NSArray *array = [self _convertToArrayInSet:self.relationsToAdd withObjectEncoder:objectEncoder error:error];
-        if (!array && error) {
+        if (!array) {
             return nil;
         }
         addDict = @{ @"__op" : @"AddRelation",
@@ -471,7 +471,7 @@
     }
     if (self.relationsToRemove.count > 0) {
         NSArray *array = [self _convertToArrayInSet:self.relationsToRemove withObjectEncoder:objectEncoder error:error];
-        if (!array && error) {
+        if (!array) {
             return nil;
         }
         removeDict = @{ @"__op" : @"RemoveRelation",

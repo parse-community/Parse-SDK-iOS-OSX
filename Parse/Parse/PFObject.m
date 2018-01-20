@@ -462,7 +462,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                             @synchronized ([object lock]) {
                                 [object _objectWillSave];
                                 NSError *error;
-                                if (![object _checkSaveParametersWithCurrentUser:currentUser error:&error] && error) {
+                                if (![object _checkSaveParametersWithCurrentUser:currentUser error:&error]) {
                                     return error;
                                 }
                                 command = [object _constructSaveCommandForChanges:[object unsavedChanges]
@@ -1107,14 +1107,14 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                     changes.saveEventually = YES;
                     [self startSave];
                     NSError *error;
-                    if (![self _checkSaveParametersWithCurrentUser:currentUser error:&error] && error) {
+                    if (![self _checkSaveParametersWithCurrentUser:currentUser error:&error]) {
                         saveTask = [BFTask taskWithError:error];
                     } else  {
                         PFRESTCommand *command = [self _constructSaveCommandForChanges:changes
                                                                           sessionToken:sessionToken
                                                                          objectEncoder:[PFPointerOrLocalIdObjectEncoder objectEncoder]
                                                                                  error:&error];
-                        if (!command && error) {
+                        if (!command) {
                             saveTask = [BFTask taskWithError:error];
                         } else {
                             // Enqueue the eventually operation!
@@ -1429,7 +1429,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 }
                 return [[childrenTask continueWithSuccessBlock:^id(BFTask *task) {
                     NSError *error;
-                    if (![self _checkSaveParametersWithCurrentUser:currentUser error:&error] && error) {
+                    if (![self _checkSaveParametersWithCurrentUser:currentUser error:&error]) {
                         return error;
                     }
                     PFRESTCommand *command = [self _constructSaveCommandForChanges:changes

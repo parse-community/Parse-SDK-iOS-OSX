@@ -210,7 +210,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
 - (BOOL)retainLocalIdOnDisk:(NSString *)localId error:(NSError **)error {
     @synchronized (_lock) {
         PFObjectLocalIdStoreMapEntry *entry = [self getMapEntry:localId error:error];
-        if (!entry && error) {
+        if (!entry) {
             return NO;
         }
         entry.referenceCount++;
@@ -225,7 +225,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
 - (BOOL)releaseLocalIdOnDisk:(NSString *)localId error:(NSError **)error {
     @synchronized (_lock) {
         PFObjectLocalIdStoreMapEntry *entry = [self getMapEntry:localId error:error];
-        if (!entry && error) {
+        if (!entry) {
             return NO;
         }
         if (--entry.referenceCount > 0) {
@@ -242,7 +242,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
 - (BOOL)setObjectId:(NSString *)objectId forLocalId:(NSString *)localId error:(NSError **)error {
     @synchronized (_lock) {
         PFObjectLocalIdStoreMapEntry *entry = [self getMapEntry:localId error:error];
-        if (!entry && error) {
+        if (!entry) {
             return NO;
         }
         if (entry.referenceCount > 0) {
