@@ -82,6 +82,11 @@ if (!(condition)) { \
 return [PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]];\
 }
 
+#define PFPreconditionWithTask(condition, description, ...) \
+if (!(condition)) { \
+return [BFTask taskWithError:[PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]]];\
+}
+
 /**
  Raises an `NSInternalInconsistencyException`. Use `description` to supply the way to fix the exception.
  */

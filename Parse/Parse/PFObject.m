@@ -456,12 +456,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         }
         remaining = nextBatch;
 
-        if (current.count == 0) {
-            // We do cycle-detection when building the list of objects passed to this
-            // function, so this should never get called.  But we should check for it
-            // anyway, so that we get an exception instead of an infinite loop.
-            PFConsistencyAssertionFailure(@"Unable to save a PFObject with a relation to a cycle.");
-        }
+        // We do cycle-detection when building the list of objects passed to this
+        // function, so this should never get called.  But we should check for it
+        // anyway, so that we get an exception instead of an infinite loop.
+        PFPreconditionWithTask(current.count != 0, @"Unable to save a PFObject with a relation to a cycle.");
 
         // If a lazy user is one of the objects in the array, resolve its laziness now and
         // remove it from the list of things to save.
@@ -622,12 +620,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             }
             remaining = nextBatch;
 
-            if (current.count == 0) {
-                // We do cycle-detection when building the list of objects passed to this
-                // function, so this should never get called.  But we should check for it
-                // anyway, so that we get an exception instead of an infinite loop.
-                PFConsistencyAssertionFailure(@"Unable to save a PFObject with a relation to a cycle.");
-            }
+            // We do cycle-detection when building the list of objects passed to this
+            // function, so this should never get called.  But we should check for it
+            // anyway, so that we get an exception instead of an infinite loop.
+            PFPrecondition(current.count != 0, @"Unable to save a PFObject with a relation to a cycle.");
 
             // If a lazy user is one of the objects in the array, resolve its laziness now and
             // remove it from the list of things to save.
