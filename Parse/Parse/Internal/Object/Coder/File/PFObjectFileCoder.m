@@ -23,7 +23,7 @@
 + (NSData *)dataFromObject:(PFObject *)object usingEncoder:(PFEncoder *)encoder {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     result[@"classname"] = object._state.parseClassName;
-    // TODO: @flovilmart verify if it's safe
+    // TODO (flovilmart): is it safe to swallow error here?
     result[@"data"] = [object._state dictionaryRepresentationWithObjectEncoder:encoder error:nil];
     return [PFJSONSerialization dataFromJSONObject:result];
 }
