@@ -500,7 +500,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                                 [object _objectWillSave];
                                 NSError *error;
                                 if (![object _checkSaveParametersWithCurrentUser:currentUser error:&error]) {
-                                    return error;
+                                    return [BFTask taskWithError:error];
                                 }
                                 command = [object _constructSaveCommandForChanges:[object unsavedChanges]
                                                                      sessionToken:sessionToken
@@ -626,7 +626,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             // We do cycle-detection when building the list of objects passed to this
             // function, so this should never get called.  But we should check for it
             // anyway, so that we get an exception instead of an infinite loop.
-            PFPrecondition(current.count != 0, @"Unable to save a PFObject with a relation to a cycle.");
+            PFPreconditionWithTask(current.count != 0, @"Unable to save a PFObject with a relation to a cycle.");
 
             // If a lazy user is one of the objects in the array, resolve its laziness now and
             // remove it from the list of things to save.
@@ -1467,7 +1467,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 return [[childrenTask continueWithSuccessBlock:^id(BFTask *task) {
                     NSError *error;
                     if (![self _checkSaveParametersWithCurrentUser:currentUser error:&error]) {
-                        return error;
+                        return [BFTask taskWithError:error];
                     }
                     PFRESTCommand *command = [self _constructSaveCommandForChanges:changes
                                                                       sessionToken:sessionToken
