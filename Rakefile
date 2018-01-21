@@ -32,6 +32,7 @@ module Constants
     File.join(script_folder, 'ParseFacebookUtils', 'Resources', 'Info-iOS.plist'),
     File.join(script_folder, 'ParseFacebookUtils', 'Resources', 'Info-tvOS.plist'),
     File.join(script_folder, 'ParseTwitterUtils', 'Resources', 'Info.plist'),
+    File.join(script_folder, 'ParseUI', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
