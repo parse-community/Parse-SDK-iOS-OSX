@@ -1028,7 +1028,8 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         // See if there's already an entry for new objectId.
         PFObject *existing = [self.classNameAndObjectIdToObjectMap objectForKey:key];
         PFConsistencyAssert(existing == nil || existing == object,
-                            @"Attempted to change an objectId to one that's already known to the OfflineStore.");
+                            @"Attempted to change an objectId to one that's already known to the OfflineStore. className: %@ old: %@, new: %@",
+                            className, oldObjectId, newObjectId);
 
         // Okay, all clear to add the new reference.
         [self.classNameAndObjectIdToObjectMap setObject:object forKey:key];
