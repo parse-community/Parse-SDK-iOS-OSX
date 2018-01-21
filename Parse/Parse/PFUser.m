@@ -509,7 +509,7 @@ static BOOL revocableSessionEnabled_;
                 // self doesn't have any outstanding saves, so we can safely merge its operations
                 // into the current user.
 
-                PFPrecondition(!self._current, @"Attempt to merge currentUser with itself.");
+                PFPreconditionWithTask(!self._current, @"Attempt to merge currentUser with itself.");
 
                 @synchronized ([currentUser lock]) {
                     NSString *oldUsername = [currentUser.username copy];
