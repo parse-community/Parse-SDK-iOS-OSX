@@ -383,29 +383,32 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 // @param saved A set of objects that we can assume will have been saved.
 // @param error The reason why it can't be serialized.
 - (BOOL)canBeSerializedAfterSaving:(NSMutableArray *)saved withCurrentUser:(PFUser *)user error:(NSError **)error {
+    NSDictionary *dictionaryRepresentationCopy;
     @synchronized (lock) {
-        // This method is only used for batching sets of objects for saveAll
-        // and when saving children automatically. Since it's only used to
-        // determine whether or not save should be called on them, it only
-        // needs to examine their current values, so we use estimatedData.
-        if (![[self class] canBeSerializedAsValue:_estimatedData.dictionaryRepresentation
-                                      afterSaving:saved
-                                            error:error]) {
-            return NO;
-        }
-
-        if ([self isDataAvailableForKey:@"ACL"] &&
-            [[self ACLWithoutCopying] hasUnresolvedUser] &&
-            ![saved containsObject:user]) {
-            if (error) {
-                *error = [PFErrorUtilities errorWithCode:kPFErrorInvalidACL
-                                                 message:@"User associated with ACL must be signed up."];
-            }
-            return NO;
-        }
-
-        return YES;
+        dictionaryRepresentationCopy = [_estimatedData.dictionaryRepresentation copy];
     }
+
+    // This method is only used for batching sets of objects for saveAll
+    // and when saving children automatically. Since it's only used to
+    // determine whether or not save should be called on them, it only
+    // needs to examine their current values, so we use estimatedData.
+    if (![[self class] canBeSerializedAsValue:dictionaryRepresentationCopy
+                                  afterSaving:saved
+                                        error:error]) {
+        return NO;
+    }
+
+    if ([self isDataAvailableForKey:@"ACL"] &&
+        [[self ACLWithoutCopying] hasUnresolvedUser] &&
+        ![saved containsObject:user]) {
+        if (error) {
+            *error = [PFErrorUtilities errorWithCode:kPFErrorInvalidACL
+                                             message:@"User associated with ACL must be signed up."];
+        }
+        return NO;
+    }
+
+    return YES;
 }
 
 // This saves all of the objects and files reachable from the given object.
