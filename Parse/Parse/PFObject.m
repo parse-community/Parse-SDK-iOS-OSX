@@ -1623,19 +1623,20 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (NSDictionary *)_collectFetchedObjects {
     NSMutableDictionary *fetchedObjects = [NSMutableDictionary dictionary];
+    NSDictionary *dictionary;
     @synchronized (lock) {
-        NSDictionary *dictionary = _estimatedData.dictionaryRepresentation;
-        [PFInternalUtils traverseObject:dictionary usingBlock:^id(id obj) {
-            if ([obj isKindOfClass:[PFObject class]]) {
-                PFObject *object = obj;
-                NSString *objectId = object.objectId;
-                if (objectId && object.dataAvailable) {
-                    fetchedObjects[objectId] = object;
-                }
-            }
-            return obj;
-        }];
+        dictionary = [_estimatedData.dictionaryRepresentation copy];
     }
+    [PFInternalUtils traverseObject:dictionary usingBlock:^id(id obj) {
+        if ([obj isKindOfClass:[PFObject class]]) {
+            PFObject *object = obj;
+            NSString *objectId = object.objectId;
+            if (objectId && object.dataAvailable) {
+                fetchedObjects[objectId] = object;
+            }
+        }
+        return obj;
+    }];
     return fetchedObjects;
 }
 
