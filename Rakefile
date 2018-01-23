@@ -302,6 +302,12 @@ namespace :package do
     Constants.update_version(version)
   end
 
+  desc 'Build all frameworks and starters'
+  task :release do |_|
+    Rake::Task['package:frameworks'].invoke
+    Rake::Task['package:starters'].invoke
+  end
+
   desc 'Build and package all frameworks for the release'
   task :frameworks, [:version] => :prepare do |_, args|
     version = args[:version] || Constants.current_version
@@ -622,12 +628,6 @@ namespace :test do
         exit(1)
       end
     end
-  end
-
-  desc 'Run Deployment Tests'
-  task :deployment do |_|
-    Rake::Task['package:frameworks'].invoke
-    Rake::Task['package:starters'].invoke
   end
 
   desc 'Run Starter Project Tests'
