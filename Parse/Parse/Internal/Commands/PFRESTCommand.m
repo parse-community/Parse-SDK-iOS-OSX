@@ -235,17 +235,13 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
         return YES;
     }
     BOOL modified = NO;
-    BOOL success = [[self class] forEachLocalIdIn:data doBlock:block modified:&modified error:error];
-    if (!success) {
-        return NO;
-    }
-    if (success) {
+    if ([[self class] forEachLocalIdIn:data doBlock:block modified:&modified error:error]) {
         self.parameters = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:data error:error];
-        if (!self.parameters && error && *error) {
-            return NO;
+        if (self.parameters && !(error && *error)) {
+            return YES;
         }
     }
-    return YES;
+    return NO;
 }
 
 - (BOOL)resolveLocalIds:(NSError * __autoreleasing *)error {

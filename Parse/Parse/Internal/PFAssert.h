@@ -114,7 +114,6 @@ do {\
                 format:description, ##__VA_ARGS__]; \
 } while(0)
 
-
 /**
  Always raises `NSInternalInconsistencyException` with details
  about the method used and class that received the message

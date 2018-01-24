@@ -95,18 +95,18 @@
 
     } else if ([object isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[object count]];
-        __block BOOL hasErrored = NO;
+        __block BOOL encodingFailed = NO;
         __block NSError *encodingError = nil;
         [object enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             id result = [self encodeObject:obj error:&encodingError];
             if (!result && encodingError) {
-                hasErrored = YES;
+                encodingFailed = YES;
                 *stop = YES;
             } else {
                 dict[key] = result;
             }
         }];
-        if (hasErrored) {
+        if (encodingFailed) {
             *error = encodingError;
             return nil;
         }

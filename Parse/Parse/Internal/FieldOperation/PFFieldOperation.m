@@ -193,9 +193,7 @@
 
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error: error];
-    if (!encodedObjects && error && *error) {
-        return nil;
-    }
+    PFPreconditionBailOnError(encodedObjects, error, nil);
     return @{ @"__op" : @"Add",
               @"objects" : encodedObjects };
 }
@@ -256,9 +254,7 @@
 
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error:error];
-    if (!encodedObjects && error && *error) {
-        return nil;
-    }
+    PFPreconditionBailOnError(encodedObjects, error, nil);
     return @{ @"__op" : @"AddUnique",
               @"objects" : encodedObjects };
 }
@@ -334,9 +330,7 @@
 
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error:error];
-    if (!encodedObjects && error && *error) {
-        return nil;
-    }
+    PFPreconditionBailOnError(encodedObjects, error, nil);
     return @{ @"__op" : @"Remove",
               @"objects" : encodedObjects };
 }

@@ -143,7 +143,7 @@
         parameters[key] = obj;
     }];
 
-    __block BOOL encodingHasErrored = NO;
+    __block BOOL encodingFailed = NO;
     __block NSError *encodingError;
     if (conditions.count > 0) {
         NSMutableDictionary *whereData = [[NSMutableDictionary alloc] init];
@@ -170,7 +170,7 @@
                                                                              error:&encodingError];
                     if (!queryDict && encodingError) {
                         *stop = true;
-                        encodingHasErrored = true;
+                        encodingFailed = true;
                         return;
                     }
 
@@ -186,13 +186,13 @@
                 id object = [self _encodeSubqueryIfNeeded:obj error:&encodingError];
                 if (!object && encodingError) {
                     *stop = true;
-                    encodingHasErrored = true;
+                    encodingFailed = true;
                     return;
                 }
                 id pointer = [[PFPointerObjectEncoder objectEncoder] encodeObject:object error:&encodingError];
                 if (!pointer && encodingError) {
                     *stop = true;
-                    encodingHasErrored = true;
+                    encodingFailed = true;
                     return;
                 }
                 whereData[key] = pointer;
@@ -201,7 +201,7 @@
 
         parameters[@"where"] = whereData;
     }
-    if (encodingHasErrored && encodingError) {
+    if (encodingFailed && encodingError) {
         *error = encodingError;
         return nil;
     }
@@ -215,8 +215,8 @@
     }
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:[object count]];
-    __block BOOL hadFailed = NO;
-    __block NSError *commandEncodingError = nil;
+    __block BOOL encodingFailed = NO;
+    __block NSError *encodingError = nil;
     [object enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([obj isKindOfClass:[PFQuery class]]) {
             PFQuery *subquery = (PFQuery *)obj;
@@ -228,9 +228,9 @@
                                                                     skip:subquery.state.skip
                                                             extraOptions:subquery.state.extraOptions
                                                           tracingEnabled:NO
-                                                                   error:&commandEncodingError];
-            if (!command && commandEncodingError) {
-                hadFailed = YES;
+                                                                   error:&encodingError];
+            if (!command && encodingError) {
+                encodingFailed = YES;
                 *stop = YES;
                 return;
             }
@@ -238,17 +238,19 @@
             subqueryParameters[@"className"] = subquery.parseClassName;
             obj = subqueryParameters;
         } else if ([obj isKindOfClass:[NSDictionary class]]) {
-            obj = [self _encodeSubqueryIfNeeded:obj error:&commandEncodingError];
-            if (!obj && commandEncodingError) {
-                hadFailed = YES;
+            obj = [self _encodeSubqueryIfNeeded:obj error:&encodingError];
+            if (!obj && encodingError) {
+                encodingFailed = YES;
                 *stop = YES;
                 return;
             }
         }
         parameters[key] = obj;
     }];
-    if (hadFailed && commandEncodingError) {
-        *error = commandEncodingError;
+    if (encodingFailed) {
+        if (error && encodingError) {
+            *error = encodingError;
+        }
         return nil;
     }
     return parameters;
