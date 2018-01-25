@@ -40,7 +40,7 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
   ```ruby
     pod 'Parse/FacebookUtils'
     pod 'Parse/TwitterUtils'
-    pod 'Parse/UI
+    pod 'Parse/UI'
   ```
 
   Note that in this case, the Parse framework will contain all headers and classes, so you just have to use:
