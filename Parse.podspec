@@ -94,7 +94,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'FacebookUtils' do |s|
     s.platform = :ios, :tvos
-    s.ios.deployment_target = '9.0'
+    s.ios.deployment_target = '8.0'
     s.tvos.deployment_target = '9.0'
     s.public_header_files = 'ParseFacebookUtils/ParseFacebookUtils/*.h'
     s.source_files = 'ParseFacebookUtils/ParseFacebookUtils/**/*.{h,m}'
