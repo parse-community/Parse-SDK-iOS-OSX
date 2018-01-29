@@ -972,6 +972,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     @synchronized(self.lock) {
         pointer = [self.UUIDToObjectMap objectForKey:uuid];
         if (!pointer) {
+            PFPreconditionWithTask(parseClassName, @"Unable to get fetch an object without a className %@ %@ %@", uuid, objectId, parseClassName);
             pointer = [PFObject objectWithoutDataWithClassName:parseClassName objectId:objectId];
 
             // If it doesn't have objectId, we don't really need the UUID, and this simplifies some
