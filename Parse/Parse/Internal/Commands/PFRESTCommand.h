@@ -32,13 +32,15 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)commandWithHTTPPath:(NSString *)path
                          httpMethod:(NSString *)httpMethod
                          parameters:(nullable NSDictionary *)parameters
-                       sessionToken:(nullable NSString *)sessionToken;
+                       sessionToken:(nullable NSString *)sessionToken
+                              error:(NSError **)error;
 
 + (instancetype)commandWithHTTPPath:(NSString *)path
                          httpMethod:(NSString *)httpMethod
                          parameters:(nullable NSDictionary *)parameters
                    operationSetUUID:(nullable NSString *)operationSetIdentifier
-                       sessionToken:(nullable NSString *)sessionToken;
+                       sessionToken:(nullable NSString *)sessionToken
+                              error:(NSError **)error;
 
 @end
 

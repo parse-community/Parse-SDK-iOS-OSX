@@ -7,6 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import "PFAssert.h"
 #import "PFUserState.h"
 #import "PFUserState_Private.h"
 
@@ -48,8 +49,10 @@
 #pragma mark - Serialization
 ///--------------------------------------
 
-- (NSDictionary *)dictionaryRepresentationWithObjectEncoder:(PFEncoder *)objectEncoder {
-    NSMutableDictionary *dictionary = [[super dictionaryRepresentationWithObjectEncoder:objectEncoder] mutableCopy];
+- (nullable NSDictionary *)dictionaryRepresentationWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
+    NSDictionary *representation = [super dictionaryRepresentationWithObjectEncoder:objectEncoder error:error];
+    PFPreconditionBailOnError(representation, error, nil);
+    NSMutableDictionary *dictionary = [representation mutableCopy];
     [dictionary removeObjectForKey:PFUserPasswordRESTKey];
     return dictionary;
 }

@@ -20,7 +20,8 @@
 - (void)testFunctionCommand {
     PFRESTCloudCommand *command = [PFRESTCloudCommand commandForFunction:@"a"
                                                           withParameters:nil
-                                                            sessionToken:nil];
+                                                            sessionToken:nil
+                                                                   error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"functions/a");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
@@ -29,7 +30,8 @@
 
     command = [PFRESTCloudCommand commandForFunction:@"a"
                                       withParameters:@{ @"b" : @"c" }
-                                        sessionToken:@"yarr"];
+                                        sessionToken:@"yarr"
+                                               error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"functions/a");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);

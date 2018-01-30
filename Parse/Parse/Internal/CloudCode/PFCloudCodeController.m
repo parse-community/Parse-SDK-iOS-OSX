@@ -47,10 +47,14 @@
     @weakify(self);
     return [[[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
-        NSDictionary *encodedParameters = [[PFNoObjectEncoder objectEncoder] encodeObject:parameters];
+        NSError *error;
+        NSDictionary *encodedParameters = [[PFNoObjectEncoder objectEncoder] encodeObject:parameters error:&error];
+        PFPreconditionReturnFailedTask(encodedParameters, error);
         PFRESTCloudCommand *command = [PFRESTCloudCommand commandForFunction:functionName
                                                               withParameters:encodedParameters
-                                                                sessionToken:sessionToken];
+                                                                sessionToken:sessionToken
+                                                                       error:&error];
+        PFPreconditionReturnFailedTask(command, error);
         return [self.dataSource.commandRunner runCommandAsync:command withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessBlock:^id(BFTask *task) {
         return ((PFCommandResult *)(task.result)).result[@"result"];

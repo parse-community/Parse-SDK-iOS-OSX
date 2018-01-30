@@ -55,7 +55,9 @@
     @weakify(self);
     return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
-        PFRESTCommand *command = [self _fetchCommandForObjects:objects withSessionToken:sessionToken];
+        NSError *error;
+        PFRESTCommand *command = [self _fetchCommandForObjects:objects withSessionToken:sessionToken error:&error];
+        PFPreconditionReturnFailedTask(command, error);
         return [self.dataSource.commandRunner runCommandAsync:command
                                                   withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessBlock:^id(BFTask *task) {
@@ -65,12 +67,14 @@
     }];
 }
 
-- (PFRESTCommand *)_fetchCommandForObjects:(NSArray *)objects withSessionToken:(NSString *)sessionToken {
+- (PFRESTCommand *)_fetchCommandForObjects:(NSArray *)objects
+                          withSessionToken:(NSString *)sessionToken
+                                     error:(NSError **)error {
     NSArray *objectIds = [objects valueForKey:@keypath(PFObject, objectId)];
     PFQuery *query = [PFQuery queryWithClassName:[objects.firstObject parseClassName]];
     [query whereKey:@keypath(PFObject, objectId) containedIn:objectIds];
     query.limit = objectIds.count;
-    return [PFRESTQueryCommand findCommandForQueryState:query.state withSessionToken:sessionToken];
+    return [PFRESTQueryCommand findCommandForQueryState:query.state withSessionToken:sessionToken error:error];
 }
 
 - (BFTask *)_processFetchResultAsync:(NSDictionary *)result forObjects:(NSArray *)objects {
@@ -117,8 +121,12 @@
         id<PFCommandRunning> commandRunner = self.dataSource.commandRunner;
         NSURL *serverURL = commandRunner.serverURL;
         for (NSArray *batch in objectBatches) {
-
-            PFRESTCommand *command = [self _deleteCommandForObjects:batch withSessionToken:sessionToken serverURL:serverURL];
+            NSError *error;
+            PFRESTCommand *command = [self _deleteCommandForObjects:batch withSessionToken:sessionToken serverURL:serverURL error:&error];
+            if (!command) {
+                [tasks addObject:[BFTask taskWithError:error]];
+                continue;
+            }
             BFTask *task = [[commandRunner runCommandAsync:command
                                                withOptions:PFCommandRunningOptionRetryIfFailed] continueWithSuccessBlock:^id(BFTask *task) {
                 PFCommandResult *result = task.result;
@@ -149,14 +157,15 @@
 
 - (PFRESTCommand *)_deleteCommandForObjects:(NSArray *)objects
                            withSessionToken:(NSString *)sessionToken
-                                  serverURL:(NSURL *)serverURL {
+                                  serverURL:(NSURL *)serverURL
+                                      error:(NSError **)error {
     NSMutableArray *commands = [NSMutableArray arrayWithCapacity:objects.count];
     for (PFObject *object in objects) {
         PFRESTCommand *deleteCommand = [PFRESTObjectCommand deleteObjectCommandForObjectState:object._state
                                                                              withSessionToken:sessionToken];
         [commands addObject:deleteCommand];
     }
-    return [PFRESTObjectBatchCommand batchCommandWithCommands:commands sessionToken:sessionToken serverURL:serverURL];
+    return [PFRESTObjectBatchCommand batchCommandWithCommands:commands sessionToken:sessionToken serverURL:serverURL error:error];
 }
 
 - (BFTask *)_processDeleteResultsAsync:(NSArray *)results forObjects:(NSArray *)objects {

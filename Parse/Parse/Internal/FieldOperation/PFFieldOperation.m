@@ -24,7 +24,7 @@
 //  PFFieldOperation and its subclasses encapsulate operations that can be done on a field.
 @implementation PFFieldOperation
 
-- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder {
+- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     PFConsistencyAssertionFailure(@"Operation is invalid.");
     return nil;
 }
@@ -69,8 +69,8 @@
     return [NSString stringWithFormat:@"set to %@", self.value];
 }
 
-- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder {
-    return [objectEncoder encodeObject:self.value];
+- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
+    return [objectEncoder encodeObject:self.value error:error];
 }
 
 - (PFSetOperation *)mergeWithPrevious:(PFFieldOperation *)previous {
@@ -93,7 +93,7 @@
     return @"delete";
 }
 
-- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder {
+- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     return @{ @"__op" : @"Delete" };
 }
 
@@ -134,7 +134,7 @@
     return [NSString stringWithFormat:@"increment by %@", self.amount];
 }
 
-- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder {
+- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     return @{ @"__op" : @"Increment",
               @"amount" : self.amount };
 }
@@ -191,8 +191,9 @@
     return [NSString stringWithFormat:@"add %@", self.objects];
 }
 
-- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder {
-    NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects];
+- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
+    NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error: error];
+    PFPreconditionBailOnError(encodedObjects, error, nil);
     return @{ @"__op" : @"Add",
               @"objects" : encodedObjects };
 }
@@ -251,8 +252,9 @@
     return [NSString stringWithFormat:@"addToSet %@", self.objects];
 }
 
-- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder {
-    NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects];
+- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
+    NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error:error];
+    PFPreconditionBailOnError(encodedObjects, error, nil);
     return @{ @"__op" : @"AddUnique",
               @"objects" : encodedObjects };
 }
@@ -326,8 +328,9 @@
     return [NSString stringWithFormat:@"remove %@", self.objects];
 }
 
-- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder {
-    NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects];
+- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
+    NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error:error];
+    PFPreconditionBailOnError(encodedObjects, error, nil);
     return @{ @"__op" : @"Remove",
               @"objects" : encodedObjects };
 }
@@ -439,25 +442,32 @@
             self.relationsToRemove];
 }
 
-- (NSArray *)_convertToArrayInSet:(NSSet *)set withObjectEncoder:(PFEncoder *)objectEncoder {
+- (NSArray *)_convertToArrayInSet:(NSSet *)set withObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:set.count];
     for (PFObject *object in set) {
-        id encodedDict = [objectEncoder encodeObject:object];
+        id encodedDict = [objectEncoder encodeObject:object error:error];
+        PFPreconditionBailOnError(encodedDict, error, nil);
         [array addObject:encodedDict];
     }
     return array;
 }
 
-- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder {
+- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSDictionary *addDict = nil;
     NSDictionary *removeDict = nil;
     if (self.relationsToAdd.count > 0) {
-        NSArray *array = [self _convertToArrayInSet:self.relationsToAdd withObjectEncoder:objectEncoder];
+        NSArray *array = [self _convertToArrayInSet:self.relationsToAdd withObjectEncoder:objectEncoder error:error];
+        if (!array) {
+            return nil;
+        }
         addDict = @{ @"__op" : @"AddRelation",
                      @"objects" : array };
     }
     if (self.relationsToRemove.count > 0) {
-        NSArray *array = [self _convertToArrayInSet:self.relationsToRemove withObjectEncoder:objectEncoder];
+        NSArray *array = [self _convertToArrayInSet:self.relationsToRemove withObjectEncoder:objectEncoder error:error];
+        if (!array) {
+            return nil;
+        }
         removeDict = @{ @"__op" : @"RemoveRelation",
                         @"objects" : array };
     }

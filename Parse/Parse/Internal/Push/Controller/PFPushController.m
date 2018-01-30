@@ -43,7 +43,9 @@
     @weakify(self);
     return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
-        PFRESTCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:sessionToken];
+        NSError *error;
+        PFRESTCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:sessionToken error:&error];
+        PFPreconditionReturnFailedTask(command, error);
         return [self.commandRunner runCommandAsync:command withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessBlock:^id(BFTask *task) {
         return @(task.result != nil);

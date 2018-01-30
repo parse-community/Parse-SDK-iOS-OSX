@@ -77,7 +77,11 @@
     @weakify(self);
     return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
-        NSDictionary *encodedDimensions = [[PFNoObjectEncoder objectEncoder] encodeObject:dimensions];
+        NSError *error;
+        NSDictionary *encodedDimensions = [[PFNoObjectEncoder objectEncoder] encodeObject:dimensions error:&error];
+        if (encodedDimensions == nil) {
+            return [BFTask taskWithError:error];
+        }
         PFRESTCommand *command = [PFRESTAnalyticsCommand trackEventCommandWithEventName:name
                                                                              dimensions:encodedDimensions
                                                                            sessionToken:sessionToken];

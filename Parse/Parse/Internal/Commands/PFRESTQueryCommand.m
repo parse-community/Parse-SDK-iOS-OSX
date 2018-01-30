@@ -22,23 +22,26 @@
 #pragma mark - Find
 ///--------------------------------------
 
-+ (instancetype)findCommandForQueryState:(PFQueryState *)queryState withSessionToken:(NSString *)sessionToken {
-    NSDictionary *parameters = [self findCommandParametersForQueryState:queryState];
++ (nullable instancetype)findCommandForQueryState:(PFQueryState *)queryState withSessionToken:(NSString *)sessionToken error:(NSError **)error {
+    NSDictionary *parameters = [self findCommandParametersForQueryState:queryState error:error];
+    PFPreconditionBailOnError(parameters, error, nil);
     return [self _findCommandForClassWithName:queryState.parseClassName
                                    parameters:parameters
-                                 sessionToken:sessionToken];
+                                 sessionToken:sessionToken
+                                        error:error];
 }
 
-+ (instancetype)findCommandForClassWithName:(NSString *)className
-                                      order:(NSString *)order
-                                 conditions:(NSDictionary *)conditions
-                               selectedKeys:(NSSet *)selectedKeys
-                               includedKeys:(NSSet *)includedKeys
-                                      limit:(NSInteger)limit
-                                       skip:(NSInteger)skip
-                               extraOptions:(NSDictionary *)extraOptions
-                             tracingEnabled:(BOOL)trace
-                               sessionToken:(NSString *)sessionToken {
++ (nullable instancetype)findCommandForClassWithName:(NSString *)className
+                                              order:(NSString *)order
+                                         conditions:(NSDictionary *)conditions
+                                       selectedKeys:(NSSet *)selectedKeys
+                                       includedKeys:(NSSet *)includedKeys
+                                              limit:(NSInteger)limit
+                                               skip:(NSInteger)skip
+                                       extraOptions:(NSDictionary *)extraOptions
+                                     tracingEnabled:(BOOL)trace
+                                       sessionToken:(NSString *)sessionToken
+                                              error:(NSError **)error {
     NSDictionary *parameters = [self findCommandParametersWithOrder:order
                                                          conditions:conditions
                                                        selectedKeys:selectedKeys
@@ -46,20 +49,26 @@
                                                               limit:limit
                                                                skip:skip
                                                        extraOptions:extraOptions
-                                                     tracingEnabled:trace];
+                                                     tracingEnabled:trace
+                                                              error:error];
+    PFPreconditionBailOnError(parameters, error, nil);
     return [self _findCommandForClassWithName:className
                                    parameters:parameters
-                                 sessionToken:sessionToken];
+                                 sessionToken:sessionToken
+                                        error:error];
 }
 
-+ (instancetype)_findCommandForClassWithName:(NSString *)className
++ (nullable instancetype)_findCommandForClassWithName:(NSString *)className
                                   parameters:(NSDictionary *)parameters
-                                sessionToken:(NSString *)sessionToken {
+                                sessionToken:(NSString *)sessionToken
+                                       error:(NSError **)error {
     NSString *httpPath = [NSString stringWithFormat:@"classes/%@", className];
     PFRESTQueryCommand *command = [self commandWithHTTPPath:httpPath
                                                  httpMethod:PFHTTPRequestMethodGET
                                                  parameters:parameters
-                                               sessionToken:sessionToken];
+                                               sessionToken:sessionToken
+                                                      error:error];
+    PFPreconditionBailOnError(command, error, nil);
     return command;
 }
 
@@ -67,7 +76,7 @@
 #pragma mark - Count
 ///--------------------------------------
 
-+ (instancetype)countCommandFromFindCommand:(PFRESTQueryCommand *)findCommand {
++ (nullable instancetype)countCommandFromFindCommand:(PFRESTQueryCommand *)findCommand error:(NSError **)error {
     NSMutableDictionary *parameters = [findCommand.parameters mutableCopy];
     parameters[@"count"] = @"1";
     parameters[@"limit"] = @"0"; // Set the limit to 0, as we are not interested in results at all.
@@ -76,14 +85,15 @@
     return [self commandWithHTTPPath:findCommand.httpPath
                           httpMethod:findCommand.httpMethod
                           parameters:[parameters copy]
-                        sessionToken:findCommand.sessionToken];
+                        sessionToken:findCommand.sessionToken
+                               error:error];
 }
 
 ///--------------------------------------
 #pragma mark - Parameters
 ///--------------------------------------
 
-+ (NSDictionary *)findCommandParametersForQueryState:(PFQueryState *)queryState {
++ (nullable NSDictionary *)findCommandParametersForQueryState:(PFQueryState *)queryState error:(NSError **)error {
     return [self findCommandParametersWithOrder:queryState.sortOrderString
                                      conditions:queryState.conditions
                                    selectedKeys:queryState.selectedKeys
@@ -91,17 +101,19 @@
                                           limit:queryState.limit
                                            skip:queryState.skip
                                    extraOptions:queryState.extraOptions
-                                 tracingEnabled:queryState.trace];
+                                 tracingEnabled:queryState.trace
+                                          error:error];
 }
 
-+ (NSDictionary *)findCommandParametersWithOrder:(NSString *)order
++ (nullable NSDictionary *)findCommandParametersWithOrder:(NSString *)order
                                       conditions:(NSDictionary *)conditions
                                     selectedKeys:(NSSet *)selectedKeys
                                     includedKeys:(NSSet *)includedKeys
                                            limit:(NSInteger)limit
                                             skip:(NSInteger)skip
                                     extraOptions:(NSDictionary *)extraOptions
-                                  tracingEnabled:(BOOL)trace {
+                                  tracingEnabled:(BOOL)trace
+                                           error:(NSError **)error {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 
     if (order.length) {
@@ -131,6 +143,8 @@
         parameters[key] = obj;
     }];
 
+    __block BOOL encodingFailed = NO;
+    __block NSError *encodingError;
     if (conditions.count > 0) {
         NSMutableDictionary *whereData = [[NSMutableDictionary alloc] init];
         [conditions enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -152,7 +166,13 @@
                                                                              limit:subquery.state.limit
                                                                               skip:subquery.state.skip
                                                                       extraOptions:nil
-                                                                    tracingEnabled:NO];
+                                                                    tracingEnabled:NO
+                                                                             error:&encodingError];
+                    if (!queryDict && encodingError) {
+                        *stop = true;
+                        encodingFailed = true;
+                        return;
+                    }
 
                     queryDict = queryDict[@"where"];
                     if (queryDict.count > 0) {
@@ -163,42 +183,76 @@
                 }
                 whereData[key] = newArray;
             } else {
-                id object = [self _encodeSubqueryIfNeeded:obj];
-                whereData[key] = [[PFPointerObjectEncoder objectEncoder] encodeObject:object];
+                id object = [self _encodeSubqueryIfNeeded:obj error:&encodingError];
+                if (!object && encodingError) {
+                    *stop = true;
+                    encodingFailed = true;
+                    return;
+                }
+                id pointer = [[PFPointerObjectEncoder objectEncoder] encodeObject:object error:&encodingError];
+                if (!pointer && encodingError) {
+                    *stop = true;
+                    encodingFailed = true;
+                    return;
+                }
+                whereData[key] = pointer;
             }
         }];
 
         parameters[@"where"] = whereData;
     }
+    if (encodingFailed && encodingError) {
+        *error = encodingError;
+        return nil;
+    }
 
     return parameters;
 }
 
-+ (id)_encodeSubqueryIfNeeded:(id)object {
++ (nullable id)_encodeSubqueryIfNeeded:(id)object error:(NSError * __autoreleasing *)error {
     if (![object isKindOfClass:[NSDictionary class]]) {
         return object;
     }
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:[object count]];
+    __block BOOL encodingFailed = NO;
+    __block NSError *encodingError = nil;
     [object enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([obj isKindOfClass:[PFQuery class]]) {
             PFQuery *subquery = (PFQuery *)obj;
-            NSMutableDictionary *subqueryParameters = [[self findCommandParametersWithOrder:subquery.state.sortOrderString
-                                                                                 conditions:subquery.state.conditions
-                                                                               selectedKeys:subquery.state.selectedKeys
-                                                                               includedKeys:subquery.state.includedKeys
-                                                                                      limit:subquery.state.limit
-                                                                                       skip:subquery.state.skip
-                                                                               extraOptions:subquery.state.extraOptions
-                                                                             tracingEnabled:NO] mutableCopy];
+            NSDictionary *command = [self findCommandParametersWithOrder:subquery.state.sortOrderString
+                                                              conditions:subquery.state.conditions
+                                                            selectedKeys:subquery.state.selectedKeys
+                                                            includedKeys:subquery.state.includedKeys
+                                                                    limit:subquery.state.limit
+                                                                    skip:subquery.state.skip
+                                                            extraOptions:subquery.state.extraOptions
+                                                          tracingEnabled:NO
+                                                                   error:&encodingError];
+            if (!command && encodingError) {
+                encodingFailed = YES;
+                *stop = YES;
+                return;
+            }
+            NSMutableDictionary *subqueryParameters = [command mutableCopy];
             subqueryParameters[@"className"] = subquery.parseClassName;
             obj = subqueryParameters;
         } else if ([obj isKindOfClass:[NSDictionary class]]) {
-            obj = [self _encodeSubqueryIfNeeded:obj];
+            obj = [self _encodeSubqueryIfNeeded:obj error:&encodingError];
+            if (!obj && encodingError) {
+                encodingFailed = YES;
+                *stop = YES;
+                return;
+            }
         }
-
         parameters[key] = obj;
     }];
+    if (encodingFailed) {
+        if (error && encodingError) {
+            *error = encodingError;
+        }
+        return nil;
+    }
     return parameters;
 }
 

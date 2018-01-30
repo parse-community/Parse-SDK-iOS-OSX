@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  */
-
+#import "PFAssert.h"
 #import "PFUserController.h"
 
 #import "BFTask+Private.h"
@@ -50,7 +50,9 @@
     @weakify(self);
     return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
-        PFRESTCommand *command = [PFRESTUserCommand getCurrentUserCommandWithSessionToken:sessionToken];
+        NSError *error = nil;
+        PFRESTCommand *command = [PFRESTUserCommand getCurrentUserCommandWithSessionToken:sessionToken error:&error];
+        PFPreconditionReturnFailedTask(command, error);
         return [self.commonDataSource.commandRunner runCommandAsync:command
                                                         withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessBlock:^id(BFTask *task) {
@@ -80,9 +82,12 @@
                              revocableSession:(BOOL)revocableSession {
     @weakify(self);
     return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+        NSError *error = nil;
         PFRESTCommand *command = [PFRESTUserCommand logInUserCommandWithUsername:username
                                                                         password:password
-                                                                revocableSession:revocableSession];
+                                                                revocableSession:revocableSession
+                                                                           error:&error];
+        PFPreconditionReturnFailedTask(command, error);
         return [self.commonDataSource.commandRunner runCommandAsync:command
                                                         withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessBlock:^id(BFTask *task) {
@@ -114,9 +119,12 @@
     @weakify(self);
     return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
+        NSError *error;
         PFRESTCommand *command = [PFRESTUserCommand serviceLoginUserCommandWithAuthenticationType:authType
                                                                                authenticationData:authData
-                                                                                 revocableSession:revocableSession];
+                                                                                 revocableSession:revocableSession
+                                                                                            error:&error];
+        PFPreconditionReturnFailedTask(command, error);
         return [self.commonDataSource.commandRunner runCommandAsync:command
                                                         withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessBlock:^id(BFTask *task) {
@@ -141,7 +149,9 @@
     @weakify(self);
     return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
-        PFRESTCommand *command = [PFRESTUserCommand resetPasswordCommandForUserWithEmail:email];
+        NSError *error = nil;
+        PFRESTCommand *command = [PFRESTUserCommand resetPasswordCommandForUserWithEmail:email error:&error];
+        PFPreconditionReturnFailedTask(command, error);
         return [self.commonDataSource.commandRunner runCommandAsync:command
                                                         withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessResult:nil];
@@ -155,7 +165,9 @@
     @weakify(self);
     return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
-        PFRESTCommand *command = [PFRESTUserCommand logOutUserCommandWithSessionToken:sessionToken];
+        NSError *error = nil;
+        PFRESTCommand *command = [PFRESTUserCommand logOutUserCommandWithSessionToken:sessionToken error:&error];
+        PFPreconditionReturnFailedTask(command, error);
         return [self.commonDataSource.commandRunner runCommandAsync:command
                                                         withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessResult:nil];

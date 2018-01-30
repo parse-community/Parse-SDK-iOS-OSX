@@ -59,7 +59,7 @@ typedef void(^PFObjectStateMutationBlock)(PFMutableObjectState *state);
 
  @return `NSDictionary` instance representing object state.
  */
-- (NSDictionary *)dictionaryRepresentationWithObjectEncoder:(PFEncoder *)objectEncoder NS_REQUIRES_SUPER;
+- (NSDictionary *)dictionaryRepresentationWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error NS_REQUIRES_SUPER;
 
 ///--------------------------------------
 #pragma mark - Mutating

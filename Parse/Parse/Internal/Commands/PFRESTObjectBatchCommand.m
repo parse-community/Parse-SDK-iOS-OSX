@@ -19,7 +19,8 @@ NSUInteger const PFRESTObjectBatchCommandSubcommandsLimit = 50;
 
 + (nonnull instancetype)batchCommandWithCommands:(nonnull NSArray<PFRESTCommand *> *)commands
                                     sessionToken:(nullable NSString *)sessionToken
-                                       serverURL:(nonnull NSURL *)serverURL {
+                                       serverURL:(nonnull NSURL *)serverURL
+                                           error:(NSError **)error {
     PFParameterAssert(commands.count <= PFRESTObjectBatchCommandSubcommandsLimit,
                       @"Max of %d commands are allowed in a single batch command",
                       (int)PFRESTObjectBatchCommandSubcommandsLimit);
@@ -40,7 +41,8 @@ NSUInteger const PFRESTObjectBatchCommandSubcommandsLimit = 50;
     return [self commandWithHTTPPath:@"batch"
                           httpMethod:PFHTTPRequestMethodPOST
                           parameters:@{ @"requests" : requests }
-                        sessionToken:sessionToken];
+                        sessionToken:sessionToken
+                               error:error];
 }
 
 @end

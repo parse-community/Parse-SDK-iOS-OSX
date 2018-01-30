@@ -178,7 +178,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                                    PFOfflineStoreKeyOfJSON, PFOfflineStoreTableOfObjects, PFOfflineStoreKeyOfUUID];
                 return [database executeQueryAsync:query withArgumentsInArray:@[ uuid ] block:^id(PFSQLiteDatabaseResult *_Nonnull result) {
                     if (![result next]) {
-                        PFConsistencyAssertionFailure(@"Attempted to find non-existent uuid %@. Please report this issue with stack traces and logs.", uuid);
+                        PFPreconditionFailure(@"Attempted to find non-existent uuid %@. Please report this issue with stack traces and logs.", uuid);
                     }
                     return [result stringForColumnIndex:0];
                 }];
@@ -264,7 +264,10 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         NSArray *objectValues = offlineObjects.allValues;
         return [[BFTask taskForCompletionOfAllTasks:objectValues] continueWithSuccessBlock:^id(BFTask *task) {
             PFDecoder *decoder = [PFOfflineDecoder decoderWithOfflineObjects:offlineObjects];
-            [object mergeFromRESTDictionary:parsedJson withDecoder:decoder];
+            NSError *error;
+            if (![object mergeFromRESTDictionary:parsedJson withDecoder:decoder error:&error]) {
+                return [BFTask taskWithError:error];
+            }
             return nil;
         }];
     }] continueWithBlock:^id(BFTask *task) {
@@ -379,7 +382,9 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         PFOfflineObjectEncoder *encoder = [PFOfflineObjectEncoder objectEncoderWithOfflineStore:self database:database];
         // We don't care about operationSetUUIDs here
         NSArray *operationSetUUIDs = nil;
-        encoded = [object RESTDictionaryWithObjectEncoder:encoder operationSetUUIDs:&operationSetUUIDs];
+        NSError *error;
+        encoded = [object RESTDictionaryWithObjectEncoder:encoder operationSetUUIDs:&operationSetUUIDs error:&error];
+        PFPreconditionReturnFailedTask(encoded, error);
         return [encoder encodeFinished];
     }] continueWithSuccessBlock:^id(BFTask *task) {
         // Time to actually save the object
@@ -616,7 +621,9 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         PFOfflineObjectEncoder *encoder = [PFOfflineObjectEncoder objectEncoderWithOfflineStore:self
                                                                                        database:database];
         NSArray *operationSetUUIDs = nil;
-        dataDictionary = [object RESTDictionaryWithObjectEncoder:encoder operationSetUUIDs:&operationSetUUIDs];
+        NSError *error;
+        dataDictionary = [object RESTDictionaryWithObjectEncoder:encoder operationSetUUIDs:&operationSetUUIDs error:&error];
+        PFPreconditionReturnFailedTask(dataDictionary, error);
         return [encoder encodeFinished];
     }] continueWithSuccessBlock:^id(BFTask *task) {
         // Put it in database
@@ -905,7 +912,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     __block NSString *objectId = nil;
     return [[database executeQueryAsync:query withArgumentsInArray:@[ uuid ] block:^id(PFSQLiteDatabaseResult *result) {
         if (![result next]) {
-            PFConsistencyAssertionFailure(@"Attempted to find non-existent uuid %@. Please report this issue with stack traces and logs.", uuid);
+            PFPreconditionFailure(@"Attempted to find non-existent uuid %@. Please report this issue with stack traces and logs.", uuid);
         }
 
         className = [result stringForColumnIndex:0];
@@ -965,6 +972,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     @synchronized(self.lock) {
         pointer = [self.UUIDToObjectMap objectForKey:uuid];
         if (!pointer) {
+            PFPreconditionWithTask(parseClassName, @"Unable to get fetch an object without a className %@ %@ %@", uuid, objectId, parseClassName);
             pointer = [PFObject objectWithoutDataWithClassName:parseClassName objectId:objectId];
 
             // If it doesn't have objectId, we don't really need the UUID, and this simplifies some
@@ -1021,7 +1029,8 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         // See if there's already an entry for new objectId.
         PFObject *existing = [self.classNameAndObjectIdToObjectMap objectForKey:key];
         PFConsistencyAssert(existing == nil || existing == object,
-                            @"Attempted to change an objectId to one that's already known to the OfflineStore.");
+                            @"Attempted to change an objectId to one that's already known to the OfflineStore. className: %@ old: %@, new: %@",
+                            className, oldObjectId, newObjectId);
 
         // Okay, all clear to add the new reference.
         [self.classNameAndObjectIdToObjectMap setObject:object forKey:key];

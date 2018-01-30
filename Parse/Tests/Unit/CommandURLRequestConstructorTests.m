@@ -58,7 +58,8 @@
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                                      httpMethod:PFHTTPRequestMethodPOST
                                                      parameters:@{ @"a" : @"b" }
-                                                   sessionToken:@"yarr"];
+                                                   sessionToken:@"yarr"
+                                                          error:nil];
     command.additionalRequestHeaders = @{ @"CustomHeader" : @"CustomValue" };
 
     NSURLRequest *request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
@@ -79,28 +80,32 @@
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                                      httpMethod:PFHTTPRequestMethodGET
                                                      parameters:@{ @"a" : @"b" }
-                                                   sessionToken:@"yarr"];
+                                                   sessionToken:@"yarr"
+                                                          error:nil];
     NSURLRequest *request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
 
     command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                       httpMethod:PFHTTPRequestMethodHEAD
                                       parameters:@{ @"a" : @"b" }
-                                    sessionToken:@"yarr"];
+                                    sessionToken:@"yarr"
+                                           error:nil];
     request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
 
     command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                       httpMethod:PFHTTPRequestMethodGET
                                       parameters:@{ @"a" : @"b" }
-                                    sessionToken:@"yarr"];
+                                    sessionToken:@"yarr"
+                                           error:nil];
     request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
 
     command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                       httpMethod:PFHTTPRequestMethodGET
                                       parameters:nil
-                                    sessionToken:@"yarr"];
+                                    sessionToken:@"yarr"
+                                           error:nil];
     request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     XCTAssertEqualObjects(request.HTTPMethod, @"GET");
 }
@@ -113,7 +118,8 @@
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                                      httpMethod:PFHTTPRequestMethodPOST
                                                      parameters:@{ @"a" : @100500 }
-                                                   sessionToken:@"yarr"];
+                                                   sessionToken:@"yarr"
+                                                          error:nil];
     NSURLRequest *request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:nil];
     id json = [NSJSONSerialization JSONObjectWithData:request.HTTPBody options:0 error:nil];
     XCTAssertNotNil(json);
@@ -128,7 +134,8 @@
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
                                                      httpMethod:PFHTTPRequestMethodPOST
                                                      parameters:@{ @"a" : @100500 }
-                                                   sessionToken:@"yarr"];
+                                                   sessionToken:@"yarr"
+                                                          error:nil];
     NSURLRequest *request = [[constructor getFileUploadURLRequestAsyncForCommand:command
                                                                  withContentType:@"boom"
                                                            contentSourceFilePath:@"/dev/null"] waitForResult:nil];
@@ -148,6 +155,25 @@
     XCTAssertNotNil(headers[PFCommandHeaderNameOSVersion]);
     XCTAssertNotNil(headers[PFCommandHeaderNameAppBuildVersion]);
     XCTAssertNotNil(headers[PFCommandHeaderNameAppDisplayVersion]);
+}
+
+- (void)testBailOnEncodingError {
+    id providerMock = [self mockedInstallationidentifierStoreProviderWithInstallationIdentifier:@"installationId"];
+    NSURL *url = [NSURL URLWithString:@"https://parse.com/123"];
+    PFCommandURLRequestConstructor *constructor = [PFCommandURLRequestConstructor constructorWithDataSource:providerMock serverURL:url];
+
+    PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"yolo"
+                                                     httpMethod:PFHTTPRequestMethodPOST
+                                                     parameters:@{ @"a" : [PFObject objectWithClassName:@"MyObject"] }
+                                                   sessionToken:@"yarr"
+                                                          error:nil];
+    command.additionalRequestHeaders = @{ @"CustomHeader" : @"CustomValue" };
+    NSError *error;
+    NSURLRequest *request = [[constructor getDataURLRequestAsyncForCommand:command] waitForResult:&error];
+    XCTAssertNil(request);
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a new, unsaved child.");
 }
 
 @end

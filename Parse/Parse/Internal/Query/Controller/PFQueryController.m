@@ -62,7 +62,9 @@
             return [BFTask cancelledTask];
         }
 
-        PFRESTCommand *command = [PFRESTQueryCommand findCommandForQueryState:queryState withSessionToken:sessionToken];
+        NSError *error;
+        PFRESTCommand *command = [PFRESTQueryCommand findCommandForQueryState:queryState withSessionToken:sessionToken error:&error];
+        PFPreconditionReturnFailedTask(command, error);
         querySent = (queryState.trace ? [NSDate date] : nil);
         return [self runNetworkCommandAsync:command
                       withCancellationToken:cancellationToken
@@ -111,9 +113,13 @@
             return [BFTask cancelledTask];
         }
 
+        NSError *error;
         PFRESTQueryCommand *findCommand = [PFRESTQueryCommand findCommandForQueryState:queryState
-                                                                      withSessionToken:sessionToken];
-        PFRESTCommand *countCommand = [PFRESTQueryCommand countCommandFromFindCommand:findCommand];
+                                                                      withSessionToken:sessionToken
+                                                                                 error:&error];
+        PFPreconditionReturnFailedTask(findCommand, error);
+        PFRESTCommand *countCommand = [PFRESTQueryCommand countCommandFromFindCommand:findCommand error:&error];
+        PFPreconditionReturnFailedTask(countCommand, error);
         return [self runNetworkCommandAsync:countCommand
                       withCancellationToken:cancellationToken
                               forQueryState:queryState];

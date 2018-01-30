@@ -19,7 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)batchCommandWithCommands:(NSArray<PFRESTCommand *> *)commands
                             sessionToken:(nullable NSString *)sessionToken
-                               serverURL:(NSURL *)serverURL;
+                               serverURL:(NSURL *)serverURL
+                                   error:(NSError **)error;
 
 @end
 

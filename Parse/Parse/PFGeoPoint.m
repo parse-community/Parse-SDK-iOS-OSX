@@ -103,7 +103,7 @@ static NSString *const PFGeoPointCodingTypeKey = @"__type";
 static NSString *const PFGeoPointCodingLatitudeKey = @"latitude";
 static NSString *const PFGeoPointCodingLongitudeKey = @"longitude";
 
-- (NSDictionary *)encodeIntoDictionary {
+- (NSDictionary *)encodeIntoDictionary:(NSError **)error {
     return @{
              PFGeoPointCodingTypeKey : @"GeoPoint",
              PFGeoPointCodingLatitudeKey : @(self.latitude),
@@ -184,7 +184,7 @@ static NSString *const PFGeoPointCodingLongitudeKey = @"longitude";
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    NSDictionary *dictionary = [self encodeIntoDictionary];
+    NSDictionary *dictionary = [self encodeIntoDictionary:nil];
     [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [coder encodeObject:obj forKey:key];
     }];

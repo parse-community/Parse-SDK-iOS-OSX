@@ -157,11 +157,12 @@
     }
 
     NSDictionary *params = [[PFEncoder objectEncoder] encodeObject:@{ @"receipt" : appStoreReceipt,
-                                                                      @"productIdentifier" : productIdentifier }];
+                                                                      @"productIdentifier" : productIdentifier } error:nil];
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"validate_purchase"
                                                      httpMethod:PFHTTPRequestMethodPOST
                                                      parameters:params
-                                                   sessionToken:sessionToken];
+                                                   sessionToken:sessionToken
+                                                          error:nil];
     BFTask *task = [self.dataSource.commandRunner runCommandAsync:command withOptions:PFCommandRunningOptionRetryIfFailed];
     @weakify(self);
     return [task continueWithSuccessBlock:^id(BFTask *task) {

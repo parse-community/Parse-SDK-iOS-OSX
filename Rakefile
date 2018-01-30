@@ -32,6 +32,7 @@ module Constants
     File.join(script_folder, 'ParseFacebookUtils', 'Resources', 'Info-iOS.plist'),
     File.join(script_folder, 'ParseFacebookUtils', 'Resources', 'Info-tvOS.plist'),
     File.join(script_folder, 'ParseTwitterUtils', 'Resources', 'Info.plist'),
+    File.join(script_folder, 'ParseUI', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
@@ -299,6 +300,12 @@ namespace :package do
   task :set_version, [:version] do |_, args|
     version = args[:version] || Constants.current_version
     Constants.update_version(version)
+  end
+
+  desc 'Build all frameworks and starters'
+  task :release do |_|
+    Rake::Task['package:frameworks'].invoke
+    Rake::Task['package:starters'].invoke
   end
 
   desc 'Build and package all frameworks for the release'
@@ -621,12 +628,6 @@ namespace :test do
         exit(1)
       end
     end
-  end
-
-  desc 'Run Deployment Tests'
-  task :deployment do |_|
-    Rake::Task['package:frameworks'].invoke
-    Rake::Task['package:starters'].invoke
   end
 
   desc 'Run Starter Project Tests'

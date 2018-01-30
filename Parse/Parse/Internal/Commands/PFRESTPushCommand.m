@@ -20,11 +20,15 @@
 @implementation PFRESTPushCommand
 
 + (instancetype)sendPushCommandWithPushState:(PFPushState *)state
-                                sessionToken:(NSString *)sessionToken {
+                                sessionToken:(NSString *)sessionToken
+                                       error:(NSError **)error {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 
     if (state.queryState) {
-        NSDictionary *queryParameters = [PFRESTQueryCommand findCommandParametersForQueryState:state.queryState];
+        NSDictionary *queryParameters = [PFRESTQueryCommand findCommandParametersForQueryState:state.queryState error:error];
+        if (!queryParameters) {
+            return nil;
+        }
         parameters[@"where"] = queryParameters[@"where"];
     } else {
         if (state.channels) {
@@ -55,7 +59,8 @@
     return [self commandWithHTTPPath:@"push"
                           httpMethod:PFHTTPRequestMethodPOST
                           parameters:parameters
-                        sessionToken:sessionToken];
+                        sessionToken:sessionToken
+                               error:error];
 }
 
 @end

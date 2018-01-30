@@ -59,41 +59,41 @@
 
     NSString *localId1 = [store createLocalId];
     XCTAssertNotNil(localId1);
-    [store retainLocalIdOnDisk:localId1]; // refcount = 1
+    [store retainLocalIdOnDisk:localId1 error:nil]; // refcount = 1
     XCTAssertNil([store objectIdForLocalId:localId1]);
 
     NSString *localId2 = [store createLocalId];
     XCTAssertNotNil(localId2);
-    [store retainLocalIdOnDisk:localId2]; // refcount = 1
+    [store retainLocalIdOnDisk:localId2 error:nil]; // refcount = 1
     XCTAssertNil([store objectIdForLocalId:localId2]);
 
-    [store retainLocalIdOnDisk:localId1]; // refcount = 2
+    [store retainLocalIdOnDisk:localId1 error:nil]; // refcount = 2
     XCTAssertNil([store objectIdForLocalId:localId1]);
     XCTAssertNil([store objectIdForLocalId:localId2]);
 
-    [store releaseLocalIdOnDisk:localId1]; // refcount = 1
+    [store releaseLocalIdOnDisk:localId1 error:nil]; // refcount = 1
     XCTAssertNil([store objectIdForLocalId:localId1]);
     XCTAssertNil([store objectIdForLocalId:localId2]);
 
     NSString *objectId1 = @"objectId1";
-    [store setObjectId:objectId1 forLocalId:localId1];
+    [store setObjectId:objectId1 forLocalId:localId1 error:nil];
     XCTAssertEqualObjects(objectId1, [store objectIdForLocalId:localId1]);
     XCTAssertNil([store objectIdForLocalId:localId2]);
 
-    [store retainLocalIdOnDisk:localId1]; // refcount = 2
+    [store retainLocalIdOnDisk:localId1 error:nil]; // refcount = 2
     XCTAssertEqualObjects(objectId1, [store objectIdForLocalId:localId1]);
     XCTAssertNil([store objectIdForLocalId:localId2]);
 
     NSString *objectId2 = @"objectId2";
-    [store setObjectId:objectId2 forLocalId:localId2];
+    [store setObjectId:objectId2 forLocalId:localId2 error:nil];
     XCTAssertEqualObjects(objectId1, [store objectIdForLocalId:localId1]);
     XCTAssertEqualObjects(objectId2, [store objectIdForLocalId:localId2]);
 
-    [store releaseLocalIdOnDisk:localId1]; // refcount = 1
+    [store releaseLocalIdOnDisk:localId1 error:nil]; // refcount = 1
     XCTAssertEqualObjects(objectId1, [store objectIdForLocalId:localId1]);
     XCTAssertEqualObjects(objectId2, [store objectIdForLocalId:localId2]);
 
-    [store releaseLocalIdOnDisk:localId1]; // refcount = 0
+    [store releaseLocalIdOnDisk:localId1 error:nil]; // refcount = 0
     XCTAssertEqualObjects(objectId1, [store objectIdForLocalId:localId1]);
     XCTAssertEqualObjects(objectId2, [store objectIdForLocalId:localId2]);
 
@@ -101,7 +101,7 @@
     XCTAssertNil([store objectIdForLocalId:localId1]);
     XCTAssertEqualObjects(objectId2, [store objectIdForLocalId:localId2]);
 
-    [store releaseLocalIdOnDisk:localId2]; // refcount = 0
+    [store releaseLocalIdOnDisk:localId2 error:nil]; // refcount = 0
     XCTAssertNil([store objectIdForLocalId:localId1]);
     XCTAssertNil([store objectIdForLocalId:localId2]);
 
@@ -120,8 +120,8 @@
     PFObjectLocalIdStore *store = [[PFObjectLocalIdStore alloc] initWithDataSource:dataSource];
 
     NSString *localId = [store createLocalId];
-    [store setObjectId:@"venus" forLocalId:localId];
-    [store retainLocalIdOnDisk:localId];
+    [store setObjectId:@"venus" forLocalId:localId error:nil];
+    [store retainLocalIdOnDisk:localId error:nil];
     [store clearInMemoryCache];
     XCTAssertEqualObjects(@"venus", [store objectIdForLocalId:localId]);
 
@@ -138,6 +138,21 @@
     object = [[PFDecoder objectDecoder] decodeObject:parsed];
     long long actual = [object[@"hugeNumber"] longLongValue];
     XCTAssertEqual(expected, actual, @"The number should be parsed correctly.");
+}
+
+- (void)testInvalidLocalId {
+    id<PFFileManagerProvider> dataSource = [self mockedDataSource];
+    PFFileManager *fileManager = dataSource.fileManager;
+    OCMStub([fileManager parseDataItemPathForPathComponent:[OCMArg isNotNil]]).andReturn(NSTemporaryDirectory());
+
+    PFObjectLocalIdStore *store = [[PFObjectLocalIdStore alloc] initWithDataSource:dataSource];
+    NSError *error;
+    BOOL rval = [store retainLocalIdOnDisk:@"bad-local-id" error:&error];
+    XCTAssertFalse(rval);
+    XCTAssertNotNil(error.domain);
+    XCTAssertEqual(error.domain, PFParseErrorDomain);
+    XCTAssertEqual(error.code, -1);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to get invalid local id: \"bad-local-id\".");
 }
 
 @end

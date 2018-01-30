@@ -51,12 +51,12 @@
 #pragma mark - Authentication Providers
 ///--------------------------------------
 
-- (void)registerAuthenticationDelegate:(id<PFUserAuthenticationDelegate>)delegate forAuthType:(NSString *)authType {
+- (void)registerAuthenticationDelegate:(id<PFUserAuthenticationDelegate>)delegate
+                           forAuthType:(NSString *)authType {
     PFParameterAssert(delegate, @"Authentication delegate can't be `nil`.");
     PFParameterAssert(authType, @"`authType` can't be `nil`.");
-    PFConsistencyAssert(![self authenticationDelegateForAuthType:authType],
+    PFParameterAssert(![self authenticationDelegateForAuthType:authType],
                         @"Authentication delegate already registered for authType `%@`.", authType);
-
     dispatch_sync(_dataAccessQueue, ^{
         _authenticationDelegates[authType] = delegate;
     });

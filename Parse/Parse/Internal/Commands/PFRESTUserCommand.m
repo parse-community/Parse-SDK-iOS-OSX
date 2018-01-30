@@ -31,11 +31,14 @@ static NSString *const PFRESTUserCommandRevocableSessionHeaderEnabledValue = @"1
                           httpMethod:(NSString *)httpMethod
                           parameters:(NSDictionary *)parameters
                         sessionToken:(NSString *)sessionToken
-                    revocableSession:(BOOL)revocableSessionEnabled {
+                    revocableSession:(BOOL)revocableSessionEnabled
+                               error:(NSError **) error {
     PFRESTUserCommand *command = [self commandWithHTTPPath:path
                                                 httpMethod:httpMethod
                                                 parameters:parameters
-                                              sessionToken:sessionToken];
+                                              sessionToken:sessionToken
+                                                     error:error];
+    PFPreconditionBailOnError(command, error, nil);
     if (revocableSessionEnabled) {
         command.additionalRequestHeaders = @{ PFRESTUserCommandRevocableSessionHeader :
                                                   PFRESTUserCommandRevocableSessionHeaderEnabledValue};
@@ -50,33 +53,39 @@ static NSString *const PFRESTUserCommandRevocableSessionHeaderEnabledValue = @"1
 
 + (instancetype)logInUserCommandWithUsername:(NSString *)username
                                     password:(NSString *)password
-                            revocableSession:(BOOL)revocableSessionEnabled {
+                            revocableSession:(BOOL)revocableSessionEnabled
+                                       error:(NSError **) error {
     NSDictionary *parameters = @{ @"username" : username,
                                   @"password" : password };
     return [self _commandWithHTTPPath:@"login"
                            httpMethod:PFHTTPRequestMethodGET
                            parameters:parameters
                          sessionToken:nil
-                     revocableSession:revocableSessionEnabled];
+                     revocableSession:revocableSessionEnabled
+                                error:error];
 }
 
 + (instancetype)serviceLoginUserCommandWithAuthenticationType:(NSString *)authenticationType
                                            authenticationData:(NSDictionary *)authenticationData
-                                             revocableSession:(BOOL)revocableSessionEnabled {
+                                             revocableSession:(BOOL)revocableSessionEnabled
+                                                        error:(NSError **)error {
     NSDictionary *parameters = @{ @"authData" : @{ authenticationType : authenticationData } };
     return [self serviceLoginUserCommandWithParameters:parameters
                                       revocableSession:revocableSessionEnabled
-                                          sessionToken:nil];
+                                          sessionToken:nil
+                                                 error:error];
 }
 
 + (instancetype)serviceLoginUserCommandWithParameters:(NSDictionary *)parameters
                                      revocableSession:(BOOL)revocableSessionEnabled
-                                         sessionToken:(NSString *)sessionToken {
+                                         sessionToken:(NSString *)sessionToken
+                                                error:(NSError **)error {
     return [self _commandWithHTTPPath:@"users"
                            httpMethod:PFHTTPRequestMethodPOST
                            parameters:parameters
                          sessionToken:sessionToken
-                     revocableSession:revocableSessionEnabled];
+                     revocableSession:revocableSessionEnabled
+                                error:error];
 }
 
 ///--------------------------------------
@@ -85,48 +94,54 @@ static NSString *const PFRESTUserCommandRevocableSessionHeaderEnabledValue = @"1
 
 + (instancetype)signUpUserCommandWithParameters:(NSDictionary *)parameters
                                revocableSession:(BOOL)revocableSessionEnabled
-                                   sessionToken:(NSString *)sessionToken {
+                                   sessionToken:(NSString *)sessionToken
+                                          error:(NSError **)error {
     return [self _commandWithHTTPPath:@"users"
                            httpMethod:PFHTTPRequestMethodPOST
                            parameters:parameters
                          sessionToken:sessionToken
-                     revocableSession:revocableSessionEnabled];
+                     revocableSession:revocableSessionEnabled
+                                error:error];
 }
 
 ///--------------------------------------
 #pragma mark - Current User
 ///--------------------------------------
 
-+ (instancetype)getCurrentUserCommandWithSessionToken:(NSString *)sessionToken {
++ (instancetype)getCurrentUserCommandWithSessionToken:(NSString *)sessionToken error:(NSError **)error {
     return [self commandWithHTTPPath:@"users/me"
                           httpMethod:PFHTTPRequestMethodGET
                           parameters:nil
-                        sessionToken:sessionToken];
+                        sessionToken:sessionToken
+                               error:error];
 }
 
-+ (instancetype)upgradeToRevocableSessionCommandWithSessionToken:(NSString *)sessionToken {
++ (instancetype)upgradeToRevocableSessionCommandWithSessionToken:(NSString *)sessionToken error:(NSError **)error {
     return [self commandWithHTTPPath:@"upgradeToRevocableSession"
                           httpMethod:PFHTTPRequestMethodPOST
                           parameters:nil
-                        sessionToken:sessionToken];
+                        sessionToken:sessionToken
+                               error:error];
 }
 
-+ (instancetype)logOutUserCommandWithSessionToken:(NSString *)sessionToken {
++ (instancetype)logOutUserCommandWithSessionToken:(NSString *)sessionToken error:(NSError **)error {
     return [self commandWithHTTPPath:@"logout"
                           httpMethod:PFHTTPRequestMethodPOST
                           parameters:nil
-                        sessionToken:sessionToken];
+                        sessionToken:sessionToken
+                               error:error];
 }
 
 ///--------------------------------------
 #pragma mark - Additional User Commands
 ///--------------------------------------
 
-+ (instancetype)resetPasswordCommandForUserWithEmail:(NSString *)email {
++ (instancetype)resetPasswordCommandForUserWithEmail:(NSString *)email error:(NSError **)error {
     return [self commandWithHTTPPath:@"requestPasswordReset"
                           httpMethod:PFHTTPRequestMethodPOST
                           parameters:@{ @"email" : email }
-                        sessionToken:nil];
+                        sessionToken:nil
+                               error:error];
 }
 
 @end

@@ -141,7 +141,7 @@
 
     [relation _addKnownObject:mockedObject];
 
-    NSDictionary *encoded = [relation encodeIntoDictionary];
+    NSDictionary *encoded = [relation encodeIntoDictionary:nil];
     XCTAssertEqual(1, [encoded[@"objects"] count]);
     XCTAssertNotNil(encoded);
 }

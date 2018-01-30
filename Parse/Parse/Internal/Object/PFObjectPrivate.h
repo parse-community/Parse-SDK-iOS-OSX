@@ -207,7 +207,7 @@
 ///--------------------------------------
 #pragma mark - Validations
 ///--------------------------------------
-- (void)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser;
+- (BOOL)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser error:(NSError **)error;
 /**
  Checks if Parse class name could be used to initialize a given instance of PFObject or it's subclass.
  */
@@ -217,7 +217,7 @@
 #pragma mark - Serialization helpers
 ///--------------------------------------
 - (NSString *)getOrCreateLocalId;
-- (void)resolveLocalId;
+- (BOOL)resolveLocalId:(NSError **) error;
 
 + (id)_objectFromDictionary:(NSDictionary *)dictionary
            defaultClassName:(NSString *)defaultClassName
@@ -237,21 +237,25 @@
                            usingMigrationBlock:(BFContinuationBlock)block;
 
 - (NSMutableDictionary *)_convertToDictionaryForSaving:(PFOperationSet *)changes
-                                     withObjectEncoder:(PFEncoder *)encoder;
+                                     withObjectEncoder:(PFEncoder *)encoder
+                                                 error:(NSError **)error;
 
 ///--------------------------------------
 #pragma mark - REST operations
 ///--------------------------------------
 - (NSDictionary *)RESTDictionaryWithObjectEncoder:(PFEncoder *)objectEncoder
-                                operationSetUUIDs:(NSArray **)operationSetUUIDs;
+                                operationSetUUIDs:(NSArray **)operationSetUUIDs
+                                            error:(NSError **)error;
 - (NSDictionary *)RESTDictionaryWithObjectEncoder:(PFEncoder *)objectEncoder
                                 operationSetUUIDs:(NSArray **)operationSetUUIDs
                                             state:(PFObjectState *)state
                                 operationSetQueue:(NSArray *)queue
-                          deletingEventuallyCount:(NSUInteger)deletingEventuallyCount;
+                          deletingEventuallyCount:(NSUInteger)deletingEventuallyCount
+                                            error:(NSError **)error;
 
-- (void)mergeFromRESTDictionary:(NSDictionary *)object
-                    withDecoder:(PFDecoder *)decoder;
+- (BOOL)mergeFromRESTDictionary:(NSDictionary *)object
+                    withDecoder:(PFDecoder *)decoder
+                          error:(NSError **)error;
 
 ///--------------------------------------
 #pragma mark - Data helpers
@@ -283,7 +287,8 @@
 ///--------------------------------------
 - (PFRESTCommand *)_constructSaveCommandForChanges:(PFOperationSet *)changes
                                       sessionToken:(NSString *)sessionToken
-                                     objectEncoder:(PFEncoder *)encoder;
+                                     objectEncoder:(PFEncoder *)encoder
+                                             error:(NSError **)error;
 - (PFRESTCommand *)_currentDeleteCommandWithSessionToken:(NSString *)sessionToken;
 
 ///--------------------------------------

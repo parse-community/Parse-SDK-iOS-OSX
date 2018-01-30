@@ -319,7 +319,7 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
     return [self getWriteAccessForUserId:objectId];
 }
 
-- (NSDictionary *)encodeIntoDictionary {
+- (NSDictionary *)encodeIntoDictionary:(NSError **)error {
     return self.state.permissions;
 }
 
@@ -362,7 +362,7 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:[self encodeIntoDictionary] forKey:PFACLCodingDataKey_];
+    [coder encodeObject:[self encodeIntoDictionary:nil] forKey:PFACLCodingDataKey_];
 }
 
 @end

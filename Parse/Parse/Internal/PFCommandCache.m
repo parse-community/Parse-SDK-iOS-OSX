@@ -205,7 +205,11 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
         if (dictionaryResult != nil) {
             NSString *objectId = dictionaryResult[@"objectId"];
             if (objectId) {
-                [self.coreDataSource.objectLocalIdStore setObjectId:objectId forLocalId:command.localId];
+                NSError *error;
+                [self.coreDataSource.objectLocalIdStore setObjectId:objectId forLocalId:command.localId error:&error];
+                if (error != nil) {
+                    return [BFTask taskWithError:error];
+                }
             }
         }
     }
@@ -290,7 +294,9 @@ static unsigned long long const PFCommandCacheDefaultDiskCacheSize = 10 * 1024 *
         @strongify(self);
 
         NSError *error = nil;
-        NSData *data = [NSJSONSerialization dataWithJSONObject:[command dictionaryRepresentation]
+        NSDictionary *JSON = [command dictionaryRepresentation:&error];
+        PFPreconditionReturnFailedTask(JSON, error);
+        NSData *data = [NSJSONSerialization dataWithJSONObject:JSON
                                                        options:0
                                                          error:&error];
         NSUInteger commandSize = data.length;

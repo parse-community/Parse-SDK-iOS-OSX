@@ -204,41 +204,64 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
  @param seenNew  The set of new objects that have already been seen since the
  last existing object.
  */
-+ (void)collectDirtyChildren:(id)node
++ (BOOL)collectDirtyChildren:(id)node
                     children:(NSMutableSet *)dirtyChildren
                        files:(NSMutableSet *)dirtyFiles
                         seen:(NSSet *)seen
                      seenNew:(NSSet *)seenNew
-                 currentUser:(PFUser *)currentUser {
+                 currentUser:(PFUser *)currentUser
+                       error:(NSError * __autoreleasing *)error {
     if ([node isKindOfClass:[NSArray class]]) {
         for (id elem in node) {
+            NSError *localError;
+            BOOL succeeded;
             @autoreleasepool {
-                [self collectDirtyChildren:elem
-                                  children:dirtyChildren
-                                     files:dirtyFiles
-                                      seen:seen
-                                   seenNew:seenNew
-                               currentUser:currentUser];
+                succeeded = [self collectDirtyChildren:elem
+                                              children:dirtyChildren
+                                                 files:dirtyFiles
+                                                  seen:seen
+                                               seenNew:seenNew
+                                           currentUser:currentUser
+                                                 error:&localError];
+            }
+            if (!succeeded) {
+                *error = localError;
+                return NO;
             }
         }
     } else if ([node isKindOfClass:[NSDictionary class]]) {
+        __block BOOL wasStopped = NO;
+        __block NSError *localError;
         [node enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            [self collectDirtyChildren:obj
-                              children:dirtyChildren
-                                 files:dirtyFiles
-                                  seen:seen
-                               seenNew:seenNew
-                           currentUser:currentUser];
+            if (![self collectDirtyChildren:obj
+                                   children:dirtyChildren
+                                      files:dirtyFiles
+                                       seen:seen
+                                    seenNew:seenNew
+                                currentUser:currentUser
+                                      error:&localError]) {
+                *stop = YES;
+                wasStopped = YES;
+            }
         }];
+        if (wasStopped) {
+            *error = localError;
+            return NO;
+        }
     } else if ([node isKindOfClass:[PFACL class]]) {
         PFACL *acl = (PFACL *)node;
         if ([acl hasUnresolvedUser]) {
-            [self collectDirtyChildren:currentUser
-                              children:dirtyChildren
-                                 files:dirtyFiles
-                                  seen:seen
-                               seenNew:seenNew
-                           currentUser:currentUser];
+            NSError *localError;
+            if (![self collectDirtyChildren:currentUser
+                                   children:dirtyChildren
+                                      files:dirtyFiles
+                                       seen:seen
+                                    seenNew:seenNew
+                                currentUser:currentUser
+                                        error:&localError]) {
+                *error = localError;
+                return NO;
+            }
         }
 
     } else if ([node isKindOfClass:[PFObject class]]) {
@@ -251,8 +274,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             if (object.objectId) {
                 seenNew = [NSSet set];
             } else {
-                if ([seenNew containsObject:object]) {
-                    PFConsistencyAssertionFailure(@"Found a circular dependency when saving.");
+                if ([seenNew containsObject:object] && error) {
+                    *error = [PFErrorUtilities errorWithCode:kPFErrorInvalidPointer
+                                                     message:@"Found a circular dependency when saving."];
+                    return NO;
                 }
                 seenNew = [seenNew setByAddingObject:object];
             }
@@ -261,7 +286,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             // problem, but we shouldn't recurse any deeper, because it would be
             // an infinite recursion.
             if ([seen containsObject:object]) {
-                return;
+                return YES;
             }
             seen = [seen setByAddingObject:object];
 
@@ -271,12 +296,17 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             toSearch = [object._estimatedData.dictionaryRepresentation copy];
         }
 
-        [self collectDirtyChildren:toSearch
+        NSError *localError;
+        if (![self collectDirtyChildren:toSearch
                           children:dirtyChildren
                              files:dirtyFiles
                               seen:seen
                            seenNew:seenNew
-                       currentUser:currentUser];
+                            currentUser:currentUser
+                                  error:&localError]) {
+            *error = localError;
+            return NO;
+        }
 
         if ([object isDirty:NO]) {
             [dirtyChildren addObject:object];
@@ -287,20 +317,23 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             [dirtyFiles addObject:node];
         }
     }
+    return YES;
 }
 
 // Helper version of collectDirtyChildren:children:seen:seenNew so that callers
 // don't have to add the internally used parameters.
-+ (void)collectDirtyChildren:(id)child
++ (BOOL)collectDirtyChildren:(id)child
                     children:(NSMutableSet *)dirtyChildren
                        files:(NSMutableSet *)dirtyFiles
-                 currentUser:(PFUser *)currentUser {
-    [self collectDirtyChildren:child
-                      children:dirtyChildren
-                         files:dirtyFiles
-                          seen:[NSSet set]
-                       seenNew:[NSSet set]
-                   currentUser:currentUser];
+                 currentUser:(PFUser *)currentUser
+                       error:(NSError **)error {
+    return [self collectDirtyChildren:child
+                             children:dirtyChildren
+                                files:dirtyFiles
+                                 seen:[NSSet set]
+                              seenNew:[NSSet set]
+                          currentUser:currentUser
+                                error:error];
 }
 
 // Returns YES if the given object can be serialized for saving as a value
@@ -350,29 +383,32 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 // @param saved A set of objects that we can assume will have been saved.
 // @param error The reason why it can't be serialized.
 - (BOOL)canBeSerializedAfterSaving:(NSMutableArray *)saved withCurrentUser:(PFUser *)user error:(NSError **)error {
+    NSDictionary *dictionaryRepresentationCopy;
     @synchronized (lock) {
-        // This method is only used for batching sets of objects for saveAll
-        // and when saving children automatically. Since it's only used to
-        // determine whether or not save should be called on them, it only
-        // needs to examine their current values, so we use estimatedData.
-        if (![[self class] canBeSerializedAsValue:_estimatedData.dictionaryRepresentation
-                                      afterSaving:saved
-                                            error:error]) {
-            return NO;
-        }
-
-        if ([self isDataAvailableForKey:@"ACL"] &&
-            [[self ACLWithoutCopying] hasUnresolvedUser] &&
-            ![saved containsObject:user]) {
-            if (error) {
-                *error = [PFErrorUtilities errorWithCode:kPFErrorInvalidACL
-                                                 message:@"User associated with ACL must be signed up."];
-            }
-            return NO;
-        }
-
-        return YES;
+        dictionaryRepresentationCopy = [_estimatedData.dictionaryRepresentation copy];
     }
+
+    // This method is only used for batching sets of objects for saveAll
+    // and when saving children automatically. Since it's only used to
+    // determine whether or not save should be called on them, it only
+    // needs to examine their current values, so we use estimatedData.
+    if (![[self class] canBeSerializedAsValue:dictionaryRepresentationCopy
+                                  afterSaving:saved
+                                        error:error]) {
+        return NO;
+    }
+
+    if ([self isDataAvailableForKey:@"ACL"] &&
+        [[self ACLWithoutCopying] hasUnresolvedUser] &&
+        ![saved containsObject:user]) {
+        if (error) {
+            *error = [PFErrorUtilities errorWithCode:kPFErrorInvalidACL
+                                             message:@"User associated with ACL must be signed up."];
+        }
+        return NO;
+    }
+
+    return YES;
 }
 
 // This saves all of the objects and files reachable from the given object.
@@ -381,7 +417,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 + (BFTask *)_deepSaveAsyncChildrenOfObject:(id)object withCurrentUser:(PFUser *)currentUser sessionToken:(NSString *)sessionToken {
     NSMutableSet *uniqueObjects = [NSMutableSet set];
     NSMutableSet *uniqueFiles = [NSMutableSet set];
-    [self collectDirtyChildren:object children:uniqueObjects files:uniqueFiles currentUser:currentUser];
+    NSError *error;
+    if (![self collectDirtyChildren:object children:uniqueObjects files:uniqueFiles currentUser:currentUser error:&error]) {
+        return [BFTask taskWithError:error];
+    }
     // Remove object from the queue of objects to save as this method should only save children.
     if ([object isKindOfClass:[PFObject class]]) {
         [uniqueObjects removeObject:object];
@@ -420,12 +459,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         }
         remaining = nextBatch;
 
-        if (current.count == 0) {
-            // We do cycle-detection when building the list of objects passed to this
-            // function, so this should never get called.  But we should check for it
-            // anyway, so that we get an exception instead of an infinite loop.
-            PFConsistencyAssertionFailure(@"Unable to save a PFObject with a relation to a cycle.");
-        }
+        // We do cycle-detection when building the list of objects passed to this
+        // function, so this should never get called.  But we should check for it
+        // anyway, so that we get an exception instead of an infinite loop.
+        PFPreconditionWithTask(current.count != 0, @"Unable to save a PFObject with a relation to a cycle.");
 
         // If a lazy user is one of the objects in the array, resolve its laziness now and
         // remove it from the list of things to save.
@@ -461,19 +498,27 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                             PFRESTCommand *command = nil;
                             @synchronized ([object lock]) {
                                 [object _objectWillSave];
-                                [object _checkSaveParametersWithCurrentUser:currentUser];
+                                NSError *error;
+                                if (![object _checkSaveParametersWithCurrentUser:currentUser error:&error]) {
+                                    return [BFTask taskWithError:error];
+                                }
                                 command = [object _constructSaveCommandForChanges:[object unsavedChanges]
                                                                      sessionToken:sessionToken
-                                                                    objectEncoder:[PFPointerObjectEncoder objectEncoder]];
+                                                                    objectEncoder:[PFPointerObjectEncoder objectEncoder]
+                                                                            error:&error];
+                                PFPreconditionReturnFailedTask(command, error);
                                 [object startSave];
                             }
                             [commands addObject:command];
                         }
 
                         id<PFCommandRunning> commandRunner = [Parse _currentManager].commandRunner;
+                        NSError *error;
                         PFRESTCommand *batchCommand = [PFRESTObjectBatchCommand batchCommandWithCommands:commands
                                                                                             sessionToken:sessionToken
-                                                                                               serverURL:commandRunner.serverURL];
+                                                                                               serverURL:commandRunner.serverURL
+                                                                                                   error:&error];
+                        PFPreconditionReturnFailedTask(batchCommand, error);
                         return [[commandRunner runCommandAsync:batchCommand withOptions:0] continueAsyncWithBlock:^id(BFTask *commandRunnerTask) {
                             NSArray *results = [commandRunnerTask.result result];
 
@@ -545,7 +590,11 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         NSMutableSet *uniqueObjects = [NSMutableSet set];
         NSMutableSet *uniqueFiles = [NSMutableSet set];
-        [self collectDirtyChildren:object children:uniqueObjects files:uniqueFiles currentUser:currentUser];
+        NSError *error;
+        if (![self collectDirtyChildren:object children:uniqueObjects files:uniqueFiles currentUser:currentUser error:&error]) {
+            return [BFTask taskWithError:error];
+        }
+
         for (PFFile *file in uniqueFiles) {
             if (!file.url) {
                 NSError *error = [PFErrorUtilities errorWithCode:kPFErrorUnsavedFile
@@ -574,12 +623,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             }
             remaining = nextBatch;
 
-            if (current.count == 0) {
-                // We do cycle-detection when building the list of objects passed to this
-                // function, so this should never get called.  But we should check for it
-                // anyway, so that we get an exception instead of an infinite loop.
-                PFConsistencyAssertionFailure(@"Unable to save a PFObject with a relation to a cycle.");
-            }
+            // We do cycle-detection when building the list of objects passed to this
+            // function, so this should never get called.  But we should check for it
+            // anyway, so that we get an exception instead of an infinite loop.
+            PFPreconditionWithTask(current.count != 0, @"Unable to save a PFObject with a relation to a cycle.");
 
             // If a lazy user is one of the objects in the array, resolve its laziness now and
             // remove it from the list of things to save.
@@ -710,8 +757,8 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 ///--------------------------------------
 
 // Validations that are done on save. For now, there is nothing.
-- (void)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser {
-    return;
+- (BOOL)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser error:(NSError **) error {
+    return YES;
 }
 
 /**
@@ -737,22 +784,21 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return self.localId;
 }
 
-- (void)resolveLocalId {
+- (BOOL)resolveLocalId:(NSError *__autoreleasing*)error {
     @synchronized (lock) {
-        PFConsistencyAssert(self.localId, @"Tried to resolve a localId for an object with no localId. (%@)", self.parseClassName);
+        PFPreconditionBailAndSetError(self.localId, error, NO , @"Tried to resolve a localId for an object with no localId. (%@)", self.parseClassName);
         NSString *newObjectId = [[Parse _currentManager].coreManager.objectLocalIdStore objectIdForLocalId:self.localId];
 
         // If we are resolving local ids, then this object is about to go over the network.
         // But if it has local ids that haven't been resolved yet, then that's not going to
         // be possible.
-        if (!newObjectId) {
-            PFConsistencyAssertionFailure(@"Tried to save an object with a pointer to a new, unsaved object. (%@)", self.parseClassName);
-        }
+        PFPreconditionBailAndSetError(newObjectId, error, NO , @"Tried to save an object with a pointer to a new, unsaved object. (%@)", self.parseClassName);
 
         // Nil out the localId so that the new objectId won't be saved back to the PFObjectLocalIdStore.
         self.localId = nil;
         self.objectId = newObjectId;
     }
+    return YES;
 }
 
 + (id)_objectFromDictionary:(NSDictionary *)dictionary
@@ -867,7 +913,8 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
  Encodes parse object into NSDictionary suitable for persisting into LDS.
  */
 - (NSDictionary *)RESTDictionaryWithObjectEncoder:(PFEncoder *)objectEncoder
-                                operationSetUUIDs:(NSArray **)operationSetUUIDs {
+                                operationSetUUIDs:(NSArray **)operationSetUUIDs
+                                            error:(NSError **)error {
     NSArray *operationQueue = nil;
     PFObjectState *state = nil;
     NSUInteger deletingEventuallyCount = 0;
@@ -881,15 +928,17 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                                operationSetUUIDs:operationSetUUIDs
                                            state:state
                                operationSetQueue:operationQueue
-                         deletingEventuallyCount:deletingEventuallyCount];
+                         deletingEventuallyCount:deletingEventuallyCount
+                                           error:error];
 }
 
 - (NSDictionary *)RESTDictionaryWithObjectEncoder:(PFEncoder *)objectEncoder
                                 operationSetUUIDs:(NSArray **)operationSetUUIDs
                                             state:(PFObjectState *)state
                                 operationSetQueue:(NSArray *)queue
-                          deletingEventuallyCount:(NSUInteger)deletingEventuallyCount {
-    NSMutableDictionary *result = [[state dictionaryRepresentationWithObjectEncoder:objectEncoder] mutableCopy];
+                          deletingEventuallyCount:(NSUInteger)deletingEventuallyCount
+                                            error:(NSError **)error {
+    NSMutableDictionary *result = [[state dictionaryRepresentationWithObjectEncoder:objectEncoder error:error] mutableCopy];
     result[PFObjectClassNameRESTKey] = state.parseClassName;
     result[PFObjectCompleteRESTKey] = @(state.complete);
 
@@ -901,8 +950,11 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     NSMutableArray *mutableOperationSetUUIDs = [NSMutableArray array];
     for (PFOperationSet *operation in queue) {
         NSArray *ooSetUUIDs = nil;
-        [operations addObject:[operation RESTDictionaryUsingObjectEncoder:objectEncoder
-                                                        operationSetUUIDs:&ooSetUUIDs]];
+        id operationDict = [operation RESTDictionaryUsingObjectEncoder:objectEncoder
+                                                     operationSetUUIDs:&ooSetUUIDs
+                                                                 error:error];
+        PFPreconditionBailOnError(operation, error, nil);
+        [operations addObject:operationDict];
         [mutableOperationSetUUIDs addObjectsFromArray:ooSetUUIDs];
     }
 
@@ -912,7 +964,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return result;
 }
 
-- (void)mergeFromRESTDictionary:(NSDictionary *)object withDecoder:(PFDecoder *)decoder {
+- (BOOL)mergeFromRESTDictionary:(NSDictionary *)object withDecoder:(PFDecoder *)decoder error:(NSError **)error {
     @synchronized (lock) {
         BOOL mergeServerData = NO;
 
@@ -927,6 +979,8 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         } else if (!state.updatedAt) {
             mergeServerData = YES;
         }
+        __block BOOL hasFailed = NO;
+        __block NSError* remoteOpSetError = nil;
         [object enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             if ([key isEqualToString:PFObjectOperationsRESTKey]) {
                 PFOperationSet *remoteOperationSet = nil;
@@ -970,7 +1024,13 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                     [localOperationSet.updatedAt compare:remoteOperationSet.updatedAt] != NSOrderedAscending) {
                     [localOperationSet mergeOperationSet:remoteOperationSet];
                 } else {
-                    PFConsistencyAssert(remoteOperationSet, @"'remoteOperationSet' should not be nil.");
+                    if (!remoteOperationSet) {
+                        NSString *message = [NSString stringWithFormat:@"'remoteOperationSet' should not be nil in object of class %@", self.parseClassName];
+                        remoteOpSetError = [PFErrorUtilities errorWithCode:-1 message:message];
+                        hasFailed = YES;
+                        *stop  = YES;
+                        return;
+                    }
                     NSUInteger index = [operationSetQueue indexOfObject:localOperationSet];
                     [remoteOperationSet mergeOperationSet:localOperationSet];
                     operationSetQueue[index] = remoteOperationSet;
@@ -1022,6 +1082,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             id decodedObject = [decoder decodeObject:obj];
             [state setServerDataObject:decodedObject forKey:key];
         }];
+        if (hasFailed && error) {
+            *error = remoteOpSetError;
+            return NO;
+        }
         if (state.updatedAt == nil && state.createdAt != nil) {
             state.updatedAt = state.createdAt;
         }
@@ -1038,6 +1102,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             }
         }
         [self rebuildEstimatedData];
+        return YES;
     }
 }
 
@@ -1078,14 +1143,22 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                     PFOperationSet *changes = [self unsavedChanges];
                     changes.saveEventually = YES;
                     [self startSave];
-                    [self _checkSaveParametersWithCurrentUser:currentUser];
-                    PFRESTCommand *command = [self _constructSaveCommandForChanges:changes
-                                                                      sessionToken:sessionToken
-                                                                     objectEncoder:[PFPointerOrLocalIdObjectEncoder objectEncoder]];
-
-                    // Enqueue the eventually operation!
-                    saveTask = [[Parse _currentManager].eventuallyQueue enqueueCommandInBackground:command withObject:self];
-                    [self _enqueueSaveEventuallyOperationAsync:changes];
+                    NSError *error;
+                    if (![self _checkSaveParametersWithCurrentUser:currentUser error:&error]) {
+                        saveTask = [BFTask taskWithError:error];
+                    } else  {
+                        PFRESTCommand *command = [self _constructSaveCommandForChanges:changes
+                                                                          sessionToken:sessionToken
+                                                                         objectEncoder:[PFPointerOrLocalIdObjectEncoder objectEncoder]
+                                                                                 error:&error];
+                        if (!command) {
+                            saveTask = [BFTask taskWithError:error];
+                        } else {
+                            // Enqueue the eventually operation!
+                            saveTask = [[Parse _currentManager].eventuallyQueue enqueueCommandInBackground:command withObject:self];
+                            [self _enqueueSaveEventuallyOperationAsync:changes];
+                        }
+                    }
                 }
                 saveTask = [saveTask continueWithBlock:^id(BFTask *task) {
                     @try {
@@ -1133,13 +1206,14 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 ///--------------------------------------
 
 - (NSMutableDictionary *)_convertToDictionaryForSaving:(PFOperationSet *)changes
-                                     withObjectEncoder:(PFEncoder *)encoder {
+                                     withObjectEncoder:(PFEncoder *)encoder
+                                                 error:(NSError **)error {
     @synchronized (lock) {
         NSMutableDictionary *serialized = [NSMutableDictionary dictionary];
         [changes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             serialized[key] = obj;
         }];
-        return [encoder encodeObject:serialized];
+        return [encoder encodeObject:serialized error:error];
     }
 }
 
@@ -1391,10 +1465,15 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                     return childrenTask;
                 }
                 return [[childrenTask continueWithSuccessBlock:^id(BFTask *task) {
-                    [self _checkSaveParametersWithCurrentUser:currentUser];
+                    NSError *error;
+                    if (![self _checkSaveParametersWithCurrentUser:currentUser error:&error]) {
+                        return [BFTask taskWithError:error];
+                    }
                     PFRESTCommand *command = [self _constructSaveCommandForChanges:changes
                                                                       sessionToken:sessionToken
-                                                                     objectEncoder:[PFPointerObjectEncoder objectEncoder]];
+                                                                     objectEncoder:[PFPointerObjectEncoder objectEncoder]
+                                                                             error:&error];
+                    PFPreconditionReturnFailedTask(command, error);
                     return [[Parse _currentManager].commandRunner runCommandAsync:command
                                                                       withOptions:PFCommandRunningOptionRetryIfFailed];
                 }] continueAsyncWithBlock:^id(BFTask *task) {
@@ -1437,11 +1516,13 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 #pragma mark - Command constructors
 ///--------------------------------------
 
-- (PFRESTCommand *)_constructSaveCommandForChanges:(PFOperationSet *)changes
+- (nullable PFRESTCommand *)_constructSaveCommandForChanges:(PFOperationSet *)changes
                                       sessionToken:(NSString *)sessionToken
-                                     objectEncoder:(PFEncoder *)encoder {
+                                     objectEncoder:(PFEncoder *)encoder
+                                             error:(NSError **)error {
     @synchronized (lock) {
-        NSDictionary *parameters = [self _convertToDictionaryForSaving:changes withObjectEncoder:encoder];
+        NSDictionary *parameters = [self _convertToDictionaryForSaving:changes withObjectEncoder:encoder error:error];
+        PFPreconditionBailOnError(parameters, error, nil);
 
         if (self._state.objectId) {
             return [PFRESTObjectCommand updateObjectCommandForObjectState:self._state
@@ -1542,19 +1623,20 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (NSDictionary *)_collectFetchedObjects {
     NSMutableDictionary *fetchedObjects = [NSMutableDictionary dictionary];
+    NSDictionary *dictionary;
     @synchronized (lock) {
-        NSDictionary *dictionary = _estimatedData.dictionaryRepresentation;
-        [PFInternalUtils traverseObject:dictionary usingBlock:^id(id obj) {
-            if ([obj isKindOfClass:[PFObject class]]) {
-                PFObject *object = obj;
-                NSString *objectId = object.objectId;
-                if (objectId && object.dataAvailable) {
-                    fetchedObjects[objectId] = object;
-                }
-            }
-            return obj;
-        }];
+        dictionary = [_estimatedData.dictionaryRepresentation copy];
     }
+    [PFInternalUtils traverseObject:dictionary usingBlock:^id(id obj) {
+        if ([obj isKindOfClass:[PFObject class]]) {
+            PFObject *object = obj;
+            NSString *objectId = object.objectId;
+            if (objectId && object.dataAvailable) {
+                fetchedObjects[objectId] = object;
+            }
+        }
+        return obj;
+    }];
     return fetchedObjects;
 }
 
@@ -1771,7 +1853,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             [store updateObjectIdForObject:self oldObjectId:fromObjectId newObjectId:toObjectId];
         }
         if (self.localId) {
-            [[Parse _currentManager].coreManager.objectLocalIdStore setObjectId:toObjectId forLocalId:self.localId];
+            [[Parse _currentManager].coreManager.objectLocalIdStore setObjectId:toObjectId forLocalId:self.localId error:nil];
             self.localId = nil;
         }
     }

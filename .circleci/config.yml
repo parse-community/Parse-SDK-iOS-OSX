@@ -64,7 +64,7 @@ jobs:
       - run: *prepare
       - run: |
             xcrun simctl create "Apple TV 1080p" com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p com.apple.CoreSimulator.SimRuntime.tvOS-11-0
-            bundle exec rake test:deployment
+            bundle exec rake package:release
   jazzy:
     <<: *defaults
     steps:

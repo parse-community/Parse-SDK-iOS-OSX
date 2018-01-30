@@ -47,12 +47,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Controls whether the public is allowed to read this object.
  */
-@property (nonatomic, assign, getter=getPublicReadAccess) BOOL publicReadAccess;
+@property (nonatomic, assign, getter=getPublicReadAccess) BOOL publicReadAccess NS_SWIFT_NAME(hasPublicReadAccess);
 
 /**
  Controls whether the public is allowed to write this object.
  */
-@property (nonatomic, assign, getter=getPublicWriteAccess) BOOL publicWriteAccess;
+@property (nonatomic, assign, getter=getPublicWriteAccess) BOOL publicWriteAccess NS_SWIFT_NAME(hasPublicWriteAccess);
 
 ///--------------------------------------
 #pragma mark - Controlling Access Per-User

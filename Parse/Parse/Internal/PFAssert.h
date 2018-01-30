@@ -8,6 +8,7 @@
  */
 
 #import "PFMacros.h"
+#import "PFErrorUtilities.h"
 
 #ifndef Parse_PFAssert_h
 #define Parse_PFAssert_h
@@ -56,6 +57,53 @@ do { \
                     format:description, ##__VA_ARGS__]; \
     } \
 } while(0)
+
+/*
+ Returns an error with the description, if a condition isn't met
+ */
+#define PFPrecondition(condition, description, ...) \
+if (!(condition)) { \
+    return [PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]];\
+}
+
+/**
+ Returns a consistency error.
+ */
+#define PFPreconditionFailure(description, ...) \
+PFPrecondition(NO, description, ##__VA_ARGS__)
+
+/**
+Sets a recoverable error for propagation
+ */
+#define PFPreconditionBailAndSetError(condition, error, rval, description, ...) \
+if (!(condition) && error && *error == nil) { \
+    *error =  [PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]];\
+    return rval;\
+}
+
+/*
+ Returns the passed value if the condition isn't met and the *error is set
+ */
+#define PFPreconditionBailOnError(condition, error, rval) \
+if (!(condition) && error && *error) { \
+    return rval;\
+}
+
+/*
+ Returns an failed task with the passed error if a contition isn't met and the error is set
+ */
+#define PFPreconditionReturnFailedTask(condition, error) \
+if (!(condition) && error) { \
+    return [BFTask taskWithError:error];\
+}
+
+/*
+ Returns a failed BFTask with an error description if the condition isn't met
+ */
+#define PFPreconditionWithTask(condition, description, ...) \
+if (!(condition)) { \
+    return [BFTask taskWithError:[PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]]];\
+}
 
 /**
  Raises an `NSInternalInconsistencyException`. Use `description` to supply the way to fix the exception.

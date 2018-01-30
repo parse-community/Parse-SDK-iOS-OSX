@@ -43,19 +43,22 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
 + (instancetype)commandWithHTTPPath:(NSString *)path
                          httpMethod:(NSString *)httpMethod
                          parameters:(NSDictionary *)parameters
-                       sessionToken:(NSString *)sessionToken {
+                       sessionToken:(NSString *)sessionToken
+                              error:(NSError **) error {
     return [self commandWithHTTPPath:path
                           httpMethod:httpMethod
                           parameters:parameters
                     operationSetUUID:nil
-                        sessionToken:sessionToken];
+                        sessionToken:sessionToken
+                               error:error];
 }
 
 + (instancetype)commandWithHTTPPath:(NSString *)path
                          httpMethod:(NSString *)httpMethod
                          parameters:(NSDictionary *)parameters
                    operationSetUUID:(NSString *)operationSetIdentifier
-                       sessionToken:(NSString *)sessionToken {
+                       sessionToken:(NSString *)sessionToken
+                              error:(NSError **)error {
     PFRESTCommand *command = [[self alloc] init];
     command.httpPath = path;
     command.httpMethod = httpMethod;
@@ -105,12 +108,13 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
     PFRESTCommand *command = [self commandWithHTTPPath:dictionary[PFRESTCommandHTTPPathEncodingKey]
                                             httpMethod:dictionary[PFRESTCommandHTTPMethodEncodingKey]
                                             parameters:dictionary[PFRESTCommandParametersEncodingKey]
-                                          sessionToken:dictionary[PFRESTCommandSessionTokenEncodingKey]];
+                                          sessionToken:dictionary[PFRESTCommandSessionTokenEncodingKey]
+                                                 error:nil];
     command.localId = dictionary[PFRESTCommandLocalIdEncodingKey];
     return command;
 }
 
-- (NSDictionary *)dictionaryRepresentation {
+- (NSDictionary *)dictionaryRepresentation:(NSError **)error {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     if (self.httpPath) {
         dictionary[PFRESTCommandHTTPPathEncodingKey] = self.httpPath;
@@ -119,7 +123,10 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
         dictionary[PFRESTCommandHTTPMethodEncodingKey] = self.httpMethod;
     }
     if (self.parameters) {
-        NSDictionary *parameters = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:self.parameters];
+        NSDictionary *parameters = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:self.parameters error:error];
+        if (!parameters) {
+            return nil;
+        }
         dictionary[PFRESTCommandParametersEncodingKey] = parameters;
     }
     if (self.sessionToken) {
@@ -134,6 +141,7 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
 + (BOOL)isValidDictionaryRepresentation:(NSDictionary *)dictionary {
     return dictionary[PFRESTCommandHTTPPathEncodingKey] != nil;
 }
+
 
 #pragma mark Local Identifiers
 
@@ -166,66 +174,91 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
     }
 }
 
-+ (BOOL)forEachLocalIdIn:(id)object doBlock:(BOOL(^)(PFObject *pointer))block {
-    __block BOOL modified = NO;
++ (BOOL)forEachLocalIdIn:(id)object
+                 doBlock:(BOOL(^)(PFObject *pointer, BOOL *modified, NSError **error))block
+                modified:(BOOL *)modified error:(NSError **)error {
 
     // If this is a Pointer with a local id, try to resolve it.
     if ([object isKindOfClass:[PFObject class]] && !((PFObject *)object).objectId) {
-        return block(object);
+        __block BOOL blockModified = NO;
+        BOOL success = block(object, &blockModified, error);
+        if (blockModified) {
+            *modified = YES;
+        }
+        return success;
     }
 
     if ([object isKindOfClass:[NSDictionary class]]) {
+        __block NSError *localError;
+        __block BOOL hasFailed = NO;
         [object enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
-            if ([[self class] forEachLocalIdIn:obj doBlock:block]) {
-                modified = YES;
+            if (![[self class] forEachLocalIdIn:obj doBlock:block modified:modified error:&localError]) {
+                *stop = YES;
+                hasFailed = YES;
             }
         }];
+        if (hasFailed && error) {
+            *error = localError;
+            return NO;
+        }
     } else if ([object isKindOfClass:[NSArray class]]) {
         for (id value in object) {
-            if ([[self class] forEachLocalIdIn:value doBlock:block]) {
-                modified = YES;
+            if (![[self class] forEachLocalIdIn:value doBlock:block modified:modified error:error]) {
+                return NO;
             }
         }
     } else if ([object isKindOfClass:[PFAddOperation class]]) {
         for (id value in ((PFAddOperation *)object).objects) {
-            if ([[self class] forEachLocalIdIn:value doBlock:block]) {
-                modified = YES;
+            if (![[self class] forEachLocalIdIn:value doBlock:block modified:modified  error:error]) {
+                return NO;
             }
         }
     } else if ([object isKindOfClass:[PFAddUniqueOperation class]]) {
         for (id value in ((PFAddUniqueOperation *)object).objects) {
-            if ([[self class] forEachLocalIdIn:value doBlock:block]) {
-                modified = YES;
+            if (![[self class] forEachLocalIdIn:value doBlock:block modified:modified error:error]) {
+                return NO;
             }
         }
     } else if ([object isKindOfClass:[PFRemoveOperation class]]) {
         for (id value in ((PFRemoveOperation *)object).objects) {
-            if ([[self class] forEachLocalIdIn:value doBlock:block]) {
-                modified = YES;
+            if (![[self class] forEachLocalIdIn:value doBlock:block modified:modified error:error]) {
+                return NO;
             }
         }
     }
-
-    return modified;
+    return YES;
 }
 
-- (void)forEachLocalId:(BOOL(^)(PFObject *pointer))block {
+- (BOOL)forEachLocalId:(BOOL(^)(PFObject *pointer, BOOL *modified, NSError **error))block error:(NSError **)error {
     NSDictionary *data = [[PFDecoder objectDecoder] decodeObject:self.parameters];
     if (!data) {
-        return;
+        return YES;
     }
-
-    if ([[self class] forEachLocalIdIn:data doBlock:block]) {
-        self.parameters = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:data];
+    BOOL modified = NO;
+    if ([[self class] forEachLocalIdIn:data doBlock:block modified:&modified error:error]) {
+        self.parameters = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:data error:error];
+        if (self.parameters && !(error && *error)) {
+            return YES;
+        }
     }
+    return NO;
 }
 
-- (void)resolveLocalIds {
-    [self forEachLocalId:^(PFObject *pointer) {
-        [pointer resolveLocalId];
-        return YES;
-    }];
+- (BOOL)resolveLocalIds:(NSError * __autoreleasing *)error {
+    BOOL paramEncodingSucceeded = [self forEachLocalId:^(PFObject *pointer, BOOL *modified, NSError **blockError) {
+        NSError *localError;
+        BOOL success = [pointer resolveLocalId:&localError];
+        *modified = YES;
+        if (!success && localError) {
+            *blockError = localError;
+        }
+        return success;
+    } error: error];
+    if (!paramEncodingSucceeded && *error) {
+        return NO;
+    }
     [self maybeChangeServerOperation];
+    return YES;
 }
 
 @end

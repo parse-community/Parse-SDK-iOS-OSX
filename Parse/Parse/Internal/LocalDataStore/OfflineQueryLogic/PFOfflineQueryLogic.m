@@ -121,7 +121,8 @@ typedef BOOL (^PFSubQueryMatcherBlock)(id object, NSArray *results);
         // anything like ParseObjects and arrays.
         if (!(value == nil || [value isKindOfClass:[NSDictionary class]])) {
             if (depth > 0) {
-                id restFormat = [[PFPointerObjectEncoder objectEncoder] encodeObject:value];
+                // TODO (flovilmart): is it safe to swallow the error here?
+                id restFormat = [[PFPointerObjectEncoder objectEncoder] encodeObject:value error:nil];
                 if ([restFormat isKindOfClass:[NSDictionary class]]) {
                     return [self valueForContainer:restFormat key:rest depth:depth + 1];
                 }

@@ -37,7 +37,7 @@
 - (void)testPolygonDictionaryEncoding {
     PFPolygon *polygon = [PFPolygon polygonWithCoordinates:_testPoints];
 
-    NSDictionary *dictionary = [polygon encodeIntoDictionary];
+    NSDictionary *dictionary = [polygon encodeIntoDictionary:nil];
     XCTAssertNotNil(dictionary);
 
     PFPolygon *polygonFromDictionary = [PFPolygon polygonWithDictionary:dictionary];
@@ -49,7 +49,7 @@
     PFPolygon *polygon = [PFPolygon polygonWithCoordinates:_testPoints];
     
     PFEncoder *encoder = [[PFEncoder alloc] init];
-    NSDictionary *dictionary = [encoder encodeObject:polygon];
+    NSDictionary *dictionary = [encoder encodeObject:polygon error:nil];
     XCTAssertNotNil(dictionary);
     
     PFPolygon *polygonFromDictionary = [PFPolygon polygonWithDictionary:dictionary];

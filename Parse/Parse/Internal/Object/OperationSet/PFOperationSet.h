@@ -42,7 +42,8 @@
  Converts this operation set into its REST format for serializing to the pinning store
  */
 - (NSDictionary *)RESTDictionaryUsingObjectEncoder:(PFEncoder *)objectEncoder
-                                 operationSetUUIDs:(NSArray **)operationSetUUIDs;
+                                 operationSetUUIDs:(NSArray **)operationSetUUIDs
+                                             error:(NSError **)error;
 
 /**
  The inverse of RESTDictionaryUsingObjectEncoder.

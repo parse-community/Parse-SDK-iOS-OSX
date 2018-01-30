@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testEmptyPushCommand {
     PFMutablePushState *state = [[PFMutablePushState alloc] init];
 
-    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr"];
+    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr" error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"push");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
     PFMutablePushState *state = [[PFMutablePushState alloc] init];
     state.channels = [NSSet setWithObject:@"El Capitan!"];
 
-    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr"];
+    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr" error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"push");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
     [queryState setEqualityConditionWithObject:@"value" forKey:@"key"];
     state.queryState = queryState;
 
-    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr"];
+    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr" error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"push");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
     PFMutablePushState *state = [[PFMutablePushState alloc] init];
     state.expirationDate = [NSDate date];
 
-    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr"];
+    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr" error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"push");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
     PFMutablePushState *state = [[PFMutablePushState alloc] init];
     state.expirationTimeInterval = @100500;
 
-    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr"];
+    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr" error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"push");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
     PFMutablePushState *state = [[PFMutablePushState alloc] init];
     state.pushDate = [NSDate dateWithTimeIntervalSinceNow:1.0];
 
-    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr"];
+    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr" error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"push");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
@@ -103,7 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
     PFMutablePushState *state = [[PFMutablePushState alloc] init];
     state.payload = @{ @"alert" : @"yolo" };
 
-    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr"];
+    PFRESTPushCommand *command = [PFRESTPushCommand sendPushCommandWithPushState:state sessionToken:@"yarr" error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"push");
     XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);

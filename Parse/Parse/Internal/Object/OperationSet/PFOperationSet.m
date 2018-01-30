@@ -7,6 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import "PFAssert.h"
 #import "PFOperationSet.h"
 
 #import "PFACL.h"
@@ -71,15 +72,29 @@ static NSString *const PFOperationSetKeyACL = @"ACL";
 #pragma mark - Encoding
 ///--------------------------------------
 
-- (NSDictionary *)RESTDictionaryUsingObjectEncoder:(PFEncoder *)objectEncoder
-                                 operationSetUUIDs:(NSArray **)operationSetUUIDs {
+- (nullable NSDictionary *)RESTDictionaryUsingObjectEncoder:(PFEncoder *)objectEncoder
+                                 operationSetUUIDs:(NSArray **)operationSetUUIDs
+                                             error:(NSError * __autoreleasing *)error {
     NSMutableDictionary *operationSetResult = [[NSMutableDictionary alloc] init];
+    __block NSError *encodingError;
+    __block BOOL wasStopped = false;
     [self.dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        operationSetResult[key] = [obj encodeWithObjectEncoder:objectEncoder];
+        id result = [obj encodeWithObjectEncoder:objectEncoder error:&encodingError];
+        if (!result && encodingError) {
+            *stop = YES;
+            wasStopped = YES;
+            return;
+        }
+        operationSetResult[key] = result;
     }];
 
+    if (wasStopped && error) {
+        *error = encodingError;
+        return nil;
+    }
+
     operationSetResult[PFOperationSetKeyUUID] = self.uuid;
-    operationSetResult[PFOperationSetKeyUpdatedAt] = [objectEncoder encodeObject:self.updatedAt];
+    operationSetResult[PFOperationSetKeyUpdatedAt] = [objectEncoder encodeObject:self.updatedAt error:nil];
 
     if (self.saveEventually) {
         operationSetResult[PFOperationSetKeyIsSaveEventually] = @YES;

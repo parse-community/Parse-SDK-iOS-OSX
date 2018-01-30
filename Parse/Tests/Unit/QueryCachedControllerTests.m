@@ -369,7 +369,7 @@
     PFQueryState *state = [self sampleQueryStateWithCachePolicy:0];
     PFCachedQueryController *controller = [PFCachedQueryController controllerWithCommonDataSource:dataSource];
 
-    NSString *cacheKey = [PFRESTQueryCommand findCommandForQueryState:state withSessionToken:@"a"].cacheKey;
+    NSString *cacheKey = [PFRESTQueryCommand findCommandForQueryState:state withSessionToken:@"a" error:nil].cacheKey;
     XCTAssertEqualObjects([controller cacheKeyForQueryState:state sessionToken:@"a"], cacheKey);
 }
 
@@ -380,7 +380,7 @@
     PFQueryState *state = [self sampleQueryStateWithCachePolicy:0];
     PFCachedQueryController *controller = [PFCachedQueryController controllerWithCommonDataSource:dataSource];
 
-    NSString *cacheKey = [PFRESTQueryCommand findCommandForQueryState:state withSessionToken:@"a"].cacheKey;
+    NSString *cacheKey = [PFRESTQueryCommand findCommandForQueryState:state withSessionToken:@"a" error:nil].cacheKey;
 
     NSString *jsonString = [PFJSONSerialization stringFromJSONObject:[self sampleCommandResult].result];
     OCMStub([[cache ignoringNonObjectArgs] objectForKey:[OCMArg checkWithBlock:^BOOL(id obj) {
@@ -389,7 +389,7 @@
 
     XCTAssertTrue([controller hasCachedResultForQueryState:state sessionToken:@"a"]);
 
-    cacheKey = [PFRESTQueryCommand findCommandForQueryState:state withSessionToken:nil].cacheKey;
+    cacheKey = [PFRESTQueryCommand findCommandForQueryState:state withSessionToken:nil error:nil].cacheKey;
     OCMStub([[cache ignoringNonObjectArgs] objectForKey:[OCMArg checkWithBlock:^BOOL(id obj) {
         return [obj isEqual:cacheKey];
     }] maxAge:0]).andReturn(nil);

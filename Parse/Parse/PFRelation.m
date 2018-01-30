@@ -192,12 +192,15 @@ static NSString *const PFRelationKeyObjects = @"objects";
     });
 }
 
-- (NSDictionary *)encodeIntoDictionary {
+- (nullable NSDictionary *)encodeIntoDictionary:(NSError **)error {
     PFRelationState *state = [self.state copy];
     NSMutableArray *encodedObjects = [NSMutableArray arrayWithCapacity:state.knownObjects.count];
-
     for (PFObject *knownObject in state.knownObjects) {
-        [encodedObjects addObject:[[PFPointerObjectEncoder objectEncoder] encodeObject:knownObject]];
+        id result = [[PFPointerObjectEncoder objectEncoder] encodeObject:knownObject error:error];
+        if (!result) {
+            return nil;
+        }
+        [encodedObjects addObject:result];
     }
 
     return @{

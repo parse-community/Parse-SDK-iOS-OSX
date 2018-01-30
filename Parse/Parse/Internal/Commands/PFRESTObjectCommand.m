@@ -24,7 +24,8 @@
     PFRESTObjectCommand *command = [self commandWithHTTPPath:httpPath
                                                   httpMethod:PFHTTPRequestMethodGET
                                                   parameters:nil
-                                                sessionToken:sessionToken];
+                                                sessionToken:sessionToken
+                                                       error:nil];
     return command;
 }
 
@@ -39,7 +40,8 @@
                                                   httpMethod:PFHTTPRequestMethodPOST
                                                   parameters:changes
                                             operationSetUUID:operationSetIdentifier
-                                                sessionToken:sessionToken];
+                                                sessionToken:sessionToken
+                                                       error:nil];
     return command;
 }
 
@@ -55,7 +57,8 @@
                                                   httpMethod:PFHTTPRequestMethodPUT
                                                   parameters:changes
                                             operationSetUUID:operationSetIdentifier
-                                                sessionToken:sessionToken];
+                                                sessionToken:sessionToken
+                                                       error:nil];
     return command;
 }
 
@@ -70,7 +73,8 @@
     PFRESTObjectCommand *command = [self commandWithHTTPPath:httpPath
                                                   httpMethod:PFHTTPRequestMethodDELETE
                                                   parameters:nil
-                                                sessionToken:sessionToken];
+                                                sessionToken:sessionToken
+                                                       error:nil];
     return command;
 }
 

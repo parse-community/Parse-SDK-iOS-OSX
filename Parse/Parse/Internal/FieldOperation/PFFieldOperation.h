@@ -33,7 +33,7 @@
  @param objectEncoder encoder that will be used to encode the object.
  @return An object to be jsonified.
  */
-- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder;
+- (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error;
 
 /**
  Returns a field operation that is composed of a previous operation followed by

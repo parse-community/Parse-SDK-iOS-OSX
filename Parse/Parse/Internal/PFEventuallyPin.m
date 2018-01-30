@@ -92,7 +92,11 @@ static NSString *const PFEventuallyPinKeyCommand = @"command";
 
 + (BFTask *)pinEventually:(PFObject *)object forCommand:(id<PFNetworkCommand>)command withUUID:(NSString *)uuid {
     PFEventuallyPinType type = [self _pinTypeForCommand:command];
-    NSDictionary *commandDictionary = (type == PFEventuallyPinTypeCommand ? [command dictionaryRepresentation] : nil);
+    NSError *error;
+    NSDictionary *commandDictionary = (type == PFEventuallyPinTypeCommand ? [command dictionaryRepresentation:&error] : nil);
+    if (type == PFEventuallyPinTypeCommand) {
+        PFPreconditionReturnFailedTask(commandDictionary, error);
+    }
     return [self _pinEventually:object
                            type:type
                            uuid:uuid

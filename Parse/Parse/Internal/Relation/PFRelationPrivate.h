@@ -19,7 +19,7 @@
 + (PFRelation *)relationWithTargetClass:(NSString *)targetClass;
 + (PFRelation *)relationFromDictionary:(NSDictionary *)dictionary withDecoder:(PFDecoder *)decoder;
 - (void)ensureParentIs:(PFObject *)someParent andKeyIs:(NSString *)someKey;
-- (NSDictionary *)encodeIntoDictionary;
+- (NSDictionary *)encodeIntoDictionary:(NSError **)error;
 - (BOOL)_hasKnownObject:(PFObject *)object;
 - (void)_addKnownObject:(PFObject *)object;
 - (void)_removeKnownObject:(PFObject *)object;

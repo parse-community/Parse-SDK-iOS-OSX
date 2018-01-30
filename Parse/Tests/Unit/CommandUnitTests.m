@@ -50,7 +50,8 @@
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"login"
                                                      httpMethod:PFHTTPRequestMethodPOST
                                                      parameters:nil
-                                                   sessionToken:nil];
+                                                   sessionToken:nil
+                                                          error:nil];
 
     NSError *error = nil;
     PFURLSessionCommandRunner *commandRunner = [PFURLSessionCommandRunner commandRunnerWithDataSource:[Parse _currentManager]
@@ -80,7 +81,8 @@
     PFRESTCommand *command = [PFRESTCommand commandWithHTTPPath:@"login"
                                                      httpMethod:PFHTTPRequestMethodPOST
                                                      parameters:nil
-                                                   sessionToken:nil];
+                                                   sessionToken:nil
+                                                          error:nil];
 
     NSError *error = nil;
     PFURLSessionCommandRunner *commandRunner = [PFURLSessionCommandRunner commandRunnerWithDataSource:[Parse _currentManager]
@@ -107,7 +109,8 @@
     PFRESTCommand *orderedCommand = [PFRESTCommand commandWithHTTPPath:@"foo"
                                                             httpMethod:PFHTTPRequestMethodGET
                                                             parameters:orderedDict
-                                                          sessionToken:nil];
+                                                          sessionToken:nil
+                                                                 error:nil];
 
     NSMutableDictionary *reversedDict = [NSMutableDictionary dictionary];
     for (int i = 30; i >= 1; --i) {
@@ -117,7 +120,8 @@
     PFRESTCommand *reversedCommand = [PFRESTCommand commandWithHTTPPath:@"foo"
                                                              httpMethod:PFHTTPRequestMethodGET
                                                              parameters:reversedDict
-                                                           sessionToken:nil];
+                                                           sessionToken:nil
+                                                                  error:nil];
 
     XCTAssertEqualObjects(orderedCommand.cacheKey, reversedCommand.cacheKey,
                           @"identifiers should be invariant to dictionary key orders");

@@ -33,9 +33,9 @@
     return encoder;
 }
 
-- (id)encodeObject:(id)object {
+- (id)encodeObject:(id)object error:(NSError * __autoreleasing *) error {
     if ([object isKindOfClass:[PFObject class]]) {
-        return [self encodeParseObject:object];
+        return [self encodeParseObject:object error:error];
     } else if ([object isKindOfClass:[NSData class]]) {
         return @{
                  @"__type" : @"Bytes",
@@ -67,42 +67,56 @@
 
     } else if ([object isKindOfClass:[PFFieldOperation class]]) {
         // Always encode PFFieldOperation with PFPointerOrLocalId
-        return [object encodeWithObjectEncoder:[PFPointerOrLocalIdObjectEncoder objectEncoder]];
+        return [object encodeWithObjectEncoder:[PFPointerOrLocalIdObjectEncoder objectEncoder] error:error];
     } else if ([object isKindOfClass:[PFACL class]]) {
         // TODO (hallucinogen): pass object encoder here
-        return [object encodeIntoDictionary];
+        return [object encodeIntoDictionary:error];
 
     } else if ([object isKindOfClass:[PFGeoPoint class]]) {
         // TODO (hallucinogen): pass object encoder here
-        return [object encodeIntoDictionary];
+        return [object encodeIntoDictionary:error];
 
     } else if ([object isKindOfClass:[PFPolygon class]]) {
         // TODO (hallucinogen): pass object encoder here
-        return [object encodeIntoDictionary];
+        return [object encodeIntoDictionary:error];
 
     } else if ([object isKindOfClass:[PFRelation class]]) {
         // TODO (hallucinogen): pass object encoder here
-        return [object encodeIntoDictionary];
+        return [object encodeIntoDictionary:error];
 
     } else if ([object isKindOfClass:[NSArray class]]) {
         NSMutableArray *newArray = [NSMutableArray arrayWithCapacity:[object count]];
         for (id elem in object) {
-            [newArray addObject:[self encodeObject:elem]];
+            id encodedElem = [self encodeObject:elem error:error];
+            PFPreconditionBailOnError(encodedElem, error, nil);
+            [newArray addObject:encodedElem];
         }
         return newArray;
 
     } else if ([object isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[object count]];
+        __block BOOL encodingFailed = NO;
+        __block NSError *encodingError = nil;
         [object enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            dict[key] = [self encodeObject:obj];
+            id result = [self encodeObject:obj error:&encodingError];
+            if (!result && encodingError) {
+                encodingFailed = YES;
+                *stop = YES;
+            } else {
+                dict[key] = result;
+            }
         }];
+        if (encodingFailed) {
+            *error = encodingError;
+            return nil;
+        }
         return dict;
     }
 
     return object;
 }
 
-- (id)encodeParseObject:(PFObject *)object {
+- (id)encodeParseObject:(PFObject *)object error:(NSError **)error {
     // Do nothing here
     return nil;
 }
@@ -124,7 +138,7 @@
     return encoder;
 }
 
-- (id)encodeParseObject:(PFObject *)object {
+- (id)encodeParseObject:(PFObject *)object error:(NSError **)error {
     PFConsistencyAssertionFailure(@"PFObjects are not allowed here.");
     return nil;
 }
@@ -146,7 +160,7 @@
     return instance;
 }
 
-- (id)encodeParseObject:(PFObject *)object {
+- (id)encodeParseObject:(PFObject *)object error:(NSError **)error {
     if (object.objectId) {
         return @{
                  @"__type" : @"Pointer",
@@ -178,9 +192,9 @@
     return encoder;
 }
 
-- (id)encodeParseObject:(PFObject *)object {
-    PFConsistencyAssert(object.objectId, @"Tried to save an object with a new, unsaved child.");
-    return [super encodeParseObject:object];
+- (id)encodeParseObject:(PFObject *)object error:(NSError * __autoreleasing *)error {
+    PFPreconditionBailAndSetError(object.objectId, error, nil, @"Tried to save an object with a new, unsaved child.");
+    return [super encodeParseObject:object error:error];
 }
 
 @end
@@ -222,7 +236,7 @@
     return [[self alloc] initWithOfflineStore:store database:database];
 }
 
-- (id)encodeParseObject:(PFObject *)object {
+- (id)encodeParseObject:(PFObject *)object error:(NSError **)error {
     if (object.objectId) {
         return @{ @"__type" : @"Pointer",
                   @"objectId" : object.objectId,

@@ -17,6 +17,9 @@
 #import "PFCommandURLRequestConstructor.h"
 #import "PFRESTCommand.h"
 #import "PFTestCase.h"
+#import "PFObject.h"
+#import "PFObjectPrivate.h"
+#import "PFFieldOperation.h"
 #import "PFURLSession.h"
 #import "PFURLSessionCommandRunner_Private.h"
 
@@ -64,7 +67,7 @@
 
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo.bar"]];
 
-    OCMStub([mockedCommand resolveLocalIds]);
+    OCMStub([mockedCommand resolveLocalIds:(NSError * __autoreleasing *)[OCMArg anyPointer]]).andReturn(YES);
 
     OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
     [OCMExpect([mockedSession performDataURLRequestAsync:urlRequest
@@ -135,7 +138,7 @@
 
     __block int performDataURLRequestCount = 0;
 
-    OCMStub([mockedCommand resolveLocalIds]);
+    OCMStub([mockedCommand resolveLocalIds:(NSError * __autoreleasing *)[OCMArg anyPointer]]).andReturn(YES);
     OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
 
     [OCMStub([mockedSession performDataURLRequestAsync:urlRequest
@@ -180,7 +183,7 @@
                                                  code:kPFErrorInvalidSessionToken
                                              userInfo:nil];
 
-    OCMStub([mockedCommand resolveLocalIds]);
+    OCMStub([mockedCommand resolveLocalIds:(NSError * __autoreleasing *)[OCMArg anyPointer]]);
     OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
 
     [OCMStub([mockedSession performDataURLRequestAsync:urlRequest
@@ -228,7 +231,7 @@
         lastProgress = progress;
     } copy];
 
-    OCMStub([mockedCommand resolveLocalIds]);
+    OCMStub([mockedCommand resolveLocalIds:(NSError * __autoreleasing *)[OCMArg anyPointer]]).andReturn(YES);
 
     OCMExpect([mockedRequestConstructor getFileUploadURLRequestAsyncForCommand:mockedCommand
                                                                withContentType:@"content-type"
@@ -275,7 +278,7 @@
 
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo.bar"]];
 
-    OCMExpect([mockedCommand resolveLocalIds]);
+    OCMExpect([mockedCommand resolveLocalIds:(NSError * __autoreleasing *)[OCMArg anyPointer]]).andReturn(YES);
 
     OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
     [OCMStub([mockedSession performDataURLRequestAsync:urlRequest
@@ -299,6 +302,79 @@
     [self waitForTestExpectations];
 
     OCMVerifyAll(mockedCommand);
+}
+
+- (void)testLocalIdResolutionFailure {
+    PFObject *object = [PFObject objectWithoutDataWithClassName:@"Yolo" localId:@"localId"];
+    id command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"object": object} sessionToken:nil error:nil];
+    NSError *error;
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a pointer to a new, unsaved object. (Yolo)");
+}
+
+- (void)testLocalIdResolutionFailureWithNoLocalId {
+    PFObject *object = [PFObject objectWithClassName:@"Yolo"];
+    id command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"object": object} sessionToken:nil error:nil];
+    NSError *error;
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to resolve a localId for an object with no localId. (Yolo)");
+}
+
+- (void)testLocalIdResolutionWithArray {
+    PFObject *object = [PFObject objectWithClassName:@"Yolo"];
+    id command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"values":@[@(1), object]} sessionToken:nil error:nil];
+    NSError *error;
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to resolve a localId for an object with no localId. (Yolo)");
+}
+
+- (void)testLocalIdResolutionWithArrayAndMutlipleErrors {
+    PFObject *objectWithLocalId = [PFObject objectWithoutDataWithClassName:@"Yolo" localId:@"localId"];
+    PFObject *object = [PFObject objectWithClassName:@"Yolo"];
+    id command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"values":@[objectWithLocalId, object]} sessionToken:nil error:nil];
+    NSError *error;
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a pointer to a new, unsaved object. (Yolo)");
+}
+
+- (void)testLocalIdResolutionWithOperations {
+    NSArray *possibleErrors = @[@"Tried to save an object with a pointer to a new, unsaved object. (Yolo)",
+                                @"Tried to resolve a localId for an object with no localId. (Yolo)"];
+    NSError *error;
+    PFObject *objectWithLocalId = [PFObject objectWithoutDataWithClassName:@"Yolo" localId:@"localId"];
+    PFObject *object = [PFObject objectWithClassName:@"Yolo"];
+    PFAddOperation *addOperation = [PFAddOperation addWithObjects:@[objectWithLocalId, object]];
+    id command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"values":addOperation} sessionToken:nil error:nil];
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertTrue([possibleErrors indexOfObject:error.localizedDescription] != NSNotFound);
+
+    error = nil;
+
+    PFAddUniqueOperation *addUniqueOperation = [PFAddUniqueOperation addUniqueWithObjects:@[objectWithLocalId, object]];
+    command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"values":addUniqueOperation} sessionToken:nil error:nil];
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertTrue([possibleErrors indexOfObject:error.localizedDescription] != NSNotFound);
+
+    error = nil;
+
+    PFRemoveOperation *removeOperation = [PFRemoveOperation removeWithObjects:@[objectWithLocalId, object]];
+    command = [PFRESTCommand commandWithHTTPPath:@"" httpMethod:@"" parameters:@{@"values":removeOperation} sessionToken:nil error:nil];
+    [command resolveLocalIds:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertTrue([possibleErrors indexOfObject:error.localizedDescription] != NSNotFound);
 }
 
 @end

@@ -29,4 +29,12 @@ public class SwiftSubclass: PFObject, PFSubclassing {
     func test_validateSwiftImport() {
         let _ = SwiftSubclass(withoutDataWithObjectId: "")
     }
+
+    func test_properACLSetters() {
+        let acl = PFACL()
+        acl.hasPublicReadAccess = true
+        acl.hasPublicWriteAccess = true
+        _ = acl.hasPublicWriteAccess
+        _ = acl.hasPublicReadAccess
+    }
 }
