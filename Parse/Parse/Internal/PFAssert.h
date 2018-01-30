@@ -85,7 +85,7 @@ if (!(condition) && error && *error == nil) { \
  Returns the passed value if the condition isn't met and the *error is set
  */
 #define PFPreconditionBailOnError(condition, error, rval) \
-if (!(condition) && *error) { \
+if (!(condition) && error && *error) { \
     return rval;\
 }
 

@@ -183,7 +183,7 @@
                                                  code:kPFErrorInvalidSessionToken
                                              userInfo:nil];
 
-    OCMStub([mockedCommand resolveLocalIds]);
+    OCMStub([mockedCommand resolveLocalIds:(NSError * __autoreleasing *)[OCMArg anyPointer]]);
     OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
 
     [OCMStub([mockedSession performDataURLRequestAsync:urlRequest
@@ -311,7 +311,7 @@
     [command resolveLocalIds:&error];
     XCTAssertNotNil(error);
     XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
-    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a pointer to a new, unsaved object.");
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a pointer to a new, unsaved object. (Yolo)");
 }
 
 - (void)testLocalIdResolutionFailureWithNoLocalId {
@@ -321,7 +321,7 @@
     [command resolveLocalIds:&error];
     XCTAssertNotNil(error);
     XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
-    XCTAssertEqualObjects(error.localizedDescription, @"Tried to resolve a localId for an object with no localId.");
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to resolve a localId for an object with no localId. (Yolo)");
 }
 
 - (void)testLocalIdResolutionWithArray {
@@ -331,7 +331,7 @@
     [command resolveLocalIds:&error];
     XCTAssertNotNil(error);
     XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
-    XCTAssertEqualObjects(error.localizedDescription, @"Tried to resolve a localId for an object with no localId.");
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to resolve a localId for an object with no localId. (Yolo)");
 }
 
 - (void)testLocalIdResolutionWithArrayAndMutlipleErrors {
@@ -342,12 +342,12 @@
     [command resolveLocalIds:&error];
     XCTAssertNotNil(error);
     XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
-    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a pointer to a new, unsaved object.");
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a pointer to a new, unsaved object. (Yolo)");
 }
 
 - (void)testLocalIdResolutionWithOperations {
-    NSArray *possibleErrors = @[@"Tried to save an object with a pointer to a new, unsaved object.",
-                                @"Tried to resolve a localId for an object with no localId."];
+    NSArray *possibleErrors = @[@"Tried to save an object with a pointer to a new, unsaved object. (Yolo)",
+                                @"Tried to resolve a localId for an object with no localId. (Yolo)"];
     NSError *error;
     PFObject *objectWithLocalId = [PFObject objectWithoutDataWithClassName:@"Yolo" localId:@"localId"];
     PFObject *object = [PFObject objectWithClassName:@"Yolo"];
