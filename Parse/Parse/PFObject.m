@@ -730,7 +730,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     @synchronized(lock) {
         if (!self.localId) {
             PFConsistencyAssert(!self._state.objectId,
-                                @"A localId should not be created for an object with an objectId.");
+                                @"A localId should not be created for an object with an objectId. (%@)", self.parseClassName);
             self.localId = [[Parse _currentManager].coreManager.objectLocalIdStore createLocalId];
         }
     }
@@ -739,14 +739,14 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (void)resolveLocalId {
     @synchronized (lock) {
-        PFConsistencyAssert(self.localId, @"Tried to resolve a localId for an object with no localId.");
+        PFConsistencyAssert(self.localId, @"Tried to resolve a localId for an object with no localId. (%@)", self.parseClassName);
         NSString *newObjectId = [[Parse _currentManager].coreManager.objectLocalIdStore objectIdForLocalId:self.localId];
 
         // If we are resolving local ids, then this object is about to go over the network.
         // But if it has local ids that haven't been resolved yet, then that's not going to
         // be possible.
         if (!newObjectId) {
-            PFConsistencyAssertionFailure(@"Tried to save an object with a pointer to a new, unsaved object.");
+            PFConsistencyAssertionFailure(@"Tried to save an object with a pointer to a new, unsaved object. (%@)", self.parseClassName);
         }
 
         // Nil out the localId so that the new objectId won't be saved back to the PFObjectLocalIdStore.

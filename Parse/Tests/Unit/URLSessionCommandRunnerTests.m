@@ -167,6 +167,50 @@
     OCMVerifyAll(mockedSession);
 }
 
+- (void)testRunCommandInvalidSession {
+    id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
+    id mockedSession = PFStrictClassMock([PFURLSession class]);
+    id mockedRequestConstructor = PFStrictClassMock([PFCommandURLRequestConstructor class]);
+    id mockedNotificationCenter = PFStrictClassMock([NSNotificationCenter class]);
+
+    id mockedCommand = PFStrictClassMock([PFRESTCommand class]);
+
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo.bar"]];
+    NSError *expectedError = [NSError errorWithDomain:PFParseErrorDomain
+                                                 code:kPFErrorInvalidSessionToken
+                                             userInfo:nil];
+
+    OCMStub([mockedCommand resolveLocalIds]);
+    OCMStub([mockedRequestConstructor getDataURLRequestAsyncForCommand:mockedCommand]).andReturn([BFTask taskWithResult:urlRequest]);
+
+    [OCMStub([mockedSession performDataURLRequestAsync:urlRequest
+                                            forCommand:mockedCommand
+                                     cancellationToken:nil]).andDo(^(NSInvocation *_) {
+    }) andReturn:[BFTask taskWithError:expectedError]];
+
+    OCMExpect([mockedNotificationCenter postNotificationName:PFInvalidSessionTokenNotification object:[OCMArg any] userInfo:nil]);
+
+    OCMStub([mockedSession invalidateAndCancel]);
+
+    PFURLSessionCommandRunner *commandRunner = [[PFURLSessionCommandRunner alloc] initWithDataSource:mockedDataSource
+                                                                                             session:mockedSession
+                                                                                  requestConstructor:mockedRequestConstructor
+                                                                                  notificationCenter:mockedNotificationCenter];
+    commandRunner.initialRetryDelay = DBL_MIN; // Lets not needlessly sleep here.
+
+    XCTestExpectation *expecatation = [self currentSelectorTestExpectation];
+    [[commandRunner runCommandAsync:mockedCommand
+                        withOptions:PFCommandRunningOptionRetryIfFailed] continueWithBlock:^id(BFTask *task) {
+        XCTAssertEqualObjects(task.error, expectedError);
+        OCMVerifyAll(mockedNotificationCenter);
+        [expecatation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
+
+    OCMVerifyAll(mockedSession);
+}
+
 - (void)testRunFileUpload {
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFInstallationIdentifierStoreProvider));
     id mockedSession = PFStrictClassMock([PFURLSession class]);

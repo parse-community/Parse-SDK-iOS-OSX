@@ -385,6 +385,11 @@ extern NSString *const _Nonnull PFNetworkWillSendURLRequestNotification;
 extern NSString *const _Nonnull PFNetworkDidReceiveURLResponseNotification;
 
 /**
+ The name of the notification that is going to be sent when any request is failing with an invalid session token.
+ */
+extern NSString *const _Nonnull PFInvalidSessionTokenNotification;
+
+/**
  The key of request(NSURLRequest) in the userInfo dictionary of a notification.
  @note This key is populated in userInfo, only if `PFLogLevel` on `Parse` is set to `PFLogLevelDebug`.
  */
