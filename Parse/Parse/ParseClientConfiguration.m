@@ -116,6 +116,7 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
             self.localDatastoreEnabled == other.localDatastoreEnabled &&
             [PFObjectUtilities isObject:self.applicationGroupIdentifier equalToObject:other.applicationGroupIdentifier] &&
             [PFObjectUtilities isObject:self.containingApplicationBundleIdentifier equalToObject:other.containingApplicationBundleIdentifier] &&
+            [PFObjectUtilities isObject:self.URLSessionConfiguration equalToObject:other.URLSessionConfiguration] &&
             self.networkRetryAttempts == other.networkRetryAttempts);
 }
 
@@ -134,6 +135,7 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
         configuration->_applicationGroupIdentifier = [self->_applicationGroupIdentifier copy];
         configuration->_containingApplicationBundleIdentifier = [self->_containingApplicationBundleIdentifier copy];
         configuration->_networkRetryAttempts = self->_networkRetryAttempts;
+        configuration->_URLSessionConfiguration = [self->_URLSessionConfiguration copy];
     }];
 }
 

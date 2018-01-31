@@ -51,6 +51,12 @@
                                                         path:command.httpPath
                                                        query:nil];
         NSDictionary *headers = task.result;
+        NSURLSessionConfiguration *customSessionConfiguration = Parse._currentManager.configuration.URLSessionConfiguration;
+        if (customSessionConfiguration && [customSessionConfiguration.HTTPAdditionalHeaders count]) {
+            NSMutableDictionary *counpoundHeaders = [customSessionConfiguration.HTTPAdditionalHeaders mutableCopy];
+            [counpoundHeaders addEntriesFromDictionary:headers];
+            headers = counpoundHeaders;
+        }
 
         NSString *requestMethod = command.httpMethod;
         NSDictionary *requestParameters = nil;
