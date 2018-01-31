@@ -34,6 +34,7 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
     if (!self) return nil;
 
     _networkRetryAttempts = PFCommandRunningDefaultMaxAttemptsCount;
+    _URLSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     _server = [_ParseDefaultServerURLString copy];
 
     return self;
@@ -135,7 +136,7 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
         configuration->_applicationGroupIdentifier = [self->_applicationGroupIdentifier copy];
         configuration->_containingApplicationBundleIdentifier = [self->_containingApplicationBundleIdentifier copy];
         configuration->_networkRetryAttempts = self->_networkRetryAttempts;
-        configuration->_URLSessionConfiguration = [self->_URLSessionConfiguration copy];
+        configuration->_URLSessionConfiguration = self->_URLSessionConfiguration;
     }];
 }
 

@@ -262,8 +262,7 @@
 
 + (NSURLSessionConfiguration *)_urlSessionConfigurationForApplicationId:(NSString *)applicationId
                                                               clientKey:(nullable NSString *)clientKey {
-    NSURLSessionConfiguration *customConfiguration = Parse._currentManager.configuration.URLSessionConfiguration;
-    NSURLSessionConfiguration *configuration = customConfiguration ?: [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSessionConfiguration *configuration = Parse._currentManager.configuration.URLSessionConfiguration;
 
     // No cookies, they are bad for you.
     configuration.HTTPCookieAcceptPolicy = NSHTTPCookieAcceptPolicyNever;
@@ -279,9 +278,9 @@
                                                                                            clientKey:clientKey
                                                                                               bundle:bundle];
     if (configuration && [configuration.HTTPAdditionalHeaders count]) {
-        NSMutableDictionary *counpoundHeaders = [configuration.HTTPAdditionalHeaders mutableCopy];
-        [counpoundHeaders addEntriesFromDictionary:headers];
-        headers = counpoundHeaders;
+        NSMutableDictionary *sessionConfigurationHeaders = [configuration.HTTPAdditionalHeaders mutableCopy];
+        [sessionConfigurationHeaders addEntriesFromDictionary:headers];
+        headers = sessionConfigurationHeaders;
     }
 
     configuration.HTTPAdditionalHeaders = headers;

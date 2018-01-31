@@ -91,9 +91,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- A custom NSURLSessionConfiguration configuration
+ A custom NSURLSessionConfiguration configuration that will be used from the SDK.
  */
-@property (nullable, nonatomic, copy) NSURLSessionConfiguration *URLSessionConfiguration;
+@property (nonatomic, strong) NSURLSessionConfiguration *URLSessionConfiguration;
 
 /**
  The maximum number of retry attempts to make upon a failed network request.
@@ -172,9 +172,11 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- A custom NSURLSessionConfiguration configuration
+ The NSURLSessionConfiguration configuration used by the SDK.
+
+ The default value is NSURLSessionConfiguration.defaultSessionConfiguration
  */
-@property (nullable, nonatomic, copy, readonly) NSURLSessionConfiguration *URLSessionConfiguration;
+@property (nonatomic, strong, readonly) NSURLSessionConfiguration *URLSessionConfiguration;
 
 /**
  The maximum number of retry attempts to make upon a failed network request.
