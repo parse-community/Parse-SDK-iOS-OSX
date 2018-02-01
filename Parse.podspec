@@ -89,7 +89,7 @@ Pod::Spec.new do |s|
   
     s.libraries        = 'z', 'sqlite3'
   
-    s.dependency 'Bolts/Tasks', '~> 1.9'
+    s.dependency 'Bolts/Tasks', '~> 1.8.4'
   end
 
   s.subspec 'FacebookUtils' do |s|
