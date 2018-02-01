@@ -25,6 +25,7 @@ extern NSString *const _ParseDefaultServerURLString;
 
 @property (nullable, nonatomic, copy, readwrite) NSString *applicationGroupIdentifier;
 @property (nullable, nonatomic, copy, readwrite) NSString *containingApplicationBundleIdentifier;
+@property (nonatomic, strong, readwrite) NSURLSessionConfiguration *URLSessionConfiguration;
 
 @property (nonatomic, assign, readwrite) NSUInteger networkRetryAttempts;
 

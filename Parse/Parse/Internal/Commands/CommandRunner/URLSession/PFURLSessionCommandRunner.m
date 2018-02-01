@@ -29,6 +29,7 @@
 #import "PFRESTCommand.h"
 #import "PFURLConstructor.h"
 #import "PFURLSession.h"
+#import "Parse_Private.h"
 
 @interface PFURLSessionCommandRunner () <PFURLSessionDelegate>
 
@@ -261,7 +262,7 @@
 
 + (NSURLSessionConfiguration *)_urlSessionConfigurationForApplicationId:(NSString *)applicationId
                                                               clientKey:(nullable NSString *)clientKey {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSessionConfiguration *configuration = Parse._currentManager.configuration.URLSessionConfiguration;
 
     // No cookies, they are bad for you.
     configuration.HTTPCookieAcceptPolicy = NSHTTPCookieAcceptPolicyNever;
@@ -276,6 +277,12 @@
     NSDictionary *headers = [PFCommandURLRequestConstructor defaultURLRequestHeadersForApplicationId:applicationId
                                                                                            clientKey:clientKey
                                                                                               bundle:bundle];
+    if (configuration && [configuration.HTTPAdditionalHeaders count]) {
+        NSMutableDictionary *sessionConfigurationHeaders = [configuration.HTTPAdditionalHeaders mutableCopy];
+        [sessionConfigurationHeaders addEntriesFromDictionary:headers];
+        headers = sessionConfigurationHeaders;
+    }
+
     configuration.HTTPAdditionalHeaders = headers;
 
     return configuration;

@@ -87,8 +87,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *containingApplicationBundleIdentifier PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE;
 
 ///--------------------------------------
-#pragma mark - Other Properties
+#pragma mark - Network Properties
 ///--------------------------------------
+
+/**
+ A custom NSURLSessionConfiguration configuration that will be used from the SDK.
+ */
+@property (nonatomic, strong) NSURLSessionConfiguration *URLSessionConfiguration;
 
 /**
  The maximum number of retry attempts to make upon a failed network request.
@@ -163,8 +168,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy, readonly) NSString *containingApplicationBundleIdentifier;
 
 ///--------------------------------------
-#pragma mark - Other Properties
+#pragma mark - Network Properties
 ///--------------------------------------
+
+/**
+ The NSURLSessionConfiguration configuration used by the SDK.
+
+ The default value is NSURLSessionConfiguration.defaultSessionConfiguration
+ */
+@property (nonatomic, strong, readonly) NSURLSessionConfiguration *URLSessionConfiguration;
 
 /**
  The maximum number of retry attempts to make upon a failed network request.
