@@ -9,13 +9,9 @@
 /* Begin PBXBuildFile section */
 		4A0ECC80200D99FF00BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA45200BE26C00AA7479 /* Bolts.framework */; };
 		4A0ECC81200D9A0B00BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA45200BE26C00AA7479 /* Bolts.framework */; };
-		4A0ECC82200D9A0C00BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA45200BE26C00AA7479 /* Bolts.framework */; };
-		4A0ECC83200D9A0C00BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA45200BE26C00AA7479 /* Bolts.framework */; };
 		4A0ECC84200D9A0D00BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA45200BE26C00AA7479 /* Bolts.framework */; };
 		4A0ECC85200D9A1A00BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9503200D1462005D8F4B /* Parse.framework */; };
-		4A0ECC86200D9A1B00BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9503200D1462005D8F4B /* Parse.framework */; };
 		4A0ECC88200D9A1D00BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9503200D1462005D8F4B /* Parse.framework */; };
-		4A0ECC89200D9A1D00BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9503200D1462005D8F4B /* Parse.framework */; };
 		4A0ECC8A200D9A1E00BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9503200D1462005D8F4B /* Parse.framework */; };
 		4A0ECC8B200D9A7300BA84A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAA0200C0FC500AA7479 /* SystemConfiguration.framework */; };
 		4A0ECC8C200D9A7F00BA84A3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAA2200C0FCC00AA7479 /* libsqlite3.tbd */; };
@@ -34,8 +30,6 @@
 		4AAEAA68200C020E00AA7479 /* PFFacebookUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 813DFC851AB2510300F25A08 /* PFFacebookUtils.m */; };
 		4AAEAA69200C020E00AA7479 /* PFFacebookMobileAuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EA09C71C178DED00B0F875 /* PFFacebookMobileAuthenticationProvider.m */; };
 		4AAEAA6A200C020E00AA7479 /* PFFacebookPrivateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E35FD31BAA6F8400348526 /* PFFacebookPrivateUtilities.m */; };
-		4AAEAA6E200C020E00AA7479 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DA692F1AB25A36008C3B7F /* FBSDKCoreKit.framework */; };
-		4AAEAA6F200C020E00AA7479 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DA69301AB25A36008C3B7F /* FBSDKLoginKit.framework */; };
 		4AAEAA71200C020E00AA7479 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81B3F22A1AC9CA5300A92677 /* Localizable.strings */; };
 		4AAEAA7B200C022300AA7479 /* PFFacebookUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 813DFC841AB2510300F25A08 /* PFFacebookUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AAEAA7C200C022300AA7479 /* PFFacebookDeviceAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA09CC1C178DED00B0F875 /* PFFacebookDeviceAuthenticationProvider.h */; };
@@ -47,8 +41,6 @@
 		4AAEAA83200C022300AA7479 /* PFFacebookAuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EA09CA1C178DED00B0F875 /* PFFacebookAuthenticationProvider.m */; };
 		4AAEAA84200C022300AA7479 /* PFFacebookUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 813DFC851AB2510300F25A08 /* PFFacebookUtils.m */; };
 		4AAEAA85200C022300AA7479 /* PFFacebookPrivateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E35FD31BAA6F8400348526 /* PFFacebookPrivateUtilities.m */; };
-		4AAEAA89200C022300AA7479 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA09BD1C178D0600B0F875 /* FBSDKCoreKit.framework */; };
-		4AAEAA8A200C022300AA7479 /* FBSDKTVOSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA09BE1C178D0600B0F875 /* FBSDKTVOSKit.framework */; };
 		4AAEAA8C200C022300AA7479 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81B3F22A1AC9CA5300A92677 /* Localizable.strings */; };
 		4AAEAAA1200C0FC500AA7479 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAA0200C0FC500AA7479 /* SystemConfiguration.framework */; };
 		4AAEAAA3200C0FCC00AA7479 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAA2200C0FCC00AA7479 /* libsqlite3.tbd */; };
@@ -200,11 +192,7 @@
 				4AAEAAA7200C0FDC00AA7479 /* Security.framework in Frameworks */,
 				4AAEAAA5200C0FD200AA7479 /* StoreKit.framework in Frameworks */,
 				4AAEAAA3200C0FCC00AA7479 /* libsqlite3.tbd in Frameworks */,
-				4A0ECC86200D9A1B00BA84A3 /* Parse.framework in Frameworks */,
 				4AAEAAA1200C0FC500AA7479 /* SystemConfiguration.framework in Frameworks */,
-				4A0ECC82200D9A0C00BA84A3 /* Bolts.framework in Frameworks */,
-				4AAEAA6E200C020E00AA7479 /* FBSDKCoreKit.framework in Frameworks */,
-				4AAEAA6F200C020E00AA7479 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,11 +206,7 @@
 				4AAEAAB5200C102600AA7479 /* StoreKit.framework in Frameworks */,
 				4AAEAAB3200C102100AA7479 /* UIKit.framework in Frameworks */,
 				4AAEAAB1200C101700AA7479 /* libsqlite3.tbd in Frameworks */,
-				4A0ECC89200D9A1D00BA84A3 /* Parse.framework in Frameworks */,
 				4AAEAAAF200C101100AA7479 /* AudioToolbox.framework in Frameworks */,
-				4A0ECC83200D9A0C00BA84A3 /* Bolts.framework in Frameworks */,
-				4AAEAA89200C022300AA7479 /* FBSDKCoreKit.framework in Frameworks */,
-				4AAEAA8A200C022300AA7479 /* FBSDKTVOSKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1077,6 +1061,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4AAEAA92200C025100AA7479 /* ParseFacebookUtilsV4-iOS-Dynamic.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
@@ -1085,6 +1073,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4AAEAA92200C025100AA7479 /* ParseFacebookUtilsV4-iOS-Dynamic.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;

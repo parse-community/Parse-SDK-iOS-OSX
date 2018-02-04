@@ -10,10 +10,8 @@
 		06D00BAB1BC78F23005BAA6F /* ParseTwitterUtils.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06D00BAD1BC78F23005BAA6F /* ParseTwitterUtils.strings */; };
 		06D00BB51BC790F3005BAA6F /* PFTwitterLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D00BB41BC790F3005BAA6F /* PFTwitterLocalization.h */; };
 		4A0ECBDC200D41B600BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECBDD200D41B600BA84A3 /* Parse.framework */; };
-		4A0ECBDE200D41C400BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECBDF200D41C400BA84A3 /* Parse.framework */; };
 		4A0ECBE0200D435300BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECBDD200D41B600BA84A3 /* Parse.framework */; };
 		4A0ECBE1200D437800BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94FE200D12C9005D8F4B /* Bolts.framework */; };
-		4A9A94F8200D12A2005D8F4B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94FA200D12A2005D8F4B /* Bolts.framework */; };
 		4A9A94FC200D12C9005D8F4B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94FE200D12C9005D8F4B /* Bolts.framework */; };
 		4AAEAACA200C2BBB00AA7479 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAACB200C2BBB00AA7479 /* OCMock.framework */; };
 		8135E4951B4B6A0E0092F452 /* PF_Twitter_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 8135E48E1B4B6A0E0092F452 /* PF_Twitter_Private.h */; };
@@ -191,8 +189,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A0ECBDE200D41C400BA84A3 /* Parse.framework in Frameworks */,
-				4A9A94F8200D12A2005D8F4B /* Bolts.framework in Frameworks */,
 				816831331D1E16FE00315E21 /* Social.framework in Frameworks */,
 				8168312F1D1E16F700315E21 /* AudioToolbox.framework in Frameworks */,
 				8168312B1D1E16F000315E21 /* SystemConfiguration.framework in Frameworks */,
