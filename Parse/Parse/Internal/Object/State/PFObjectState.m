@@ -7,6 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import "PFAssert.h"
 #import "PFObjectState.h"
 #import "PFObjectState_Private.h"
 
@@ -129,7 +130,7 @@
         result[key] = encoded;
     }];
     if (failed && encodingError) {
-        *error = encodingError;
+        PFSetError(error, encodingError);
         return nil;
     }
     return [result copy];

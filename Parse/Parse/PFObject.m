@@ -245,7 +245,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             }
         }];
         if (wasStopped) {
-            *error = localError;
+            PFSetError(error, localError);
             return NO;
         }
     } else if ([node isKindOfClass:[PFACL class]]) {
