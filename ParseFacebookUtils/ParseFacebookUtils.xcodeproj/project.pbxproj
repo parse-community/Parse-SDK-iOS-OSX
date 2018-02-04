@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A0ECC80200D99FF00BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA45200BE26C00AA7479 /* Bolts.framework */; };
 		4A0ECC84200D9A0D00BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA45200BE26C00AA7479 /* Bolts.framework */; };
-		4A0ECC88200D9A1D00BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9503200D1462005D8F4B /* Parse.framework */; };
 		4A0ECC8A200D9A1E00BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9503200D1462005D8F4B /* Parse.framework */; };
 		4A0ECC8B200D9A7300BA84A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAA0200C0FC500AA7479 /* SystemConfiguration.framework */; };
 		4A0ECC8C200D9A7F00BA84A3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAA2200C0FCC00AA7479 /* libsqlite3.tbd */; };
@@ -52,6 +50,8 @@
 		4AAEAAB7200C103000AA7479 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAB6200C103000AA7479 /* CoreLocation.framework */; };
 		4AAEAAB9200C103500AA7479 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAB8200C103500AA7479 /* Security.framework */; };
 		4AAEAABB200C103B00AA7479 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAABA200C103B00AA7479 /* SystemConfiguration.framework */; };
+		4AD7A6D02026BE460030CACF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD7A6422026ABFA0030CACF /* Parse.framework */; };
+		4AD7A6D12026BE520030CACF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD7A6602026AC040030CACF /* Bolts.framework */; };
 		813DFC8A1AB2510300F25A08 /* PFFacebookUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 813DFC841AB2510300F25A08 /* PFFacebookUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		813DFC8B1AB2510300F25A08 /* PFFacebookUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 813DFC851AB2510300F25A08 /* PFFacebookUtils.m */; };
 		815FC59A1BBF74890006AF6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 815FC5971BBF74890006AF6E /* main.m */; };
@@ -490,14 +490,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AD7A6D02026BE460030CACF /* Parse.framework in Frameworks */,
 				4A0ECC8C200D9A7F00BA84A3 /* libsqlite3.tbd in Frameworks */,
 				4AAEAA41200BE19A00AA7479 /* OCMock.framework in Frameworks */,
-				4A0ECC88200D9A1D00BA84A3 /* Parse.framework in Frameworks */,
 				81CB98CC1AB7905D00136FA5 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				4A0ECC8B200D9A7300BA84A3 /* SystemConfiguration.framework in Frameworks */,
 				4A0ECC8D200D9A8900BA84A3 /* AudioToolbox.framework in Frameworks */,
-				4A0ECC80200D99FF00BA84A3 /* Bolts.framework in Frameworks */,
 				81CB98D91AB7920700136FA5 /* FBSDKCoreKit.framework in Frameworks */,
+				4AD7A6D12026BE520030CACF /* Bolts.framework in Frameworks */,
 				81CB98DA1AB7920700136FA5 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
