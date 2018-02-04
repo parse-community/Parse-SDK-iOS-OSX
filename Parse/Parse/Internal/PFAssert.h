@@ -81,6 +81,11 @@ if (!(condition) && error && *error == nil) { \
     return rval;\
 }
 
+#define PFSetError(errorPointer, error) \
+if (errorPointer) {\
+*errorPointer = error;\
+}
+
 /*
  Returns the passed value if the condition isn't met and the *error is set
  */

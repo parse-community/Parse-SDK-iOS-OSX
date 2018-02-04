@@ -15,4 +15,6 @@ PRODUCT_BUNDLE_IDENTIFIER = com.parse.facebookutils-tvos
 
 INFOPLIST_FILE = $(SRCROOT)/Resources/Info-tvOS.plist
 
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(SRCROOT)/Vendor/tvOS
+FRAMEWORK_SEARCH_PATHS = $(inherited) $(SRCROOT)/../Carthage/Build/tvOS
+
+OTHER_LDFLAGS = $(value) -framework Bolts -framework Parse -framework FBSDKCoreKit -framework FBSDKTVOSKit

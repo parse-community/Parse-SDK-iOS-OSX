@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Getting
 ///--------------------------------------
 
-- (NSString *)objectForKey:(NSString *)key maxAge:(NSTimeInterval)age;
+- (nullable NSString *)objectForKey:(NSString *)key maxAge:(NSTimeInterval)age;
 
 ///--------------------------------------
 #pragma mark - Removing
