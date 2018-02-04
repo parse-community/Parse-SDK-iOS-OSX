@@ -107,7 +107,7 @@
             }
         }];
         if (encodingFailed) {
-            *error = encodingError;
+            PFSetError(error, encodingError);
             return nil;
         }
         return dict;

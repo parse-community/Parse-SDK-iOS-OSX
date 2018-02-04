@@ -202,7 +202,7 @@
         parameters[@"where"] = whereData;
     }
     if (encodingFailed && encodingError) {
-        *error = encodingError;
+        PFSetError(error, encodingError);
         return nil;
     }
 
