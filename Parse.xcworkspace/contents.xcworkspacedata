@@ -17,9 +17,6 @@
       location = "container:"
       name = "Vendor">
       <FileRef
-         location = "group:Carthage/Checkouts/Bolts-ObjC/Bolts.xcodeproj">
-      </FileRef>
-      <FileRef
          location = "group:Carthage/Checkouts/OCMock/Source/OCMock.xcodeproj">
       </FileRef>
    </Group>

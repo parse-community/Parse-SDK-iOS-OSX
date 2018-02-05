@@ -313,6 +313,14 @@ namespace :package do
     version = args[:version] || Constants.current_version
     Constants.update_version(version)
 
+    ## Build macOS Framework
+    Rake::Task['build:macos'].invoke
+    bolts_path = File.join(bolts_build_folder, 'osx', 'Bolts.framework')
+    osx_framework_path = File.join(build_folder, 'Parse.framework')
+    make_package(release_folder,
+                 [osx_framework_path, bolts_path],
+                 package_macos_name)
+
     ## Build iOS Framework
     Rake::Task['build:ios'].invoke
     bolts_path = File.join(bolts_build_folder, 'ios', 'Bolts.framework')
@@ -320,6 +328,22 @@ namespace :package do
     make_package(release_folder,
                  [ios_framework_path, bolts_path],
                  package_ios_name)
+    
+    ## Build tvOS Framework
+    Rake::Task['build:tvos'].invoke
+    bolts_path = File.join(bolts_build_folder, 'tvOS', 'Bolts.framework')
+    tvos_framework_path = File.join(build_folder, 'Parse.framework')
+    make_package(release_folder,
+                  [tvos_framework_path, bolts_path],
+                  package_tvos_name)
+    
+    ## Build watchOS Framework
+    Rake::Task['build:watchos'].invoke
+    bolts_path = File.join(bolts_build_folder, 'watchOS', 'Bolts.framework')
+    watchos_framework_path = File.join(build_folder, 'Parse.framework')
+    make_package(release_folder,
+                 [watchos_framework_path, bolts_path],
+                 package_watchos_name)
     
     Rake::Task['build:facebook_utils:ios'].invoke
     ios_fb_utils_framework_path = File.join(build_folder, 'iOS', 'ParseFacebookUtilsV4.framework')
@@ -329,33 +353,9 @@ namespace :package do
     ios_tw_utils_framework_path = File.join(build_folder, 'iOS', 'ParseTwitterUtils.framework')
     make_package(release_folder, [ios_tw_utils_framework_path], 'ParseTwitterUtils-iOS.zip')
 
-    ## Build macOS Framework
-    Rake::Task['build:macos'].invoke
-    bolts_path = File.join(bolts_build_folder, 'osx', 'Bolts.framework')
-    osx_framework_path = File.join(build_folder, 'Parse.framework')
-    make_package(release_folder,
-                 [osx_framework_path, bolts_path],
-                 package_macos_name)
-
-    ## Build tvOS Framework
-    Rake::Task['build:tvos'].invoke
-    bolts_path = File.join(bolts_build_folder, 'tvOS', 'Bolts.framework')
-    tvos_framework_path = File.join(build_folder, 'Parse.framework')
-    make_package(release_folder,
-                  [tvos_framework_path, bolts_path],
-                  package_tvos_name)
-    
     Rake::Task['build:facebook_utils:tvos'].invoke
     tvos_fb_utils_framework_path = File.join(build_folder, 'tvOS', 'ParseFacebookUtilsV4.framework')
     make_package(release_folder, [tvos_fb_utils_framework_path], 'ParseFacebookUtils-tvOS.zip')
-
-    ## Build watchOS Framework
-    Rake::Task['build:watchos'].invoke
-    bolts_path = File.join(bolts_build_folder, 'watchOS', 'Bolts.framework')
-    watchos_framework_path = File.join(build_folder, 'Parse.framework')
-    make_package(release_folder,
-                 [watchos_framework_path, bolts_path],
-                 package_watchos_name)
 
     Rake::Task['build:parseui:framework'].invoke
     parseui_framework_path = File.join(build_folder, 'iOS', 'ParseUI.framework')
@@ -559,7 +559,6 @@ namespace :test do
     task :all do 
       Rake::Task['test:parseui:framework'].invoke
       Rake::Task['test:parseui:demo_objc'].invoke
-      Rake::Task['test:parseui:demo_swift'].invoke
     end
     
     task :framework do
