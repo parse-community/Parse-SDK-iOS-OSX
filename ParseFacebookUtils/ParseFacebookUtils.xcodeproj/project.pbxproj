@@ -22,8 +22,8 @@
 		4A1350642027EA3B000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1350512027EA26000F5FD5 /* Parse.framework */; };
 		4A1350672027EA53000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13505B2027EA26000F5FD5 /* Parse.framework */; };
 		4A1350682027EC0A000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1350692027EC0A000F5FD5 /* Bolts.framework */; };
-		4A1350DC2027F952000F5FD5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DA692F1AB25A36008C3B7F /* FBSDKCoreKit.framework */; };
-		4A1350DD2027F952000F5FD5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DA69301AB25A36008C3B7F /* FBSDKLoginKit.framework */; };
+		4A13513A202800B1000F5FD5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A134FF02027E99C000F5FD5 /* FBSDKCoreKit.framework */; };
+		4A13513B202800B1000F5FD5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A134FD82027E995000F5FD5 /* FBSDKLoginKit.framework */; };
 		4AAEAA41200BE19A00AA7479 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA42200BE19A00AA7479 /* OCMock.framework */; };
 		4AAEAA5F200C020E00AA7479 /* PFFacebookUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 813DFC841AB2510300F25A08 /* PFFacebookUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AAEAA60200C020E00AA7479 /* PFFacebookAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA09C91C178DED00B0F875 /* PFFacebookAuthenticationProvider.h */; };
@@ -69,12 +69,8 @@
 		81930A3E1BBE1A0600A5E4BB /* PFFacebookTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 81930A3D1BBE1A0600A5E4BB /* PFFacebookTestCase.m */; };
 		81B3F22B1AC9CA5300A92677 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81B3F22A1AC9CA5300A92677 /* Localizable.strings */; };
 		81CB98CC1AB7905D00136FA5 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* ParseFacebookUtilsV4.framework */; };
-		81CB98D91AB7920700136FA5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DA692F1AB25A36008C3B7F /* FBSDKCoreKit.framework */; };
-		81CB98DA1AB7920700136FA5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DA69301AB25A36008C3B7F /* FBSDKLoginKit.framework */; };
 		81E35FD41BAA6F8400348526 /* PFFacebookPrivateUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E35FD21BAA6F8400348526 /* PFFacebookPrivateUtilities.h */; };
 		81E35FD51BAA6F8400348526 /* PFFacebookPrivateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E35FD31BAA6F8400348526 /* PFFacebookPrivateUtilities.m */; };
-		81EA09C11C178D0600B0F875 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA09BD1C178D0600B0F875 /* FBSDKCoreKit.framework */; };
-		81EA09C21C178D0600B0F875 /* FBSDKTVOSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA09BE1C178D0600B0F875 /* FBSDKTVOSKit.framework */; };
 		81EA09CE1C178DED00B0F875 /* PFFacebookMobileAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA09C61C178DED00B0F875 /* PFFacebookMobileAuthenticationProvider.h */; };
 		81EA09D01C178DED00B0F875 /* PFFacebookMobileAuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EA09C71C178DED00B0F875 /* PFFacebookMobileAuthenticationProvider.m */; };
 		81EA09D21C178DED00B0F875 /* PFFacebookMobileAuthenticationProvider_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA09C81C178DED00B0F875 /* PFFacebookMobileAuthenticationProvider_Private.h */; };
@@ -364,16 +360,10 @@
 		81930A3D1BBE1A0600A5E4BB /* PFFacebookTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFacebookTestCase.m; sourceTree = "<group>"; };
 		81B3F22A1AC9CA5300A92677 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Resources/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		81CB98C61AB7905D00136FA5 /* ParseFacebookUtilsV4-UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ParseFacebookUtilsV4-UnitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81DA692F1AB25A36008C3B7F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Vendor/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		81DA69301AB25A36008C3B7F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Vendor/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		81E35FD21BAA6F8400348526 /* PFFacebookPrivateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFacebookPrivateUtilities.h; sourceTree = "<group>"; };
 		81E35FD31BAA6F8400348526 /* PFFacebookPrivateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFacebookPrivateUtilities.m; sourceTree = "<group>"; };
 		81E41FB51C178BA200F5BF3F /* Info-iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
 		81E41FB61C178BA200F5BF3F /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
-		81EA09BC1C178D0600B0F875 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		81EA09BD1C178D0600B0F875 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		81EA09BE1C178D0600B0F875 /* FBSDKTVOSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKTVOSKit.framework; sourceTree = "<group>"; };
-		81EA09BF1C178D0600B0F875 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		81EA09C61C178DED00B0F875 /* PFFacebookMobileAuthenticationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFacebookMobileAuthenticationProvider.h; sourceTree = "<group>"; };
 		81EA09C71C178DED00B0F875 /* PFFacebookMobileAuthenticationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFacebookMobileAuthenticationProvider.m; sourceTree = "<group>"; };
 		81EA09C81C178DED00B0F875 /* PFFacebookMobileAuthenticationProvider_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFacebookMobileAuthenticationProvider_Private.h; sourceTree = "<group>"; };
@@ -434,6 +424,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A13513A202800B1000F5FD5 /* FBSDKCoreKit.framework in Frameworks */,
+				4A13513B202800B1000F5FD5 /* FBSDKLoginKit.framework in Frameworks */,
 				4A0ECC8C200D9A7F00BA84A3 /* libsqlite3.tbd in Frameworks */,
 				4AAEAA41200BE19A00AA7479 /* OCMock.framework in Frameworks */,
 				4A0ECC88200D9A1D00BA84A3 /* Parse.framework in Frameworks */,
@@ -441,8 +433,6 @@
 				4A0ECC8B200D9A7300BA84A3 /* SystemConfiguration.framework in Frameworks */,
 				4A0ECC8D200D9A8900BA84A3 /* AudioToolbox.framework in Frameworks */,
 				4A0ECC80200D99FF00BA84A3 /* Bolts.framework in Frameworks */,
-				81CB98D91AB7920700136FA5 /* FBSDKCoreKit.framework in Frameworks */,
-				81CB98DA1AB7920700136FA5 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,8 +440,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81EA09C11C178D0600B0F875 /* FBSDKCoreKit.framework in Frameworks */,
-				81EA09C21C178D0600B0F875 /* FBSDKTVOSKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,8 +447,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A1350DD2027F952000F5FD5 /* FBSDKLoginKit.framework in Frameworks */,
-				4A1350DC2027F952000F5FD5 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,8 +645,6 @@
 		813DFC8F1AB2513D00F25A08 /* User Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				81EA09B91C178CEE00B0F875 /* iOS */,
-				81EA09BB1C178D0600B0F875 /* tvOS */,
 			);
 			name = "User Frameworks";
 			sourceTree = "<group>";
@@ -725,27 +709,6 @@
 				815FC5951BBF74890006AF6E /* TestApplication */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		81EA09B91C178CEE00B0F875 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				81DA692F1AB25A36008C3B7F /* FBSDKCoreKit.framework */,
-				81DA69301AB25A36008C3B7F /* FBSDKLoginKit.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		81EA09BB1C178D0600B0F875 /* tvOS */ = {
-			isa = PBXGroup;
-			children = (
-				81EA09BC1C178D0600B0F875 /* Bolts.framework */,
-				81EA09BF1C178D0600B0F875 /* Parse.framework */,
-				81EA09BD1C178D0600B0F875 /* FBSDKCoreKit.framework */,
-				81EA09BE1C178D0600B0F875 /* FBSDKTVOSKit.framework */,
-			);
-			name = tvOS;
-			path = Vendor/tvOS;
 			sourceTree = "<group>";
 		};
 		81EA09C41C178DED00B0F875 /* AuthenticationProvider */ = {
@@ -865,7 +828,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AAEAA72200C020E00AA7479 /* Build configuration list for PBXNativeTarget "ParseFacebookUtilsV4-iOS-Dynamic" */;
 			buildPhases = (
-				4AAEAA5C200C020E00AA7479 /* Fetch latest Dependencies */,
 				4AAEAA5D200C020E00AA7479 /* Generate Localizable Strings */,
 				4AAEAA5E200C020E00AA7479 /* Headers */,
 				4AAEAA66200C020E00AA7479 /* Sources */,
@@ -888,7 +850,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AAEAA8D200C022300AA7479 /* Build configuration list for PBXNativeTarget "ParseFacebookUtilsV4-tvOS-Dynamic" */;
 			buildPhases = (
-				4AAEAA78200C022300AA7479 /* Fetch latest Dependencies */,
 				4AAEAA79200C022300AA7479 /* Generate Localizable Strings */,
 				4AAEAA7A200C022300AA7479 /* Headers */,
 				4AAEAA81200C022300AA7479 /* Sources */,
@@ -930,7 +891,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81FE7F881C17790400E6BD34 /* Build configuration list for PBXNativeTarget "ParseFacebookUtilsV4-tvOS" */;
 			buildPhases = (
-				81FE7F741C17790400E6BD34 /* Fetch latest Dependencies */,
 				81FE7F751C17790400E6BD34 /* Generate Localizable Strings */,
 				81FE7F761C17790400E6BD34 /* Headers */,
 				81FE7F7D1C17790400E6BD34 /* Sources */,
@@ -951,7 +911,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "ParseFacebookUtilsV4-iOS" */;
 			buildPhases = (
-				81F035FB1BC332C00055BFDE /* Fetch latest Dependencies */,
 				81B3F2291AC9CA2600A92677 /* Generate Localizable Strings */,
 				D2AAC07A0554694100DB518D /* Headers */,
 				D2AAC07B0554694100DB518D /* Sources */,
@@ -1260,21 +1219,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4AAEAA5C200C020E00AA7479 /* Fetch latest Dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Fetch latest Dependencies";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ ! -d $SRCROOT/Vendor ]; then\n  mkdir $SRCROOT/Vendor\nfi\n\ncd $SRCROOT/Vendor\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKLoginKit.framework\" ]]; then\n  ARCHIVE_NAME=FBSDK.zip\n\n  ARCHIVE_URL=\"https://origincache.facebook.com/developers/resources/?id=facebook-ios-sdk-current.zip\"\n  curl $ARCHIVE_URL -o $ARCHIVE_NAME\n\n  unzip $ARCHIVE_NAME -d fbsdk\n  mv fbsdk/FBSDKCoreKit.framework .\n  mv fbsdk/FBSDKLoginKit.framework .\n\n  rm $ARCHIVE_NAME\n  rm -r fbsdk\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		4AAEAA5D200C020E00AA7479 /* Generate Localizable Strings */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1288,21 +1232,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR -name '*.m' -print0 | xargs -0 genstrings -q -o $PROJECT_DIR/Resources\necho \"Finished converting images\"";
-		};
-		4AAEAA78200C022300AA7479 /* Fetch latest Dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Fetch latest Dependencies";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ ! -d $SRCROOT/Vendor/tvOS ]; then\n  mkdir $SRCROOT/Vendor/tvOS\nfi\n\ncd $SRCROOT/Vendor/tvOS\n\nif [[ ! -d \"Parse.framework\" || ! -d \"Bolts.framework\" ]]; then\n  ARCHIVE_NAME=Parse-tvOS.zip\n\n  LATEST_TAG=$(bash -l -c \"bundle exec pod spec cat Parse\" | grep version | head -n 1 | cut -d '\"' -f 4)\n  ARCHIVE_URL=\"https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/releases/download/${LATEST_TAG}/${ARCHIVE_NAME}\"\n  curl -L $ARCHIVE_URL -o $ARCHIVE_NAME\n\n  unzip $ARCHIVE_NAME\n  rm $ARCHIVE_NAME\nfi\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKTVOSKit.framework\" ]]; then\n  ARCHIVE_NAME=FBSDK.zip\n\n  ARCHIVE_URL=\"https://origincache.facebook.com/developers/resources/?id=FacebookSDKs-tvOS-current.zip\"\n  curl $ARCHIVE_URL -o $ARCHIVE_NAME\n\n  unzip $ARCHIVE_NAME -d fbsdk\n  mv fbsdk/FBSDKCoreKit.framework .\n  mv fbsdk/FBSDKTVOSKit.framework .\n\n  rm $ARCHIVE_NAME\n  rm -r fbsdk\nfi\n";
-			showEnvVarsInLog = 0;
 		};
 		4AAEAA79200C022300AA7479 /* Generate Localizable Strings */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1331,36 +1260,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR -name '*.m' -print0 | xargs -0 genstrings -q -o $PROJECT_DIR/Resources\necho \"Finished converting images\"";
-		};
-		81F035FB1BC332C00055BFDE /* Fetch latest Dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Fetch latest Dependencies";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ ! -d $SRCROOT/Vendor ]; then\n  mkdir $SRCROOT/Vendor\nfi\n\ncd $SRCROOT/Vendor\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKLoginKit.framework\" ]]; then\n  ARCHIVE_NAME=FBSDK.zip\n\n  ARCHIVE_URL=\"https://origincache.facebook.com/developers/resources/?id=facebook-ios-sdk-current.zip\"\n  curl $ARCHIVE_URL -o $ARCHIVE_NAME\n\n  unzip $ARCHIVE_NAME -d fbsdk\n  mv fbsdk/FBSDKCoreKit.framework .\n  mv fbsdk/FBSDKLoginKit.framework .\n\n  rm $ARCHIVE_NAME\n  rm -r fbsdk\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		81FE7F741C17790400E6BD34 /* Fetch latest Dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Fetch latest Dependencies";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ ! -d $SRCROOT/Vendor/tvOS ]; then\n  mkdir $SRCROOT/Vendor/tvOS\nfi\n\ncd $SRCROOT/Vendor/tvOS\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKTVOSKit.framework\" ]]; then\n  ARCHIVE_NAME=FBSDK.zip\n\n  ARCHIVE_URL=\"https://origincache.facebook.com/developers/resources/?id=FacebookSDKs-tvOS-current.zip\"\n  curl $ARCHIVE_URL -o $ARCHIVE_NAME\n\n  unzip $ARCHIVE_NAME -d fbsdk\n  mv fbsdk/FBSDKCoreKit.framework .\n  mv fbsdk/FBSDKTVOSKit.framework .\n\n  rm $ARCHIVE_NAME\n  rm -r fbsdk\nfi\n";
-			showEnvVarsInLog = 0;
 		};
 		81FE7F751C17790400E6BD34 /* Generate Localizable Strings */ = {
 			isa = PBXShellScriptBuildPhase;

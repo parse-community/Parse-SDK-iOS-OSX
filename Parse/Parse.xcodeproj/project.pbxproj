@@ -23,7 +23,8 @@
 		403093781C81F0B200CF09F8 /* PFQueryConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */; };
 		4A0ECC9A200DA25700BA84A3 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC9B200DA25700BA84A3 /* OCMock.framework */; };
 		4A0ECC9C200DA26000BA84A3 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC9D200DA26000BA84A3 /* OCMock.framework */; };
-		4A0ECC9E200DA39000BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC9F200DA39000BA84A3 /* Bolts.framework */; };
+		4A13513E20280246000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13511B2027FCFB000F5FD5 /* Bolts.framework */; };
+		4A13513F202803E7000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351172027FCFB000F5FD5 /* Bolts.framework */; };
 		4AAEAA40200BE14B00AA7479 /* third_party_licenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8139B12C1A7BF559002BEF84 /* third_party_licenses.txt */; };
 		4ABF398C1F54592100BBA75A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABF398B1F54592100BBA75A /* Main.storyboard */; };
 		4AE33A0F1F5451AD0088DCA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE33A0E1F5451AD0088DCA0 /* AppDelegate.m */; };
@@ -2845,13 +2846,6 @@
 			remoteGlobalIDString = 1D5D7DA61BE3CE8200FD67C7;
 			remoteInfo = "Bolts-iOS-Dynamic";
 		};
-		4A1351302027FD0D000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8EDDA62817E17DDC00655F8A;
-			remoteInfo = "Bolts-macOS";
-		};
 		4A1351322027FD12000F5FD5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
@@ -2879,6 +2873,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 819573D91C2B8ECB00BFCA39;
 			remoteInfo = "Bolts-watchOS-Dynamic";
+		};
+		4A13513C202800E3000F5FD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EDDA62817E17DDC00655F8A;
+			remoteInfo = "Bolts-macOS";
 		};
 		4AE33A2C1F5451B20088DCA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -3558,7 +3559,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A0ECC9E200DA39000BA84A3 /* Bolts.framework in Frameworks */,
+				4A13513F202803E7000F5FD5 /* Bolts.framework in Frameworks */,
 				4A0ECC9C200DA26000BA84A3 /* OCMock.framework in Frameworks */,
 				816F44741A8E8933009CDB32 /* Parse.framework in Frameworks */,
 				F5C42CC71B34C22100C720D8 /* AudioToolbox.framework in Frameworks */,
@@ -3629,6 +3630,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A13513E20280246000F5FD5 /* Bolts.framework in Frameworks */,
 				81B3F2021AC5DAA400A92677 /* Cocoa.framework in Frameworks */,
 				81B3F2011AC5DA7600A92677 /* libsqlite3.dylib in Frameworks */,
 				97DE045C163214C0007154E8 /* SystemConfiguration.framework in Frameworks */,
@@ -6925,7 +6927,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4A1351312027FD0D000F5FD5 /* PBXTargetDependency */,
+				4A13513D202800E3000F5FD5 /* PBXTargetDependency */,
 			);
 			name = "Parse-macOS";
 			productName = ParseMac;
@@ -8594,11 +8596,6 @@
 			name = "Bolts-iOS-Dynamic";
 			targetProxy = 4A13512E2027FD07000F5FD5 /* PBXContainerItemProxy */;
 		};
-		4A1351312027FD0D000F5FD5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bolts-macOS";
-			targetProxy = 4A1351302027FD0D000F5FD5 /* PBXContainerItemProxy */;
-		};
 		4A1351332027FD12000F5FD5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bolts-tvOS";
@@ -8618,6 +8615,11 @@
 			isa = PBXTargetDependency;
 			name = "Bolts-watchOS-Dynamic";
 			targetProxy = 4A1351382027FD27000F5FD5 /* PBXContainerItemProxy */;
+		};
+		4A13513D202800E3000F5FD5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bolts-macOS";
+			targetProxy = 4A13513C202800E3000F5FD5 /* PBXContainerItemProxy */;
 		};
 		4AE33A2D1F5451B20088DCA0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
