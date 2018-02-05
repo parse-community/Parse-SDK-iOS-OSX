@@ -296,6 +296,34 @@
 			remoteGlobalIDString = 815F22AF1BD04D150054659F;
 			remoteInfo = "Parse-tvOS";
 		};
+		4A13514020280608000F5FD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A134FE52027E99C000F5FD5 /* FBSDKCoreKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D2697461A5DF40700143BFC;
+			remoteInfo = FBSDKCoreKit;
+		};
+		4A13514220280608000F5FD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A134FCC2027E995000F5FD5 /* FBSDKLoginKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D9DB8D81A114E500086167B;
+			remoteInfo = FBSDKLoginKit;
+		};
+		4A13514420280614000F5FD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A134FF92027E9A4000F5FD5 /* FBSDKTVOSKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DEC55821BBA636A00C7DB4A;
+			remoteInfo = FBSDKTVOSKit_TV;
+		};
+		4A13514620280614000F5FD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A134FE52027E99C000F5FD5 /* FBSDKCoreKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DB0FA721BC1CA71005EB8B1;
+			remoteInfo = FBSDKCoreKit_TV;
+		};
 		81CB98CD1AB7905D00136FA5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -900,6 +928,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				4A13514520280614000F5FD5 /* PBXTargetDependency */,
+				4A13514720280614000F5FD5 /* PBXTargetDependency */,
 				4A1350A72027F4B2000F5FD5 /* PBXTargetDependency */,
 			);
 			name = "ParseFacebookUtilsV4-tvOS";
@@ -920,6 +950,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				4A13514120280608000F5FD5 /* PBXTargetDependency */,
+				4A13514320280608000F5FD5 /* PBXTargetDependency */,
 				4A1350922027F4A9000F5FD5 /* PBXTargetDependency */,
 			);
 			name = "ParseFacebookUtilsV4-iOS";
@@ -1382,6 +1414,26 @@
 			isa = PBXTargetDependency;
 			name = "Parse-tvOS";
 			targetProxy = 4A1350A62027F4B2000F5FD5 /* PBXContainerItemProxy */;
+		};
+		4A13514120280608000F5FD5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSDKCoreKit;
+			targetProxy = 4A13514020280608000F5FD5 /* PBXContainerItemProxy */;
+		};
+		4A13514320280608000F5FD5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSDKLoginKit;
+			targetProxy = 4A13514220280608000F5FD5 /* PBXContainerItemProxy */;
+		};
+		4A13514520280614000F5FD5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSDKTVOSKit_TV;
+			targetProxy = 4A13514420280614000F5FD5 /* PBXContainerItemProxy */;
+		};
+		4A13514720280614000F5FD5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSDKCoreKit_TV;
+			targetProxy = 4A13514620280614000F5FD5 /* PBXContainerItemProxy */;
 		};
 		81CB98CE1AB7905D00136FA5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

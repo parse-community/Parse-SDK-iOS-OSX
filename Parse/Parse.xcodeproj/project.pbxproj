@@ -25,6 +25,9 @@
 		4A0ECC9C200DA26000BA84A3 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC9D200DA26000BA84A3 /* OCMock.framework */; };
 		4A13513E20280246000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13511B2027FCFB000F5FD5 /* Bolts.framework */; };
 		4A13513F202803E7000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351172027FCFB000F5FD5 /* Bolts.framework */; };
+		4A135148202806B3000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351172027FCFB000F5FD5 /* Bolts.framework */; };
+		4A135149202806BE000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13511F2027FCFB000F5FD5 /* Bolts.framework */; };
+		4A13514A202806C7000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351232027FCFB000F5FD5 /* Bolts.framework */; };
 		4AAEAA40200BE14B00AA7479 /* third_party_licenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8139B12C1A7BF559002BEF84 /* third_party_licenses.txt */; };
 		4ABF398C1F54592100BBA75A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABF398B1F54592100BBA75A /* Main.storyboard */; };
 		4AE33A0F1F5451AD0088DCA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE33A0E1F5451AD0088DCA0 /* AppDelegate.m */; };
@@ -3592,6 +3595,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A135148202806B3000F5FD5 /* Bolts.framework in Frameworks */,
 				81C5871F1C3B0B3A000063C6 /* libsqlite3.tbd in Frameworks */,
 				81C5871D1C3B0B35000063C6 /* SystemConfiguration.framework in Frameworks */,
 				81C5871B1C3B0B2F000063C6 /* StoreKit.framework in Frameworks */,
@@ -3606,6 +3610,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A135149202806BE000F5FD5 /* Bolts.framework in Frameworks */,
 				81C5872C1C3B0B8D000063C6 /* libsqlite3.tbd in Frameworks */,
 				81C5872A1C3B0B8A000063C6 /* UIKit.framework in Frameworks */,
 				81C587281C3B0B84000063C6 /* StoreKit.framework in Frameworks */,
@@ -3619,6 +3624,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A13514A202806C7000F5FD5 /* Bolts.framework in Frameworks */,
 				81C587351C3B0BBE000063C6 /* WatchKit.framework in Frameworks */,
 				81C587331C3B0BB9000063C6 /* CoreLocation.framework in Frameworks */,
 				81C587311C3B0BB6000063C6 /* Security.framework in Frameworks */,
