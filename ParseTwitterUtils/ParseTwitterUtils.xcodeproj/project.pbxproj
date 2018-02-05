@@ -9,12 +9,10 @@
 /* Begin PBXBuildFile section */
 		06D00BAB1BC78F23005BAA6F /* ParseTwitterUtils.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06D00BAD1BC78F23005BAA6F /* ParseTwitterUtils.strings */; };
 		06D00BB51BC790F3005BAA6F /* PFTwitterLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D00BB41BC790F3005BAA6F /* PFTwitterLocalization.h */; };
-		4A0ECBDC200D41B600BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECBDD200D41B600BA84A3 /* Parse.framework */; };
 		4A0ECBE0200D435300BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECBDD200D41B600BA84A3 /* Parse.framework */; };
 		4A0ECBE1200D437800BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94FE200D12C9005D8F4B /* Bolts.framework */; };
 		4A51E4472027CC5E0066DE1A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4082027CC0F0066DE1A /* Parse.framework */; };
 		4A51E4492027CC870066DE1A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4482027CC870066DE1A /* Bolts.framework */; };
-		4A9A94FC200D12C9005D8F4B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94FE200D12C9005D8F4B /* Bolts.framework */; };
 		4AAEAACA200C2BBB00AA7479 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAACB200C2BBB00AA7479 /* OCMock.framework */; };
 		8135E4951B4B6A0E0092F452 /* PF_Twitter_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 8135E48E1B4B6A0E0092F452 /* PF_Twitter_Private.h */; };
 		8135E4961B4B6A0E0092F452 /* PFTwitterAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 8135E48F1B4B6A0E0092F452 /* PFTwitterAuthenticationProvider.h */; };
@@ -79,6 +77,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4A1350A82027F4B8000F5FD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 81C3821B19CCA89E0066284A;
+			remoteInfo = "Parse-iOS";
+		};
 		4A51E4072027CC0F0066DE1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
@@ -289,8 +294,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A0ECBDC200D41B600BA84A3 /* Parse.framework in Frameworks */,
-				4A9A94FC200D12C9005D8F4B /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +680,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4A1350A92027F4B8000F5FD5 /* PBXTargetDependency */,
 			);
 			name = "ParseTwitterUtils-iOS";
 			productName = Breakpad;
@@ -922,6 +926,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4A1350A92027F4B8000F5FD5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Parse-iOS";
+			targetProxy = 4A1350A82027F4B8000F5FD5 /* PBXContainerItemProxy */;
+		};
 		4A51E41C2027CC1C0066DE1A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Parse-iOS-Dynamic";
