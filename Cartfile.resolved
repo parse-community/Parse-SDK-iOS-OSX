@@ -1,2 +1,4 @@
 github "BoltsFramework/Bolts-ObjC" "1.9.0"
 github "erikdoe/OCMock" "v3.4.1"
+github "facebook/facebook-ios-sdk" "sdk-version-4.30.0"
+

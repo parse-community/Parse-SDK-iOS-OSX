@@ -11,8 +11,8 @@
 		06D00BB51BC790F3005BAA6F /* PFTwitterLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D00BB41BC790F3005BAA6F /* PFTwitterLocalization.h */; };
 		4A0ECBE0200D435300BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECBDD200D41B600BA84A3 /* Parse.framework */; };
 		4A0ECBE1200D437800BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94FE200D12C9005D8F4B /* Bolts.framework */; };
-		4A51E4472027CC5E0066DE1A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4082027CC0F0066DE1A /* Parse.framework */; };
-		4A51E4492027CC870066DE1A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4482027CC870066DE1A /* Bolts.framework */; };
+		4A13521320281B33000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4082027CC0F0066DE1A /* Parse.framework */; };
+		4A13522920282037000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13522820282037000F5FD5 /* Bolts.framework */; };
 		4AAEAACA200C2BBB00AA7479 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAACB200C2BBB00AA7479 /* OCMock.framework */; };
 		8135E4951B4B6A0E0092F452 /* PF_Twitter_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 8135E48E1B4B6A0E0092F452 /* PF_Twitter_Private.h */; };
 		8135E4961B4B6A0E0092F452 /* PFTwitterAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 8135E48F1B4B6A0E0092F452 /* PFTwitterAuthenticationProvider.h */; };
@@ -181,10 +181,8 @@
 		06D00BAE1BC78F29005BAA6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ParseTwitterUtils.strings; sourceTree = "<group>"; };
 		06D00BB41BC790F3005BAA6F /* PFTwitterLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFTwitterLocalization.h; sourceTree = "<group>"; };
 		4A0ECBDD200D41B600BA84A3 /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A0ECBDF200D41C400BA84A3 /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A13522820282037000F5FD5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parse.xcodeproj; path = ../Parse/Parse.xcodeproj; sourceTree = "<group>"; };
-		4A51E4482027CC870066DE1A /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A9A94FA200D12A2005D8F4B /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A9A94FE200D12C9005D8F4B /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAEAACB200C2BBB00AA7479 /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8135E48E1B4B6A0E0092F452 /* PF_Twitter_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PF_Twitter_Private.h; sourceTree = "<group>"; };
@@ -275,10 +273,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A51E4492027CC870066DE1A /* Bolts.framework in Frameworks */,
-				4A51E4472027CC5E0066DE1A /* Parse.framework in Frameworks */,
+				4A13521320281B33000F5FD5 /* Parse.framework in Frameworks */,
 				816831331D1E16FE00315E21 /* Social.framework in Frameworks */,
 				8168312F1D1E16F700315E21 /* AudioToolbox.framework in Frameworks */,
+				4A13522920282037000F5FD5 /* Bolts.framework in Frameworks */,
 				8168312B1D1E16F000315E21 /* SystemConfiguration.framework in Frameworks */,
 				816831271D1E16EB00315E21 /* CoreLocation.framework in Frameworks */,
 				816831241D1E16E700315E21 /* libsqlite3.tbd in Frameworks */,
@@ -329,12 +327,10 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4A51E4482027CC870066DE1A /* Bolts.framework */,
+				4A13522820282037000F5FD5 /* Bolts.framework */,
 				4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */,
-				4A0ECBDF200D41C400BA84A3 /* Parse.framework */,
 				4A0ECBDD200D41B600BA84A3 /* Parse.framework */,
 				4A9A94FE200D12C9005D8F4B /* Bolts.framework */,
-				4A9A94FA200D12A2005D8F4B /* Bolts.framework */,
 				4AAEAACB200C2BBB00AA7479 /* OCMock.framework */,
 				813DFC8E1AB2513300F25A08 /* System Frameworks */,
 			);

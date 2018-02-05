@@ -8,16 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4A0ECC80200D99FF00BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA45200BE26C00AA7479 /* Bolts.framework */; };
-		4A0ECC83200D9A0C00BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA45200BE26C00AA7479 /* Bolts.framework */; };
 		4A0ECC84200D9A0D00BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA45200BE26C00AA7479 /* Bolts.framework */; };
 		4A0ECC88200D9A1D00BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9503200D1462005D8F4B /* Parse.framework */; };
 		4A0ECC8A200D9A1E00BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9503200D1462005D8F4B /* Parse.framework */; };
 		4A0ECC8B200D9A7300BA84A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAA0200C0FC500AA7479 /* SystemConfiguration.framework */; };
 		4A0ECC8C200D9A7F00BA84A3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAA2200C0FCC00AA7479 /* libsqlite3.tbd */; };
 		4A0ECC8D200D9A8900BA84A3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAAA200C0FEC00AA7479 /* AudioToolbox.framework */; };
-		4A1350642027EA3B000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1350512027EA26000F5FD5 /* Parse.framework */; };
 		4A1350672027EA53000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13505B2027EA26000F5FD5 /* Parse.framework */; };
-		4A1350682027EC0A000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1350692027EC0A000F5FD5 /* Bolts.framework */; };
 		4A1351BF2028185E000F5FD5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351BD2028185E000F5FD5 /* FBSDKCoreKit.framework */; };
 		4A1351C02028185E000F5FD5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351BE2028185E000F5FD5 /* FBSDKLoginKit.framework */; };
 		4A1351C320281868000F5FD5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351C120281867000F5FD5 /* FBSDKCoreKit.framework */; };
@@ -26,6 +23,9 @@
 		4A1351CA20281889000F5FD5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351C820281889000F5FD5 /* FBSDKCoreKit.framework */; };
 		4A1351CD20281897000F5FD5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351CB20281897000F5FD5 /* FBSDKCoreKit.framework */; };
 		4A1351CE20281897000F5FD5 /* FBSDKTVOSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351CC20281897000F5FD5 /* FBSDKTVOSKit.framework */; };
+		4A13521C20281B49000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13504F2027EA26000F5FD5 /* Parse.framework */; };
+		4A13524F20282583000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13525020282583000F5FD5 /* Bolts.framework */; };
+		4A1352512028259D000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1352522028259D000F5FD5 /* Bolts.framework */; };
 		4AAEAA41200BE19A00AA7479 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA42200BE19A00AA7479 /* OCMock.framework */; };
 		4AAEAA5F200C020E00AA7479 /* PFFacebookUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 813DFC841AB2510300F25A08 /* PFFacebookUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AAEAA60200C020E00AA7479 /* PFFacebookAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA09C91C178DED00B0F875 /* PFFacebookAuthenticationProvider.h */; };
@@ -211,7 +211,6 @@
 
 /* Begin PBXFileReference section */
 		4A1350412027EA26000F5FD5 /* Parse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parse.xcodeproj; path = ../Parse/Parse.xcodeproj; sourceTree = "<group>"; };
-		4A1350692027EC0A000F5FD5 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A1351BD2028185E000F5FD5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Vendor/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		4A1351BE2028185E000F5FD5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Vendor/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		4A1351C120281867000F5FD5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Vendor/tvOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -220,6 +219,8 @@
 		4A1351C820281889000F5FD5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		4A1351CB20281897000F5FD5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../Carthage/Build/tvOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		4A1351CC20281897000F5FD5 /* FBSDKTVOSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKTVOSKit.framework; path = ../Carthage/Build/tvOS/FBSDKTVOSKit.framework; sourceTree = "<group>"; };
+		4A13525020282583000F5FD5 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A1352522028259D000F5FD5 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A9A9503200D1462005D8F4B /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAEAA42200BE19A00AA7479 /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAEAA45200BE26C00AA7479 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,8 +291,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A1350682027EC0A000F5FD5 /* Bolts.framework in Frameworks */,
-				4A1350642027EA3B000F5FD5 /* Parse.framework in Frameworks */,
+				4A13524F20282583000F5FD5 /* Bolts.framework in Frameworks */,
+				4A13521C20281B49000F5FD5 /* Parse.framework in Frameworks */,
 				4A1351C920281889000F5FD5 /* FBSDKLoginKit.framework in Frameworks */,
 				4A1351CA20281889000F5FD5 /* FBSDKCoreKit.framework in Frameworks */,
 				4AAEAAAD200C0FF300AA7479 /* UIKit.framework in Frameworks */,
@@ -308,6 +309,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A1352512028259D000F5FD5 /* Bolts.framework in Frameworks */,
 				4A1350672027EA53000F5FD5 /* Parse.framework in Frameworks */,
 				4AAEAABB200C103B00AA7479 /* SystemConfiguration.framework in Frameworks */,
 				4AAEAAB9200C103500AA7479 /* Security.framework in Frameworks */,
@@ -318,7 +320,6 @@
 				4AAEAAB3200C102100AA7479 /* UIKit.framework in Frameworks */,
 				4AAEAAB1200C101700AA7479 /* libsqlite3.tbd in Frameworks */,
 				4AAEAAAF200C101100AA7479 /* AudioToolbox.framework in Frameworks */,
-				4A0ECC83200D9A0C00BA84A3 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +397,8 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4A1350692027EC0A000F5FD5 /* Bolts.framework */,
+				4A1352522028259D000F5FD5 /* Bolts.framework */,
+				4A13525020282583000F5FD5 /* Bolts.framework */,
 				4A1350412027EA26000F5FD5 /* Parse.xcodeproj */,
 				4A9A9503200D1462005D8F4B /* Parse.framework */,
 				4AAEAABA200C103B00AA7479 /* SystemConfiguration.framework */,
@@ -753,6 +755,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AAEAA72200C020E00AA7479 /* Build configuration list for PBXNativeTarget "ParseFacebookUtilsV4-iOS-Dynamic" */;
 			buildPhases = (
+				4A13525320282699000F5FD5 /* Cleanup Vendored Static lib */,
 				4AAEAA5D200C020E00AA7479 /* Generate Localizable Strings */,
 				4AAEAA5E200C020E00AA7479 /* Headers */,
 				4AAEAA66200C020E00AA7479 /* Sources */,
@@ -773,6 +776,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AAEAA8D200C022300AA7479 /* Build configuration list for PBXNativeTarget "ParseFacebookUtilsV4-tvOS-Dynamic" */;
 			buildPhases = (
+				4A135254202826D8000F5FD5 /* ShellScript */,
 				4AAEAA79200C022300AA7479 /* Generate Localizable Strings */,
 				4AAEAA7A200C022300AA7479 /* Headers */,
 				4AAEAA81200C022300AA7479 /* Sources */,
@@ -833,12 +837,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "ParseFacebookUtilsV4-iOS" */;
 			buildPhases = (
+				4A1351B220281814000F5FD5 /* Fetch Latest Dependencies */,
 				81B3F2291AC9CA2600A92677 /* Generate Localizable Strings */,
 				D2AAC07A0554694100DB518D /* Headers */,
 				D2AAC07B0554694100DB518D /* Sources */,
 				D2AAC07C0554694100DB518D /* Frameworks */,
 				8139B1341A7BF6B5002BEF84 /* Resources */,
-				4A1351B220281814000F5FD5 /* Fetch Latest Dependencies */,
 			);
 			buildRules = (
 			);
@@ -1080,6 +1084,33 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ ! -d $SRCROOT/Vendor ]; then\nmkdir $SRCROOT/Vendor\nfi\n\ncd $SRCROOT/Vendor\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKLoginKit.framework\" ]]; then\nARCHIVE_NAME=FBSDK.zip\n\nARCHIVE_URL=\"https://origincache.facebook.com/developers/resources/?id=facebook-ios-sdk-current.zip\"\ncurl $ARCHIVE_URL -o $ARCHIVE_NAME\n\nunzip $ARCHIVE_NAME -d fbsdk\nmv fbsdk/FBSDKCoreKit.framework .\nmv fbsdk/FBSDKLoginKit.framework .\n\nrm $ARCHIVE_NAME\nrm -r fbsdk\nfi\n";
+		};
+		4A13525320282699000F5FD5 /* Cleanup Vendored Static lib */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Cleanup Vendored Static lib";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -rf $SRCROOT/Vendor/*.framework\n";
+		};
+		4A135254202826D8000F5FD5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -rf $SRCROOT/Vendor/*.framework\n";
 		};
 		4AAEAA5D200C020E00AA7479 /* Generate Localizable Strings */ = {
 			isa = PBXShellScriptBuildPhase;
