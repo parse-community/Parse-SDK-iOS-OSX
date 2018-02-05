@@ -5,7 +5,7 @@ defaults: &defaults
 aliases:
   - &prepare
     | 
-      git submodule update --init --recursive
+      git submodule update --init 
       gem install bundler
       bundle install
   - &filter-only-master
