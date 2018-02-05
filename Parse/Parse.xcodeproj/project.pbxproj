@@ -29,6 +29,7 @@
 		4A13525520282A51000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518420281768000F5FD5 /* Bolts.framework */; };
 		4A13525620282B4D000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97010FAC1630B18F00AB761E /* Parse.framework */; };
 		4A13525720282B4D000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518820281768000F5FD5 /* Bolts.framework */; };
+		4A13525F20283603000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518820281768000F5FD5 /* Bolts.framework */; };
 		4AAEAA40200BE14B00AA7479 /* third_party_licenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8139B12C1A7BF559002BEF84 /* third_party_licenses.txt */; };
 		4ABF398C1F54592100BBA75A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABF398B1F54592100BBA75A /* Main.storyboard */; };
 		4AE33A0F1F5451AD0088DCA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE33A0E1F5451AD0088DCA0 /* AppDelegate.m */; };
@@ -3638,6 +3639,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A13525F20283603000F5FD5 /* Bolts.framework in Frameworks */,
 				81B3F2021AC5DAA400A92677 /* Cocoa.framework in Frameworks */,
 				81B3F2011AC5DA7600A92677 /* libsqlite3.dylib in Frameworks */,
 				97DE045C163214C0007154E8 /* SystemConfiguration.framework in Frameworks */,
