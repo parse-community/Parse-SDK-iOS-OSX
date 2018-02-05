@@ -7,3 +7,8 @@
 [submodule "Carthage/Checkouts/OCMock"]
 	path = Carthage/Checkouts/OCMock
 	url = https://github.com/erikdoe/OCMock.git
+[submodule "Vendor/facebook-ios-sdk"]
+	path = Vendor/facebook-ios-sdk
+	url = https://github.com/facebook/facebook-ios-sdk
+	sparsecheckout = true
+	shallow = true
