@@ -26,6 +26,8 @@
 		4A13521C20281B49000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13504F2027EA26000F5FD5 /* Parse.framework */; };
 		4A13524F20282583000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13525020282583000F5FD5 /* Bolts.framework */; };
 		4A1352512028259D000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1352522028259D000F5FD5 /* Bolts.framework */; };
+		4A13525C20282C03000F5FD5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351BD2028185E000F5FD5 /* FBSDKCoreKit.framework */; };
+		4A13525D20282C03000F5FD5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351BE2028185E000F5FD5 /* FBSDKLoginKit.framework */; };
 		4AAEAA41200BE19A00AA7479 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA42200BE19A00AA7479 /* OCMock.framework */; };
 		4AAEAA5F200C020E00AA7479 /* PFFacebookUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 813DFC841AB2510300F25A08 /* PFFacebookUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AAEAA60200C020E00AA7479 /* PFFacebookAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA09C91C178DED00B0F875 /* PFFacebookAuthenticationProvider.h */; };
@@ -329,9 +331,11 @@
 			files = (
 				4A0ECC8C200D9A7F00BA84A3 /* libsqlite3.tbd in Frameworks */,
 				4AAEAA41200BE19A00AA7479 /* OCMock.framework in Frameworks */,
+				4A13525D20282C03000F5FD5 /* FBSDKLoginKit.framework in Frameworks */,
 				4A0ECC88200D9A1D00BA84A3 /* Parse.framework in Frameworks */,
 				81CB98CC1AB7905D00136FA5 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				4A0ECC8B200D9A7300BA84A3 /* SystemConfiguration.framework in Frameworks */,
+				4A13525C20282C03000F5FD5 /* FBSDKCoreKit.framework in Frameworks */,
 				4A0ECC8D200D9A8900BA84A3 /* AudioToolbox.framework in Frameworks */,
 				4A0ECC80200D99FF00BA84A3 /* Bolts.framework in Frameworks */,
 			);
@@ -1357,6 +1361,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F52CD64B1B5838620051AB86 /* ParseFacebookUtilsV4-UnitTests.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor",
+				);
 			};
 			name = Debug;
 		};
@@ -1364,6 +1372,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F52CD64B1B5838620051AB86 /* ParseFacebookUtilsV4-UnitTests.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor",
+				);
 			};
 			name = Release;
 		};
