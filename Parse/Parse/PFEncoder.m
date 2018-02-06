@@ -88,7 +88,7 @@
         NSMutableArray *newArray = [NSMutableArray arrayWithCapacity:[object count]];
         for (id elem in object) {
             id encodedElem = [self encodeObject:elem error:error];
-            PFPreconditionFailOnError(encodedElem, error, nil);
+            PFPreconditionBailOnError(encodedElem, error, nil);
             [newArray addObject:encodedElem];
         }
         return newArray;
@@ -193,7 +193,7 @@
 }
 
 - (id)encodeParseObject:(PFObject *)object error:(NSError * __autoreleasing *)error {
-    PFPreconditionFailAndSetError(object.objectId, error, nil, @"Tried to save an object with a new, unsaved child.");
+    PFPreconditionBailAndSetError(object.objectId, error, nil, @"Tried to save an object with a new, unsaved child.");
     return [super encodeParseObject:object error:error];
 }
 

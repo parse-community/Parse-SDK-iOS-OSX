@@ -51,7 +51,7 @@
 
 - (nullable NSDictionary *)dictionaryRepresentationWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSDictionary *representation = [super dictionaryRepresentationWithObjectEncoder:objectEncoder error:error];
-    PFPreconditionFailOnError(representation, error, nil);
+    PFPreconditionBailOnError(representation, error, nil);
     NSMutableDictionary *dictionary = [representation mutableCopy];
     [dictionary removeObjectForKey:PFUserPasswordRESTKey];
     return dictionary;

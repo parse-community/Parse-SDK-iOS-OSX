@@ -136,7 +136,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
  */
 - (PFObjectLocalIdStoreMapEntry *)getMapEntry:(NSString *)localId error:(NSError * __autoreleasing *) error {
 
-    PFPreconditionFailAndSetError([[self class] isLocalId:localId], error, nil, @"Tried to get invalid local id: \"%@\".", localId);
+    PFPreconditionBailAndSetError([[self class] isLocalId:localId], error, nil, @"Tried to get invalid local id: \"%@\".", localId);
 
     PFObjectLocalIdStoreMapEntry *entry = nil;
 
@@ -168,7 +168,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
  * Writes one entry to the local id map on disk.
  */
 - (BOOL)putMapEntry:(PFObjectLocalIdStoreMapEntry *)entry forLocalId:(NSString *)localId error:(NSError * __autoreleasing *)error {
-    PFPreconditionFailAndSetError([[self class] isLocalId:localId],error, NO, @"Tried to get invalid local id: \"%@\".", localId);
+    PFPreconditionBailAndSetError([[self class] isLocalId:localId],error, NO, @"Tried to get invalid local id: \"%@\".", localId);
 
     NSString *file = [_diskPath stringByAppendingPathComponent:localId];
     [entry writeToFile:file];
@@ -179,7 +179,7 @@ static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
  * Removes an entry from the local id map on disk.
  */
 - (BOOL)removeMapEntry:(NSString *)localId error:(NSError * __autoreleasing *)error {
-    PFPreconditionFailAndSetError([[self class] isLocalId:localId], error, NO, @"Tried to get invalid local id: \"%@\".", localId);
+    PFPreconditionBailAndSetError([[self class] isLocalId:localId], error, NO, @"Tried to get invalid local id: \"%@\".", localId);
 
     NSString *file = [_diskPath stringByAppendingPathComponent:localId];
     [[NSFileManager defaultManager] removeItemAtPath:file error:nil];

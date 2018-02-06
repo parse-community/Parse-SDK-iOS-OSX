@@ -786,13 +786,13 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (BOOL)resolveLocalId:(NSError *__autoreleasing*)error {
     @synchronized (lock) {
-        PFPreconditionFailAndSetError(self.localId, error, NO , @"Tried to resolve a localId for an object with no localId. (%@)", self.parseClassName);
+        PFPreconditionBailAndSetError(self.localId, error, NO , @"Tried to resolve a localId for an object with no localId. (%@)", self.parseClassName);
         NSString *newObjectId = [[Parse _currentManager].coreManager.objectLocalIdStore objectIdForLocalId:self.localId];
 
         // If we are resolving local ids, then this object is about to go over the network.
         // But if it has local ids that haven't been resolved yet, then that's not going to
         // be possible.
-        PFPreconditionFailAndSetError(newObjectId, error, NO , @"Tried to save an object with a pointer to a new, unsaved object. (%@)", self.parseClassName);
+        PFPreconditionBailAndSetError(newObjectId, error, NO , @"Tried to save an object with a pointer to a new, unsaved object. (%@)", self.parseClassName);
 
         // Nil out the localId so that the new objectId won't be saved back to the PFObjectLocalIdStore.
         self.localId = nil;
@@ -953,7 +953,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         id operationDict = [operation RESTDictionaryUsingObjectEncoder:objectEncoder
                                                      operationSetUUIDs:&ooSetUUIDs
                                                                  error:error];
-        PFPreconditionFailOnError(operation, error, nil);
+        PFPreconditionBailOnError(operation, error, nil);
         [operations addObject:operationDict];
         [mutableOperationSetUUIDs addObjectsFromArray:ooSetUUIDs];
     }
@@ -1522,7 +1522,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                                              error:(NSError **)error {
     @synchronized (lock) {
         NSDictionary *parameters = [self _convertToDictionaryForSaving:changes withObjectEncoder:encoder error:error];
-        PFPreconditionFailOnError(parameters, error, nil);
+        PFPreconditionBailOnError(parameters, error, nil);
 
         if (self._state.objectId) {
             return [PFRESTObjectCommand updateObjectCommandForObjectState:self._state

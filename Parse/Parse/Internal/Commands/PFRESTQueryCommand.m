@@ -24,7 +24,7 @@
 
 + (nullable instancetype)findCommandForQueryState:(PFQueryState *)queryState withSessionToken:(NSString *)sessionToken error:(NSError **)error {
     NSDictionary *parameters = [self findCommandParametersForQueryState:queryState error:error];
-    PFPreconditionFailOnError(parameters, error, nil);
+    PFPreconditionBailOnError(parameters, error, nil);
     return [self _findCommandForClassWithName:queryState.parseClassName
                                    parameters:parameters
                                  sessionToken:sessionToken
@@ -51,7 +51,7 @@
                                                        extraOptions:extraOptions
                                                      tracingEnabled:trace
                                                               error:error];
-    PFPreconditionFailOnError(parameters, error, nil);
+    PFPreconditionBailOnError(parameters, error, nil);
     return [self _findCommandForClassWithName:className
                                    parameters:parameters
                                  sessionToken:sessionToken
@@ -68,7 +68,7 @@
                                                  parameters:parameters
                                                sessionToken:sessionToken
                                                       error:error];
-    PFPreconditionFailOnError(command, error, nil);
+    PFPreconditionBailOnError(command, error, nil);
     return command;
 }
 

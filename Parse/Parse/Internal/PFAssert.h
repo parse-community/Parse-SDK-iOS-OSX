@@ -75,7 +75,7 @@ PFPrecondition(NO, description, ##__VA_ARGS__)
 /**
 Sets a recoverable error for propagation
  */
-#define PFPreconditionFailAndSetError(condition, error, rval, description, ...) \
+#define PFPreconditionBailAndSetError(condition, error, rval, description, ...) \
 if (!(condition) && error && *error == nil) { \
     *error =  [PFErrorUtilities errorWithCode:-1 message:[NSString stringWithFormat:description, ##__VA_ARGS__]];\
     return rval;\
@@ -84,7 +84,7 @@ if (!(condition) && error && *error == nil) { \
 /*
  Returns the passed value if the condition isn't met and the *error is set
  */
-#define PFPreconditionFailOnError(condition, error, rval) \
+#define PFPreconditionBailOnError(condition, error, rval) \
 if (!(condition) && error && *error) { \
     return rval;\
 }

@@ -193,7 +193,7 @@
 
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error: error];
-    PFPreconditionFailOnError(encodedObjects, error, nil);
+    PFPreconditionBailOnError(encodedObjects, error, nil);
     return @{ @"__op" : @"Add",
               @"objects" : encodedObjects };
 }
@@ -254,7 +254,7 @@
 
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error:error];
-    PFPreconditionFailOnError(encodedObjects, error, nil);
+    PFPreconditionBailOnError(encodedObjects, error, nil);
     return @{ @"__op" : @"AddUnique",
               @"objects" : encodedObjects };
 }
@@ -330,7 +330,7 @@
 
 - (id)encodeWithObjectEncoder:(PFEncoder *)objectEncoder error:(NSError **)error {
     NSMutableArray *encodedObjects = [objectEncoder encodeObject:self.objects error:error];
-    PFPreconditionFailOnError(encodedObjects, error, nil);
+    PFPreconditionBailOnError(encodedObjects, error, nil);
     return @{ @"__op" : @"Remove",
               @"objects" : encodedObjects };
 }
@@ -446,7 +446,7 @@
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:set.count];
     for (PFObject *object in set) {
         id encodedDict = [objectEncoder encodeObject:object error:error];
-        PFPreconditionFailOnError(encodedDict, error, nil);
+        PFPreconditionBailOnError(encodedDict, error, nil);
         [array addObject:encodedDict];
     }
     return array;
