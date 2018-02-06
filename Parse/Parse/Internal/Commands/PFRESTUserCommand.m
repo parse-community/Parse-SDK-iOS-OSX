@@ -38,7 +38,7 @@ static NSString *const PFRESTUserCommandRevocableSessionHeaderEnabledValue = @"1
                                                 parameters:parameters
                                               sessionToken:sessionToken
                                                      error:error];
-    PFPreconditionBailOnError(command, error, nil);
+    PFPreconditionFailOnError(command, error, nil);
     if (revocableSessionEnabled) {
         command.additionalRequestHeaders = @{ PFRESTUserCommandRevocableSessionHeader :
                                                   PFRESTUserCommandRevocableSessionHeaderEnabledValue};

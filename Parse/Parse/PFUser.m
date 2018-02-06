@@ -136,12 +136,12 @@ static BOOL revocableSessionEnabled_;
 // Checks the properties on the object before saving.
 - (BOOL)_checkSaveParametersWithCurrentUser:(PFUser *)currentUser error:(NSError **)error {
     @synchronized([self lock]) {
-        PFPreconditionBailAndSetError(self.objectId || self._lazy,
+        PFPreconditionFailAndSetError(self.objectId || self._lazy,
                                       error,
                                       NO,
                                       @"User cannot be saved unless they are already signed up. Call signUp first.");
 
-        PFPreconditionBailAndSetError([self _isAuthenticatedWithCurrentUser:currentUser] ||
+        PFPreconditionFailAndSetError([self _isAuthenticatedWithCurrentUser:currentUser] ||
                                       [self.objectId isEqualToString:currentUser.objectId],
                                       error,
                                       NO,
@@ -206,7 +206,7 @@ static BOOL revocableSessionEnabled_;
     @synchronized([self lock]) {
         NSDictionary *parameters = [self _convertToDictionaryForSaving:changes
                                                      withObjectEncoder:[PFPointerObjectEncoder objectEncoder] error:error];
-        PFPreconditionBailOnError(parameters, error, nil);
+        PFPreconditionFailOnError(parameters, error, nil);
         return [PFRESTUserCommand signUpUserCommandWithParameters:parameters
                                                  revocableSession:[[self class] _isRevocableSessionEnabled]
                                                      sessionToken:self.sessionToken
@@ -223,7 +223,7 @@ static BOOL revocableSessionEnabled_;
     @synchronized([self lock]) {
         NSDictionary *parameters = [self _convertToDictionaryForSaving:changes
                                                      withObjectEncoder:[PFPointerObjectEncoder objectEncoder] error:error];
-        PFPreconditionBailOnError(parameters, error, nil);
+        PFPreconditionFailOnError(parameters, error, nil);
         return [PFRESTUserCommand serviceLoginUserCommandWithParameters:parameters
                                                        revocableSession:[[self class] _isRevocableSessionEnabled]
                                                            sessionToken:self.sessionToken
