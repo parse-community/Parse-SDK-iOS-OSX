@@ -1029,7 +1029,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         // See if there's already an entry for new objectId.
         PFObject *existing = [self.classNameAndObjectIdToObjectMap objectForKey:key];
         // If this object is just saved, update local store without exception.
-        Bool isNewlySaved = (oldObjectId == nil) && (object.createdAt != nil);
+        BOOL isNewlySaved = (oldObjectId == nil) && (object.createdAt != nil);
         PFConsistencyAssert(isNewlySaved || existing == nil || existing == object,
                             @"Attempted to change an objectId to one that's already known to the OfflineStore. className: %@ old: %@, new: %@",
                             className, oldObjectId, newObjectId);
