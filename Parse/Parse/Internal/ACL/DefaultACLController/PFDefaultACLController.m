@@ -49,40 +49,40 @@
 
 - (BFTask<PFACL *> *)getDefaultACLAsync {
     return [_taskQueue enqueue:^id(BFTask *task) {
-        if (!_defaultACL || !_useCurrentUser) {
-            return _defaultACL;
+        if (!self->_defaultACL || !self->_useCurrentUser) {
+            return self->_defaultACL;
         }
 
         PFCurrentUserController *currentUserController = self.dataSource.currentUserController;
         return [[currentUserController getCurrentObjectAsync] continueWithBlock:^id(BFTask *task) {
             PFUser *currentUser = task.result;
             if (!currentUser) {
-                return _defaultACL;
+                return self->_defaultACL;
             }
 
-            if (currentUser != _lastCurrentUser) {
-                _defaultACLWithCurrentUser = [_defaultACL createUnsharedCopy];
-                [_defaultACLWithCurrentUser setShared:YES];
-                [_defaultACLWithCurrentUser setReadAccess:YES forUser:currentUser];
-                [_defaultACLWithCurrentUser setWriteAccess:YES forUser:currentUser];
-                _lastCurrentUser = currentUser;
+            if (currentUser != self->_lastCurrentUser) {
+                self->_defaultACLWithCurrentUser = [self->_defaultACL createUnsharedCopy];
+                [self->_defaultACLWithCurrentUser setShared:YES];
+                [self->_defaultACLWithCurrentUser setReadAccess:YES forUser:currentUser];
+                [self->_defaultACLWithCurrentUser setWriteAccess:YES forUser:currentUser];
+                self->_lastCurrentUser = currentUser;
             }
-            return _defaultACLWithCurrentUser;
+            return self->_defaultACLWithCurrentUser;
         }];
     }];
 }
 
 - (BFTask<PFACL *> *)setDefaultACLAsync:(PFACL *)acl withCurrentUserAccess:(BOOL)accessForCurrentUser {
     return [_taskQueue enqueue:^id(BFTask *task) {
-        _defaultACLWithCurrentUser = nil;
-        _lastCurrentUser = nil;
+        self->_defaultACLWithCurrentUser = nil;
+        self->_lastCurrentUser = nil;
 
-        _defaultACL = [acl createUnsharedCopy];
-        [_defaultACL setShared:YES];
+        self->_defaultACL = [acl createUnsharedCopy];
+        [self->_defaultACL setShared:YES];
 
-        _useCurrentUser = accessForCurrentUser;
+        self->_useCurrentUser = accessForCurrentUser;
 
-        return _defaultACL;
+        return self->_defaultACL;
     }];
 }
 

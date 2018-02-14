@@ -48,7 +48,7 @@
 - (BFTask<NSData *> *)getDataAsyncForKey:(NSString *)key {
     return [_dataAccessQueue enqueue:^id(BFTask *task) {
         return [[self _loadUserDefaultsIfNeededAsync] continueWithSuccessBlock:^id(BFTask *task) {
-            return _dataDictionary[key];
+            return self->_dataDictionary[key];
         }];
     }];
 }
@@ -56,7 +56,7 @@
 - (BFTask *)setDataAsync:(NSData *)data forKey:(NSString *)key {
     return [_dataAccessQueue enqueue:^id(BFTask *task) {
         return [[self _loadUserDefaultsIfNeededAsync] continueWithSuccessBlock:^id(BFTask *task) {
-            _dataDictionary[key] = data;
+            self->_dataDictionary[key] = data;
             return [self _writeUserDefaultsAsync];
         }];
     }];
@@ -65,7 +65,7 @@
 - (BFTask *)removeDataAsyncForKey:(NSString *)key {
     return [_dataAccessQueue enqueue:^id(BFTask *task) {
         return [[self _loadUserDefaultsIfNeededAsync] continueWithSuccessBlock:^id(BFTask *task) {
-            [_dataDictionary removeObjectForKey:key];
+            [self->_dataDictionary removeObjectForKey:key];
             return [self _writeUserDefaultsAsync];
         }];
     }];
@@ -74,7 +74,7 @@
 - (BFTask *)removeAllDataAsync {
     return [_dataAccessQueue enqueue:^id(BFTask *task) {
         return [[self _loadUserDefaultsIfNeededAsync] continueWithSuccessBlock:^id(BFTask *task) {
-            [_dataDictionary removeAllObjects];
+            [self->_dataDictionary removeAllObjects];
             return [self _writeUserDefaultsAsync];
         }];
     }];
@@ -94,9 +94,9 @@
 
 - (BFTask *)_loadUserDefaultsIfNeededAsync {
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
-        if (!_dataDictionary) {
-            NSDictionary *dictionary = [_userDefaults objectForKey:self.key];
-            _dataDictionary = (dictionary ? [dictionary mutableCopy] : [NSMutableDictionary dictionary]);
+        if (!self->_dataDictionary) {
+            NSDictionary *dictionary = [self->_userDefaults objectForKey:self.key];
+            self->_dataDictionary = (dictionary ? [dictionary mutableCopy] : [NSMutableDictionary dictionary]);
         }
         return nil;
     }];
@@ -104,7 +104,7 @@
 
 - (BFTask *)_writeUserDefaultsAsync {
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
-        [_userDefaults setObject:_dataDictionary forKey:self.key];
+        [self->_userDefaults setObject:self->_dataDictionary forKey:self.key];
         return nil;
     }];
 }

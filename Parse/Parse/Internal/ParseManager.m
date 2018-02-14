@@ -130,21 +130,21 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 
 - (void)loadOfflineStoreWithOptions:(PFOfflineStoreOptions)options {
     dispatch_barrier_sync(_offlineStoreAccessQueue, ^{
-        PFConsistencyAssert(!_offlineStore, @"Can't load offline store more than once.");
-        _offlineStore = [[PFOfflineStore alloc] initWithFileManager:self.fileManager options:options];
+        PFConsistencyAssert(!self->_offlineStore, @"Can't load offline store more than once.");
+        self->_offlineStore = [[PFOfflineStore alloc] initWithFileManager:self.fileManager options:options];
     });
 }
 
 - (void)setOfflineStore:(PFOfflineStore *)offlineStore {
     dispatch_barrier_sync(_offlineStoreAccessQueue, ^{
-        _offlineStore = offlineStore;
+        self->_offlineStore = offlineStore;
     });
 }
 
 - (PFOfflineStore *)offlineStore {
     __block PFOfflineStore *offlineStore = nil;
     dispatch_sync(_offlineStoreAccessQueue, ^{
-        offlineStore = _offlineStore;
+        offlineStore = self->_offlineStore;
     });
     return offlineStore;
 }
@@ -165,12 +165,12 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
             _eventuallyQueue = [PFMemoryEventuallyQueue newDefaultMemoryEventuallyQueueWithDataSource:self];
         }
 #else
-        if (!_eventuallyQueue ||
-            (self.offlineStoreLoaded && [_eventuallyQueue isKindOfClass:[PFCommandCache class]]) ||
-            (!self.offlineStoreLoaded && [_eventuallyQueue isKindOfClass:[PFPinningEventuallyQueue class]])) {
+        if (!self->_eventuallyQueue ||
+            (self.offlineStoreLoaded && [self->_eventuallyQueue isKindOfClass:[PFCommandCache class]]) ||
+            (!self.offlineStoreLoaded && [self->_eventuallyQueue isKindOfClass:[PFPinningEventuallyQueue class]])) {
 
             PFCommandCache *commandCache = [self _newCommandCache];
-            _eventuallyQueue = (self.offlineStoreLoaded ?
+            self->_eventuallyQueue = (self.offlineStoreLoaded ?
                                 [PFPinningEventuallyQueue newDefaultPinningEventuallyQueueWithDataSource:self]
                                 :
                                 commandCache);
@@ -186,7 +186,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
             }
         }
 #endif
-        queue = _eventuallyQueue;
+        queue = self->_eventuallyQueue;
     });
     return queue;
 }
@@ -202,10 +202,10 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 
 - (void)clearEventuallyQueue {
     dispatch_sync(_preloadQueue, ^{
-        dispatch_sync(_eventuallyQueueAccessQueue, ^{
-            [_eventuallyQueue removeAllCommands];
-            [_eventuallyQueue pause];
-            _eventuallyQueue = nil;
+        dispatch_sync(self->_eventuallyQueueAccessQueue, ^{
+            [self->_eventuallyQueue removeAllCommands];
+            [self->_eventuallyQueue pause];
+            self->_eventuallyQueue = nil;
         });
     });
 }
@@ -219,12 +219,12 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 - (PFKeychainStore *)keychainStore {
     __block PFKeychainStore *store = nil;
     dispatch_sync(_keychainStoreAccessQueue, ^{
-        if (!_keychainStore) {
+        if (!self->_keychainStore) {
             NSString *bundleIdentifier = (self.configuration.containingApplicationBundleIdentifier ?: [NSBundle mainBundle].bundleIdentifier);
             NSString *service = [NSString stringWithFormat:@"%@.%@", bundleIdentifier, PFKeychainStoreDefaultService];
-            _keychainStore = [[PFKeychainStore alloc] initWithService:service];
+            self->_keychainStore = [[PFKeychainStore alloc] initWithService:service];
         }
-        store = _keychainStore;
+        store = self->_keychainStore;
     });
     return store;
 }
@@ -234,11 +234,11 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 - (PFFileManager *)fileManager {
     __block PFFileManager *fileManager = nil;
     dispatch_sync(_fileManagerAccessQueue, ^{
-        if (!_fileManager) {
-            _fileManager = [[PFFileManager alloc] initWithApplicationIdentifier:self.configuration.applicationId
+        if (!self->_fileManager) {
+            self->_fileManager = [[PFFileManager alloc] initWithApplicationIdentifier:self.configuration.applicationId
                                                      applicationGroupIdentifier:self.configuration.applicationGroupIdentifier];
         }
-        fileManager = _fileManager;
+        fileManager = self->_fileManager;
     });
     return fileManager;
 }
@@ -248,10 +248,10 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 - (PFPersistenceController *)persistenceController {
     __block PFPersistenceController *controller = nil;
     dispatch_sync(_persistenceControllerAccessQueue, ^{
-        if (!_persistenceController) {
-            _persistenceController = [self _createPersistenceController];
+        if (!self->_persistenceController) {
+            self->_persistenceController = [self _createPersistenceController];
         }
-        controller = _persistenceController;
+        controller = self->_persistenceController;
     });
     return controller;
 }
@@ -298,10 +298,10 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 - (PFInstallationIdentifierStore *)installationIdentifierStore {
     __block PFInstallationIdentifierStore *store = nil;
     dispatch_sync(_installationIdentifierStoreAccessQueue, ^{
-        if (!_installationIdentifierStore) {
-            _installationIdentifierStore = [[PFInstallationIdentifierStore alloc] initWithDataSource:self];
+        if (!self->_installationIdentifierStore) {
+            self->_installationIdentifierStore = [[PFInstallationIdentifierStore alloc] initWithDataSource:self];
         }
-        store = _installationIdentifierStore;
+        store = self->_installationIdentifierStore;
     });
     return store;
 }
@@ -316,14 +316,14 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 - (id<PFCommandRunning>)commandRunner {
     __block id<PFCommandRunning> runner = nil;
     dispatch_sync(_commandRunnerAccessQueue, ^{
-        if (!_commandRunner) {
-            _commandRunner = [PFURLSessionCommandRunner commandRunnerWithDataSource:self
-                                                                      retryAttempts:self.configuration.networkRetryAttempts
-                                                                      applicationId:self.configuration.applicationId
-                                                                          clientKey:self.configuration.clientKey
-                                                                          serverURL:[NSURL URLWithString:self.configuration.server]];
+        if (!self->_commandRunner) {
+            self->_commandRunner = [PFURLSessionCommandRunner commandRunnerWithDataSource:self
+                                                                          retryAttempts:self.configuration.networkRetryAttempts
+                                                                          applicationId:self.configuration.applicationId
+                                                                              clientKey:self.configuration.clientKey
+                                                                              serverURL:[NSURL URLWithString:self.configuration.server]];
         }
-        runner = _commandRunner;
+        runner = self->_commandRunner;
     });
     return runner;
 }
@@ -333,11 +333,11 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 - (PFKeyValueCache *)keyValueCache {
     __block PFKeyValueCache *cache = nil;
     dispatch_sync(_keyValueCacheAccessQueue, ^{
-        if (!_keyValueCache) {
+        if (!self->_keyValueCache) {
             NSString *path = [self.fileManager parseCacheItemPathForPathComponent:@"../ParseKeyValueCache/"];
-            _keyValueCache = [[PFKeyValueCache alloc] initWithCacheDirectoryPath:path];
+            self->_keyValueCache = [[PFKeyValueCache alloc] initWithCacheDirectoryPath:path];
         }
-        cache = _keyValueCache;
+        cache = self->_keyValueCache;
     });
     return cache;
 }
@@ -347,17 +347,17 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 - (PFCoreManager *)coreManager {
     __block PFCoreManager *manager = nil;
     dispatch_sync(_coreManagerAccessQueue, ^{
-        if (!_coreManager) {
-            _coreManager = [PFCoreManager managerWithDataSource:self];
+        if (!self->_coreManager) {
+            self->_coreManager = [PFCoreManager managerWithDataSource:self];
         }
-        manager = _coreManager;
+        manager = self->_coreManager;
     });
     return manager;
 }
 
 - (void)unloadCoreManager {
     dispatch_sync(_coreManagerAccessQueue, ^{
-        _coreManager = nil;
+        self->_coreManager = nil;
     });
 }
 
@@ -368,17 +368,17 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 - (PFPushManager *)pushManager {
     __block PFPushManager *manager = nil;
     dispatch_sync(_pushManagerAccessQueue, ^{
-        if (!_pushManager) {
-            _pushManager = [PFPushManager managerWithCommonDataSource:self coreDataSource:self.coreManager];
+        if (!self->_pushManager) {
+            self->_pushManager = [PFPushManager managerWithCommonDataSource:self coreDataSource:self.coreManager];
         }
-        manager = _pushManager;
+        manager = self->_pushManager;
     });
     return manager;
 }
 
 - (void)setPushManager:(PFPushManager *)pushManager {
     dispatch_sync(_pushManagerAccessQueue, ^{
-        _pushManager = pushManager;
+        self->_pushManager = pushManager;
     });
 }
 
@@ -389,18 +389,18 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 - (PFAnalyticsController *)analyticsController {
     __block PFAnalyticsController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_analyticsController) {
-            _analyticsController = [[PFAnalyticsController alloc] initWithDataSource:self];
+        if (!self->_analyticsController) {
+            self->_analyticsController = [[PFAnalyticsController alloc] initWithDataSource:self];
         }
-        controller = _analyticsController;
+        controller = self->_analyticsController;
     });
     return controller;
 }
 
 - (void)setAnalyticsController:(PFAnalyticsController *)analyticsController {
     dispatch_sync(_controllerAccessQueue, ^{
-        if (_analyticsController != analyticsController) {
-            _analyticsController = analyticsController;
+        if (self->_analyticsController != analyticsController) {
+            self->_analyticsController = analyticsController;
         }
     });
 }
@@ -412,17 +412,17 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 - (PFPurchaseController *)purchaseController {
     __block PFPurchaseController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_purchaseController) {
-            _purchaseController = [PFPurchaseController controllerWithDataSource:self bundle:[NSBundle mainBundle]];
+        if (!self->_purchaseController) {
+            self->_purchaseController = [PFPurchaseController controllerWithDataSource:self bundle:[NSBundle mainBundle]];
         }
-        controller = _purchaseController;
+        controller = self->_purchaseController;
     });
     return controller;
 }
 
 - (void)setPurchaseController:(PFPurchaseController *)purchaseController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _purchaseController = purchaseController;
+        self->_purchaseController = purchaseController;
     });
 }
 

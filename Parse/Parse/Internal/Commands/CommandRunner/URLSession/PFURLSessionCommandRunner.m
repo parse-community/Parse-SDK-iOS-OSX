@@ -152,7 +152,7 @@
         BOOL success = [command resolveLocalIds:&error];
         PFPreconditionReturnFailedTask(success, error);
         return [[self.requestConstructor getDataURLRequestAsyncForCommand:command] continueWithSuccessBlock:^id(BFTask <NSURLRequest *>*task) {
-            return [_session performDataURLRequestAsync:task.result forCommand:command cancellationToken:cancellationToken];
+            return [self->_session performDataURLRequestAsync:task.result forCommand:command cancellationToken:cancellationToken];
         }];
     } withOptions:options cancellationToken:cancellationToken];
 }
@@ -177,7 +177,7 @@
         return [[self.requestConstructor getFileUploadURLRequestAsyncForCommand:command
                                                                 withContentType:contentType
                                                           contentSourceFilePath:sourceFilePath] continueWithSuccessBlock:^id(BFTask<NSURLRequest *> *task) {
-            return [_session performFileUploadURLRequestAsync:task.result
+            return [self->_session performFileUploadURLRequestAsync:task.result
                                                    forCommand:command
                                     withContentSourceFilePath:sourceFilePath
                                             cancellationToken:cancellationToken
@@ -192,7 +192,7 @@
                                                         progressBlock:(nullable PFProgressBlock)progressBlock {
     return [self _performCommandRunningBlock:^id {
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        return [_session performFileDownloadURLRequestAsync:request
+        return [self->_session performFileDownloadURLRequestAsync:request
                                                toFileAtPath:filePath
                                       withCancellationToken:cancellationToken
                                               progressBlock:progressBlock];
@@ -241,7 +241,7 @@
         if ([task.error.userInfo[@"temporary"] boolValue] && attempts > 1) {
             PFLogError(PFLoggingTagCommon,
                        @"Network connection failed. Making attempt %lu after sleeping for %f seconds.",
-                       (unsigned long)(_retryAttempts - attempts + 1), (double)delay);
+                       (unsigned long)(self->_retryAttempts - attempts + 1), (double)delay);
 
             return [[BFTask taskWithDelay:(int)(delay * 1000)] continueWithBlock:^id(BFTask *task) {
                 return [self _performCommandRunningBlock:block

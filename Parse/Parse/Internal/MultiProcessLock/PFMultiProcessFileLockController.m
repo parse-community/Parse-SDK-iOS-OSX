@@ -52,27 +52,27 @@
 
 - (void)beginLockedContentAccessForFileAtPath:(NSString *)filePath {
     dispatch_barrier_sync(_synchronizationQueue, ^{
-        PFMultiProcessFileLock *fileLock = _locksDictionary[filePath];
+        PFMultiProcessFileLock *fileLock = self->_locksDictionary[filePath];
         if (!fileLock) {
             fileLock = [PFMultiProcessFileLock lockForFileWithPath:filePath];
-            _locksDictionary[filePath] = fileLock;
+            self->_locksDictionary[filePath] = fileLock;
         }
 
         [fileLock lock];
 
-        NSUInteger contentAccess = [_contentAccessDictionary[filePath] unsignedIntegerValue];
-        _contentAccessDictionary[filePath] = @(contentAccess + 1);
+        NSUInteger contentAccess = [self->_contentAccessDictionary[filePath] unsignedIntegerValue];
+        self->_contentAccessDictionary[filePath] = @(contentAccess + 1);
     });
 }
 
 - (void)endLockedContentAccessForFileAtPath:(NSString *)filePath {
     dispatch_barrier_sync(_synchronizationQueue, ^{
-        PFMultiProcessFileLock *fileLock = _locksDictionary[filePath];
+        PFMultiProcessFileLock *fileLock = self->_locksDictionary[filePath];
         [fileLock unlock];
 
-        if (fileLock && [_contentAccessDictionary[filePath] unsignedIntegerValue] == 0) {
-            [_locksDictionary removeObjectForKey:filePath];
-            [_contentAccessDictionary removeObjectForKey:filePath];
+        if (fileLock && [self->_contentAccessDictionary[filePath] unsignedIntegerValue] == 0) {
+            [self->_locksDictionary removeObjectForKey:filePath];
+            [self->_contentAccessDictionary removeObjectForKey:filePath];
         }
     });
 }
@@ -80,7 +80,7 @@
 - (NSUInteger)lockedContentAccessCountForFileAtPath:(NSString *)filePath {
     __block NSUInteger value = 0;
     dispatch_sync(_synchronizationQueue, ^{
-        value = [_contentAccessDictionary[filePath] unsignedIntegerValue];
+        value = [self->_contentAccessDictionary[filePath] unsignedIntegerValue];
     });
     return value;
 }

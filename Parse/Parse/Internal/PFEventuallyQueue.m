@@ -110,7 +110,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
                 }
 
                 return task;
-            }] continueWithExecutor:_synchronizationExecutor withSuccessBlock:^id(BFTask *task) {
+            }] continueWithExecutor:self->_synchronizationExecutor withSuccessBlock:^id(BFTask *task) {
                 [self _didEnqueueCommand:command withIdentifier:identifier taskCompletionSource:taskCompletionSource];
                 return nil;
             }];
@@ -196,7 +196,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 
 - (void)removeAllCommands {
     dispatch_sync(_synchronizationQueue, ^{
-        [_taskCompletionSources removeAllObjects];
+        [self->_taskCompletionSources removeAllObjects];
     });
 }
 
@@ -236,7 +236,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 
         __block BFTaskCompletionSource *taskCompletionSource = nil;
         dispatch_sync(_synchronizationQueue, ^{
-            taskCompletionSource = _taskCompletionSources[identifier];
+            taskCompletionSource = self->_taskCompletionSources[identifier];
         });
 
         BFTask *resultTask = nil;
@@ -266,8 +266,8 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 
                 __block dispatch_semaphore_t semaphore = NULL;
                 dispatch_sync(_synchronizationQueue, ^{
-                    _retryingSemaphore = dispatch_semaphore_create(0);
-                    semaphore = _retryingSemaphore;
+                    self->_retryingSemaphore = dispatch_semaphore_create(0);
+                    semaphore = self->_retryingSemaphore;
                 });
 
                 dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW,
@@ -275,7 +275,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 
                 long waitResult = dispatch_semaphore_wait(semaphore, timeoutTime);
                 dispatch_sync(_synchronizationQueue, ^{
-                    _retryingSemaphore = NULL;
+                    self->_retryingSemaphore = NULL;
                 });
 
                 if (waitResult == 0) {
@@ -330,7 +330,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     PFConsistencyAssert(resultTask.completed, @"Task should be completed.");
 
     dispatch_sync(_synchronizationQueue, ^{
-        [_taskCompletionSources removeObjectForKey:identifier];
+        [self->_taskCompletionSources removeObjectForKey:identifier];
     });
 
     return resultTask;
@@ -382,12 +382,12 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     @weakify(self);
     BFTaskCompletionSource *barrier = [BFTaskCompletionSource taskCompletionSource];
     dispatch_async(_processingQueue, ^{
-        dispatch_sync(_synchronizationQueue, ^{
+        dispatch_sync(self->_synchronizationQueue, ^{
             @strongify(self);
             if (self.connected != connected) {
-                _connected = connected;
+                self->_connected = connected;
                 if (connected) {
-                    dispatch_source_merge_data(_processingQueueSource, 1);
+                    dispatch_source_merge_data(self->_processingQueueSource, 1);
                 }
             }
         });
@@ -395,8 +395,8 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     });
     if (connected) {
         dispatch_async(_synchronizationQueue, ^{
-            if (_retryingSemaphore) {
-                dispatch_semaphore_signal(_retryingSemaphore);
+            if (self->_retryingSemaphore) {
+                dispatch_semaphore_signal(self->_retryingSemaphore);
             }
         });
     }
@@ -414,7 +414,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
         return toAwait;
     }] continueWithExecutor:_synchronizationExecutor withBlock:^id(BFTask *task) {
         // Remove all state task completion sources
-        [_taskCompletionSources removeAllObjects];
+        [self->_taskCompletionSources removeAllObjects];
         return nil;
     }] continueWithExecutor:[BFExecutor executorWithDispatchQueue:_processingQueue] withBlock:^id(BFTask *task) {
         // Let all operations in the queue run at least once

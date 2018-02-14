@@ -128,9 +128,9 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
                 return installation;
             }];
         }] continueWithBlock:^id(BFTask *task) {
-            dispatch_barrier_sync(_dataQueue, ^{
-                _currentInstallation = task.result;
-                _currentInstallationMatchesDisk = !task.faulted;
+            dispatch_barrier_sync(self->_dataQueue, ^{
+                self->_currentInstallation = task.result;
+                self->_currentInstallationMatchesDisk = !task.faulted;
             });
             return task;
         }];
@@ -167,9 +167,9 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
     return [_dataTaskQueue enqueue:^BFTask *(BFTask *unused) {
         @strongify(self);
 
-        dispatch_barrier_sync(_dataQueue, ^{
-            _currentInstallation = nil;
-            _currentInstallationMatchesDisk = NO;
+        dispatch_barrier_sync(self->_dataQueue, ^{
+            self->_currentInstallation = nil;
+            self->_currentInstallationMatchesDisk = NO;
         });
 
         NSMutableArray *tasks = [NSMutableArray arrayWithCapacity:2];
@@ -252,15 +252,15 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
 - (PFInstallation *)currentInstallation {
     __block PFInstallation *installation = nil;
     dispatch_sync(_dataQueue, ^{
-        installation = _currentInstallation;
+        installation = self->_currentInstallation;
     });
     return installation;
 }
 
 - (void)setCurrentInstallation:(PFInstallation *)currentInstallation {
     dispatch_barrier_sync(_dataQueue, ^{
-        if (_currentInstallation != currentInstallation) {
-            _currentInstallation = currentInstallation;
+        if (self->_currentInstallation != currentInstallation) {
+            self->_currentInstallation = currentInstallation;
         }
     });
 }
@@ -268,14 +268,14 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
 - (BOOL)currentInstallationMatchesDisk {
     __block BOOL matches = NO;
     dispatch_sync(_dataQueue, ^{
-        matches = _currentInstallationMatchesDisk;
+        matches = self->_currentInstallationMatchesDisk;
     });
     return matches;
 }
 
 - (void)setCurrentInstallationMatchesDisk:(BOOL)currentInstallationMatchesDisk {
     dispatch_barrier_sync(_dataQueue, ^{
-        _currentInstallationMatchesDisk = currentInstallationMatchesDisk;
+        self->_currentInstallationMatchesDisk = currentInstallationMatchesDisk;
     });
 }
 

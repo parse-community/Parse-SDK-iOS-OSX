@@ -47,8 +47,8 @@
 totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
     int progress = (int)round(totalBytesSent / (double)totalBytesExpectedToSend * 100);
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (_progressBlock) {
-            _progressBlock(progress);
+        if (self->_progressBlock) {
+            self->_progressBlock(progress);
         }
     });
 }

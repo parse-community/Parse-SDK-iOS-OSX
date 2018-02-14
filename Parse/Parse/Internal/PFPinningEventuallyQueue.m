@@ -79,10 +79,10 @@
     _taskQueue = [[PFTaskQueue alloc] init];
 
     dispatch_sync(_synchronizationQueue, ^{
-        _eventuallyPinUUIDQueue = [NSMutableArray array];
-        _uuidToEventuallyPin = [NSMutableDictionary dictionary];
-        _operationSetUUIDToOperationSet = [NSMutableDictionary dictionary];
-        _operationSetUUIDToEventuallyPin = [NSMutableDictionary dictionary];
+        self->_eventuallyPinUUIDQueue = [NSMutableArray array];
+        self->_uuidToEventuallyPin = [NSMutableDictionary dictionary];
+        self->_operationSetUUIDToOperationSet = [NSMutableDictionary dictionary];
+        self->_operationSetUUIDToEventuallyPin = [NSMutableDictionary dictionary];
     });
 
     // Populate Eventually Pin to make sure we pre-loaded any existing data.
@@ -116,20 +116,20 @@
     [removeTask waitForResult:nil];
     // Clear in-memory data
     dispatch_sync(_synchronizationQueue, ^{
-        [_eventuallyPinUUIDQueue removeAllObjects];
-        [_uuidToEventuallyPin removeAllObjects];
-        [_operationSetUUIDToEventuallyPin removeAllObjects];
-        [_operationSetUUIDToOperationSet removeAllObjects];
+        [self->_eventuallyPinUUIDQueue removeAllObjects];
+        [self->_uuidToEventuallyPin removeAllObjects];
+        [self->_operationSetUUIDToEventuallyPin removeAllObjects];
+        [self->_operationSetUUIDToOperationSet removeAllObjects];
     });
 }
 
 - (void)_simulateReboot {
     [super _simulateReboot];
 
-    [_eventuallyPinUUIDQueue removeAllObjects];
-    [_uuidToEventuallyPin removeAllObjects];
-    [_operationSetUUIDToEventuallyPin removeAllObjects];
-    [_operationSetUUIDToOperationSet removeAllObjects];
+    [self->_eventuallyPinUUIDQueue removeAllObjects];
+    [self->_uuidToEventuallyPin removeAllObjects];
+    [self->_operationSetUUIDToEventuallyPin removeAllObjects];
+    [self->_operationSetUUIDToOperationSet removeAllObjects];
 
     [self _populateEventuallyPinAsync];
 }
@@ -146,11 +146,11 @@
     [[self _populateEventuallyPinAsync] waitForResult:nil];
 
     NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        PFEventuallyPin *pin = _uuidToEventuallyPin[evaluatedObject];
+        PFEventuallyPin *pin = self->_uuidToEventuallyPin[evaluatedObject];
         // Filter out all pins that don't have `operationSet` data ready yet
         // to make sure we send the command with all the changes.
         if (pin.operationSetUUID) {
-            return (_operationSetUUIDToEventuallyPin[pin.operationSetUUID] != nil);
+            return (self->_operationSetUUIDToEventuallyPin[pin.operationSetUUID] != nil);
         }
         return YES;
     }];
@@ -208,9 +208,9 @@
     BFTask *unpinTask = [eventuallyPin unpinInBackgroundWithName:PFEventuallyPinPinName];
     unpinTask = [unpinTask continueWithBlock:^id(BFTask *task) {
         // Remove data from memory.
-        dispatch_sync(_synchronizationQueue, ^{
-            [_uuidToEventuallyPin removeObjectForKey:identifier];
-            [_eventuallyPinUUIDQueue removeObject:identifier];
+        dispatch_sync(self->_synchronizationQueue, ^{
+            [self->_uuidToEventuallyPin removeObjectForKey:identifier];
+            [self->_eventuallyPinUUIDQueue removeObject:identifier];
         });
 
         if (resultTask.cancelled || resultTask.faulted) {
@@ -219,9 +219,9 @@
 
         if (eventuallyPin.operationSetUUID) {
             // Remove only if the operation succeeded
-            dispatch_sync(_synchronizationQueue, ^{
-                [_operationSetUUIDToOperationSet removeObjectForKey:eventuallyPin.operationSetUUID];
-                [_operationSetUUIDToEventuallyPin removeObjectForKey:eventuallyPin.operationSetUUID];
+            dispatch_sync(self->_synchronizationQueue, ^{
+                [self->_operationSetUUIDToOperationSet removeObjectForKey:eventuallyPin.operationSetUUID];
+                [self->_operationSetUUIDToEventuallyPin removeObjectForKey:eventuallyPin.operationSetUUID];
             });
         }
 
@@ -274,11 +274,11 @@
     dispatch_sync(_synchronizationQueue, ^{
         if (operationSet != nil) {
             uuid = operationSet.uuid;
-            _operationSetUUIDToOperationSet[uuid] = operationSet;
+            self->_operationSetUUIDToOperationSet[uuid] = operationSet;
         }
         if (eventuallyPin != nil) {
             uuid = eventuallyPin.operationSetUUID;
-            _operationSetUUIDToEventuallyPin[uuid] = eventuallyPin;
+            self->_operationSetUUIDToEventuallyPin[uuid] = eventuallyPin;
         }
     });
     if (uuid == nil) {
@@ -297,20 +297,20 @@
 - (BFTask *)_populateEventuallyPinAsync {
     return [_taskQueue enqueue:^BFTask *(BFTask *toAwait) {
         return [[toAwait continueWithBlock:^id(BFTask *task) {
-            return [PFEventuallyPin findAllEventuallyPinWithExcludeUUIDs:_eventuallyPinUUIDQueue];
+            return [PFEventuallyPin findAllEventuallyPinWithExcludeUUIDs:self->_eventuallyPinUUIDQueue];
         }] continueWithSuccessBlock:^id(BFTask *task) {
             NSArray *eventuallyPins = task.result;
 
             for (PFEventuallyPin *eventuallyPin in eventuallyPins) {
                 // If it's enqueued already, we don't need to run it again.
-                if ([_eventuallyPinUUIDQueue containsObject:eventuallyPin.operationSetUUID]) {
+                if ([self->_eventuallyPinUUIDQueue containsObject:eventuallyPin.operationSetUUID]) {
                     continue;
                 }
 
                 // Make sure the data is in memory.
-                dispatch_sync(_synchronizationQueue, ^{
-                    [_eventuallyPinUUIDQueue addObject:eventuallyPin.uuid];
-                    _uuidToEventuallyPin[eventuallyPin.uuid] = eventuallyPin;
+                dispatch_sync(self->_synchronizationQueue, ^{
+                    [self->_eventuallyPinUUIDQueue addObject:eventuallyPin.uuid];
+                    self->_uuidToEventuallyPin[eventuallyPin.uuid] = eventuallyPin;
                 });
 
                 // For now we don't care whether this will fail or not.

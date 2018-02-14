@@ -54,8 +54,8 @@ static NSString *const PFUserDefaultsPersistenceParseKey = @"com.parse";
 
 - (BFTask<id<PFPersistenceGroup>> *)getPersistenceGroupAsync {
     return [_dataQueue enqueue:^id(BFTask *task) {
-        if (_persistenceGroup) {
-            return _persistenceGroup;
+        if (self->_persistenceGroup) {
+            return self->_persistenceGroup;
         }
         return [self _loadPersistenceGroup];
     }];
@@ -74,9 +74,9 @@ static NSString *const PFUserDefaultsPersistenceParseKey = @"com.parse";
 #endif
     }] continueWithSuccessBlock:^id(BFTask<id<PFPersistenceGroup>> *task) {
         id<PFPersistenceGroup> group = task.result;
-        return [_groupValidationHandler(group) continueWithSuccessBlock:^id(BFTask *_) {
-            _persistenceGroup = group;
-            return _persistenceGroup;
+        return [self->_groupValidationHandler(group) continueWithSuccessBlock:^id(BFTask *_) {
+            self->_persistenceGroup = group;
+            return self->_persistenceGroup;
         }];
     }];
 }
@@ -94,7 +94,7 @@ static NSString *const PFUserDefaultsPersistenceParseKey = @"com.parse";
     }] continueWithSuccessBlock:^id(BFTask *task) {
         NSString *storagePath = task.result;
         PFFilePersistenceGroupOptions options = 0;
-        if (_applicationGroupIdentifier) {
+        if (self->_applicationGroupIdentifier) {
             options |= PFFilePersistenceGroupOptionUseFileLocks;
         }
         return [[PFFilePersistenceGroup alloc] initWithStorageDirectoryPath:storagePath options:options];

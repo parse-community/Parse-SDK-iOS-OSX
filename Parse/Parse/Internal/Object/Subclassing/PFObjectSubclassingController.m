@@ -113,7 +113,7 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
 - (Class<PFSubclassing>)subclassForParseClassName:(NSString *)parseClassName {
     __block Class result = nil;
     pf_sync_with_throw(_registeredSubclassesAccessQueue, ^{
-        result = [_registeredSubclasses[parseClassName] subclass];
+        result = [self->_registeredSubclasses[parseClassName] subclass];
     });
     return result;
 }
@@ -146,7 +146,7 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
 - (void)unregisterSubclass:(Class<PFSubclassing>)class {
     pf_sync_with_throw(_registeredSubclassesAccessQueue, ^{
         NSString *parseClassName = [class parseClassName];
-        Class registeredClass = [_registeredSubclasses[parseClassName] subclass];
+        Class registeredClass = [self->_registeredSubclasses[parseClassName] subclass];
 
         // Make it a no-op if the class itself is not registered or
         // if there is another class registered under the same name.
@@ -155,7 +155,7 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
             return;
         }
 
-        [_registeredSubclasses removeObjectForKey:parseClassName];
+        [self->_registeredSubclasses removeObjectForKey:parseClassName];
     });
 }
 
@@ -268,13 +268,13 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
     __block PFObjectSubclassInfo *result = nil;
     pf_sync_with_throw(_registeredSubclassesAccessQueue, ^{
         if (class_respondsToSelector(object_getClass(kls), @selector(parseClassName))) {
-            result = _registeredSubclasses[[kls parseClassName]];
+            result = self->_registeredSubclasses[[kls parseClassName]];
         }
 
         // TODO: (nlutsenko, richardross) Don't let unregistered subclasses have dynamic property resolution.
         if (!result) {
             result = [PFObjectSubclassInfo subclassInfoWithSubclass:kls];
-            _unregisteredSubclasses[NSStringFromClass(kls)] = result;
+            self->_unregisteredSubclasses[NSStringFromClass(kls)] = result;
         }
     });
     return result;

@@ -95,7 +95,7 @@
             [relation _addKnownObject:object];
         }
 
-        return [[_offlineStore updateDataForObjectAsync:parentObject] continueWithBlock:^id(BFTask *task) {
+        return [[self->_offlineStore updateDataForObjectAsync:parentObject] continueWithBlock:^id(BFTask *task) {
             // Roll-forward the result of find task instead of a result of update task.
             return fetchTask;
         } cancellationToken:cancellationToken];
@@ -121,7 +121,7 @@
         return nil;
     }] continueWithSuccessBlock:^id(BFTask *task) {
         PFPin *pin = task.result;
-        return [_offlineStore findAsyncForQueryState:queryState user:user pin:pin];
+        return [self->_offlineStore findAsyncForQueryState:queryState user:user pin:pin];
     } cancellationToken:cancellationToken];
 }
 
@@ -158,7 +158,7 @@
         return nil;
     }] continueWithSuccessBlock:^id(BFTask *task) {
         PFPin *pin = task.result;
-        return [_offlineStore countAsyncForQueryState:queryState user:user pin:pin];
+        return [self->_offlineStore countAsyncForQueryState:queryState user:user pin:pin];
     } cancellationToken:cancellationToken];
 }
 

@@ -98,9 +98,9 @@
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         __block BOOL matchesDisk = NO;
         __block PFUser *currentUser = nil;
-        dispatch_sync(_dataQueue, ^{
-            matchesDisk = _currentUserMatchesDisk;
-            currentUser = _currentUser;
+        dispatch_sync(self->_dataQueue, ^{
+            matchesDisk = self->_currentUserMatchesDisk;
+            currentUser = self->_currentUser;
         });
         if (currentUser) {
             return currentUser;
@@ -123,9 +123,9 @@
             }
             return user;
         }] continueWithBlock:^id(BFTask *task) {
-            dispatch_barrier_sync(_dataQueue, ^{
-                _currentUser = task.result;
-                _currentUserMatchesDisk = !task.faulted;
+            dispatch_barrier_sync(self->_dataQueue, ^{
+                self->_currentUser = task.result;
+                self->_currentUserMatchesDisk = !task.faulted;
             });
             return task;
         }] continueWithBlock:^id(BFTask *task) {
@@ -141,8 +141,8 @@
 - (BFTask *)_saveCurrentUserAsync:(PFUser *)user {
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         __block PFUser *currentUser = nil;
-        dispatch_sync(_dataQueue, ^{
-            currentUser = _currentUser;
+        dispatch_sync(self->_dataQueue, ^{
+            currentUser = self->_currentUser;
         });
 
         BFTask *task = [BFTask taskWithResult:nil];
@@ -159,9 +159,9 @@
             }
             return [self _saveCurrentUserToDiskAsync:user];
         }] continueWithBlock:^id(BFTask *task) {
-            dispatch_barrier_sync(_dataQueue, ^{
-                _currentUser = user;
-                _currentUserMatchesDisk = !task.faulted && !task.cancelled;
+            dispatch_barrier_sync(self->_dataQueue, ^{
+                self->_currentUser = user;
+                self->_currentUserMatchesDisk = !task.faulted && !task.cancelled;
             });
             return user;
         }];
@@ -192,9 +192,9 @@
             [self _deleteSensitiveUserDataFromKeychainWithItemName:PFUserCurrentUserFileName];
 
             BFTask *logoutTask = [[BFTask taskForCompletionOfAllTasks:@[ fileTask, unpinTask ]] continueWithBlock:^id(BFTask *task) {
-                dispatch_barrier_sync(_dataQueue, ^{
-                    _currentUser = nil;
-                    _currentUserMatchesDisk = YES;
+                dispatch_barrier_sync(self->_dataQueue, ^{
+                    self->_currentUser = nil;
+                    self->_currentUserMatchesDisk = YES;
                 });
                 return nil;
             }];
@@ -347,9 +347,9 @@
             return [[self _saveCurrentUserAsync:user] continueWithSuccessResult:user];
         }
 
-        dispatch_barrier_sync(_dataQueue, ^{
-            _currentUser = user;
-            _currentUserMatchesDisk = YES;
+        dispatch_barrier_sync(self->_dataQueue, ^{
+            self->_currentUser = user;
+            self->_currentUserMatchesDisk = YES;
         });
         return user;
     }];

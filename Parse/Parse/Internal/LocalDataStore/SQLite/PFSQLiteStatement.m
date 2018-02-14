@@ -31,12 +31,12 @@
 
 - (BOOL)close {
     return PFThreadSafetyPerform(_databaseQueue, ^BOOL{
-        if (!_sqliteStatement) {
+        if (!self->_sqliteStatement) {
             return YES;
         }
 
-        int resultCode = sqlite3_finalize(_sqliteStatement);
-        _sqliteStatement = NULL;
+        int resultCode = sqlite3_finalize(self->_sqliteStatement);
+        self->_sqliteStatement = NULL;
 
         return (resultCode == SQLITE_OK || resultCode == SQLITE_DONE);
     });
@@ -44,11 +44,11 @@
 
 - (BOOL)reset {
     return PFThreadSafetyPerform(_databaseQueue, ^BOOL{
-        if (!_sqliteStatement) {
+        if (!self->_sqliteStatement) {
             return YES;
         }
 
-        int resultCode = sqlite3_reset(_sqliteStatement);
+        int resultCode = sqlite3_reset(self->_sqliteStatement);
         return (resultCode == SQLITE_OK || resultCode == SQLITE_DONE);
     });
 }

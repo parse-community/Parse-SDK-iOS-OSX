@@ -77,10 +77,10 @@
 - (PFCurrentConfigController *)currentConfigController {
     __block PFCurrentConfigController *controller = nil;
     dispatch_sync(_dataAccessQueue, ^{
-        if (!_currentConfigController) {
-            _currentConfigController = [[PFCurrentConfigController alloc] initWithDataSource:self.dataSource];
+        if (!self->_currentConfigController) {
+            self->_currentConfigController = [[PFCurrentConfigController alloc] initWithDataSource:self.dataSource];
         }
-        controller = _currentConfigController;
+        controller = self->_currentConfigController;
     });
     return controller;
 }

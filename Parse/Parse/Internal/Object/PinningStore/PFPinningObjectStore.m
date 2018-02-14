@@ -54,7 +54,7 @@
 - (BFTask<PFPin *> *)fetchPinAsyncWithName:(NSString *)name {
     @weakify(self);
     return [BFTask taskFromExecutor:_pinCacheAccessExecutor withBlock:^id{
-        BFTask *cachedTask = [_pinCacheTable objectForKey:name] ?: [BFTask taskWithResult:nil];
+        BFTask *cachedTask = [self->_pinCacheTable objectForKey:name] ?: [BFTask taskWithResult:nil];
         // We need to call directly to OfflineStore since we don't want/need a user to query for ParsePins
         cachedTask = [cachedTask continueWithBlock:^id(BFTask *task) {
             @strongify(self);
@@ -70,7 +70,7 @@
             }];
         }];
         // Put the task back into the cache.
-        [_pinCacheTable setObject:cachedTask forKey:name];
+        [self->_pinCacheTable setObject:cachedTask forKey:name];
         return cachedTask;
     }];
 }

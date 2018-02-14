@@ -125,7 +125,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 - (void)addListener:(id<PFReachabilityListener>)listener {
     PFWeakValue *value = [PFWeakValue valueWithWeakObject:listener];
     dispatch_barrier_sync(_synchronizationQueue, ^{
-        [_listenersArray addObject:value];
+        [self->_listenersArray addObject:value];
     });
 }
 
@@ -133,7 +133,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
     @weakify(listener);
     dispatch_barrier_sync(_synchronizationQueue, ^{
         @strongify(listener);
-        [_listenersArray filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        [self->_listenersArray filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
             id weakObject = [evaluatedObject weakObject];
             return !(weakObject == nil || weakObject == listener);
         }]];
@@ -142,7 +142,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 
 - (void)removeAllListeners {
     dispatch_barrier_sync(_synchronizationQueue, ^{
-        [_listenersArray removeAllObjects];
+        [self->_listenersArray removeAllObjects];
     });
 }
 
@@ -150,13 +150,13 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
     @weakify(self);
     dispatch_async(_synchronizationQueue, ^{
         @strongify(self);
-        PFReachabilityState state = [[self class] _reachabilityStateForFlags:_flags];
-        for (PFWeakValue *value in _listenersArray) {
+        PFReachabilityState state = [[self class] _reachabilityStateForFlags:self->_flags];
+        for (PFWeakValue *value in self->_listenersArray) {
             [value.weakObject reachability:self didChangeReachabilityState:state];
         }
 
-        dispatch_barrier_async(_synchronizationQueue, ^{
-            [_listenersArray filterUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.weakObject != nil"]];
+        dispatch_barrier_async(self->_synchronizationQueue, ^{
+            [self->_listenersArray filterUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.weakObject != nil"]];
         });
     });
 }
@@ -167,7 +167,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 
 - (void)setFlags:(SCNetworkReachabilityFlags)flags {
     dispatch_barrier_async(_synchronizationQueue, ^{
-        _flags = flags;
+        self->_flags = flags;
         [self _notifyAllListeners];
     });
 }
@@ -175,7 +175,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 - (SCNetworkReachabilityFlags)flags {
     __block SCNetworkReachabilityFlags flags;
     dispatch_sync(_synchronizationQueue, ^{
-        flags = _flags;
+        flags = self->_flags;
     });
     return flags;
 }
@@ -190,17 +190,17 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 
 - (void)_startMonitoringReachabilityWithURL:(NSURL *)url {
     dispatch_barrier_async(_synchronizationQueue, ^{
-        _networkReachability = SCNetworkReachabilityCreateWithName(NULL, url.host.UTF8String);
-        if (_networkReachability != NULL) {
+        self->_networkReachability = SCNetworkReachabilityCreateWithName(NULL, url.host.UTF8String);
+        if (self->_networkReachability != NULL) {
             // Set the initial flags
             SCNetworkReachabilityFlags flags;
-            SCNetworkReachabilityGetFlags(_networkReachability, &flags);
+            SCNetworkReachabilityGetFlags(self->_networkReachability, &flags);
             self.flags = flags;
 
             // Set up notification for changes in reachability.
             SCNetworkReachabilityContext context = {0, (__bridge void *)(self), NULL, NULL, NULL};
-            if (SCNetworkReachabilitySetCallback(_networkReachability, _reachabilityCallback, &context)) {
-                if (!SCNetworkReachabilitySetDispatchQueue(_networkReachability, _synchronizationQueue)) {
+            if (SCNetworkReachabilitySetCallback(self->_networkReachability, _reachabilityCallback, &context)) {
+                if (!SCNetworkReachabilitySetDispatchQueue(self->_networkReachability, self->_synchronizationQueue)) {
                     PFLogError(PFLoggingTagCommon, @"Unable to start listening for network connectivity status.");
                 }
             }
