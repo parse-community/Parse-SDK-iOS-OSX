@@ -180,7 +180,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                     if (![result next]) {
                         NSDictionary* userInfo = @{@"udid": uuid};
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"non-existent-uuid" object:self userInfo: userInfo];
-                        PFPreconditionFailure(@"Attempted to find non-existent uuid %@. Please report this issue with stack traces and logs.", uuid);
+                        //PFPreconditionFailure(@"Attempted to find non-existent uuid %@. Please report this issue with stack traces and logs.", uuid);
                     }
                     return [result stringForColumnIndex:0];
                 }];
@@ -916,7 +916,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
         if (![result next]) {
             NSDictionary * userInfo = @{@"uuid": uuid};
             [[NSNotificationCenter defaultCenter] postNotificationName:@"non-existent-uuid" object:self userInfo: userInfo];
-            PFPreconditionFailure(@"Attempted to find non-existent uuid %@. Please report this issue with stack traces and logs.", uuid);
+            //PFPreconditionFailure(@"Attempted to find non-existent uuid %@. Please report this issue with stack traces and logs.", uuid);
         }
 
         className = [result stringForColumnIndex:0];
