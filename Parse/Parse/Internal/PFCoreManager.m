@@ -97,10 +97,10 @@
 - (PFLocationManager *)locationManager {
     __block PFLocationManager *manager;
     dispatch_sync(_locationManagerAccessQueue, ^{
-        if (!_locationManager) {
-            _locationManager = [[PFLocationManager alloc] init];
+        if (!self->_locationManager) {
+            self->_locationManager = [[PFLocationManager alloc] init];
         }
-        manager = _locationManager;
+        manager = self->_locationManager;
     });
     return manager;
 }
@@ -112,10 +112,10 @@
 - (PFDefaultACLController *)defaultACLController {
     __block PFDefaultACLController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_defaultACLController) {
-            _defaultACLController = [PFDefaultACLController controllerWithDataSource:self];
+        if (!self->_defaultACLController) {
+            self->_defaultACLController = [PFDefaultACLController controllerWithDataSource:self];
         }
-        controller = _defaultACLController;
+        controller = self->_defaultACLController;
     });
     return controller;
 }
@@ -127,23 +127,23 @@
 - (PFQueryController *)queryController {
     __block PFQueryController *queryController;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_queryController) {
+        if (!self->_queryController) {
             id<PFCoreManagerDataSource> dataSource = self.dataSource;
             if (dataSource.offlineStoreLoaded) {
-                _queryController = [PFOfflineQueryController controllerWithCommonDataSource:dataSource
+                self->_queryController = [PFOfflineQueryController controllerWithCommonDataSource:dataSource
                                                                              coreDataSource:self];
             } else {
-                _queryController = [PFCachedQueryController controllerWithCommonDataSource:dataSource];
+                self->_queryController = [PFCachedQueryController controllerWithCommonDataSource:dataSource];
             }
         }
-        queryController = _queryController;
+        queryController = self->_queryController;
     });
     return queryController;
 }
 
 - (void)setQueryController:(PFQueryController *)queryController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _queryController = queryController;
+        self->_queryController = queryController;
     });
 }
 
@@ -154,17 +154,17 @@
 - (PFFileController *)fileController {
     __block PFFileController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_fileController) {
-            _fileController = [PFFileController controllerWithDataSource:self.dataSource];
+        if (!self->_fileController) {
+            self->_fileController = [PFFileController controllerWithDataSource:self.dataSource];
         }
-        controller = _fileController;
+        controller = self->_fileController;
     });
     return controller;
 }
 
 - (void)setFileController:(PFFileController *)fileController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _fileController = fileController;
+        self->_fileController = fileController;
     });
 }
 
@@ -175,17 +175,17 @@
 - (PFCloudCodeController *)cloudCodeController {
     __block PFCloudCodeController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_cloudCodeController) {
-            _cloudCodeController = [[PFCloudCodeController alloc] initWithDataSource:self.dataSource];
+        if (!self->_cloudCodeController) {
+            self->_cloudCodeController = [[PFCloudCodeController alloc] initWithDataSource:self.dataSource];
         }
-        controller = _cloudCodeController;
+        controller = self->_cloudCodeController;
     });
     return controller;
 }
 
 - (void)setCloudCodeController:(PFCloudCodeController *)cloudCodeController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _cloudCodeController = cloudCodeController;
+        self->_cloudCodeController = cloudCodeController;
     });
 }
 
@@ -196,17 +196,17 @@
 - (PFConfigController *)configController {
     __block PFConfigController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_configController) {
-            _configController = [[PFConfigController alloc] initWithDataSource:self.dataSource];
+        if (!self->_configController) {
+            self->_configController = [[PFConfigController alloc] initWithDataSource:self.dataSource];
         }
-        controller = _configController;
+        controller = self->_configController;
     });
     return controller;
 }
 
 - (void)setConfigController:(PFConfigController *)configController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _configController = configController;
+        self->_configController = configController;
     });
 }
 
@@ -217,22 +217,22 @@
 - (PFObjectController *)objectController {
     __block PFObjectController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_objectController) {
+        if (!self->_objectController) {
             id<PFCoreManagerDataSource> dataSource = self.dataSource;
             if (dataSource.offlineStoreLoaded) {
-                _objectController = [PFOfflineObjectController controllerWithDataSource:dataSource];
+                self->_objectController = [PFOfflineObjectController controllerWithDataSource:dataSource];
             } else {
-                _objectController = [PFObjectController controllerWithDataSource:dataSource];
+                self->_objectController = [PFObjectController controllerWithDataSource:dataSource];
             }
         }
-        controller = _objectController;
+        controller = self->_objectController;
     });
     return controller;
 }
 
 - (void)setObjectController:(PFObjectController *)controller {
     dispatch_sync(_controllerAccessQueue, ^{
-        _objectController = controller;
+        self->_objectController = controller;
     });
 }
 
@@ -243,18 +243,18 @@
 - (PFObjectSubclassingController *)objectSubclassingController {
     __block PFObjectSubclassingController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_objectSubclassingController) {
-            _objectSubclassingController = [[PFObjectSubclassingController alloc] init];
-            [_objectSubclassingController scanForUnregisteredSubclasses:YES];
+        if (!self->_objectSubclassingController) {
+            self->_objectSubclassingController = [[PFObjectSubclassingController alloc] init];
+            [self->_objectSubclassingController scanForUnregisteredSubclasses:YES];
         }
-        controller = _objectSubclassingController;
+        controller = self->_objectSubclassingController;
     });
     return controller;
 }
 
 - (void)setObjectSubclassingController:(PFObjectSubclassingController *)objectSubclassingController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _objectSubclassingController = objectSubclassingController;
+        self->_objectSubclassingController = objectSubclassingController;
     });
 }
 
@@ -265,10 +265,10 @@
 - (PFObjectBatchController *)objectBatchController {
     __block PFObjectBatchController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_objectBatchController) {
-            _objectBatchController = [PFObjectBatchController controllerWithDataSource:self.dataSource];
+        if (!self->_objectBatchController) {
+            self->_objectBatchController = [PFObjectBatchController controllerWithDataSource:self.dataSource];
         }
-        controller = _objectBatchController;
+        controller = self->_objectBatchController;
     });
     return controller;
 }
@@ -280,17 +280,17 @@
 - (PFObjectFilePersistenceController *)objectFilePersistenceController {
     __block PFObjectFilePersistenceController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_objectFilePersistenceController) {
-            _objectFilePersistenceController = [PFObjectFilePersistenceController controllerWithDataSource:self.dataSource];
+        if (!self->_objectFilePersistenceController) {
+            self->_objectFilePersistenceController = [PFObjectFilePersistenceController controllerWithDataSource:self.dataSource];
         }
-        controller = _objectFilePersistenceController;
+        controller = self->_objectFilePersistenceController;
     });
     return controller;
 }
 
 - (void)unloadObjectFilePersistenceController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _objectFilePersistenceController = nil;
+        self->_objectFilePersistenceController = nil;
     });
 }
 
@@ -301,17 +301,17 @@
 - (PFPinningObjectStore *)pinningObjectStore {
     __block PFPinningObjectStore *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_pinningObjectStore) {
-            _pinningObjectStore = [PFPinningObjectStore storeWithDataSource:self.dataSource];
+        if (!self->_pinningObjectStore) {
+            self->_pinningObjectStore = [PFPinningObjectStore storeWithDataSource:self.dataSource];
         }
-        controller = _pinningObjectStore;
+        controller = self->_pinningObjectStore;
     });
     return controller;
 }
 
 - (void)setPinningObjectStore:(PFPinningObjectStore *)pinningObjectStore {
     dispatch_sync(_controllerAccessQueue, ^{
-        _pinningObjectStore = pinningObjectStore;
+        self->_pinningObjectStore = pinningObjectStore;
     });
 }
 
@@ -324,17 +324,17 @@
     @weakify(self);
     dispatch_sync(_objectLocalIdStoreAccessQueue, ^{
         @strongify(self);
-        if (!_objectLocalIdStore) {
-            _objectLocalIdStore = [[PFObjectLocalIdStore alloc] initWithDataSource:self.dataSource];
+        if (!self->_objectLocalIdStore) {
+            self->_objectLocalIdStore = [[PFObjectLocalIdStore alloc] initWithDataSource:self.dataSource];
         }
-        store = _objectLocalIdStore;
+        store = self->_objectLocalIdStore;
     });
     return store;
 }
 
 - (void)setObjectLocalIdStore:(PFObjectLocalIdStore *)objectLocalIdStore {
     dispatch_sync(_objectLocalIdStoreAccessQueue, ^{
-        _objectLocalIdStore = objectLocalIdStore;
+        self->_objectLocalIdStore = objectLocalIdStore;
     });
 }
 
@@ -345,17 +345,17 @@
 - (PFUserAuthenticationController *)userAuthenticationController {
     __block PFUserAuthenticationController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_userAuthenticationController) {
-            _userAuthenticationController = [PFUserAuthenticationController controllerWithDataSource:self];
+        if (!self->_userAuthenticationController) {
+            self->_userAuthenticationController = [PFUserAuthenticationController controllerWithDataSource:self];
         }
-        controller = _userAuthenticationController;
+        controller = self->_userAuthenticationController;
     });
     return controller;
 }
 
 - (void)setUserAuthenticationController:(PFUserAuthenticationController *)userAuthenticationController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _userAuthenticationController = userAuthenticationController;
+        self->_userAuthenticationController = userAuthenticationController;
     });
 }
 
@@ -366,17 +366,17 @@
 - (PFSessionController *)sessionController {
     __block PFSessionController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_sessionController) {
-            _sessionController = [PFSessionController controllerWithDataSource:self.dataSource];
+        if (!self->_sessionController) {
+            self->_sessionController = [PFSessionController controllerWithDataSource:self.dataSource];
         }
-        controller = _sessionController;
+        controller = self->_sessionController;
     });
     return controller;
 }
 
 - (void)setSessionController:(PFSessionController *)sessionController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _sessionController = sessionController;
+        self->_sessionController = sessionController;
     });
 }
 
@@ -389,23 +389,23 @@
 - (PFCurrentInstallationController *)currentInstallationController {
     __block PFCurrentInstallationController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_currentInstallationController) {
+        if (!self->_currentInstallationController) {
             id<PFCoreManagerDataSource> dataSource = self.dataSource;
             PFCurrentObjectStorageType storageType = (dataSource.offlineStore ?
                                                       PFCurrentObjectStorageTypeOfflineStore :
                                                       PFCurrentObjectStorageTypeFile);
-            _currentInstallationController = [PFCurrentInstallationController controllerWithStorageType:storageType
-                                                                                       commonDataSource:dataSource
-                                                                                         coreDataSource:self];
+            self->_currentInstallationController = [PFCurrentInstallationController controllerWithStorageType:storageType
+                                                                                             commonDataSource:dataSource
+                                                                                               coreDataSource:self];
         }
-        controller = _currentInstallationController;
+        controller = self->_currentInstallationController;
     });
     return controller;
 }
 
 - (void)setCurrentInstallationController:(PFCurrentInstallationController *)controller {
     dispatch_sync(_controllerAccessQueue, ^{
-        _currentInstallationController = controller;
+        self->_currentInstallationController = controller;
     });
 }
 
@@ -418,23 +418,23 @@
 - (PFCurrentUserController *)currentUserController {
     __block PFCurrentUserController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_currentUserController) {
+        if (!self->_currentUserController) {
             id<PFCoreManagerDataSource> dataSource = self.dataSource;
             PFCurrentObjectStorageType storageType = (dataSource.offlineStore ?
                                                       PFCurrentObjectStorageTypeOfflineStore :
                                                       PFCurrentObjectStorageTypeFile);
-            _currentUserController = [PFCurrentUserController controllerWithStorageType:storageType
-                                                                       commonDataSource:dataSource
-                                                                         coreDataSource:self];
+            self->_currentUserController = [PFCurrentUserController controllerWithStorageType:storageType
+                                                                           commonDataSource:dataSource
+                                                                             coreDataSource:self];
         }
-        controller = _currentUserController;
+        controller = self->_currentUserController;
     });
     return controller;
 }
 
 - (void)setCurrentUserController:(PFCurrentUserController *)currentUserController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _currentUserController = currentUserController;
+        self->_currentUserController = currentUserController;
     });
 }
 
@@ -447,17 +447,17 @@
 - (PFInstallationController *)installationController {
     __block PFInstallationController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_installationController) {
-            _installationController = [PFInstallationController controllerWithDataSource:self];
+        if (!self->_installationController) {
+            self->_installationController = [PFInstallationController controllerWithDataSource:self];
         }
-        controller = _installationController;
+        controller = self->_installationController;
     });
     return controller;
 }
 
 - (void)setInstallationController:(PFInstallationController *)installationController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _installationController = installationController;
+        self->_installationController = installationController;
     });
 }
 
@@ -470,18 +470,18 @@
 - (PFUserController *)userController {
     __block PFUserController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_userController) {
-            _userController = [PFUserController controllerWithCommonDataSource:self.dataSource
-                                                                coreDataSource:self];
+        if (!self->_userController) {
+            self->_userController = [PFUserController controllerWithCommonDataSource:self.dataSource
+                                                                      coreDataSource:self];
         }
-        controller = _userController;
+        controller = self->_userController;
     });
     return controller;
 }
 
 - (void)setUserController:(PFUserController *)userController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _userController = userController;
+        self->_userController = userController;
     });
 }
 

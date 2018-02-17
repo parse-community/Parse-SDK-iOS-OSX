@@ -182,7 +182,7 @@
                 NSString *key = [NSString stringWithUTF8String:sqlite3_column_name(self.statement.sqliteStatement, i)];
                 mutableColumnNameToIndexMap[key.lowercaseString] = @(i);
             }
-            _columnNameToIndexMap = mutableColumnNameToIndexMap;
+            self->_columnNameToIndexMap = mutableColumnNameToIndexMap;
         });
     }
     return _columnNameToIndexMap;

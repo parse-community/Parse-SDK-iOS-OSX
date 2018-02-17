@@ -58,7 +58,7 @@ static const NSTimeInterval PFMultiProcessLockAttemptsDelay = 0.001;
 - (void)lock {
     dispatch_sync(_synchronizationQueue, ^{
         // Greater than zero means that the lock was already succesfully acquired.
-        if (_fileDescriptor > 0) {
+        if (self->_fileDescriptor > 0) {
             return;
         }
 
@@ -75,12 +75,12 @@ static const NSTimeInterval PFMultiProcessLockAttemptsDelay = 0.001;
 - (void)unlock {
     dispatch_sync(_synchronizationQueue, ^{
         // Only descriptor that is greater than zero is going to be open.
-        if (_fileDescriptor <= 0) {
+        if (self->_fileDescriptor <= 0) {
             return;
         }
 
-        close(_fileDescriptor);
-        _fileDescriptor = 0;
+        close(self->_fileDescriptor);
+        self->_fileDescriptor = 0;
     });
 }
 
@@ -92,9 +92,9 @@ static const NSTimeInterval PFMultiProcessLockAttemptsDelay = 0.001;
     const char *filePath = self.lockFilePath.fileSystemRepresentation;
 
     // Atomically create a lock file if it doesn't exist and acquire the lock.
-    _fileDescriptor = open(filePath, (O_RDWR | O_CREAT | O_EXLOCK),
-                           ((S_IRUSR | S_IWUSR | S_IXUSR) | (S_IRGRP | S_IWGRP | S_IXGRP) | (S_IROTH | S_IWOTH | S_IXOTH)));
-    return (_fileDescriptor > 0);
+    self->_fileDescriptor = open(filePath, (O_RDWR | O_CREAT | O_EXLOCK),
+                                 ((S_IRUSR | S_IWUSR | S_IXUSR) | (S_IRGRP | S_IWGRP | S_IXGRP) | (S_IROTH | S_IWOTH | S_IXOTH)));
+    return (self->_fileDescriptor > 0);
 }
 
 @end

@@ -108,7 +108,7 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
         }
 
         // Check if this database have already been opened before.
-        if (_databaseClosedTaskCompletionSource.task.completed) {
+        if (self->_databaseClosedTaskCompletionSource.task.completed) {
             NSError *error = [self _errorWithErrorCode:PFSQLiteDatabaseDatabaseAlreadyClosed
                                           errorMessage:@"Closed database cannot be reopen."
                                                 domain:PFSQLiteDatabaseErrorPFSQLiteDatabaseDomain];
@@ -146,12 +146,12 @@ int const PFSQLiteDatabaseDatabaseAlreadyClosed = 4;
         if (resultCode == SQLITE_OK) {
 
             self.database = nil;
-            [_databaseClosedTaskCompletionSource setResult:nil];
+            [self->_databaseClosedTaskCompletionSource setResult:nil];
         } else {
             // Returns error
-            [_databaseClosedTaskCompletionSource setError:[self _errorWithErrorCode:resultCode]];
+            [self->_databaseClosedTaskCompletionSource setError:[self _errorWithErrorCode:resultCode]];
         }
-        return _databaseClosedTaskCompletionSource.task;
+        return self->_databaseClosedTaskCompletionSource.task;
     }];
 }
 

@@ -117,7 +117,7 @@ static objc_property_t getAccessorMutatorPair(Class klass, SEL sel, SEL outPair[
 
     // NSMethodSignature can be fairly heavyweight, so let's agressively cache this here.
     dispatch_sync(_dataAccessQueue, ^{
-        result = _knownMethodSignatures[selectorString];
+        result = self->_knownMethodSignatures[selectorString];
         if (result) {
             return;
         }
@@ -143,7 +143,7 @@ static objc_property_t getAccessorMutatorPair(Class klass, SEL sel, SEL outPair[
         NSString *objcTypes = ([NSString stringWithFormat:(isSetter ? @"v@:%@" : @"%@@:"), typeEncoding]);
         result = [NSMethodSignature signatureWithObjCTypes:objcTypes.UTF8String];
 
-        _knownMethodSignatures[selectorString] = result;
+        self->_knownMethodSignatures[selectorString] = result;
     });
 
     return result;

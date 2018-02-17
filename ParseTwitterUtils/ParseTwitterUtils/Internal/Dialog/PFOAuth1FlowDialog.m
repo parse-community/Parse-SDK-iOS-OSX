@@ -357,7 +357,7 @@ static CGFloat PFTFloatRound(CGFloat value, NSRoundingMode mode) {
         __strong typeof(wself) sself = wself;
         [sself _removeObservers];
         [sself removeFromSuperview];
-        [_modalBackgroundView removeFromSuperview];
+        [sself->_modalBackgroundView removeFromSuperview];
     };
 
     if (animated) {

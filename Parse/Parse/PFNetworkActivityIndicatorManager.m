@@ -73,7 +73,7 @@ static NSTimeInterval const PFNetworkActivityIndicatorVisibilityDelay = 0.17;
 
 - (void)setNetworkActivityCount:(NSUInteger)networkActivityCount {
     dispatch_sync(_networkActivityAccessQueue, ^{
-        _networkActivityCount = networkActivityCount;
+        self->_networkActivityCount = networkActivityCount;
     });
     dispatch_async(dispatch_get_main_queue(), ^{
         [self _updateNetworkActivityIndicatorVisibilityAfterDelay];
@@ -83,7 +83,7 @@ static NSTimeInterval const PFNetworkActivityIndicatorVisibilityDelay = 0.17;
 - (NSUInteger)networkActivityCount {
     __block NSUInteger count = 0;
     dispatch_sync(_networkActivityAccessQueue, ^{
-        count = _networkActivityCount;
+        count = self->_networkActivityCount;
     });
     return count;
 }
@@ -98,7 +98,7 @@ static NSTimeInterval const PFNetworkActivityIndicatorVisibilityDelay = 0.17;
 
 - (void)incrementActivityCount {
     dispatch_sync(_networkActivityAccessQueue, ^{
-        _networkActivityCount++;
+        self->_networkActivityCount++;
     });
     dispatch_async(dispatch_get_main_queue(), ^{
         [self _updateNetworkActivityIndicatorVisibilityAfterDelay];
@@ -107,7 +107,7 @@ static NSTimeInterval const PFNetworkActivityIndicatorVisibilityDelay = 0.17;
 
 - (void)decrementActivityCount {
     dispatch_sync(_networkActivityAccessQueue, ^{
-        _networkActivityCount = MAX(_networkActivityCount - 1, 0);
+        self->_networkActivityCount = MAX(self->_networkActivityCount - 1, 0);
     });
     dispatch_async(dispatch_get_main_queue(), ^{
         [self _updateNetworkActivityIndicatorVisibilityAfterDelay];

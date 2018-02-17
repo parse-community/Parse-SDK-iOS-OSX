@@ -517,9 +517,9 @@ static BOOL revocableSessionEnabled_;
                     NSArray *oldAnonymousData = currentUser.authData[PFAnonymousUserAuthenticationType];
 
                     // Move the changes to this object over to the currentUser object.
-                    PFOperationSet *selfOperations = operationSetQueue[0];
-                    [operationSetQueue removeAllObjects];
-                    [operationSetQueue addObject:[[PFOperationSet alloc] init]];
+                    PFOperationSet *selfOperations = self->operationSetQueue[0];
+                    [self->operationSetQueue removeAllObjects];
+                    [self->operationSetQueue addObject:[[PFOperationSet alloc] init]];
                     for (NSString *key in selfOperations) {
                         currentUser[key] = selfOperations[key];
                     }
@@ -542,7 +542,7 @@ static BOOL revocableSessionEnabled_;
                             }
 
                             @synchronized(self.lock) {
-                                operationSetQueue[0] = selfOperations;
+                                self->operationSetQueue[0] = selfOperations;
                                 [self rebuildEstimatedData];
                             }
                         }
@@ -883,7 +883,7 @@ static BOOL revocableSessionEnabled_;
                 oldAnonymousData = self.authData[PFAnonymousUserAuthenticationType];
                 [self stripAnonymity];
 
-                dirty = YES;
+                self->dirty = YES;
             }
 
             return [[self saveAsync:nil] continueAsyncWithBlock:^id(BFTask *task) {
@@ -914,7 +914,7 @@ static BOOL revocableSessionEnabled_;
         @synchronized (self.lock) {
             if (self.authData[authType]) {
                 self.authData[authType] = [NSNull null];
-                dirty = YES;
+                self->dirty = YES;
                 return [self saveInBackground];
             }
         }

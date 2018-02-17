@@ -58,7 +58,7 @@
     PFParameterAssert(![self authenticationDelegateForAuthType:authType],
                         @"Authentication delegate already registered for authType `%@`.", authType);
     dispatch_sync(_dataAccessQueue, ^{
-        _authenticationDelegates[authType] = delegate;
+        self->_authenticationDelegates[authType] = delegate;
     });
 
     // TODO: (nlutsenko) Decouple this further.
@@ -74,7 +74,7 @@
         return;
     }
     dispatch_sync(_dataAccessQueue, ^{
-        [_authenticationDelegates removeObjectForKey:authType];
+        [self->_authenticationDelegates removeObjectForKey:authType];
     });
 }
 
@@ -85,7 +85,7 @@
 
     __block id<PFUserAuthenticationDelegate> delegate = nil;
     dispatch_sync(_dataAccessQueue, ^{
-        delegate = _authenticationDelegates[authType];
+        delegate = self->_authenticationDelegates[authType];
     });
     return delegate;
 }

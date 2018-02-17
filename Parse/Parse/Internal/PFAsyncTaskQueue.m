@@ -47,8 +47,8 @@
 - (BFTask *)enqueue:(BFContinuationBlock)block {
     BFTaskCompletionSource *source = [BFTaskCompletionSource taskCompletionSource];
     dispatch_async(_syncQueue, ^{
-        _tail = [_tail continueAsyncWithBlock:block];
-        [_tail continueAsyncWithBlock:^id(BFTask *task) {
+        self->_tail = [self->_tail continueAsyncWithBlock:block];
+        [self->_tail continueAsyncWithBlock:^id(BFTask *task) {
             if (task.faulted) {
                 [source trySetError:task.error];
             } else if (task.cancelled) {

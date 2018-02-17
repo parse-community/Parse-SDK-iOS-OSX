@@ -73,14 +73,14 @@
     __block NSString *string = nil;
     NSTimeInterval interval = date.timeIntervalSince1970;
     dispatch_sync(_synchronizationQueue, ^{
-        sqlite3_bind_double(_dateToStringStatement, 1, interval);
+        sqlite3_bind_double(self->_dateToStringStatement, 1, interval);
 
-        if (sqlite3_step(_dateToStringStatement) == SQLITE_ROW) {
-            const char *sqliteString = (const char *)sqlite3_column_text(_dateToStringStatement, 0);
+        if (sqlite3_step(self->_dateToStringStatement) == SQLITE_ROW) {
+            const char *sqliteString = (const char *)sqlite3_column_text(self->_dateToStringStatement, 0);
             string = [NSString stringWithUTF8String:sqliteString];
         }
 
-        sqlite3_reset(_dateToStringStatement);
+        sqlite3_reset(self->_dateToStringStatement);
     });
     return string;
 }
@@ -95,16 +95,16 @@
     dispatch_sync(_synchronizationQueue, ^{
         const char *utf8String = string.UTF8String;
 
-        sqlite3_bind_text(_stringToDateStatement, 1, utf8String, -1, SQLITE_STATIC);
-        sqlite3_bind_text(_stringToDateStatement, 2, utf8String, -1, SQLITE_STATIC);
+        sqlite3_bind_text(self->_stringToDateStatement, 1, utf8String, -1, SQLITE_STATIC);
+        sqlite3_bind_text(self->_stringToDateStatement, 2, utf8String, -1, SQLITE_STATIC);
 
-        if (sqlite3_step(_stringToDateStatement) == SQLITE_ROW) {
-            interval = sqlite3_column_int64(_stringToDateStatement, 0);
-            seconds = sqlite3_column_double(_stringToDateStatement, 1);
+        if (sqlite3_step(self->_stringToDateStatement) == SQLITE_ROW) {
+            interval = sqlite3_column_int64(self->_stringToDateStatement, 0);
+            seconds = sqlite3_column_double(self->_stringToDateStatement, 1);
         }
 
-        sqlite3_reset(_stringToDateStatement);
-        sqlite3_clear_bindings(_stringToDateStatement);
+        sqlite3_reset(self->_stringToDateStatement);
+        sqlite3_clear_bindings(self->_stringToDateStatement);
     });
     // Extract the fraction component of the seconds
     double sintegral = 0.0;

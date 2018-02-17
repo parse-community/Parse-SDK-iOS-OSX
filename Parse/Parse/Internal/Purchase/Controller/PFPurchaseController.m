@@ -78,10 +78,10 @@
         @strongify(self);
         Class requestClass = self.productsRequestClass ?: [SKProductsRequest class];
         SKProductsRequest *request = [[requestClass alloc] initWithProductIdentifiers:productIdentifiers];
-        _currentProductsRequestHandler = [[PFProductsRequestHandler alloc] initWithProductsRequest:request];
-        return [_currentProductsRequestHandler findProductsAsync];
+        self->_currentProductsRequestHandler = [[PFProductsRequestHandler alloc] initWithProductsRequest:request];
+        return [self->_currentProductsRequestHandler findProductsAsync];
     }] continueWithSuccessBlock:^id(BFTask *task) {
-        _currentProductsRequestHandler = nil;
+        self->_currentProductsRequestHandler = nil;
         return task;
     }];
 }

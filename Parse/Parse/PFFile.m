@@ -413,12 +413,12 @@
 - (BOOL)_stageWithData:(NSData *)data error:(NSError * __autoreleasing *)error {
     __block BOOL result = NO;
     [self _performDataAccessBlock:^{
-        _stagedFilePath = [[[[self class] fileController].fileStagingController stageFileAsyncWithData:data
-                                                                                                  name:self.state.name
-                                                                                              uniqueId:(uintptr_t)self]
+        self->_stagedFilePath = [[[[self class] fileController].fileStagingController stageFileAsyncWithData:data
+                                                                                                        name:self.state.name
+                                                                                                    uniqueId:(uintptr_t)self]
                            waitForResult:error withMainThreadWarning:NO];
 
-        result = (_stagedFilePath != nil);
+        result = (self->_stagedFilePath != nil);
     }];
     return result;
 }
@@ -426,12 +426,12 @@
 - (BOOL)_stageWithPath:(NSString *)path error:(NSError * __autoreleasing *)error {
     __block BOOL result = NO;
     [self _performDataAccessBlock:^{
-        _stagedFilePath = [[[[self class] fileController].fileStagingController stageFileAsyncAtPath:path
-                                                                                                name:self.state.name
-                                                                                            uniqueId:(uintptr_t)self]
+        self->_stagedFilePath = [[[[self class] fileController].fileStagingController stageFileAsyncAtPath:path
+                                                                                                      name:self.state.name
+                                                                                                  uniqueId:(uintptr_t)self]
                            waitForResult:error withMainThreadWarning:NO];
 
-        result = (_stagedFilePath != nil);
+        result = (self->_stagedFilePath != nil);
     }];
     return result;
 }

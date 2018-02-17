@@ -1001,8 +1001,8 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                             // Check if queue already contains this operation set and discard it if does
                             if (![self _containsOperationSet:operationSet]) {
                                 // Insert the `saveEventually` operationSet before the last operation set at all times.
-                                NSUInteger index = (operationSetQueue.count == 0 ? 0 : operationSetQueue.count - 1);
-                                [operationSetQueue insertObject:operationSet atIndex:index];
+                                NSUInteger index = (self->operationSetQueue.count == 0 ? 0 : self->operationSetQueue.count - 1);
+                                [self->operationSetQueue insertObject:operationSet atIndex:index];
                                 [self _enqueueSaveEventuallyOperationAsync:operationSet];
                             }
 
@@ -1031,9 +1031,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                         *stop  = YES;
                         return;
                     }
-                    NSUInteger index = [operationSetQueue indexOfObject:localOperationSet];
+                    NSUInteger index = [self->operationSetQueue indexOfObject:localOperationSet];
                     [remoteOperationSet mergeOperationSet:localOperationSet];
-                    operationSetQueue[index] = remoteOperationSet;
+                    self->operationSetQueue[index] = remoteOperationSet;
                 }
 
                 return;
@@ -1045,11 +1045,11 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 return;
             }
             if ([key isEqualToString:PFObjectIsDeletingEventuallyRESTKey]) {
-                _deletingEventuallyCount = [obj unsignedIntegerValue];
+                self->_deletingEventuallyCount = [obj unsignedIntegerValue];
                 return;
             }
 
-            [_availableKeys addObject:key];
+            [self->_availableKeys addObject:key];
 
             // If server data in dictionary is older - don't merge it.
             if (!mergeServerData) {
@@ -1122,7 +1122,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         return [[toAwait continueAsyncWithBlock:^id(BFTask *task) {
             return [self _validateSaveEventuallyAsync];
         }] continueWithSuccessBlock:^id(BFTask *task) {
-            @synchronized (lock) {
+            @synchronized (self->lock) {
                 [self _objectWillSave];
                 if (![self isDirty:NO]) {
                     return @YES;
@@ -1138,7 +1138,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
             return [saveChildrenTask continueWithSuccessBlock:^id(BFTask *task) {
                 BFTask *saveTask = nil;
-                @synchronized (lock) {
+                @synchronized (self->lock) {
                     // Snapshot the current set of changes, and push a new changeset into the queue.
                     PFOperationSet *changes = [self unsavedChanges];
                     changes.saveEventually = YES;
@@ -1319,7 +1319,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
             NSArray *removedKeys = removedDictionary.allKeys;
             [state removeServerDataObjectsForKeys:removedKeys];
-            [_availableKeys minusSet:[NSSet setWithArray:removedKeys]];
+            [self->_availableKeys minusSet:[NSSet setWithArray:removedKeys]];
         }];
     }
 }
@@ -1415,7 +1415,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }
 
     return [task continueWithBlock:^id(BFTask *task) {
-        @synchronized (lock) {
+        @synchronized (self->lock) {
             if (self.saveDelegate) {
                 [self.saveDelegate invoke:self error:nil];
             }
@@ -1448,7 +1448,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             }
             return nil;
         }] continueWithBlock:^id(BFTask *task) {
-            @synchronized (lock) {
+            @synchronized (self->lock) {
                 if (![self isDirty:YES]) {
                     return @YES;
                 }
@@ -1461,7 +1461,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 [self startSave];
                 BFTask *childrenTask = [self _saveChildrenInBackgroundWithCurrentUser:currentUser
                                                                          sessionToken:sessionToken];
-                if (!dirty && changes.count == 0) {
+                if (!self->dirty && changes.count == 0) {
                     return childrenTask;
                 }
                 return [[childrenTask continueWithSuccessBlock:^id(BFTask *task) {
@@ -1972,8 +1972,8 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         return [[toAwait continueAsyncWithBlock:^id(BFTask *task) {
             return [self _validateDeleteAsync];
         }] continueWithSuccessBlock:^id(BFTask *task) {
-            @synchronized (lock) {
-                _deletingEventuallyCount += 1;
+            @synchronized (self->lock) {
+                self->_deletingEventuallyCount += 1;
 
                 PFOfflineStore *store = [Parse _currentManager].offlineStore;
                 BFTask *updateDataTask = store ? [store updateDataForObjectAsync:self] : [BFTask taskWithResult:nil];

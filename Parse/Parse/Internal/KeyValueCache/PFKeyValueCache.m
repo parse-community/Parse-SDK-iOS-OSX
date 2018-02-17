@@ -178,7 +178,7 @@ static NSString *const PFKeyValueCacheDiskCachePathKey = @"path";
 
     dispatch_sync(_diskCacheQueue, ^{
         // Directory will be automatically recreated the next time 'cacheDir' is accessed.
-        [self.fileManager removeItemAtURL:_cacheDirectoryURL error:NULL];
+        [self.fileManager removeItemAtURL:self->_cacheDirectoryURL error:NULL];
     });
 }
 

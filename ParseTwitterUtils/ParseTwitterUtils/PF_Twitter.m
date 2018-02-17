@@ -422,7 +422,7 @@
             return;
         }
 
-        NSArray *accounts = [_accountStore accountsWithAccountType:twitterType];
+        NSArray *accounts = [self->_accountStore accountsWithAccountType:twitterType];
 
         // No accounts - provide an empty result
         if ([accounts count] == 0) {

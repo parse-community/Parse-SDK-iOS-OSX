@@ -99,8 +99,8 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
         }
 
         __block NSURLSessionDataTask *task = nil;
-        dispatch_sync(_sessionTaskQueue, ^{
-            task = [_urlSession dataTaskWithRequest:request];
+        dispatch_sync(self->_sessionTaskQueue, ^{
+            task = [self->_urlSession dataTaskWithRequest:request];
         });
         PFURLSessionDataTaskDelegate *delegate = [PFURLSessionJSONDataTaskDelegate taskDelegateForDataTask:task
                                                                                      withCancellationToken:cancellationToken];
@@ -125,8 +125,8 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
         }
 
         __block NSURLSessionDataTask *task = nil;
-        dispatch_sync(_sessionTaskQueue, ^{
-            task = [_urlSession uploadTaskWithRequest:request fromFile:[NSURL fileURLWithPath:sourceFilePath]];
+        dispatch_sync(self->_sessionTaskQueue, ^{
+            task = [self->_urlSession uploadTaskWithRequest:request fromFile:[NSURL fileURLWithPath:sourceFilePath]];
         });
         PFURLSessionUploadTaskDelegate *delegate = [PFURLSessionUploadTaskDelegate taskDelegateForDataTask:task
                                                                                      withCancellationToken:cancellationToken
@@ -151,8 +151,8 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
         }
 
         __block NSURLSessionDataTask *task = nil;
-        dispatch_sync(_sessionTaskQueue, ^{
-            task = [_urlSession dataTaskWithRequest:request];
+        dispatch_sync(self->_sessionTaskQueue, ^{
+            task = [self->_urlSession dataTaskWithRequest:request];
         });
         PFURLSessionFileDownloadTaskDelegate *delegate = [PFURLSessionFileDownloadTaskDelegate taskDelegateForDataTask:task
                                                                                                  withCancellationToken:cancellationToken
@@ -194,20 +194,20 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
 - (PFURLSessionDataTaskDelegate *)_taskDelegateForTask:(NSURLSessionTask *)task {
     __block PFURLSessionDataTaskDelegate *delegate = nil;
     dispatch_sync(_delegatesAccessQueue, ^{
-        delegate = _delegatesDictionary[@(task.taskIdentifier)];
+        delegate = self->_delegatesDictionary[@(task.taskIdentifier)];
     });
     return delegate;
 }
 
 - (void)setDelegate:(PFURLSessionDataTaskDelegate *)delegate forDataTask:(NSURLSessionDataTask *)task {
     dispatch_barrier_async(_delegatesAccessQueue, ^{
-        _delegatesDictionary[@(task.taskIdentifier)] = delegate;
+        self->_delegatesDictionary[@(task.taskIdentifier)] = delegate;
     });
 }
 
 - (void)_removeDelegateForTaskWithIdentifier:(NSNumber *)identifier {
     dispatch_barrier_async(_delegatesAccessQueue, ^{
-        [_delegatesDictionary removeObjectForKey:identifier];
+        [self->_delegatesDictionary removeObjectForKey:identifier];
     });
 }
 

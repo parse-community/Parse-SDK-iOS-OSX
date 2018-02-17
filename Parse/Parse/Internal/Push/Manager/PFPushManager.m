@@ -53,17 +53,17 @@
 - (PFPushController *)pushController {
     __block PFPushController *controller;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_pushController) {
-            _pushController = [PFPushController controllerWithCommandRunner:self.commonDataSource.commandRunner];
+        if (!self->_pushController) {
+            self->_pushController = [PFPushController controllerWithCommandRunner:self.commonDataSource.commandRunner];
         }
-        controller = _pushController;
+        controller = self->_pushController;
     });
     return controller;
 }
 
 - (void)setPushController:(PFPushController *)pushController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _pushController = pushController;
+        self->_pushController = pushController;
     });
 }
 
@@ -74,17 +74,17 @@
 - (PFPushChannelsController *)channelsController {
     __block PFPushChannelsController *controller;
     dispatch_sync(_controllerAccessQueue, ^{
-        if (!_channelsController) {
-            _channelsController = [PFPushChannelsController controllerWithDataSource:self.coreDataSource];
+        if (!self->_channelsController) {
+            self->_channelsController = [PFPushChannelsController controllerWithDataSource:self.coreDataSource];
         }
-        controller = _channelsController;
+        controller = self->_channelsController;
     });
     return controller;
 }
 
 - (void)setChannelsController:(PFPushChannelsController *)channelsController {
     dispatch_sync(_controllerAccessQueue, ^{
-        _channelsController = channelsController;
+        self->_channelsController = channelsController;
     });
 }
 

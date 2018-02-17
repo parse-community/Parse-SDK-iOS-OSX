@@ -71,10 +71,10 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
 - (PFFileStagingController *)fileStagingController {
     __block PFFileStagingController *result = nil;
     dispatch_sync(_fileStagingControllerAccessQueue, ^{
-        if (!_fileStagingController) {
-            _fileStagingController = [PFFileStagingController controllerWithDataSource:self.dataSource];
+        if (!self->_fileStagingController) {
+            self->_fileStagingController = [PFFileStagingController controllerWithDataSource:self.dataSource];
         }
-        result = _fileStagingController;
+        result = self->_fileStagingController;
     });
     return result;
 }
@@ -119,14 +119,14 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
                     return task;
                 }];
             }] continueWithBlock:^id(BFTask *task) {
-                dispatch_barrier_async(_downloadDataAccessQueue, ^{
-                    [_downloadTasks removeObjectForKey:fileState.secureURLString];
-                    [_downloadProgressBlocks removeObjectForKey:fileState.secureURLString];
+                dispatch_barrier_async(self->_downloadDataAccessQueue, ^{
+                    [self->_downloadTasks removeObjectForKey:fileState.secureURLString];
+                    [self->_downloadProgressBlocks removeObjectForKey:fileState.secureURLString];
                 });
                 return task;
             }];
-            dispatch_barrier_async(_downloadDataAccessQueue, ^{
-                _downloadTasks[fileState.secureURLString] = resultTask;
+            dispatch_barrier_async(self->_downloadDataAccessQueue, ^{
+                self->_downloadTasks[fileState.secureURLString] = resultTask;
             });
         }
         return resultTask;
@@ -158,8 +158,8 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
 
 - (BFTask *)_fileDownloadResultTaskForFileWithState:(PFFileState *)state {
     __block BFTask *resultTask = nil;
-    dispatch_sync(_downloadDataAccessQueue, ^{
-        resultTask = _downloadTasks[state.secureURLString];
+    dispatch_sync(self->_downloadDataAccessQueue, ^{
+        resultTask = self->_downloadTasks[state.secureURLString];
     });
     return resultTask;
 }
@@ -168,8 +168,8 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
     return ^(int progress) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             __block NSArray *blocks = nil;
-            dispatch_sync(_downloadDataAccessQueue, ^{
-                blocks = [_downloadProgressBlocks[fileState.secureURLString] copy];
+            dispatch_sync(self->_downloadDataAccessQueue, ^{
+                blocks = [self->_downloadProgressBlocks[fileState.secureURLString] copy];
             });
             if (blocks.count != 0) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -187,11 +187,11 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
         return;
     }
 
-    dispatch_barrier_async(_downloadDataAccessQueue, ^{
-        NSMutableArray *progressBlocks = _downloadProgressBlocks[state.secureURLString];
+    dispatch_barrier_async(self->_downloadDataAccessQueue, ^{
+        NSMutableArray *progressBlocks = self->_downloadProgressBlocks[state.secureURLString];
         if (!progressBlocks) {
             progressBlocks = [NSMutableArray arrayWithObject:block];
-            _downloadProgressBlocks[state.secureURLString] = progressBlocks;
+            self->_downloadProgressBlocks[state.secureURLString] = progressBlocks;
         } else {
             [progressBlocks addObject:block];
         }
