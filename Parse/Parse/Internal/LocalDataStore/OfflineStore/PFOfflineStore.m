@@ -15,6 +15,7 @@
 #import "PFAssert.h"
 #import "PFDecoder.h"
 #import "PFEncoder.h"
+#import "PFLogging.h"
 #import "PFErrorUtilities.h"
 #import "PFFileManager.h"
 #import "PFJSONSerialization.h"
@@ -1028,14 +1029,22 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     @synchronized(self.lock) {
         // See if there's already an entry for new objectId.
         PFObject *existing = [self.classNameAndObjectIdToObjectMap objectForKey:key];
-        PFConsistencyAssert(existing == nil || existing == object,
-                            @"Attempted to change an objectId to one that's already known to the OfflineStore. className: %@ old: %@, new: %@",
-                            className, oldObjectId, newObjectId);
-
+        if (existing != nil && existing != object) {
+            PFLogError(PFLoggingTagCommon,
+                       @"Attempted to change an objectId to one that's already known to the OfflineStore. className: %@ old: %@, new: %@",
+                       className, oldObjectId, newObjectId);
+            PFLogError(PFLoggingTagCommon,
+                       @"Set a breakpoint on PFOfflineStoreAttemptedToChange() to debug the issue");
+            PFLogError(PFLoggingTagCommon,
+                       @"Starting 1.17.0, the new object will replace the old one, if this is causing unexpected behaviours, please open an issue https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/new");
+            PFOfflineStoreAttemptedToChange();
+        }
         // Okay, all clear to add the new reference.
         [self.classNameAndObjectIdToObjectMap setObject:object forKey:key];
     }
 }
+
+void PFOfflineStoreAttemptedToChange() {}
 
 - (NSString *)_generateKeyForClassName:(NSString *)className
                               objectId:(NSString *)objectId {

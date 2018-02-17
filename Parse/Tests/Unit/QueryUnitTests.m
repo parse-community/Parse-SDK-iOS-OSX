@@ -1413,23 +1413,4 @@
     XCTAssertEqual([queryA hash], [queryB hash]);
 }
 
-- (void)testReproduceIssue1202 {
-    [[Parse _currentManager] clearEventuallyQueue];
-    [Parse _clearCurrentManager];
-    [Parse enableLocalDatastore];
-    [Parse setApplicationId:@"a" clientKey:@"b"];
-    PFObject *objectA = [PFObject objectWithClassName:@"Object" dictionary:@{@"objectId":@"yolo", @"key": @"value"}];
-    objectA.objectId = @"yolo";
-    PFObject *objectB = [PFObject objectWithClassName:@"Object" dictionary:@{@"objectId":@"yolo", @"key": @"value"}];
-    @try {
-        objectB.objectId = @"yolo";
-        XCTFail();
-    }
-    @catch (NSException *e) {
-        XCTAssertEqual(e.name, NSInternalInconsistencyException);
-        XCTAssertEqualObjects(e.reason, @"Attempted to change an objectId to one that's already known to the OfflineStore. className: Object old: (null), new: yolo");
-    }
-}
-
-
 @end
