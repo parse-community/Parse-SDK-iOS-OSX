@@ -49,7 +49,7 @@
 - (NSData *)contentsAtPath:(NSString *)path {
     __block NSData *results = nil;
     dispatch_sync(_queue, ^{
-        results = _fileContents[path];
+        results = self->_fileContents[path];
     });
 
     return results;
@@ -58,13 +58,13 @@
 - (BOOL)createFileAtPath:(NSString *)path contents:(NSData *)data attributes:(NSDictionary *)attributes {
     dispatch_sync(_queue, ^{
         NSMutableDictionary *newAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:_lastReturnedTime++];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:self->_lastReturnedTime++];
 
         newAttributes[NSFileModificationDate] = newAttributes[NSURLContentModificationDateKey] = date;
         newAttributes[NSFileSize] = @([data length]);
 
-        _fileContents[path] = data;
-        [_fileAttributes setObject:newAttributes forKey:path];
+        self->_fileContents[path] = data;
+        [self->_fileAttributes setObject:newAttributes forKey:path];
 
     });
     return YES;
@@ -72,8 +72,8 @@
 
 - (BOOL)removeItemAtURL:(NSURL *)URL error:(NSError **)error {
     dispatch_sync(_queue, ^{
-        [_fileContents removeObjectForKey:URL.path];
-        [_fileAttributes removeObjectForKey:URL.path];
+        [self->_fileContents removeObjectForKey:URL.path];
+        [self->_fileAttributes removeObjectForKey:URL.path];
     });
 
     return YES;
@@ -94,7 +94,7 @@
 - (NSDictionary *)attributesOfItemAtPath:(NSString *)path error:(NSError **)error {
     __block NSDictionary *results = nil;
     dispatch_sync(_queue, ^{
-        results = [_fileAttributes[path] copy];
+        results = [self->_fileAttributes[path] copy];
     });
 
     return results;
@@ -103,11 +103,11 @@
 - (BOOL)setAttributes:(NSDictionary *)attributes ofItemAtPath:(NSString *)path error:(NSError **)error {
     dispatch_sync(_queue, ^{
         NSMutableDictionary *newAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:_lastReturnedTime++];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:self->_lastReturnedTime++];
 
         newAttributes[NSFileModificationDate] = newAttributes[NSURLContentModificationDateKey] = date;
 
-        [_fileAttributes[path] addEntriesFromDictionary:newAttributes];
+        [self->_fileAttributes[path] addEntriesFromDictionary:newAttributes];
     });
 
     return YES;
@@ -131,7 +131,7 @@
     _path = [path copy];
 
     dispatch_sync(_manager->_queue, ^{
-        _enumerator = [manager->_fileContents keyEnumerator];
+        self->_enumerator = [manager->_fileContents keyEnumerator];
     });
 
     return self;
@@ -140,7 +140,7 @@
 - (NSDictionary *)fileAttributes {
     __block NSDictionary *results = nil;
     dispatch_sync(_manager->_queue, ^{
-        results = [_manager->_fileAttributes[_currentPath] copy];
+        results = [self->_manager->_fileAttributes[self->_currentPath] copy];
     });
 
     return results;
@@ -148,16 +148,16 @@
 
 - (id)nextObject {
     dispatch_sync(_manager->_queue, ^{
-        _currentPath = nil;
+        self->_currentPath = nil;
         while (true) {
-            if ([_currentPath hasPrefix:_path]) break;
-            _currentPath = [_enumerator nextObject];
+            if ([self->_currentPath hasPrefix:self->_path]) break;
+            self->_currentPath = [self->_enumerator nextObject];
 
-            if (!_currentPath) break;
+            if (!self->_currentPath) break;
         }
     });
 
-    return [_currentPath lastPathComponent];
+    return [self->_currentPath lastPathComponent];
 }
 
 - (void)skipDescendants {

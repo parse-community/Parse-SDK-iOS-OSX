@@ -46,11 +46,11 @@ static NSSet *_validProducts;
     dispatch_async(dispatch_get_main_queue(), ^{
         NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(SKProduct *evaluatedObject,
                                                                              NSDictionary *bindings) {
-            return [_productIdentifiers containsObject:evaluatedObject.productIdentifier];
+            return [self->_productIdentifiers containsObject:evaluatedObject.productIdentifier];
         }];
         NSSet *validProducts = [_validProducts filteredSetUsingPredicate:filterPredicate];
 
-        NSMutableSet *invalidProductIdentifiers = [_productIdentifiers mutableCopy];
+        NSMutableSet *invalidProductIdentifiers = [self->_productIdentifiers mutableCopy];
         [invalidProductIdentifiers minusSet:[_validProducts valueForKey:@"productIdentifier"]];
 
         PFTestSKProductsResponse *response = [[PFTestSKProductsResponse alloc] initWithProducts:[validProducts allObjects]

@@ -89,7 +89,7 @@
 
 - (void)tearDown {
     dispatch_sync(_mockQueue, ^{
-        [_mocks makeObjectsPerformSelector:@selector(stopMocking)];
+        [self->_mocks makeObjectsPerformSelector:@selector(stopMocking)];
     });
 
     _mocks = nil;
@@ -177,7 +177,7 @@
 
 - (void)registerMockObject:(id)mockObject {
     dispatch_sync(_mockQueue, ^{
-        [_mocks addObject:mockObject];
+        [self->_mocks addObject:mockObject];
     });
 }
 

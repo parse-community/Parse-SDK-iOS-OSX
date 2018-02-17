@@ -58,7 +58,7 @@ static BOOL _canMakePayments = YES;
                                                                                           withError:nil
                                                                                             inState:SKPaymentTransactionStatePurchased];
         dispatch_async(dispatch_get_main_queue(), ^{
-            for (NSValue *value in _observers) {
+            for (NSValue *value in self->_observers) {
                 id observer = [value nonretainedObjectValue];
                 if (observer) {
                     [observer paymentQueue:self updatedTransactions:@[ transaction ]];
