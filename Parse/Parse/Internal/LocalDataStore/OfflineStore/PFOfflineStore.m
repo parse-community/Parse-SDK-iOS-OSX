@@ -1034,17 +1034,17 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                        @"Attempted to change an objectId to one that's already known to the OfflineStore. className: %@ old: %@, new: %@",
                        className, oldObjectId, newObjectId);
             PFLogError(PFLoggingTagCommon,
-                       @"Set a breakpoint on PFOfflineStoreAttemptedToChange() to debug the issue");
+                       @"Set a breakpoint on PFOfflineStoreReplaceExisingObject() to debug the issue");
             PFLogError(PFLoggingTagCommon,
                        @"Starting 1.17.0, the new object will replace the old one, if this is causing unexpected behaviours, please open an issue https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/new");
-            PFOfflineStoreAttemptedToChange();
+            PFOfflineStoreReplaceExisingObject();
         }
         // Okay, all clear to add the new reference.
         [self.classNameAndObjectIdToObjectMap setObject:object forKey:key];
     }
 }
 
-void PFOfflineStoreAttemptedToChange() {}
+void PFOfflineStoreReplaceExisingObject() {}
 
 - (NSString *)_generateKeyForClassName:(NSString *)className
                               objectId:(NSString *)objectId {
