@@ -23,6 +23,7 @@ Pod::Spec.new do |s|
     s.source_files = 'Parse/Parse/*.{h,m}',
                      'Parse/Parse/Internal/**/*.{h,m}'
     s.public_header_files = 'Parse/Parse/*.h'
+    s.private_header_files = 'Parse/Parse/Internal/**/*.h'
   
     s.ios.exclude_files = 'Parse/Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
     s.osx.exclude_files = 'Parse/Parse/PFNetworkActivityIndicatorManager.{h,m}',
