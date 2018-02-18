@@ -1420,15 +1420,10 @@
     [Parse setApplicationId:@"a" clientKey:@"b"];
     PFObject *objectA = [PFObject objectWithClassName:@"Object" dictionary:@{@"objectId":@"yolo", @"key": @"value"}];
     objectA.objectId = @"yolo";
-    PFObject *objectB = [PFObject objectWithClassName:@"Object" dictionary:@{@"objectId":@"yolo", @"key": @"value"}];
-    @try {
-        objectB.objectId = @"yolo";
-        XCTFail();
-    }
-    @catch (NSException *e) {
-        XCTAssertEqual(e.name, NSInternalInconsistencyException);
-        XCTAssertEqualObjects(e.reason, @"Attempted to change an objectId to one that's already known to the OfflineStore. className: Object old: (null), new: yolo");
-    }
+    PFObject *objectB = [PFObject objectWithClassName:@"Object" dictionary:@{@"objectId":@"yolo", @"key": @"value2"}];
+    objectB.objectId = @"yolo";
+    PFObject *currentObject = [PFObject objectWithoutDataWithClassName:@"Object" objectId:@"yolo"];
+    XCTAssertEqual(currentObject[@"key"], @"value2");
 }
 
 
