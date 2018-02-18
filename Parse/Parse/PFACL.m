@@ -101,9 +101,12 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
     return newACL;
 }
 
-- (void)resolveUser:(PFUser *)user {
+- (BOOL)resolveUser:(PFUser *)user {
     if (user != unresolvedUser) {
-        return;
+        return YES;
+    }
+    if (!user || !user.objectId) {
+        return NO;
     }
     NSMutableDictionary *unresolvedPermissions = self.state.permissions[PFACLUnresolvedKey_];
     if (unresolvedPermissions) {
@@ -113,6 +116,7 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
         }];
     }
     unresolvedUser = nil;
+    return YES;
 }
 
 - (BOOL)hasUnresolvedUser {
@@ -259,8 +263,9 @@ static NSString *const PFACLCodingDataKey_ = @"ACL";
         __weak __block void (^weakCallback)(id result, NSError *error) = nil;
         __block void (^callback)(id result, NSError *error) = [^(id result, NSError *error) {
             @strongify(self);
-            [self resolveUser:result];
-            [result unregisterSaveListener:weakCallback];
+            if ([self resolveUser:result]) {
+                [result unregisterSaveListener:weakCallback];
+            }
         } copy];
         weakCallback = callback;
         [user registerSaveListener:callback];
