@@ -46,7 +46,7 @@
             BOOL isOpen = [task.result boolValue];
 
             if (isOpen) {
-                return [database closeAsync];
+                return [self->database closeAsync];
             }
             return task;
         }] waitUntilFinished];
@@ -63,6 +63,7 @@
 
 // Should return BFTask to not waste `waitUntilFinished`
 - (BFTask *)createDatabaseAsync {
+    PFSQLiteDatabase *database = self->database;
     // Drop existing database first if any.
     return [[[[database openAsync] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"DROP TABLE test" withArgumentsInArray:nil];
@@ -79,6 +80,7 @@
 ///--------------------------------------
 
 - (void)testOpen {
+    PFSQLiteDatabase *database = self->database;
     [[[[[[[[[database openAsync] continueWithBlock:^id(BFTask *task) {
         return [database isOpenAsync];
     }] continueWithBlock:^id(BFTask *task) {
@@ -104,6 +106,7 @@
 }
 
 - (void)testCRUD {
+    PFSQLiteDatabase *database = self->database;
     [[[[[[[[[[[[database openAsync] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"CREATE TABLE test (a text, b text, c integer, d double)"
                     withArgumentsInArray:nil];
@@ -185,6 +188,7 @@
 
 // TODO (hallucinogen): this test consists of three units which can be separated.
 - (void)testTransaction {
+    PFSQLiteDatabase *database = self->database;
     [[[[[[[[[[[[[[[[[self createDatabaseAsync] continueWithBlock:^id(BFTask *task) {
         return [database beginTransactionAsync];
     }] continueWithBlock:^id(BFTask *task) {
@@ -281,7 +285,8 @@
         return [BFTask taskWithResult:nil];
     }] waitUntilFinished];
 
-    database = [PFSQLiteDatabase databaseWithPath:[self databasePath]];
+    self->database = [PFSQLiteDatabase databaseWithPath:[self databasePath]];
+    database = self->database;
     [[[[[[[database openAsync] continueWithBlock:^id(BFTask *task) {
         XCTAssertNil(task.error);
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
@@ -322,6 +327,7 @@
 }
 
 - (void)testOperationOnNonExistentTable {
+    PFSQLiteDatabase *database = self->database;
     [[[[[[[self createDatabaseAsync] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO testFake (a, b, c, d) VALUES (?, ?, ?, ?)"
                     withArgumentsInArray:@[ @"one", @"two", @3, @4.4 ]];
@@ -351,6 +357,7 @@
 }
 
 - (void)testQuery {
+    PFSQLiteDatabase *database = self->database;
     [[[[[[[[[self createDatabaseAsync] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
                     withArgumentsInArray:@[ @"one", @"two", @3, @4.4 ]];
@@ -413,6 +420,7 @@
 }
 
 - (void)testCursorAndOperationOnDifferentThread {
+    PFSQLiteDatabase *database = self->database;
     BFTask *taskWithCursor = [[[[[self createDatabaseAsync] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
                     withArgumentsInArray:@[ @"one", @"two", @3, @4.4 ]];
@@ -468,6 +476,7 @@
 }
 
 - (void)testInvalidArgumentCount {
+    PFSQLiteDatabase *database = self->database;
     [[[[self createDatabaseAsync] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?)"
                     withArgumentsInArray:@[ @"one", @"two", @3, @4.4 ]];
@@ -479,6 +488,7 @@
 }
 
 - (void)testInvalidSQL {
+    PFSQLiteDatabase *database = self->database;
     [[[[[self createDatabaseAsync] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
                     withArgumentsInArray:@[ @"one", @"two", @3, @4.4 ]];
@@ -492,6 +502,7 @@
 }
 
 - (void)testColumnTypes {
+    PFSQLiteDatabase *database = self->database;
     [[[[[self createDatabaseAsync] continueWithBlock:^id(BFTask *task) {
         return [database executeSQLAsync:@"INSERT INTO test (a, b, c, d) VALUES (?, ?, ?, ?)"
                     withArgumentsInArray:@[ @1, [NSNull null], @"string", @13.37 ]];

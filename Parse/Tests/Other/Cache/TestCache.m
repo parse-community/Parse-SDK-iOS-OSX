@@ -31,7 +31,7 @@
 - (id)objectForKey:(id)key {
     __block id results = nil;
     dispatch_sync(_queue, ^{
-        results = _cache[key];
+        results = self->_cache[key];
     });
 
     return results;
@@ -39,19 +39,19 @@
 
 - (void)setObject:(id)object forKey:(id)aKey {
     dispatch_sync(_queue, ^{
-        _cache[aKey] = object;
+        self->_cache[aKey] = object;
     });
 }
 
 - (void)removeObjectForKey:(id)aKey {
     dispatch_sync(_queue, ^{
-        [_cache removeObjectForKey:aKey];
+        [self->_cache removeObjectForKey:aKey];
     });
 }
 
 - (void)removeAllObjects {
     dispatch_sync(_queue, ^{
-        [_cache removeAllObjects];
+        [self->_cache removeAllObjects];
     });
 }
 
