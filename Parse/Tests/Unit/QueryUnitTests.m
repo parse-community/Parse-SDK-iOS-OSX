@@ -1413,4 +1413,18 @@
     XCTAssertEqual([queryA hash], [queryB hash]);
 }
 
+- (void)testReproduceIssue1202 {
+    [[Parse _currentManager] clearEventuallyQueue];
+    [Parse _clearCurrentManager];
+    [Parse enableLocalDatastore];
+    [Parse setApplicationId:@"a" clientKey:@"b"];
+    PFObject *objectA = [PFObject objectWithClassName:@"Object" dictionary:@{@"objectId":@"yolo", @"key": @"value"}];
+    objectA.objectId = @"yolo";
+    PFObject *objectB = [PFObject objectWithClassName:@"Object" dictionary:@{@"objectId":@"yolo", @"key": @"value2"}];
+    objectB.objectId = @"yolo";
+    PFObject *currentObject = [PFObject objectWithoutDataWithClassName:@"Object" objectId:@"yolo"];
+    XCTAssertEqual(currentObject[@"key"], @"value2");
+}
+
+
 @end
