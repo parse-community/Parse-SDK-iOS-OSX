@@ -768,8 +768,8 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
             return task;
         }
         @synchronized (self) {
-            if (self->_cancellationTokenSource == cancellationTokenSource) {
-                self->_cancellationTokenSource = nil;
+            if (_cancellationTokenSource == cancellationTokenSource) {
+               _cancellationTokenSource = nil;
             }
         }
         return task;
@@ -867,8 +867,8 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
                                                                          user:user];
     }] continueWithBlock:^id(BFTask *task) {
         @synchronized(self) {
-            if (self->_cancellationTokenSource == cancellationTokenSource) {
-                self->_cancellationTokenSource = nil;
+            if (_cancellationTokenSource == cancellationTokenSource) {
+                _cancellationTokenSource = nil;
             }
         }
         return task;
@@ -881,9 +881,9 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
 
 - (void)cancel {
     @synchronized(self) {
-        if (self->_cancellationTokenSource) {
-            [self->_cancellationTokenSource cancel];
-            self->_cancellationTokenSource = nil;
+        if (_cancellationTokenSource) {
+            [_cancellationTokenSource cancel];
+            _cancellationTokenSource = nil;
         }
     }
 }
