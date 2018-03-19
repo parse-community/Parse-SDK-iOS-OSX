@@ -83,7 +83,8 @@
 
 - (void)testMutableCopy {
     PFMutableRelationState *sampleState = [[self sampleRelationStateWithParent:nil] mutableCopy];
-    sampleState.knownObjects = [NSMutableSet setWithObjects:@1, nil];
+    [sampleState.knownObjects removeAllObjects];
+    [sampleState.knownObjects addObject:@"1"];
 
     XCTAssertEqualObjects([sampleState mutableCopy], sampleState);
 }
