@@ -768,7 +768,7 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
         }
         @synchronized (self) {
             if (self->_cancellationTokenSource == cancellationTokenSource) {
-               self->_cancellationTokenSource = nil;
+                self->_cancellationTokenSource = nil;
             }
         }
         return task;
@@ -884,7 +884,7 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
 
 - (void)cancel {
     @synchronized(self) {
-        if (self->_cancellationTokenSource != nil) {
+        if (self->_cancellationTokenSource) {
             [self->_cancellationTokenSource cancel];
             self->_cancellationTokenSource = nil;
         }
