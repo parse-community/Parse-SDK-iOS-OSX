@@ -752,16 +752,15 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     BFTask *start = (previous ?: [BFTask taskWithResult:nil]);
 
     [self _validateQueryState];
+    Class selfClass = [self class];
     @weakify(self);
     return [[[start continueWithBlock:^id(BFTask *task) {
-        @strongify(self);
-        return [[self class] _getCurrentUserForQueryState:queryState];
+        return [selfClass _getCurrentUserForQueryState:queryState];
     }] continueWithBlock:^id(BFTask *task) {
-        @strongify(self);
         PFUser *user = task.result;
-        return [[[self class] queryController] findObjectsAsyncForQueryState:queryState
-                                                       withCancellationToken:cancellationTokenSource.token
-                                                                        user:user];
+        return [[selfClass queryController] findObjectsAsyncForQueryState:queryState
+                                                   withCancellationToken:cancellationTokenSource.token
+                                                                    user:user];
     }] continueWithBlock:^id(BFTask *task) {
         @strongify(self);
         if (!self) {
@@ -856,16 +855,20 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     BFTask *start = (previousTask ?: [BFTask taskWithResult:nil]);
 
     [self _validateQueryState];
+    Class selfClass = [self class];
     @weakify(self);
     return [[[start continueWithBlock:^id(BFTask *task) {
-        return [[self class] _getCurrentUserForQueryState:queryState];
+        return [selfClass _getCurrentUserForQueryState:queryState];
     }] continueWithBlock:^id(BFTask *task) {
-        @strongify(self);
         PFUser *user = task.result;
-        return [[[self class] queryController] countObjectsAsyncForQueryState:queryState
+        return [[selfClass queryController] countObjectsAsyncForQueryState:queryState
                                                         withCancellationToken:cancellationTokenSource.token
                                                                          user:user];
     }] continueWithBlock:^id(BFTask *task) {
+        @strongify(self);
+        if (!self) {
+            return task;
+        }
         @synchronized(self) {
             if (self->_cancellationTokenSource == cancellationTokenSource) {
                 self->_cancellationTokenSource = nil;

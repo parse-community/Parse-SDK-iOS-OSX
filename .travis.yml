@@ -17,8 +17,6 @@ jobs:
       env: Deployment
       install: bundle install
       script:
-      - xcrun simctl create "Apple TV 1080p" com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p com.apple.CoreSimulator.SimRuntime.tvOS-11-2
-      - bundle exec rake test:deployment
       - ./Scripts/jazzy.sh
       - xcrun simctl create "Apple TV 1080p" com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p com.apple.CoreSimulator.SimRuntime.tvOS-11-0
       - bundle exec rake package:release

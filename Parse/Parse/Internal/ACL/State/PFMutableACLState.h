@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PFMutableACLState : PFACLState
 
-@property (nonatomic, copy, readwrite) NSMutableDictionary<NSString *, id> *permissions;
+@property (nonatomic, copy, readonly) NSMutableDictionary<NSString *, id> *permissions;
 @property (nonatomic, assign, readwrite, getter=isShared) BOOL shared;
 
 @end

@@ -13,7 +13,7 @@
 
 @property (nonatomic, weak, readwrite) PFObject *parent;
 @property (nonatomic, copy, readwrite) NSString *targetClass;
-@property (nonatomic, copy, readwrite) NSMutableSet *knownObjects;
+@property (nonatomic, copy, readonly) NSMutableSet *knownObjects;
 @property (nonatomic, copy, readwrite) NSString *key;
 
 @end
