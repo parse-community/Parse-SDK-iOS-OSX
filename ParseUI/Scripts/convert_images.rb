@@ -123,7 +123,7 @@ HEREDOC
 Dir.glob(SEARCH_PATH) do |filename|
   filename_varname = make_varname(filename)
   puts "Creating #{filename_varname}"
-  result = "const unsigned char #{filename_varname}[] = { "
+  result = "static const unsigned char #{filename_varname}[] = { "
   count = 0
   resource_file = File.open(filename, "r")
   resource_file.each_byte do |byte|

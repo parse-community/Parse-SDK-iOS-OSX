@@ -62,21 +62,24 @@ NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"additional";
 #pragma mark Init
 
 - (instancetype)init {
-    if (self = [super init]) {
+    self = [super init];
+    if (self) {
         [self _commonInit];
     }
     return self;
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
         [self _commonInit];
     }
     return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder {
-    if (self = [super initWithCoder:decoder]) {
+    self = [super initWithCoder:decoder];
+    if (self) {
         [self _commonInit];
     }
     return self;
@@ -298,8 +301,8 @@ NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"additional";
     }
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         self.loading = NO;
-        if ([_signUpView.signUpButton isKindOfClass:[PFPrimaryButton class]]) {
-            [(PFPrimaryButton *)_signUpView.signUpButton setLoading:NO];
+        if ([self->_signUpView.signUpButton isKindOfClass:[PFPrimaryButton class]]) {
+            [(PFPrimaryButton *)self->_signUpView.signUpButton setLoading:NO];
         }
 
         if (succeeded) {

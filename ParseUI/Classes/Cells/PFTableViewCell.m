@@ -69,7 +69,7 @@
     const CGRect bounds = self.contentView.bounds;
 
     CGFloat imageHeight = MIN(CGRectGetWidth(bounds), CGRectGetHeight(bounds));
-    CGFloat imageWidth = floorf(13.0f * imageHeight / 9.0f); // Default is 13/9 aspect ratio
+    CGFloat imageWidth = floor(13.0f * imageHeight / 9.0f); // Default is 13/9 aspect ratio
     _customImageView.frame = PFRectMakeWithSize(CGSizeMake(imageWidth, imageHeight));
 
     CGFloat imageViewRightInset = 10.0f;
@@ -102,6 +102,8 @@
             textLabelFrame.origin.x = textOrigin;
             textLabelFrame.size.width = MIN(maxTextLabelWidth, CGRectGetWidth(textLabelFrame));
         }
+            break;
+        case UITableViewCellStyleValue2:
             break;
         default:
             break;

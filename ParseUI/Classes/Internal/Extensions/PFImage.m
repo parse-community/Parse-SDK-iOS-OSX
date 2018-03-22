@@ -82,7 +82,7 @@
 
     NSData *data = nil;
 
-    int imageScale = (int)ceilf([UIScreen mainScreen].scale);
+    int imageScale = (int)ceil([UIScreen mainScreen].scale);
     while (data == nil && imageScale > 1) {
         NSString *selectorName = [filenameWithoutExtension stringByAppendingFormat:@"%dx_%@",
                                   imageScale,

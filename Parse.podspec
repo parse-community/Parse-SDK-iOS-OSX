@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.authors          = 'Parse Community'
   s.social_media_url = 'https://twitter.com/ParsePlatform'
 
-  s.source           = { :git => "https://github.com/parse-community/Parse-SDK-iOS-OSX.git", :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/parse-community/Parse-SDK-iOS-OSX.git', :tag => s.version.to_s }
 
   s.platform = :ios, :osx, :tvos, :watchos
   s.ios.deployment_target = '8.0'
@@ -91,6 +91,7 @@ Pod::Spec.new do |s|
     s.libraries        = 'z', 'sqlite3'
   
     s.dependency 'Bolts/Tasks', '~> 1.9'
+    s.compiler_flags = '-Wnoimplicit-retain-self'
   end
 
   s.subspec 'FacebookUtils' do |s|
@@ -117,8 +118,9 @@ Pod::Spec.new do |s|
     s.dependency 'Parse/Core'
     s.dependency 'FBSDKCoreKit', '~> 4.30'
     s.ios.dependency 'FBSDKLoginKit', '~> 4.30'
-    s.tvos.dependency 'FBSDKTVOSKit', '~> 4.30'
+    s.tvos.dependency 'FBSDKTVOSKit', '~> 4.29'
     s.tvos.dependency 'FBSDKShareKit', '~> 4.30'
+    s.compiler_flags = '-Wnoimplicit-retain-self'
   end
 
   s.subspec 'TwitterUtils' do |s|
@@ -145,7 +147,7 @@ Pod::Spec.new do |s|
     s.platform              = :ios
     s.requires_arc          = true
     s.ios.deployment_target = '9.0'
-    s.source_files        = "ParseUI/**/*.{h,m}"
+    s.source_files        = 'ParseUI/**/*.{h,m}'
     s.exclude_files = 'ParseUI/ParseUIDemo/**/*', 'ParseUI/Other/ParseUI.h'
     s.public_header_files = 'ParseUI/Classes/LogInViewController/*.h',
                             'ParseUI/Classes/SignUpViewController/*.h',
@@ -169,4 +171,5 @@ Pod::Spec.new do |s|
         ParseUI/Resources/Images/ \
         ParseUI/Generated/PFResources
   CMD
+  s.compiler_flags = '-Wnoimplicit-retain-self'
 end

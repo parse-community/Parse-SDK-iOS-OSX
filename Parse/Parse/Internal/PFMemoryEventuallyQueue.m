@@ -60,8 +60,8 @@
     [super removeAllCommands];
 
     dispatch_sync(_dataAccessQueue, ^{
-        [_pendingCommandIdentifiers removeAllObjects];
-        [_commandsDictionary removeAllObjects];
+        [self->_pendingCommandIdentifiers removeAllObjects];
+        [self->_commandsDictionary removeAllObjects];
     });
 }
 
@@ -76,7 +76,7 @@
 - (NSArray<NSString *> *)_pendingCommandIdentifiers {
     __block NSArray *array = nil;
     dispatch_sync(_dataAccessQueue, ^{
-        array = [_pendingCommandIdentifiers copy];
+        array = [self->_pendingCommandIdentifiers copy];
     });
     return array;
 }
@@ -84,23 +84,23 @@
 - (id<PFNetworkCommand>)_commandWithIdentifier:(NSString *)identifier error:(NSError **)error {
     __block id<PFNetworkCommand> command = nil;
     dispatch_sync(_dataAccessQueue, ^{
-        command = _commandsDictionary[identifier];
+        command = self->_commandsDictionary[identifier];
     });
     return command;
 }
 
 - (BFTask *)_enqueueCommandInBackground:(id<PFNetworkCommand>)command object:(PFObject *)object identifier:(NSString *)identifier {
     return [BFTask taskFromExecutor:_dataAccessExecutor withBlock:^id{
-        [_pendingCommandIdentifiers addObject:identifier];
-        _commandsDictionary[identifier] = command;
+        [self->_pendingCommandIdentifiers addObject:identifier];
+        self->_commandsDictionary[identifier] = command;
         return nil;
     }];
 }
 
 - (BFTask *)_didFinishRunningCommand:(id<PFNetworkCommand>)command withIdentifier:(NSString *)identifier resultTask:(BFTask *)resultTask {
     return [BFTask taskFromExecutor:_dataAccessExecutor withBlock:^id{
-        [_pendingCommandIdentifiers removeObject:identifier];
-        [_commandsDictionary removeObjectForKey:identifier];
+        [self->_pendingCommandIdentifiers removeObject:identifier];
+        [self->_commandsDictionary removeObjectForKey:identifier];
         return [super _didFinishRunningCommand:command withIdentifier:identifier resultTask:resultTask];
     }];
 }

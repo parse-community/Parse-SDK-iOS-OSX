@@ -70,7 +70,8 @@
 - (instancetype)initWithCoder:(NSCoder *)decoder {
     // initWithCoder is usually a parallel designated initializer, as is the case here
     // It's used by storyboard
-    if (self = [super initWithCoder:decoder]) {
+    self = [super initWithCoder:decoder];
+    if (self) {
         [self _setupWithClassName:nil];
     }
     return self;
@@ -78,7 +79,8 @@
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     // This is used by interface builder
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
         [self _setupWithClassName:nil];
     }
     return self;
@@ -93,7 +95,8 @@
 }
 
 - (instancetype)initWithStyle:(UITableViewStyle)style className:(NSString *)className {
-    if (self = [super initWithStyle:style]) {
+    self = [super initWithStyle:style];
+    if (self) {
         [self _setupWithClassName:className];
     }
     return self;
@@ -209,9 +212,9 @@
 
 - (void)clear {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_mutableObjects removeAllObjects];
+        [self->_mutableObjects removeAllObjects];
         [self.tableView reloadData];
-        _currentPage = 0;
+        self->_currentPage = 0;
     });
 }
 
@@ -239,16 +242,16 @@
             self.loading = NO;
 
             if (error) {
-                _lastLoadCount = -1;
+                self->_lastLoadCount = -1;
             } else {
-                _currentPage = page;
-                _lastLoadCount = [foundObjects count];
+                self->_currentPage = page;
+                self->_lastLoadCount = [foundObjects count];
 
                 if (clear) {
-                    [_mutableObjects removeAllObjects];
+                    [self->_mutableObjects removeAllObjects];
                 }
 
-                [_mutableObjects addObjectsFromArray:foundObjects];
+                [self->_mutableObjects addObjectsFromArray:foundObjects];
             }
             [self.tableView reloadData];
             [self objectsDidLoad:error];

@@ -129,7 +129,7 @@
 
             dispatch_async(dispatch_get_main_queue(), ^{
                 // check if a latter issued loadInBackground has not replaced the file being loaded
-                if (file == _file) {
+                if (file == self->_file) {
                     self.image = image;
                 }
 
