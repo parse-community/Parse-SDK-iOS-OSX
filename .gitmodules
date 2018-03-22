@@ -9,4 +9,4 @@
 	url = https://github.com/erikdoe/OCMock.git
 [submodule "Carthage/Checkouts/facebook-ios-sdk"]
 	path = Carthage/Checkouts/facebook-ios-sdk
-	url = https://github.com/facebook/facebook-ios-sdk
+	url = https://github.com/facebook/facebook-ios-sdk.git
