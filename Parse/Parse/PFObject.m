@@ -953,7 +953,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         id operationDict = [operation RESTDictionaryUsingObjectEncoder:objectEncoder
                                                      operationSetUUIDs:&ooSetUUIDs
                                                                  error:error];
-        PFPreconditionBailOnError(operation, error, nil);
+        PFPreconditionBailOnError(operationDict, error, nil);
         [operations addObject:operationDict];
         [mutableOperationSetUUIDs addObjectsFromArray:ooSetUUIDs];
     }
