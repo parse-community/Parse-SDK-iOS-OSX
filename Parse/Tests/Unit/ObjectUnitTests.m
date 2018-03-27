@@ -327,5 +327,34 @@
     XCTAssertEqualObjects(error.localizedDescription, @"Found a circular dependency when saving.");
 }
 
+-(void)testRESTEncoding {
+    PFObject *objectA = [PFObject objectWithClassName:@"A"];
+    PFObject *objectB = [PFObject objectWithClassName:@"B"];
+    objectA[@"B"] = objectB;
+    
+    PFEncoder *encoder = [PFPointerObjectEncoder objectEncoder];
+    NSError *error = nil;
+    NSArray *operationSetUUIDs = nil;
+    XCTAssertNil([objectA RESTDictionaryWithObjectEncoder:encoder
+                                        operationSetUUIDs:&operationSetUUIDs
+                                                    error:&error]);
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PFParseErrorDomain);
+    XCTAssertEqualObjects(error.localizedDescription, @"Tried to save an object with a new, unsaved child.");
+}
+
+-(void)testLocalRESTEncoding {
+    PFObject *objectA = [PFObject objectWithClassName:@"A"];
+    PFObject *objectB = [PFObject objectWithClassName:@"B"];
+    objectA[@"B"] = objectB;
+    
+    PFEncoder *encoder = [PFPointerOrLocalIdObjectEncoder objectEncoder];
+    NSError *error = nil;
+    NSArray *operationSetUUIDs = nil;
+    XCTAssertNotNil([objectA RESTDictionaryWithObjectEncoder:encoder
+                                           operationSetUUIDs:&operationSetUUIDs
+                                                       error:&error]);
+    XCTAssertNil(error);
+}
 
 @end
