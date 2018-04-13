@@ -91,7 +91,6 @@ Pod::Spec.new do |s|
     s.libraries        = 'z', 'sqlite3'
   
     s.dependency 'Bolts/Tasks', '~> 1.9'
-    s.compiler_flags = '-Wnoimplicit-retain-self'
   end
 
   s.subspec 'FacebookUtils' do |s|
@@ -116,11 +115,10 @@ Pod::Spec.new do |s|
     s.libraries        = 'z', 'sqlite3'
 
     s.dependency 'Parse/Core'
-    s.dependency 'FBSDKCoreKit', '~> 4.30'
-    s.ios.dependency 'FBSDKLoginKit', '~> 4.30'
+    s.dependency 'FBSDKCoreKit', '~> 4.29'
+    s.ios.dependency 'FBSDKLoginKit', '~> 4.29'
     s.tvos.dependency 'FBSDKTVOSKit', '~> 4.29'
-    s.tvos.dependency 'FBSDKShareKit', '~> 4.30'
-    s.compiler_flags = '-Wnoimplicit-retain-self'
+    s.tvos.dependency 'FBSDKShareKit', '~> 4.29'
   end
 
   s.subspec 'TwitterUtils' do |s|
@@ -171,5 +169,4 @@ Pod::Spec.new do |s|
         ParseUI/Resources/Images/ \
         ParseUI/Generated/PFResources
   CMD
-  s.compiler_flags = '-Wnoimplicit-retain-self'
 end
