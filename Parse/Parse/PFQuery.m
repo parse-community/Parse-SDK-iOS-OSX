@@ -536,7 +536,7 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
         }
         case NSBetweenPredicateOperatorType:
         default: {
-            PFConsistencyAssertionFailure(@"This comparison predicate is not supported. (%zd)", predicate.predicateOperatorType);
+            PFConsistencyAssertionFailure(@"This comparison predicate is not supported. (%ld)", (unsigned long)predicate.predicateOperatorType);
         }
     }
 }

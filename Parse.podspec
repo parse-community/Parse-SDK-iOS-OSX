@@ -115,10 +115,11 @@ Pod::Spec.new do |s|
     s.libraries        = 'z', 'sqlite3'
 
     s.dependency 'Parse/Core'
+    s.dependency 'Bolts', '~> 1.9'
     s.dependency 'FBSDKCoreKit', '~> 4.29'
     s.ios.dependency 'FBSDKLoginKit', '~> 4.29'
     s.tvos.dependency 'FBSDKTVOSKit', '~> 4.29'
-    s.tvos.dependency 'FBSDKShareKit', '~> 4.29'
+    s.tvos.dependency 'FBSDKShareKit', '4.28'
   end
 
   s.subspec 'TwitterUtils' do |s|
