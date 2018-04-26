@@ -41,7 +41,7 @@ NSString *const PFKeychainStoreDefaultService = @"com.parse.sdk";
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wtautological-pointer-compare"
     if (&kSecAttrAccessible != nil) {
-        query[(__bridge id)kSecAttrAccessible] =  (__bridge id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
+        query[(__bridge id)kSecAttrAccessible] =  (__bridge id)kSecAttrAccessibleAfterFirstUnlock;
     }
 #pragma clang diagnostic pop
 
@@ -104,10 +104,43 @@ NSString *const PFKeychainStoreDefaultService = @"com.parse.sdk";
     //recover data
     CFDataRef data = NULL;
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&data);
-    if (status != errSecSuccess && status != errSecItemNotFound) {
-        PFLogError(PFLoggingTagCommon,
-                   @"PFKeychainStore failed to get object for key '%@', with error: %ld", key, (long)status);
-    }
+	BOOL logError = NO;
+
+	if (status != errSecSuccess) {
+		if(status == errSecItemNotFound) {
+			// Try seeing if we have migrated from kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly to kSecAttrAccessibleAfterFirstUnlock
+			query[(__bridge NSString *)kSecAttrAccessible] =  (__bridge id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
+			status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&data);
+			if(status == errSecSuccess)	{
+				// Migrate to new Accessible flag
+				NSMutableDictionary *saveQuery = [self.keychainQueryTemplate mutableCopy];
+				NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:(__bridge NSData*)data];
+				saveQuery[(__bridge NSString *)kSecAttrAccount] = key;
+				saveQuery[(__bridge NSString *)kSecValueData] = archivedData;
+				saveQuery[(__bridge NSString *)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
+				NSDictionary *migrationData = @{ (__bridge NSString *)kSecAttrAccessible : (__bridge NSString *)kSecAttrAccessibleAfterFirstUnlock};
+
+				OSStatus migrationStatus = SecItemUpdate((__bridge CFDictionaryRef)saveQuery, (__bridge CFDictionaryRef)migrationData);
+
+				if (migrationStatus != errSecSuccess) {
+					logError = YES;
+					PFLogError(PFLoggingTagCommon,
+							   @"PFKeychainStore failed to set object for key '%@', with error: %ld", key, (long)migrationStatus);
+				}
+			}
+			else {
+				// Not found on either Accessible key, so assume new
+			}
+		}
+   		else {
+			logError = YES;
+		}
+
+		if(logError) {
+			PFLogError(PFLoggingTagCommon,
+					   @"PFKeychainStore failed to get object for key '%@', with error: %ld", key, (long)status);
+		}
+	}
     return CFBridgingRelease(data);
 }
 
