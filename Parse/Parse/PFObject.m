@@ -769,7 +769,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
     //Omitting this check for PFUser class pointer - Issue##1297
     //https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1297
-    if(![className isEqualToString: PFUser.className]){
+    if(![className isEqualToString: PFUser.parseClassName]){
         PFParameterAssert(![className hasPrefix:@"_"], @"Invalid class name. Class names cannot start with an underscore.");
     }
     
