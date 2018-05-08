@@ -36,20 +36,20 @@
                                                                      publishPermissions:(nullable NSArray<NSString *> *)publishPermissions
                                                                      fromViewComtroller:(UIViewController *)viewController {
     return [BFTask taskFromExecutor:[BFExecutor mainThreadExecutor] withBlock:^id _Nonnull{
-        if (_loginTaskCompletionSource) {
+        if (self->_loginTaskCompletionSource) {
             return [NSError errorWithDomain:FBSDKErrorDomain
                                        code:FBSDKDialogUnavailableErrorCode
                                    userInfo:@{ NSLocalizedDescriptionKey : @"Another login attempt is already in progress." }];
         }
-        _loginTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
-        _loginViewController = [[FBSDKDeviceLoginViewController alloc] init];
-        _loginViewController.delegate = self;
-        _loginViewController.readPermissions = readPermissions;
-        _loginViewController.publishPermissions = publishPermissions;
+        self->_loginTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
+       self-> _loginViewController = [[FBSDKDeviceLoginViewController alloc] init];
+        self->_loginViewController.delegate = self;
+        self->_loginViewController.readPermissions = readPermissions;
+        self->_loginViewController.publishPermissions = publishPermissions;
 
-        [viewController presentViewController:_loginViewController animated:YES completion:nil];
+        [viewController presentViewController:self->_loginViewController animated:YES completion:nil];
 
-        return _loginTaskCompletionSource.task;
+        return self->_loginTaskCompletionSource.task;
     }];
 }
 

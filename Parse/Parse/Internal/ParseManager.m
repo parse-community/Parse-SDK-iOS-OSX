@@ -161,8 +161,8 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     __block PFEventuallyQueue *queue = nil;
     dispatch_sync(_eventuallyQueueAccessQueue, ^{
 #if TARGET_OS_TV
-        if (!_eventuallyQueue) {
-            _eventuallyQueue = [PFMemoryEventuallyQueue newDefaultMemoryEventuallyQueueWithDataSource:self];
+        if (!self->_eventuallyQueue) {
+            self->_eventuallyQueue = [PFMemoryEventuallyQueue newDefaultMemoryEventuallyQueueWithDataSource:self];
         }
 #else
         if (!self->_eventuallyQueue ||

@@ -37,7 +37,8 @@
 #pragma mark Init
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
         self.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
 
         self.imageView.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -76,8 +77,8 @@
 
     const CGRect bounds = self.contentView.bounds;
 
-    CGFloat iconWidth = floorf(0.8f * CGRectGetHeight(bounds));
-    CGFloat iconMarginY = floorf((CGRectGetHeight(bounds) - iconWidth)/2.0f);
+    CGFloat iconWidth = floor(0.8f * CGRectGetHeight(bounds));
+    CGFloat iconMarginY = floor((CGRectGetHeight(bounds) - iconWidth)/2.0f);
     CGFloat iconMarginX = iconMarginY;
     CGFloat x = iconMarginX;
     CGFloat y = iconMarginY;
@@ -88,7 +89,7 @@
     [self.priceLabel sizeToFit];
     CGFloat priceLabelRightInset = 10.0f;
     CGFloat priceLabelX = CGRectGetWidth(bounds) - CGRectGetWidth(self.priceLabel.frame) - priceLabelRightInset;
-    CGFloat priceLabelY = floorf((CGRectGetHeight(self.textLabel.frame) - CGRectGetHeight(self.priceLabel.frame))/2.0f) + iconMarginY;
+    CGFloat priceLabelY = floor((CGRectGetHeight(self.textLabel.frame) - CGRectGetHeight(self.priceLabel.frame))/2.0f) + iconMarginY;
 
     self.priceLabel.frame = PFRectMakeWithOriginSize(CGPointMake(priceLabelX, priceLabelY), self.priceLabel.frame.size);
 

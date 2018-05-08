@@ -142,8 +142,9 @@ NSString *const PFSignUpViewDismissButtonAccessibilityIdentifier = @"PFSignUpVie
         // In iOS 7+, if the view controller that contains this view
         // is presented modally, it's edges extend under the status bar.
         // This lets us move down the dismiss button a bit so that it's not covered by the status bar.
-        if ([self.presentingViewController respondsToSelector:@selector(topLayoutGuide)]) {
-            origin.y += self.presentingViewController.topLayoutGuide.length;
+        UIViewController *presentingViewController = self.presentingViewController;
+        if ([presentingViewController respondsToSelector:@selector(topLayoutGuide)]) {
+            origin.y += presentingViewController.topLayoutGuide.length;
         }
 
         CGRect frame = PFRectMakeWithOriginSize(origin, [_dismissButton sizeThatFits:bounds.size]);
@@ -157,10 +158,10 @@ NSString *const PFSignUpViewDismissButtonAccessibilityIdentifier = @"PFSignUpVie
 
     CGFloat currentY = CGRectGetMinY(contentRect);
     if (_logo) {
-        CGFloat logoTopInset = floorf(48.0f * contentSizeScale.height);
-        CGFloat logoBottomInset = floorf(36.0f * contentSizeScale.height);
+        CGFloat logoTopInset = floor(48.0f * contentSizeScale.height);
+        CGFloat logoBottomInset = floor(36.0f * contentSizeScale.height);
 
-        CGFloat logoAvailableHeight = floorf(68.0f * contentSizeScale.height);
+        CGFloat logoAvailableHeight = floor(68.0f * contentSizeScale.height);
 
         CGSize logoSize = [_logo sizeThatFits:CGSizeMake(contentSize.width, logoAvailableHeight)];
         logoSize.width = MIN(contentSize.width, logoSize.width);
@@ -170,7 +171,7 @@ NSString *const PFSignUpViewDismissButtonAccessibilityIdentifier = @"PFSignUpVie
         frame.origin.y = CGRectGetMinY(contentRect) + logoTopInset;
         _logo.frame = CGRectIntegral(frame);
 
-        currentY = floorf(CGRectGetMaxY(frame) + logoBottomInset);
+        currentY = floor(CGRectGetMaxY(frame) + logoBottomInset);
     }
 
     if (_usernameField) {
@@ -206,7 +207,7 @@ NSString *const PFSignUpViewDismissButtonAccessibilityIdentifier = @"PFSignUpVie
     }
 
     if (_signUpButton) {
-        CGFloat loginButtonTopInset = floorf(24.0f * contentSizeScale.height);
+        CGFloat loginButtonTopInset = floor(24.0f * contentSizeScale.height);
 
         CGRect frame = PFRectMakeWithSizeCenteredInRect([_signUpButton sizeThatFits:contentSize], contentRect);;
         frame.origin.y = currentY + loginButtonTopInset;
@@ -223,10 +224,10 @@ NSString *const PFSignUpViewDismissButtonAccessibilityIdentifier = @"PFSignUpVie
     CGSize size = PFSizeMin(maxContentSize, boundingSize);
     size.height = 0.0f;
     if (_logo) {
-        CGFloat logoTopInset = floorf(36.0f * contentSizeScale.height);
-        CGFloat logoBottomInset = floorf(36.0f * contentSizeScale.height);
+        CGFloat logoTopInset = floor(36.0f * contentSizeScale.height);
+        CGFloat logoBottomInset = floor(36.0f * contentSizeScale.height);
 
-        CGFloat logoAvailableHeight = floorf(68.0f * contentSizeScale.height);
+        CGFloat logoAvailableHeight = floor(68.0f * contentSizeScale.height);
 
         CGFloat scale = MAX(contentSizeScale.width, contentSizeScale.height);
 
@@ -253,15 +254,15 @@ NSString *const PFSignUpViewDismissButtonAccessibilityIdentifier = @"PFSignUpVie
         size.height += fieldSize.height;
     }
     if (_signUpButton) {
-        CGFloat buttonTopInset = floorf(24.0f * contentSizeScale.height);
+        CGFloat buttonTopInset = floor(24.0f * contentSizeScale.height);
 
         CGSize buttonSize = [_signUpButton sizeThatFits:boundingSize];
 
         size.height += buttonSize.height + buttonTopInset;
     }
 
-    size.width = floorf(size.width);
-    size.height = floorf(size.height);
+    size.width = floor(size.width);
+    size.height = floor(size.height);
 
     return size;
 }

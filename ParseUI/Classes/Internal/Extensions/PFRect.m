@@ -35,8 +35,8 @@ CGRect PFRectMakeWithSize(CGSize size) {
 
 CGRect PFRectMakeWithSizeCenteredInRect(CGSize size, CGRect rect) {
     CGPoint center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
-    CGPoint origin = CGPointMake(floorf(center.x - size.width / 2.0f),
-                                 floorf(center.y - size.height / 2.0f));
+    CGPoint origin = CGPointMake(floor(center.x - size.width / 2.0f),
+                                 floor(center.y - size.height / 2.0f));
     return PFRectMakeWithOriginSize(origin, size);
 }
 

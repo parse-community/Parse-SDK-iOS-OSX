@@ -85,8 +85,8 @@
                              return [NSCompoundPredicate andPredicateWithSubpredicates:newSubpredicates];
                          }
                          default: {
-                             PFConsistencyAssertionFailure(@"This compound predicate cannot be negated. (%zd)",
-                                                           compound.compoundPredicateType);
+                             PFConsistencyAssertionFailure(@"This compound predicate cannot be negated. (%ld)",
+                                                           (unsigned long)compound.compoundPredicateType);
                              return nil;
                          }
                      }
@@ -394,8 +394,8 @@
           compoundBlock:nil
         comparisonBlock:^NSPredicate *(NSComparisonPredicate *comparison) {
             PFConsistencyAssert(comparison.comparisonPredicateModifier == NSDirectPredicateModifier,
-                                @"Unsupported comparison predicate modifier %zd.",
-                                comparison.comparisonPredicateModifier);
+                                @"Unsupported comparison predicate modifier %ld.",
+                                (unsigned long)comparison.comparisonPredicateModifier);
             return comparison;
         }];
 }

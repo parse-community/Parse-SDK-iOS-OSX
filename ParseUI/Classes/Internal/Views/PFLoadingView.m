@@ -37,7 +37,8 @@
 #pragma mark Init
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+    self = [super initWithFrame:frame];
+    if (self) {
         _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [_activityIndicator startAnimating];
         [self addSubview:_activityIndicator];
@@ -62,7 +63,7 @@
     const CGRect bounds = self.bounds;
 
     CGFloat viewsInset = 4.0f;
-    CGFloat startX = floorf((CGRectGetMaxX(bounds)
+    CGFloat startX = floor((CGRectGetMaxX(bounds)
                              - CGRectGetWidth(_loadingLabel.frame)
                              - CGRectGetWidth(_activityIndicator.frame)
                              - viewsInset)

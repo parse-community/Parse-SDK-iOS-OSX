@@ -47,7 +47,8 @@ static NSString *const PFProductMetadataPriceLocaleKey = @"priceLocale";
 #pragma mark NSObject
 
 - (instancetype)initWithStyle:(UITableViewStyle)style {
-    if (self = [super initWithStyle:UITableViewStylePlain className:[PFProduct parseClassName]]) {
+    self = [super initWithStyle:UITableViewStylePlain className:[PFProduct parseClassName]];
+    if (self) {
         self.pullToRefreshEnabled = NO;
         self.paginationEnabled = NO;
 
@@ -100,7 +101,7 @@ static NSString *const PFProductMetadataPriceLocaleKey = @"priceLocale";
                                              }
                                          }
                                            progress:^(int percentDone) {
-                                               _productProgressDictionary[product.productIdentifier] = @(percentDone);
+                                               self->_productProgressDictionary[product.productIdentifier] = @(percentDone);
                                                [cell.progressView setProgress:percentDone/100.0f animated:YES];
                                            }];
         }];
@@ -110,9 +111,10 @@ static NSString *const PFProductMetadataPriceLocaleKey = @"priceLocale";
 #pragma mark -
 #pragma mark UITableViewDataSource
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
+- (PFTableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
-                        object:(PFProduct *)product {
+                        object:(PFObject *)object {
+    PFProduct *product = (PFProduct *)object;
     static NSString *cellIdentifier = @"PFPurchaseTableViewCell";
 
     PFPurchaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -229,7 +231,7 @@ static NSString *const PFProductMetadataPriceLocaleKey = @"priceLocale";
     [validProducts enumerateObjectsUsingBlock:^(SKProduct *product,  NSUInteger idx, BOOL *stop) {
         NSDictionary *metadata = @{ PFProductMetadataPriceKey : product.price,
                                     PFProductMetadataPriceLocaleKey : product.priceLocale };
-        _productMetadataDictionary[product.productIdentifier] = metadata;
+        self->_productMetadataDictionary[product.productIdentifier] = metadata;
     }];
     [self.tableView reloadData];
 

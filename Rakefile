@@ -711,8 +711,8 @@ namespace :test do
     results = []
     system("pod repo update --silent")
     podspecs.each do |podspec|
-      results << system("pod lib lint #{podspec}")
-      results << system("pod lib lint #{podspec} --use-libraries")
+      results << system("pod lib lint #{podspec} --allow-warnings")
+      results << system("pod lib lint #{podspec} --allow-warnings --use-libraries")
     end
     results.each do |result|
       unless result
