@@ -2905,6 +2905,27 @@
 			remoteGlobalIDString = 81ED94111BE147CF00795F05;
 			remoteInfo = "Bolts-iOS";
 		};
+		4AA8ABFE20CEFC9A009306DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 819573D91C2B8ECB00BFCA39;
+			remoteInfo = "Bolts-watchOS-Dynamic";
+		};
+		4AA8AC0720CEFCA2009306DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D5D7DA61BE3CE8200FD67C7;
+			remoteInfo = "Bolts-iOS-Dynamic";
+		};
+		4AA8AC0920CEFCAD009306DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 81E94D521C2B8BF200A6291E;
+			remoteInfo = "Bolts-tvOS-Dynamic";
+		};
 		4AE33A2C1F5451B20088DCA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 09D33641139C54930098E916 /* Project object */;
@@ -6919,6 +6940,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4AA8AC0820CEFCA2009306DD /* PBXTargetDependency */,
 			);
 			name = "Parse-iOS-Dynamic";
 			productName = "Parse-iOS";
@@ -6938,6 +6960,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4AA8AC0A20CEFCAD009306DD /* PBXTargetDependency */,
 			);
 			name = "Parse-tvOS-Dynamic";
 			productName = "Parse-iOS";
@@ -6957,6 +6980,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4AA8ABFF20CEFC9A009306DD /* PBXTargetDependency */,
 			);
 			name = "Parse-watchOS-Dynamic";
 			productName = "Parse-iOS";
@@ -8675,6 +8699,21 @@
 			isa = PBXTargetDependency;
 			name = "Bolts-iOS";
 			targetProxy = 4A1351FA2028194C000F5FD5 /* PBXContainerItemProxy */;
+		};
+		4AA8ABFF20CEFC9A009306DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bolts-watchOS-Dynamic";
+			targetProxy = 4AA8ABFE20CEFC9A009306DD /* PBXContainerItemProxy */;
+		};
+		4AA8AC0820CEFCA2009306DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bolts-iOS-Dynamic";
+			targetProxy = 4AA8AC0720CEFCA2009306DD /* PBXContainerItemProxy */;
+		};
+		4AA8AC0A20CEFCAD009306DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bolts-tvOS-Dynamic";
+			targetProxy = 4AA8AC0920CEFCAD009306DD /* PBXContainerItemProxy */;
 		};
 		4AE33A2D1F5451B20088DCA0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
