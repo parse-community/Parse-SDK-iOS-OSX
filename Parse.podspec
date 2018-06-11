@@ -94,15 +94,13 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'FacebookUtils' do |s|
-    s.platform = :ios, :tvos
+    s.platform = :ios
     s.ios.deployment_target = '8.0'
-    s.tvos.deployment_target = '9.0'
     s.public_header_files = 'ParseFacebookUtils/ParseFacebookUtils/*.h'
     s.source_files = 'ParseFacebookUtils/ParseFacebookUtils/**/*.{h,m}'
-    s.exclude_files = 'ParseFacebookUtils/ParseFacebookUtils/ParseFacebookUtilsV4.h'
-    s.ios.exclude_files = 'ParseFacebookUtils/ParseFacebookUtils/Internal/AuthenticationProvider/tvOS/**/*.{h,m}'
-    s.tvos.exclude_files = 'ParseFacebookUtils/ParseFacebookUtils/Internal/AuthenticationProvider/iOS/**/*.{h,m}'
-  
+    s.exclude_files = 'ParseFacebookUtils/ParseFacebookUtils/ParseFacebookUtilsV4.h',
+                      'ParseFacebookUtils/ParseFacebookUtils/Internal/AuthenticationProvider/tvOS/**/*.{h,m}'
+
     s.frameworks        = 'AudioToolbox',
                           'CFNetwork',
                           'CoreGraphics',
@@ -116,10 +114,30 @@ Pod::Spec.new do |s|
 
     s.dependency 'Parse/Core'
     s.dependency 'Bolts', '~> 1.9'
-    s.dependency 'FBSDKCoreKit', '~> 4.29'
-    s.ios.dependency 'FBSDKLoginKit', '~> 4.29'
-    s.tvos.dependency 'FBSDKTVOSKit', '~> 4.29'
-    s.tvos.dependency 'FBSDKShareKit', '4.28'
+    s.dependency 'FBSDKLoginKit', '~> 4.33'
+  end
+
+  s.subspec 'FacebookUtils-tvOS' do |s|
+    s.platform = :tvos
+    s.tvos.deployment_target = '9.0'
+    s.public_header_files = 'ParseFacebookUtils/ParseFacebookUtils/*.h'
+    s.source_files = 'ParseFacebookUtils/ParseFacebookUtils/**/*.{h,m}'
+    s.exclude_files = 'ParseFacebookUtils/ParseFacebookUtils/ParseFacebookUtilsV4.h',
+                      'ParseFacebookUtils/ParseFacebookUtils/Internal/AuthenticationProvider/iOS/**/*.{h,m}'
+
+    s.frameworks        = 'AudioToolbox',
+                          'CFNetwork',
+                          'CoreGraphics',
+                          'CoreLocation',
+                          'QuartzCore',
+                          'Security',
+                          'SystemConfiguration'
+    s.libraries        = 'z', 'sqlite3'
+
+    s.dependency 'Parse/Core'
+    s.dependency 'Bolts', '~> 1.9'
+    s.dependency 'FBSDKTVOSKit', '~> 4.29'
+    s.dependency 'FBSDKShareKit', '4.28'
   end
 
   s.subspec 'TwitterUtils' do |s|
