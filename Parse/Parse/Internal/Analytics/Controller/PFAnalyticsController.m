@@ -79,7 +79,7 @@
         @strongify(self);
         NSError *error;
         NSDictionary *encodedDimensions = [[PFNoObjectEncoder objectEncoder] encodeObject:dimensions error:&error];
-        if (encodedDimensions == nil) {
+        if (error != nil) {
             return [BFTask taskWithError:error];
         }
         PFRESTCommand *command = [PFRESTAnalyticsCommand trackEventCommandWithEventName:name
