@@ -1,8 +1,10 @@
 coverage:
   ignore:
-    - Tests/.*
+    - Parse/Tests/.*
+    - ParseTwitterUtils/Tests/.*
+    - ParseFacebookUtils/Tests/.*
   status:
-    patch: false
+    patch: true
     changes: false
     project:
       default:

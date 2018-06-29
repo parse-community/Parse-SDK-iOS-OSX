@@ -2,14 +2,20 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Parse.xcodeproj">
+      location = "group:Parse/Parse.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ParseFacebookUtils/ParseFacebookUtils.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ParseTwitterUtils/ParseTwitterUtils.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ParseUI/ParseUI.xcodeproj">
    </FileRef>
    <Group
       location = "container:"
       name = "Vendor">
-      <FileRef
-         location = "group:Carthage/Checkouts/Bolts-ObjC/Bolts.xcodeproj">
-      </FileRef>
       <FileRef
          location = "group:Carthage/Checkouts/OCMock/Source/OCMock.xcodeproj">
       </FileRef>

@@ -1,0 +1,109 @@
+defaults: &defaults
+    macos:
+      xcode: "9.0"
+    shell: /bin/bash --login -eo pipefail
+aliases:
+  - &prepare
+    | 
+      git submodule update --init --recursive
+      gem install bundler
+      bundle install
+  - &filter-only-master
+    branches:
+      only:
+        - master
+
+version: 2
+jobs:
+  ios:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: bundle exec rake test:ios
+      - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: build/reports
+  macos:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: bundle exec rake test:macos
+      - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: build/reports
+  facebook_utils:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: bundle exec rake test:facebook_utils:ios
+      - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: build/reports
+  twitter_utils:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: bundle exec rake test:twitter_utils:ios
+      - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: build/reports
+  parseui:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: bundle exec rake test:parseui:all
+  deployment:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: |
+            xcrun simctl create "Apple TV 1080p" com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p com.apple.CoreSimulator.SimRuntime.tvOS-11-0
+            bundle exec rake package:release
+  jazzy:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: ./Scripts/jazzy.sh
+  carthage:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: bundle exec rake test:carthage
+  cocoapods:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: bundle exec rake test:cocoapods
+
+workflows:
+  version: 2
+  pr:
+    jobs:
+      - ios
+      - macos
+      - facebook_utils
+      - twitter_utils
+      - parseui
+      - jazzy
+  nightly:
+    jobs:
+      - deployment
+      - cocoapods:
+          requires:
+            - deployment
+      - carthage:
+          requires:
+            - deployment
+    triggers:
+      - schedule:
+          cron: "0 1 * * *"
+          filters: *filter-only-master

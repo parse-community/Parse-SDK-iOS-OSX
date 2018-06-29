@@ -1,0 +1,23 @@
+//
+// Copyright (c) 2015-present, Parse, LLC.
+// All rights reserved.
+//
+// This source code is licensed under the BSD-style license found in the
+// LICENSE file in the root directory of this source tree. An additional grant
+// of patent rights can be found in the PATENTS file in the same directory.
+//
+
+#include "Shared/Platform/iOS.xcconfig"
+#include "Shared/Product/DynamicFramework.xcconfig"
+
+PRODUCT_NAME = ParseTwitterUtils
+PRODUCT_BUNDLE_IDENTIFIER = com.parse.twitterutils.ios
+
+IPHONEOS_DEPLOYMENT_TARGET = 8.0
+
+INFOPLIST_FILE = $(SRCROOT)/Resources/Info.plist
+
+// TODO: (nlutsenko) Cleanup source code so we can safely ignore local variable shadow warnings.
+GCC_WARN_SHADOW = NO
+
+FRAMEWORK_SEARCH_PATHS = $(inherited) $(SRCROOT)/../Carthage/Build/iOS
