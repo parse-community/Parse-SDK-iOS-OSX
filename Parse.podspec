@@ -136,8 +136,8 @@ Pod::Spec.new do |s|
 
     s.dependency 'Parse/Core'
     s.dependency 'Bolts', '~> 1.9'
-    s.dependency 'FBSDKTVOSKit', '~> 4.29'
-    s.dependency 'FBSDKShareKit', '4.28'
+    s.dependency 'FBSDKTVOSKit', '~> 4.33'
+    s.dependency 'FBSDKShareKit', '~> 4.33'
   end
 
   s.subspec 'TwitterUtils' do |s|
