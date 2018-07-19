@@ -40,15 +40,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let defaultACL: PFACL = PFACL()
         // If you would like all objects to be private by default, remove this line.
-        defaultACL.getPublicReadAccess = true
+        defaultACL.hasPublicReadAccess = true
 
         PFACL.setDefault(defaultACL, withAccessForCurrentUser: true)
 
         // ****************************************************************************
         // Uncomment these lines to register for Push Notifications.
         //
-        // let types: NSRemoteNotificationType = [.Alert, .Badge, .Sound]
-        // NSApplication.sharedApplication().registerForRemoteNotificationTypes(types)
+        // let types: NSRemoteNotificationType = [.alert, .badge, .sound]
+        // NSApplication.shared().registerForRemoteNotifications(matching: types)
         //
         // ****************************************************************************
 
@@ -76,6 +76,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Uncomment these lines to track Push Notifications open rate in Analytics.
     //
     // func application(application: NSApplication, didReceiveRemoteNotification userInfo: [String : AnyObject]) {
-    //   PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+    //   PFAnalytics.trackAppOpened(withRemoteNotificationPayload: userInfo)
     // }
 }
