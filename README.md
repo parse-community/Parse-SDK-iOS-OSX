@@ -53,7 +53,7 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
   @import Parse;
   ```
 
-#### [Carthage](https://github.com/carthage/carthage)**
+#### [Carthage](https://github.com/carthage/carthage)
 
    Add the following line to your Cartfile:
    ```
