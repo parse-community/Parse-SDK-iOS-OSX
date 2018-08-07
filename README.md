@@ -24,9 +24,9 @@ And you're off!. Take a look at the public [documentation][docs] & [API][api] an
 
 Notice the API docs aren't totally up to date when it comes to latest Swift signature of the methods and more importantly regarding [Push Notifications](http://blog.parse.com/learn/engineering/the-dangerous-world-of-client-push/) which are **no longer supported by Parse server**, keep an eye on [its repo](https://github.com/ParsePlatform/parse-server)
 
-**Other Installation Options**
+### Other Installation Options
 
- - **[CocoaPods](https://cocoapods.org)**
+#### [CocoaPods](https://cocoapods.org)
 
   Add the following line to your Podfile:
   ```ruby
@@ -53,7 +53,7 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
   @import Parse;
   ```
 
- - **[Carthage](https://github.com/carthage/carthage)**
+#### [Carthage](https://github.com/carthage/carthage)**
 
    Add the following line to your Cartfile:
    ```
@@ -63,7 +63,7 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
 
    This will also compile the ParseTwitterUtils, ParseFacebookUtilsV4 as well as ParseUI frameworks.
 
- - **Compiling for yourself**
+#### Compiling for yourself
 
     If you want to manually compile the SDK, clone it locally, and run the following commands in the root directory of the repository:
 
@@ -90,7 +90,7 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
     - `ParseUI.zip`
 
 
- - **Using Parse as a sub-project**
+#### Using Parse as a sub-project
 
     You can also include parse as a subproject inside of your application if you'd prefer, although we do not recommend this, as it will increase your indexing time significantly. To do so, just drag and drop the Parse.xcodeproj file into your workspace. Note that unit tests will be unavailable if you use Parse like this, as OCMock will be unable to be found.
 
