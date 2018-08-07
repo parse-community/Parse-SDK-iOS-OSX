@@ -28,71 +28,74 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
 
 #### [CocoaPods](https://cocoapods.org)
 
-  Add the following line to your Podfile:
-  ```ruby
-  pod 'Parse'
-  ```
-  Run `pod install`, and you should now have the latest parse release.
+Add the following line to your Podfile:
+```ruby
+pod 'Parse'
+```
 
-  If you wish to use the Facebook or Twitter utils or ParseUI,
-  you can now leverage Cocoapods 'subspecs'
+Run `pod install`, and you should now have the latest parse release.
 
-  ```ruby
-    pod 'Parse/FacebookUtils'
-    pod 'Parse/TwitterUtils'
-    pod 'Parse/UI'
-  ```
+If you wish to use the Facebook or Twitter utils or ParseUI,
+you can now leverage Cocoapods 'subspecs'
 
-  Note that in this case, the Parse framework will contain all headers and classes, so you just have to use:
+```ruby
+pod 'Parse/FacebookUtils'
+pod 'Parse/TwitterUtils'
+pod 'Parse/UI'
+```
 
-  ```swift
-  import Parse
-  ```
+Note that in this case, the Parse framework will contain all headers and classes, so you just have to use:
 
-  ```objc
-  @import Parse;
-  ```
+```swift
+import Parse
+```
+
+```objc
+@import Parse;
+```
 
 #### [Carthage](https://github.com/carthage/carthage)
 
-   Add the following line to your Cartfile:
-   ```
-   github "parse-community/Parse-SDK-iOS-OSX"
-   ```
-   Run `carthage update`, and you should now have the latest version of Parse SDK in your Carthage folder.
+Add the following line to your Cartfile:
+```
+github "parse-community/Parse-SDK-iOS-OSX"
+```
+Run `carthage update`, and you should now have the latest version of Parse SDK in your Carthage folder.
 
-   This will also compile the ParseTwitterUtils, ParseFacebookUtilsV4 as well as ParseUI frameworks.
+This will also compile the ParseTwitterUtils, ParseFacebookUtilsV4 as well as ParseUI frameworks.
 
 #### Compiling for yourself
 
-    If you want to manually compile the SDK, clone it locally, and run the following commands in the root directory of the repository:
+If you want to manually compile the SDK, clone it locally, and run the following commands in the root directory of the repository:
 
-        # To pull in extra dependencies (Bolts and OCMock)
-        git submodule update --init --recursive
+```
+# To pull in extra dependencies (Bolts and OCMock)
+git submodule update --init --recursive
 
-        # To install bundler
-        gem install bundler
+# To install bundler
+gem install bundler
 
-        # To install all the gems via bundler
-        bundle install
+# To install all the gems via bundler
+bundle install
 
-        # Build & Package the Frameworks
-        bundle exec rake package:frameworks
+# Build & Package the Frameworks
+bundle exec rake package:frameworks
+```
 
-    Compiled frameworks will be in multiple archives inside the `build/release` folder: 
-    - `Parse-iOS.zip`
-    - `Parse-macOS.zip`
-    - `Parse-tvOS.zip`
-    - `Parse-watchOS.zip`
-    - `ParseFacebookUtils-iOS.zip`
-    - `ParseFacebookUtils-tvOS.zip`
-    - `ParseTwitterUtils-iOS.zip`
-    - `ParseUI.zip`
+Compiled frameworks will be in multiple archives inside the `build/release` folder: 
+- `Parse-iOS.zip`
+- `Parse-macOS.zip`
+- `Parse-tvOS.zip`
+- `Parse-watchOS.zip`
+- `ParseFacebookUtils-iOS.zip`
+- `ParseFacebookUtils-tvOS.zip`
+- `ParseTwitterUtils-iOS.zip`
+- `ParseUI.zip`
 
 
 #### Using Parse as a sub-project
 
-    You can also include parse as a subproject inside of your application if you'd prefer, although we do not recommend this, as it will increase your indexing time significantly. To do so, just drag and drop the Parse.xcodeproj file into your workspace. Note that unit tests will be unavailable if you use Parse like this, as OCMock will be unable to be found.
+You can also include parse as a subproject inside of your application if you'd prefer, although we do not recommend this, as it will increase your indexing time significantly. To do so, just drag and drop the Parse.xcodeproj file into your workspace. Note that unit tests will be unavailable if you use Parse like this, as OCMock will be unable to be found.
 
 ## How Do I Contribute?
 
