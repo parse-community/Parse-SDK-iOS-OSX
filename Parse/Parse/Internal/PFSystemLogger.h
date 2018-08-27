@@ -13,7 +13,7 @@
 
 typedef uint8_t PFLoggingTag;
 
-@interface PFLogger : NSObject
+@interface PFSystemLogger : NSObject
 
 @property (atomic, assign) PFLogLevel logLevel;
 
@@ -22,9 +22,9 @@ typedef uint8_t PFLoggingTag;
 ///--------------------------------------
 
 /**
-A shared instance of `PFLogger` that should be used for all logging.
+A shared instance of `PFSystemLogger` that should be used for all logging.
 
-@return An shared singleton instance of `PFLogger`.
+@return An shared singleton instance of `PFSystemLogger`.
 */
 + (instancetype)sharedLogger; //TODO: (nlutsenko) Convert to use an instance everywhere instead of a shared singleton.
 
