@@ -7,8 +7,8 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "PFFile.h"
-#import "PFFile_Private.h"
+#import "PFFileObject.h"
+#import "PFFileObject_Private.h"
 
 #import <Bolts/BFCancellationTokenSource.h>
 
@@ -29,7 +29,7 @@
 #import "PFUserPrivate.h"
 #import "Parse_Private.h"
 
-@interface PFFile () {
+@interface PFFileObject () {
     dispatch_queue_t _synchronizationQueue;
 }
 
@@ -43,7 +43,7 @@
 
 @end
 
-@implementation PFFile
+@implementation PFFileObject
 
 @synthesize stagedFilePath = _stagedFilePath;
 
@@ -63,7 +63,7 @@
 
 + (instancetype)fileWithName:(NSString *)name contentsAtPath:(NSString *)path {
     NSError *error = nil;
-    PFFile *file = [self fileWithName:name contentsAtPath:path error:&error];
+    PFFileObject *file = [self fileWithName:name contentsAtPath:path error:&error];
     PFParameterAssert(!error, @"Could not access file at %@: %@", path, error);
     return file;
 }
@@ -73,7 +73,7 @@
     BOOL directory = NO;
 
     if (![fileManager fileExistsAtPath:path isDirectory:&directory] || directory) {
-        NSString *message = [NSString stringWithFormat:@"Failed to create PFFile at path '%@': file does not exist.", path];
+        NSString *message = [NSString stringWithFormat:@"Failed to create PFFileObject at path '%@': file does not exist.", path];
         if (error) {
             *error = [NSError errorWithDomain:NSCocoaErrorDomain
                                          code:NSFileNoSuchFileError
@@ -82,7 +82,7 @@
         return nil;
     }
 
-    PFFile *file = [self fileWithName:name url:nil];
+    PFFileObject *file = [self fileWithName:name url:nil];
     if (![file _stageWithPath:path error:error]) {
         return nil;
     }
@@ -93,7 +93,7 @@
                         data:(NSData *)data
                  contentType:(NSString *)contentType {
     NSError *error = nil;
-    PFFile *file = [self fileWithName:name data:data contentType:contentType error:&error];
+    PFFileObject *file = [self fileWithName:name data:data contentType:contentType error:&error];
     PFConsistencyAssert(!error, @"Could not save file data for %@ : %@", name, error);
     return file;
 }
@@ -103,7 +103,7 @@
                  contentType:(NSString *)contentType
                        error:(NSError **)error {
     if (!data) {
-        NSString *message = @"Cannot create a PFFile with nil data.";
+        NSString *message = @"Cannot create a PFFileObject with nil data.";
         if (error) {
             *error = [NSError errorWithDomain:NSCocoaErrorDomain
                                          code:NSFileNoSuchFileError
@@ -112,7 +112,7 @@
         return nil;
     }
 
-    PFFile *file = [[self alloc] initWithName:name urlString:nil mimeType:contentType];
+    PFFileObject *file = [[self alloc] initWithName:name urlString:nil mimeType:contentType];
     if (![file _stageWithData:data error:error]) {
         return nil;
     }
@@ -505,7 +505,7 @@
 #pragma mark - Synchronous
 ///--------------------------------------
 
-@implementation PFFile (Synchronous)
+@implementation PFFileObject (Synchronous)
 
 #pragma mark Storing Data with Parse
 
@@ -541,7 +541,7 @@
 #pragma mark - Deprecated
 ///--------------------------------------
 
-@implementation PFFile (Deprecated)
+@implementation PFFileObject (Deprecated)
 
 - (void)saveInBackgroundWithTarget:(nullable id)target selector:(nullable SEL)selector {
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

@@ -8,16 +8,16 @@
  */
 
 #import <Parse/PFConstants.h>
-#import <Parse/PFFile.h>
+#import <Parse/PFFileObject.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- This category lists all methods of `PFFile` class that are synchronous, but have asynchronous counterpart,
+ This category lists all methods of `PFFileObject` class that are synchronous, but have asynchronous counterpart,
  Calling one of these synchronous methods could potentially block the current thread for a large amount of time,
  since it might be fetching from network or saving/loading data from disk.
  */
-@interface PFFile (Synchronous)
+@interface PFFileObject (Synchronous)
 
 ///--------------------------------------
 #pragma mark - Storing Data with Parse
@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSData *)getData:(NSError **)error;
 
 /**
- This method is like `-getData` but avoids ever holding the entire `PFFile` contents in memory at once.
+ This method is like `-getData` but avoids ever holding the entire `PFFileObject` contents in memory at once.
 
  This can help applications with many large files avoid memory warnings.
 
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSInputStream *)getDataStream PF_SWIFT_UNAVAILABLE;
 
 /**
- This method is like `-getData` but avoids ever holding the entire `PFFile` contents in memory at once.
+ This method is like `-getData` but avoids ever holding the entire `PFFileObject` contents in memory at once.
 
  @param error Pointer to an `NSError` that will be set if necessary.
 

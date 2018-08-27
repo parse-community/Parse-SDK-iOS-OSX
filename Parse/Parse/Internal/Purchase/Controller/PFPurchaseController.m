@@ -20,7 +20,7 @@
 #import "PFConstants.h"
 #import "PFDecoder.h"
 #import "PFFileManager.h"
-#import "PFFile_Private.h"
+#import "PFFileObject_Private.h"
 #import "PFHTTPRequest.h"
 #import "PFMacros.h"
 #import "PFPaymentTransactionObserver.h"
@@ -169,8 +169,8 @@
         @strongify(self);
 
         PFCommandResult *result = task.result;
-        PFFile *file = [[PFDecoder objectDecoder] decodeObject:result.result];
-        if (![file isKindOfClass:[PFFile class]]) {
+        PFFileObject *file = [[PFDecoder objectDecoder] decodeObject:result.result];
+        if (![file isKindOfClass:[PFFileObject class]]) {
             return [BFTask taskWithError:[NSError errorWithDomain:PFParseErrorDomain
                                                              code:kPFErrorInvalidPurchaseReceipt
                                                          userInfo:result.result]];

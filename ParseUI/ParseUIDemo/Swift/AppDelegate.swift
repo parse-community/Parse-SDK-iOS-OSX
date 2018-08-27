@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let bundle = Bundle.main
                     if let fileURL = bundle.url(forResource: String(index), withExtension: "png") {
                         if let data = try? Data(contentsOf: fileURL) {
-                            let file = PFFile(name: fileURL.lastPathComponent, data: data)
+                            let file = PFFileObject(name: fileURL.lastPathComponent, data: data)
                             let object = PFObject(className: "App")
                             object["icon"] = file
                             object["name"] = appName

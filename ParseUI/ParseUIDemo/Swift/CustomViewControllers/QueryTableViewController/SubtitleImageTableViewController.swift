@@ -38,7 +38,7 @@ class SubtitleImageTableViewController: PFQueryTableViewController {
         cell?.detailTextLabel?.text = "@parseit"
 
         cell?.imageView?.image = UIImage(named: "Icon.png")
-        cell?.imageView?.file = object?["icon"] as? PFFile
+        cell?.imageView?.file = object?["icon"] as? PFFileObject
 
         return cell
     }

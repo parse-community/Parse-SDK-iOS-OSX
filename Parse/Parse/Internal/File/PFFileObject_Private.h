@@ -10,13 +10,13 @@
 #import <Foundation/Foundation.h>
 
 #import <Parse/PFConstants.h>
-#import <Parse/PFFile.h>
+#import <Parse/PFFileObject.h>
 
 #import "PFFileState.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PFFile (Private)
+@interface PFFileObject (Private)
 
 @property (nonatomic, strong, readonly) PFFileState *state;
 

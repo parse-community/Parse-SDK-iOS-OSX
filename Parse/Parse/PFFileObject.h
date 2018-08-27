@@ -16,13 +16,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- `PFFile` representes a file of binary data stored on the Parse servers.
+ `PFFileObject` representes a file of binary data stored on the Parse servers.
  This can be a image, video, or anything else that an application needs to reference in a non-relational way.
  */
-@interface PFFile : NSObject
+@interface PFFileObject : NSObject
 
 ///--------------------------------------
-#pragma mark - Creating a PFFile
+#pragma mark - Creating a PFFileObject
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -31,21 +31,21 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Creates a file with given data. A name will be assigned to it by the server.
 
- @param data The contents of the new `PFFile`.
+ @param data The contents of the new `PFFileObject`.
 
- @return A new `PFFile`.
+ @return A new `PFFileObject`.
  */
 + (nullable instancetype)fileWithData:(NSData *)data;
 
 /**
  Creates a file with given data and name.
 
- @param name The name of the new PFFile. The file name must begin with and
+ @param name The name of the new PFFileObject. The file name must begin with and
  alphanumeric character, and consist of alphanumeric characters, periods,
  spaces, underscores, or dashes.
- @param data The contents of the new `PFFile`.
+ @param data The contents of the new `PFFileObject`.
 
- @return A new `PFFile` object.
+ @return A new `PFFileObject` object.
  */
 + (nullable instancetype)fileWithName:(nullable NSString *)name data:(NSData *)data;
 
@@ -55,11 +55,11 @@ NS_ASSUME_NONNULL_BEGIN
  @warning This method raises an exception if the file at path is not accessible
  or if there is not enough disk space left.
 
- @param name  The name of the new `PFFile`. The file name must begin with and alphanumeric character,
+ @param name  The name of the new `PFFileObject`. The file name must begin with and alphanumeric character,
  and consist of alphanumeric characters, periods, spaces, underscores, or dashes.
  @param path  The path to the file that will be uploaded to Parse.
 
- @return A new `PFFile` instance.
+ @return A new `PFFileObject` instance.
  */
 + (nullable instancetype)fileWithName:(nullable NSString *)name
                        contentsAtPath:(NSString *)path PF_SWIFT_UNAVAILABLE;
@@ -67,14 +67,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Creates a file with the contents of another file.
 
- @param name  The name of the new `PFFile`. The file name must begin with and alphanumeric character,
+ @param name  The name of the new `PFFileObject`. The file name must begin with and alphanumeric character,
  and consist of alphanumeric characters, periods, spaces, underscores, or dashes.
  @param path  The path to the file that will be uploaded to Parse.
  @param error On input, a pointer to an error object.
  If an error occurs, this pointer is set to an actual error object containing the error information.
  You may specify `nil` for this parameter if you do not want the error information.
 
- @return A new `PFFile` instance or `nil` if the error occured.
+ @return A new `PFFileObject` instance or `nil` if the error occured.
  */
 + (nullable instancetype)fileWithName:(nullable NSString *)name
                        contentsAtPath:(NSString *)path
@@ -85,12 +85,12 @@ NS_ASSUME_NONNULL_BEGIN
 
  @warning This method raises an exception if the data supplied is not accessible or could not be saved.
 
- @param name        The name of the new `PFFile`. The file name must begin with and alphanumeric character,
+ @param name        The name of the new `PFFileObject`. The file name must begin with and alphanumeric character,
  and consist of alphanumeric characters, periods, spaces, underscores, or dashes.
- @param data        The contents of the new `PFFile`.
+ @param data        The contents of the new `PFFileObject`.
  @param contentType Represents MIME type of the data.
 
- @return A new `PFFile` instance.
+ @return A new `PFFileObject` instance.
  */
 + (nullable instancetype)fileWithName:(nullable NSString *)name
                                  data:(NSData *)data
@@ -99,15 +99,15 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Creates a file with given data, name and content type.
 
- @param name        The name of the new `PFFile`. The file name must begin with and alphanumeric character,
+ @param name        The name of the new `PFFileObject`. The file name must begin with and alphanumeric character,
  and consist of alphanumeric characters, periods, spaces, underscores, or dashes.
- @param data        The contents of the new `PFFile`.
+ @param data        The contents of the new `PFFileObject`.
  @param contentType Represents MIME type of the data.
  @param error On input, a pointer to an error object.
  If an error occurs, this pointer is set to an actual error object containing the error information.
  You may specify `nil` for this parameter if you do not want the error information.
 
- @return A new `PFFile` instance or `nil` if the error occured.
+ @return A new `PFFileObject` instance or `nil` if the error occured.
  */
 + (nullable instancetype)fileWithName:(nullable NSString *)name
                                  data:(NSData *)data
@@ -117,10 +117,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Creates a file with given data and content type.
 
- @param data The contents of the new `PFFile`.
+ @param data The contents of the new `PFFileObject`.
  @param contentType Represents MIME type of the data.
 
- @return A new `PFFile` object.
+ @return A new `PFFileObject` object.
  */
 + (instancetype)fileWithData:(NSData *)data contentType:(nullable NSString *)contentType;
 
@@ -218,7 +218,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask<NSData *> *)getDataInBackgroundWithProgressBlock:(nullable PFProgressBlock)progressBlock;
 
 /**
- This method is like `-getDataInBackground` but avoids ever holding the entire `PFFile` contents in memory at once.
+ This method is like `-getDataInBackground` but avoids ever holding the entire `PFFileObject` contents in memory at once.
 
  This can help applications with many large files avoid memory warnings.
 
@@ -243,7 +243,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  This method is like `-getDataInBackground` but avoids
- ever holding the entire `PFFile` contents in memory at once.
+ ever holding the entire `PFFileObject` contents in memory at once.
 
  This can help applications with many large files avoid memory warnings.
  @param progressBlock The block should have the following argument signature: ^(int percentDone)
@@ -277,7 +277,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getDataInBackgroundWithBlock:(nullable PFDataResultBlock)block;
 
 /**
- This method is like `-getDataInBackgroundWithBlock:` but avoids ever holding the entire `PFFile` contents in memory at once.
+ This method is like `-getDataInBackgroundWithBlock:` but avoids ever holding the entire `PFFileObject` contents in memory at once.
 
  This can help applications with many large files avoid memory warnings.
 
@@ -299,7 +299,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  This method is like `-getDataInBackgroundWithBlock:progressBlock:` but avoids
- ever holding the entire `PFFile` contents in memory at once.
+ ever holding the entire `PFFileObject` contents in memory at once.
 
  This can help applications with many large files avoid memory warnings.
 
