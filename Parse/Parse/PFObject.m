@@ -1326,6 +1326,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (void)_mergeAfterSaveWithResult:(NSDictionary *)result decoder:(PFDecoder *)decoder {
     @synchronized (lock) {
+        if (operationSetQueue.count == 0)
+        { // it should never be empty at this point. if it is, add a dummy:
+            [operationSetQueue addObject:[[PFOperationSet alloc] init]];
+        }
         PFOperationSet *operationsBeforeSave = operationSetQueue[0];
         [operationSetQueue removeObjectAtIndex:0];
 
