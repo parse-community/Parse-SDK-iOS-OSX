@@ -32,6 +32,7 @@
 		4A13528F20289BD1000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13528D20289BC3000F5FD5 /* Bolts.framework */; };
 		4AAEAA40200BE14B00AA7479 /* third_party_licenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8139B12C1A7BF559002BEF84 /* third_party_licenses.txt */; };
 		4ABF398C1F54592100BBA75A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABF398B1F54592100BBA75A /* Main.storyboard */; };
+		4ACBE7542151B745008DFAAF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518420281768000F5FD5 /* Bolts.framework */; };
 		4AE33A0F1F5451AD0088DCA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE33A0E1F5451AD0088DCA0 /* AppDelegate.m */; };
 		4AE33A121F5451AD0088DCA0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE33A111F5451AD0088DCA0 /* ViewController.m */; };
 		4AE33A171F5451AD0088DCA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AE33A161F5451AD0088DCA0 /* Assets.xcassets */; };
@@ -3570,6 +3571,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ACBE7542151B745008DFAAF /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

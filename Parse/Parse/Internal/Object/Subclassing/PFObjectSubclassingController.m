@@ -393,7 +393,7 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
                     // Behind the scenes this is a strcmp (lolwut?)
                     if ([bundleClass conformsToProtocol:@protocol(PFSubclassing)] &&
                         ![bundleClass conformsToProtocol:@protocol(PFSubclassingSkipAutomaticRegistration)]) {
-                        [self _rawRegisterSubclass:bundleClass];
+                          [self _rawRegisterSubclass:bundleClass];
                     }
                     break;
                 }
