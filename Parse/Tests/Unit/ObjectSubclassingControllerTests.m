@@ -390,7 +390,9 @@
     [subclassingController registerSubclass:[SwiftSubclass class]];
 
     SwiftSubclass *target = [[SwiftSubclass alloc] init];
-
+    [target testDoIt];
+    PFQuery *query = [PFQuery queryWithClassName:@"OK"];
+    [query doItIt];
     id objectAgument = nil;
     NSInvocation *invocation = [self _forwardingInvocationForTarget:target
                                                            selector:@selector(setObjectProperty:)
