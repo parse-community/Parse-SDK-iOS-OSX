@@ -83,8 +83,6 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
 }
 
 - (void)setContainingApplicationBundleIdentifier:(NSString *)containingApplicationBundleIdentifier {
-    PFParameterAssert([PFApplication currentApplication].extensionEnvironment,
-                      @"'containingApplicationBundleIdentifier' cannot be set in non-extension environment");
     PFParameterAssert(containingApplicationBundleIdentifier.length,
                       @"'containingApplicationBundleIdentifier' should not be nil.");
 
