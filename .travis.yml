@@ -10,6 +10,7 @@ git:
 
 before_install:
   - git submodule update --init --recursive
+  - git apply --directory Carthage/Checkouts/Bolts-ObjC/Vendor/xctoolchain patch
 install: bundle install
 
 jobs:
