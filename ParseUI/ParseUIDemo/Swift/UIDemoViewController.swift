@@ -351,7 +351,7 @@ extension UIDemoViewController {
 
 extension UIDemoViewController : PFLogInViewControllerDelegate {
 
-    func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
+    func log(_ logInController: PFLogInViewController, didLogIn user: PFUser) {
         dismiss(animated: true, completion: nil)
     }
 
