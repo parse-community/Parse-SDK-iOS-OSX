@@ -82,7 +82,7 @@
     _locationManagerAccessQueue = dispatch_queue_create("com.parse.core.locationManager", DISPATCH_QUEUE_SERIAL);
     _controllerAccessQueue = dispatch_queue_create("com.parse.core.controller.accessQueue", DISPATCH_QUEUE_SERIAL);
     _objectLocalIdStoreAccessQueue = dispatch_queue_create("com.parse.core.object.localIdStore", DISPATCH_QUEUE_SERIAL);
-
+    [self objectSubclassingController];
     return self;
 }
 
