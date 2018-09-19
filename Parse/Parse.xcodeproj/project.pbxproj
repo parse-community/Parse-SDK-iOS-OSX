@@ -2846,13 +2846,6 @@
 			remoteGlobalIDString = F5AFC9EA1BA752750076E927;
 			remoteInfo = "Bolts-tvOS";
 		};
-		4A1351F820281944000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8EDDA62817E17DDC00655F8A;
-			remoteInfo = "Bolts-macOS";
-		};
 		4A1351FA2028194C000F5FD5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
@@ -2880,6 +2873,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 81E94D521C2B8BF200A6291E;
 			remoteInfo = "Bolts-tvOS-Dynamic";
+		};
+		4ACBE7EA2151FCBF008DFAAF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EDDA62817E17DDC00655F8A;
+			remoteInfo = "Bolts-macOS";
 		};
 		4AE33A2C1F5451B20088DCA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -6931,7 +6931,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4A1351F920281944000F5FD5 /* PBXTargetDependency */,
+				4ACBE7EB2151FCBF008DFAAF /* PBXTargetDependency */,
 			);
 			name = "Parse-macOS";
 			productName = ParseMac;
@@ -8600,11 +8600,6 @@
 			name = "Bolts-tvOS";
 			targetProxy = 4A1351F62028193F000F5FD5 /* PBXContainerItemProxy */;
 		};
-		4A1351F920281944000F5FD5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bolts-macOS";
-			targetProxy = 4A1351F820281944000F5FD5 /* PBXContainerItemProxy */;
-		};
 		4A1351FB2028194C000F5FD5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bolts-iOS";
@@ -8624,6 +8619,11 @@
 			isa = PBXTargetDependency;
 			name = "Bolts-tvOS-Dynamic";
 			targetProxy = 4AA8AC0920CEFCAD009306DD /* PBXContainerItemProxy */;
+		};
+		4ACBE7EB2151FCBF008DFAAF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bolts-macOS";
+			targetProxy = 4ACBE7EA2151FCBF008DFAAF /* PBXContainerItemProxy */;
 		};
 		4AE33A2D1F5451B20088DCA0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

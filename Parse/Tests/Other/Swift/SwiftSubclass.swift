@@ -70,7 +70,6 @@ public class SwiftSubclass: PFObject, PFSubclassing {
         query.whereKey("name", matchesText: "bbq")
         query.order(byAscending: "$score")
         query.selectKeys(["$score"])
-        query.doItIt()
         query.findObjectsInBackground { (objects, error) in
             guard let objects = objects else {
                 return
@@ -83,12 +82,6 @@ public class SwiftSubclass: PFObject, PFSubclassing {
 
     public func testDoIt() {
         let query = PFQuery(className: "BarbecueSauce")
-        query.doItIt()
     }
 }
 
-extension PFQuery {
-    public func doItIt() {
-        print("IM doing it!")
-    }
-}
