@@ -6,6 +6,7 @@ aliases:
   - &prepare
     | 
       git submodule update --init --recursive
+      git apply --directory Carthage/Checkouts/Bolts-ObjC/Vendor/xctoolchain patch
       gem install bundler
       bundle install
   - &filter-only-master
