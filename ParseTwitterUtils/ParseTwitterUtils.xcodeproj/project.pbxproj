@@ -979,6 +979,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8154622F1D37FE6E0069489A /* Debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
