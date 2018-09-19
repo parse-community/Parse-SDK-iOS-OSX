@@ -10,17 +10,15 @@ git:
 
 before_install:
   - git submodule update --init --recursive
-matrix:
-  - TEST_TYPE=ios
-  - TEST_TYPE=macos
 install: bundle install
-script: bundle exec rake test:$TEST_TYPE
 
 jobs:
   include:
+    - stage: test
+      script: bundle exec rake test:ios 
+    - script: bundle exec rake test:macos
     - stage: release
       env: Deployment
-      install: bundle install
       script:
       - ./Scripts/jazzy.sh
       - xcrun simctl create "Apple TV 1080p" com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p com.apple.CoreSimulator.SimRuntime.tvOS-11-0
