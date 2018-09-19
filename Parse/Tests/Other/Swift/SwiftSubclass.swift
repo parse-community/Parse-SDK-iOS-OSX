@@ -80,8 +80,9 @@ public class SwiftSubclass: PFObject, PFSubclassing {
         }
     }
 
+    @objc
     public func testDoIt() {
-        let query = PFQuery(className: "BarbecueSauce")
+        let _ = PFQuery(className: "BarbecueSauce")
     }
 }
 

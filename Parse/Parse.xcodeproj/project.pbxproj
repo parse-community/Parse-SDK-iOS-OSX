@@ -25,11 +25,11 @@
 		4A0ECC9C200DA26000BA84A3 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC9D200DA26000BA84A3 /* OCMock.framework */; };
 		4A13525520282A51000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518420281768000F5FD5 /* Bolts.framework */; };
 		4A13525620282B4D000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97010FAC1630B18F00AB761E /* Parse.framework */; };
-		4A13525720282B4D000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518820281768000F5FD5 /* Bolts.framework */; };
 		4A13525F20283603000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518820281768000F5FD5 /* Bolts.framework */; };
 		4A13528A202895ED000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A135289202895ED000F5FD5 /* Bolts.framework */; };
 		4A13528C20289BB6000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13528B20289BB5000F5FD5 /* Bolts.framework */; };
 		4A13528F20289BD1000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13528D20289BC3000F5FD5 /* Bolts.framework */; };
+		4A2C10B32152FEF200FA7D0E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518820281768000F5FD5 /* Bolts.framework */; };
 		4AAEAA40200BE14B00AA7479 /* third_party_licenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8139B12C1A7BF559002BEF84 /* third_party_licenses.txt */; };
 		4ABF398C1F54592100BBA75A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABF398B1F54592100BBA75A /* Main.storyboard */; };
 		4AE33A0F1F5451AD0088DCA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE33A0E1F5451AD0088DCA0 /* AppDelegate.m */; };
@@ -3621,8 +3621,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A2C10B32152FEF200FA7D0E /* Bolts.framework in Frameworks */,
 				4A13525620282B4D000F5FD5 /* Parse.framework in Frameworks */,
-				4A13525720282B4D000F5FD5 /* Bolts.framework in Frameworks */,
 				4A0ECC9A200DA25700BA84A3 /* OCMock.framework in Frameworks */,
 				F5B0B3171B44A2CA00F3EBC4 /* StoreKit.framework in Frameworks */,
 				F5B0B3161B44A22300F3EBC4 /* SystemConfiguration.framework in Frameworks */,
