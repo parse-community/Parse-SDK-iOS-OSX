@@ -10,15 +10,14 @@ git:
 
 before_install:
   - git submodule update --init --recursive
+matrix:
+  - TEST_TYPE=ios
+  - TEST_TYPE=macos
+install: bundle install
+script: bundle exec rake test:$TEST_TYPE
 
 jobs:
   include:
-    - stage: test
-      env:
-        - TEST_TYPE=ios
-        - TEST_TYPE=macos
-      install: bundle install
-      script: bundle exec rake test:$TEST_TYPE
     - stage: release
       env: Deployment
       install: bundle install
