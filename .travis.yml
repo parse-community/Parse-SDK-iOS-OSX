@@ -14,7 +14,7 @@ before_install:
 jobs:
   include:
     - stage: test
-      matrix:
+      env:
         - TEST_TYPE=ios
         - TEST_TYPE=macos
       install: bundle install
