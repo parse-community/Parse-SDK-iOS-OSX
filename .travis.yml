@@ -13,6 +13,12 @@ before_install:
 
 jobs:
   include:
+    - stage: test
+      matrix:
+        - TEST_TYPE=ios
+        - TEST_TYPE=macos
+      install: bundle install
+      script: bundle exec rake test:$TEST_TYPE
     - stage: release
       env: Deployment
       install: bundle install
