@@ -8,7 +8,9 @@ aliases:
       git submodule update --init --recursive
       gem install bundler
       bundle install
+      defaults write com.apple.dt.Xcode BuildSystemScheduleInherentlyParallelCommandsExclusively -bool NO
       sh ./Carthage/Checkouts/Bolts-ObjC/scripts/build_framework.sh -c Release --with-tvos --with-watchos
+      defaults write com.apple.dt.Xcode BuildSystemScheduleInherentlyParallelCommandsExclusively -bool YES
       
   - &filter-only-master
     branches:
