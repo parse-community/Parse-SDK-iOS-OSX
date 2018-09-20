@@ -458,7 +458,7 @@ namespace :package do
   end
 end
 
-namespace :test do
+namespace :test  do
   desc 'Run iOS Tests'
   task :ios do |_, args|
     task = XCTask::BuildTask.new do |t|
