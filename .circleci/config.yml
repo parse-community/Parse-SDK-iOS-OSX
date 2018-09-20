@@ -8,7 +8,7 @@ aliases:
       git submodule update --init --recursive
       gem install bundler
       bundle install
-      sh ./Carthage/Checkouts/Bolts-ObjC/scripts/build_framework.sh -c Release --with-tvos --with-watchos | xcpretty
+      sh ./Carthage/Checkouts/Bolts-ObjC/scripts/build_framework.sh -c Release --with-tvos --with-watchos
       
   - &filter-only-master
     branches:
