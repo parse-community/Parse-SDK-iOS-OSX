@@ -44,18 +44,10 @@ NSString *const PFPinKeyObjects = @"_objects";
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)initWithName:(NSString *)name {
-    self = [super init];
-    if (!self) return nil;
-
-    // Use property accessor, as there is no ivar here for `name`.
-    self.name = name;
-
-    return self;
-}
-
 + (instancetype)pinWithName:(NSString *)name {
-    return [[self alloc] initWithName:name];
+    PFPin * pin = [PFPin object];
+    pin.name = name;
+    return pin;
 }
 
 ///--------------------------------------

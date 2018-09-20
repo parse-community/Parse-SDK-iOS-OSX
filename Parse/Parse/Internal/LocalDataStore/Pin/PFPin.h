@@ -27,7 +27,6 @@ extern NSString *const PFPinKeyObjects;
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)initWithName:(NSString *)name;
 + (instancetype)pinWithName:(NSString *)name;
 
 @end
