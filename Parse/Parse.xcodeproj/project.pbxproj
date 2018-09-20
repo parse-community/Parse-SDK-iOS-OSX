@@ -8541,7 +8541,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 810154FE1BB382F800D7C7BD /* Parse-watchOS.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Checkouts/Bolts-ObjC/build/watchOS";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -8550,7 +8549,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 810154FE1BB382F800D7C7BD /* Parse-watchOS.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Checkouts/Bolts-ObjC/build/watchOS";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -8559,7 +8557,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 815F24171BD04D310054659F /* Parse-tvOS.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Checkouts/Bolts-ObjC/build/tvOS";
 			};
 			name = Debug;
 		};
@@ -8567,7 +8564,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 815F24171BD04D310054659F /* Parse-tvOS.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Checkouts/Bolts-ObjC/build/tvOS";
 			};
 			name = Release;
 		};
@@ -8575,7 +8571,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB591B4F39DA00A0ECD5 /* ParseUnitTests-iOS.xcconfig */;
 			buildSettings = {
-				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Checkouts/Bolts-ObjC/build/ios";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParseUnitTests-iOS-host.app/ParseUnitTests-iOS-host";
 			};
 			name = Debug;
@@ -8584,7 +8579,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB591B4F39DA00A0ECD5 /* ParseUnitTests-iOS.xcconfig */;
 			buildSettings = {
-				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Checkouts/Bolts-ObjC/build/ios";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParseUnitTests-iOS-host.app/ParseUnitTests-iOS-host";
 			};
 			name = Release;
@@ -8611,7 +8605,6 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Checkouts/Bolts-ObjC/build/ios";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -8625,7 +8618,6 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Checkouts/Bolts-ObjC/build/ios";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				SWIFT_VERSION = 3.0;
@@ -8678,7 +8670,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB541B4F39DA00A0ECD5 /* Parse-macOS.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Checkouts/Bolts-ObjC/build/osx";
 			};
 			name = Debug;
 		};
@@ -8686,7 +8677,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB541B4F39DA00A0ECD5 /* Parse-macOS.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Checkouts/Bolts-ObjC/build/osx";
 			};
 			name = Release;
 		};

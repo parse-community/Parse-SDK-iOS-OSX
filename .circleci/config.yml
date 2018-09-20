@@ -8,7 +8,7 @@ aliases:
       git submodule update --init --recursive
       gem install bundler
       bundle install
-      bundle exec rake pacakge:prepare
+      bundle exec rake package:prepare
   - &filter-only-master
     branches:
       only:
