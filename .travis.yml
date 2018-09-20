@@ -12,7 +12,7 @@ before_install:
   - git submodule update --init --recursive
 install: 
   - bundle install
-  - bundle exec rake pacakage:prepare
+  - bundle exec rake package:prepare
 
 jobs:
   include:
