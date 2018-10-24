@@ -60,7 +60,7 @@ NSString *const PFKeychainStoreDefaultService = @"com.parse.sdk";
     _keychainQueryTemplate = [[self class] _keychainQueryTemplateForService:service];
 
     NSString *queueLabel = [NSString stringWithFormat:@"com.parse.keychain.%@", service];
-    _synchronizationQueue = dispatch_queue_create(queueLabel.UTF8String, DISPATCH_QUEUE_CONCURRENT);
+    _synchronizationQueue = dispatch_queue_create(queueLabel.UTF8String, DISPATCH_QUEUE_SERIAL);
     PFMarkDispatchQueue(_synchronizationQueue);
 
     return self;
@@ -166,7 +166,7 @@ NSString *const PFKeychainStoreDefaultService = @"com.parse.sdk";
     NSDictionary *update = @{ (__bridge NSString *)kSecValueData : data };
 
     __block OSStatus status = errSecSuccess;
-    dispatch_barrier_sync(_synchronizationQueue,^{
+    dispatch_sync(_synchronizationQueue,^{
         if ([self _dataForKey:key]) {
             status = SecItemUpdate((__bridge CFDictionaryRef)query, (__bridge CFDictionaryRef)update);
         } else {
@@ -189,7 +189,7 @@ NSString *const PFKeychainStoreDefaultService = @"com.parse.sdk";
 
 - (BOOL)removeObjectForKey:(NSString *)key {
     __block BOOL value = NO;
-    dispatch_barrier_sync(_synchronizationQueue, ^{
+    dispatch_sync(_synchronizationQueue, ^{
         value = [self _removeObjectForKey:key];
     });
     return value;
@@ -210,7 +210,7 @@ NSString *const PFKeychainStoreDefaultService = @"com.parse.sdk";
     query[(__bridge id)kSecMatchLimit] = (__bridge id)kSecMatchLimitAll;
 
     __block BOOL value = YES;
-    dispatch_barrier_sync(_synchronizationQueue, ^{
+    dispatch_sync(_synchronizationQueue, ^{
         CFArrayRef result = NULL;
         OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&result);
         if (status != errSecSuccess) {
