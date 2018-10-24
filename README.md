@@ -1,5 +1,6 @@
 # Parse SDK for iOS/OS X/watchOS/tvOS
 
+[![Maintenance help wanted](https://img.shields.io/badge/maintenance-help%20wanted-red.svg)](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1356)
 ![Platforms][platforms-svg]
 [![License][license-svg]][license-link]
 
