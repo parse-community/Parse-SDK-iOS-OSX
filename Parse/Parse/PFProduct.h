@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFFile.h>
+#import <Parse/PFFileObject.h>
 #import <Parse/PFObject.h>
 #import <Parse/PFSubclassing.h>
 
@@ -41,7 +41,7 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFProduct : PFObject<PFSubcla
 /**
  The icon of the product.
  */
-@property (nullable, nonatomic, strong) PFFile *icon;
+@property (nullable, nonatomic, strong) PFFileObject *icon;
 
 /**
  The title of the product.

@@ -59,7 +59,7 @@ class SubtitleImageCollectionViewController: PFQueryCollectionViewController {
         cell?.textLabel.textAlignment = .center
         cell?.textLabel.text = object?["name"] as? String
 
-        cell?.imageView.file = object?["icon"] as? PFFile
+        cell?.imageView.file = object?["icon"] as? PFFileObject
         if cell?.imageView.image == nil {
             cell?.imageView.image = UIImage(named: "Icon.png")
             cell?.imageView.loadInBackground()

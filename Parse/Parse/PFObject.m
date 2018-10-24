@@ -32,7 +32,7 @@
 #import "PFErrorUtilities.h"
 #import "PFEventuallyQueue_Private.h"
 #import "PFFileManager.h"
-#import "PFFile_Private.h"
+#import "PFFileObject_Private.h"
 #import "PFJSONSerialization.h"
 #import "PFLogging.h"
 #import "PFMacros.h"
@@ -69,7 +69,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     dispatch_once(&onceToken, ^{
         classes = @[ [NSDictionary class], [NSArray class],
                      [NSString class], [NSNumber class], [NSNull class], [NSDate class], [NSData class],
-                     [PFObject class], [PFFile class], [PFACL class], [PFGeoPoint class] ];
+                     [PFObject class], [PFFileObject class], [PFACL class], [PFGeoPoint class] ];
     });
 
     for (Class class in classes) {
@@ -311,8 +311,8 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         if ([object isDirty:NO]) {
             [dirtyChildren addObject:object];
         }
-    } else if ([node isKindOfClass:[PFFile class]]) {
-        PFFile *file = (PFFile *)node;
+    } else if ([node isKindOfClass:[PFFileObject class]]) {
+        PFFileObject *file = (PFFileObject *)node;
         if (!file.url) {
             [dirtyFiles addObject:node];
         }
@@ -427,7 +427,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }
 
     BFTask *task = [BFTask taskWithResult:@YES];
-    for (PFFile *file in uniqueFiles) {
+    for (PFFileObject *file in uniqueFiles) {
         task = [task continueAsyncWithSuccessBlock:^id(BFTask *task) {
             return [[file saveInBackground] continueAsyncWithBlock:^id(BFTask *task) {
                 // This is a stupid hack because our current behavior is to fail file
@@ -595,10 +595,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             return [BFTask taskWithError:error];
         }
 
-        for (PFFile *file in uniqueFiles) {
+        for (PFFileObject *file in uniqueFiles) {
             if (!file.url) {
                 NSError *error = [PFErrorUtilities errorWithCode:kPFErrorUnsavedFile
-                                                         message:@"Unable to saveEventually a PFObject with a relation to a new, unsaved PFFile."];
+                                                         message:@"Unable to saveEventually a PFObject with a relation to a new, unsaved PFFileObject."];
                 return [BFTask taskWithError:error];
             }
         }

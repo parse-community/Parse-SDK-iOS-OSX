@@ -108,7 +108,7 @@
             NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"png"];
             NSData *data = [NSData dataWithContentsOfFile:path];
 
-            PFFile *file = [PFFile fileWithName:[path lastPathComponent] data:data];
+            PFFileObject *file = [PFFileObject fileWithName:[path lastPathComponent] data:data];
 
             PFObject *object = [[PFObject alloc] initWithClassName:@"App"];
             object[@"icon"] = file;

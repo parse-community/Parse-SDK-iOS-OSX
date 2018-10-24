@@ -23,7 +23,7 @@
 
 #import <Bolts/BFTaskCompletionSource.h>
 
-#import <Parse/PFFile.h>
+#import <Parse/PFFileObject.h>
 
 #import "PFImageCache.h"
 
@@ -32,7 +32,7 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setFile:(PFFile *)otherFile {
+- (void)setFile:(PFFileObject *)otherFile {
     // Here we don't check (file != otherFile)
     // because self.image needs to be updated regardless.
     // setFile: could have altered self.image
@@ -101,7 +101,7 @@
     }
 
 
-    PFFile *file = _file;
+    PFFileObject *file = _file;
     [_file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
             if (completion) {

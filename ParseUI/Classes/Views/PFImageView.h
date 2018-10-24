@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^PFImageViewImageResultBlock)(UIImage *__nullable image,  NSError *__nullable error);
 
 @class BFTask<__covariant BFGenericType>;
-@class PFFile;
+@class PFFileObject;
 
 /**
  An image view that downloads and displays remote image stored on Parse's server.
@@ -47,7 +47,7 @@ typedef void(^PFImageViewImageResultBlock)(UIImage *__nullable image,  NSError *
 
  @warning Note that the download does not start until `-loadInBackground:` is called.
  */
-@property (nullable, nonatomic, strong) PFFile *file;
+@property (nullable, nonatomic, strong) PFFileObject *file;
 
 /**
  Initiate downloading of the remote image.

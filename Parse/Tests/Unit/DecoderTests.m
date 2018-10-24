@@ -9,7 +9,7 @@
 
 #import "PFDecoder.h"
 #import "PFFieldOperation.h"
-#import "PFFile.h"
+#import "PFFileObject.h"
 #import "PFGeoPoint.h"
 #import "PFPolygon.h"
 #import "PFObjectPrivate.h"
@@ -140,9 +140,9 @@
                                                                  @"url" : @"http://yarr.com/yolo.png"} }];
     XCTAssertNotNil(decoded);
 
-    PFFile *file = decoded[@"file"];
+    PFFileObject *file = decoded[@"file"];
     XCTAssertNotNil(file);
-    PFAssertIsKindOfClass(file, [PFFile class]);
+    PFAssertIsKindOfClass(file, [PFFileObject class]);
 
     XCTAssertEqualObjects(file.name, @"yolo.png");
     XCTAssertEqualObjects(file.url, @"http://yarr.com/yolo.png");

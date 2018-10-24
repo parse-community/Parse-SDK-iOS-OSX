@@ -19,7 +19,7 @@
 #import "PFDateFormatter.h"
 #import "BFTask+Private.h"
 #import "PFFieldOperation.h"
-#import "PFFile_Private.h"
+#import "PFFileObject_Private.h"
 #import "PFGeoPointPrivate.h"
 #import "PFKeyValueCache.h"
 #import "PFKeychainStore.h"

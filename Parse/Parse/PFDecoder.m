@@ -13,7 +13,7 @@
 #import "PFDateFormatter.h"
 #import "PFFieldOperation.h"
 #import "PFFieldOperationDecoder.h"
-#import "PFFile_Private.h"
+#import "PFFileObject_Private.h"
 #import "PFGeoPointPrivate.h"
 #import "PFPolygonPrivate.h"
 #import "PFInternalUtils.h"
@@ -64,7 +64,7 @@
             return [PFRelation relationFromDictionary:dictionary withDecoder:self];
 
         } else if ([type isEqualToString:@"File"]) {
-            return [PFFile fileWithName:dictionary[@"name"]
+            return [PFFileObject fileWithName:dictionary[@"name"]
                                     url:dictionary[@"url"]];
 
         } else if ([type isEqualToString:@"Pointer"]) {
