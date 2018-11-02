@@ -34,6 +34,13 @@
     XCTAssertEqualObjects(polygon.coordinates, _testPoints);
 }
 
+- (void)testPolygonSaveToObject {
+    PFPolygon *polygon = [PFPolygon polygonWithCoordinates:_testPoints];
+    PFObject *object = [PFObject objectWithClassName:@"A"];
+    object[@"bounds"] = polygon;
+    XCTAssertEqualObjects(object[@"bounds"], polygon);
+}
+
 - (void)testPolygonDictionaryEncoding {
     PFPolygon *polygon = [PFPolygon polygonWithCoordinates:_testPoints];
 

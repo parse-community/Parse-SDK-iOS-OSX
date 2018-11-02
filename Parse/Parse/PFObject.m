@@ -69,7 +69,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     dispatch_once(&onceToken, ^{
         classes = @[ [NSDictionary class], [NSArray class],
                      [NSString class], [NSNumber class], [NSNull class], [NSDate class], [NSData class],
-                     [PFObject class], [PFFileObject class], [PFACL class], [PFGeoPoint class] ];
+                     [PFObject class], [PFFileObject class], [PFACL class], [PFGeoPoint class], [PFPolygon class] ];
     });
 
     for (Class class in classes) {
