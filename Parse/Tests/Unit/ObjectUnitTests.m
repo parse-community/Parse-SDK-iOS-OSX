@@ -63,12 +63,15 @@
     NSDate *date = [NSDate date];
     NSData *data = [@"foo" dataUsingEncoding:NSUTF8StringEncoding];
     NSNull *null = [NSNull null];
+    NSArray *testPoints = @[@[@0,@0],@[@0,@1],@[@1,@1],@[@1,@0]];
+    PFPolygon *polygon = [PFPolygon polygonWithCoordinates:testPoints];
     NSDictionary *validDictionary = @{ @"string" : string,
                                        @"number" : number,
                                        @"date" : date,
                                        @"data" : data,
                                        @"null" : null,
-                                       @"object" : object };
+                                       @"object" : object,
+                                       @"polygon" : polygon };
     PFObject *object2 = [PFObject objectWithClassName:@"Test" dictionary:validDictionary];
     XCTAssertNotNil(object2);
     XCTAssertEqualObjects(string, object2[@"string"]);
@@ -77,6 +80,7 @@
     XCTAssertEqualObjects(object, object2[@"object"]);
     XCTAssertEqualObjects(null, object2[@"null"]);
     XCTAssertEqualObjects(data, object2[@"data"]);
+    XCTAssertEqualObjects(polygon, object2[@"polygon"]);
 
     validDictionary = @{ @"array" : @[ object, object2 ],
                          @"dictionary" : @{@"bar" : date, @"score" : number} };

@@ -14,6 +14,7 @@
 #import "PFGeoPoint.h"
 #import "PFPolygonPrivate.h"
 #import "PFTestCase.h"
+#import "PFObject.h"
 
 @interface PolygonUnitTests : PFTestCase {
     NSArray *_testPoints;
@@ -32,6 +33,13 @@
 - (void)testPolygonFromCoordinates {
     PFPolygon *polygon = [PFPolygon polygonWithCoordinates:_testPoints];
     XCTAssertEqualObjects(polygon.coordinates, _testPoints);
+}
+
+- (void)testPolygonSaveToObject {
+    PFPolygon *polygon = [PFPolygon polygonWithCoordinates:_testPoints];
+    PFObject *object = [PFObject objectWithClassName:@"A"];
+    object[@"bounds"] = polygon;
+    XCTAssertEqualObjects(object[@"bounds"], polygon);
 }
 
 - (void)testPolygonDictionaryEncoding {
