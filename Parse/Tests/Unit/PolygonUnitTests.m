@@ -14,6 +14,7 @@
 #import "PFGeoPoint.h"
 #import "PFPolygonPrivate.h"
 #import "PFTestCase.h"
+#import "PFObject.h"
 
 @interface PolygonUnitTests : PFTestCase {
     NSArray *_testPoints;
