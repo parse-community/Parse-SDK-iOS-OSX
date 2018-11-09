@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A new `PFFileObject`.
  */
-+ (nullable instancetype)fileWithData:(NSData *)data;
++ (nullable instancetype)fileObjectWithData:(NSData *)data;
 
 /**
  Creates a file with given data and name.
@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A new `PFFileObject` object.
  */
-+ (nullable instancetype)fileWithName:(nullable NSString *)name data:(NSData *)data;
++ (nullable instancetype)fileObjectWithName:(nullable NSString *)name data:(NSData *)data;
 
 /**
  Creates a file with the contents of another file.
@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A new `PFFileObject` instance.
  */
-+ (nullable instancetype)fileWithName:(nullable NSString *)name
++ (nullable instancetype)fileObjectWithName:(nullable NSString *)name
                        contentsAtPath:(NSString *)path PF_SWIFT_UNAVAILABLE;
 
 /**
@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A new `PFFileObject` instance or `nil` if the error occured.
  */
-+ (nullable instancetype)fileWithName:(nullable NSString *)name
++ (nullable instancetype)fileObjectWithName:(nullable NSString *)name
                        contentsAtPath:(NSString *)path
                                 error:(NSError **)error;
 
@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A new `PFFileObject` instance.
  */
-+ (nullable instancetype)fileWithName:(nullable NSString *)name
++ (nullable instancetype)fileObjectWithName:(nullable NSString *)name
                                  data:(NSData *)data
                           contentType:(nullable NSString *)contentType PF_SWIFT_UNAVAILABLE;
 
@@ -109,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A new `PFFileObject` instance or `nil` if the error occured.
  */
-+ (nullable instancetype)fileWithName:(nullable NSString *)name
++ (nullable instancetype)fileObjectWithName:(nullable NSString *)name
                                  data:(NSData *)data
                           contentType:(nullable NSString *)contentType
                                 error:(NSError **)error;
@@ -122,7 +122,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A new `PFFileObject` object.
  */
-+ (instancetype)fileWithData:(NSData *)data contentType:(nullable NSString *)contentType;
++ (instancetype)fileObjectWithData:(NSData *)data contentType:(nullable NSString *)contentType;
 
 ///--------------------------------------
 #pragma mark - File Properties

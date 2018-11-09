@@ -137,28 +137,28 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
 
 - (void)testContructors {
     [self clearStagingAndTemporaryFiles];
-    PFFileObject *file = [PFFileObject fileWithData:[NSData data]];
+    PFFileObject *file = [PFFileObject fileObjectWithData:[NSData data]];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
     XCTAssertTrue(file.dirty);
     XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
-    file = [PFFileObject fileWithData:[NSData data] contentType:@"content-type"];
+    file = [PFFileObject fileObjectWithData:[NSData data] contentType:@"content-type"];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
     XCTAssertTrue(file.dirty);
     XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
-    file = [PFFileObject fileWithName:@"name" data:[NSData data]];
+    file = [PFFileObject fileObjectWithName:@"name" data:[NSData data]];
     XCTAssertEqualObjects(file.name, @"name");
     XCTAssertNil(file.url);
     XCTAssertTrue(file.dirty);
     XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
-    file = [PFFileObject fileWithName:nil contentsAtPath:[self sampleFilePath]];
+    file = [PFFileObject fileObjectWithName:nil contentsAtPath:[self sampleFilePath]];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
     XCTAssertTrue(file.dirty);
@@ -166,7 +166,7 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
 
     [self clearStagingAndTemporaryFiles];
     NSError *error = nil;
-    file = [PFFileObject fileWithName:nil contentsAtPath:[self sampleFilePath] error:&error];
+    file = [PFFileObject fileObjectWithName:nil contentsAtPath:[self sampleFilePath] error:&error];
     XCTAssertNil(error);
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
@@ -174,14 +174,14 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
-    file = [PFFileObject fileWithName:nil data:[NSData data] contentType:@"content-type"];
+    file = [PFFileObject fileObjectWithName:nil data:[NSData data] contentType:@"content-type"];
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
     XCTAssertTrue(file.dirty);
     XCTAssertTrue(file.dataAvailable);
 
     [self clearStagingAndTemporaryFiles];
-    file = [PFFileObject fileWithName:nil data:[NSData data] contentType:@"content-type" error:&error];
+    file = [PFFileObject fileObjectWithName:nil data:[NSData data] contentType:@"content-type" error:&error];
     XCTAssertNil(error);
     XCTAssertEqualObjects(file.name, @"file");
     XCTAssertNil(file.url);
@@ -193,7 +193,7 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     NSMutableData *data = nil;
 
     NSError *error = nil;
-    PFFileObject *file = [PFFileObject fileWithName:@"testFile"
+    PFFileObject *file = [PFFileObject fileObjectWithName:@"testFile"
                                    data:data
                             contentType:nil
                                   error:&error];
@@ -231,7 +231,7 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     NSError *error = nil;
     XCTestExpectation *expectation = nil;
 
-    PFFileObject *file = [PFFileObject fileWithData:[self sampleData] contentType:@"application/octet-stream"];
+    PFFileObject *file = [PFFileObject fileObjectWithData:[self sampleData] contentType:@"application/octet-stream"];
 
     XCTAssertTrue([file save]);
     XCTAssertTrue([file save:&error]);
@@ -325,7 +325,7 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     XCTestExpectation *expectation = nil;
 
     NSData *expectedData = [self sampleData];
-    PFFileObject *file = [PFFileObject fileWithName:@"file" url:@"http://some.place"];
+    PFFileObject *file = [PFFileObject fileObjectWithName:@"file" url:@"http://some.place"];
 
     XCTAssertEqualObjects([file getData], expectedData);
 
@@ -493,7 +493,7 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
     });
 
     XCTestExpectation *expectation = nil;
-    PFFileObject *file = [PFFileObject fileWithName:@"file" url:@"http://some.place"];
+    PFFileObject *file = [PFFileObject fileObjectWithName:@"file" url:@"http://some.place"];
 
     [[NSFileManager defaultManager] removeItemAtPath:cachedPath error:NULL];
     expectation = [self currentSelectorTestExpectation];
@@ -511,7 +511,7 @@ static NSData *dataFromInputStream(NSInputStream *inputStream) {
 - (void)testClearCachedData {
     id mockedFileController = [Parse _currentManager].coreManager.fileController;
 
-    PFFileObject *file = [PFFileObject fileWithName:@"a" data:[NSData data]];
+    PFFileObject *file = [PFFileObject fileObjectWithName:@"a" data:[NSData data]];
     OCMExpect([mockedFileController clearFileCacheAsyncForFileWithState:file.state]).andReturn([BFTask taskWithResult:nil]);
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];

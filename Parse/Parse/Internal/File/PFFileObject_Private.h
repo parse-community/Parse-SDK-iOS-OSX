@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) PFFileState *state;
 
-+ (instancetype)fileWithName:(nullable NSString *)name url:(nullable NSString *)url;
++ (instancetype)fileObjectWithName:(nullable NSString *)name url:(nullable NSString *)url;
 
 - (nullable NSString *)_cachedFilePath;
 

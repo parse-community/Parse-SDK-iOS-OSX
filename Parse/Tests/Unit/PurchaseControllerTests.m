@@ -221,7 +221,7 @@
     OCMStub([bundle appStoreReceiptURL]).andReturn([NSURL fileURLWithPath:receiptFile]);
     [[self sampleData] writeToFile:receiptFile atomically:YES];
 
-    PFFileObject *mockedFile = PFPartialMock([PFFileObject fileWithName:@"testData" data:[self sampleData]]);
+    PFFileObject *mockedFile = PFPartialMock([PFFileObject fileObjectWithName:@"testData" data:[self sampleData]]);
 
     // lol. Probably should just stick this in the PFFile_Private header.
     NSString *stagedPath = [mockedFile valueForKey:@"stagedFilePath"];
