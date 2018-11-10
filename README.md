@@ -18,6 +18,8 @@
 A library that gives you access to the powerful Parse cloud platform from your iOS or OS X app.
 For more information about Parse and its features, see the public [documentation][docs].
 
+Check out some of the [apps using Parse](https://www.appsight.io/sdk/parse).
+
 ## Getting Started
 
 To use parse, head on over to the [releases][releases] page, and download the latest build.
