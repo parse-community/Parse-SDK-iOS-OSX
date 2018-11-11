@@ -272,7 +272,7 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
         return nil;
     }
 
-    NSString *filename = fileState.secureURLString.lastPathComponent;
+    NSString *filename = fileState.name;
     NSString *path = [self.cacheFilesDirectoryPath stringByAppendingPathComponent:filename];
     return path;
 }
