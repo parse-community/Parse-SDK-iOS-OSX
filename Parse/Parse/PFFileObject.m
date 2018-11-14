@@ -53,22 +53,22 @@
 
 #pragma mark Init
 
-+ (instancetype)fileWithData:(NSData *)data {
-    return [self fileWithName:nil data:data contentType:nil];
++ (instancetype)fileObjectWithData:(NSData *)data {
+    return [self fileObjectWithName:nil data:data contentType:nil];
 }
 
-+ (instancetype)fileWithName:(NSString *)name data:(NSData *)data {
-    return [self fileWithName:name data:data contentType:nil];
++ (instancetype)fileObjectWithName:(NSString *)name data:(NSData *)data {
+    return [self fileObjectWithName:name data:data contentType:nil];
 }
 
-+ (instancetype)fileWithName:(NSString *)name contentsAtPath:(NSString *)path {
++ (instancetype)fileObjectWithName:(NSString *)name contentsAtPath:(NSString *)path {
     NSError *error = nil;
-    PFFileObject *file = [self fileWithName:name contentsAtPath:path error:&error];
+    PFFileObject *file = [self fileObjectWithName:name contentsAtPath:path error:&error];
     PFParameterAssert(!error, @"Could not access file at %@: %@", path, error);
     return file;
 }
 
-+ (instancetype)fileWithName:(NSString *)name contentsAtPath:(NSString *)path error:(NSError **)error {
++ (instancetype)fileObjectWithName:(NSString *)name contentsAtPath:(NSString *)path error:(NSError **)error {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL directory = NO;
 
@@ -82,23 +82,23 @@
         return nil;
     }
 
-    PFFileObject *file = [self fileWithName:name url:nil];
+    PFFileObject *file = [self fileObjectWithName:name url:nil];
     if (![file _stageWithPath:path error:error]) {
         return nil;
     }
     return file;
 }
 
-+ (instancetype)fileWithName:(NSString *)name
++ (instancetype)fileObjectWithName:(NSString *)name
                         data:(NSData *)data
                  contentType:(NSString *)contentType {
     NSError *error = nil;
-    PFFileObject *file = [self fileWithName:name data:data contentType:contentType error:&error];
+    PFFileObject *file = [self fileObjectWithName:name data:data contentType:contentType error:&error];
     PFConsistencyAssert(!error, @"Could not save file data for %@ : %@", name, error);
     return file;
 }
 
-+ (instancetype)fileWithName:(NSString *)name
++ (instancetype)fileObjectWithName:(NSString *)name
                         data:(NSData *)data
                  contentType:(NSString *)contentType
                        error:(NSError **)error {
@@ -119,8 +119,8 @@
     return file;
 }
 
-+ (instancetype)fileWithData:(NSData *)data contentType:(NSString *)contentType {
-    return [self fileWithName:nil data:data contentType:contentType];
++ (instancetype)fileObjectWithData:(NSData *)data contentType:(NSString *)contentType {
+    return [self fileObjectWithName:nil data:data contentType:contentType];
 }
 
 #pragma mark Uploading
@@ -249,7 +249,7 @@
     return self;
 }
 
-+ (instancetype)fileWithName:(NSString *)name url:(NSString *)url {
++ (instancetype)fileObjectWithName:(NSString *)name url:(NSString *)url {
     return [[self alloc] initWithName:name urlString:url mimeType:nil];
 }
 

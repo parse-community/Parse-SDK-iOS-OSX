@@ -64,7 +64,7 @@
             return [PFRelation relationFromDictionary:dictionary withDecoder:self];
 
         } else if ([type isEqualToString:@"File"]) {
-            return [PFFileObject fileWithName:dictionary[@"name"]
+            return [PFFileObject fileObjectWithName:dictionary[@"name"]
                                     url:dictionary[@"url"]];
 
         } else if ([type isEqualToString:@"Pointer"]) {
