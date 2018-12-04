@@ -77,7 +77,7 @@ static NSString *PFDeviceSysctlByName(NSString *name) {
     if (!name) {
 #if TARGET_OS_WATCH
         name = [WKInterfaceDevice currentDevice].model;
-#elif TARGET_OS_IOS
+#elif TARGET_OS_IOS || TARGET_OS_TV
         name = [UIDevice currentDevice].model;
 #elif TARGET_OS_MAC
         name = @"Mac";
