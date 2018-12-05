@@ -2633,6 +2633,8 @@
 		991A8E3B21B81C9A00B5B007 /* PFRESTPushCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C9C9F619FEA89200D514C5 /* PFRESTPushCommand.m */; };
 		991A8E3C21B81C9E00B5B007 /* PFRESTPushCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C9C9F519FEA89200D514C5 /* PFRESTPushCommand.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		991A8E3D21B81C9E00B5B007 /* PFRESTPushCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C9C9F519FEA89200D514C5 /* PFRESTPushCommand.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		991A8E3E21B8271600B5B007 /* PFPush.h in Headers */ = {isa = PBXBuildFile; fileRef = 0925ABF113D791770095FEFA /* PFPush.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		991A8E3F21B8271600B5B007 /* PFPush.h in Headers */ = {isa = PBXBuildFile; fileRef = 0925ABF113D791770095FEFA /* PFPush.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6E2958C1E96173D009917BF /* ParseManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E295801E961727009917BF /* ParseManagerPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A6E2958D1E96173F009917BF /* ParseManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E295801E961727009917BF /* ParseManagerPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A6E2958E1E961741009917BF /* ParseManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E295801E961727009917BF /* ParseManagerPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -5554,6 +5556,7 @@
 				815F23981BD04D150054659F /* PFURLSession_Private.h in Headers */,
 				815F23991BD04D150054659F /* PFRESTCommand_Private.h in Headers */,
 				815F239A1BD04D150054659F /* PFObjectState.h in Headers */,
+				991A8E3E21B8271600B5B007 /* PFPush.h in Headers */,
 				815F239B1BD04D150054659F /* PFHTTPRequest.h in Headers */,
 				815F239C1BD04D150054659F /* PFRESTCommand.h in Headers */,
 				818ADC801BE1A8BA00C8006C /* PFPersistenceGroup.h in Headers */,
@@ -6230,6 +6233,7 @@
 				81C5853F1C3B0AA1000063C6 /* PFURLSession_Private.h in Headers */,
 				81C585401C3B0AA1000063C6 /* PFRESTCommand_Private.h in Headers */,
 				81C585411C3B0AA1000063C6 /* PFObjectState.h in Headers */,
+				991A8E3F21B8271600B5B007 /* PFPush.h in Headers */,
 				81C585431C3B0AA1000063C6 /* PFHTTPRequest.h in Headers */,
 				81C585441C3B0AA1000063C6 /* PFRESTCommand.h in Headers */,
 				81C585471C3B0AA1000063C6 /* PFPersistenceGroup.h in Headers */,
