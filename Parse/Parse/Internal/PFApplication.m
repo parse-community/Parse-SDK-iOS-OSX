@@ -38,8 +38,10 @@
     self = [super init];
     if (self) {
 #if TARGET_OS_IOS || TARGET_OS_TV
-        [self.systemApplication addObserver:self forKeyPath:@"applicationIconBadgeNumber" options:NSKeyValueObservingOptionNew context:nil];
-        _iconBadgeNumber = self.systemApplication.applicationIconBadgeNumber;
+        if (@available(iOS 1.0, tvOS 10.0, *)) {
+            [self.systemApplication addObserver:self forKeyPath:@"applicationIconBadgeNumber" options:NSKeyValueObservingOptionNew context:nil];
+            _iconBadgeNumber = self.systemApplication.applicationIconBadgeNumber;
+        }
 #endif
     }
     return self;
@@ -91,7 +93,9 @@
 #if TARGET_OS_IOS || TARGET_OS_TV
         _iconBadgeNumber = iconBadgeNumber;
         dispatch_block_t block = ^{
-            self.systemApplication.applicationIconBadgeNumber = iconBadgeNumber;
+            if (@available(iOS 1.0, tvOS 10.0, *)) {
+                self.systemApplication.applicationIconBadgeNumber = iconBadgeNumber;
+            }
         };
         if ([NSThread currentThread].isMainThread) {
             block();
@@ -123,7 +127,9 @@
 
 - (void)dealloc {
 #if TARGET_OS_IOS || TARGET_OS_TV
-    [self.systemApplication removeObserver:self forKeyPath:@"applicationIconBadgeNumber"];
+    if (@available(iOS 1.0, tvOS 10.0, *)) {
+        [self.systemApplication removeObserver:self forKeyPath:@"applicationIconBadgeNumber"];
+    }
 #endif
 }
 
