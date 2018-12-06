@@ -82,7 +82,7 @@ PF_WATCH_UNAVAILABLE @interface PFInstallation : PFObject<PFSubclassing>
 /**
  The badge for the `PFInstallation`.
  */
-@property (nonatomic, assign) NSInteger badge PF_TV_UNAVAILABLE;
+@property (nonatomic, assign) NSInteger badge;
 
 /**
  The name of the time zone for the `PFInstallation`.

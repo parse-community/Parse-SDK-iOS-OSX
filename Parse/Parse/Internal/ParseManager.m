@@ -457,7 +457,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 
 - (void)_migrateSandboxDataToApplicationGroupContainerIfNeeded {
     // There is no need to migrate anything on OSX, since we are using globally available folder.
-#if TARGET_OS_IOS
+#if TARGET_OS_IOS || TARGET_OS_TV
     // Do nothing if there is no application group container or containing application is specified.
     if (!self.configuration.applicationGroupIdentifier || self.configuration.containingApplicationBundleIdentifier) {
         return;

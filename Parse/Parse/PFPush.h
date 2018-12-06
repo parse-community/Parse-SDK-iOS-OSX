@@ -279,7 +279,7 @@ PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
 
  @param userInfo The userInfo dictionary you get in `appplication:didReceiveRemoteNotification:`.
  */
-+ (void)handlePush:(nullable NSDictionary *)userInfo NS_AVAILABLE_IOS(3_0) PF_EXTENSION_UNAVAILABLE("") PF_TV_UNAVAILABLE;
++ (void)handlePush:(nullable NSDictionary *)userInfo NS_AVAILABLE_IOS(3_0) PF_EXTENSION_UNAVAILABLE("");
 
 ///--------------------------------------
 #pragma mark - Managing Channel Subscriptions
