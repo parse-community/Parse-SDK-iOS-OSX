@@ -13,14 +13,13 @@
 
 #import "PFCoreDataProvider.h"
 
-PF_TV_UNAVAILABLE_WARNING
 PF_WATCH_UNAVAILABLE_WARNING
 
 @class BFTask<__covariant BFGenericType>;
 
 NS_ASSUME_NONNULL_BEGIN
 
-PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPushChannelsController : NSObject
+PF_WATCH_UNAVAILABLE @interface PFPushChannelsController : NSObject
 
 @property (nonatomic, weak, readonly) id<PFCurrentInstallationControllerProvider> dataSource;
 

@@ -37,9 +37,11 @@
 - (id)init {
     self = [super init];
     if (self) {
-#if TARGET_OS_IOS
-        [self.systemApplication addObserver:self forKeyPath:@"applicationIconBadgeNumber" options:NSKeyValueObservingOptionNew context:nil];
-        _iconBadgeNumber = self.systemApplication.applicationIconBadgeNumber;
+#if TARGET_OS_IOS || TARGET_OS_TV
+        if (@available(iOS 1.0, tvOS 10.0, *)) {
+            [self.systemApplication addObserver:self forKeyPath:@"applicationIconBadgeNumber" options:NSKeyValueObservingOptionNew context:nil];
+            _iconBadgeNumber = self.systemApplication.applicationIconBadgeNumber;
+        }
 #endif
     }
     return self;
@@ -62,9 +64,9 @@
 }
 
 - (NSInteger)iconBadgeNumber {
-#if TARGET_OS_WATCH || TARGET_OS_TV
+#if TARGET_OS_WATCH
     return 0;
-#elif TARGET_OS_IOS
+#elif TARGET_OS_IOS || TARGET_OS_TV
     return _iconBadgeNumber;
 #elif PF_TARGET_OS_OSX
     // Make sure not to use `NSApp` here, because it doesn't work sometimes,
@@ -88,10 +90,12 @@
 
 - (void)setIconBadgeNumber:(NSInteger)iconBadgeNumber {
     if (self.iconBadgeNumber != iconBadgeNumber) {
-#if TARGET_OS_IOS
+#if TARGET_OS_IOS || TARGET_OS_TV
         _iconBadgeNumber = iconBadgeNumber;
         dispatch_block_t block = ^{
-            self.systemApplication.applicationIconBadgeNumber = iconBadgeNumber;
+            if (@available(iOS 1.0, tvOS 10.0, *)) {
+                self.systemApplication.applicationIconBadgeNumber = iconBadgeNumber;
+            }
         };
         if ([NSThread currentThread].isMainThread) {
             block();
@@ -104,7 +108,7 @@
     }
 }
 
-#if TARGET_OS_IOS
+#if TARGET_OS_IOS || TARGET_OS_TV
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"applicationIconBadgeNumber"] && change) {
         _iconBadgeNumber = [change[@"new"] integerValue];
@@ -122,8 +126,10 @@
 }
 
 - (void)dealloc {
-#if TARGET_OS_IOS
-    [self.systemApplication removeObserver:self forKeyPath:@"applicationIconBadgeNumber"];
+#if TARGET_OS_IOS || TARGET_OS_TV
+    if (@available(iOS 1.0, tvOS 10.0, *)) {
+        [self.systemApplication removeObserver:self forKeyPath:@"applicationIconBadgeNumber"];
+    }
 #endif
 }
 

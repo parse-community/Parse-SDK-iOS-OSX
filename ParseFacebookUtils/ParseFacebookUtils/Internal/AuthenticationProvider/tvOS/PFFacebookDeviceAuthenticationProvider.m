@@ -38,7 +38,7 @@
     return [BFTask taskFromExecutor:[BFExecutor mainThreadExecutor] withBlock:^id _Nonnull{
         if (self->_loginTaskCompletionSource) {
             return [NSError errorWithDomain:FBSDKErrorDomain
-                                       code:FBSDKDialogUnavailableErrorCode
+                                       code:FBSDKErrorDialogUnavailable
                                    userInfo:@{ NSLocalizedDescriptionKey : @"Another login attempt is already in progress." }];
         }
         self->_loginTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];

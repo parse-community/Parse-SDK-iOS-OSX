@@ -48,7 +48,7 @@ PFObjectFilePersistenceControllerProvider,
 PFPinningObjectStoreProvider,
 PFObjectLocalIdStoreProvider,
 PFUserAuthenticationControllerProvider,
-#if !TARGET_OS_TV && !TARGET_OS_WATCH
+#if !TARGET_OS_WATCH
 PFInstallationControllerProvider,
 PFCurrentInstallationControllerProvider,
 #endif

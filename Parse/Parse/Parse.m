@@ -27,7 +27,7 @@
 #import "PFObjectSubclassingController.h"
 #import "Parse_Private.h"
 
-#if !TARGET_OS_WATCH && !TARGET_OS_TV
+#if !TARGET_OS_WATCH
 #import "PFInstallationPrivate.h"
 #endif
 

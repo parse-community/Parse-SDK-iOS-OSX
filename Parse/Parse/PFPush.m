@@ -287,7 +287,7 @@ static Class _pushInternalUtilClass = nil;
 #pragma mark - Handling Notifications
 ///--------------------------------------
 
-#if TARGET_OS_IOS
+#if TARGET_OS_IOS || TARGET_OS_TV
 + (void)handlePush:(NSDictionary *)userInfo {
     UIApplication *application = [PFApplication currentApplication].systemApplication;
     if (application.applicationState != UIApplicationStateActive) {
@@ -295,6 +295,8 @@ static Class _pushInternalUtilClass = nil;
     }
 
     NSDictionary *aps = userInfo[@"aps"];
+    
+#if TARGET_OS_IOS
     id alert = aps[@"alert"];
 
     if (alert) {
@@ -314,6 +316,7 @@ static Class _pushInternalUtilClass = nil;
             [[self pushInternalUtilClass] showAlertViewWithTitle:appName message:message];
         }
     }
+#endif
 
     NSNumber *badgeNumber = aps[@"badge"];
     if (badgeNumber) {
@@ -321,6 +324,7 @@ static Class _pushInternalUtilClass = nil;
         application.applicationIconBadgeNumber = number;
     }
 
+#if TARGET_OS_IOS
     NSString *soundName = aps[@"sound"];
 
     // Vibrate or play sound only if `sound` is specified.
@@ -332,6 +336,7 @@ static Class _pushInternalUtilClass = nil;
             [[self pushInternalUtilClass] playAudioWithName:soundName];
         }
     }
+#endif
 }
 #endif
 

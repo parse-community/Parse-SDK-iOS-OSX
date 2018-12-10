@@ -34,17 +34,7 @@ Pod::Spec.new do |s|
                           'Parse/Parse/Internal/Purchase/**/*.{h,m}',
                           'Parse/Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
     s.tvos.exclude_files = 'Parse/Parse/PFNetworkActivityIndicatorManager.{h,m}',
-                           'Parse/Parse/PFPush.{h,m}',
-                           'Parse/Parse/PFPush+Synchronous.{h,m}',
-                           'Parse/Parse/PFPush+Deprecated.{h,m}',
-                           'Parse/Parse/PFInstallation.{h,m}',
-                           'Parse/Parse/Internal/PFAlertView.{h,m}',
-                           'Parse/Parse/Internal/Push/**/*.{h,m}',
-                           'Parse/Parse/Internal/Installation/Controller/*.{h,m}',
-                           'Parse/Parse/Internal/Installation/Constants/*.{h,m}',
-                           'Parse/Parse/Internal/Installation/CurrentInstallationController/*.{h,m}',
-                           'Parse/Parse/Internal/Installation/PFInstallationPrivate.h',
-                           'Parse/Parse/Internal/Commands/PFRESTPushCommand.{h,m}'
+                           'Parse/Parse/Internal/PFAlertView.{h,m}'
     s.watchos.exclude_files = 'Parse/Parse/PFNetworkActivityIndicatorManager.{h,m}',
                               'Parse/Parse/PFProduct.{h,m}',
                               'Parse/Parse/PFPurchase.{h,m}',
