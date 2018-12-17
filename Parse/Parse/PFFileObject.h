@@ -15,6 +15,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+ /**
+ `PFFile` was renamed to `PFFileObject`.
+ This class is just for warning developer what the right class is, in case they are migrating from SDKs before 1.17.2.
+ */
+__attribute__((unavailable("PFFile was renamed to PFFileObject. Please use it instead.")))
+@interface PFFile : NSObject
+@end
+ 
 /**
  `PFFileObject` representes a file of binary data stored on the Parse servers.
  This can be a image, video, or anything else that an application needs to reference in a non-relational way.
