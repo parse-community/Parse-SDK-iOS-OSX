@@ -104,17 +104,21 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The current configuration in use by the SDK. Returns nil if the SDK has not been initialized yet.
  */
-+ (nullable ParseClientConfiguration *)currentConfiguration;
+@property (nonatomic, nullable, readonly, class) ParseClientConfiguration *currentConfiguration;
 
 /**
  The current application id that was used to configure Parse framework.
  */
-+ (NSString *)getApplicationId;
+@property (nonatomic, nonnull, readonly, class) NSString *applicationId;
+
++ (NSString *)getApplicationId PARSE_DEPRECATED("Use applicationId property.");
 
 /**
  The current client key that was used to configure Parse framework.
  */
-+ (nullable NSString *)getClientKey;
+@property (nonatomic, nullable, readonly, class) NSString *clientKey;
+
++ (nullable NSString *)getClientKey PARSE_DEPRECATED("Use clientKey property.");
 
 ///--------------------------------------
 #pragma mark - Enabling Local Datastore
@@ -128,10 +132,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Flag that indicates whether Local Datastore is enabled.
-
+ 
  @return `YES` if Local Datastore is enabled, otherwise `NO`.
  */
-+ (BOOL)isLocalDatastoreEnabled PF_TV_UNAVAILABLE;
+@property (nonatomic, readonly, class) BOOL isLocalDatastoreEnabled PF_TV_UNAVAILABLE;
 
 ///--------------------------------------
 #pragma mark - Enabling Extensions Data Sharing
@@ -211,29 +215,16 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- Sets the level of logging to display.
+ Gets or sets the level of logging to display.
 
  By default:
- - If running inside an app that was downloaded from iOS App Store - it is set to `PFLogLevelNone`
- - All other cases - it is set to `PFLogLevelWarning`
-
- @param logLevel Log level to set.
- @see PFLogLevel
- */
-+ (void)setLogLevel:(PFLogLevel)logLevel;
-
-/**
- Log level that will be displayed.
-
- By default:
-
  - If running inside an app that was downloaded from iOS App Store - it is set to `PFLogLevelNone`
  - All other cases - it is set to `PFLogLevelWarning`
 
  @return A `PFLogLevel` value.
  @see PFLogLevel
  */
-+ (PFLogLevel)logLevel;
+@property (nonatomic, readwrite, class) PFLogLevel logLevel;
 
 @end
 
