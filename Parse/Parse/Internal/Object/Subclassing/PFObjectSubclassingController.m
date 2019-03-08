@@ -345,7 +345,12 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
     // https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/InstallingFrameworks.html#//apple_ref/doc/uid/20002261-97286
     // the preferred file-system location would be /Library/Frameworks
     // In these cases, we will not want to filter out the Parse.framework if it is installed in /Library/Frameworks.
-    if ([bundle.bundlePath hasPrefix:@"/Library/"] && ![[bundle.bundlePath lastPathComponent] isEqualToString:@"Parse.framework"]) {
+    if ([bundle.bundlePath hasPrefix:@"/Library/"]) {
+
+        if ([bundle.bundlePath hasPrefix:@"/Library/Frameworks/"] && [[bundle.bundlePath lastPathComponent] isEqualToString:@"Parse.framework"]) {
+            [self _registerSubclassesInBundle:bundle]; // Handle case where Parse.framework is installed in /Library/Frameworks
+        }
+        
         return;
     }
     
