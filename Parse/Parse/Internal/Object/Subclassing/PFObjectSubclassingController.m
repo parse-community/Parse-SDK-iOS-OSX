@@ -336,9 +336,19 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
         return;
     }
     // Filter out any system bundles
-    if ([bundle.bundlePath hasPrefix:@"/System/"] || [bundle.bundlePath hasPrefix:@"/Library/"] || [bundle.bundlePath rangeOfString:@"iPhoneSimulator.sdk"].location != NSNotFound) {
+    if ([bundle.bundlePath hasPrefix:@"/System/"] || [bundle.bundlePath rangeOfString:@"iPhoneSimulator.sdk"].location != NSNotFound) {
         return;
     }
+    
+    // Because the Parse Framework cannot be bundled with a macOS Command Line Application, the Parse Framework will need to be
+    // external to the application. Per Apple's Framework Programming Guide,
+    // https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/InstallingFrameworks.html#//apple_ref/doc/uid/20002261-97286
+    // the preferred file-system location would be /Library/Frameworks
+    // In these cases, we will not want to filter out the Parse.framework if it is installed in /Library/Frameworks.
+    if ([bundle.bundlePath hasPrefix:@"/Library/"] && ![[bundle.bundlePath lastPathComponent] isEqualToString:@"Parse.framework"]) {
+        return;
+    }
+    
     [self _registerSubclassesInBundle:bundle];
 }
 
