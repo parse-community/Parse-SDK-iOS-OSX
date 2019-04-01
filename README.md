@@ -11,9 +11,9 @@
 [![Build Status][circleci-status-svg]][circleci-status-link]
 [![Coverage Status][coverage-status-svg]][coverage-status-link]
 [![Join The Conversation](https://img.shields.io/discourse/https/community.parseplatform.org/topics.svg)](https://community.parseplatform.org/c/parse-server)
-[![Backers on Open Collective](https://opencollective.com/parse-server/backers/badge.svg)](#backers)
-[![Sponsors on Open Collective](https://opencollective.com/parse-server/sponsors/badge.svg)](#sponsors)
-![Twitter Follow](https://img.shields.io/twitter/follow/ParsePlatform.svg?label=Follow%20us%20on%20Twitter&style=social)
+[![Backers on Open Collective](https://opencollective.com/parse-server/backers/badge.svg)][open-collective-link]
+[![Sponsors on Open Collective](https://opencollective.com/parse-server/sponsors/badge.svg)][open-collective-link]
+[![Twitter Follow](https://img.shields.io/twitter/follow/ParsePlatform.svg?label=Follow%20us%20on%20Twitter&style=social)](https://twitter.com/intent/follow?screen_name=ParsePlatform)
 
 A library that gives you access to the powerful Parse cloud platform from your iOS or OS X app.
 For more information about Parse and its features, see the public [documentation][docs].
@@ -176,3 +176,6 @@ As of April 5, 2017, Parse, LLC has transferred this code to the parse-community
 
  [references-svg]: https://www.versioneye.com/objective-c/parse/reference_badge.svg
  [references-link]: https://www.versioneye.com/objective-c/parse/references
+ 
+ [open-collective-link]: https://opencollective.com/parse-server
+ 
