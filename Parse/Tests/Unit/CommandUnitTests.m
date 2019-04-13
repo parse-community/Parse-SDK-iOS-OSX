@@ -55,8 +55,8 @@
 
     NSError *error = nil;
     PFURLSessionCommandRunner *commandRunner = [PFURLSessionCommandRunner commandRunnerWithDataSource:[Parse _currentManager]
-                                                                                        applicationId:[Parse getApplicationId]
-                                                                                            clientKey:[Parse getClientKey]
+                                                                                        applicationId:[Parse applicationId]
+                                                                                            clientKey:[Parse clientKey]
                                                                                             serverURL:[NSURL URLWithString:_ParseDefaultServerURLString]];
     [[commandRunner runCommandAsync:command
                         withOptions:PFCommandRunningOptionRetryIfFailed] waitForResult:&error];
@@ -86,8 +86,8 @@
 
     NSError *error = nil;
     PFURLSessionCommandRunner *commandRunner = [PFURLSessionCommandRunner commandRunnerWithDataSource:[Parse _currentManager]
-                                                                                        applicationId:[Parse getApplicationId]
-                                                                                            clientKey:[Parse getClientKey]
+                                                                                        applicationId:[Parse applicationId]
+                                                                                            clientKey:[Parse clientKey]
                                                                                             serverURL:[NSURL URLWithString:_ParseDefaultServerURLString]];
     commandRunner.initialRetryDelay = DBL_MIN;
     [[commandRunner runCommandAsync:command

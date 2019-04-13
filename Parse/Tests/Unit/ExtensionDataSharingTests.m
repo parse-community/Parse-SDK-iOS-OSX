@@ -103,7 +103,7 @@
 
     // Paths are different on iOS and OSX.
     NSString *containerPath = [PFExtensionDataSharingTestHelper sharedTestDirectoryPathForGroupIdentifier:@"yolo"];
-    [self assertDirectory:containerPath hasContents:@{ @"Parse" : @{ [Parse getApplicationId] : @{ @"applicationId" : [NSNull null] } } } only:NO];
+    [self assertDirectory:containerPath hasContents:@{ @"Parse" : @{ [Parse applicationId] : @{ @"applicationId" : [NSNull null] } } } only:NO];
 }
 
 - (void)testExtensionUsesSharedContainer {
@@ -116,7 +116,7 @@
 
     // Paths are different on iOS and OSX.
     NSString *containerPath = [PFExtensionDataSharingTestHelper sharedTestDirectoryPathForGroupIdentifier:@"yolo"];
-    [self assertDirectory:containerPath hasContents:@{ @"Parse" : @{ [Parse getApplicationId] : @{ @"applicationId" : [NSNull null] } } } only:NO];
+    [self assertDirectory:containerPath hasContents:@{ @"Parse" : @{ [Parse applicationId] : @{ @"applicationId" : [NSNull null] } } } only:NO];
 }
 
 - (void)testMigratingDataFromMainSandbox {
