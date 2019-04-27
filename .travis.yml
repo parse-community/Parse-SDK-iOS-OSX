@@ -1,6 +1,6 @@
 language: objective-c
 os: osx
-osx_image: xcode9.2
+osx_image: xcode10
 branches:
   only:
     - master
@@ -10,9 +10,13 @@ git:
 
 before_install:
   - git submodule update --init --recursive
+install: bundle install
 
 jobs:
   include:
+    - stage: test
+      script: bundle exec rake test:ios 
+      script: bundle exec rake test:macos
     - stage: release
       env: Deployment
       install: bundle install
