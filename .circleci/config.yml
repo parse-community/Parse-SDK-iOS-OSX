@@ -5,6 +5,7 @@ defaults: &defaults
 aliases:
   - &prepare
     | 
+      brew upgrade carthage
       git submodule update --init --recursive
       gem install bundler
       bundle install
