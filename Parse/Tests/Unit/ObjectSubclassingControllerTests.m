@@ -390,7 +390,7 @@
     [subclassingController registerSubclass:[SwiftSubclass class]];
 
     SwiftSubclass *target = [[SwiftSubclass alloc] init];
-
+    [target testDoIt];
     id objectAgument = nil;
     NSInvocation *invocation = [self _forwardingInvocationForTarget:target
                                                            selector:@selector(setObjectProperty:)
