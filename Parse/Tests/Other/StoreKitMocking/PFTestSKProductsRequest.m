@@ -57,7 +57,7 @@ static NSSet *_validProducts;
                                                                       invalidProductIdentifiers:[invalidProductIdentifiers allObjects]];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            id<SKProductsRequestDelegate> delegate = self.delegate;
+            id <SKProductsRequestDelegate> delegate = self.delegate;
             [delegate productsRequest:self didReceiveResponse:response];
             [delegate requestDidFinish:self];
         });
