@@ -396,7 +396,9 @@
 
     [taskCompletionSource trySetResult:nil];
 
-    [self waitForTestExpectations];
+//    [self waitForTestExpectations];
+    //TODO:- Changed waitFOrExpectations
+    [self waitForExpectations:@[firstExpectation, secondExpectation] timeout:20.0];
 }
 
 - (void)testUpload {
