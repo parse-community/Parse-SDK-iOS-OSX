@@ -33,13 +33,29 @@ jobs:
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
-  utils:
+  facebook_utils:
     <<: *defaults
     steps:
       - checkout
       - run: *prepare
       - run: bundle exec rake test:facebook_utils:ios
+      - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: build/reports
+  twitter_utils:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
       - run: bundle exec rake test:twitter_utils:ios
+      - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: build/reports
+  parseui:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
       - run: bundle exec rake test:parseui:all
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
@@ -77,7 +93,9 @@ workflows:
     jobs:
       - ios
       - macos
-      - utils
+      - facebook_utils
+      - twitter_utils
+      - parseui
       - jazzy
   nightly:
     jobs:
