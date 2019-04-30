@@ -7040,6 +7040,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -8919,6 +8920,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB591B4F39DA00A0ECD5 /* ParseUnitTests-iOS.xcconfig */;
 			buildSettings = {
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParseUnitTests-iOS-host.app/ParseUnitTests-iOS-host";
 			};
 			name = Debug;
@@ -8927,6 +8929,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB591B4F39DA00A0ECD5 /* ParseUnitTests-iOS.xcconfig */;
 			buildSettings = {
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParseUnitTests-iOS-host.app/ParseUnitTests-iOS-host";
 			};
 			name = Release;
@@ -8935,7 +8938,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */;
 			buildSettings = {
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -8943,7 +8946,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */;
 			buildSettings = {
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
