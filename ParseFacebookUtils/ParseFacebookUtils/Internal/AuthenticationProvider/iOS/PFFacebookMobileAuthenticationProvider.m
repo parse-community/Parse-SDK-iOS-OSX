@@ -13,10 +13,8 @@
 #import <Bolts/BFTask.h>
 #import <Bolts/BFTaskCompletionSource.h>
 
-#import <FBSDKCoreKit/FBSDKAccessToken.h>
-#import <FBSDKCoreKit/FBSDKSettings.h>
-
-#import <FBSDKLoginKit/FBSDKLoginManagerLoginResult.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 #import <Parse/PFConstants.h>
 
