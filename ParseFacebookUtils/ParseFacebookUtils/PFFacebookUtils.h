@@ -14,7 +14,7 @@
 #import <Parse/PFConstants.h>
 #import <Parse/PFUser.h>
 
-#import <FBSDKCoreKit/FBSDKAccessToken.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #if TARGET_OS_IOS
 #import <FBSDKLoginKit/FBSDKLoginManager.h>
