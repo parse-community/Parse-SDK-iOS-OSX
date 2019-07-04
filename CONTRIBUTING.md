@@ -1,20 +1,22 @@
-# Contributing to Parse SDK for iOS/OS X
+# Contributing to the Parse SDK for iOS/OS X
 We want to make contributing to this project as easy and transparent as possible.
 
 ## Our Development Process
-Most of our work will be done in public directly on GitHub. There may be changes done through our internal source control, but it will be rare and only as needed.
 
 ### `master` is unsafe
-Our goal is to keep `master` stable, but there may be changes that your application may not be compatible with. We'll do our best to publicize any breaking changes, but try to use our specific releases in any production environment.
+Our goal is to keep `master` stable, but there may be changes that your application may not be compatible with. We'll do our best to publicize any breaking changes, but try to use specific releases in any production environment.
 
 ### Pull Requests
-We actively welcome your pull requests. When we get one, we'll run some Parse-specific integration tests on it first. From here, we'll need to get a core member to sign off on the changes and then merge the pull request. For API changes we may need to fix internal uses, which could cause some delay. We'll do our best to provide updates and feedback throughout the process.
+We actively welcome your pull requests. When we get one, we'll run some Parse-specific integration tests on it first. From here, we'll need to get a core member to sign off on the changes and then merge the pull request.
 
 #### 1. Fork the repo and create your branch from `master`.
 
 #### 2. Add unit tests for any new code you add.
+- Main SDK - [/Parse/Tests/Unit/](/Parse/Tests/Unit/)
+- Facebook Utils - [/ParseFacebookUtils/Tests/Unit/](/ParseFacebookUtils/Tests/Unit/)
+- Twitter Utils - [/ParseTwitterUtils/Tests/Unit/](/ParseTwitterUtils/Tests/Unit/)
 
-#### 3. If you've changed APIs, update the documentation.
+#### 3. If you've changed APIs, update the documentation and the [iOS Guide](https://github.com/parse-community/docs/tree/gh-pages/_includes/ios)
 
 #### 4. Ensure the test suite passes.
 You can run the tests in the command line with rake.
@@ -31,10 +33,10 @@ bundle exec rake test:ios
 ```
 Check the Rakefile and the circleci config for more information
    
-#### 5. Make sure your code lints.
+#### 5. Make sure your code follows the [style guide](#style-guide)
 
 ## Bugs
-Although we try to keep developing on the Parse Platform easy, you still may run into some issues. General questions should be asked on our [community forum](community-forum), technical questions should be asked on [Stack Overflow][stack-overflow], and for everything else we use GitHub issues.
+Although we try to keep developing with the Parse Platform easy, you still may run into some issues. General questions should be asked on our [community forum](community-forum), technical questions should be asked on [Stack Overflow][stack-overflow], and for everything else we use GitHub issues.
 
 ### Known Issues
 We use GitHub issues to track public bugs. We keep a close eye on this and try to make it clear when a fix is in progress. Before filing a new issue, check existing issues for the same problem.
@@ -69,10 +71,7 @@ By contributing to Parse iOS/OSX SDK, you agree that your contributions will be 
 This project adheres to the Contributor Covenant Code of Conduct. By participating, you are expected to honor this code.
 
  [stack-overflow]: http://stackoverflow.com/tags/parse-platform
- [bug-reports]: https://www.parse.com/help#report
- [rest-api]: https://www.parse.com/docs/rest/guide
- [parse-api-console]: http://blog.parse.com/announcements/introducing-the-parse-api-console/
+ [rest-api]: https://docs.parseplatform.org/rest/guide/
  [network-debugging-tool]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/wiki/Network-Debug-Tool
  [stacktrace-or-gtfo]: http://i.imgur.com/jacoj.jpg
- [tests-dir]: /Tests/Unit/
  [community-forum]: https://community.parseplatform.org
