@@ -31,7 +31,7 @@ Run the tests:
 ```
 bundle exec rake test:ios
 ```
-Check the Rakefile and the circleci config for more information
+Check the Rakefile and the circleci config for more information.
    
 #### 5. Make sure your code follows the [style guide](#style-guide)
 
@@ -42,7 +42,7 @@ Although we try to keep developing with the Parse Platform easy, you still may r
 We use GitHub issues to track public bugs. We keep a close eye on this and try to make it clear when a fix is in progress. Before filing a new issue, check existing issues for the same problem.
 
 ### Reporting New Issues
-Not all issues are SDK issues. If you're unsure whether your bug is with the SDK or backend, you can test to see if it reproduces with our [REST API][rest-api] and Parse Dashboard API Console. If it does, you can report bugs on the Parse Server repository.
+Not all issues are SDK issues. If you're unsure whether your bug is with the SDK or backend, you can test to see if it reproduces with our [REST API][rest-api] and Parse Dashboard API Console. If it does, you can [report bugs on the Parse Server repository](https://github.com/parse-community/parse-server/issues/new/choose).
 
 To view the REST API network requests issued by the Parse SDK, please check out our [Network Debugging Tool][network-debugging-tool].
 
@@ -68,7 +68,7 @@ We're still working on providing a code style for your IDE and getting a linter 
 By contributing to Parse iOS/OSX SDK, you agree that your contributions will be licensed under its license.
 
 # Code of Conduct
-This project adheres to the Contributor Covenant Code of Conduct. By participating, you are expected to honor this code.
+This project adheres to the [Contributor Covenant Code of Conduct](https://github.com/parse-community/.github/blob/master/CODE_OF_CONDUCT.md). By participating, you are expected to honor this code.
 
  [stack-overflow]: http://stackoverflow.com/tags/parse-platform
  [rest-api]: https://docs.parseplatform.org/rest/guide/
