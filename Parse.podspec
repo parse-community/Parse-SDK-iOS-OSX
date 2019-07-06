@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Parse'
-  s.version          = '1.17.2'
+  s.version          = '1.17.3'
   s.license          =  { :type => 'BSD', :file => 'LICENSE' }
   s.homepage         = 'http://parseplatform.org/'
   s.summary          = 'A library that gives you access to the powerful Parse cloud platform from your iOS/OS X/watchOS/tvOS app.'
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = '2.0'
 
   s.default_subspec = 'Core'
-  
+
   s.subspec 'Core' do |s|
     s.requires_arc = true
 
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
                      'Parse/Parse/Internal/**/*.{h,m}'
     s.public_header_files = 'Parse/Parse/*.h'
     s.private_header_files = 'Parse/Parse/Internal/**/*.h'
-  
+
     s.ios.exclude_files = 'Parse/Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
     s.osx.exclude_files = 'Parse/Parse/PFNetworkActivityIndicatorManager.{h,m}',
                           'Parse/Parse/PFProduct.{h,m}',
@@ -53,9 +53,9 @@ Pod::Spec.new do |s|
                               'Parse/Parse/Internal/Installation/PFInstallationPrivate.h',
                               'Parse/Parse/Internal/Commands/PFRESTPushCommand.{h,m}',
                               'Parse/Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
-  
+
     s.resource_bundle = { 'Parse' => 'Parse/Parse/Resources/en.lproj' }
-  
+
     s.ios.frameworks = 'AudioToolbox',
                        'CFNetwork',
                        'CoreGraphics',
@@ -77,9 +77,9 @@ Pod::Spec.new do |s|
                         'StoreKit',
                         'SystemConfiguration',
                         'Security'
-  
+
     s.libraries        = 'z', 'sqlite3'
-  
+
     s.dependency 'Bolts/Tasks', '~> 1.9'
   end
 
@@ -104,6 +104,7 @@ Pod::Spec.new do |s|
 
     s.dependency 'Parse/Core'
     s.dependency 'Bolts', '~> 1.9'
+    s.dependency 'FBSDKLoginKit', '~> 5.1.1'
   end
 
   s.subspec 'FacebookUtils-tvOS' do |s|
@@ -125,8 +126,8 @@ Pod::Spec.new do |s|
 
     s.dependency 'Parse/Core'
     s.dependency 'Bolts', '~> 1.9'
-    s.dependency 'FBSDKTVOSKit', '~> 4.33'
-    s.dependency 'FBSDKShareKit', '~> 4.33'
+    s.dependency 'FBSDKTVOSKit', '~> 5.1.1'
+    s.dependency 'FBSDKShareKit', '~> 5.1.1'
   end
 
   s.subspec 'TwitterUtils' do |s|
