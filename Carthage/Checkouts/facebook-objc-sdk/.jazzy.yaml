@@ -1,0 +1,7 @@
+---
+author: Facebook
+clean: true
+objc: true
+readme: /dev/null
+sdk: iphonesimulator
+theme: apple
