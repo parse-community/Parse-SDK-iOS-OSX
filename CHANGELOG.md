@@ -2,6 +2,7 @@
 
 ### master
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.17.3...master)
+* _Contributing to this repo? Add info about your change here to be included in next release_
 
 ### 1.17.3
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.17.2...1.17.3)
