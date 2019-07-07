@@ -29,6 +29,7 @@ xcuserdata
 ## Dependency Managers
 Pods/
 Carthage/Build
+Carthage/Checkouts
 docs/
 ./Bolts
 
