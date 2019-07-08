@@ -38,14 +38,6 @@
         __unsafe_unretained FBSDKLoginManagerLoginResultBlock handler = nil;
         [invocation getArgument:&handler atIndex:4];
 
-//        FBSDKAccessToken *token = [[FBSDKAccessToken alloc] initWithTokenString:@"token"
-//                                                                    permissions:@[ @"read" ]
-//                                                            declinedPermissions:nil
-//                                                                          appID:@"appId"
-//                                                                         userID:@"fbId"
-//                                                                 expirationDate:[NSDate dateWithTimeIntervalSince1970:1337]
-//                                                                    refreshDate:[NSDate dateWithTimeIntervalSince1970:1337]];
-
         FBSDKAccessToken *token = [[FBSDKAccessToken alloc] initWithTokenString:@"token"
                                                                     permissions:@[ @"read" ]
                                                             declinedPermissions:@[]
