@@ -2663,7 +2663,6 @@
 		B141170F1E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B14117101E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B14117111E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BC2EF86722D4E9D700E6143E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2EF86222D4E9D600E6143E /* Bolts.framework */; };
 		F50C66331B33A708001941A6 /* PFPushUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F50C66311B33A708001941A6 /* PFPushUtilities.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F50C66341B33A708001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
 		F50C667C1B34B231001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
@@ -3689,7 +3688,6 @@
 				97DE045C163214C0007154E8 /* SystemConfiguration.framework in Frameworks */,
 				97DE045A16321492007154E8 /* Security.framework in Frameworks */,
 				97DE045116321428007154E8 /* CoreLocation.framework in Frameworks */,
-				BC2EF86722D4E9D700E6143E /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8943,6 +8941,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -8951,6 +8950,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
