@@ -33,6 +33,9 @@ jobs:
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
+      - store_artifacts:
+          path: build/reports
+          destination: test_results
   facebook_utils:
     <<: *defaults
     steps:
