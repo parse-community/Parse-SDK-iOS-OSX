@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4A0ECC80200D99FF00BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA45200BE26C00AA7479 /* Bolts.framework */; };
 		4A0ECC84200D9A0D00BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA45200BE26C00AA7479 /* Bolts.framework */; };
+		4A0ECC88200D9A1D00BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9503200D1462005D8F4B /* Parse.framework */; };
+		4A0ECC8A200D9A1E00BA84A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9503200D1462005D8F4B /* Parse.framework */; };
 		4A0ECC8B200D9A7300BA84A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAA0200C0FC500AA7479 /* SystemConfiguration.framework */; };
 		4A0ECC8C200D9A7F00BA84A3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAA2200C0FCC00AA7479 /* libsqlite3.tbd */; };
 		4A0ECC8D200D9A8900BA84A3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAAAA200C0FEC00AA7479 /* AudioToolbox.framework */; };
@@ -217,6 +219,7 @@
 		4A1351CC20281897000F5FD5 /* FBSDKTVOSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKTVOSKit.framework; path = ../Carthage/Build/tvOS/FBSDKTVOSKit.framework; sourceTree = "<group>"; };
 		4A13525020282583000F5FD5 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A1352522028259D000F5FD5 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A9A9503200D1462005D8F4B /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAEAA42200BE19A00AA7479 /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAEAA45200BE26C00AA7479 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAEAA75200C020E00AA7479 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseFacebookUtilsV4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,6 +328,7 @@
 				4A0ECC8C200D9A7F00BA84A3 /* libsqlite3.tbd in Frameworks */,
 				4AAEAA41200BE19A00AA7479 /* OCMock.framework in Frameworks */,
 				4A13525D20282C03000F5FD5 /* FBSDKLoginKit.framework in Frameworks */,
+				4A0ECC88200D9A1D00BA84A3 /* Parse.framework in Frameworks */,
 				81CB98CC1AB7905D00136FA5 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				4A0ECC8B200D9A7300BA84A3 /* SystemConfiguration.framework in Frameworks */,
 				4A13525C20282C03000F5FD5 /* FBSDKCoreKit.framework in Frameworks */,
@@ -355,6 +359,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A0ECC8A200D9A1E00BA84A3 /* Parse.framework in Frameworks */,
 				4A0ECC84200D9A0D00BA84A3 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +400,7 @@
 				4A1352522028259D000F5FD5 /* Bolts.framework */,
 				4A13525020282583000F5FD5 /* Bolts.framework */,
 				4A1350412027EA26000F5FD5 /* Parse.xcodeproj */,
+				4A9A9503200D1462005D8F4B /* Parse.framework */,
 				4AAEAABA200C103B00AA7479 /* SystemConfiguration.framework */,
 				4AAEAAB8200C103500AA7479 /* Security.framework */,
 				4AAEAAB6200C103000AA7479 /* CoreLocation.framework */,
