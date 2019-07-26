@@ -6,9 +6,9 @@ jazzy \
   --objc \
   --clean \
   --author "Parse Community" \
-  --author_url http://parseplatform.org \
+  --author_url https://parseplatform.org \
   --github_url https://github.com/parse-community/Parse-SDK-iOS-OSX \
-  --root-url http://parseplatform.org/Parse-SDK-iOS-OSX/api/ \
+  --root-url https://parseplatform.org/Parse-SDK-iOS-OSX/api/ \
   --module-version ${ver} \
   --theme fullwidth \
   --skip-undocumented \
@@ -22,9 +22,9 @@ jazzy \
 --objc \
 --clean \
 --author "Parse Community" \
---author_url http://parseplatform.org \
+--author_url https://parseplatform.org \
 --github_url https://github.com/parse-community/Parse-SDK-iOS-OSX \
---root-url http://parseplatform.org/Parse-SDK-iOS-OSX/ParseUI/api \
+--root-url http://parseplatform.org/ParseUI/api \
 --module-version ${ver} \
 --theme fullwidth \
 --skip-undocumented \

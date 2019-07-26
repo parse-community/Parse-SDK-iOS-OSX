@@ -43,7 +43,6 @@
 		4A0ECC0A200D8C0200BA84A3 /* PFLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A9447200D0226005D8F4B /* PFLocalization.h */; };
 		4A0ECC0B200D8C0200BA84A3 /* PFTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A942D200D0226005D8F4B /* PFTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4A0ECC0C200D8C0200BA84A3 /* PFImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A945F200D0226005D8F4B /* PFImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4A0ECC0D200D8C0200BA84A3 /* PFCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A942F200D0226005D8F4B /* PFCollectionViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4A0ECC0E200D8C0200BA84A3 /* PFDismissButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A944B200D0226005D8F4B /* PFDismissButton.h */; };
 		4A0ECC0F200D8C0200BA84A3 /* PFActivityIndicatorCollectionReusableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A9439200D0226005D8F4B /* PFActivityIndicatorCollectionReusableView.h */; };
 		4A0ECC10200D8C0200BA84A3 /* PFQueryTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A9459200D0226005D8F4B /* PFQueryTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -96,7 +95,6 @@
 		4A9A94A5200D03B6005D8F4B /* PFCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A942C200D0226005D8F4B /* PFCollectionViewCell.m */; };
 		4A9A94A6200D03B6005D8F4B /* PFTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A942D200D0226005D8F4B /* PFTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4A9A94A7200D03B6005D8F4B /* PFPurchaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A942E200D0226005D8F4B /* PFPurchaseTableViewCell.m */; };
-		4A9A94A8200D03B6005D8F4B /* PFCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A942F200D0226005D8F4B /* PFCollectionViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4A9A94A9200D03B6005D8F4B /* PFTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A9430200D0226005D8F4B /* PFTableViewCell.m */; };
 		4A9A94AA200D03B6005D8F4B /* PFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A9432200D0226005D8F4B /* PFSignUpViewController.m */; };
 		4A9A94AB200D03B6005D8F4B /* PFSignUpView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A9433200D0226005D8F4B /* PFSignUpView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -198,6 +196,8 @@
 		81FC6B701A9D1CE900104E45 /* SubtitleImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC6B6B1A9D1CE900104E45 /* SubtitleImageCollectionViewController.swift */; };
 		81FC6B721A9D1CFD00104E45 /* SimpleQueryCollectionStoryboard-Swift.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FC6B711A9D1CFD00104E45 /* SimpleQueryCollectionStoryboard-Swift.storyboard */; };
 		81FC6B751A9D1D4700104E45 /* CustomProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC6B741A9D1D4700104E45 /* CustomProductTableViewController.swift */; };
+		B93371D322EBB2340039DFC4 /* PFCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A942F200D0226005D8F4B /* PFCollectionViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B93371D422EBB2350039DFC4 /* PFCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A942F200D0226005D8F4B /* PFCollectionViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F57F3D231B0C03D40087F60B /* DeletionCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D201B0C03C90087F60B /* DeletionCollectionViewController.m */; };
 		F57F3D241B0C03DB0087F60B /* DeletionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D1C1B0C03BA0087F60B /* DeletionTableViewController.m */; };
 		F57F3D271B0C050C0087F60B /* DeletionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D251B0C04EF0087F60B /* DeletionTableViewController.swift */; };
@@ -831,10 +831,10 @@
 			isa = PBXGroup;
 			children = (
 				4A9A942B200D0226005D8F4B /* PFPurchaseTableViewCell.h */,
-				4A9A942C200D0226005D8F4B /* PFCollectionViewCell.m */,
-				4A9A942D200D0226005D8F4B /* PFTableViewCell.h */,
 				4A9A942E200D0226005D8F4B /* PFPurchaseTableViewCell.m */,
 				4A9A942F200D0226005D8F4B /* PFCollectionViewCell.h */,
+				4A9A942C200D0226005D8F4B /* PFCollectionViewCell.m */,
+				4A9A942D200D0226005D8F4B /* PFTableViewCell.h */,
 				4A9A9430200D0226005D8F4B /* PFTableViewCell.m */,
 			);
 			path = Cells;
@@ -1289,8 +1289,8 @@
 				4A0ECC0A200D8C0200BA84A3 /* PFLocalization.h in Headers */,
 				4A0ECC0B200D8C0200BA84A3 /* PFTableViewCell.h in Headers */,
 				4A0ECC0C200D8C0200BA84A3 /* PFImageView.h in Headers */,
-				4A0ECC0D200D8C0200BA84A3 /* PFCollectionViewCell.h in Headers */,
 				4A0ECC0E200D8C0200BA84A3 /* PFDismissButton.h in Headers */,
+				B93371D422EBB2350039DFC4 /* PFCollectionViewCell.h in Headers */,
 				4A0ECC0F200D8C0200BA84A3 /* PFActivityIndicatorCollectionReusableView.h in Headers */,
 				4A0ECC10200D8C0200BA84A3 /* PFQueryTableViewController.h in Headers */,
 				4A0ECC11200D8C0200BA84A3 /* PFLogInViewController.h in Headers */,
@@ -1325,8 +1325,8 @@
 				4A9A94BC200D03B6005D8F4B /* PFLocalization.h in Headers */,
 				4A9A94A6200D03B6005D8F4B /* PFTableViewCell.h in Headers */,
 				4A9A94CF200D03C8005D8F4B /* PFImageView.h in Headers */,
-				4A9A94A8200D03B6005D8F4B /* PFCollectionViewCell.h in Headers */,
 				4A9A94BE200D03BA005D8F4B /* PFDismissButton.h in Headers */,
+				B93371D322EBB2340039DFC4 /* PFCollectionViewCell.h in Headers */,
 				4A9A94AF200D03B6005D8F4B /* PFActivityIndicatorCollectionReusableView.h in Headers */,
 				4A9A94CA200D03C8005D8F4B /* PFQueryTableViewController.h in Headers */,
 				4A9A94D3200D03C8005D8F4B /* PFLogInViewController.h in Headers */,
