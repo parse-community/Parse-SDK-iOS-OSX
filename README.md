@@ -11,8 +11,8 @@
 
 <p align="center">
     <a href="https://twitter.com/intent/follow?screen_name=parseplatform"><img alt="Follow on Twitter" src="https://img.shields.io/twitter/follow/parseplatform?style=social&label=Follow"></a>
-    <a href="https://community.parseplatform.org/"><img alt="Join the conversation" src="https://img.shields.io/badge/maintenance-help%20wanted-red.svg"></a>
-    <a href="https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1356"><img alt="Maintenance help wanted" src="https://img.shields.io/discourse/https/community.parseplatform.org/topics.svg"></a>
+    <a href="https://community.parseplatform.org/"><img alt="Join the conversation" src="https://img.shields.io/discourse/https/community.parseplatform.org/topics.svg"></a>
+    <a href="https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1356"><img alt="Maintenance help wanted" src="https://img.shields.io/badge/maintenance-help%20wanted-red.svg"></a>
     <img alt="Platforms" src="http://img.shields.io/cocoapods/p/Parse.svg?style=flat">
     <a href=" https://github.com/parse-community/Parse-SDK-iOS-OSX/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-BSD-lightgrey.svg"></a>
     <a href="https://cocoapods.org/pods/Parse"><img alt="Podspec" src="https://img.shields.io/cocoapods/v/Parse.svg"></a>
