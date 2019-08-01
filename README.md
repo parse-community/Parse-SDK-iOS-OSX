@@ -1,4 +1,38 @@
-# Parse SDK for iOS/OS X/watchOS/tvOS
+<p align="center">
+    <img alt="Parse Platform" src="https://github.com/parse-community/parse-server/raw/master/.github/parse-server-logo.png" width="500">
+  </a>
+</p>
+
+<h2 align="center">Parse SDK for iOS/macOS/watchOS/tvOS</h2>
+
+<p align="center">
+    A library that gives you access to the powerful Parse Server backend from your iOS or macOS app.
+</p>
+
+
+<p align="center">
+    <a href="https://twitter.com/intent/follow?screen_name=parseplatform"><img alt="Follow on Twitter" src="https://img.shields.io/twitter/follow/parseplatform?style=social&label=Follow"></a>
+    <a href="https://community.parseplatform.org/"><img alt="Join the conversation" src="https://img.shields.io/discourse/https/community.parseplatform.org/topics.svg"></a>
+</p>
+
+<p align="center">
+ 
+</p>
+
+<h2 align="center">Our Sponsors</h2>
+<p align="center">
+    <p align="center">Our backers and sponsors help to ensure the quality and timely development of the Parse Platform.</p>
+  <details align="center">
+  <summary align="center"><b>🥉 Bronze Sponsors</b></summary>
+  <a href="https://opencollective.com/parse-server/sponsor/0/website" target="_blank"><img src="https://opencollective.com/parse-server/sponsor/0/avatar.svg"></a>
+  </details>
+
+</p>
+<p align="center">
+  <a href="#backers"><img alt="Backers on Open Collective" src="https://opencollective.com/parse-server/backers/badge.svg" /></a>
+  <a href="#sponsors"><img alt="Sponsors on Open Collective" src="https://opencollective.com/parse-server/sponsors/badge.svg" /></a>
+</p>
+<br>
 
 [![Maintenance help wanted](https://img.shields.io/badge/maintenance-help%20wanted-red.svg)](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1356)
 ![Platforms][platforms-svg]
@@ -15,8 +49,7 @@
 [![Sponsors on Open Collective](https://opencollective.com/parse-server/sponsors/badge.svg)][open-collective-link]
 [![Twitter Follow](https://img.shields.io/twitter/follow/ParsePlatform.svg?label=Follow%20us%20on%20Twitter&style=social)](https://twitter.com/intent/follow?screen_name=ParsePlatform)
 
-A library that gives you access to the powerful Parse cloud platform from your iOS or OS X app.
-For more information about Parse and its features, see the public [documentation][docs].
+For more information about the Parse Platform and its features, see the public [documentation][docs].
 
 Check out some of the [apps using Parse](https://www.appsight.io/sdk/parse).
 
