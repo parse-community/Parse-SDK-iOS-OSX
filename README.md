@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Parse Platform" src="https://github.com/parse-community/parse-server/raw/master/.github/parse-server-logo.png" width="500">
+    <img alt="Parse Platform" src="Assets/logo large.png" width="200">
   </a>
 </p>
 
@@ -12,11 +12,20 @@
 
 <p align="center">
     <a href="https://twitter.com/intent/follow?screen_name=parseplatform"><img alt="Follow on Twitter" src="https://img.shields.io/twitter/follow/parseplatform?style=social&label=Follow"></a>
-    <a href="https://community.parseplatform.org/"><img alt="Join the conversation" src="https://img.shields.io/discourse/https/community.parseplatform.org/topics.svg"></a>
+    <a href="https://community.parseplatform.org/"><img alt="Join the conversation" src="https://img.shields.io/badge/maintenance-help%20wanted-red.svg"></a>
+    <a href="https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1356"><img alt="Maintenance help wanted" src="https://img.shields.io/discourse/https/community.parseplatform.org/topics.svg"></a>
+    <img alt="Platforms" src="platforms-svg">
+    <a href=""><img alt="" src=""></a>
+    <a href=""><img alt="" src=""></a>
 </p>
 
 <p align="center">
- 
+    <a href=""><img alt="" src=""></a>
+    <a href=""><img alt="" src=""></a>
+    <a href=""><img alt="" src=""></a>
+    <a href=""><img alt="" src=""></a>
+    <a href=""><img alt="" src=""></a>
+    <a href=""><img alt="" src=""></a>
 </p>
 
 <h2 align="center">Our Sponsors</h2>
@@ -34,7 +43,8 @@
 </p>
 <br>
 
-[![Maintenance help wanted](https://img.shields.io/badge/maintenance-help%20wanted-red.svg)](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1356)
+<!---
+[![Maintenance help wanted]()]()
 ![Platforms][platforms-svg]
 [![License][license-svg]][license-link]
 [![Podspec][podspec-svg]][podspec-link]
@@ -48,6 +58,7 @@
 [![Backers on Open Collective](https://opencollective.com/parse-server/backers/badge.svg)][open-collective-link]
 [![Sponsors on Open Collective](https://opencollective.com/parse-server/sponsors/badge.svg)][open-collective-link]
 [![Twitter Follow](https://img.shields.io/twitter/follow/ParsePlatform.svg?label=Follow%20us%20on%20Twitter&style=social)](https://twitter.com/intent/follow?screen_name=ParsePlatform)
+--->
 
 For more information about the Parse Platform and its features, see the public [documentation][docs].
 
