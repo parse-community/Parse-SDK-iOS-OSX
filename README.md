@@ -3,7 +3,7 @@
   </a>
 </p>
 
-<h2 align="center">Parse SDK for iOS/macOS/watchOS/tvOS</h2>
+<h2 align="center">Parse SDK for iOS | macOS | watchOS | tvOS</h2>
 
 <p align="center">
     A library that gives you access to the powerful Parse Server backend from your iOS or macOS app.
