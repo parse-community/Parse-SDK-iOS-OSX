@@ -54,7 +54,8 @@
     }
 
     BFTaskCompletionSource *taskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
-    FBSDKLoginManagerRequestTokenHandler resultHandler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+
+    FBSDKLoginManagerLoginResultBlock resultHandler = ^(FBSDKLoginManagerLoginResult * _Nullable result, NSError * _Nullable error) {
         if (result.isCancelled) {
             [taskCompletionSource cancel];
         } else if (error) {
@@ -63,14 +64,16 @@
             taskCompletionSource.result = [PFFacebookPrivateUtilities userAuthenticationDataFromAccessToken:result.token];
         }
     };
+
+
     if (publishPermissions) {
-        [self.loginManager logInWithPublishPermissions:publishPermissions
-                                    fromViewController:viewController
-                                               handler:resultHandler];
+        [self.loginManager logInWithPermissions:publishPermissions
+                             fromViewController:viewController
+                                        handler:resultHandler];
     } else {
-        [self.loginManager logInWithReadPermissions:readPermissions
-                                 fromViewController:viewController
-                                            handler:resultHandler];
+        [self.loginManager logInWithPermissions:readPermissions
+                             fromViewController:viewController
+                                        handler:resultHandler];
     }
     return taskCompletionSource.task;
 }

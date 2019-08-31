@@ -54,10 +54,12 @@
     FBSDKAccessToken *token = [[FBSDKAccessToken alloc] initWithTokenString:accessToken
                                                                 permissions:nil
                                                         declinedPermissions:nil
+                                                         expiredPermissions:nil
                                                                       appID:[FBSDKSettings appID]
                                                                      userID:authData[@"id"]
                                                              expirationDate:expirationDate
-                                                                refreshDate:nil];
+                                                                refreshDate:nil
+                                                   dataAccessExpirationDate:nil];
     return token;
 }
 
