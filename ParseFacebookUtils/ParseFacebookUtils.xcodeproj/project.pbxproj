@@ -1065,7 +1065,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ ! -d $SRCROOT/Vendor/tvOS ]; then\nmkdir $SRCROOT/Vendor/tvOS\nfi\n\ncd $SRCROOT/Vendor/tvOS\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKTVOSKit.framework\" ]]; then\nARCHIVE_NAME=FBSDK.zip\n\nARCHIVE_URL=\"https://origincache.facebook.com/developers/resources/?id=FacebookSDKs-tvOS-current.zip\"\ncurl $ARCHIVE_URL -o $ARCHIVE_NAME\n\nunzip $ARCHIVE_NAME -d fbsdk\nmv fbsdk/FBSDKCoreKit.framework .\nmv fbsdk/FBSDKTVOSKit.framework .\n\nrm $ARCHIVE_NAME\nrm -r fbsdk\nfi\n";
+			shellScript = "if [ ! -d $SRCROOT/Vendor/tvOS ]; then\nmkdir $SRCROOT/Vendor/tvOS\nfi\n\ncd $SRCROOT/Vendor/tvOS\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKTVOSKit.framework\" ]]; then\nARCHIVE_NAME=FBSDK.zip\n\nARCHIVE_URL=\"https://github.com/facebook/facebook-objc-sdk/releases/latest/download/FacebookSDK_Static.zip\"\ncurl -Lk $ARCHIVE_URL -o $ARCHIVE_NAME\n\nunzip $ARCHIVE_NAME -d fbsdk\nmv fbsdk/tv/FBSDKCoreKit.framework .\nmv fbsdk/tv/FBSDKTVOSKit.framework .\n\nrm $ARCHIVE_NAME\nrm -r fbsdk\nfi\n";
 		};
 		4A1351B220281814000F5FD5 /* Fetch Latest Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1079,7 +1079,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ ! -d $SRCROOT/Vendor ]; then\nmkdir $SRCROOT/Vendor\nfi\n\ncd $SRCROOT/Vendor\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKLoginKit.framework\" ]]; then\nARCHIVE_NAME=FBSDK.zip\n\nARCHIVE_URL=\"https://origincache.facebook.com/developers/resources/?id=facebook-ios-sdk-current.zip\"\ncurl $ARCHIVE_URL -o $ARCHIVE_NAME\n\nunzip $ARCHIVE_NAME -d fbsdk\nmv fbsdk/FBSDKCoreKit.framework .\nmv fbsdk/FBSDKLoginKit.framework .\n\nrm $ARCHIVE_NAME\nrm -r fbsdk\nfi\n";
+			shellScript = "if [ ! -d $SRCROOT/Vendor ]; then\nmkdir $SRCROOT/Vendor\nfi\n\ncd $SRCROOT/Vendor\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKLoginKit.framework\" ]]; then\nARCHIVE_NAME=FBSDK.zip\n\nARCHIVE_URL=\"https://github.com/facebook/facebook-objc-sdk/releases/latest/download/FacebookSDK_Static.zip\"\ncurl -Lk $ARCHIVE_URL -o $ARCHIVE_NAME\n\nunzip $ARCHIVE_NAME -d fbsdk\nmv fbsdk/FBSDKCoreKit.framework .\nmv fbsdk/FBSDKLoginKit.framework .\n\nrm $ARCHIVE_NAME\nrm -r fbsdk\nfi\n";
 		};
 		4A13525320282699000F5FD5 /* Cleanup Vendored Static lib */ = {
 			isa = PBXShellScriptBuildPhase;

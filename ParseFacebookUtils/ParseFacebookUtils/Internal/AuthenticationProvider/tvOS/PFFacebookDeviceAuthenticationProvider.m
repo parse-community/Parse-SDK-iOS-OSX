@@ -44,8 +44,8 @@
         self->_loginTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
        self-> _loginViewController = [[FBSDKDeviceLoginViewController alloc] init];
         self->_loginViewController.delegate = self;
-        self->_loginViewController.readPermissions = readPermissions;
-        self->_loginViewController.publishPermissions = publishPermissions;
+        NSArray *permissions = [readPermissions arrayByAddingObjectsFromArray:publishPermissions];
+        self->_loginViewController.permissions = permissions;
 
         [viewController presentViewController:self->_loginViewController animated:YES completion:nil];
 

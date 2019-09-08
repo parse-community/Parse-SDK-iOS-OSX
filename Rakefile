@@ -165,14 +165,14 @@ namespace :build do
         t.scheme = 'ParseFacebookUtilsV4-iOS'
         t.configuration = 'Release'
       end
-  
+
       result = task.execute
       unless result
         puts 'Failed to build iOS FacebookUtils Framework.'
         exit(1)
       end
     end
-  
+
     desc 'Build tvOS FacebookUtils framework.'
     task :tvos do
       task = XCTask::BuildFrameworkTask.new do |t|
@@ -204,10 +204,10 @@ namespace :build do
         t.scheme = 'ParseTwitterUtils-iOS'
         t.configuration = 'Release'
       end
-  
+
       result = task.execute
       unless result
-        puts 'Failed to build iOS FacebookUtils Framework.'
+        puts 'Failed to build iOS TwitterUtils Framework.'
         exit(1)
       end
     end
@@ -243,11 +243,11 @@ namespace :build do
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
-  
+
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
-  
+
       result = task.execute
       unless result
         puts 'Failed to build ParseUI Demo.'
@@ -266,11 +266,11 @@ namespace :build do
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
-  
+
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
-  
+
       result = task.execute
       unless result
         puts 'Failed to build iOS ParseUI Swift Demo.'
@@ -328,7 +328,7 @@ namespace :package do
     make_package(release_folder,
                  [ios_framework_path, bolts_path],
                  package_ios_name)
-    
+
     ## Build tvOS Framework
     Rake::Task['build:tvos'].invoke
     bolts_path = File.join(bolts_build_folder, 'tvOS', 'Bolts.framework')
@@ -336,7 +336,7 @@ namespace :package do
     make_package(release_folder,
                   [tvos_framework_path, bolts_path],
                   package_tvos_name)
-    
+
     ## Build watchOS Framework
     Rake::Task['build:watchos'].invoke
     bolts_path = File.join(bolts_build_folder, 'watchOS', 'Bolts.framework')
@@ -344,11 +344,11 @@ namespace :package do
     make_package(release_folder,
                  [watchos_framework_path, bolts_path],
                  package_watchos_name)
-    
+
     Rake::Task['build:facebook_utils:ios'].invoke
     ios_fb_utils_framework_path = File.join(build_folder, 'iOS', 'ParseFacebookUtilsV4.framework')
     make_package(release_folder, [ios_fb_utils_framework_path], 'ParseFacebookUtils-iOS.zip')
-    
+
     Rake::Task['build:twitter_utils:ios'].invoke
     ios_tw_utils_framework_path = File.join(build_folder, 'iOS', 'ParseTwitterUtils.framework')
     make_package(release_folder, [ios_tw_utils_framework_path], 'ParseTwitterUtils-iOS.zip')
@@ -516,11 +516,11 @@ namespace :test do
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
-  
+
         t.actions = [XCTask::BuildAction::TEST]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
-  
+
       result = task.execute
       unless result
         puts 'Failed to build iOS FacebookUtils Framework.'
@@ -542,11 +542,11 @@ namespace :test do
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
-  
+
         t.actions = [XCTask::BuildAction::TEST]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
-  
+
       result = task.execute
       unless result
         puts 'Failed to build iOS FacebookUtils Framework.'
@@ -556,11 +556,11 @@ namespace :test do
   end
 
   namespace :parseui do
-    task :all do 
+    task :all do
       Rake::Task['test:parseui:framework'].invoke
       Rake::Task['test:parseui:demo_objc'].invoke
     end
-    
+
     task :framework do
       task = XCTask::BuildTask.new do |t|
         t.directory = script_folder
@@ -570,7 +570,7 @@ namespace :test do
         t.sdk = 'iphonesimulator'
         t.destinations = ["\"platform=iOS Simulator,OS=12.2,name=iPhone X\"",]
         t.configuration = 'Debug'
-  
+
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
@@ -593,11 +593,11 @@ namespace :test do
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
-  
+
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
-  
+
       result = task.execute
       unless result
         puts 'Failed to build ParseUI Demo.'
@@ -616,11 +616,11 @@ namespace :test do
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
-  
+
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
-  
+
       result = task.execute
       unless result
         puts 'Failed to build iOS ParseUI Swift Demo.'
