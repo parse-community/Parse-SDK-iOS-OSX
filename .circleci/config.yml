@@ -29,10 +29,20 @@ jobs:
     steps:
       - checkout
       - run: *prepare
+      - run:
+          name: "Create and set the default keychain"
+          command: |
+            security create-keychain -p "" temporary
+            security default-keychain -s temporary
+            security unlock-keychain -p "" temporary
+            security set-keychain-settings -lut 7200 temporary
       - run: bundle exec rake test:macos
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
+      - store_artifacts:
+          path: build/reports
+          destination: test_results
   facebook_utils:
     <<: *defaults
     steps:
