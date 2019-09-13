@@ -39,8 +39,8 @@
 
 - (void)testInitialize {
     id parseMock = PFStrictClassMock([Parse class]);
-    OCMStub([parseMock getApplicationId]).andReturn(@"yolo");
-    OCMStub([parseMock getClientKey]).andReturn(@"yarr");
+    OCMStub([parseMock applicationId]).andReturn(@"yolo");
+    OCMStub([parseMock clientKey]).andReturn(@"yarr");
 
     id userMock = PFStrictClassMock([PFUser class]);
     OCMExpect(ClassMethod([userMock registerAuthenticationDelegate:[OCMArg checkWithBlock:^BOOL(id obj) {
@@ -57,8 +57,8 @@
 
 - (void)testInitializeTwice {
     id parseMock = PFStrictClassMock([Parse class]);
-    OCMStub([parseMock getApplicationId]).andReturn(@"yolo");
-    OCMStub([parseMock getClientKey]).andReturn(@"yarr");
+    OCMStub([parseMock applicationId]).andReturn(@"yolo");
+    OCMStub([parseMock clientKey]).andReturn(@"yarr");
 
     id userMock = PFStrictClassMock([PFUser class]);
 
