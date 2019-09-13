@@ -82,7 +82,7 @@
     _loginTaskCompletionSource = nil;
 }
 
-- (void)deviceLoginViewControllerDidFail:(FBSDKDeviceLoginViewController *)viewController error:(NSError *)error {
+- (void)deviceLoginViewController:(FBSDKDeviceLoginViewController *)viewController didFailWithError:(NSError *)error {
     [_loginTaskCompletionSource trySetError:error];
     _loginViewController = nil;
     _loginTaskCompletionSource = nil;
