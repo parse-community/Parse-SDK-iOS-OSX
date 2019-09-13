@@ -11,4 +11,4 @@
 - FIX: Bandaid for Crashlytics [#944](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/944) ([#1376](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1376)), thanks to [Rogers George](https://github.com/ceramicatheist)
 - NEW: tvOS push support ([#1375](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1375)), thanks to [Thomas Kollbach](https://github.com/toto)
 - FIX: Class properties ([#1400](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1400)), thanks to [Thomas Kollbach](https://github.com/toto)
-- FIX: Upgrade ParseFacebookUtils dependency to Facebook SDK v5.x ([#1411](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1411)), ([#1424](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1424)) thanks to [Herrick Wolber](https://github.com/rico237), [Darren Black](https://github.com/drdaz)
+- FIX: Upgrade ParseFacebookUtils dependency to Facebook SDK v5.x ([#1424](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1424)) thanks to [Herrick Wolber](https://github.com/rico237) and [Darren Black](https://github.com/drdaz)
