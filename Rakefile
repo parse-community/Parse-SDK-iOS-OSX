@@ -88,6 +88,7 @@ namespace :build do
       t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-iOS'
       t.configuration = 'Release'
+      t.destination = "platform=iOS Simulator,OS=13.0,name=iPhone XS"
     end
     result = task.execute
     unless result
