@@ -268,7 +268,7 @@
     configuration.HTTPCookieAcceptPolicy = NSHTTPCookieAcceptPolicyNever;
     configuration.HTTPShouldSetCookies = NO;
 
-#if TARGET_OS_UIKITFORMAC
+#if TARGET_OS_MACCATALYST
     // Completely disable caching of responses for security reasons.
     configuration.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
                                                            diskCapacity:0
