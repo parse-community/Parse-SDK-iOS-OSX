@@ -90,8 +90,7 @@ static ParseClientConfiguration *currentParseConfiguration_;
 }
 
 + (void)setServer:(nonnull NSString *)server {
-    PFConsistencyAssert([self currentConfiguration], @"Parse is not initialized.");
-    [PFInternalUtils setParseServer:[server copy]];
+    [PFInternalUtils setParseServer:server];
 }
 
 + (nullable ParseClientConfiguration *)currentConfiguration {
