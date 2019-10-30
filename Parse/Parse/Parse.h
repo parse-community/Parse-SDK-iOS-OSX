@@ -107,6 +107,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, readonly, class) ParseClientConfiguration *currentConfiguration;
 
 /**
+ Sets the server URL to connect to Parse Server. This can be used to update the server URL after this client has been
+ initialized, without having to destroy this client.
+ 
+ @param server  The server URL to set.
+ */
++ (void)setServer:(nonnull NSString *)server;
+
+/**
  The current application id that was used to configure Parse framework.
  */
 @property (nonatomic, nonnull, readonly, class) NSString *applicationId;
@@ -119,6 +127,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, readonly, class) NSString *clientKey;
 
 + (nullable NSString *)getClientKey PARSE_DEPRECATED("Use clientKey property.");
+
+/**
+ The current server URL to connect to Parse Server.
+ */
+@property (nonatomic, nullable, readonly, class) NSString *server;
 
 ///--------------------------------------
 #pragma mark - Enabling Local Datastore
