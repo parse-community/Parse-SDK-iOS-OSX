@@ -275,10 +275,25 @@
                                                            directoryURL:nil];
 #else
     // Completely disable caching of responses for security reasons.
-    configuration.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
-                                                           diskCapacity:0
-                                                               diskPath:nil];
+    NSURLCache *cache;
+
+    if (@available(iOS 13.0, *)
+        || @available(tvOS 13.0, *)
+        || @available(macOS 10.15, *)
+        || @available(watchOS 6.0, *)
+        || @available(macCatalyst 13.0, *)) {
+        cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
+                                              diskCapacity:0
+                                              directoryURL:nil];
+    } else {
+#if !TARGET_OS_MACCATALYST
+        cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
+                                              diskCapacity:0
+                                             directoryPath:nil];
 #endif
+    }
+
+    configuration.URLCache = cache;
 
     NSBundle *bundle = [NSBundle mainBundle];
     NSDictionary *headers = [PFCommandURLRequestConstructor defaultURLRequestHeadersForApplicationId:applicationId
