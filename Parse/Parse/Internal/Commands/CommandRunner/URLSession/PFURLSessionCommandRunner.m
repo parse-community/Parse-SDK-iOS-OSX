@@ -277,22 +277,18 @@
     // Completely disable caching of responses for security reasons.
     NSURLCache *cache;
 
-    if (@available(iOS 13.0, *)
-        || @available(tvOS 13.0, *)
-        || @available(macOS 10.15, *)
-        || @available(watchOS 6.0, *)
-        || @available(macCatalyst 13.0, *)) {
+#ifdef __IPHONE_13_0 || __TVOS_13 || __WATCHOS_6_0 || __MAC_10_15
         cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
                                               diskCapacity:0
                                               directoryURL:nil];
-    } else {
-#if !TARGET_OS_MACCATALYST
+
+#else
         cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
                                               diskCapacity:0
                                              directoryPath:nil];
-#endif
-    }
 
+
+#endif
     configuration.URLCache = cache;
 
     NSBundle *bundle = [NSBundle mainBundle];
