@@ -31,6 +31,11 @@
 #import "PFObjectState_Private.h"
 #import "PFObjectConstants.h"
 
+// The prefix removed from the CFBundleIdentifier sent with the installation
+// for macOS Catalyst apps for installations;
+const NSString * kMacCatalystBundleIdPrefix = @"maccatalyst.";
+
+
 @implementation PFInstallation (Private)
 
 static NSSet *protectedKeys;
@@ -298,7 +303,7 @@ static NSSet *protectedKeys;
     // to the parse backend. Catalyst apps should look like iOS apps otherwise
     // push and other services don't work properly.
     if (@available(macCatalyst 13.0, *) && appIdentifier) {
-        NSRange macCatalystPrefix = [appIdentifier rangeOfString:@"maccatalyst."];
+        NSRange macCatalystPrefix = [appIdentifier rangeOfString:(NSString *)kMacCatalystBundleIdPrefix];
         if (macCatalystPrefix.location == 0) {
             appIdentifier = [appIdentifier stringByReplacingCharactersInRange:macCatalystPrefix
                                                                    withString:@""];
