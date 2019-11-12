@@ -293,6 +293,17 @@ static NSSet *protectedKeys;
     NSString *appName = appInfo[(__bridge NSString *)kCFBundleNameKey];
     NSString *appVersion = appInfo[(__bridge NSString *)kCFBundleVersionKey];
     NSString *appIdentifier = appInfo[(__bridge NSString *)kCFBundleIdentifierKey];
+
+    // Mac Catalyst Apps use a prefix to the bundle ID. This should not be transmitted
+    // to the parse backend. Catalyst apps should look like iOS apps otherwise
+    // push and other services don't work properly.
+    if (@available(macCatalyst 13.0, *) && appIdentifier) {
+        NSRange macCatalystPrefix = [appIdentifier rangeOfString:@"maccatalyst."];
+        if (macCatalystPrefix.location == 0) {
+            appIdentifier = [appIdentifier stringByReplacingCharactersInRange:macCatalystPrefix
+                                                                   withString:@""];
+        }
+    }
     // It's possible that the app was created without an info.plist and we just
     // cannot get the data we need.
     // Note: it's important to make the possibly nil string the message receptor for
