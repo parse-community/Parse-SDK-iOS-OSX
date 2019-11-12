@@ -277,17 +277,14 @@
     // Completely disable caching of responses for security reasons.
     NSURLCache *cache;
 
-#ifdef __IPHONE_13_0 || __TVOS_13 || __WATCHOS_6_0 || __MAC_10_15
-        cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
-                                              diskCapacity:0
-                                              directoryURL:nil];
-
+#if __MAC_OS_X_VERSION_MIN_REQUIRED < 101500
+    cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
+                                          diskCapacity:0
+                                         directoryPath:nil];
 #else
-        cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
-                                              diskCapacity:0
-                                             directoryPath:nil];
-
-
+    cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
+                                          diskCapacity:0
+                                          directoryURL:nil];
 #endif
     configuration.URLCache = cache;
 
