@@ -277,7 +277,7 @@
     // Completely disable caching of responses for security reasons.
     NSURLCache *cache;
 
-#if __MAC_OS_X_VERSION_MIN_REQUIRED < 101500
+#ifndef __MAC_10_15
     cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
                                           diskCapacity:0
                                          directoryPath:nil];
