@@ -284,7 +284,7 @@
 #else
     cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
                                           diskCapacity:0
-                                         directoryPath:nil];
+                                              diskPath:nil];
 #endif
     configuration.URLCache = cache;
 
