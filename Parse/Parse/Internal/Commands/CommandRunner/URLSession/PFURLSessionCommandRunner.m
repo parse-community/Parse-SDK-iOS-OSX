@@ -277,14 +277,14 @@
     // Completely disable caching of responses for security reasons.
     NSURLCache *cache;
 
-#ifndef __MAC_10_15
-    cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
-                                          diskCapacity:0
-                                         directoryPath:nil];
-#else
+#if TARGET_OS_MACCATALYST
     cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
                                           diskCapacity:0
                                           directoryURL:nil];
+#else
+    cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
+                                          diskCapacity:0
+                                         directoryPath:nil];
 #endif
     configuration.URLCache = cache;
 
