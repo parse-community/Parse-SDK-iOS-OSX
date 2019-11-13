@@ -33,7 +33,7 @@
 
 // The prefix removed from the CFBundleIdentifier sent with the installation
 // for macOS Catalyst apps for installations;
-const NSString * kMacCatalystBundleIdPrefix = @"maccatalyst.";
+static const NSString * kMacCatalystBundleIdPrefix = @"maccatalyst.";
 
 
 @implementation PFInstallation (Private)
