@@ -300,15 +300,17 @@ static NSSet *protectedKeys;
     NSString *appIdentifier = appInfo[(__bridge NSString *)kCFBundleIdentifierKey];
 
 #ifdef TARGET_OS_MACCATALYST
-    // If using an Xcode new enough to know about Mac Catalyst:
-    // Mac Catalyst Apps use a prefix to the bundle ID. This should not be transmitted
-    // to the parse backend. Catalyst apps should look like iOS apps otherwise
-    // push and other services don't work properly.
-    if (@available(macCatalyst 13.0, *) && appIdentifier) {
-        NSRange macCatalystPrefix = [appIdentifier rangeOfString:(NSString *)kMacCatalystBundleIdPrefix];
-        if (macCatalystPrefix.location == 0) {
-            appIdentifier = [appIdentifier stringByReplacingCharactersInRange:macCatalystPrefix
-                                                                   withString:@""];
+        // If using an Xcode new enough to know about Mac Catalyst:
+        // Mac Catalyst Apps use a prefix to the bundle ID. This should not be transmitted
+        // to the parse backend. Catalyst apps should look like iOS apps otherwise
+        // push and other services don't work properly.
+    if (@available(macCatalyst 13.0, *)) {
+        if (appIdentifier) {
+            NSRange macCatalystPrefix = [appIdentifier rangeOfString:(NSString *)kMacCatalystBundleIdPrefix];
+            if (macCatalystPrefix.location == 0) {
+                appIdentifier = [appIdentifier stringByReplacingCharactersInRange:macCatalystPrefix
+                                                                       withString:@""];
+            }
         }
     }
 #endif
