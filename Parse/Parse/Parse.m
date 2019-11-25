@@ -89,6 +89,10 @@ static ParseClientConfiguration *currentParseConfiguration_;
     [[self parseModulesCollection] parseDidInitializeWithApplicationId:configuration.applicationId clientKey:configuration.clientKey];
 }
 
++ (void)setServer:(nonnull NSString *)server {
+    [PFInternalUtils setParseServer:server];
+}
+
 + (nullable ParseClientConfiguration *)currentConfiguration {
     return currentParseManager_.configuration;
 }
@@ -111,6 +115,10 @@ static ParseClientConfiguration *currentParseConfiguration_;
 
 + (nullable NSString *)getClientKey {
     return [self clientKey];
+}
+
++ (nullable NSString *)server {
+    return [[PFInternalUtils parseServerURLString] copy];
 }
 
 ///--------------------------------------
