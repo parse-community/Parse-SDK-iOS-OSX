@@ -14,6 +14,7 @@ script_folder = File.expand_path(File.dirname(__FILE__))
 build_folder = File.join(script_folder, 'build')
 release_folder = File.join(build_folder, 'release')
 bolts_build_folder = File.join(script_folder, 'Carthage', 'Build')
+bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-ObjC')
 
 module Constants
   require 'plist'
