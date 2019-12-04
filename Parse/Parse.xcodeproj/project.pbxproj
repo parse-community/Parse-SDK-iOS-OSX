@@ -26,7 +26,6 @@
 		4A13525520282A51000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518420281768000F5FD5 /* Bolts.framework */; };
 		4A13525620282B4D000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97010FAC1630B18F00AB761E /* Parse.framework */; };
 		4A13525F20283603000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518820281768000F5FD5 /* Bolts.framework */; };
-		4A2C10B32152FEF200FA7D0E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518820281768000F5FD5 /* Bolts.framework */; };
 		4AAEAA40200BE14B00AA7479 /* third_party_licenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8139B12C1A7BF559002BEF84 /* third_party_licenses.txt */; };
 		4ABF398C1F54592100BBA75A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABF398B1F54592100BBA75A /* Main.storyboard */; };
 		4AE33A0F1F5451AD0088DCA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE33A0E1F5451AD0088DCA0 /* AppDelegate.m */; };
@@ -2660,6 +2659,10 @@
 		B141170F1E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B14117101E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B14117111E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B99B7BD2239797A8006C9A1C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518420281768000F5FD5 /* Bolts.framework */; };
+		B99B7BD5239798D3006C9A1C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518820281768000F5FD5 /* Bolts.framework */; };
+		B99B7BD6239799D5006C9A1C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518A20281768000F5FD5 /* Bolts.framework */; };
+		B99B7BD823979A50006C9A1C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518E20281768000F5FD5 /* Bolts.framework */; };
 		BCC5EAB322D5F97E00CF8900 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC5EAB222D5F97D00CF8900 /* Bolts.framework */; };
 		BCC5EAB522D5F98F00CF8900 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC5EAB422D5F98F00CF8900 /* Bolts.framework */; };
 		BCC5EAB622D5F9BA00CF8900 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC5EAAC22D5F96600CF8900 /* Bolts.framework */; };
@@ -3591,6 +3594,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B99B7BD823979A50006C9A1C /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3598,6 +3602,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B99B7BD6239799D5006C9A1C /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3621,7 +3626,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A2C10B32152FEF200FA7D0E /* Bolts.framework in Frameworks */,
+				B99B7BD5239798D3006C9A1C /* Bolts.framework in Frameworks */,
 				4A13525620282B4D000F5FD5 /* Parse.framework in Frameworks */,
 				4A0ECC9A200DA25700BA84A3 /* OCMock.framework in Frameworks */,
 				F5B0B3171B44A2CA00F3EBC4 /* StoreKit.framework in Frameworks */,
@@ -3633,6 +3638,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B99B7BD2239797A8006C9A1C /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8907,6 +8913,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 815F24171BD04D310054659F /* Parse-tvOS.xcconfig */;
 			buildSettings = {
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -8914,6 +8921,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 815F24171BD04D310054659F /* Parse-tvOS.xcconfig */;
 			buildSettings = {
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
@@ -8922,6 +8930,7 @@
 			baseConfigurationReference = F55ABB591B4F39DA00A0ECD5 /* ParseUnitTests-iOS.xcconfig */;
 			buildSettings = {
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParseUnitTests-iOS-host.app/ParseUnitTests-iOS-host";
 			};
 			name = Debug;
@@ -8931,6 +8940,7 @@
 			baseConfigurationReference = F55ABB591B4F39DA00A0ECD5 /* ParseUnitTests-iOS.xcconfig */;
 			buildSettings = {
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParseUnitTests-iOS-host.app/ParseUnitTests-iOS-host";
 			};
 			name = Release;
@@ -8939,7 +8949,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -8948,7 +8958,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -8961,6 +8971,7 @@
 				DEFINES_MODULE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -8974,6 +8985,7 @@
 				DEFINES_MODULE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -8982,6 +8994,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81C582DE1C3B0A40000063C6 /* Parse-iOS-Dynamic.xcconfig */;
 			buildSettings = {
+				SUPPORTS_MACCATALYST = NO;
 			};
 			name = Debug;
 		};
@@ -8989,6 +9002,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81C582DE1C3B0A40000063C6 /* Parse-iOS-Dynamic.xcconfig */;
 			buildSettings = {
+				SUPPORTS_MACCATALYST = NO;
 			};
 			name = Release;
 		};
@@ -9024,7 +9038,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB541B4F39DA00A0ECD5 /* Parse-macOS.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 			};
 			name = Debug;
 		};
@@ -9032,7 +9046,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB541B4F39DA00A0ECD5 /* Parse-macOS.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 			};
 			name = Release;
 		};
