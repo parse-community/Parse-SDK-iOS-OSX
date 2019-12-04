@@ -76,7 +76,7 @@ jobs:
       - checkout
       - run: *prepare
       - run: |
-            xcrun simctl create "Apple TV 4K" com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K com.apple.CoreSimulator.SimRuntime.tvOS-12-2
+            xcrun simctl create "Apple TV 4K" com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-4K com.apple.CoreSimulator.SimRuntime.tvOS-13-2
             bundle exec rake package:release
   jazzy:
     <<: *defaults
