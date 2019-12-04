@@ -1,11 +1,10 @@
 defaults: &defaults
     macos:
       xcode: "11.2.1"
-    shell: /bin/bash --login -eo pipefail
 aliases:
   - &prepare
     |
-      echo 'chruby ruby-2.6.3' >> ~/.bash_profile 
+      echo 'chruby ruby-2.6.3' >> ~/.bash_profile
       git submodule update --init --recursive
       gem install bundler
       bundle install
