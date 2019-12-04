@@ -5,7 +5,7 @@ defaults: &defaults
 aliases:
   - &prepare
     |
-      chruby ruby-2.6.3 > ~/.bash_profile
+      chruby ruby-2.6.5 > ~/.bash_profile
       git submodule update --init --recursive
       gem install bundler
       bundle install
