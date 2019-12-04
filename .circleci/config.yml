@@ -5,8 +5,9 @@ defaults: &defaults
 aliases:
   - &prepare
     |
+      echo 'chruby ruby-2.6.3' >> ~/.bash_profile 
       git submodule update --init --recursive
-      gem install bundler --local
+      gem install bundler
       bundle install
   - &filter-only-master
     branches:
