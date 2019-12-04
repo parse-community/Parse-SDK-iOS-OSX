@@ -6,7 +6,7 @@ aliases:
   - &prepare
     |
       git submodule update --init --recursive
-      gem install bundler
+      gem install bundler --local
       bundle install
   - &filter-only-master
     branches:
