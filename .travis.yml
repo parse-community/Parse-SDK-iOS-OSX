@@ -18,7 +18,7 @@ jobs:
       install: bundle install
       script:
       - ./Scripts/jazzy.sh
-      - xcrun simctl create "Apple TV" com.apple.CoreSimulator.SimDeviceType.Apple-TV com.apple.CoreSimulator.SimRuntime.tvOS-12-2
+      - xcrun simctl create "Apple TV" com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p com.apple.CoreSimulator.SimRuntime.tvOS-13.2
       - bundle exec rake package:release
       deploy:
         - provider: releases
