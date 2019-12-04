@@ -7,7 +7,8 @@ aliases:
     |
       chruby ruby-2.6.5 > ~/.bash_profile
       git submodule update --init --recursive
-      export GEM_HOME="$HOME/.gem"
+      export GEM_PATH="$HOME/.gem"
+      export PATH=$GEM_PATH/bin:$PATH
       gem install bundler
       bundle install
   - &filter-only-master
