@@ -261,7 +261,7 @@ namespace :build do
 
         t.scheme = 'ParseUIDemo-Swift'
         t.sdk = 'iphonesimulator'
-        t.destinations = ["\"platform=iOS Simulator,OS=13.2,name=iPhone 11\"",]
+        t.destinations = ["\"platform=iOS Simulator,OS=13.2.2,name=iPhone 11\"",]
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
@@ -466,7 +466,7 @@ namespace :test do
 
       t.scheme = 'Parse-iOS'
       t.sdk = 'iphonesimulator'
-      t.destinations = ["\"platform=iOS Simulator,OS=13.2,name=iPhone 11\"",]
+      t.destinations = ["\"platform=iOS Simulator,OS=13.2.2,name=iPhone 11\"",]
       t.configuration = 'Debug'
       t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
@@ -511,7 +511,7 @@ namespace :test do
 
         t.scheme = 'ParseFacebookUtilsV4-iOS'
         t.sdk = 'iphonesimulator'
-        t.destinations = ["\"platform=iOS Simulator,OS=13.2,name=iPhone 11\"",]
+        t.destinations = ["\"platform=iOS Simulator,OS=13.2.2,name=iPhone 11\"",]
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
@@ -567,7 +567,7 @@ namespace :test do
 
         t.scheme = 'ParseUI'
         t.sdk = 'iphonesimulator'
-        t.destinations = ["\"platform=iOS Simulator,OS=13.2,name=iPhone 11\"",]
+        t.destinations = ["\"platform=iOS Simulator,OS=13.2.2,name=iPhone 11\"",]
         t.configuration = 'Debug'
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
@@ -588,7 +588,7 @@ namespace :test do
 
         t.scheme = 'ParseUIDemo'
         t.sdk = 'iphonesimulator'
-        t.destinations = ["\"platform=iOS Simulator,OS=13.2,name=iPhone 11\"",]
+        t.destinations = ["\"platform=iOS Simulator,OS=13.2.2,name=iPhone 11\"",]
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
@@ -611,7 +611,7 @@ namespace :test do
 
         t.scheme = 'ParseUIDemo-Swift'
         t.sdk = 'iphonesimulator'
-        t.destinations = ["\"platform=iOS Simulator,OS=13.2,name=iPhone 11\"",]
+        t.destinations = ["\"platform=iOS Simulator,OS=13.2.2,name=iPhone 11\"",]
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
@@ -646,7 +646,7 @@ namespace :test do
         t.scheme = scheme
         t.configuration = 'Debug'
         t.sdk = 'iphonesimulator'
-        t.destinations = ['"platform=iOS Simulator,name=iPhone X"']
+        t.destinations = ['"platform=iOS Simulator,name=iPhone 11"']
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
@@ -674,7 +674,7 @@ namespace :test do
 
         t.scheme = scheme
         t.configuration = 'Debug'
-        t.destinations = ["\"platform=iOS Simulator,name=iPhone X\"",]
+        t.destinations = ["\"platform=iOS Simulator,name=iPhone 11\"",]
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
