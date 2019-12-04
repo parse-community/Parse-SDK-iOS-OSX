@@ -688,7 +688,7 @@ namespace :test do
 
         t.scheme = scheme
         t.configuration = 'Debug'
-        t.destinations = ["\"platform=tvOS Simulator,OS=12.2,name=Apple TV 4K\"",]
+        t.destinations = ["\"platform=tvOS Simulator,OS=12.0,name=Apple TV 4K\"",]
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
