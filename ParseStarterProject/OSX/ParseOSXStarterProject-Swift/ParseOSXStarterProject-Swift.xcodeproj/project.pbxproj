@@ -165,7 +165,7 @@
 			};
 			buildConfigurationList = 81CC85B31A49F2E00076DE19 /* Build configuration list for PBXProject "ParseOSXStarterProject-Swift" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
