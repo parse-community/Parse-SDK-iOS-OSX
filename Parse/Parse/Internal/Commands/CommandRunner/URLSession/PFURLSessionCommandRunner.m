@@ -276,8 +276,8 @@
 #else
     // Completely disable caching of responses for security reasons.
     configuration.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
-                                                            diskCapacity:0
-                                                                diskPath:nil];
+                                                           diskCapacity:0
+                                                               diskPath:nil];
 #endif
 
     NSBundle *bundle = [NSBundle mainBundle];
