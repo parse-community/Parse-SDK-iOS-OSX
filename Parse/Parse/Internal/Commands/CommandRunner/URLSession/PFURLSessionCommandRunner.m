@@ -275,18 +275,10 @@
                                                            directoryURL:nil];
 #else
     // Completely disable caching of responses for security reasons.
-    NSURLCache *cache;
-
-#if TARGET_OS_MACCATALYST
-    cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
-                                          diskCapacity:0
-                                          directoryURL:nil];
-#else
-    cache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
-                                          diskCapacity:0
-                                              diskPath:nil];
+    configuration.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
+                                                            diskCapacity:0
+                                                                diskPath:nil];
 #endif
-    configuration.URLCache = cache;
 
     NSBundle *bundle = [NSBundle mainBundle];
     NSDictionary *headers = [PFCommandURLRequestConstructor defaultURLRequestHeadersForApplicationId:applicationId
