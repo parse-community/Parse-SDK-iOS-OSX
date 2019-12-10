@@ -36,6 +36,13 @@
 #pragma mark - Tests
 ///--------------------------------------
 
+- (void)setUp
+{
+    [PFPin registerSubclass];
+
+    [super setUp];
+}
+
 - (void)testConstructors {
     id dataSource = [self mockedDataSource];
 
