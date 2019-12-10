@@ -1,2 +1,2 @@
 github "parse-community/Bolts-ObjC" ~> 1.9
-github "facebook/facebook-objc-sdk" ~> 5.11.1
+github "facebook/facebook-objc-sdk"
