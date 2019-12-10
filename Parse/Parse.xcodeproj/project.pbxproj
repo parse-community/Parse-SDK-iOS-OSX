@@ -21,6 +21,8 @@
 		403093761C81F0B200CF09F8 /* PFQueryConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */; };
 		403093771C81F0B200CF09F8 /* PFQueryConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */; };
 		403093781C81F0B200CF09F8 /* PFQueryConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */; };
+		4A0ECC9A200DA25700BA84A3 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC9B200DA25700BA84A3 /* OCMock.framework */; };
+		4A0ECC9C200DA26000BA84A3 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC9D200DA26000BA84A3 /* OCMock.framework */; };
 		4A13525520282A51000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518420281768000F5FD5 /* Bolts.framework */; };
 		4A13525620282B4D000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97010FAC1630B18F00AB761E /* Parse.framework */; };
 		4A13525F20283603000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518820281768000F5FD5 /* Bolts.framework */; };
@@ -2351,6 +2353,23 @@
 		81C587081C3B0AA9000063C6 /* PFCurrentConfigController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81BF4ABA1B0BF64B00A3D75B /* PFCurrentConfigController.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		81C5870A1C3B0AA9000063C6 /* Parse.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81E7BE011B82B931007ACDD8 /* Parse.strings */; };
 		81C5870B1C3B0AA9000063C6 /* third_party_licenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8139B12C1A7BF559002BEF84 /* third_party_licenses.txt */; };
+		81C587131C3B0B18000063C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C587121C3B0B18000063C6 /* UIKit.framework */; };
+		81C587151C3B0B1C000063C6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C587141C3B0B1C000063C6 /* AudioToolbox.framework */; };
+		81C587171C3B0B22000063C6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C587161C3B0B22000063C6 /* CoreLocation.framework */; };
+		81C587191C3B0B2A000063C6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C587181C3B0B2A000063C6 /* Security.framework */; };
+		81C5871B1C3B0B2F000063C6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C5871A1C3B0B2F000063C6 /* StoreKit.framework */; };
+		81C5871D1C3B0B35000063C6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C5871C1C3B0B35000063C6 /* SystemConfiguration.framework */; };
+		81C5871F1C3B0B3A000063C6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C5871E1C3B0B3A000063C6 /* libsqlite3.tbd */; };
+		81C587221C3B0B77000063C6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C587211C3B0B77000063C6 /* SystemConfiguration.framework */; };
+		81C587241C3B0B7B000063C6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C587231C3B0B7B000063C6 /* Security.framework */; };
+		81C587261C3B0B7F000063C6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C587251C3B0B7F000063C6 /* CoreLocation.framework */; };
+		81C587281C3B0B84000063C6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C587271C3B0B84000063C6 /* StoreKit.framework */; };
+		81C5872A1C3B0B8A000063C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C587291C3B0B8A000063C6 /* UIKit.framework */; };
+		81C5872C1C3B0B8D000063C6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C5872B1C3B0B8D000063C6 /* libsqlite3.tbd */; };
+		81C5872F1C3B0BB1000063C6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C5872E1C3B0BB1000063C6 /* libsqlite3.tbd */; };
+		81C587311C3B0BB6000063C6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C587301C3B0BB6000063C6 /* Security.framework */; };
+		81C587331C3B0BB9000063C6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C587321C3B0BB9000063C6 /* CoreLocation.framework */; };
+		81C587351C3B0BBE000063C6 /* WatchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C587341C3B0BBE000063C6 /* WatchKit.framework */; };
 		81C6BDEE1B4DB16500553A83 /* PFInstallationConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C6BDEC1B4DB16500553A83 /* PFInstallationConstants.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		81C6BDEF1B4DB16500553A83 /* PFInstallationConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C6BDEC1B4DB16500553A83 /* PFInstallationConstants.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		81C6BDF01B4DB16500553A83 /* PFInstallationConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C6BDED1B4DB16500553A83 /* PFInstallationConstants.m */; };
@@ -2641,9 +2660,9 @@
 		B141170F1E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B14117101E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B14117111E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B9A74358239F89F1002E799F /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518420281768000F5FD5 /* Bolts.framework */; };
-		B9A74364239F8DE5002E799F /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518C20281768000F5FD5 /* Bolts.framework */; };
-		B9A74365239F8DE5002E799F /* Bolts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518C20281768000F5FD5 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BCC5EAB322D5F97E00CF8900 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC5EAB222D5F97D00CF8900 /* Bolts.framework */; };
+		BCC5EAB522D5F98F00CF8900 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC5EAB422D5F98F00CF8900 /* Bolts.framework */; };
+		BCC5EAB622D5F9BA00CF8900 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC5EAAC22D5F96600CF8900 /* Bolts.framework */; };
 		F50C66331B33A708001941A6 /* PFPushUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F50C66311B33A708001941A6 /* PFPushUtilities.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F50C66341B33A708001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
 		F50C667C1B34B231001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
@@ -2871,6 +2890,34 @@
 			remoteGlobalIDString = F5AFC9EA1BA752750076E927;
 			remoteInfo = "Bolts-tvOS";
 		};
+		4A1351FA2028194C000F5FD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 81ED94111BE147CF00795F05;
+			remoteInfo = "Bolts-iOS";
+		};
+		4AA8ABFE20CEFC9A009306DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 819573D91C2B8ECB00BFCA39;
+			remoteInfo = "Bolts-watchOS-Dynamic";
+		};
+		4AA8AC0720CEFCA2009306DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D5D7DA61BE3CE8200FD67C7;
+			remoteInfo = "Bolts-iOS-Dynamic";
+		};
+		4AA8AC0920CEFCAD009306DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 81E94D521C2B8BF200A6291E;
+			remoteInfo = "Bolts-tvOS-Dynamic";
+		};
 		4ACBE7EA2151FCBF008DFAAF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
@@ -2892,19 +2939,12 @@
 			remoteGlobalIDString = 97010FAB1630B18F00AB761E;
 			remoteInfo = "Parse-OSX";
 		};
-		B9A74362239F8CF3002E799F /* PBXContainerItemProxy */ = {
+		8111674B1B8402DF003CB026 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 09D33641139C54930098E916 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 81C3821B19CCA89E0066284A;
 			remoteInfo = "Parse-iOS";
-		};
-		B9A7437A239F9162002E799F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 81ED94111BE147CF00795F05;
-			remoteInfo = "Bolts-iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -2927,17 +2967,6 @@
 			files = (
 			);
 			name = "Copy Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B9A74366239F8DE5002E799F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				B9A74365239F8DE5002E799F /* Bolts.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -2978,6 +3007,8 @@
 		499E425615B6409000A2C28E /* PFProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFProduct.m; sourceTree = "<group>"; };
 		49FDE2EC158C138F00126F64 /* PFPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPurchase.h; sourceTree = "<group>"; };
 		49FDE2ED158C138F00126F64 /* PFPurchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPurchase.m; sourceTree = "<group>"; };
+		4A0ECC9B200DA25700BA84A3 /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A0ECC9D200DA26000BA84A3 /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bolts.xcodeproj; path = "../Carthage/Checkouts/Bolts-ObjC/Bolts.xcodeproj"; sourceTree = "<group>"; };
 		4ABF398B1F54592100BBA75A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4AE33A0B1F5451AD0088DCA0 /* ParseUnitTests-iOS-host.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ParseUnitTests-iOS-host.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3348,6 +3379,23 @@
 		81C5845D1C3B0A98000063C6 /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C585BF1C3B0AA1000063C6 /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C5870F1C3B0AA9000063C6 /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81C587121C3B0B18000063C6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		81C587141C3B0B1C000063C6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		81C587161C3B0B22000063C6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		81C587181C3B0B2A000063C6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		81C5871A1C3B0B2F000063C6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		81C5871C1C3B0B35000063C6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		81C5871E1C3B0B3A000063C6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
+		81C587211C3B0B77000063C6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		81C587231C3B0B7B000063C6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		81C587251C3B0B7F000063C6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		81C587271C3B0B84000063C6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		81C587291C3B0B8A000063C6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		81C5872B1C3B0B8D000063C6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
+		81C5872E1C3B0BB1000063C6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.1.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
+		81C587301C3B0BB6000063C6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		81C587321C3B0BB9000063C6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.1.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		81C587341C3B0BBE000063C6 /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.1.sdk/System/Library/Frameworks/WatchKit.framework; sourceTree = DEVELOPER_DIR; };
 		81C6BDEC1B4DB16500553A83 /* PFInstallationConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFInstallationConstants.h; sourceTree = "<group>"; };
 		81C6BDED1B4DB16500553A83 /* PFInstallationConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFInstallationConstants.m; sourceTree = "<group>"; };
 		81C6BDF31B4DD32700553A83 /* PFCurrentObjectControlling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFCurrentObjectControlling.h; sourceTree = "<group>"; };
@@ -3472,6 +3520,9 @@
 		B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileUploadController.h; sourceTree = "<group>"; };
 		B14116FB1E5D078E00F70D7A /* PFFileUploadResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFileUploadResult.m; sourceTree = "<group>"; };
 		B141170A1E5D081500F70D7A /* PFFileUploadResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileUploadResult.h; sourceTree = "<group>"; };
+		BCC5EAAC22D5F96600CF8900 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
+		BCC5EAB222D5F97D00CF8900 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Carthage/Build/tvOS/Bolts.framework; sourceTree = "<group>"; };
+		BCC5EAB422D5F98F00CF8900 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Carthage/Build/watchOS/Bolts.framework; sourceTree = "<group>"; };
 		E9BBE98E16D18E5800CD7B52 /* PFObject+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PFObject+Subclass.h"; path = "Parse/PFObject+Subclass.h"; sourceTree = SOURCE_ROOT; };
 		E9E81E8316EEF93E001D034F /* PFSubclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFSubclassing.h; sourceTree = "<group>"; };
 		F50C66311B33A708001941A6 /* PFPushUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPushUtilities.h; sourceTree = "<group>"; };
@@ -3555,6 +3606,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A13525520282A51000F5FD5 /* Bolts.framework in Frameworks */,
+				4A0ECC9C200DA26000BA84A3 /* OCMock.framework in Frameworks */,
 				816F44741A8E8933009CDB32 /* Parse.framework in Frameworks */,
 				F5C42CC71B34C22100C720D8 /* AudioToolbox.framework in Frameworks */,
 				816F44761A8E8933009CDB32 /* StoreKit.framework in Frameworks */,
@@ -3571,6 +3623,7 @@
 			files = (
 				4A2C10B32152FEF200FA7D0E /* Bolts.framework in Frameworks */,
 				4A13525620282B4D000F5FD5 /* Parse.framework in Frameworks */,
+				4A0ECC9A200DA25700BA84A3 /* OCMock.framework in Frameworks */,
 				F5B0B3171B44A2CA00F3EBC4 /* StoreKit.framework in Frameworks */,
 				F5B0B3161B44A22300F3EBC4 /* SystemConfiguration.framework in Frameworks */,
 			);
@@ -3587,7 +3640,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9A74358239F89F1002E799F /* Bolts.framework in Frameworks */,
+				81C5871F1C3B0B3A000063C6 /* libsqlite3.tbd in Frameworks */,
+				81C5871D1C3B0B35000063C6 /* SystemConfiguration.framework in Frameworks */,
+				81C5871B1C3B0B2F000063C6 /* StoreKit.framework in Frameworks */,
+				81C587191C3B0B2A000063C6 /* Security.framework in Frameworks */,
+				81C587171C3B0B22000063C6 /* CoreLocation.framework in Frameworks */,
+				81C587151C3B0B1C000063C6 /* AudioToolbox.framework in Frameworks */,
+				81C587131C3B0B18000063C6 /* UIKit.framework in Frameworks */,
+				BCC5EAB622D5F9BA00CF8900 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3595,7 +3655,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9A74364239F8DE5002E799F /* Bolts.framework in Frameworks */,
+				81C5872C1C3B0B8D000063C6 /* libsqlite3.tbd in Frameworks */,
+				81C5872A1C3B0B8A000063C6 /* UIKit.framework in Frameworks */,
+				81C587281C3B0B84000063C6 /* StoreKit.framework in Frameworks */,
+				81C587261C3B0B7F000063C6 /* CoreLocation.framework in Frameworks */,
+				81C587241C3B0B7B000063C6 /* Security.framework in Frameworks */,
+				81C587221C3B0B77000063C6 /* SystemConfiguration.framework in Frameworks */,
+				BCC5EAB322D5F97E00CF8900 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3603,6 +3669,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCC5EAB522D5F98F00CF8900 /* Bolts.framework in Frameworks */,
+				81C587351C3B0BBE000063C6 /* WatchKit.framework in Frameworks */,
+				81C587331C3B0BB9000063C6 /* CoreLocation.framework in Frameworks */,
+				81C587311C3B0BB6000063C6 /* Security.framework in Frameworks */,
+				81C5872F1C3B0BB1000063C6 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3839,7 +3910,29 @@
 		09D3364C139C54940098E916 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BCC5EAAC22D5F96600CF8900 /* Bolts.framework */,
+				BCC5EAB222D5F97D00CF8900 /* Bolts.framework */,
+				BCC5EAB422D5F98F00CF8900 /* Bolts.framework */,
 				4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */,
+				4A0ECC9D200DA26000BA84A3 /* OCMock.framework */,
+				4A0ECC9B200DA25700BA84A3 /* OCMock.framework */,
+				81C587341C3B0BBE000063C6 /* WatchKit.framework */,
+				81C587321C3B0BB9000063C6 /* CoreLocation.framework */,
+				81C587301C3B0BB6000063C6 /* Security.framework */,
+				81C5872E1C3B0BB1000063C6 /* libsqlite3.tbd */,
+				81C5872B1C3B0B8D000063C6 /* libsqlite3.tbd */,
+				81C587291C3B0B8A000063C6 /* UIKit.framework */,
+				81C587271C3B0B84000063C6 /* StoreKit.framework */,
+				81C587251C3B0B7F000063C6 /* CoreLocation.framework */,
+				81C587231C3B0B7B000063C6 /* Security.framework */,
+				81C587211C3B0B77000063C6 /* SystemConfiguration.framework */,
+				81C5871E1C3B0B3A000063C6 /* libsqlite3.tbd */,
+				81C5871C1C3B0B35000063C6 /* SystemConfiguration.framework */,
+				81C5871A1C3B0B2F000063C6 /* StoreKit.framework */,
+				81C587181C3B0B2A000063C6 /* Security.framework */,
+				81C587161C3B0B22000063C6 /* CoreLocation.framework */,
+				81C587141C3B0B1C000063C6 /* AudioToolbox.framework */,
+				81C587121C3B0B18000063C6 /* UIKit.framework */,
 				813E97A91A26A76A00373BA7 /* System Frameworks */,
 			);
 			name = Frameworks;
@@ -6785,7 +6878,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				B9A74363239F8CF3002E799F /* PBXTargetDependency */,
+				8111674C1B8402DF003CB026 /* PBXTargetDependency */,
 				4AE33A2D1F5451B20088DCA0 /* PBXTargetDependency */,
 			);
 			name = "ParseUnitTests-iOS";
@@ -6825,7 +6918,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				B9A7437B239F9162002E799F /* PBXTargetDependency */,
+				4A1351FB2028194C000F5FD5 /* PBXTargetDependency */,
 			);
 			name = "Parse-iOS";
 			productName = "Parse-iOS";
@@ -6845,6 +6938,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4AA8AC0820CEFCA2009306DD /* PBXTargetDependency */,
 			);
 			name = "Parse-iOS-Dynamic";
 			productName = "Parse-iOS";
@@ -6860,11 +6954,11 @@
 				81C584F01C3B0AA1000063C6 /* Frameworks */,
 				81C584F11C3B0AA1000063C6 /* Headers */,
 				81C585B91C3B0AA1000063C6 /* Resources */,
-				B9A74366239F8DE5002E799F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4AA8AC0A20CEFCAD009306DD /* PBXTargetDependency */,
 			);
 			name = "Parse-tvOS-Dynamic";
 			productName = "Parse-iOS";
@@ -6884,6 +6978,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4AA8ABFF20CEFC9A009306DD /* PBXTargetDependency */,
 			);
 			name = "Parse-watchOS-Dynamic";
 			productName = "Parse-iOS";
@@ -8593,6 +8688,26 @@
 			name = "Bolts-tvOS";
 			targetProxy = 4A1351F62028193F000F5FD5 /* PBXContainerItemProxy */;
 		};
+		4A1351FB2028194C000F5FD5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bolts-iOS";
+			targetProxy = 4A1351FA2028194C000F5FD5 /* PBXContainerItemProxy */;
+		};
+		4AA8ABFF20CEFC9A009306DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bolts-watchOS-Dynamic";
+			targetProxy = 4AA8ABFE20CEFC9A009306DD /* PBXContainerItemProxy */;
+		};
+		4AA8AC0820CEFCA2009306DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bolts-iOS-Dynamic";
+			targetProxy = 4AA8AC0720CEFCA2009306DD /* PBXContainerItemProxy */;
+		};
+		4AA8AC0A20CEFCAD009306DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bolts-tvOS-Dynamic";
+			targetProxy = 4AA8AC0920CEFCAD009306DD /* PBXContainerItemProxy */;
+		};
 		4ACBE7EB2151FCBF008DFAAF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bolts-macOS";
@@ -8608,15 +8723,10 @@
 			target = 97010FAB1630B18F00AB761E /* Parse-macOS */;
 			targetProxy = 811167461B8402DA003CB026 /* PBXContainerItemProxy */;
 		};
-		B9A74363239F8CF3002E799F /* PBXTargetDependency */ = {
+		8111674C1B8402DF003CB026 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 81C3821B19CCA89E0066284A /* Parse-iOS */;
-			targetProxy = B9A74362239F8CF3002E799F /* PBXContainerItemProxy */;
-		};
-		B9A7437B239F9162002E799F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bolts-iOS";
-			targetProxy = B9A7437A239F9162002E799F /* PBXContainerItemProxy */;
+			targetProxy = 8111674B1B8402DF003CB026 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -8855,10 +8965,8 @@
 				DEFINES_MODULE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -8870,9 +8978,7 @@
 				DEFINES_MODULE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
