@@ -52,7 +52,8 @@ typedef NS_OPTIONS(NSInteger, PFLogInFields) {
     PFLogInFieldsSignUpButton = 1 << 5,
     /** Dismiss Button. */
     PFLogInFieldsDismissButton = 1 << 6,
-
+    /** Apple button*/
+    PFLogInFieldsApple = 1 << 7,
     /** Default value. Combines Username, Password, Login, Signup, Forgot Password and Dismiss buttons. */
     PFLogInFieldsDefault = (PFLogInFieldsUsernameAndPassword |
                             PFLogInFieldsLogInButton |
@@ -160,6 +161,11 @@ extern NSString *const PFLogInViewDismissButtonAccessibilityIdentifier;
  The Twitter button. It is `nil` if the element is not enabled.
  */
 @property (nullable, nonatomic, strong, readonly) UIButton *twitterButton;
+
+/**
+ The Apple button. It is 'nil if the element is not enabled.
+ */
+@property (nullable, nonatomic, strong, readonly) UIButton *appleButton;
 
 /**
  The sign up button. It is `nil` if the element is not enabled.

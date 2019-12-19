@@ -30,6 +30,7 @@
 #import "PFSignUpViewController.h"
 #import "PFTextField.h"
 #import "PFLogInView_Private.h"
+#import <AuthenticationServices/AuthenticationServices.h>
 
 NSString *const PFLogInSuccessNotification = @"com.parse.ui.login.success";
 NSString *const PFLogInFailureNotification = @"com.parse.ui.login.failure";
@@ -318,6 +319,35 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
             [PFUIAlertView presentAlertInViewController:self withTitle:title error:error];
         }
     }];
+}
+
+
+#pragma mark Sign in with Apple
+-(void)_loginWithApple {
+
+    if (@available(iOS 13.0, *)) {
+        if (self.loading) {
+            return;
+        }
+        
+        self.loading = YES;
+        if ([_logInView.appleButton isKindOfClass:[PFActionButton class]]) {
+            [(PFActionButton *)_logInView.appleButton setLoading:YES];
+        }
+        ASAuthorizationAppleIDProvider *provider = [ASAuthorizationAppleIDProvider new];
+        ASAuthorizationAppleIDRequest *request = [provider createRequest];
+        request.requestedScopes = @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
+        
+        ASAuthorizationController *controller = [[ASAuthorizationController alloc] initWithAuthorizationRequests:@[request]];
+        
+        controller.delegate = self;
+        controller.presentationContextProvider = self;
+        [controller performRequests];
+    }
+    else {
+        
+    }
+    
 }
 
 #pragma mark Log In With Facebook
