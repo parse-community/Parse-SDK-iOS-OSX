@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The `PFLogInViewController` class presents and manages a standard authentication interface for logging in a `PFUser`.
  */
-@interface PFLogInViewController : UIViewController <UITextFieldDelegate, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding>
+@interface PFLogInViewController : UIViewController <UITextFieldDelegate>
 
 ///--------------------------------------
 /// @name Configuring Log In Elements
