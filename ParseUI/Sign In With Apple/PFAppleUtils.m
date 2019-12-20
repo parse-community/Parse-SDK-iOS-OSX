@@ -93,6 +93,7 @@ static PFAppleAuthenticationProvider *_authenticationProvider;
     if (self) {
         if (!_authenticationProvider) {
             _authenticationProvider = [[PFAppleAuthenticationProvider alloc] init];
+            [PFUser registerAuthenticationDelegate:_authenticationProvider forAuthType:PFAppleUserAuthenticationType];
         }
     }
     return self;
