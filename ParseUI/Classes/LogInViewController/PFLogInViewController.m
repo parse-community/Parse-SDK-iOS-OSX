@@ -349,18 +349,20 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
     if ([appleUtils respondsToSelector:selector]) {
         [[appleUtils logInInBackground] continueWithBlock:^id _Nullable(BFTask * _Nonnull t) {
             __strong typeof(wself) sself = wself;
-            sself.loading = NO;
-            if ([sself.logInView.appleButton isKindOfClass:[PFActionButton class]]) {
-                [(PFActionButton *)sself.logInView.appleButton setLoading:NO];
-            }
-            if (t.error) {
-                [sself _loginDidFailWithError:t.error];
-            }
-            else
-            {
-                PFUser *user = t.result[@"user"];
-                [sself _loginDidSucceedWithUser:user];
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                sself.loading = NO;
+                if ([sself.logInView.appleButton isKindOfClass:[PFActionButton class]]) {
+                    [(PFActionButton *)sself.logInView.appleButton setLoading:NO];
+                }
+                if (t.error) {
+                    [sself _loginDidFailWithError:t.error];
+                }
+                else
+                {
+                    PFUser *user = t.result[@"user"];
+                    [sself _loginDidSucceedWithUser:user];
+                }
+            });
             return nil;
         }];
     }

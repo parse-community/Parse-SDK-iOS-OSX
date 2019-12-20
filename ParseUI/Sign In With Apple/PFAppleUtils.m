@@ -70,11 +70,6 @@ API_AVAILABLE(ios(13.0))
     [self.completionSource setError:error];
 }
 
-- (void)dealloc
-{
-    NSLog(@"Deinit in Apple Manager.");
-}
-
 @end
 
 @interface PFAppleUtils ()
@@ -112,11 +107,6 @@ static PFAppleAuthenticationProvider *_authenticationProvider;
     PFAppleLoginManager *manager = [PFAppleLoginManager new];
     [controller performRequests];
     return [manager loginTaskWithController:controller];
-}
-
-- (void)dealloc
-{
-    NSLog(@"Deinit in Apple Utils.");
 }
 
 @end
