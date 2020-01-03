@@ -16,6 +16,8 @@
 
 @interface PFAppleUtils ()
 
++ (BFTask<NSDictionary *> *)logInInBackgroundWithManager:(PFAppleLoginManager *)manager;
+
 @end
 
 @interface PFAppleLoginManager ()
@@ -57,7 +59,7 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)testLoginTaskSuccess {
+- (void)testLoginSuccess {
     
     // Create test ASAuthorization and ASAuthorizationAppleIDCredential
     FakeAuth *fakeAuth = [FakeAuth new];
