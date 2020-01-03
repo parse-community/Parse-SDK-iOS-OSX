@@ -202,9 +202,12 @@
 		BC0632E823AD03B30089096D /* PFAppleAuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0632E723AD03B30089096D /* PFAppleAuthenticationProvider.m */; };
 		BC0632EA23AD3F050089096D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13523820282059000F5FD5 /* Bolts.framework */; };
 		BC0632EB23AD3F050089096D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13523820282059000F5FD5 /* Bolts.framework */; };
+		BCA5CC8523BFCFB8003BC0A0 /* SignInWithAppleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCBE8CB23BFB89D0044A79C /* SignInWithAppleTests.m */; };
 		BCCBE8BD23BFA17B0044A79C /* apple_icon@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCCBE8BA23BFA17B0044A79C /* apple_icon@3x.jpg */; };
 		BCCBE8BE23BFA17B0044A79C /* apple_icon@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCCBE8BB23BFA17B0044A79C /* apple_icon@2x.jpg */; };
 		BCCBE8BF23BFA17B0044A79C /* apple_icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCCBE8BC23BFA17B0044A79C /* apple_icon.jpg */; };
+		BCCBE8CE23BFB89D0044A79C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9497200D0329005D8F4B /* ParseUI.framework */; };
+		BCCBE8E023BFC8BF0044A79C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCCBE8DF23BFC8BF0044A79C /* OCMock.framework */; };
 		F57F3D231B0C03D40087F60B /* DeletionCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D201B0C03C90087F60B /* DeletionCollectionViewController.m */; };
 		F57F3D241B0C03DB0087F60B /* DeletionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D1C1B0C03BA0087F60B /* DeletionTableViewController.m */; };
 		F57F3D271B0C050C0087F60B /* DeletionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D251B0C04EF0087F60B /* DeletionTableViewController.swift */; };
@@ -450,6 +453,20 @@
 			remoteGlobalIDString = 81C582E11C3B0A98000063C6;
 			remoteInfo = "Parse-iOS-Dynamic";
 		};
+		BCCBE8CF23BFB89D0044A79C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A9A9496200D0329005D8F4B;
+			remoteInfo = ParseUI;
+		};
+		BCCBE8D723BFB9EB0044A79C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81472F661A1AB33800FD6EED;
+			remoteInfo = ParseUIDemo;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -631,6 +648,10 @@
 		BCCBE8BA23BFA17B0044A79C /* apple_icon@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "apple_icon@3x.jpg"; sourceTree = "<group>"; };
 		BCCBE8BB23BFA17B0044A79C /* apple_icon@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "apple_icon@2x.jpg"; sourceTree = "<group>"; };
 		BCCBE8BC23BFA17B0044A79C /* apple_icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = apple_icon.jpg; sourceTree = "<group>"; };
+		BCCBE8C923BFB89D0044A79C /* SignInWithAppleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignInWithAppleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCCBE8CB23BFB89D0044A79C /* SignInWithAppleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignInWithAppleTests.m; sourceTree = "<group>"; };
+		BCCBE8CD23BFB89D0044A79C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCCBE8DF23BFC8BF0044A79C /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57F3D1B1B0C03BA0087F60B /* DeletionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeletionTableViewController.h; sourceTree = "<group>"; };
 		F57F3D1C1B0C03BA0087F60B /* DeletionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeletionTableViewController.m; sourceTree = "<group>"; };
 		F57F3D1F1B0C03C90087F60B /* DeletionCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeletionCollectionViewController.h; sourceTree = "<group>"; };
@@ -705,19 +726,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BCCBE8C623BFB89D0044A79C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCCBE8E023BFC8BF0044A79C /* OCMock.framework in Frameworks */,
+				BCCBE8CE23BFB89D0044A79C /* ParseUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		0867D691FE84028FC02AAC07 /* Breakpad */ = {
 			isa = PBXGroup;
 			children = (
+				BC0632E123ACF6700089096D /* Sign In With Apple */,
 				4A9A9422200D0226005D8F4B /* ParseUI */,
 				81472F621A1AB31F00FD6EED /* ParseUIDemo */,
+				BCCBE8CA23BFB89D0044A79C /* SignInWithAppleTests */,
 				3F5307328F84566C90FBCF25 /* Frameworks */,
 				06A1EF631BB6799700BA55EC /* ParseUIDemo.app */,
 				06A1EF641BB6799700BA55EC /* ParseUIDemo.app */,
 				4A9A9497200D0329005D8F4B /* ParseUI.framework */,
 				4A0ECC24200D8C0200BA84A3 /* ParseUI.framework */,
+				BCCBE8C923BFB89D0044A79C /* SignInWithAppleTests.xctest */,
 			);
 			name = Breakpad;
 			sourceTree = "<group>";
@@ -725,6 +758,7 @@
 		3F5307328F84566C90FBCF25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BCCBE8DF23BFC8BF0044A79C /* OCMock.framework */,
 				BC0632DC23ABCB1D0089096D /* AuthenticationServices.framework */,
 				4A13523820282059000F5FD5 /* Bolts.framework */,
 				4A1351DE202818D9000F5FD5 /* FBSDK */,
@@ -802,7 +836,6 @@
 		4A9A9422200D0226005D8F4B /* ParseUI */ = {
 			isa = PBXGroup;
 			children = (
-				BC0632E123ACF6700089096D /* Sign In With Apple */,
 				4A9A947F200D02CE005D8F4B /* Configurations */,
 				4A9A9423200D0226005D8F4B /* Generated */,
 				4A9A9426200D0226005D8F4B /* Classes */,
@@ -1307,6 +1340,15 @@
 			path = "Sign In With Apple";
 			sourceTree = "<group>";
 		};
+		BCCBE8CA23BFB89D0044A79C /* SignInWithAppleTests */ = {
+			isa = PBXGroup;
+			children = (
+				BCCBE8CB23BFB89D0044A79C /* SignInWithAppleTests.m */,
+				BCCBE8CD23BFB89D0044A79C /* Info.plist */,
+			);
+			path = SignInWithAppleTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1470,6 +1512,25 @@
 			productReference = 06A1EF631BB6799700BA55EC /* ParseUIDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BCCBE8C823BFB89D0044A79C /* SignInWithAppleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCCBE8D123BFB89D0044A79C /* Build configuration list for PBXNativeTarget "SignInWithAppleTests" */;
+			buildPhases = (
+				BCCBE8C523BFB89D0044A79C /* Sources */,
+				BCCBE8C623BFB89D0044A79C /* Frameworks */,
+				BCCBE8C723BFB89D0044A79C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCCBE8D023BFB89D0044A79C /* PBXTargetDependency */,
+				BCCBE8D823BFB9EB0044A79C /* PBXTargetDependency */,
+			);
+			name = SignInWithAppleTests;
+			productName = SignInWithAppleTests;
+			productReference = BCCBE8C923BFB89D0044A79C /* SignInWithAppleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1477,6 +1538,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = PF;
+				DefaultBuildSystemTypeForWorkspace = Original;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Parse Inc.";
@@ -1491,6 +1553,11 @@
 					81472F661A1AB33800FD6EED = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = 83EQM3242U;
+					};
+					BCCBE8C823BFB89D0044A79C = {
+						CreatedOnToolsVersion = 11.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 81472F661A1AB33800FD6EED;
 					};
 				};
 			};
@@ -1542,6 +1609,7 @@
 				8129E5DE1A9CB067006752BC /* ParseUIDemo-Swift */,
 				4A9A9496200D0329005D8F4B /* ParseUI */,
 				4A0ECBE4200D8C0200BA84A3 /* ParseUI-Dynamic */,
+				BCCBE8C823BFB89D0044A79C /* SignInWithAppleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1736,6 +1804,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BCCBE8C723BFB89D0044A79C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1872,6 +1947,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BCCBE8C523BFB89D0044A79C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCA5CC8523BFCFB8003BC0A0 /* SignInWithAppleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1944,6 +2027,16 @@
 			isa = PBXTargetDependency;
 			name = "Parse-iOS-Dynamic";
 			targetProxy = 4A51E46C2027DC080066DE1A /* PBXContainerItemProxy */;
+		};
+		BCCBE8D023BFB89D0044A79C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A9A9496200D0329005D8F4B /* ParseUI */;
+			targetProxy = BCCBE8CF23BFB89D0044A79C /* PBXContainerItemProxy */;
+		};
+		BCCBE8D823BFB9EB0044A79C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81472F661A1AB33800FD6EED /* ParseUIDemo */;
+			targetProxy = BCCBE8D723BFB9EB0044A79C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2469,6 +2562,86 @@
 			};
 			name = Release;
 		};
+		BCCBE8D223BFB89D0044A79C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = SignInWithAppleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.parseplatform.SignInWithAppleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParseUIDemo.app/ParseUIDemo";
+			};
+			name = Debug;
+		};
+		BCCBE8D323BFB89D0044A79C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = SignInWithAppleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.parseplatform.SignInWithAppleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParseUIDemo.app/ParseUIDemo";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2513,6 +2686,15 @@
 			buildConfigurations = (
 				81472F881A1AB33800FD6EED /* Debug */,
 				81472F891A1AB33800FD6EED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCCBE8D123BFB89D0044A79C /* Build configuration list for PBXNativeTarget "SignInWithAppleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCCBE8D223BFB89D0044A79C /* Debug */,
+				BCCBE8D323BFB89D0044A79C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

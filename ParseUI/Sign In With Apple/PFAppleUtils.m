@@ -14,11 +14,13 @@
 NSString *const PFAppleUserAuthenticationType = @"apple";
 
 API_AVAILABLE(ios(13.0))
-@interface PFAppleLoginManager : BFTask<PFUser *> <ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding>
+@interface PFAppleLoginManager ()
 
 @property (strong, nonatomic) BFTask<PFUser *> *userTask;
 @property (strong, nonatomic) BFTaskCompletionSource *completionSource;
 @property (strong, nonatomic) PFAppleLoginManager *strongSelf;
+
+@property (weak, nonatomic) ASAuthorizationController *controller;
 
 @end
 
@@ -32,6 +34,7 @@ API_AVAILABLE(ios(13.0))
     controller.presentationContextProvider = self;
     self.completionSource = source;
     self.strongSelf = self;
+    self.controller = controller;
     
     return source.task;
 }
@@ -95,6 +98,11 @@ static PFAppleAuthenticationProvider *_authenticationProvider;
 }
 
 + (BFTask<NSDictionary *> *)logInInBackground {
+    PFAppleLoginManager *manager = [PFAppleLoginManager new];
+    return  [PFAppleUtils logInInBackgroundWithManager:manager];
+}
+
++ (BFTask<NSDictionary *> *)logInInBackgroundWithManager:(PFAppleLoginManager *)manager {
     if (!_authenticationProvider) {
         [PFAppleUtils new];
     }
@@ -104,10 +112,8 @@ static PFAppleAuthenticationProvider *_authenticationProvider;
     request.requestedScopes = @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
     
     ASAuthorizationController *controller = [[ASAuthorizationController alloc] initWithAuthorizationRequests:@[request]];
-    PFAppleLoginManager *manager = [PFAppleLoginManager new];
     [controller performRequests];
     return [manager loginTaskWithController:controller];
 }
-
 @end
 

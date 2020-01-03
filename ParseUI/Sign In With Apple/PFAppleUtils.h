@@ -17,9 +17,15 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString *const PFAppleUserAuthenticationType;
 
 API_AVAILABLE(ios(13.0))
+@interface PFAppleLoginManager : NSObject <ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding>
+
+@end
+
+API_AVAILABLE(ios(13.0))
 @interface PFAppleUtils : NSObject
 
 + (BFTask<NSDictionary *> *)logInInBackground;
++ (BFTask<NSDictionary *> *)logInInBackgroundWithManager:(PFAppleLoginManager *)manager;
 //+ (BFTask<NSNumber *> *)linkUserInBackground:(PFUser *)user;
 //+ (BFTask<NSNumber *> *)unlinkUserInBackground:(PFUser *)user;
 
