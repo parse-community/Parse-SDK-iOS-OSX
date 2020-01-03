@@ -69,7 +69,6 @@
 /* Begin PBXFileReference section */
 		814C3AD71B6988E300E307BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		814C3AD91B6988E300E307BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		814C3ADB1B6988E300E307BB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		814C3ADC1B6988E300E307BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8160DBD91B8418BE0030ABD9 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		817AD67D196B026F0014C796 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 		978816D1163F1D6F00C613D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		978816D2163F1D6F00C613D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		97F7357C165B6AF000C4B72A /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		B99B7BCB23979722006C9A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +220,7 @@
 		978816B2163F1D6F00C613D2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = Parse;
 				TargetAttributes = {
 					81993FCE1B69ABA70077D6B9 = {
@@ -230,10 +230,11 @@
 			};
 			buildConfigurationList = 978816B5163F1D6F00C613D2 /* Build configuration list for PBXProject "ParseOSXStarterProject" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 978816B0163F1D6F00C613D2;
 			productRefGroup = 978816BC163F1D6F00C613D2 /* Products */;
@@ -315,7 +316,7 @@
 		814C3ADA1B6988E300E307BB /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				814C3ADB1B6988E300E307BB /* en */,
+				B99B7BCB23979722006C9A1C /* Base */,
 			);
 			name = MainMenu.xib;
 			path = ../Resources;
@@ -433,6 +434,7 @@
 		978816DA163F1D6F00C613D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -449,6 +451,7 @@
 		978816DB163F1D6F00C613D2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

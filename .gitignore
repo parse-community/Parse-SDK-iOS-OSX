@@ -36,3 +36,4 @@ docs/
 ## AppCode
 .idea/
 ParseFacebookUtils/Vendor
+ParseUI/Vendor

@@ -153,7 +153,7 @@ Pod::Spec.new do |s|
   s.subspec 'UI' do |s|
     s.platform              = :ios
     s.requires_arc          = true
-    s.ios.deployment_target = '9.0'
+    s.ios.deployment_target = '8.0'
     s.source_files        = 'ParseUI/**/*.{h,m}'
     s.exclude_files = 'ParseUI/ParseUIDemo/**/*', 'ParseUI/Other/ParseUI.h'
     s.public_header_files = 'ParseUI/Classes/LogInViewController/*.h',
