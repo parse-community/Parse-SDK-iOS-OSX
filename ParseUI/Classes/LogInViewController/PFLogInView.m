@@ -34,6 +34,7 @@
 static NSString *const PFLogInViewDefaultLogoImageName = @"parse_logo.png";
 static NSString *const PFLogInViewDefaultFacebookButtonImageName = @"facebook_icon.png";
 static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon.png";
+static NSString *const PFLogInViewDefaultAppleButtonImageName = @"apple_icon.jpg";
 
 ///--------------------------------------
 #pragma mark - Accessibility Identifiers
@@ -93,7 +94,7 @@ NSString *const PFLogInViewDismissButtonAccessibilityIdentifier = @"PFLogInViewD
 
 + (PFActionButtonConfiguration *)_defaultAppleButtonConfiguration {
     PFActionButtonConfiguration *configuration = [[PFActionButtonConfiguration alloc] initWithBackgroundImageColor:[PFColor appleButtonBackgroundColor]
-                                                                                                             image:[PFImage imageNamed:PFLogInViewDefaultTwitterButtonImageName]];
+                                                                                                             image:[PFImage imageNamed:PFLogInViewDefaultAppleButtonImageName]];
 
     [configuration setTitle:PFLocalizedString(@"Apple", @"Apple")
              forButtonStyle:PFActionButtonStyleNormal];

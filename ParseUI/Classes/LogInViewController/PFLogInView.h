@@ -74,6 +74,7 @@ extern NSString *const PFLogInViewSignUpButtonAccessibilityIdentifier;
 extern NSString *const PFLogInViewPasswordForgottenButtonAccessibilityIdentifier;
 extern NSString *const PFLogInViewTwitterButtonAccessibilityIdentifier;
 extern NSString *const PFLogInViewFacebookButtonAccessibilityIdentifier;
+extern NSString *const PFLogInViewAppleButtonAccessibilityIdentifier;
 extern NSString *const PFLogInViewDismissButtonAccessibilityIdentifier;
 
 @class PFTextField;

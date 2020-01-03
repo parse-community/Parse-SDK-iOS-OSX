@@ -202,6 +202,9 @@
 		BC0632E823AD03B30089096D /* PFAppleAuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0632E723AD03B30089096D /* PFAppleAuthenticationProvider.m */; };
 		BC0632EA23AD3F050089096D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13523820282059000F5FD5 /* Bolts.framework */; };
 		BC0632EB23AD3F050089096D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13523820282059000F5FD5 /* Bolts.framework */; };
+		BCCBE8BD23BFA17B0044A79C /* apple_icon@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCCBE8BA23BFA17B0044A79C /* apple_icon@3x.jpg */; };
+		BCCBE8BE23BFA17B0044A79C /* apple_icon@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCCBE8BB23BFA17B0044A79C /* apple_icon@2x.jpg */; };
+		BCCBE8BF23BFA17B0044A79C /* apple_icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCCBE8BC23BFA17B0044A79C /* apple_icon.jpg */; };
 		F57F3D231B0C03D40087F60B /* DeletionCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D201B0C03C90087F60B /* DeletionCollectionViewController.m */; };
 		F57F3D241B0C03DB0087F60B /* DeletionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D1C1B0C03BA0087F60B /* DeletionTableViewController.m */; };
 		F57F3D271B0C050C0087F60B /* DeletionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D251B0C04EF0087F60B /* DeletionTableViewController.swift */; };
@@ -625,6 +628,9 @@
 		BC0632E623AD03B20089096D /* PFAppleAuthenticationProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFAppleAuthenticationProvider.h; sourceTree = "<group>"; };
 		BC0632E723AD03B30089096D /* PFAppleAuthenticationProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PFAppleAuthenticationProvider.m; sourceTree = "<group>"; };
 		BC32E14523ABAE04009BDFCD /* ParseUIDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ParseUIDemo.entitlements; path = ParseUIDemo/ParseUIDemo.entitlements; sourceTree = "<group>"; };
+		BCCBE8BA23BFA17B0044A79C /* apple_icon@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "apple_icon@3x.jpg"; sourceTree = "<group>"; };
+		BCCBE8BB23BFA17B0044A79C /* apple_icon@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "apple_icon@2x.jpg"; sourceTree = "<group>"; };
+		BCCBE8BC23BFA17B0044A79C /* apple_icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = apple_icon.jpg; sourceTree = "<group>"; };
 		F57F3D1B1B0C03BA0087F60B /* DeletionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeletionTableViewController.h; sourceTree = "<group>"; };
 		F57F3D1C1B0C03BA0087F60B /* DeletionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeletionTableViewController.m; sourceTree = "<group>"; };
 		F57F3D1F1B0C03C90087F60B /* DeletionCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeletionCollectionViewController.h; sourceTree = "<group>"; };
@@ -984,6 +990,9 @@
 		4A9A9467200D0226005D8F4B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BCCBE8BC23BFA17B0044A79C /* apple_icon.jpg */,
+				BCCBE8BB23BFA17B0044A79C /* apple_icon@2x.jpg */,
+				BCCBE8BA23BFA17B0044A79C /* apple_icon@3x.jpg */,
 				4A9A9468200D0226005D8F4B /* twitter_icon@3x.png */,
 				4A9A9469200D0226005D8F4B /* facebook_icon@2x.png */,
 				4A9A946A200D0226005D8F4B /* parse_logo.png */,
@@ -1719,7 +1728,10 @@
 				81472FBE1A1AB37500FD6EED /* 0.png in Resources */,
 				81472FBF1A1AB37500FD6EED /* 1.png in Resources */,
 				81472FC01A1AB37500FD6EED /* 2.png in Resources */,
+				BCCBE8BD23BFA17B0044A79C /* apple_icon@3x.jpg in Resources */,
 				812E5C011A7A8EB4000FBDE1 /* SimpleQueryCollectionStoryboard.storyboard in Resources */,
+				BCCBE8BF23BFA17B0044A79C /* apple_icon.jpg in Resources */,
+				BCCBE8BE23BFA17B0044A79C /* apple_icon@2x.jpg in Resources */,
 				81472FBD1A1AB37500FD6EED /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2412,7 +2424,7 @@
 				INFOPLIST_FILE = ParseUIDemo/Other/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mn.ParseUIDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.parse.ParseUIDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2450,7 +2462,7 @@
 				INFOPLIST_FILE = ParseUIDemo/Other/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mn.ParseUIDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.parse.ParseUIDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
