@@ -511,7 +511,7 @@ namespace :test do
 
         t.scheme = 'ParseFacebookUtilsV4-iOS'
         t.sdk = 'iphonesimulator'
-        t.destinations = ["\"platform=iOS Simulator,OS=13.2.2,name=iPhone 11\"",]
+        t.destinations = ["\"platform=iOS Simulator,name=iPhone 11\"",]
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }

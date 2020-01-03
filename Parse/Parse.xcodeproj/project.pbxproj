@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,8 +22,7 @@
 		403093771C81F0B200CF09F8 /* PFQueryConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */; };
 		403093781C81F0B200CF09F8 /* PFQueryConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */; };
 		4A0ECC9A200DA25700BA84A3 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC9B200DA25700BA84A3 /* OCMock.framework */; };
-		4A0ECC9C200DA26000BA84A3 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC9D200DA26000BA84A3 /* OCMock.framework */; };
-		4A13525520282A51000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518420281768000F5FD5 /* Bolts.framework */; };
+		4A0ECC9C200DA26000BA84A3 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC9D200DA26000BA84A3 /* OCMock.framework */; platformFilter = ios; };
 		4A13525620282B4D000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97010FAC1630B18F00AB761E /* Parse.framework */; };
 		4A13525F20283603000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518820281768000F5FD5 /* Bolts.framework */; };
 		4AAEAA40200BE14B00AA7479 /* third_party_licenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8139B12C1A7BF559002BEF84 /* third_party_licenses.txt */; };
@@ -1154,11 +1153,11 @@
 		816A648B1C29E5A00029B197 /* PFUser+Synchronous.h in Headers */ = {isa = PBXBuildFile; fileRef = 816A64871C29E5A00029B197 /* PFUser+Synchronous.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		816AC9BA1A3F48250031D94C /* PFApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 816AC9B81A3F48250031D94C /* PFApplication.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		816AC9BB1A3F48250031D94C /* PFApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 816AC9B91A3F48250031D94C /* PFApplication.m */; };
-		816F44741A8E8933009CDB32 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C3821C19CCA89E0066284A /* Parse.framework */; };
-		816F44761A8E8933009CDB32 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498C29FE1551DC450034BB80 /* StoreKit.framework */; };
-		816F44771A8E8933009CDB32 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6393F38B15D3018400C4F78D /* libsqlite3.dylib */; };
-		816F44781A8E8933009CDB32 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63CA84EA1612660F002E09F8 /* Accounts.framework */; };
-		816F44791A8E8933009CDB32 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63CBA36B1612829C0062C84A /* Social.framework */; };
+		816F44741A8E8933009CDB32 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C3821C19CCA89E0066284A /* Parse.framework */; platformFilter = ios; };
+		816F44761A8E8933009CDB32 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498C29FE1551DC450034BB80 /* StoreKit.framework */; platformFilter = ios; };
+		816F44771A8E8933009CDB32 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6393F38B15D3018400C4F78D /* libsqlite3.dylib */; platformFilter = ios; };
+		816F44781A8E8933009CDB32 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63CA84EA1612660F002E09F8 /* Accounts.framework */; platformFilter = ios; };
+		816F44791A8E8933009CDB32 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63CBA36B1612829C0062C84A /* Social.framework */; platformFilter = ios; };
 		8171E99F19AE091000EAE6C1 /* PFFileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DEF07E199C42A300D86A21 /* PFFileObject.m */; };
 		8171E9BA19AE37F000EAE6C1 /* PFThreadsafety.h in Headers */ = {isa = PBXBuildFile; fileRef = 818D049919A3B84500BEE20F /* PFThreadsafety.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		8171E9BB19AE37F500EAE6C1 /* PFThreadsafety.m in Sources */ = {isa = PBXBuildFile; fileRef = 818D049A19A3B84500BEE20F /* PFThreadsafety.m */; };
@@ -2729,7 +2728,7 @@
 		F5B0B30C1B449F1D00F3EBC4 /* PFLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 97E18AE41623835600B17A67 /* PFLocationManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F5B0B30D1B449F1D00F3EBC4 /* PFAsyncTaskQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C8F2BE1B1F7E6B00CD98E7 /* PFAsyncTaskQueue.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F5B0B30E1B449F1D00F3EBC4 /* PFBaseState.h in Headers */ = {isa = PBXBuildFile; fileRef = F586B34E1B1E3BD70082E3BD /* PFBaseState.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		F5B0B3151B44A21100F3EBC4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B0B3141B44A21100F3EBC4 /* SystemConfiguration.framework */; };
+		F5B0B3151B44A21100F3EBC4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B0B3141B44A21100F3EBC4 /* SystemConfiguration.framework */; platformFilter = ios; };
 		F5B0B3161B44A22300F3EBC4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0942999C139C613700DFA018 /* SystemConfiguration.framework */; };
 		F5B0B3171B44A2CA00F3EBC4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498C29FE1551DC450034BB80 /* StoreKit.framework */; };
 		F5B0B3191B44A33100F3EBC4 /* PFCommandCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C1FDDCA14E1B1BD00A77007 /* PFCommandCache.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -2771,7 +2770,7 @@
 		F5B64D901BFA646C0038F3CB /* ParseClientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B64D8A1BFA646C0038F3CB /* ParseClientConfiguration.m */; };
 		F5B64D911BFA646C0038F3CB /* ParseClientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B64D8A1BFA646C0038F3CB /* ParseClientConfiguration.m */; };
 		F5B64D921BFA646C0038F3CB /* ParseClientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B64D8A1BFA646C0038F3CB /* ParseClientConfiguration.m */; };
-		F5C42CC71B34C22100C720D8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 095ACE9913C69BF700566243 /* AudioToolbox.framework */; };
+		F5C42CC71B34C22100C720D8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 095ACE9913C69BF700566243 /* AudioToolbox.framework */; platformFilter = ios; };
 		F5C42CD41B34F68C00C720D8 /* PFObjectSubclassingController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C42CD21B34F68C00C720D8 /* PFObjectSubclassingController.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F5C42CD51B34F68C00C720D8 /* PFObjectSubclassingController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C42CD21B34F68C00C720D8 /* PFObjectSubclassingController.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F5C42CD61B34F68C00C720D8 /* PFObjectSubclassingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C42CD31B34F68C00C720D8 /* PFObjectSubclassingController.m */; };
@@ -3604,15 +3603,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A13525520282A51000F5FD5 /* Bolts.framework in Frameworks */,
-				4A0ECC9C200DA26000BA84A3 /* OCMock.framework in Frameworks */,
-				816F44741A8E8933009CDB32 /* Parse.framework in Frameworks */,
 				F5C42CC71B34C22100C720D8 /* AudioToolbox.framework in Frameworks */,
 				816F44761A8E8933009CDB32 /* StoreKit.framework in Frameworks */,
 				816F44771A8E8933009CDB32 /* libsqlite3.dylib in Frameworks */,
 				816F44781A8E8933009CDB32 /* Accounts.framework in Frameworks */,
 				816F44791A8E8933009CDB32 /* Social.framework in Frameworks */,
 				F5B0B3151B44A21100F3EBC4 /* SystemConfiguration.framework in Frameworks */,
+				4A0ECC9C200DA26000BA84A3 /* OCMock.framework in Frameworks */,
+				816F44741A8E8933009CDB32 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8723,6 +8721,7 @@
 		};
 		8111674C1B8402DF003CB026 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 81C3821B19CCA89E0066284A /* Parse-iOS */;
 			targetProxy = 8111674B1B8402DF003CB026 /* PBXContainerItemProxy */;
 		};
@@ -8825,7 +8824,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "ParseUnitTests-iOS-host/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.parse.ParseUnitTests-iOS-host";
@@ -8879,7 +8881,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "ParseUnitTests-iOS-host/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.parse.ParseUnitTests-iOS-host";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8932,6 +8937,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB591B4F39DA00A0ECD5 /* ParseUnitTests-iOS.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParseUnitTests-iOS-host.app/ParseUnitTests-iOS-host";
 			};
@@ -8962,7 +8973,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -8975,7 +8990,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
