@@ -18,4 +18,5 @@ INFOPLIST_FILE = $(PROJECT_DIR)/Parse/Resources/Parse-OSX.Info.plist
 // TODO: (nlutsenko) Cleanup source code so we can safely ignore local variable shadow warnings.
 GCC_WARN_SHADOW = NO
 
+CONFIGURATION_BUILD_DIR=$(BUILD_DIR)/$(CONFIGURATION)
 FRAMEWORK_SEARCH_PATHS = $(inherited) $(SRCROOT)/../Carthage/Build/Mac
