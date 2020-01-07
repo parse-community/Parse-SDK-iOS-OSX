@@ -7,3 +7,6 @@
 [submodule "Carthage/Checkouts/facebook-objc-sdk"]
 	path = Carthage/Checkouts/facebook-objc-sdk
 	url = https://github.com/facebook/facebook-objc-sdk.git
+[submodule "Carthage/Checkouts/OCMock"]
+	path = Carthage/Checkouts/OCMock
+	url = https://github.com/erikdoe/OCMock.git
