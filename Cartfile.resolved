@@ -1,3 +1,2 @@
-github "erikdoe/OCMock" "v3.5"
-github "facebook/facebook-objc-sdk" "v5.13.1"
+github "facebook/facebook-objc-sdk" "v5.14.0"
 github "parse-community/Bolts-ObjC" "1.9.1"
