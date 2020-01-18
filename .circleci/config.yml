@@ -6,7 +6,7 @@ aliases:
   - &prepare
     |
       git submodule update --init --recursive
-      gem install bundler
+      sudo gem install bundler
       bundle install
   - &filter-only-master
     branches:
@@ -19,7 +19,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: echo 'chruby ruby-2.6' >> ~/.bash_profile
       - run: *prepare
       - run: bundle exec rake test:ios
       - run: bash <(curl -s https://codecov.io/bash)
@@ -29,7 +28,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: echo 'chruby ruby-2.6' >> ~/.bash_profile
       - run: *prepare
       - run:
           name: "Create and set the default keychain"
@@ -49,7 +47,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: echo 'chruby ruby-2.6' >> ~/.bash_profile
       - run: *prepare
       - run: bundle exec rake test:facebook_utils:ios
       - run: bash <(curl -s https://codecov.io/bash)
@@ -59,7 +56,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: echo 'chruby ruby-2.6' >> ~/.bash_profile
       - run: *prepare
       - run: bundle exec rake test:twitter_utils:ios
       - run: bash <(curl -s https://codecov.io/bash)
@@ -69,7 +65,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: echo 'chruby ruby-2.6' >> ~/.bash_profile
       - run: *prepare
       - run: bundle exec rake test:parseui:all
       - run: bash <(curl -s https://codecov.io/bash)
@@ -79,7 +74,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: echo 'chruby ruby-2.6' >> ~/.bash_profile
       - run: *prepare
       - run: |
             xcrun simctl create "Apple TV 4K" com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-4K com.apple.CoreSimulator.SimRuntime.tvOS-13-2
@@ -88,21 +82,18 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: echo 'chruby ruby-2.6' >> ~/.bash_profile
       - run: *prepare
       - run: ./Scripts/jazzy.sh
   carthage:
     <<: *defaults
     steps:
       - checkout
-      - run: echo 'chruby ruby-2.6' >> ~/.bash_profile
       - run: *prepare
       - run: bundle exec rake test:carthage
   cocoapods:
     <<: *defaults
     steps:
       - checkout
-      - run: echo 'chruby ruby-2.6' >> ~/.bash_profile
       - run: *prepare
       - run: bundle exec rake test:cocoapods
 
