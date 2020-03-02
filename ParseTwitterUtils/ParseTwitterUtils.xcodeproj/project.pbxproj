@@ -59,8 +59,8 @@
 		81ECACD21D1E14E000FA7673 /* third_party_licenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = 813DFC971AB2526000F25A08 /* third_party_licenses.txt */; };
 		81ECACD31D1E14E000FA7673 /* ParseTwitterUtils.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06D00BAD1BC78F23005BAA6F /* ParseTwitterUtils.strings */; };
 		B9312D5223C4A48A002D4A4C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4082027CC0F0066DE1A /* Parse.framework */; };
-		B9312D5423C4A4A4002D4A4C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9312D5323C4A4A4002D4A4C /* OCMock.framework */; };
 		B9783144240D05190049C02B /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* ParseTwitterUtils.framework */; platformFilter = ios; };
+		B9783173240D14A50049C02B /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9783172240D14A50049C02B /* OCMock.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,9 +170,6 @@
 		4A0ECBDD200D41B600BA84A3 /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A13522820282037000F5FD5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parse.xcodeproj; path = ../Parse/Parse.xcodeproj; sourceTree = "<group>"; };
-		4A9A94FE200D12C9005D8F4B /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4AAEAACB200C2BBB00AA7479 /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4ACBE7832151D69A008DFAAF /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8135E48E1B4B6A0E0092F452 /* PF_Twitter_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PF_Twitter_Private.h; sourceTree = "<group>"; };
 		8135E48F1B4B6A0E0092F452 /* PFTwitterAuthenticationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFTwitterAuthenticationProvider.h; sourceTree = "<group>"; };
 		8135E4901B4B6A0E0092F452 /* PFTwitterAuthenticationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFTwitterAuthenticationProvider.m; sourceTree = "<group>"; };
@@ -228,12 +225,7 @@
 		81D342A01B4C7DA500B6C124 /* ParseTwitterUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseTwitterUtils.h; sourceTree = "<group>"; };
 		81ECACD71D1E14E000FA7673 /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseTwitterUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ECACD91D1E14F300FA7673 /* ParseTwitterUtils-iOS-Dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseTwitterUtils-iOS-Dynamic.xcconfig"; sourceTree = "<group>"; };
-		B9312D5323C4A4A4002D4A4C /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = ../Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
-		B978312D240D02C30049C02B /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9783138240D03C00049C02B /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B978313C240D04170049C02B /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B978313E240D04D10049C02B /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9783140240D04DA0049C02B /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9783172240D14A50049C02B /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A7EEC123C49D94003E606E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseTwitterUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F51535531B57453700C49F56 /* ParseTwitterUtils-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseTwitterUtils-iOS.xcconfig"; sourceTree = "<group>"; };
@@ -253,6 +245,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9783173240D14A50049C02B /* OCMock.framework in Frameworks */,
 				B9783144240D05190049C02B /* ParseTwitterUtils.framework in Frameworks */,
 				8168326A1D1E1A8B00315E21 /* AudioToolbox.framework in Frameworks */,
 				8168325E1D1E1A8600315E21 /* libsqlite3.tbd in Frameworks */,
@@ -265,7 +258,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9312D5423C4A4A4002D4A4C /* OCMock.framework in Frameworks */,
 				B9312D5223C4A48A002D4A4C /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,19 +301,11 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B9783140240D04DA0049C02B /* OCMock.framework */,
-				B978313E240D04D10049C02B /* OCMock.framework */,
-				B978313C240D04170049C02B /* OCMock.framework */,
-				B9783138240D03C00049C02B /* OCMock.framework */,
-				B978312D240D02C30049C02B /* Bolts.framework */,
-				B9312D5323C4A4A4002D4A4C /* OCMock.framework */,
+				B9783172240D14A50049C02B /* OCMock.framework */,
 				B9A7EEC123C49D94003E606E /* CoreGraphics.framework */,
-				4ACBE7832151D69A008DFAAF /* OCMock.framework */,
 				4A13522820282037000F5FD5 /* Bolts.framework */,
 				4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */,
 				4A0ECBDD200D41B600BA84A3 /* Parse.framework */,
-				4A9A94FE200D12C9005D8F4B /* Bolts.framework */,
-				4AAEAACB200C2BBB00AA7479 /* OCMock.framework */,
 				813DFC8E1AB2513300F25A08 /* System Frameworks */,
 			);
 			name = Frameworks;
@@ -925,6 +909,7 @@
 		};
 		8166FB951B4F1E9A003841A2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 8166FB661B4F1D77003841A2 /* ParseTwitterTestApplication */;
 			targetProxy = 8166FB941B4F1E9A003841A2 /* PBXContainerItemProxy */;
 		};

@@ -550,7 +550,7 @@ namespace :test do
 
       result = task.execute
       unless result
-        puts 'Failed to build iOS FacebookUtils Framework.'
+        puts 'Failed to build iOS TwitterUtils Framework.'
         exit(1)
       end
     end
