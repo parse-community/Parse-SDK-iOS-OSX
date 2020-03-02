@@ -60,8 +60,8 @@
 		81FE7F801C17790400E6BD34 /* PFFacebookPrivateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E35FD31BAA6F8400348526 /* PFFacebookPrivateUtilities.m */; };
 		B9312D4123C4A290002D4A4C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A7EE9D23C497D2003E606E /* SystemConfiguration.framework */; platformFilter = ios; };
 		B9312D4923C4A2B5002D4A4C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A7EE9D23C497D2003E606E /* SystemConfiguration.framework */; };
+		B9783177240D32260049C02B /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9783176240D32260049C02B /* OCMock.framework */; };
 		B9A7EEA523C49956003E606E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1350512027EA26000F5FD5 /* Parse.framework */; };
-		B9A7EEAB23C49A0D003E606E /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A7EE8323C49427003E606E /* OCMock.framework */; platformFilter = ios; };
 		B9A7EEAF23C49A87003E606E /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA75200C020E00AA7479 /* ParseFacebookUtilsV4.framework */; platformFilter = ios; };
 		B9A7EEB823C49CB5003E606E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A7EE9B23C497C3003E606E /* libsqlite3.tbd */; platformFilter = ios; };
 		B9A7EECC23C49DAE003E606E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A7EECB23C49DAD003E606E /* CoreGraphics.framework */; platformFilter = ios; };
@@ -237,12 +237,11 @@
 		81EDD4B41B58AC7D002F69C0 /* ParseFacebookUtilsV4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseFacebookUtilsV4.h; sourceTree = "<group>"; };
 		81FE7F721C1778FC00E6BD34 /* ParseFacebookUtilsV4-tvOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseFacebookUtilsV4-tvOS.xcconfig"; sourceTree = "<group>"; };
 		81FE7F8B1C17790400E6BD34 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseFacebookUtilsV4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9A7EE8323C49427003E606E /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = ../Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
+		B9783176240D32260049C02B /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A7EE9723C497AC003E606E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B9A7EE9923C497B2003E606E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B9A7EE9B23C497C3003E606E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B9A7EE9D23C497D2003E606E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		B9A7EEA823C499D3003E606E /* OCMock.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = OCMock.framework.dSYM; path = ../Carthage/Build/iOS/OCMock.framework.dSYM; sourceTree = "<group>"; };
 		B9A7EEBA23C49CEF003E606E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B9A7EEBC23C49CF8003E606E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B9A7EEBF23C49D36003E606E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -284,12 +283,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9783177240D32260049C02B /* OCMock.framework in Frameworks */,
 				B9312D4123C4A290002D4A4C /* SystemConfiguration.framework in Frameworks */,
 				B9A7EED323C4A001003E606E /* libc++.tbd in Frameworks */,
 				B9A7EED023C49F05003E606E /* Accelerate.framework in Frameworks */,
 				B9A7EECC23C49DAE003E606E /* CoreGraphics.framework in Frameworks */,
 				B9A7EEB823C49CB5003E606E /* libsqlite3.tbd in Frameworks */,
-				B9A7EEAB23C49A0D003E606E /* OCMock.framework in Frameworks */,
 				B9A7EEAF23C49A87003E606E /* ParseFacebookUtilsV4.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,18 +351,17 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B9783176240D32260049C02B /* OCMock.framework */,
 				B9A7EECF23C49F04003E606E /* Accelerate.framework */,
 				B9A7EECD23C49DE3003E606E /* libc++.tbd */,
 				B9A7EECB23C49DAD003E606E /* CoreGraphics.framework */,
 				B9A7EEBF23C49D36003E606E /* UIKit.framework */,
 				B9A7EEBC23C49CF8003E606E /* Social.framework */,
 				B9A7EEBA23C49CEF003E606E /* Accounts.framework */,
-				B9A7EEA823C499D3003E606E /* OCMock.framework.dSYM */,
 				B9A7EE9D23C497D2003E606E /* SystemConfiguration.framework */,
 				B9A7EE9B23C497C3003E606E /* libsqlite3.tbd */,
 				B9A7EE9923C497B2003E606E /* StoreKit.framework */,
 				B9A7EE9723C497AC003E606E /* AudioToolbox.framework */,
-				B9A7EE8323C49427003E606E /* OCMock.framework */,
 				4A1350412027EA26000F5FD5 /* Parse.xcodeproj */,
 				813DFC8F1AB2513D00F25A08 /* User Frameworks */,
 			);
