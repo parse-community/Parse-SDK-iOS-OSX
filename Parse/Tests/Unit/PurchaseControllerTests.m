@@ -187,8 +187,10 @@
     }];
 
     [self waitForTestExpectations];
-
-    OCMStub([purchaseController canPurchase]).andReturn(YES);
+    
+    id partial = [OCMockObject partialMockForObject:purchaseController];
+    OCMStub([partial canPurchase]).andReturn(YES);
+    
     XCTestExpectation *failInvalidProductExpectation = [self expectationWithDescription:@"Failed Invalid Product"];
 
     [[purchaseController buyProductAsyncWithIdentifier:@"nonexistent"] continueWithBlock:^id(BFTask *task) {
