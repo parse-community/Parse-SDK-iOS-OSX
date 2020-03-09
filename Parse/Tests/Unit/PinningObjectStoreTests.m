@@ -38,9 +38,8 @@
 
 - (void)setUp
 {
-    [PFPin registerSubclass];
-
     [super setUp];
+    [PFPin registerSubclass];
 }
 
 - (void)testConstructors {
@@ -57,10 +56,10 @@
 
 - (void)testFetchPin {
     id<PFOfflineStoreProvider> dataSource = [self mockedDataSource];
+
     PFPin *pin = [PFPin pinWithName:@"Yolo"];
-    
-    id partialOffline = [OCMockObject partialMockForObject:dataSource.offlineStore];
-    [OCMStub([partialOffline findAsyncForQueryState:[OCMArg isNotNil]
+    PFOfflineStore *offlineStore = dataSource.offlineStore;
+    [OCMStub([offlineStore findAsyncForQueryState:[OCMArg isNotNil]
                                              user:nil
                                               pin:nil]) andReturn:[BFTask taskWithResult:@[pin]]];
 
@@ -77,10 +76,10 @@
 
 - (void)testFetchPinCaching {
     id<PFOfflineStoreProvider> dataSource = [self mockedDataSource];
+
     PFPin *pin = [PFPin pinWithName:@"Yolo"];
-    
-    id partialOffline = [OCMockObject partialMockForObject:dataSource.offlineStore];
-    [OCMStub([partialOffline findAsyncForQueryState:[OCMArg isNotNil]
+    PFOfflineStore *offlineStore = dataSource.offlineStore;
+    [OCMStub([offlineStore findAsyncForQueryState:[OCMArg isNotNil]
                                              user:nil
                                               pin:nil]) andReturn:[BFTask taskWithResult:@[pin]]];
 
