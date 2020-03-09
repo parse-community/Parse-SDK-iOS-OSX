@@ -54,7 +54,7 @@
     XCTAssertEqual(cache.maxDiskCacheRecords, 1000);
     XCTAssertEqual(cache.maxMemoryCacheBytesPerRecord, 1024 * 1024);
 
-    id mockedFileManager = [TestFileManager fileManager];
+    id mockedFileManager = [OCMockObject partialMockForObject:[TestFileManager fileManager]];
     OCMExpect([mockedFileManager createDirectoryAtURL:OCMOCK_ANY withIntermediateDirectories:YES attributes:nil error:NULL]);
 
     NSCache *mockedCache = [TestCache cache];

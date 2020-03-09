@@ -340,8 +340,8 @@
     BFTaskCompletionSource *taskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
     __block PFProgressBlock progressBlock = nil;
 
-    id mockedCommandRunner = [mockedDataSource commandRunner];
-    OCMStub([mockedCommandRunner runFileDownloadCommandAsyncWithFileURL:tempPath
+    id<PFCommandRunning> commandRunner = [mockedDataSource commandRunner];
+    OCMStub([commandRunner runFileDownloadCommandAsyncWithFileURL:tempPath
                                                          targetFilePath:[OCMArg isNotNil]
                                                       cancellationToken:nil
                                                           progressBlock:[OCMArg checkWithBlock:^BOOL(id obj) {
