@@ -14,6 +14,7 @@ before_install:
 jobs:
   include:
     - stage: release
+      if: branch = master and tag IS present
       env: Deployment
       install: bundle install
       script:
