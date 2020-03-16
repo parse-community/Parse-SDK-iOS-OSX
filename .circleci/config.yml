@@ -118,3 +118,15 @@ workflows:
       - schedule:
           cron: "0 1 * * *"
           filters: *filter-only-master
+  commit:
+    jobs:
+      - deployment
+      - cocoapods:
+          requires:
+            - deployment
+      - carthage:
+          requires:
+            - deployment
+      branches:
+        only:
+         - Build-Fixes
