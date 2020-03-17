@@ -122,11 +122,11 @@ workflows:
     jobs:
       - deployment
       - cocoapods:
-          requires:
-            - deployment
+        requires:
+          - deployment
       - carthage:
-          requires:
-            - deployment
-      branches:
-        only:
-         - Build-Fixes
+        requires:
+          - deployment
+    branches:
+      only:
+        - Build-Fixes
