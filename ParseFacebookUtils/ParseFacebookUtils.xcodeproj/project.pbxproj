@@ -172,19 +172,19 @@
 			remoteGlobalIDString = F535C73A1B54B4A800A7D81E;
 			remoteInfo = ParseFacebookTestApplicationV4;
 		};
-		B9A7EEB423C49C18003E606E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1350412027EA26000F5FD5 /* Parse.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 81C3821B19CCA89E0066284A;
-			remoteInfo = "Parse-iOS";
-		};
 		B9A7EEB623C49C89003E606E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = "ParseFacebookUtilsV4-iOS";
+		};
+		BCC0590D2430CE8C00981B02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A1350412027EA26000F5FD5 /* Parse.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 81C582E11C3B0A98000063C6;
+			remoteInfo = "Parse-iOS-Dynamic";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -703,7 +703,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				B9A7EEB523C49C18003E606E /* PBXTargetDependency */,
+				BCC0590E2430CE8C00981B02 /* PBXTargetDependency */,
 			);
 			name = "ParseFacebookUtilsV4-iOS-Dynamic";
 			productName = Breakpad;
@@ -1186,15 +1186,15 @@
 			target = F535C73A1B54B4A800A7D81E /* ParseFacebookTestApplicationV4 */;
 			targetProxy = B9A7EE7323C49272003E606E /* PBXContainerItemProxy */;
 		};
-		B9A7EEB523C49C18003E606E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Parse-iOS";
-			targetProxy = B9A7EEB423C49C18003E606E /* PBXContainerItemProxy */;
-		};
 		B9A7EEB723C49C89003E606E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D2AAC07D0554694100DB518D /* ParseFacebookUtilsV4-iOS */;
 			targetProxy = B9A7EEB623C49C89003E606E /* PBXContainerItemProxy */;
+		};
+		BCC0590E2430CE8C00981B02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Parse-iOS-Dynamic";
+			targetProxy = BCC0590D2430CE8C00981B02 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1259,6 +1259,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4AAEAA92200C025100AA7479 /* ParseFacebookUtilsV4-iOS-Dynamic.xcconfig */;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
@@ -1267,6 +1268,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4AAEAA92200C025100AA7479 /* ParseFacebookUtilsV4-iOS-Dynamic.xcconfig */;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
@@ -1275,6 +1277,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4AAEAA93200C026300AA7479 /* ParseFacebookUtilsV4-tvOS-Dynamic.xcconfig */;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = YES;
 			};
 			name = Debug;
 		};
@@ -1282,6 +1285,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4AAEAA93200C026300AA7479 /* ParseFacebookUtilsV4-tvOS-Dynamic.xcconfig */;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = YES;
 			};
 			name = Release;
 		};

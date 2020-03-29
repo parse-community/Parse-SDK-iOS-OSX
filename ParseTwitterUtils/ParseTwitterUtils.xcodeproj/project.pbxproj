@@ -1018,6 +1018,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81ECACD91D1E14F300FA7673 /* ParseTwitterUtils-iOS-Dynamic.xcconfig */;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = YES;
 			};
 			name = Debug;
 		};
@@ -1025,6 +1026,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81ECACD91D1E14F300FA7673 /* ParseTwitterUtils-iOS-Dynamic.xcconfig */;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = YES;
 			};
 			name = Release;
 		};
