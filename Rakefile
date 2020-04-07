@@ -713,7 +713,7 @@ namespace :test do
     system("pod repo update --silent")
     podspecs.each do |podspec|
       results << system("pod lib lint #{podspec} --allow-warnings")
-      results << system("pod lib lint #{podspec} --allow-warnings --use-libraries")
+      results << system("pod lib lint #{podspec} --allow-warnings --use-libraries --use-modular-headers")
     end
     results.each do |result|
       unless result
