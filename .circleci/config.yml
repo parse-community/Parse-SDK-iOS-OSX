@@ -105,6 +105,13 @@ workflows:
       - twitter_utils
       - parseui
       - jazzy
+      - deployment
+      - cocoapods:
+          requires:
+            - deployment
+      - carthage:
+          requires:
+            - deployment
   nightly:
     jobs:
       - deployment

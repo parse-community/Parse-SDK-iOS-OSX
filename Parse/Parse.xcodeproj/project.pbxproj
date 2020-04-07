@@ -2641,9 +2641,9 @@
 		B14117111E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B9312D5B23C4A6FC002D4A4C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9312D5623C4A6FC002D4A4C /* OCMock.framework */; };
 		B9312D5D23C4A775002D4A4C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9312D5C23C4A775002D4A4C /* OCMock.framework */; };
+		BC5511D6242E6E66008E5D9F /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC5EAAC22D5F96600CF8900 /* Bolts.framework */; };
 		BCC5EAB322D5F97E00CF8900 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC5EAB222D5F97D00CF8900 /* Bolts.framework */; };
 		BCC5EAB522D5F98F00CF8900 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC5EAB422D5F98F00CF8900 /* Bolts.framework */; };
-		BCC5EAB622D5F9BA00CF8900 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC5EAAC22D5F96600CF8900 /* Bolts.framework */; };
 		F50C66331B33A708001941A6 /* PFPushUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F50C66311B33A708001941A6 /* PFPushUtilities.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F50C66341B33A708001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
 		F50C667C1B34B231001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
@@ -3602,7 +3602,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCC5EAB622D5F9BA00CF8900 /* Bolts.framework in Frameworks */,
+				BC5511D6242E6E66008E5D9F /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8935,6 +8935,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81C582DE1C3B0A40000063C6 /* Parse-iOS-Dynamic.xcconfig */;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = YES;
 			};
 			name = Debug;
 		};
@@ -8942,6 +8943,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81C582DE1C3B0A40000063C6 /* Parse-iOS-Dynamic.xcconfig */;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = YES;
 			};
 			name = Release;
 		};
@@ -8949,6 +8951,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81C582DF1C3B0A40000063C6 /* Parse-tvOS-Dynamic.xcconfig */;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = YES;
 			};
 			name = Debug;
 		};
@@ -8956,6 +8959,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81C582DF1C3B0A40000063C6 /* Parse-tvOS-Dynamic.xcconfig */;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = YES;
 			};
 			name = Release;
 		};
@@ -8963,6 +8967,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81C582E01C3B0A40000063C6 /* Parse-watchOS-Dynamic.xcconfig */;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = YES;
 			};
 			name = Debug;
 		};
@@ -8970,6 +8975,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81C582E01C3B0A40000063C6 /* Parse-watchOS-Dynamic.xcconfig */;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = YES;
 			};
 			name = Release;
 		};
