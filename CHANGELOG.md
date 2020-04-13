@@ -14,7 +14,7 @@
 - NEW: Parse as well as its dependencies are now compatible with macOS 10.15 thanks to [Martin Man](https://github.com/mman)
 - FIX: ParseUI minimum api version should be iOS 8.0. Project settings and info.plist updated to reflect to fix Carthage builds. Thanks to [Nathan Kellert](https://github.com/noobs2ninjas)
 
-([Nathan Kellert](https://github.com/noobs2ninjas)) and ([Darren Black](https://github.com/drdaz)) did some hard work to not only update build environments to use Xcode 11 but also made necessary changes to get nightly builds to work on both Travis and CircleCI. This will allow us to resume more consistent updates again. ([Arthur Cinader](https://github.com/acinader)) helped with Travis release build fixes.
+[Nathan Kellert](https://github.com/noobs2ninjas) and [Darren Black](https://github.com/drdaz) did some hard work to not only update build environments to use Xcode 11 but also made necessary changes to get nightly builds to work on both Travis and CircleCI. This will allow us to resume more consistent updates again. ([Arthur Cinader](https://github.com/acinader)) helped with Travis release build fixes.
 
  - Fixing Circle Nightly Build and adding extra PR Testing
  - Fixed tvOS builds. ([#1489](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1489))
