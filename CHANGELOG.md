@@ -16,8 +16,8 @@ __Improvements__
 
 __Fixes__
 - Removed using NSURLCache in Catalyst ([#1469](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1489)), thanks to [Thomas Kollbach](https://github.com/toto) and [Martin Man](https://github.com/mman).
-- Updated project build targets to work with Catalyst[#1473](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1473), thanks to [Nathan Kellert](https://github.com/noobs2ninjas).
-- ParseUI minimum api version should be iOS 8.0. Project settings and info.plist updated to reflect to fix Carthage builds[#1494](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1473), thanks to [Nathan Kellert](https://github.com/noobs2ninjas).
+- Updated project build targets to work with Catalyst ([#1473](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1473)), thanks to [Nathan Kellert](https://github.com/noobs2ninjas).
+- ParseUI minimum api version should be iOS 8.0. Project settings and info.plist updated to reflect to fix Carthage builds ([#1494](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1473)), thanks to [Nathan Kellert](https://github.com/noobs2ninjas).
 
 [Nathan Kellert](https://github.com/noobs2ninjas) and [Darren Black](https://github.com/drdaz) did some hard work to not only update build environments to use Xcode 11 but also made necessary changes to get nightly builds to work on both Travis and CircleCI. This will allow us to resume more consistent updates again. [Arthur Cinader](https://github.com/acinader) helped with Travis release build fixes.
 
