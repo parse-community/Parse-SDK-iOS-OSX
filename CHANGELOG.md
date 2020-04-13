@@ -5,18 +5,24 @@
 * _Contributing to this repo? Add info about your change here to be included in next release_
 
 ### 1.18.0
-[Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.17.2...1.17.3)
+[Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.17.3...1.18.0)
 
-- FIX: Removed using NSURLCache in Catalyst. @toto @mman 
-- NEW: Add get and set server functions. @mtrezza 
-- NEW: Parse is now compatible with Swift 5. @noobs2ninjas 
-- NEW: Updated project build targets to work with Catalyst. @noobs2ninjas 
-- NEW: Parse as well as its dependencies are now compatible with macOS 10.15. @mman 
-- FIX: Unit testing and nightly builds.
-- FIX: ParseUI minimum api version should be iOS 8.0. Project settings and info.plist updated to reflect to fix Carthage builds. 
-@noobs2ninjas, @drdaz, and @acinader did some hard work to not only update build environments to use Xcode 11 but also made necessary changes to get nightly builds to work on both Travis and CircleCI. This will allow us to resume more consistent updates again. 
+- FIX: Removed using NSURLCache in Catalyst. ([#1469](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1489)),  thanks to [Thomas Kollbach](https://github.com/toto) and [Martin Man](https://github.com/mman)
+- NEW: Add get and set server functions thanks to [Manuel Trezza](https://github.com/mtrezza)
+- NEW: Parse is now compatible with Swift 5 thanks to [Nathan Kellert](https://github.com/noobs2ninjas)
+- FIX: Updated project build targets to work with Catalyst. thanks to [Nathan Kellert](https://github.com/noobs2ninjas)
+- NEW: Parse as well as its dependencies are now compatible with macOS 10.15 thanks to [Martin Man](https://github.com/mman)
+- FIX: ParseUI minimum api version should be iOS 8.0. Project settings and info.plist updated to reflect to fix Carthage builds. Thanks to [Nathan Kellert](https://github.com/noobs2ninjas)
+
+([Nathan Kellert](https://github.com/noobs2ninjas)) and ([Darren Black](https://github.com/drdaz)) did some hard work to not only update build environments to use Xcode 11 but also made necessary changes to get nightly builds to work on both Travis and CircleCI. This will allow us to resume more consistent updates again. ([Arthur Cinader](https://github.com/acinader)) helped with Travis release build fixes.
+
+ - Fixing Circle Nightly Build and adding extra PR Testing
+ - Fixed tvOS builds. ([#1489](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1489))
+ - Added OCMock manually to CircleCI Build ([#1490](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1490))
+ - Updated Travis and CircleCI build environments ([#1473](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1473))
  
-NEWS: After getting on contact with BoltsFramework maintainers at Facebook they have allowed us to get changes in to fix app store declines due to  
+ #### Notice
+ After getting in contact with BoltsFramework maintainers from Facebook they have allowed us to get changes in to fix app store declines due to still using UIWebView(iOS only) rather than updating to WKWebView(iOS, macOS, and iPad OS compatible). Those that got declined should be able to re-submit after updating to the latest version of parse as well as its dependencies. 
 
 
 ### 1.17.3
