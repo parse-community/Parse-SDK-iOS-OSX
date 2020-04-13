@@ -16,15 +16,15 @@ __Improvements__
 
 __Fixes__
 - Removed using NSURLCache in Catalyst ([#1469](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1489)), thanks to [Thomas Kollbach](https://github.com/toto) and [Martin Man](https://github.com/mman).
-- Updated project build targets to work with Catalyst, thanks to [Nathan Kellert](https://github.com/noobs2ninjas).
-- ParseUI minimum api version should be iOS 8.0. Project settings and info.plist updated to reflect to fix Carthage builds. Thanks to [Nathan Kellert](https://github.com/noobs2ninjas).
+- Updated project build targets to work with Catalyst[#1473](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1473), thanks to [Nathan Kellert](https://github.com/noobs2ninjas).
+- ParseUI minimum api version should be iOS 8.0. Project settings and info.plist updated to reflect to fix Carthage builds[#1494](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1473), thanks to [Nathan Kellert](https://github.com/noobs2ninjas).
 
 [Nathan Kellert](https://github.com/noobs2ninjas) and [Darren Black](https://github.com/drdaz) did some hard work to not only update build environments to use Xcode 11 but also made necessary changes to get nightly builds to work on both Travis and CircleCI. This will allow us to resume more consistent updates again. [Arthur Cinader](https://github.com/acinader) helped with Travis release build fixes.
 
- - Fixed CircleCI Nightly Build and adding extra PR Testing ([#1490](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1490)).
- - Fixed tvOS builds ([#1489](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1489)).
- - Added OCMock manually to CircleCI Build ([#1490](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1490)).
- - Updated Travis and CircleCI build environments ([#1473](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1473)).
+ - Fixed CircleCI Nightly Build and adding extra PR Testing [#1490](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1490).
+ - Fixed tvOS builds [#1489](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1489).
+ - Added OCMock manually to CircleCI Build [#1490](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1490).
+ - Updated Travis and CircleCI build environments [#1473](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1473).
  
 #### Notice
 After getting in contact with the Bolts Framework maintainers from Facebook they have allowed us to get changes in to fix app store declines due to still using UIWebView(iOS only) rather than updating to WKWebView(iOS, macOS, and iPad OS compatible). Those that got declined should be able to re-submit after updating to the latest version of this SDK as well as its dependencies. 
