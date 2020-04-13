@@ -11,8 +11,8 @@ __New features__
 - Add get and set server functions ([#1464](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1464)), thanks to [Manuel Trezza](https://github.com/mtrezza).
 
 __Improvements__
-- Swift 5 compatibility, thanks to [Nathan Kellert](https://github.com/noobs2ninjas).
-- macOS 10.15 compatibility thanks to [Martin Man](https://github.com/mman).
+- Swift 5 compatibility([#1451](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1451)), thanks to [Nathan Kellert](https://github.com/noobs2ninjas).
+- macOS 10.15 compatibility([#1460](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1460), thanks to [Martin Man](https://github.com/mman).
 
 __Fixes__
 - Removed using NSURLCache in Catalyst ([#1469](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1489)), thanks to [Thomas Kollbach](https://github.com/toto) and [Martin Man](https://github.com/mman).
