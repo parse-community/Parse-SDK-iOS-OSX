@@ -8830,7 +8830,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 810154FE1BB382F800D7C7BD /* Parse-watchOS.xcconfig */;
 			buildSettings = {
-				SWIFT_VERSION = 3.0;
+				CURRENT_PROJECT_VERSION = 1.18.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -8838,7 +8839,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 810154FE1BB382F800D7C7BD /* Parse-watchOS.xcconfig */;
 			buildSettings = {
-				SWIFT_VERSION = 3.0;
+				CURRENT_PROJECT_VERSION = 1.18.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -8846,6 +8848,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 815F24171BD04D310054659F /* Parse-tvOS.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1.18.0;
+				MARKETING_VERSION = 1.18.0;
 			};
 			name = Debug;
 		};
@@ -8853,6 +8857,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 815F24171BD04D310054659F /* Parse-tvOS.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1.18.0;
+				MARKETING_VERSION = 1.18.0;
 			};
 			name = Release;
 		};
@@ -8903,6 +8909,7 @@
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1.18.0;
 				DEFINES_MODULE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -8910,8 +8917,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.18.0;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -8920,6 +8930,7 @@
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1.18.0;
 				DEFINES_MODULE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -8927,7 +8938,10 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				SWIFT_VERSION = 3.0;
+				MARKETING_VERSION = 1.18.0;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -8936,6 +8950,10 @@
 			baseConfigurationReference = 81C582DE1C3B0A40000063C6 /* Parse-iOS-Dynamic.xcconfig */;
 			buildSettings = {
 				CLANG_MODULES_AUTOLINK = YES;
+				CURRENT_PROJECT_VERSION = 1.18.0;
+				MARKETING_VERSION = 1.18.0;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -8944,6 +8962,10 @@
 			baseConfigurationReference = 81C582DE1C3B0A40000063C6 /* Parse-iOS-Dynamic.xcconfig */;
 			buildSettings = {
 				CLANG_MODULES_AUTOLINK = YES;
+				CURRENT_PROJECT_VERSION = 1.18.0;
+				MARKETING_VERSION = 1.18.0;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -8952,6 +8974,8 @@
 			baseConfigurationReference = 81C582DF1C3B0A40000063C6 /* Parse-tvOS-Dynamic.xcconfig */;
 			buildSettings = {
 				CLANG_MODULES_AUTOLINK = YES;
+				CURRENT_PROJECT_VERSION = 1.18.0;
+				MARKETING_VERSION = 1.18.0;
 			};
 			name = Debug;
 		};
@@ -8960,6 +8984,8 @@
 			baseConfigurationReference = 81C582DF1C3B0A40000063C6 /* Parse-tvOS-Dynamic.xcconfig */;
 			buildSettings = {
 				CLANG_MODULES_AUTOLINK = YES;
+				CURRENT_PROJECT_VERSION = 1.18.0;
+				MARKETING_VERSION = 1.18.0;
 			};
 			name = Release;
 		};
@@ -8968,6 +8994,7 @@
 			baseConfigurationReference = 81C582E01C3B0A40000063C6 /* Parse-watchOS-Dynamic.xcconfig */;
 			buildSettings = {
 				CLANG_MODULES_AUTOLINK = YES;
+				CURRENT_PROJECT_VERSION = 1.18.0;
 			};
 			name = Debug;
 		};
@@ -8976,6 +9003,7 @@
 			baseConfigurationReference = 81C582E01C3B0A40000063C6 /* Parse-watchOS-Dynamic.xcconfig */;
 			buildSettings = {
 				CLANG_MODULES_AUTOLINK = YES;
+				CURRENT_PROJECT_VERSION = 1.18.0;
 			};
 			name = Release;
 		};
@@ -8983,7 +9011,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB541B4F39DA00A0ECD5 /* Parse-macOS.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1.18.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 1.18.0;
 			};
 			name = Debug;
 		};
@@ -8991,7 +9021,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB541B4F39DA00A0ECD5 /* Parse-macOS.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1.18.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 1.18.0;
 			};
 			name = Release;
 		};

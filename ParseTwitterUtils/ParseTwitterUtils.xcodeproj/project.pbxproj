@@ -226,6 +226,7 @@
 		81ECACD71D1E14E000FA7673 /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseTwitterUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ECACD91D1E14F300FA7673 /* ParseTwitterUtils-iOS-Dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseTwitterUtils-iOS-Dynamic.xcconfig"; sourceTree = "<group>"; };
 		B9783172240D14A50049C02B /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B99F4FFE2444B5B00061A6F5 /* ParseTwitterTestApplication.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ParseTwitterTestApplication.entitlements; sourceTree = "<group>"; };
 		B9A7EEC123C49D94003E606E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseTwitterUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F51535531B57453700C49F56 /* ParseTwitterUtils-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseTwitterUtils-iOS.xcconfig"; sourceTree = "<group>"; };
@@ -286,6 +287,7 @@
 		0867D691FE84028FC02AAC07 /* Breakpad */ = {
 			isa = PBXGroup;
 			children = (
+				B99F4FFE2444B5B00061A6F5 /* ParseTwitterTestApplication.entitlements */,
 				F51535381B57451200C49F56 /* Configurations */,
 				8135E48C1B4B6A0E0092F452 /* ParseTwitterUtils */,
 				813DFC961AB2524C00F25A08 /* Resources */,
@@ -939,6 +941,8 @@
 			baseConfigurationReference = F51535531B57453700C49F56 /* ParseTwitterUtils-iOS.xcconfig */;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -947,6 +951,8 @@
 			baseConfigurationReference = F51535531B57453700C49F56 /* ParseTwitterUtils-iOS.xcconfig */;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -988,6 +994,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F51535551B57455200C49F56 /* ParseTwitterTestApplication.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ParseTwitterTestApplication.entitlements;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -995,6 +1004,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F51535551B57455200C49F56 /* ParseTwitterTestApplication.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ParseTwitterTestApplication.entitlements;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1019,6 +1031,8 @@
 			baseConfigurationReference = 81ECACD91D1E14F300FA7673 /* ParseTwitterUtils-iOS-Dynamic.xcconfig */;
 			buildSettings = {
 				CLANG_MODULES_AUTOLINK = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1027,6 +1041,8 @@
 			baseConfigurationReference = 81ECACD91D1E14F300FA7673 /* ParseTwitterUtils-iOS-Dynamic.xcconfig */;
 			buildSettings = {
 				CLANG_MODULES_AUTOLINK = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

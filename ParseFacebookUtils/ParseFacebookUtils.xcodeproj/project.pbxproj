@@ -1134,6 +1134,8 @@
 					"$(PROJECT_DIR)/Vendor",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1146,6 +1148,8 @@
 					"$(PROJECT_DIR)/Vendor",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1191,6 +1195,8 @@
 					"$(PROJECT_DIR)/Vendor",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1204,6 +1210,8 @@
 					"$(PROJECT_DIR)/Vendor",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
