@@ -8918,6 +8918,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.18.0;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -8938,6 +8939,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.18.0;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -8951,7 +8953,7 @@
 				CURRENT_PROJECT_VERSION = 1.18.0;
 				MARKETING_VERSION = 1.18.0;
 				SUPPORTS_MACCATALYST = NO;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -8963,7 +8965,7 @@
 				CURRENT_PROJECT_VERSION = 1.18.0;
 				MARKETING_VERSION = 1.18.0;
 				SUPPORTS_MACCATALYST = NO;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
