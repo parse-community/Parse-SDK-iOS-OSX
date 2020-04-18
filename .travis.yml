@@ -7,14 +7,14 @@ branches:
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
 cache:
     - cocoapods
-install:
-    - gem install bundler:2.1.4
-    - bundle install
+
 jobs:
   include:
     - stage: release
       if: branch = master and tag IS present
       env: Deployment
+      install:
+      - bundle install
       script:
       - ./Scripts/jazzy.sh
       - bundle exec rake package:release
@@ -39,13 +39,13 @@ jobs:
     - stage: distribution
       env: Cocoapods
       script:
-        - bundle exec pod lib lint --allow-warnings
-        - bundle exec pod trunk push ParseLiveQuery.podspec --allow-warnings
+        - pod lib lint --allow-warnings
+        - pod trunk push ParseLiveQuery.podspec --allow-warnings
       deploy:
         provider: script
         cleanup: false
         script:
-            - bundle exec pod trunk push Parse.podspec --verbose
+            - pod trunk push Parse.podspec --verbose
         on:
           tags: true
           all_branches: true
