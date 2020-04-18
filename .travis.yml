@@ -15,7 +15,8 @@ install: bundle install
 
 jobs:
   include:
-    - stage: distribution
+    - stage: release
+      if: branch = master and tag IS present
       env: Deployment
       script:
       - ./Scripts/jazzy.sh
@@ -38,9 +39,9 @@ jobs:
           on:
             all_branches: true
             tags: true
-    - stage: distribution
-      env: Deployment
-      script: skip
+    - stage: release
+      env: Cocoapods
+      script: ./Scripts/publish.sh
       deploy:
         provider: script
         cleanup: false
