@@ -19,11 +19,11 @@ jobs:
       if: branch = master and tag IS present
       env: Deployment
       install:
-      - gem install bundler:2.1.4
-      - bundle install
+        - gem install bundler:2.1.4
+        - bundle install
       script:
-      - ./Scripts/jazzy.sh
-      - bundle exec rake package:release
+        - ./Scripts/jazzy.sh
+        - bundle exec rake package:release
       deploy:
         - provider: releases
           api_key:
@@ -45,12 +45,12 @@ jobs:
     - stage: release
       env: Cocoapods
       script:
-        - bundle exec pod trunk push Parse.podspec --verbose
+        - bundle exec pod trunk push Parse.podspec
       deploy:
         provider: script
         cleanup: false
         script:
-            - bundle exec pod trunk push Parse.podspec --verbose
+            - bundle exec pod trunk push Parse.podspec
         on:
           tags: true
           all_branches: true
