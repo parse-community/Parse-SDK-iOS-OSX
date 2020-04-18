@@ -19,9 +19,8 @@ jobs:
     - stage: release
       if: branch = master and tag IS present
       env: Deployment
-      install:
-        - bundle install
       script:
+        - bundle install
         - ./Scripts/jazzy.sh
         - bundle exec rake package:release
       deploy:
@@ -45,7 +44,7 @@ jobs:
     - stage: release
       env: Cocoapods
       script:
-        - pod trunk push Parse.podspec
+            - pod trunk push Parse.podspec
       deploy:
         provider: script
         cleanup: false
