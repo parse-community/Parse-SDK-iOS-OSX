@@ -44,11 +44,12 @@ jobs:
             tags: true
     - stage: release
       env: Cocoapods
-      script: ./Scripts/publish.sh
+      script: skip
       deploy:
         provider: script
         cleanup: false
-        script: ./Scripts/publish.sh
+        script:
+            - bundle exec pod trunk push Parse.podspec --verbose
         on:
           tags: true
           all_branches: true
