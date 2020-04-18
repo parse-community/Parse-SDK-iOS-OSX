@@ -44,7 +44,8 @@ jobs:
             tags: true
     - stage: release
       env: Cocoapods
-      script: skip
+      script:
+        - bundle exec pod trunk push Parse.podspec --verbose
       deploy:
         provider: script
         cleanup: false
