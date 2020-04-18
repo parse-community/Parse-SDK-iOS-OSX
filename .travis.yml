@@ -13,15 +13,14 @@ before_install:
   - gem install cocoapods
   - pod setup
 
-install:
-    - gem install bundler:2.1.4
-    - bundle install
-
 jobs:
   include:
     - stage: release
       if: branch = master and tag IS present
       env: Deployment
+      install:
+      - gem install bundler:2.1.4
+      - bundle install
       script:
       - ./Scripts/jazzy.sh
       - bundle exec rake package:release
