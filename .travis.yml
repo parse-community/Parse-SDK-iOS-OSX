@@ -39,7 +39,7 @@ jobs:
     - stage: distribution
       env: Cocoapods
       script: EXPANDED_CODE_SIGN_IDENTITY="-" EXPANDED_CODE_SIGN_IDENTITY_NAME="-" bundle exec pod lib lint --allow-warnings
-        - bundle exec pod trunk push Parse.podspec --verbose
+        - bundle exec pod trunk push ParseLiveQuery.podspec --allow-warnings
       deploy:
         provider: script
         cleanup: false
