@@ -39,7 +39,7 @@ jobs:
             all_branches: true
             tags: true
     - stage: distribution
-      env: Cocoapods
+      env: Deployment
       script: skip
       deploy:
         provider: script
