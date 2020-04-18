@@ -5,17 +5,11 @@ branches:
   only:
     - master
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
-    
-git:
-    submodules: false
-    
-before_install:
-  - git submodule update --init --recursive
-
+cache:
+    - cocoapods
 install:
     - gem install bundler:2.1.4
     - bundle install
-
 jobs:
   include:
     - stage: release
@@ -42,9 +36,9 @@ jobs:
           on:
             all_branches: true
             tags: true
-    - stage: release
+    - stage: distribution
       env: Cocoapods
-      script:
+      script: EXPANDED_CODE_SIGN_IDENTITY="-" EXPANDED_CODE_SIGN_IDENTITY_NAME="-" bundle exec pod lib lint --allow-warnings
         - bundle exec pod trunk push Parse.podspec --verbose
       deploy:
         provider: script
