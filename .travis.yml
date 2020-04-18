@@ -5,8 +5,9 @@ branches:
   only:
     - master
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
-git:
-  submodules: false
+    
+cache:
+    - cocoapods
 
 before_install:
   - git submodule update --init --recursive
