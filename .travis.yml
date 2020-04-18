@@ -45,12 +45,12 @@ jobs:
     - stage: release
       env: Cocoapods
       script:
-        - bundle exec pod trunk push Parse.podspec
+        - pod trunk push Parse.podspec
       deploy:
         provider: script
         cleanup: false
         script:
-            - bundle exec pod trunk push Parse.podspec
+            - pod trunk push Parse.podspec
         on:
           tags: true
           all_branches: true
