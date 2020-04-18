@@ -10,6 +10,7 @@ git:
     submodules: false
     
 before_install:
+  - gem install bundler:2.1.4
   - gem install cocoapods
   - pod setup
 
@@ -19,7 +20,6 @@ jobs:
       if: branch = master and tag IS present
       env: Deployment
       install:
-        - gem install bundler:2.1.4
         - bundle install
       script:
         - ./Scripts/jazzy.sh
