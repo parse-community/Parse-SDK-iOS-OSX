@@ -16,7 +16,6 @@ install: bundle install
 jobs:
   include:
     - stage: distribution
-      if: tag IS present
       env: Deployment
       script:
       - ./Scripts/jazzy.sh
