@@ -11,12 +11,13 @@ git:
 before_install:
   - git submodule update --init --recursive
 
+install: bundle install
+
 jobs:
   include:
-    - stage: release
+    - stage: distribution
       if: tag IS present
       env: Deployment
-      install: bundle install
       script:
       - ./Scripts/jazzy.sh
       - bundle exec rake package:release
@@ -38,9 +39,8 @@ jobs:
           on:
             all_branches: true
             tags: true
-    - stage: release
+    - stage: distribution
       env: Cocoapods
-      install: bundle install
       script: skip
       deploy:
         provider: script
