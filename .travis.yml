@@ -48,7 +48,7 @@ jobs:
       script: bundle exec pod trunk push Parse.podspec --allow-warnings
       deploy:
         provider: script
-        skip_cleanup: true
+        cleanup: false
         script: bundle exec pod trunk push Parse.podspec --allow-warnings
         on:
           tags: true
