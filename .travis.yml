@@ -25,7 +25,7 @@ jobs:
       deploy:
         - provider: releases
           token:
-            secure: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+            secure: m7YayvmctH5lyHj13EV2j898P5xfEfN/ZvFm2gL/xveTNOGaET1O4ZmGmHApxC2QwIZvtwmO3U9pmB4XVVQ7kIlTsl01h84y8gx1XQqEKoQINcaVaNCsh9EdxAqj08aiwe/1dp8W8rI/ptOrxzWJDWcxKx5tMIbBzctGeL3GDKphVvD44s43oosqQCKzP+qHiI6rRRxu+0QccdbTagwd0X/yaLZ0IbTo35hWFEyJ6NfJnmCW/lNwWj86YksLCZx0eKdxUSQlIhnm0upTyowudt9bv8vSdEYi2AtRKoana/X53593O8RAVEc+S6NgMmeQ1/ZD1eDeyYLzN/z21EHb4yiwTnMUUhDBMTn8KKTiiSVDQOfAyRwtKF+1qN2iDr9Dh3A8+dCxOxJJpIPImZimt8KMCKB9WTtnJhvIoMCDpc8l29XM/oBxjCiBFxPClb9CZ74T5b+xl+yIqy2u8RiaZ1Va5vmWjMSXDsGHoZ0rJTOBkBBhyr+47yIw2VeY2z2q5hiALV3DnE5Esxyddhw7OXNZcvKriujnxcTOJwphm4XBMI/3rSH27uz7AaNdUHfTwaKqimPR06Kdv65hKmFuA5p/GuRdSYfYASvXYYrPjqKkst1FP6sWjJtpXvZIT/06RXDbGXZ6LB3TFHpOahPy8ID746OyBKgWzOB3ZCNmFCk=
           file_glob: true
           file: build/release/*
           cleanup: false
@@ -35,7 +35,7 @@ jobs:
         - provider: pages
           cleanup: false
           token:
-            secure: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+            secure: m7YayvmctH5lyHj13EV2j898P5xfEfN/ZvFm2gL/xveTNOGaET1O4ZmGmHApxC2QwIZvtwmO3U9pmB4XVVQ7kIlTsl01h84y8gx1XQqEKoQINcaVaNCsh9EdxAqj08aiwe/1dp8W8rI/ptOrxzWJDWcxKx5tMIbBzctGeL3GDKphVvD44s43oosqQCKzP+qHiI6rRRxu+0QccdbTagwd0X/yaLZ0IbTo35hWFEyJ6NfJnmCW/lNwWj86YksLCZx0eKdxUSQlIhnm0upTyowudt9bv8vSdEYi2AtRKoana/X53593O8RAVEc+S6NgMmeQ1/ZD1eDeyYLzN/z21EHb4yiwTnMUUhDBMTn8KKTiiSVDQOfAyRwtKF+1qN2iDr9Dh3A8+dCxOxJJpIPImZimt8KMCKB9WTtnJhvIoMCDpc8l29XM/oBxjCiBFxPClb9CZ74T5b+xl+yIqy2u8RiaZ1Va5vmWjMSXDsGHoZ0rJTOBkBBhyr+47yIw2VeY2z2q5hiALV3DnE5Esxyddhw7OXNZcvKriujnxcTOJwphm4XBMI/3rSH27uz7AaNdUHfTwaKqimPR06Kdv65hKmFuA5p/GuRdSYfYASvXYYrPjqKkst1FP6sWjJtpXvZIT/06RXDbGXZ6LB3TFHpOahPy8ID746OyBKgWzOB3ZCNmFCk=
           local_dir: docs/
           on:
             all_branches: true
