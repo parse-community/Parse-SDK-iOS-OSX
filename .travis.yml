@@ -45,7 +45,6 @@ jobs:
       install:
         - bundle install
         - bundle exec pod setup
-        - bundle exec pod repo update
       script: bundle exec pod trunk push Parse.podspec --allow-warnings
       deploy:
         provider: script
