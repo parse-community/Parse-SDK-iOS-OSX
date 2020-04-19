@@ -12,6 +12,7 @@ git:
 before_install:
   - gem install bundler:2.1.4
   - gem install cocoapods
+  - gem update concurrent-ruby
   - pod setup
 
 jobs:
