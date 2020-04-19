@@ -5,29 +5,27 @@ branches:
   only:
     - master
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
-    
+cache:
+  - cocoapods
 git:
-    submodules: false
-    
+  submodules: false
+
 before_install:
-  - gem install bundler:2.1.4
-  - gem install cocoapods
-  - gem update concurrent-ruby
-  - pod setup
+  - git submodule update --init --recursive
 
 jobs:
   include:
     - stage: release
       if: branch = master and tag IS present
       env: Deployment
+      install: bundle install
       script:
-        - bundle install
-        - ./Scripts/jazzy.sh
-        - bundle exec rake package:release
+      - ./Scripts/jazzy.sh
+      - bundle exec rake package:release
       deploy:
         - provider: releases
-          api_key:
-            secure: m7YayvmctH5lyHj13EV2j898P5xfEfN/ZvFm2gL/xveTNOGaET1O4ZmGmHApxC2QwIZvtwmO3U9pmB4XVVQ7kIlTsl01h84y8gx1XQqEKoQINcaVaNCsh9EdxAqj08aiwe/1dp8W8rI/ptOrxzWJDWcxKx5tMIbBzctGeL3GDKphVvD44s43oosqQCKzP+qHiI6rRRxu+0QccdbTagwd0X/yaLZ0IbTo35hWFEyJ6NfJnmCW/lNwWj86YksLCZx0eKdxUSQlIhnm0upTyowudt9bv8vSdEYi2AtRKoana/X53593O8RAVEc+S6NgMmeQ1/ZD1eDeyYLzN/z21EHb4yiwTnMUUhDBMTn8KKTiiSVDQOfAyRwtKF+1qN2iDr9Dh3A8+dCxOxJJpIPImZimt8KMCKB9WTtnJhvIoMCDpc8l29XM/oBxjCiBFxPClb9CZ74T5b+xl+yIqy2u8RiaZ1Va5vmWjMSXDsGHoZ0rJTOBkBBhyr+47yIw2VeY2z2q5hiALV3DnE5Esxyddhw7OXNZcvKriujnxcTOJwphm4XBMI/3rSH27uz7AaNdUHfTwaKqimPR06Kdv65hKmFuA5p/GuRdSYfYASvXYYrPjqKkst1FP6sWjJtpXvZIT/06RXDbGXZ6LB3TFHpOahPy8ID746OyBKgWzOB3ZCNmFCk=
+          token:
+            secure: $GITHUB_TOKEN # Set in travis-ci.org dashboard
           file_glob: true
           file: build/release/*
           cleanup: false
@@ -37,20 +35,22 @@ jobs:
         - provider: pages
           cleanup: false
           token:
-            secure: m7YayvmctH5lyHj13EV2j898P5xfEfN/ZvFm2gL/xveTNOGaET1O4ZmGmHApxC2QwIZvtwmO3U9pmB4XVVQ7kIlTsl01h84y8gx1XQqEKoQINcaVaNCsh9EdxAqj08aiwe/1dp8W8rI/ptOrxzWJDWcxKx5tMIbBzctGeL3GDKphVvD44s43oosqQCKzP+qHiI6rRRxu+0QccdbTagwd0X/yaLZ0IbTo35hWFEyJ6NfJnmCW/lNwWj86YksLCZx0eKdxUSQlIhnm0upTyowudt9bv8vSdEYi2AtRKoana/X53593O8RAVEc+S6NgMmeQ1/ZD1eDeyYLzN/z21EHb4yiwTnMUUhDBMTn8KKTiiSVDQOfAyRwtKF+1qN2iDr9Dh3A8+dCxOxJJpIPImZimt8KMCKB9WTtnJhvIoMCDpc8l29XM/oBxjCiBFxPClb9CZ74T5b+xl+yIqy2u8RiaZ1Va5vmWjMSXDsGHoZ0rJTOBkBBhyr+47yIw2VeY2z2q5hiALV3DnE5Esxyddhw7OXNZcvKriujnxcTOJwphm4XBMI/3rSH27uz7AaNdUHfTwaKqimPR06Kdv65hKmFuA5p/GuRdSYfYASvXYYrPjqKkst1FP6sWjJtpXvZIT/06RXDbGXZ6LB3TFHpOahPy8ID746OyBKgWzOB3ZCNmFCk=
+            secure: $GITHUB_TOKEN # Set in travis-ci.org dashboard
           local_dir: docs/
           on:
             all_branches: true
             tags: true
     - stage: release
       env: Cocoapods
-      script:
-            - pod trunk push Parse.podspec
+      install:
+        - bundle install
+        - bundle exec pod setup
+        - bundle exec pod repo update
+      script: bundle exec pod trunk push Parse.podspec --allow-warnings
       deploy:
         provider: script
-        cleanup: false
-        script:
-            - pod trunk push Parse.podspec
+        skip_cleanup: true
+        script: bundle exec pod trunk push Parse.podspec --allow-warnings
         on:
           tags: true
           all_branches: true
