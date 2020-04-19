@@ -45,11 +45,11 @@ jobs:
       install:
         - bundle install
         - bundle exec pod setup
-      script: bundle exec pod trunk push Parse.podspec --allow-warnings
+      script: travis_wait bundle exec pod trunk push Parse.podspec --allow-warnings
       deploy:
         provider: script
         cleanup: false
-        script: bundle exec pod trunk push Parse.podspec --allow-warnings
+        script: travis_wait  bundle exec pod trunk push Parse.podspec --allow-warnings
         on:
           tags: true
           all_branches: true
