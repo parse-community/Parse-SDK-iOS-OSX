@@ -45,7 +45,7 @@ jobs:
       install:
         - bundle install
         - bundle exec pod setup
-      script: bundle exec pod lib lint --allow-warnings --fail-fast
+      script: travis_wait bundle exec pod lib lint --allow-warnings --fail-fast
       deploy:
         provider: script
         cleanup: false
