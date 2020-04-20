@@ -45,9 +45,7 @@ jobs:
       install:
         - bundle install
         - bundle exec pod setup
-      script:
-        - pod lib lint Parse.podsec --allow-warnings --verbose | ruby -e 'ARGF.each { print "." }'
-        - pod trunk push Parse.podspec --allow-warnings --verbose | ruby -e 'ARGF.each { print "." }'
+      script: bundle exec pod lib lint --allow-warnings --fail-fast
       deploy:
         provider: script
         cleanup: false
