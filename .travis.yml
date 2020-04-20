@@ -45,11 +45,13 @@ jobs:
       install:
         - bundle install
         - bundle exec pod setup
-      script: travis_wait bundle exec pod trunk push Parse.podspec --allow-warnings
+      script:
+        - pod lib lint Parse.podsec --allow-warnings --verbose | ruby -e 'ARGF.each { print "." }'
+        - pod trunk push Parse.podspec --allow-warnings --verbose | ruby -e 'ARGF.each { print "." }'
       deploy:
         provider: script
         cleanup: false
-        script: travis_wait  bundle exec pod trunk push Parse.podspec --allow-warnings
+        script: travis_wait bundle exec pod trunk push Parse.podspec --allow-warnings
         on:
           tags: true
           all_branches: true
