@@ -13,8 +13,10 @@ require_relative 'Vendor/xctoolchain/Scripts/xctask/build_framework_task'
 script_folder = File.expand_path(File.dirname(__FILE__))
 build_folder = File.join(script_folder, 'build')
 release_folder = File.join(build_folder, 'release')
+bolts_build_folder = File.join(script_folder, 'Carthage', 'Build')
 bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-ObjC')
-bolts_build_folder = File.join(bolts_folder, 'build')
+ios_simulator = "\"platform=iOS Simulator,name=iPhone 11,OS=13.2.2\""
+tvos_simulator = "\"platform=tvOS Simulator,name=Apple TV 4K,OS=13.2.2\""
 
 module Constants
   require 'plist'
@@ -239,7 +241,7 @@ namespace :build do
 
         t.scheme = 'ParseUIDemo'
         t.sdk = 'iphonesimulator'
-        t.destinations = ["\"platform=iOS Simulator,OS=12.2,name=iPhone X\"",]
+        t.destinations = [ios_simulator]
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
@@ -262,7 +264,7 @@ namespace :build do
 
         t.scheme = 'ParseUIDemo-Swift'
         t.sdk = 'iphonesimulator'
-        t.destinations = ["\"platform=iOS Simulator,OS=12.2,name=iPhone X\"",]
+        t.destinations = [ios_simulator]
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
@@ -467,7 +469,7 @@ namespace :test do
 
       t.scheme = 'Parse-iOS'
       t.sdk = 'iphonesimulator'
-      t.destinations = ["\"platform=iOS Simulator,OS=12.2,name=iPhone X\"",]
+      t.destinations = [ios_simulator]
       t.configuration = 'Debug'
       t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
@@ -489,7 +491,6 @@ namespace :test do
 
       t.scheme = 'Parse-macOS'
       t.sdk = 'macosx'
-      t.destinations = ['arch=x86_64']
       t.configuration = 'Debug'
       t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
@@ -498,7 +499,7 @@ namespace :test do
       t.formatter = XCTask::BuildFormatter::XCPRETTY
     end
     unless task.execute
-      puts 'OS X Tests Failed!'
+      puts 'macOS Tests Failed!'
       exit(1)
     end
   end
@@ -512,7 +513,7 @@ namespace :test do
 
         t.scheme = 'ParseFacebookUtilsV4-iOS'
         t.sdk = 'iphonesimulator'
-        t.destinations = ["\"platform=iOS Simulator,OS=12.2,name=iPhone X\"",]
+        t.destinations = [ios_simulator]
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
@@ -538,7 +539,7 @@ namespace :test do
 
         t.scheme = 'ParseTwitterUtils-iOS'
         t.sdk = 'iphonesimulator'
-        t.destinations = ["\"platform=iOS Simulator,OS=12.2,name=iPhone X\"",]
+        t.destinations = [ios_simulator]
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
@@ -549,7 +550,7 @@ namespace :test do
 
       result = task.execute
       unless result
-        puts 'Failed to build iOS FacebookUtils Framework.'
+        puts 'Failed to build iOS TwitterUtils Framework.'
         exit(1)
       end
     end
@@ -568,7 +569,7 @@ namespace :test do
 
         t.scheme = 'ParseUI'
         t.sdk = 'iphonesimulator'
-        t.destinations = ["\"platform=iOS Simulator,OS=12.2,name=iPhone X\"",]
+        t.destinations = [ios_simulator]
         t.configuration = 'Debug'
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
@@ -589,7 +590,7 @@ namespace :test do
 
         t.scheme = 'ParseUIDemo'
         t.sdk = 'iphonesimulator'
-        t.destinations = ["\"platform=iOS Simulator,OS=12.2,name=iPhone X\"",]
+        t.destinations = [ios_simulator]
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
@@ -612,7 +613,7 @@ namespace :test do
 
         t.scheme = 'ParseUIDemo-Swift'
         t.sdk = 'iphonesimulator'
-        t.destinations = ["\"platform=iOS Simulator,OS=12.2,name=iPhone X\"",]
+        t.destinations = [ios_simulator]
         t.configuration = 'Debug'
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
@@ -647,7 +648,7 @@ namespace :test do
         t.scheme = scheme
         t.configuration = 'Debug'
         t.sdk = 'iphonesimulator'
-        t.destinations = ['"platform=iOS Simulator,name=iPhone X"']
+        t.destinations = [ios_simulator]
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
@@ -675,7 +676,7 @@ namespace :test do
 
         t.scheme = scheme
         t.configuration = 'Debug'
-        t.destinations = ["\"platform=iOS Simulator,name=iPhone X\"",]
+        t.destinations = [ios_simulator]
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
@@ -689,7 +690,7 @@ namespace :test do
 
         t.scheme = scheme
         t.configuration = 'Debug'
-        t.destinations = ["\"platform=tvOS Simulator,OS=12.0,name=Apple TV 1080p\"",]
+        t.destinations = [tvos_simulator]
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
@@ -712,7 +713,7 @@ namespace :test do
     system("pod repo update --silent")
     podspecs.each do |podspec|
       results << system("pod lib lint #{podspec} --allow-warnings")
-      results << system("pod lib lint #{podspec} --allow-warnings --use-libraries")
+      results << system("pod lib lint #{podspec} --allow-warnings --use-libraries --use-modular-headers")
     end
     results.each do |result|
       unless result

@@ -1,2 +1,2 @@
-github "BoltsFramework/Bolts-ObjC" ~> 1.9
-github "facebook/facebook-objc-sdk" ~> 5.2
+github "BoltsFramework/Bolts-ObjC" ~> 1.9.1
+github "facebook/facebook-objc-sdk" ~> 6.0

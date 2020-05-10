@@ -39,8 +39,10 @@
     if (self) {
 #if TARGET_OS_IOS || TARGET_OS_TV
         if (@available(iOS 1.0, tvOS 10.0, *)) {
-            [self.systemApplication addObserver:self forKeyPath:@"applicationIconBadgeNumber" options:NSKeyValueObservingOptionNew context:nil];
-            _iconBadgeNumber = self.systemApplication.applicationIconBadgeNumber;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.systemApplication addObserver:self forKeyPath:@"applicationIconBadgeNumber" options:NSKeyValueObservingOptionNew context:nil];
+                self->_iconBadgeNumber = self.systemApplication.applicationIconBadgeNumber;
+            });
         }
 #endif
     }

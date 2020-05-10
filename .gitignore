@@ -4,6 +4,7 @@
 ## Build generated
 build/
 DerivedData
+OCMock.framework
 
 ## Various settings
 *.pbxuser
@@ -36,3 +37,4 @@ docs/
 ## AppCode
 .idea/
 ParseFacebookUtils/Vendor
+ParseUI/Vendor

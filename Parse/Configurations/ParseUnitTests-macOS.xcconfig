@@ -14,7 +14,7 @@ PRODUCT_NAME = ParseUnitTests-macOS
 PRODUCT_MODULE_NAME = ParseUnitTests
 PRODUCT_BUNDLE_IDENTIFIER = com.parse.unit.macOS
 
-SWIFT_VERSION = 3.0
+SWIFT_VERSION = 5.0
 
 INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/ParseUnitTests-OSX-Info.plist
 

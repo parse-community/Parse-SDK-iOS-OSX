@@ -38,9 +38,8 @@
 
 - (void)setUp
 {
-    [PFPin registerSubclass];
-
     [super setUp];
+    [PFPin registerSubclass];
 }
 
 - (void)testConstructors {
