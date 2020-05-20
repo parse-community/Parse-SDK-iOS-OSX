@@ -9,10 +9,33 @@
 
 #import "PFOAuth1FlowDialog.h"
 #import "PFTwitterTestCase.h"
+#import <WebKit/WebKit.h>
 
 @interface UIActivityIndicatorView (Private)
 
 - (void)_generateImages;
+
+@end
+
+@interface FakeWKNavigationAction : WKNavigationAction
+// Redefined WKNavigationAction properties as readwrite.
+@property(nullable, nonatomic, copy) WKFrameInfo* sourceFrame;
+@property(nullable, nonatomic, copy) WKFrameInfo* targetFrame;
+@property(nonatomic) WKNavigationType navigationType;
+@property(nullable, nonatomic, copy) NSURLRequest* request;
+
+@end
+
+@implementation FakeWKNavigationAction
+@synthesize sourceFrame, targetFrame, navigationType, request;
+
++ (Class)class {
+    return [super class];
+}
+
++ (Class)_nilClass {
+    return nil;
+}
 
 @end
 
@@ -119,19 +142,22 @@
 
     [flowDialog showAnimated:NO];
 
-    id webView = PFStrictClassMock([UIWebView class]);
+    id webView = PFStrictClassMock([WKWebView class]);
 
     NSURLRequest *request = [NSURLRequest requestWithURL:sampleURL];
-    XCTAssertTrue([flowDialog webView:webView
-           shouldStartLoadWithRequest:request
-                       navigationType:UIWebViewNavigationTypeOther]);
-
-    [flowDialog webViewDidStartLoad:webView];
-    [flowDialog webViewDidFinishLoad:webView];
-
-    NSURLRequest *successRequest = [NSURLRequest requestWithURL:successURL];
-    [flowDialog webView:webView shouldStartLoadWithRequest:successRequest navigationType:UIWebViewNavigationTypeOther];
-
+    XCTestExpectation *decisionExpectation = [expectation initWithDescription:@"Waiting for policy decision"];
+    
+    
+    FakeWKNavigationAction *navigationAction = [[FakeWKNavigationAction alloc] init];
+    navigationAction.navigationType = WKNavigationTypeOther;
+    navigationAction.request = request;
+    
+    
+    [flowDialog webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:^(WKNavigationActionPolicy policy) {
+        XCTAssertTrue(policy == WKNavigationActionPolicyAllow);
+        [decisionExpectation fulfill];
+    }];
+    
     [self waitForTestExpectations];
 }
 
