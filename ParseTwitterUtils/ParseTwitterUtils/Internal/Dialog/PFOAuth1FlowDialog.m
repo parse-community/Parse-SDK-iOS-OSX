@@ -411,10 +411,20 @@ static CGFloat PFTFloatRound(CGFloat value, NSRoundingMode mode) {
 #pragma mark WKWebViewNavigationDelegate
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    
-    BOOL hasPrefix = [webView.URL.absoluteString hasPrefix:self.redirectURLPrefix];
-    decisionHandler(hasPrefix ? WKNavigationActionPolicyCancel : WKNavigationActionPolicyAllow);
+    NSURL *url = navigationAction.request.URL;
+    BOOL hasPrefix = [url.absoluteString hasPrefix:self.redirectURLPrefix];
+    if (hasPrefix) {
+        [self _dismissWithSuccess:YES url:url error:nil];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    } else if (navigationAction.navigationType == UIWebViewNavigationTypeLinkClicked && [self.dataSource dialog:self shouldOpenURLInExternalBrowser:url]) {
+        [[UIApplication sharedApplication] openURL:url];
+    } else {
+        decisionHandler(WKNavigationActionPolicyAllow);
+    }
 }
+
+
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     [[PFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
@@ -426,7 +436,9 @@ static CGFloat PFTFloatRound(CGFloat value, NSRoundingMode mode) {
     [_activityIndicator stopAnimating];
     [_webView evaluateJavaScript:@"document.title" completionHandler:^(id _Nullable string, NSError * _Nullable error) {
         self.title = (NSString *) string;
+        
     }];
+    
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
