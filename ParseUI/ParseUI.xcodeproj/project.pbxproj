@@ -1530,7 +1530,6 @@
 					};
 					81472F661A1AB33800FD6EED = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 83EQM3242U;
 					};
 					BCCBE8C823BFB89D0044A79C = {
 						CreatedOnToolsVersion = 11.3;
@@ -2477,7 +2476,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParseUIDemo/ParseUIDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 83EQM3242U;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
