@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 
 #import "PFCommandRunning.h"
+#import "PFURLSessionChallengeDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,7 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
                               retryAttempts:(NSUInteger)retryAttempts
                               applicationId:(NSString *)applicationId
                                   clientKey:(nullable NSString *)clientKey
-                                  serverURL:(NSURL *)serverURL;
+                                  serverURL:(NSURL *)serverURL
+                urlSessionChallengeDelegate:(id<PFURLSessionChallengeDelegate>)urlSessionChallengeDelegate;
 
 @end
 

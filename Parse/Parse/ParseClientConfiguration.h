@@ -11,6 +11,8 @@
 
 #import <Parse/PFConstants.h>
 
+#import <Parse/PFURLSessionChallengeDelegate.h>
+
 @protocol PFFileUploadController;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -96,6 +98,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSURLSessionConfiguration *URLSessionConfiguration;
 
 /**
+ A custom NSURLSessionDelegate delegate which handles the challenges
+ */
+@property (nonatomic, strong) id<PFURLSessionChallengeDelegate> urlSessionChallengeDelegate;
+
+/**
  The maximum number of retry attempts to make upon a failed network request.
  */
 @property (nonatomic, assign) NSUInteger networkRetryAttempts;
@@ -177,6 +184,11 @@ NS_ASSUME_NONNULL_BEGIN
  The default value is NSURLSessionConfiguration.defaultSessionConfiguration
  */
 @property (nonatomic, strong, readonly) NSURLSessionConfiguration *URLSessionConfiguration;
+
+/**
+ A custom NSURLSessionDelegate delegate which handles the challenges
+ */
+@property (nonatomic, strong, readonly) id<PFURLSessionChallengeDelegate> urlSessionChallengeDelegate;
 
 /**
  The maximum number of retry attempts to make upon a failed network request.

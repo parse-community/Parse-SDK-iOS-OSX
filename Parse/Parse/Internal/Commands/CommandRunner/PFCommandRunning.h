@@ -13,6 +13,8 @@
 
 #import "PFDataProvider.h"
 
+#import "PFURLSessionChallengeDelegate.h"
+
 @class BFCancellationToken;
 @class BFTask<__covariant BFGenericType>;
 @class PFCommandResult;
@@ -44,11 +46,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                      applicationId:(NSString *)applicationId
                          clientKey:(nullable NSString *)clientKey
-                         serverURL:(NSURL *)serverURL;
+                         serverURL:(NSURL *)serverURL
+       urlSessionChallengeDelegate:(id<PFURLSessionChallengeDelegate>)urlSessionChallengeDelegate;
 + (instancetype)commandRunnerWithDataSource:(id<PFInstallationIdentifierStoreProvider>)dataSource
                               applicationId:(NSString *)applicationId
                                   clientKey:(nullable NSString *)clientKey
-                                  serverURL:(NSURL *)serverURL;
+                                  serverURL:(NSURL *)serverURL
+                urlSessionChallengeDelegate:(id<PFURLSessionChallengeDelegate>)urlSessionChallengeDelegate;
 
 ///--------------------------------------
 #pragma mark - Data Commands

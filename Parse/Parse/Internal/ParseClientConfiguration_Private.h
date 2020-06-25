@@ -18,6 +18,7 @@ extern NSString *const _ParseDefaultServerURLString;
 @property (nullable, nonatomic, copy, readwrite) NSString *applicationId;
 @property (nullable, nonatomic, copy, readwrite) NSString *clientKey;
 @property (nullable, nonatomic, strong, readwrite) id<PFFileUploadController> fileUploadController;
+@property (nonatomic, strong, readwrite) id<PFURLSessionChallengeDelegate> urlSessionChallengeDelegate;
 
 @property (nonatomic, copy, readwrite) NSString *server;
 

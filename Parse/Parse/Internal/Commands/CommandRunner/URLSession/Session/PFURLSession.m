@@ -38,21 +38,25 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
 ///--------------------------------------
 
 - (instancetype)initWithConfiguration:(NSURLSessionConfiguration *)configuration
-                             delegate:(id<PFURLSessionDelegate>)delegate {
+                             delegate:(id<PFURLSessionDelegate>)delegate
+          urlSessionChallengeDelegate:(id<PFURLSessionChallengeDelegate>)urlSessionChallengeDelegate {
     // NOTE: cast to id suppresses warning about designated initializer.
     return [(id)self initWithURLSession:[NSURLSession sessionWithConfiguration:configuration
                                                                      delegate:self
                                                                 delegateQueue:nil]
-                               delegate:delegate];
+                               delegate:delegate
+            urlSessionChallengeDelegate:urlSessionChallengeDelegate];
 }
 
 - (instancetype)initWithURLSession:(NSURLSession *)session
-                          delegate:(id<PFURLSessionDelegate>)delegate {
+                          delegate:(id<PFURLSessionDelegate>)delegate
+       urlSessionChallengeDelegate:(id<PFURLSessionChallengeDelegate>)urlSessionChallengeDelegate{
     self = [super init];
     if (!self) return nil;
 
     _delegate = delegate;
     _urlSession = session;
+    _urlSessionChallengeDelegate = urlSessionChallengeDelegate;
 
     _sessionTaskQueue = dispatch_queue_create("com.parse.urlSession.tasks", DISPATCH_QUEUE_SERIAL);
 
@@ -63,13 +67,15 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
 }
 
 + (instancetype)sessionWithConfiguration:(NSURLSessionConfiguration *)configuration
-                                delegate:(id<PFURLSessionDelegate>)delegate {
-    return [[self alloc] initWithConfiguration:configuration delegate:delegate];
+                                delegate:(id<PFURLSessionDelegate>)delegate
+             urlSessionChallengeDelegate:(id<PFURLSessionChallengeDelegate>)urlSessionChallengeDelegate {
+    return [[self alloc] initWithConfiguration:configuration delegate:delegate urlSessionChallengeDelegate:urlSessionChallengeDelegate];
 }
 
 + (instancetype)sessionWithURLSession:(nonnull NSURLSession *)session
-                             delegate:(id<PFURLSessionDelegate>)delegate {
-    return [[self alloc] initWithURLSession:session delegate:delegate];
+                             delegate:(id<PFURLSessionDelegate>)delegate
+          urlSessionChallengeDelegate:(id<PFURLSessionChallengeDelegate>)urlSessionChallengeDelegate {
+    return [[self alloc] initWithURLSession:session delegate:delegate urlSessionChallengeDelegate:urlSessionChallengeDelegate];
 }
 
 ///--------------------------------------
@@ -255,6 +261,21 @@ didReceiveResponse:(NSURLResponse *)response
  willCacheResponse:(NSCachedURLResponse *)proposedResponse
  completionHandler:(void (^)(NSCachedURLResponse *cachedResponse))completionHandler {
     completionHandler(nil); // Prevent any caching for security reasons
+}
+
+///--------------------------------------
+#pragma mark - NSURLSessionDelegate
+///--------------------------------------
+
+- (void)URLSession:(NSURLSession *)session
+didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
+ completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
+    if (_urlSessionChallengeDelegate != NULL) {
+        [_urlSessionChallengeDelegate
+         URLSession:session
+         didReceiveChallenge:challenge
+         completionHandler:completionHandler];
+    }
 }
 
 @end

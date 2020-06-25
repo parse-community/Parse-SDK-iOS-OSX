@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 
 #import <Parse/PFConstants.h>
+#import <Parse/PFURLSessionChallengeDelegate.h>
 
 @class BFCancellationToken;
 
@@ -32,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak, readonly) id<PFURLSessionDelegate> delegate;
 
+@property (nonatomic, strong, readonly) id<PFURLSessionChallengeDelegate> urlSessionChallengeDelegate;
+
 ///--------------------------------------
 #pragma mark - Init
 ///--------------------------------------
@@ -40,10 +43,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)new NS_UNAVAILABLE;
 
 - (instancetype)initWithConfiguration:(NSURLSessionConfiguration *)configuration
-                             delegate:(id<PFURLSessionDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+                             delegate:(id<PFURLSessionDelegate>)delegate
+          urlSessionChallengeDelegate:(id<PFURLSessionChallengeDelegate>)challengeDelegate NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)sessionWithConfiguration:(NSURLSessionConfiguration *)configuration
-                                delegate:(id<PFURLSessionDelegate>)delegate;
+                                delegate:(id<PFURLSessionDelegate>)delegate
+             urlSessionChallengeDelegate:(id<PFURLSessionChallengeDelegate>)challengeDelegate;
 
 ///--------------------------------------
 #pragma mark - Teardown
