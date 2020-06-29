@@ -33,8 +33,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@import AuthenticationServices;
-
 @class PFSignUpViewController;
 @class PFUser;
 @protocol PFLogInViewControllerDelegate;
