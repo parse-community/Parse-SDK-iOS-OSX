@@ -55,6 +55,12 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
 
 @end
 
+@protocol WeaklyReferencedAppleUtils <NSObject>
+
++ (BFTask<NSDictionary *> *)logInInBackground;
+
+@end
+
 @interface PFLogInViewController () {
     struct {
         BOOL shouldBeginLogIn : YES;
@@ -266,6 +272,9 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
 
     [_logInView.twitterButton removeTarget:nil action:nil forControlEvents:UIControlEventAllEvents];
     [_logInView.twitterButton addTarget:self action:@selector(_loginWithTwitter) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_logInView.appleButton removeTarget:nil action:nil forControlEvents:UIControlEventAllEvents];
+    [_logInView.appleButton addTarget:self action:@selector(_loginWithApple) forControlEvents:UIControlEventTouchUpInside];
 
     [_logInView.signUpButton removeTarget:nil action:nil forControlEvents:UIControlEventAllEvents];
     [_logInView.signUpButton addTarget:self action:@selector(_signupAction) forControlEvents:UIControlEventTouchUpInside];
@@ -318,6 +327,45 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
             [PFUIAlertView presentAlertInViewController:self withTitle:title error:error];
         }
     }];
+}
+
+
+#pragma mark Sign in with Apple
+-(void)_loginWithApple API_AVAILABLE(ios(13.0)){
+
+    if (self.loading) {
+        return;
+    }
+    
+    self.loading = YES;
+    if ([_logInView.appleButton isKindOfClass:[PFActionButton class]]) {
+        [(PFActionButton *)_logInView.appleButton setLoading:YES];
+    }
+    
+    __weak typeof(self) wself = self;
+    
+    Class appleUtils = NSClassFromString(@"PFAppleUtils");
+    SEL selector = NSSelectorFromString(@"logInInBackground");
+    if ([appleUtils respondsToSelector:selector]) {
+        [[appleUtils logInInBackground] continueWithBlock:^id _Nullable(BFTask * _Nonnull t) {
+            __strong typeof(wself) sself = wself;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                sself.loading = NO;
+                if ([sself.logInView.appleButton isKindOfClass:[PFActionButton class]]) {
+                    [(PFActionButton *)sself.logInView.appleButton setLoading:NO];
+                }
+                if (t.error) {
+                    [sself _loginDidFailWithError:t.error];
+                }
+                else
+                {
+                    PFUser *user = t.result[@"user"];
+                    [sself _loginDidSucceedWithUser:user];
+                }
+            });
+            return nil;
+        }];
+    }
 }
 
 #pragma mark Log In With Facebook

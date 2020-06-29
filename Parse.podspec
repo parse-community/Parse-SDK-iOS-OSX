@@ -155,7 +155,7 @@ Pod::Spec.new do |s|
     s.requires_arc          = true
     s.ios.deployment_target = '8.0'
     s.source_files        = 'ParseUI/**/*.{h,m}'
-    s.exclude_files = 'ParseUI/ParseUIDemo/**/*', 'ParseUI/Other/ParseUI.h'
+    s.exclude_files = 'ParseUI/ParseUIDemo/**/*', 'ParseUI/Other/ParseUI.h', 'ParseUI/SignInWithAppleTests/'
     s.public_header_files = 'ParseUI/Classes/LogInViewController/*.h',
                             'ParseUI/Classes/SignUpViewController/*.h',
                             'ParseUI/Classes/QueryTableViewController/*.h',
