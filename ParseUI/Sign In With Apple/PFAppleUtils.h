@@ -25,8 +25,6 @@ API_AVAILABLE(ios(13.0))
 @interface PFAppleUtils : NSObject
 
 + (BFTask<NSDictionary *> *)logInInBackground;
-//+ (BFTask<NSNumber *> *)linkUserInBackground:(PFUser *)user;
-//+ (BFTask<NSNumber *> *)unlinkUserInBackground:(PFUser *)user;
 
 @end
 
