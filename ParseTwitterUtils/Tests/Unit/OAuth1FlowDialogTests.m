@@ -19,12 +19,6 @@
 @interface OAuth1FlowDialogTests : PFTwitterTestCase
 @end
 
-@interface UIDevice (Yolo)
-
-- (void)setOrientation:(UIDeviceOrientation)orientation animated:(BOOL)animated;
-
-@end
-
 @implementation OAuth1FlowDialogTests
 
 ///--------------------------------------
@@ -75,32 +69,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:UIKeyboardWillHideNotification
                                                         object:nil
                                                       userInfo:notificationuserInfo];
-
-    [flowDialog dismissAnimated:NO];
-}
-
-- (void)testRotation {
-    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait];
-    [[UIDevice currentDevice] setOrientation:UIDeviceOrientationPortrait animated:NO];
-
-    PFOAuth1FlowDialog *flowDialog = [[PFOAuth1FlowDialog alloc] initWithURL:nil queryParameters:nil];
-
-    [flowDialog showAnimated:NO];
-    CGRect oldBounds = flowDialog.bounds;
-
-    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft];
-    [[UIDevice currentDevice] setOrientation:UIDeviceOrientationLandscapeLeft animated:NO];
-    [[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
-
-    CGRect newBounds = flowDialog.bounds;
-    XCTAssertFalse(CGRectEqualToRect(oldBounds, newBounds));
-
-    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait];
-    [[UIDevice currentDevice] setOrientation:UIDeviceOrientationPortrait animated:NO];
-    [[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
-
-    newBounds = flowDialog.bounds;
-    XCTAssertTrue(CGRectEqualToRect(oldBounds, newBounds));
 
     [flowDialog dismissAnimated:NO];
 }
