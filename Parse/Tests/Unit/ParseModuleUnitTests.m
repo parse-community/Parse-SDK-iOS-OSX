@@ -18,8 +18,9 @@
 
 @implementation ParseTestModule
 
-- (void)parseDidInitializeWithApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey {
+- (BFTask *)parseDidInitializeWithApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey {
     self.didInitializeCalled = YES;
+    return [BFTask taskWithResult:nil];
 }
 
 @end
