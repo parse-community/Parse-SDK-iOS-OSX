@@ -89,7 +89,7 @@ static ParseClientConfiguration *currentParseConfiguration_;
     [[[currentParseManager_ preloadDiskObjectsToMemoryAsync] continueWithBlock:^id _Nullable(BFTask * _Nonnull t) {
         return [[self parseModulesCollection] parseDidInitializeWithApplicationId:configuration.applicationId
                                                                         clientKey:configuration.clientKey];
-    }] continueWithBlock:^id _Nullable(BFTask * _Nonnull t) {
+    }] continueWithSuccessBlock:^id _Nullable(BFTask * _Nonnull t) {
         [[NSNotificationCenter defaultCenter] postNotificationName:PFParseInitializeDidCompleteNotification
                                                             object:nil];
         return nil;
