@@ -2639,8 +2639,6 @@
 		B141170F1E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B14117101E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B14117111E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B9312D5B23C4A6FC002D4A4C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9312D5623C4A6FC002D4A4C /* OCMock.framework */; };
-		B9312D5D23C4A775002D4A4C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9312D5C23C4A775002D4A4C /* OCMock.framework */; };
 		BC5511D6242E6E66008E5D9F /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC5EAAC22D5F96600CF8900 /* Bolts.framework */; };
 		BCC5EAB322D5F97E00CF8900 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC5EAB222D5F97D00CF8900 /* Bolts.framework */; };
 		BCC5EAB522D5F98F00CF8900 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC5EAB422D5F98F00CF8900 /* Bolts.framework */; };
@@ -2926,6 +2924,69 @@
 			proxyType = 1;
 			remoteGlobalIDString = 81C3821B19CCA89E0066284A;
 			remoteInfo = "Parse-iOS";
+		};
+		BC105FC424C5D0C900295EF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC105FBA24C5D0C900295EF7 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 030EF0A814632FD000B04273;
+			remoteInfo = OCMock;
+		};
+		BC105FC624C5D0C900295EF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC105FBA24C5D0C900295EF7 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03565A3118F0566E003AE91E;
+			remoteInfo = OCMockTests;
+		};
+		BC105FC824C5D0C900295EF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC105FBA24C5D0C900295EF7 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 030EF0DC14632FF700B04273;
+			remoteInfo = OCMockLib;
+		};
+		BC105FCA24C5D0C900295EF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC105FBA24C5D0C900295EF7 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D31108AD1828DB8700737925;
+			remoteInfo = OCMockLibTests;
+		};
+		BC105FCC24C5D0C900295EF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC105FBA24C5D0C900295EF7 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F0B950F11B0080BE00942C38;
+			remoteInfo = "OCMock iOS";
+		};
+		BC105FCE24C5D0C900295EF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC105FBA24C5D0C900295EF7 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 817EB1621BD765130047E85A;
+			remoteInfo = "OCMock tvOS";
+		};
+		BC105FD024C5D0C900295EF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC105FBA24C5D0C900295EF7 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DE97CA022B43EE60098C63F;
+			remoteInfo = "OCMock watchOS";
+		};
+		BC105FD224C5D0D600295EF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC105FBA24C5D0C900295EF7 /* OCMock.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 030EF0A714632FD000B04273;
+			remoteInfo = OCMock;
+		};
+		BC105FD424C5D0E100295EF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC105FBA24C5D0C900295EF7 /* OCMock.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F0B950F01B0080BE00942C38;
+			remoteInfo = "OCMock iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -3482,8 +3543,7 @@
 		B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileUploadController.h; sourceTree = "<group>"; };
 		B14116FB1E5D078E00F70D7A /* PFFileUploadResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFileUploadResult.m; sourceTree = "<group>"; };
 		B141170A1E5D081500F70D7A /* PFFileUploadResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFileUploadResult.h; sourceTree = "<group>"; };
-		B9312D5623C4A6FC002D4A4C /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = ../Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
-		B9312D5C23C4A775002D4A4C /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = ../Carthage/Build/Mac/OCMock.framework; sourceTree = "<group>"; };
+		BC105FBA24C5D0C900295EF7 /* OCMock.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OCMock.xcodeproj; path = ../Carthage/Checkouts/OCMock/Source/OCMock.xcodeproj; sourceTree = "<group>"; };
 		BCC5EAAC22D5F96600CF8900 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		BCC5EAB222D5F97D00CF8900 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Carthage/Build/tvOS/Bolts.framework; sourceTree = "<group>"; };
 		BCC5EAB422D5F98F00CF8900 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Carthage/Build/watchOS/Bolts.framework; sourceTree = "<group>"; };
@@ -3569,7 +3629,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9312D5B23C4A6FC002D4A4C /* OCMock.framework in Frameworks */,
 				F5C42CC71B34C22100C720D8 /* AudioToolbox.framework in Frameworks */,
 				816F44761A8E8933009CDB32 /* StoreKit.framework in Frameworks */,
 				816F44771A8E8933009CDB32 /* libsqlite3.dylib in Frameworks */,
@@ -3585,7 +3644,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A13525620282B4D000F5FD5 /* Parse.framework in Frameworks */,
-				B9312D5D23C4A775002D4A4C /* OCMock.framework in Frameworks */,
 				F5B0B3171B44A2CA00F3EBC4 /* StoreKit.framework in Frameworks */,
 				F5B0B3161B44A22300F3EBC4 /* SystemConfiguration.framework in Frameworks */,
 			);
@@ -3855,8 +3913,7 @@
 		09D3364C139C54940098E916 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B9312D5623C4A6FC002D4A4C /* OCMock.framework */,
-				B9312D5C23C4A775002D4A4C /* OCMock.framework */,
+				BC105FBA24C5D0C900295EF7 /* OCMock.xcodeproj */,
 				BCC5EAAC22D5F96600CF8900 /* Bolts.framework */,
 				BCC5EAB222D5F97D00CF8900 /* Bolts.framework */,
 				BCC5EAB422D5F98F00CF8900 /* Bolts.framework */,
@@ -5097,6 +5154,20 @@
 				81EEE1AF1B446D600087AC4D /* PFCurrentUserController.m */,
 			);
 			path = CurrentUserController;
+			sourceTree = "<group>";
+		};
+		BC105FBB24C5D0C900295EF7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC105FC524C5D0C900295EF7 /* OCMock.framework */,
+				BC105FC724C5D0C900295EF7 /* OCMockTests.xctest */,
+				BC105FC924C5D0C900295EF7 /* libOCMock.a */,
+				BC105FCB24C5D0C900295EF7 /* OCMockLibTests.xctest */,
+				BC105FCD24C5D0C900295EF7 /* OCMock.framework */,
+				BC105FCF24C5D0C900295EF7 /* OCMock.framework */,
+				BC105FD124C5D0C900295EF7 /* OCMock.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		F50C66301B33A6CE001941A6 /* Utilites */ = {
@@ -6806,6 +6877,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BC105FD524C5D0E100295EF7 /* PBXTargetDependency */,
 				8111674C1B8402DF003CB026 /* PBXTargetDependency */,
 				4AE33A2D1F5451B20088DCA0 /* PBXTargetDependency */,
 			);
@@ -6826,6 +6898,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BC105FD324C5D0D600295EF7 /* PBXTargetDependency */,
 				811167471B8402DA003CB026 /* PBXTargetDependency */,
 			);
 			name = "ParseUnitTests-macOS";
@@ -6979,6 +7052,10 @@
 					ProductGroup = 4A13517620281768000F5FD5 /* Products */;
 					ProjectRef = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
 				},
+				{
+					ProductGroup = BC105FBB24C5D0C900295EF7 /* Products */;
+					ProjectRef = BC105FBA24C5D0C900295EF7 /* OCMock.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -7072,6 +7149,55 @@
 			fileType = wrapper.application;
 			path = BoltsTestUI.app;
 			remoteRef = 4A13519720281768000F5FD5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC105FC524C5D0C900295EF7 /* OCMock.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OCMock.framework;
+			remoteRef = BC105FC424C5D0C900295EF7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC105FC724C5D0C900295EF7 /* OCMockTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OCMockTests.xctest;
+			remoteRef = BC105FC624C5D0C900295EF7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC105FC924C5D0C900295EF7 /* libOCMock.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOCMock.a;
+			remoteRef = BC105FC824C5D0C900295EF7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC105FCB24C5D0C900295EF7 /* OCMockLibTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OCMockLibTests.xctest;
+			remoteRef = BC105FCA24C5D0C900295EF7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC105FCD24C5D0C900295EF7 /* OCMock.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OCMock.framework;
+			remoteRef = BC105FCC24C5D0C900295EF7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC105FCF24C5D0C900295EF7 /* OCMock.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OCMock.framework;
+			remoteRef = BC105FCE24C5D0C900295EF7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC105FD124C5D0C900295EF7 /* OCMock.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OCMock.framework;
+			remoteRef = BC105FD024C5D0C900295EF7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -8656,6 +8782,16 @@
 			platformFilter = ios;
 			target = 81C3821B19CCA89E0066284A /* Parse-iOS */;
 			targetProxy = 8111674B1B8402DF003CB026 /* PBXContainerItemProxy */;
+		};
+		BC105FD324C5D0D600295EF7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OCMock;
+			targetProxy = BC105FD224C5D0D600295EF7 /* PBXContainerItemProxy */;
+		};
+		BC105FD524C5D0E100295EF7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "OCMock iOS";
+			targetProxy = BC105FD424C5D0E100295EF7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
