@@ -73,6 +73,35 @@
     [flowDialog dismissAnimated:NO];
 }
 
+/** This test is broken by iOS 13. The UIDevice -setOrientation:animated is no longer available and there doesn't seem to be a new equivalent. Leaving this here so we know it was once a thing.
+ 
+    If we find the need to test this again, a different approach such as a UI test should be used.*/
+- (void)skip_testRotation {
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait];
+//    [[UIDevice currentDevice] setOrientation:UIDeviceOrientationPortrait animated:NO];
+
+    PFOAuth1FlowDialog *flowDialog = [[PFOAuth1FlowDialog alloc] initWithURL:nil queryParameters:nil];
+
+    [flowDialog showAnimated:NO];
+    CGRect oldBounds = flowDialog.bounds;
+
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft];
+//    [[UIDevice currentDevice] setOrientation:UIDeviceOrientationLandscapeLeft animated:NO];
+    [[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
+
+    CGRect newBounds = flowDialog.bounds;
+    XCTAssertFalse(CGRectEqualToRect(oldBounds, newBounds));
+
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait];
+//    [[UIDevice currentDevice] setOrientation:UIDeviceOrientationPortrait animated:NO];
+    [[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
+
+    newBounds = flowDialog.bounds;
+    XCTAssertTrue(CGRectEqualToRect(oldBounds, newBounds));
+
+    [flowDialog dismissAnimated:NO];
+}
+
 - (void)testWebViewDelegate {
     NSURL *sampleURL = [NSURL URLWithString:@"http://foo.bar"];
     NSURL *successURL = [NSURL URLWithString:@"foo://success"];
