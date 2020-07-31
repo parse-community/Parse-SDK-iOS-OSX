@@ -54,8 +54,3 @@ jobs:
           on:
             tags: true
             all_branches: true
-    - stage: release
-      env: Carthage
-      script:
-        - carthage build --no-skip-current
-    
