@@ -4,6 +4,11 @@ defaults: &defaults
     shell: /bin/bash --login -eo pipefail
 aliases:
   - &prepare
+    restore_cache:
+    keys:
+      - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+      - gem-cache-v1-{{ arch }}-{{ .Branch }}
+      - gem-cache-v1
     |
       git submodule update --init --recursive
       sudo gem install bundler
@@ -19,16 +24,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-            - gem-cache-v1-{{ arch }}-{{ .Branch }}
-            - gem-cache-v1
       - run: *prepare
-      - save_cache:
-          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
       - run: bundle exec rake test:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
@@ -90,6 +86,10 @@ jobs:
     steps:
       - checkout
       - run: *prepare
+      - save_cache:
+          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       - run: ./Scripts/jazzy.sh
   carthage:
     <<: *defaults
