@@ -3,6 +3,10 @@ defaults: &defaults
       xcode: "11.4.1"
     shell: /bin/bash --login -eo pipefail
 aliases:
+  - &prepare
+    |
+      sudo gem install bundler
+      bundle install
   - &filter-only-master
     branches:
       only:
@@ -14,7 +18,8 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: rake test:ios
+      - run: *prepare
+      - run: bundle exec rake test:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
@@ -22,6 +27,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - run: *prepare
       - run:
           name: "Create and set the default keychain"
           command: |
@@ -29,7 +35,7 @@ jobs:
             security default-keychain -s temporary
             security unlock-keychain -p "" temporary
             security set-keychain-settings -lut 7200 temporary
-      - run: rake test:macos
+      - run: bundle exec rake test:macos
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
@@ -40,7 +46,8 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: rake test:facebook_utils:ios
+      - run: *prepare
+      - run: bundle exec rake test:facebook_utils:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
@@ -48,7 +55,8 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: rake test:twitter_utils:ios
+      - run: *prepare
+      - run: bundle exec rake test:twitter_utils:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
@@ -56,7 +64,8 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: rake test:parseui:all
+      - run: *prepare
+      - run: bundle exec rake test:parseui:all
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
@@ -64,22 +73,26 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: rake package:release
+      - run: *prepare
+      - run: bundle exec rake package:release
   jazzy:
     <<: *defaults
     steps:
       - checkout
+      - run: *prepare
       - run: ./Scripts/jazzy.sh
   carthage:
     <<: *defaults
     steps:
       - checkout
-      - run: rake test:carthage
+      - run: *prepare
+      - run: bundle exec rake test:carthage
   cocoapods:
     <<: *defaults
     steps:
       - checkout
-      - run: rake test:cocoapods
+      - run: *prepare
+      - run: bundle exec rake test:cocoapods
 
 workflows:
   version: 2
