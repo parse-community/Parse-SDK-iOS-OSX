@@ -6,7 +6,7 @@ branches:
     - master
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
 cache:
-  - cocoapods
+  - bundler
 git:
   submodules: false
 
