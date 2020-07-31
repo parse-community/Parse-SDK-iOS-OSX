@@ -26,14 +26,15 @@ jobs:
     - stage: release
       env: Cocoapods and Carthage
       install:
-        - pod setup
+        - install: bundle install
+        - bundle exec pod setup
       script:
-        - travis_wait pod lib lint --allow-warnings
+        - travis_wait bundle exec pod lib lint --allow-warnings
         - carthage build --no-skip-current
       deploy:
         - provider: script
           skip_cleanup: true
-          script: travis_wait pod trunk push Parse.podspec --allow-warnings
+          script: travis_wait bundle exec pod trunk push Parse.podspec --allow-warnings
           on:
             tags: true
             all_branches: true
