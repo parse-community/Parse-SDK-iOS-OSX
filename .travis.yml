@@ -32,7 +32,7 @@ jobs:
     - stage: release
       env: Docs and Cocoapods
       install:
-        - bundle install
+        - gem install jazzy
         - bundle exec pod setup
       script:
         - ./Scripts/jazzy.sh
