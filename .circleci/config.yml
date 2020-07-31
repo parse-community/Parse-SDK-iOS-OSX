@@ -9,10 +9,9 @@ aliases:
       - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
       - gem-cache-v1-{{ arch }}-{{ .Branch }}
       - gem-cache-v1
-    |
-      git submodule update --init --recursive
-      sudo gem install bundler
-      bundle install --path vendor/bundle
+    run: git submodule update --init --recursive
+    run: sudo gem install bundler
+    run: bundle install --path vendor/bundle
   - &filter-only-master
     branches:
       only:
