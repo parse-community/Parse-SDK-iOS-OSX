@@ -12,6 +12,7 @@ jobs:
   include:
     - stage: release
       env: Deployment
+      install: bundle install
       script:
         - bundle exec rake package:release
       deploy:
@@ -28,7 +29,6 @@ jobs:
       env: Docs
       install:
         - bundle install
-        - bundle exec pod setup
       script:
         - ./Scripts/jazzy.sh
       deploy:
