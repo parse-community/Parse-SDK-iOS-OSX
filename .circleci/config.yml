@@ -14,7 +14,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: *prepare
       - run: rake test:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
@@ -23,7 +22,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: *prepare
       - run:
           name: "Create and set the default keychain"
           command: |
@@ -42,7 +40,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: *prepare
       - run: rake test:facebook_utils:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
@@ -51,7 +48,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: *prepare
       - run: rake test:twitter_utils:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
@@ -60,7 +56,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: *prepare
       - run: rake test:parseui:all
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
@@ -69,25 +64,21 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: *prepare
       - run: rake package:release
   jazzy:
     <<: *defaults
     steps:
       - checkout
-      - run: *prepare
       - run: ./Scripts/jazzy.sh
   carthage:
     <<: *defaults
     steps:
       - checkout
-      - run: *prepare
       - run: rake test:carthage
   cocoapods:
     <<: *defaults
     steps:
       - checkout
-      - run: *prepare
       - run: rake test:cocoapods
 
 workflows:
