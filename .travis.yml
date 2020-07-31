@@ -18,7 +18,7 @@ jobs:
     - stage: release
       env: Deployment
       script:
-      - bundle exec rake package:release
+      - rake package:release
       deploy:
         - provider: releases
           token:
@@ -33,10 +33,10 @@ jobs:
       env: Docs and Cocoapods
       install:
         - gem install jazzy
-        - bundle exec pod setup
+        - pod setup
       script:
         - ./Scripts/jazzy.sh
-        - travis_wait bundle exec pod lib lint --allow-warnings
+        - travis_wait pod lib lint --allow-warnings
       deploy:
         - provider: pages
           skip_cleanup: true
@@ -48,7 +48,7 @@ jobs:
             tags: true
         - provider: script
           skip_cleanup: true
-          script: travis_wait bundle exec pod trunk push Parse.podspec --allow-warnings
+          script: travis_wait pod trunk push Parse.podspec --allow-warnings
           on:
             tags: true
             all_branches: true
