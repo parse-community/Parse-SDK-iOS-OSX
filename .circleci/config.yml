@@ -16,7 +16,8 @@ aliases:
     |
       git submodule update --init --recursive
       sudo gem install bundler
-      bundle install --path vendor/bundle
+      bundle config set path 'vendor/bundle'
+      bundle install
   - &filter-only-master
     branches:
       only:
