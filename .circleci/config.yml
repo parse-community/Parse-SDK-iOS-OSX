@@ -3,16 +3,20 @@ defaults: &defaults
       xcode: "11.4.1"
     shell: /bin/bash --login -eo pipefail
 aliases:
-  - &cache-keys
+  - &cache-pull
     keys:
       - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
       - gem-cache-v1-{{ arch }}-{{ .Branch }}
       - gem-cache-v1
+  - &cache-push
+    key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+    paths:
+      - vendor/bundle
   - &prepare
     |
       git submodule update --init --recursive
       sudo gem install bundler
-      bundle install
+      bundle install --path vendor/bundle
   - &filter-only-master
     branches:
       only:
@@ -24,7 +28,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache: *cache-keys
+      - restore_cache: *cache-pull
       - run: *prepare
       - run: bundle exec rake test:ios
       - run: bash <(curl -s https://codecov.io/bash)
@@ -34,8 +38,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache: *cache-keys
+      - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run:
           name: "Create and set the default keychain"
           command: |
@@ -54,8 +59,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache: *cache-keys
+      - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run: bundle exec rake test:facebook_utils:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
@@ -64,8 +70,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache: *cache-keys
+      - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run: bundle exec rake test:twitter_utils:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
@@ -74,8 +81,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache: *cache-keys
+      - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run: bundle exec rake test:parseui:all
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
@@ -84,33 +92,33 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache: *cache-keys
+      - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run: bundle exec rake package:release
   jazzy:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache: *cache-keys
+      - restore_cache: *cache-pull
       - run: *prepare
-      - save_cache:
-          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
+      - save_cache: *cache-push
       - run: ./Scripts/jazzy.sh
   carthage:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache: *cache-keys
+      - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run: bundle exec rake test:carthage
   cocoapods:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache: *cache-keys
+      - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run: bundle exec rake test:cocoapods
 
 workflows:
