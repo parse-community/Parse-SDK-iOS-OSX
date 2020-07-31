@@ -5,6 +5,7 @@ defaults: &defaults
 aliases:
   - &prepare
     |
+      git submodule update --init --recursive
       sudo gem install bundler
       bundle install
   - &filter-only-master
