@@ -25,14 +25,12 @@ jobs:
             tags: true
             all_branches: true
     - stage: release
-      env: Docs Cocoapods Carthage
+      env: Docs
       install:
         - bundle install
         - bundle exec pod setup
       script:
         - ./Scripts/jazzy.sh
-        - travis_wait bundle exec pod lib lint --allow-warnings
-        - carthage build --no-skip-current
       deploy:
         - provider: pages
           skip_cleanup: true
@@ -42,9 +40,22 @@ jobs:
           on:
             all_branches: true
             tags: true
+    - stage: release
+      env: Cocoapods
+      install:
+        - bundle install
+        - bundle exec pod setup
+      script:
+        - travis_wait bundle exec pod lib lint --allow-warnings
+      deploy:
         - provider: script
           skip_cleanup: true
           script: travis_wait bundle exec pod trunk push Parse.podspec --allow-warnings
           on:
             tags: true
             all_branches: true
+    - stage: release
+      env: Carthage
+      script:
+        - carthage build --no-skip-current
+    
