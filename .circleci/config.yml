@@ -7,7 +7,7 @@ aliases:
     |
       git submodule update --init --recursive
       sudo gem install bundler
-      bundle install
+      bundle install --path vendor/bundle
   - &filter-only-master
     branches:
       only:
@@ -27,6 +27,8 @@ jobs:
       - run: *prepare
       - save_cache:
           key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       - run: bundle exec rake test:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
