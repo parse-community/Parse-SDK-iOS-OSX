@@ -30,6 +30,7 @@ jobs:
     - stage: release
       env: Docs
       install:
+        - bundle config set path 'vendor/bundle'
         - bundle install
       script:
         - ./Scripts/jazzy.sh
