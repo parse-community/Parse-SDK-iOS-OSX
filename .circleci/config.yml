@@ -131,23 +131,12 @@ workflows:
       - facebook_utils
       - twitter_utils
       - parseui
-      - jazzy
-      - deployment
-      - cocoapods:
-          requires:
-            - deployment
       - carthage:
           requires:
-            - deployment
+            - ios
   nightly:
     jobs:
-      - deployment
-      - cocoapods:
-          requires:
-            - deployment
       - carthage:
-          requires:
-            - deployment
     triggers:
       - schedule:
           cron: "0 1 * * *"
