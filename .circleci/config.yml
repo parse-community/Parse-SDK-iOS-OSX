@@ -136,7 +136,7 @@ workflows:
             - ios
   nightly:
     jobs:
-      - carthage:
+      - carthage
     triggers:
       - schedule:
           cron: "0 1 * * *"
