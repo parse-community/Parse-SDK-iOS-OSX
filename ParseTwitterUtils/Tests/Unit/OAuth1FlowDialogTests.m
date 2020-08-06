@@ -19,12 +19,6 @@
 @interface OAuth1FlowDialogTests : PFTwitterTestCase
 @end
 
-@interface UIDevice (Yolo)
-
-- (void)setOrientation:(UIDeviceOrientation)orientation animated:(BOOL)animated;
-
-@end
-
 @implementation OAuth1FlowDialogTests
 
 ///--------------------------------------
@@ -79,9 +73,12 @@
     [flowDialog dismissAnimated:NO];
 }
 
-- (void)testRotation {
+/** This test is broken by iOS 13. The UIDevice -setOrientation:animated is no longer available and there doesn't seem to be a new equivalent. Leaving this here so we know it was once a thing.
+ 
+    If we find the need to test this again, a different approach such as a UI test should be used.*/
+- (void)skip_testRotation {
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait];
-    [[UIDevice currentDevice] setOrientation:UIDeviceOrientationPortrait animated:NO];
+//    [[UIDevice currentDevice] setOrientation:UIDeviceOrientationPortrait animated:NO];
 
     PFOAuth1FlowDialog *flowDialog = [[PFOAuth1FlowDialog alloc] initWithURL:nil queryParameters:nil];
 
@@ -89,14 +86,14 @@
     CGRect oldBounds = flowDialog.bounds;
 
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft];
-    [[UIDevice currentDevice] setOrientation:UIDeviceOrientationLandscapeLeft animated:NO];
+//    [[UIDevice currentDevice] setOrientation:UIDeviceOrientationLandscapeLeft animated:NO];
     [[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
 
     CGRect newBounds = flowDialog.bounds;
     XCTAssertFalse(CGRectEqualToRect(oldBounds, newBounds));
 
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait];
-    [[UIDevice currentDevice] setOrientation:UIDeviceOrientationPortrait animated:NO];
+//    [[UIDevice currentDevice] setOrientation:UIDeviceOrientationPortrait animated:NO];
     [[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
 
     newBounds = flowDialog.bounds;

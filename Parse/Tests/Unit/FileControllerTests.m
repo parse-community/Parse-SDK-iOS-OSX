@@ -72,9 +72,8 @@
 }
 
 - (void)tearDown {
-    [super tearDown];
-
     [[PFFileManager removeItemAtPathAsync:[self temporaryDirectory]] waitUntilFinished];
+    [super tearDown];
 }
 
 ///--------------------------------------
