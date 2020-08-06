@@ -88,10 +88,7 @@
 }
 
 - (void)tearDown {
-    dispatch_sync(_mockQueue, ^{
-        [self->_mocks makeObjectsPerformSelector:@selector(stopMocking)];
-    });
-
+    [_mocks removeAllObjects];
     _mocks = nil;
     _mockQueue = nil;
 

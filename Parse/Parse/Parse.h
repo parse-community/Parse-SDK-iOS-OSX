@@ -243,4 +243,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+///--------------------------------------
+#pragma mark - Notifications
+///--------------------------------------
+
+/**
+ For testing purposes. Allows testers to know when init is complete.
+ */
+extern NSString *const _Nonnull PFParseInitializeDidCompleteNotification;
+
 NS_ASSUME_NONNULL_END
