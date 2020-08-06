@@ -62,20 +62,14 @@
 		4A0ECC1D200D8C0200BA84A3 /* PFRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A9442200D0226005D8F4B /* PFRect.h */; };
 		4A0ECC1E200D8C0200BA84A3 /* ParseUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A947C200D0226005D8F4B /* ParseUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4A0ECC1F200D8C0200BA84A3 /* PFActivityIndicatorTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A943A200D0226005D8F4B /* PFActivityIndicatorTableViewCell.h */; };
-		4A0ECC6F200D98FE00BA84A3 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94DA200D04DE005D8F4B /* ParseFacebookUtilsV4.framework */; };
 		4A0ECC72200D992600BA84A3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A941E200D01F1005D8F4B /* Bolts.framework */; };
 		4A0ECCAE200DA7F300BA84A3 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9497200D0329005D8F4B /* ParseUI.framework */; };
 		4A0ECCB2200DA92700BA84A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC73200D993000BA84A3 /* UIKit.framework */; };
-		4A1350D02027F6AB000F5FD5 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC24200D8C0200BA84A3 /* ParseUI.framework */; };
 		4A1350D12027F6AB000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E45B2027DC000066DE1A /* Parse.framework */; };
 		4A1350D22027F6AB000F5FD5 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E43A2027CC330066DE1A /* ParseFacebookUtilsV4.framework */; };
 		4A1350D32027F6AB000F5FD5 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4272027CC2D0066DE1A /* ParseTwitterUtils.framework */; };
 		4A1351E1202818EF000F5FD5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351DF202818EE000F5FD5 /* FBSDKLoginKit.framework */; };
 		4A1351E2202818EF000F5FD5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351E0202818EE000F5FD5 /* FBSDKCoreKit.framework */; };
-		4A1352392028205A000F5FD5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13523820282059000F5FD5 /* Bolts.framework */; };
-		4A9A941A200D01F1005D8F4B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A941E200D01F1005D8F4B /* Bolts.framework */; };
-		4A9A941B200D01F1005D8F4B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A941F200D01F1005D8F4B /* Parse.framework */; };
-		4A9A941D200D01F1005D8F4B /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9421200D01F1005D8F4B /* ParseTwitterUtils.framework */; };
 		4A9A94A0200D03AA005D8F4B /* PFResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A9424200D0226005D8F4B /* PFResources.m */; };
 		4A9A94A1200D03AA005D8F4B /* PFResources.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9A9425200D0226005D8F4B /* PFResources.h */; };
 		4A9A94A2200D03B6005D8F4B /* PFProductTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A9428200D0226005D8F4B /* PFProductTableViewController.m */; };
@@ -189,6 +183,20 @@
 		B9DDA281243C320E0003061D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4592027DC000066DE1A /* Parse.framework */; };
 		B9DDA283243C322D0003061D /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4272027CC2D0066DE1A /* ParseTwitterUtils.framework */; };
 		B9DDA284243C32E50003061D /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4362027CC330066DE1A /* ParseFacebookUtilsV4.framework */; };
+		BC0632E023ABCC8F0089096D /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0632DC23ABCB1D0089096D /* AuthenticationServices.framework */; };
+		BC0632E423AD005E0089096D /* PFAppleUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0632E323AD005E0089096D /* PFAppleUtils.m */; };
+		BC0632E823AD03B30089096D /* PFAppleAuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0632E723AD03B30089096D /* PFAppleAuthenticationProvider.m */; };
+		BC0632EA23AD3F050089096D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13523820282059000F5FD5 /* Bolts.framework */; };
+		BC488EA0246B196800947E3C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC488E9F246B196800947E3C /* ParseUI.framework */; };
+		BC488EA1246B196800947E3C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC488E9F246B196800947E3C /* ParseUI.framework */; };
+		BC488EA2246B196800947E3C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC488E9F246B196800947E3C /* ParseUI.framework */; };
+		BC8C2923246B1873000AEE3F /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9497200D0329005D8F4B /* ParseUI.framework */; };
+		BCA5CC8523BFCFB8003BC0A0 /* SignInWithAppleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCBE8CB23BFB89D0044A79C /* SignInWithAppleTests.m */; };
+		BCCBE8BD23BFA17B0044A79C /* apple_icon@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCCBE8BA23BFA17B0044A79C /* apple_icon@3x.jpg */; };
+		BCCBE8BE23BFA17B0044A79C /* apple_icon@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCCBE8BB23BFA17B0044A79C /* apple_icon@2x.jpg */; };
+		BCCBE8BF23BFA17B0044A79C /* apple_icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCCBE8BC23BFA17B0044A79C /* apple_icon.jpg */; };
+		BCCBE8CE23BFB89D0044A79C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9497200D0329005D8F4B /* ParseUI.framework */; };
+		BCCBE8E023BFC8BF0044A79C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCCBE8DF23BFC8BF0044A79C /* OCMock.framework */; };
 		F57F3D231B0C03D40087F60B /* DeletionCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D201B0C03C90087F60B /* DeletionCollectionViewController.m */; };
 		F57F3D241B0C03DB0087F60B /* DeletionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D1C1B0C03BA0087F60B /* DeletionTableViewController.m */; };
 		F57F3D271B0C050C0087F60B /* DeletionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D251B0C04EF0087F60B /* DeletionTableViewController.swift */; };
@@ -427,7 +435,21 @@
 			remoteGlobalIDString = 81C582E11C3B0A98000063C6;
 			remoteInfo = "Parse-iOS-Dynamic";
 		};
-		B9DDA27F243C31E30003061D /* PBXContainerItemProxy */ = {
+		BCCBE8CF23BFB89D0044A79C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A9A9496200D0329005D8F4B;
+			remoteInfo = ParseUI;
+		};
+		BCCBE8D723BFB9EB0044A79C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81472F661A1AB33800FD6EED;
+			remoteInfo = ParseUIDemo;
+		};
+		BCDB91EE246B199D0086532F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4A51E44B2027DC000066DE1A /* Parse.xcodeproj */;
 			proxyType = 1;
@@ -438,8 +460,6 @@
 
 /* Begin PBXFileReference section */
 		06A1EF631BB6799700BA55EC /* ParseUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		06A1EF641BB6799700BA55EC /* ParseUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A0ECC24200D8C0200BA84A3 /* ParseUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A0ECC73200D993000BA84A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4A0ECC77200D995200BA84A3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4A0ECC7B200D996B00BA84A3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -606,6 +626,21 @@
 		81FC6B6B1A9D1CE900104E45 /* SubtitleImageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitleImageCollectionViewController.swift; sourceTree = "<group>"; };
 		81FC6B711A9D1CFD00104E45 /* SimpleQueryCollectionStoryboard-Swift.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "SimpleQueryCollectionStoryboard-Swift.storyboard"; path = "ParseUIDemo/Swift/Resources/SimpleQueryCollectionStoryboard-Swift.storyboard"; sourceTree = SOURCE_ROOT; };
 		81FC6B741A9D1D4700104E45 /* CustomProductTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomProductTableViewController.swift; sourceTree = "<group>"; };
+		BC0632DC23ABCB1D0089096D /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
+		BC0632E223AD005E0089096D /* PFAppleUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFAppleUtils.h; sourceTree = "<group>"; };
+		BC0632E323AD005E0089096D /* PFAppleUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PFAppleUtils.m; sourceTree = "<group>"; };
+		BC0632E623AD03B20089096D /* PFAppleAuthenticationProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFAppleAuthenticationProvider.h; sourceTree = "<group>"; };
+		BC0632E723AD03B30089096D /* PFAppleAuthenticationProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PFAppleAuthenticationProvider.m; sourceTree = "<group>"; };
+		BC32E14523ABAE04009BDFCD /* ParseUIDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ParseUIDemo.entitlements; path = ParseUIDemo/ParseUIDemo.entitlements; sourceTree = "<group>"; };
+		BC488E9E246B196800947E3C /* ParseUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC488E9F246B196800947E3C /* ParseUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCCBE8BA23BFA17B0044A79C /* apple_icon@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "apple_icon@3x.jpg"; sourceTree = "<group>"; };
+		BCCBE8BB23BFA17B0044A79C /* apple_icon@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "apple_icon@2x.jpg"; sourceTree = "<group>"; };
+		BCCBE8BC23BFA17B0044A79C /* apple_icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = apple_icon.jpg; sourceTree = "<group>"; };
+		BCCBE8C923BFB89D0044A79C /* SignInWithAppleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignInWithAppleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCCBE8CB23BFB89D0044A79C /* SignInWithAppleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignInWithAppleTests.m; sourceTree = "<group>"; };
+		BCCBE8CD23BFB89D0044A79C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCCBE8DF23BFC8BF0044A79C /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57F3D1B1B0C03BA0087F60B /* DeletionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeletionTableViewController.h; sourceTree = "<group>"; };
 		F57F3D1C1B0C03BA0087F60B /* DeletionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeletionTableViewController.m; sourceTree = "<group>"; };
 		F57F3D1F1B0C03C90087F60B /* DeletionCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeletionCollectionViewController.h; sourceTree = "<group>"; };
@@ -636,14 +671,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A1350D02027F6AB000F5FD5 /* ParseUI.framework in Frameworks */,
 				4A1351E2202818EF000F5FD5 /* FBSDKCoreKit.framework in Frameworks */,
+				BC8C2923246B1873000AEE3F /* ParseUI.framework in Frameworks */,
+				BC488EA1246B196800947E3C /* ParseUI.framework in Frameworks */,
 				4A1350D12027F6AB000F5FD5 /* Parse.framework in Frameworks */,
 				4A1350D22027F6AB000F5FD5 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				4A1350D32027F6AB000F5FD5 /* ParseTwitterUtils.framework in Frameworks */,
 				4A0ECCB2200DA92700BA84A3 /* UIKit.framework in Frameworks */,
 				4A9A94F7200D125A005D8F4B /* AudioToolbox.framework in Frameworks */,
-				4A1352392028205A000F5FD5 /* Bolts.framework in Frameworks */,
+				BC0632EA23AD3F050089096D /* Bolts.framework in Frameworks */,
 				4A9A94F5200D1252005D8F4B /* SystemConfiguration.framework in Frameworks */,
 				4A9A94F4200D1248005D8F4B /* Social.framework in Frameworks */,
 				4A1351E1202818EF000F5FD5 /* FBSDKLoginKit.framework in Frameworks */,
@@ -660,12 +696,20 @@
 				4A9A94E9200D05AA005D8F4B /* Social.framework in Frameworks */,
 				4A9A94E7200D05A5005D8F4B /* SystemConfiguration.framework in Frameworks */,
 				4A9A94E5200D0598005D8F4B /* libsqlite3.tbd in Frameworks */,
-				4A0ECC6F200D98FE00BA84A3 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				BC0632E023ABCC8F0089096D /* AuthenticationServices.framework in Frameworks */,
 				4A9A94E2200D0574005D8F4B /* FBSDKCoreKit.framework in Frameworks */,
-				4A9A941A200D01F1005D8F4B /* Bolts.framework in Frameworks */,
-				4A9A941B200D01F1005D8F4B /* Parse.framework in Frameworks */,
+				BC488EA0246B196800947E3C /* ParseUI.framework in Frameworks */,
 				4A9A94E3200D0574005D8F4B /* FBSDKLoginKit.framework in Frameworks */,
-				4A9A941D200D01F1005D8F4B /* ParseTwitterUtils.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCCBE8C623BFB89D0044A79C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC488EA2246B196800947E3C /* ParseUI.framework in Frameworks */,
+				BCCBE8E023BFC8BF0044A79C /* OCMock.framework in Frameworks */,
+				BCCBE8CE23BFB89D0044A79C /* ParseUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,13 +719,16 @@
 		0867D691FE84028FC02AAC07 /* Breakpad */ = {
 			isa = PBXGroup;
 			children = (
+				BC0632E123ACF6700089096D /* Sign In With Apple */,
 				4A9A9422200D0226005D8F4B /* ParseUI */,
 				81472F621A1AB31F00FD6EED /* ParseUIDemo */,
+				BCCBE8CA23BFB89D0044A79C /* SignInWithAppleTests */,
 				3F5307328F84566C90FBCF25 /* Frameworks */,
 				06A1EF631BB6799700BA55EC /* ParseUIDemo.app */,
-				06A1EF641BB6799700BA55EC /* ParseUIDemo.app */,
 				4A9A9497200D0329005D8F4B /* ParseUI.framework */,
-				4A0ECC24200D8C0200BA84A3 /* ParseUI.framework */,
+				BCCBE8C923BFB89D0044A79C /* SignInWithAppleTests.xctest */,
+				BC488E9E246B196800947E3C /* ParseUIDemo.app */,
+				BC488E9F246B196800947E3C /* ParseUI.framework */,
 			);
 			name = Breakpad;
 			sourceTree = "<group>";
@@ -689,6 +736,8 @@
 		3F5307328F84566C90FBCF25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BCCBE8DF23BFC8BF0044A79C /* OCMock.framework */,
+				BC0632DC23ABCB1D0089096D /* AuthenticationServices.framework */,
 				4A13523820282059000F5FD5 /* Bolts.framework */,
 				4A1351DE202818D9000F5FD5 /* FBSDK */,
 				4A51E44B2027DC000066DE1A /* Parse.xcodeproj */,
@@ -952,6 +1001,9 @@
 		4A9A9467200D0226005D8F4B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BCCBE8BC23BFA17B0044A79C /* apple_icon.jpg */,
+				BCCBE8BB23BFA17B0044A79C /* apple_icon@2x.jpg */,
+				BCCBE8BA23BFA17B0044A79C /* apple_icon@3x.jpg */,
 				4A9A9468200D0226005D8F4B /* twitter_icon@3x.png */,
 				4A9A9469200D0226005D8F4B /* facebook_icon@2x.png */,
 				4A9A946A200D0226005D8F4B /* parse_logo.png */,
@@ -1078,6 +1130,7 @@
 		81472F621A1AB31F00FD6EED /* ParseUIDemo */ = {
 			isa = PBXGroup;
 			children = (
+				BC32E14523ABAE04009BDFCD /* ParseUIDemo.entitlements */,
 				81472FA31A1AB37500FD6EED /* Classes */,
 				81472FA61A1AB37500FD6EED /* Other */,
 				81472FAC1A1AB37500FD6EED /* Resources */,
@@ -1254,6 +1307,26 @@
 			path = ProductTableViewController;
 			sourceTree = "<group>";
 		};
+		BC0632E123ACF6700089096D /* Sign In With Apple */ = {
+			isa = PBXGroup;
+			children = (
+				BC0632E223AD005E0089096D /* PFAppleUtils.h */,
+				BC0632E323AD005E0089096D /* PFAppleUtils.m */,
+				BC0632E623AD03B20089096D /* PFAppleAuthenticationProvider.h */,
+				BC0632E723AD03B30089096D /* PFAppleAuthenticationProvider.m */,
+			);
+			path = "Sign In With Apple";
+			sourceTree = "<group>";
+		};
+		BCCBE8CA23BFB89D0044A79C /* SignInWithAppleTests */ = {
+			isa = PBXGroup;
+			children = (
+				BCCBE8CB23BFB89D0044A79C /* SignInWithAppleTests.m */,
+				BCCBE8CD23BFB89D0044A79C /* Info.plist */,
+			);
+			path = SignInWithAppleTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1350,7 +1423,7 @@
 			);
 			name = "ParseUI-Dynamic";
 			productName = ParseUI;
-			productReference = 4A0ECC24200D8C0200BA84A3 /* ParseUI.framework */;
+			productReference = BC488E9F246B196800947E3C /* ParseUI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		4A9A9496200D0329005D8F4B /* ParseUI */ = {
@@ -1392,7 +1465,7 @@
 			);
 			name = "ParseUIDemo-Swift";
 			productName = ParseUIDemo;
-			productReference = 06A1EF641BB6799700BA55EC /* ParseUIDemo.app */;
+			productReference = BC488E9E246B196800947E3C /* ParseUIDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		81472F661A1AB33800FD6EED /* ParseUIDemo */ = {
@@ -1407,7 +1480,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				B9DDA280243C31E30003061D /* PBXTargetDependency */,
+				BCDB91EF246B199D0086532F /* PBXTargetDependency */,
 				4A1350D72027F846000F5FD5 /* PBXTargetDependency */,
 				4A1350D92027F846000F5FD5 /* PBXTargetDependency */,
 				4A0ECCAD200DA7D100BA84A3 /* PBXTargetDependency */,
@@ -1417,6 +1490,25 @@
 			productReference = 06A1EF631BB6799700BA55EC /* ParseUIDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BCCBE8C823BFB89D0044A79C /* SignInWithAppleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCCBE8D123BFB89D0044A79C /* Build configuration list for PBXNativeTarget "SignInWithAppleTests" */;
+			buildPhases = (
+				BCCBE8C523BFB89D0044A79C /* Sources */,
+				BCCBE8C623BFB89D0044A79C /* Frameworks */,
+				BCCBE8C723BFB89D0044A79C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCCBE8D023BFB89D0044A79C /* PBXTargetDependency */,
+				BCCBE8D823BFB9EB0044A79C /* PBXTargetDependency */,
+			);
+			name = SignInWithAppleTests;
+			productName = SignInWithAppleTests;
+			productReference = BCCBE8C923BFB89D0044A79C /* SignInWithAppleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1424,8 +1516,9 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = PF;
+				DefaultBuildSystemTypeForWorkspace = Original;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Parse Inc.";
 				TargetAttributes = {
 					4A0ECBE4200D8C0200BA84A3 = {
@@ -1437,6 +1530,11 @@
 					};
 					81472F661A1AB33800FD6EED = {
 						CreatedOnToolsVersion = 6.1;
+					};
+					BCCBE8C823BFB89D0044A79C = {
+						CreatedOnToolsVersion = 11.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 81472F661A1AB33800FD6EED;
 					};
 				};
 			};
@@ -1484,6 +1582,7 @@
 				8129E5DE1A9CB067006752BC /* ParseUIDemo-Swift */,
 				4A9A9496200D0329005D8F4B /* ParseUI */,
 				4A0ECBE4200D8C0200BA84A3 /* ParseUI-Dynamic */,
+				BCCBE8C823BFB89D0044A79C /* SignInWithAppleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1670,8 +1769,18 @@
 				81472FBE1A1AB37500FD6EED /* 0.png in Resources */,
 				81472FBF1A1AB37500FD6EED /* 1.png in Resources */,
 				81472FC01A1AB37500FD6EED /* 2.png in Resources */,
+				BCCBE8BD23BFA17B0044A79C /* apple_icon@3x.jpg in Resources */,
 				812E5C011A7A8EB4000FBDE1 /* SimpleQueryCollectionStoryboard.storyboard in Resources */,
+				BCCBE8BF23BFA17B0044A79C /* apple_icon.jpg in Resources */,
+				BCCBE8BE23BFA17B0044A79C /* apple_icon@2x.jpg in Resources */,
 				81472FBD1A1AB37500FD6EED /* Icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCCBE8C723BFB89D0044A79C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1791,11 +1900,13 @@
 				81C5993F1A64346000F574E8 /* SimpleCollectionViewController.m in Sources */,
 				81472FBB1A1AB37500FD6EED /* main.m in Sources */,
 				81C599421A6454C900F574E8 /* PaginatedCollectionViewController.m in Sources */,
+				BC0632E423AD005E0089096D /* PFAppleUtils.m in Sources */,
 				81472FB31A1AB37500FD6EED /* CustomSignUpViewController.m in Sources */,
 				81472FB41A1AB37500FD6EED /* CustomLogInViewController.m in Sources */,
 				81472FB91A1AB37500FD6EED /* CustomProductTableViewController.m in Sources */,
 				819A4B3A1A6808EA00D01241 /* SubtitleImageCollectionViewController.m in Sources */,
 				F57F3D241B0C03DB0087F60B /* DeletionTableViewController.m in Sources */,
+				BC0632E823AD03B30089096D /* PFAppleAuthenticationProvider.m in Sources */,
 				812E5C041A7A8EFB000FBDE1 /* StoryboardCollectionViewController.m in Sources */,
 				81472FB51A1AB37500FD6EED /* SimpleTableViewController.m in Sources */,
 				F57F3D231B0C03D40087F60B /* DeletionCollectionViewController.m in Sources */,
@@ -1806,6 +1917,14 @@
 				81472FB21A1AB37500FD6EED /* PFUIDemoViewController.m in Sources */,
 				81C599491A64636200F574E8 /* SectionedCollectionViewController.m in Sources */,
 				81472FB81A1AB37500FD6EED /* SubtitleImageTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCCBE8C523BFB89D0044A79C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCA5CC8523BFCFB8003BC0A0 /* SignInWithAppleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1877,10 +1996,20 @@
 			name = "Parse-iOS-Dynamic";
 			targetProxy = 4A51E46C2027DC080066DE1A /* PBXContainerItemProxy */;
 		};
-		B9DDA280243C31E30003061D /* PBXTargetDependency */ = {
+		BCCBE8D023BFB89D0044A79C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A9A9496200D0329005D8F4B /* ParseUI */;
+			targetProxy = BCCBE8CF23BFB89D0044A79C /* PBXContainerItemProxy */;
+		};
+		BCCBE8D823BFB9EB0044A79C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81472F661A1AB33800FD6EED /* ParseUIDemo */;
+			targetProxy = BCCBE8D723BFB9EB0044A79C /* PBXContainerItemProxy */;
+		};
+		BCDB91EF246B199D0086532F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Parse-iOS";
-			targetProxy = B9DDA27F243C31E30003061D /* PBXContainerItemProxy */;
+			targetProxy = BCDB91EE246B199D0086532F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2344,8 +2473,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = ParseUIDemo/ParseUIDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2365,7 +2496,7 @@
 				INFOPLIST_FILE = ParseUIDemo/Other/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.parse.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.parse.ParseUIDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2387,6 +2518,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = ParseUIDemo/ParseUIDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2402,9 +2534,89 @@
 				INFOPLIST_FILE = ParseUIDemo/Other/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.parse.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.parse.ParseUIDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BCCBE8D223BFB89D0044A79C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = SignInWithAppleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.parseplatform.SignInWithAppleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParseUIDemo.app/ParseUIDemo";
+			};
+			name = Debug;
+		};
+		BCCBE8D323BFB89D0044A79C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = SignInWithAppleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.parseplatform.SignInWithAppleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParseUIDemo.app/ParseUIDemo";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2453,6 +2665,15 @@
 			buildConfigurations = (
 				81472F881A1AB33800FD6EED /* Debug */,
 				81472F891A1AB33800FD6EED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCCBE8D123BFB89D0044A79C /* Build configuration list for PBXNativeTarget "SignInWithAppleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCCBE8D223BFB89D0044A79C /* Debug */,
+				BCCBE8D323BFB89D0044A79C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
