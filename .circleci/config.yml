@@ -31,6 +31,7 @@ jobs:
       - checkout
       - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run: bundle exec rake test:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
