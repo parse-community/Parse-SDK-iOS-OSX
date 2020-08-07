@@ -90,22 +90,6 @@ jobs:
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
-  deployment:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache: *cache-pull
-      - run: *prepare
-      - save_cache: *cache-push
-      - run: bundle exec rake package:release
-  jazzy:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache: *cache-pull
-      - run: *prepare
-      - save_cache: *cache-push
-      - run: ./Scripts/jazzy.sh
   carthage:
     <<: *defaults
     steps:
@@ -114,14 +98,6 @@ jobs:
       - run: *prepare
       - save_cache: *cache-push
       - run: bundle exec rake test:carthage
-  cocoapods:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache: *cache-pull
-      - run: *prepare
-      - save_cache: *cache-push
-      - run: bundle exec rake test:cocoapods
 
 workflows:
   version: 2
