@@ -34,7 +34,7 @@
 static NSString *const PFLogInViewDefaultLogoImageName = @"parse_logo.png";
 static NSString *const PFLogInViewDefaultFacebookButtonImageName = @"facebook_icon.png";
 static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon.png";
-static NSString *const PFLogInViewDefaultAppleButtonImageName = @"apple_icon.jpg";
+static NSString *const PFLogInViewDefaultAppleButtonImageName = @"apple_icon.png";
 
 ///--------------------------------------
 #pragma mark - Accessibility Identifiers
