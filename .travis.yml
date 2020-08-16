@@ -37,7 +37,7 @@ jobs:
       deploy:
         - provider: pages
           skip_cleanup: true
-          github_token: $PERSONAL_ACCESS_TOKEN
+          github_token: $GITHUB_TOKEN
           local_dir: ./docs/
           on:
             all_branches: true
