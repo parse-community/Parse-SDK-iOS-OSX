@@ -9,10 +9,33 @@
 
 #import "PFOAuth1FlowDialog.h"
 #import "PFTwitterTestCase.h"
+#import <WebKit/WebKit.h>
 
 @interface UIActivityIndicatorView (Private)
 
 - (void)_generateImages;
+
+@end
+
+@interface FakeWKNavigationAction : WKNavigationAction
+// Redefined WKNavigationAction properties as readwrite.
+@property(nullable, nonatomic, copy) WKFrameInfo* sourceFrame;
+@property(nullable, nonatomic, copy) WKFrameInfo* targetFrame;
+@property(nonatomic) WKNavigationType navigationType;
+@property(nullable, nonatomic, copy) NSURLRequest* request;
+
+@end
+
+@implementation FakeWKNavigationAction
+@synthesize sourceFrame, targetFrame, navigationType, request;
+
++ (Class)class {
+    return [super class];
+}
+
++ (Class)_nilClass {
+    return nil;
+}
 
 @end
 
@@ -106,33 +129,50 @@
     NSURL *sampleURL = [NSURL URLWithString:@"http://foo.bar"];
     NSURL *successURL = [NSURL URLWithString:@"foo://success"];
 
-    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    //XCTestExpectation *flowExpectation = [[XCTestExpectation alloc] initWithDescription: @"Waiting for redirect"];
+    XCTestExpectation *flowExpectation = [self currentSelectorTestExpectation];
+    
     PFOAuth1FlowDialog *flowDialog = [[PFOAuth1FlowDialog alloc] initWithURL:sampleURL queryParameters:nil];
     flowDialog.redirectURLPrefix = @"foo://";
     flowDialog.completion = ^(BOOL succeeded, NSURL *url, NSError *error) {
-        XCTAssertTrue(succeeded);
-        XCTAssertNil(error);
-        XCTAssertEqualObjects(url, successURL);
-
-        [expectation fulfill];
+        XCTAssertTrue(succeeded, @"Flow Dialogue Failed");
+        XCTAssertNil(error, @"error");
+        XCTAssertEqualObjects(url, successURL, @"url's arent equal");
+        [flowExpectation fulfill];
     };
 
     [flowDialog showAnimated:NO];
 
-    id webView = PFStrictClassMock([UIWebView class]);
+    id webView = PFClassMock([WKWebView class]);
 
     NSURLRequest *request = [NSURLRequest requestWithURL:sampleURL];
-    XCTAssertTrue([flowDialog webView:webView
-           shouldStartLoadWithRequest:request
-                       navigationType:UIWebViewNavigationTypeOther]);
+    XCTestExpectation *policyExpectation = [[XCTestExpectation alloc] initWithDescription:@"Waiting for allowed policy decision"];
+    
+    FakeWKNavigationAction *navigationAction = [[FakeWKNavigationAction alloc] init];
+    navigationAction.navigationType = WKNavigationTypeOther;
+    navigationAction.request = request;
+    
+    [flowDialog webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:^(WKNavigationActionPolicy policy) {
+        XCTAssertTrue(policy == WKNavigationActionPolicyAllow, @"policy not allowed");
+        [policyExpectation fulfill];
+    }];
+    
+    XCTestExpectation *canceledExpectation = [[XCTestExpectation alloc] initWithDescription:@"Waiting for canceled policy decision"];
 
-    [flowDialog webViewDidStartLoad:webView];
-    [flowDialog webViewDidFinishLoad:webView];
-
-    NSURLRequest *successRequest = [NSURLRequest requestWithURL:successURL];
-    [flowDialog webView:webView shouldStartLoadWithRequest:successRequest navigationType:UIWebViewNavigationTypeOther];
-
-    [self waitForTestExpectations];
+    WKNavigation* navigation = (WKNavigation *)([[NSObject alloc] init]);
+    [flowDialog webView:webView didStartProvisionalNavigation:navigation];
+    [flowDialog webView:webView didFinishNavigation:navigation];
+    
+    FakeWKNavigationAction *successAction = [[FakeWKNavigationAction alloc] init];
+    successAction.navigationType = WKNavigationTypeOther;
+    successAction.request = [NSURLRequest requestWithURL:successURL];
+    
+    [flowDialog webView:webView decidePolicyForNavigationAction:successAction decisionHandler:^(WKNavigationActionPolicy policy) {
+        XCTAssertTrue(policy == WKNavigationActionPolicyCancel);
+        [canceledExpectation fulfill];
+    }];
+    
+    [self waitForExpectations:@[policyExpectation, flowExpectation, canceledExpectation] timeout:20];
 }
 
 @end
