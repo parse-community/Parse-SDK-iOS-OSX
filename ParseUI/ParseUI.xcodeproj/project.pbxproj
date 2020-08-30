@@ -192,9 +192,6 @@
 		BC488EA2246B196800947E3C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC488E9F246B196800947E3C /* ParseUI.framework */; };
 		BC8C2923246B1873000AEE3F /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9497200D0329005D8F4B /* ParseUI.framework */; };
 		BCA5CC8523BFCFB8003BC0A0 /* SignInWithAppleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCBE8CB23BFB89D0044A79C /* SignInWithAppleTests.m */; };
-		BCCBE8BD23BFA17B0044A79C /* apple_icon@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCCBE8BA23BFA17B0044A79C /* apple_icon@3x.jpg */; };
-		BCCBE8BE23BFA17B0044A79C /* apple_icon@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCCBE8BB23BFA17B0044A79C /* apple_icon@2x.jpg */; };
-		BCCBE8BF23BFA17B0044A79C /* apple_icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCCBE8BC23BFA17B0044A79C /* apple_icon.jpg */; };
 		BCCBE8CE23BFB89D0044A79C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9497200D0329005D8F4B /* ParseUI.framework */; };
 		BCCBE8E023BFC8BF0044A79C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCCBE8DF23BFC8BF0044A79C /* OCMock.framework */; };
 		F57F3D231B0C03D40087F60B /* DeletionCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D201B0C03C90087F60B /* DeletionCollectionViewController.m */; };
@@ -460,6 +457,9 @@
 
 /* Begin PBXFileReference section */
 		06A1EF631BB6799700BA55EC /* ParseUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40AC79CA24E70415009D834A /* apple_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple_icon@3x.png"; sourceTree = "<group>"; };
+		40AC79CB24E70416009D834A /* apple_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple_icon@2x.png"; sourceTree = "<group>"; };
+		40AC79CC24E70416009D834A /* apple_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple_icon.png; sourceTree = "<group>"; };
 		4A0ECC73200D993000BA84A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4A0ECC77200D995200BA84A3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4A0ECC7B200D996B00BA84A3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -634,9 +634,6 @@
 		BC32E14523ABAE04009BDFCD /* ParseUIDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ParseUIDemo.entitlements; path = ParseUIDemo/ParseUIDemo.entitlements; sourceTree = "<group>"; };
 		BC488E9E246B196800947E3C /* ParseUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC488E9F246B196800947E3C /* ParseUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BCCBE8BA23BFA17B0044A79C /* apple_icon@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "apple_icon@3x.jpg"; sourceTree = "<group>"; };
-		BCCBE8BB23BFA17B0044A79C /* apple_icon@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "apple_icon@2x.jpg"; sourceTree = "<group>"; };
-		BCCBE8BC23BFA17B0044A79C /* apple_icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = apple_icon.jpg; sourceTree = "<group>"; };
 		BCCBE8C923BFB89D0044A79C /* SignInWithAppleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignInWithAppleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCCBE8CB23BFB89D0044A79C /* SignInWithAppleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignInWithAppleTests.m; sourceTree = "<group>"; };
 		BCCBE8CD23BFB89D0044A79C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1001,9 +998,9 @@
 		4A9A9467200D0226005D8F4B /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BCCBE8BC23BFA17B0044A79C /* apple_icon.jpg */,
-				BCCBE8BB23BFA17B0044A79C /* apple_icon@2x.jpg */,
-				BCCBE8BA23BFA17B0044A79C /* apple_icon@3x.jpg */,
+				40AC79CC24E70416009D834A /* apple_icon.png */,
+				40AC79CB24E70416009D834A /* apple_icon@2x.png */,
+				40AC79CA24E70415009D834A /* apple_icon@3x.png */,
 				4A9A9468200D0226005D8F4B /* twitter_icon@3x.png */,
 				4A9A9469200D0226005D8F4B /* facebook_icon@2x.png */,
 				4A9A946A200D0226005D8F4B /* parse_logo.png */,
@@ -1769,10 +1766,7 @@
 				81472FBE1A1AB37500FD6EED /* 0.png in Resources */,
 				81472FBF1A1AB37500FD6EED /* 1.png in Resources */,
 				81472FC01A1AB37500FD6EED /* 2.png in Resources */,
-				BCCBE8BD23BFA17B0044A79C /* apple_icon@3x.jpg in Resources */,
 				812E5C011A7A8EB4000FBDE1 /* SimpleQueryCollectionStoryboard.storyboard in Resources */,
-				BCCBE8BF23BFA17B0044A79C /* apple_icon.jpg in Resources */,
-				BCCBE8BE23BFA17B0044A79C /* apple_icon@2x.jpg in Resources */,
 				81472FBD1A1AB37500FD6EED /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1798,7 +1792,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ ! -d $SRCROOT/Vendor ]; then\nmkdir $SRCROOT/Vendor\nfi\n\ncd $SRCROOT/Vendor\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKLoginKit.framework\" ]]; then\nARCHIVE_NAME=FBSDK.zip\n\nARCHIVE_URL=\"https://origincache.facebook.com/developers/resources/?id=facebook-ios-sdk-current.zip\"\ncurl $ARCHIVE_URL -o $ARCHIVE_NAME\n\nunzip $ARCHIVE_NAME -d fbsdk\nmv fbsdk/FBSDKCoreKit.framework .\nmv fbsdk/FBSDKLoginKit.framework .\n\nrm $ARCHIVE_NAME\nrm -r fbsdk\nfi";
+			shellScript = "if [ ! -d $SRCROOT/Vendor ]; then\nmkdir $SRCROOT/Vendor\nfi\n\ncd $SRCROOT/Vendor\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKLoginKit.framework\" ]]; then\nARCHIVE_NAME=FBSDK.zip\n\nARCHIVE_URL=\"https://origincache.facebook.com/developers/resources/?id=facebook-ios-sdk-current.zip\"\ncurl $ARCHIVE_URL -o $ARCHIVE_NAME\n\nunzip $ARCHIVE_NAME -d fbsdk\nmv fbsdk/FBSDKCoreKit.framework .\nmv fbsdk/FBSDKLoginKit.framework .\n\nrm $ARCHIVE_NAME\nrm -r fbsdk\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
