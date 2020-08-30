@@ -14,7 +14,7 @@ jobs:
       env: Deployment
       install:
         - bundle config set path 'vendor/bundle'
-        - bundle install
+        - travis_wait bundle install
       script:
         - bundle exec rake package:release
       deploy:
@@ -31,7 +31,7 @@ jobs:
       env: Docs
       install:
         - bundle config set path 'vendor/bundle'
-        - bundle install
+        - travis_wait bundle install
       script:
         - ./Scripts/jazzy.sh
       deploy:
@@ -46,7 +46,7 @@ jobs:
       env: Cocoapods
       install:
         - bundle config set path 'vendor/bundle'
-        - bundle install
+        - travis_wait bundle install
         - bundle exec pod setup
       script:
         - travis_wait bundle exec pod lib lint --allow-warnings
