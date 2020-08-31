@@ -118,6 +118,24 @@ You can also include parse as a subproject inside of your application if you'd p
 
 We want to make contributing to this project as easy and transparent as possible. Please refer to the [Contribution Guidelines][contributing].
 
+## Preparing for a new release
+
+### Update the version number
+
+You can use the rake task in order to bump the version number, it's safe, and will properly update all version numbers
+
+```
+$ bundle exec rake package:set_version[X.X.X]
+```
+
+Note that zsh users (such as those using macOS >= 10.15) need to escape the brackets as follows:
+
+```
+$ bundle exec rake package:set_version\[X.X.X\]
+```
+
+Replace X.X.X by the version number and push to the repository.
+
 ## Dependencies
 
 We use the following libraries as dependencies inside of Parse:
