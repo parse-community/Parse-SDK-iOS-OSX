@@ -12,6 +12,8 @@ jobs:
   include:
     - stage: release
       env: Deployment
+      install:
+        - travis_wait bundle install
       script:
         - bundle exec rake package:release
       deploy:
@@ -26,6 +28,8 @@ jobs:
             all_branches: true
     - stage: release
       env: Docs
+      install:
+        - travis_wait bundle install
       script:
         - ./Scripts/jazzy.sh
       deploy:
@@ -38,13 +42,15 @@ jobs:
             tags: true
     - stage: release
       env: Cocoapods
+      install:
+        - travis_wait bundle install
       script:
         - bundle exec pod setup
-        - travis_wait bundle exec pod lib lint --allow-warnings
+        - bundle exec pod lib lint --allow-warnings
       deploy:
         - provider: script
           skip_cleanup: true
-          script: travis_wait bundle exec pod trunk push Parse.podspec --allow-warnings
+          script: bundle exec pod trunk push Parse.podspec --allow-warnings
           on:
             tags: true
             all_branches: true
