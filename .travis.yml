@@ -55,3 +55,9 @@ jobs:
           on:
             tags: true
             all_branches: true
+    - stage: release
+      env: Carthage
+      install:
+        - echo "Skipping bundle install"
+      script:
+        - carthage build --no-skip-current
