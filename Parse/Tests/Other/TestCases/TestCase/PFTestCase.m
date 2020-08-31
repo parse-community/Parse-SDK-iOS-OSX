@@ -106,7 +106,7 @@
 }
 
 - (void)waitForTestExpectations {
-    [self waitForExpectationsWithTimeout:15.0 handler:nil];
+    [self waitForExpectationsWithTimeout:25.0 handler:nil];
 }
 
 ///--------------------------------------
