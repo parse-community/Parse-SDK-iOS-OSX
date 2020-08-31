@@ -60,4 +60,4 @@ jobs:
       install:
         - echo "Skipping bundle install"
       script:
-        - carthage build --no-skip-current
+        - rake test:carthage
