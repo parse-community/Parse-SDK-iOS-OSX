@@ -13,10 +13,9 @@ jobs:
     - stage: release
       env: Deployment
       install:
-        - bundle config set path 'vendor/bundle'
-        - travis_wait bundle install
+        - echo "Skipping bundle install"
       script:
-        - bundle exec rake package:release
+        - rake package:release
       deploy:
         - provider: releases
           token:
@@ -45,15 +44,14 @@ jobs:
     - stage: release
       env: Cocoapods
       install:
-        - bundle config set path 'vendor/bundle'
-        - travis_wait bundle install
+        - echo "Skipping bundle install"
       script:
-        - bundle exec pod setup
-        - travis_wait bundle exec pod lib lint --allow-warnings
+        - pod setup
+        - travis_wait pod lib lint --allow-warnings
       deploy:
         - provider: script
           skip_cleanup: true
-          script: travis_wait bundle exec pod trunk push Parse.podspec --allow-warnings
+          script: travis_wait pod trunk push Parse.podspec --allow-warnings
           on:
             tags: true
             all_branches: true
