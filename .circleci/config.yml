@@ -90,6 +90,14 @@ jobs:
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
+  carthage:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *cache-pull
+      - run: *prepare
+      - save_cache: *cache-push
+      - run: bundle exec rake test:carthage
 
 workflows:
   version: 2
@@ -100,3 +108,13 @@ workflows:
       - facebook_utils
       - twitter_utils
       - parseui
+      - carthage:
+          requires:
+            - ios
+  nightly:
+    jobs:
+      - carthage
+    triggers:
+      - schedule:
+          cron: "0 1 * * *"
+          filters: *filter-only-master
