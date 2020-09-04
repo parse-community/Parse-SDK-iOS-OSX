@@ -83,8 +83,6 @@ workflows:
     jobs:
       - ios
       - macos
-      - facebook_utils
-      - twitter_utils
       - parseui
       - carthage:
           requires:
