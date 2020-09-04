@@ -7,7 +7,7 @@ branches:
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
 cache:
   directories:
-  - ./vendor/bundle
+  - vendor/bundle
 
 jobs:
   include:
