@@ -6,14 +6,13 @@ branches:
     - master
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
 cache:
-  - bundle
+  directories:
+  - ./vendor/bundle
 
 jobs:
   include:
     - stage: release
       env: Deployment
-      before_install:
-        - gem install bundler
       install:
         - bundle config set path 'vendor/bundle'
         - travis_wait bundle install
@@ -31,8 +30,6 @@ jobs:
             all_branches: true
     - stage: release
       env: Docs
-      before_install:
-        - gem install bundler
       install:
         - bundle config set path 'vendor/bundle'
         - travis_wait bundle install
@@ -48,8 +45,6 @@ jobs:
             tags: true
     - stage: release
       env: Cocoapods
-      before_install:
-        - gem install bundler
       install:
         - bundle config set path 'vendor/bundle'
         - travis_wait bundle install
