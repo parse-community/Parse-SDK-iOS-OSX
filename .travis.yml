@@ -47,21 +47,6 @@ jobs:
       after_script:
         - bash <(curl -s https://codecov.io/bash)
     - stage: release
-      env: Docs
-      install:
-        - bundle config set path 'vendor/bundle'
-        - travis_wait bundle install
-      script:
-        - ./Scripts/jazzy.sh
-      deploy:
-        - provider: pages
-          skip_cleanup: true
-          github_token: $GITHUB_TOKEN
-          local_dir: ./docs/
-          on:
-            all_branches: true
-            tags: true
-    - stage: release
       env: Cocoapods
       install:
         - bundle config set path 'vendor/bundle'
@@ -76,3 +61,18 @@ jobs:
           on:
             tags: true
             all_branches: true
+    - stage: release
+      env: Docs
+      install:
+        - bundle config set path 'vendor/bundle'
+        - travis_wait bundle install
+      script:
+        - ./Scripts/jazzy.sh
+      deploy:
+        - provider: pages
+          skip_cleanup: true
+          github_token: $GITHUB_TOKEN
+          local_dir: ./docs/
+          on:
+            all_branches: true
+            tags: true
