@@ -47,6 +47,15 @@ jobs:
       after_script:
         - bash <(curl -s https://codecov.io/bash)
     - stage: release
+      env: ParseUI
+      install:
+        - bundle config set path 'vendor/bundle'
+        - travis_wait bundle install
+      script:
+        - bundle exec rake test:parseui:all
+      after_script:
+        - bash <(curl -s https://codecov.io/bash)
+    - stage: release
       env: Cocoapods
       install:
         - bundle config set path 'vendor/bundle'
