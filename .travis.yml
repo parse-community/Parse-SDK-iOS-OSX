@@ -85,3 +85,4 @@ jobs:
           on:
             all_branches: true
             tags: true
+
