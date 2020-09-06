@@ -128,6 +128,12 @@ You can use the rake task in order to bump the version number, it's safe, and wi
 $ bundle exec rake package:set_version[X.X.X]
 ```
 
+Note that zsh users (such as those using macOS >= 10.15) need to escape the brackets as follows:
+
+```
+$ bundle exec rake package:set_version\[X.X.X\]
+```
+
 Replace X.X.X by the version number and push to the repository.
 
 ## Dependencies
@@ -136,10 +142,6 @@ We use the following libraries as dependencies inside of Parse:
 
  - [Bolts][bolts-framework], for task management.
  - [OCMock][ocmock-framework], for unit testing.
-
-## Other Parse Projects
-
- - [ParseUI for iOS][parseui-link]
 
 ## License
 

@@ -1,8 +1,22 @@
 # Parse-SDK-iOS-OSX Changelog
 
 ### master
-[Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.18.0...master)
+[Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.0...master)
 * _Contributing to this repo? Add info about your change here to be included in next release_
+
+### 1.19.0
+[Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.18.0...1.19.0)
+
+__New features__
+- Added Sign In With Apple support to ParseUI [#1475](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1475), thanks to [Darren Black](https://github.com/drdaz). Transparent icons thanks to [Donald Ness](https://github.com/programmarchy)
+
+__Improvements__
+- Updated Facebook SDK to 6.x [#1504](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1504), thanks to [Markus Winkler](https://github.com/markuswinkler)
+
+__Fixes__
+- Removes deprecated UIWebView usage [#1511](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1511), thanks to [Nathan Kellert](https://github.com/parse-community/Parse-SDK-iOS-OSX/commits?author=noobs2ninjas)
+- Fixes building with Xcode 12 [#1527](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1527), thanks to [Steffen Matthischke](https://github.com/HeEAaD)
+
 
 ### 1.18.0
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.17.3...1.18.0)
