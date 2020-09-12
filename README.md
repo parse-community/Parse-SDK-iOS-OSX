@@ -109,7 +109,6 @@ Compiled frameworks will be in multiple archives inside the `build/release` fold
 - `ParseTwitterUtils-iOS.zip`
 - `ParseUI.zip`
 
-
 #### Using Parse as a sub-project
 
 You can also include parse as a subproject inside of your application if you'd prefer, although we do not recommend this, as it will increase your indexing time significantly. To do so, just drag and drop the Parse.xcodeproj file into your workspace. Note that unit tests will be unavailable if you use Parse like this, as OCMock will be unable to be found.
@@ -118,43 +117,12 @@ You can also include parse as a subproject inside of your application if you'd p
 
 We want to make contributing to this project as easy and transparent as possible. Please refer to the [Contribution Guidelines][contributing].
 
-## Preparing for a new release
-
-### Update the version number
-
-You can use the rake task in order to bump the version number, it's safe, and will properly update all version numbers
-
-```
-$ bundle exec rake package:set_version[X.X.X]
-```
-
-Note that zsh users (such as those using macOS >= 10.15) need to escape the brackets as follows:
-
-```
-$ bundle exec rake package:set_version\[X.X.X\]
-```
-
-Replace X.X.X by the version number and push to the repository.
-
 ## Dependencies
 
 We use the following libraries as dependencies inside of Parse:
 
  - [Bolts][bolts-framework], for task management.
  - [OCMock][ocmock-framework], for unit testing.
-
-## License
-
-```
-Copyright (c) 2015-present, Parse, LLC.
-All rights reserved.
-
-This source code is licensed under the BSD-style license found in the
-LICENSE file in the root directory of this source tree. An additional grant
-of patent rights can be found in the PATENTS file in the same directory.
-```
-
-As of April 5, 2017, Parse, LLC has transferred this code to the parse-community organization, and will no longer be contributing to or distributing this code.
 
  [docs]: http://docs.parseplatform.org/ios/guide/
  [api]: http://parseplatform.org/Parse-SDK-iOS-OSX/api/
