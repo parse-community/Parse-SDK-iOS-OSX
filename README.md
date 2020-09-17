@@ -16,13 +16,12 @@
     <a href=" https://github.com/parse-community/Parse-SDK-iOS-OSX/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-BSD-lightgrey.svg"></a>
     <a href="https://cocoapods.org/pods/Parse"><img alt="Podspec" src="https://img.shields.io/cocoapods/v/Parse.svg"></a>
     <a href="#backers"><img alt="Backers on Open Collective" src="https://opencollective.com/parse-server/backers/badge.svg" /></a>
-  <a href="#sponsors"><img alt="Sponsors on Open Collective" src="https://opencollective.com/parse-server/sponsors/badge.svg" /></a>
+    <a href="#sponsors"><img alt="Sponsors on Open Collective" src="https://opencollective.com/parse-server/sponsors/badge.svg" /></a>
 </p>
 
 <p align="center">
     <a href="https://github.com/carthage/carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
     <a href="https://github.com/parse-community/Parse-SDK-iOS-OSX/blob/master/Vendor"><img alt="Dependencies" src="https://img.shields.io/badge/dependencies-2-yellowgreen.svg"></a>
-    <a href="https://www.versioneye.com/objective-c/parse/references"><img alt="References" src="https://www.versioneye.com/objective-c/parse/reference_badge.svg"></a>
     <a href="https://travis-ci.org/parse-community/Parse-SDK-iOS-OSX/branches"><img alt="Build status" src="https://img.shields.io/travis/parse-community/Parse-SDK-iOS-OSX/master.svg"></a>
     <a href="https://circleci.com/build-insights/gh/parse-community/Parse-SDK-iOS-OSX/master"><img alt="Build status" src="https://circleci.com/gh/parse-community/Parse-SDK-iOS-OSX.svg?style=shield"></a>
     <a href="https://codecov.io/github/parse-community/Parse-SDK-iOS-OSX?branch=master"><img alt="Coverage status" src="https://img.shields.io/codecov/c/github/parse-community/Parse-SDK-iOS-OSX/master.svg"></a>
