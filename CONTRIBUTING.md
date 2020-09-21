@@ -35,6 +35,24 @@ Check the Rakefile and the circleci config for more information.
    
 #### 5. Make sure your code follows the [style guide](#style-guide)
 
+### Preparing for a new release
+
+#### Update the version number
+
+You can use the rake task in order to bump the version number, it's safe, and will properly update all version numbers
+
+```
+$ bundle exec rake package:set_version[X.X.X]
+```
+
+Note that zsh users (such as those using macOS >= 10.15) need to escape the brackets as follows:
+
+```
+$ bundle exec rake package:set_version\[X.X.X\]
+```
+
+Replace X.X.X by the version number and push to the repository.
+
 ## Bugs
 Although we try to keep developing with the Parse Platform easy, you still may run into some issues. General questions should be asked on our [community forum](community-forum), technical questions should be asked on [Stack Overflow][stack-overflow], and for everything else we use GitHub issues.
 
