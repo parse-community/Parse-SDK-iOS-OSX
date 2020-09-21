@@ -360,7 +360,7 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
                 PFUser *user = t.result[PFAppleAuthUserKey];
                 ASAuthorizationAppleIDCredential *cred = t.result[PFAppleAuthCredentialKey];
                 [sself _loginDidSucceedWithUser:user];
-                [sself.delegate logInViewController:sself didReceiveAppleCredential:cred];
+                [sself.delegate logInViewController:sself didReceiveAppleCredential:cred forUser:user];
             }
         });
         return nil;

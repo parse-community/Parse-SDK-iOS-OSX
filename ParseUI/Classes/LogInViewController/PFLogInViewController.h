@@ -186,7 +186,7 @@ shouldBeginLogInWithUsername:(NSString *)username
  @param credential The ASAuthorizationAppleIDCredential object received
  */
 
--(void)logInViewController:(PFLogInViewController *)logInController didReceiveAppleCredential:(ASAuthorizationAppleIDCredential *)credential API_AVAILABLE(ios(13.0));
+-(void)logInViewController:(PFLogInViewController *)logInController didReceiveAppleCredential:(ASAuthorizationAppleIDCredential *)credential forUser:(PFUser *)user API_AVAILABLE(ios(13.0));
 
 @end
 
