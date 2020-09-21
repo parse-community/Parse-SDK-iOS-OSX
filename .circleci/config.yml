@@ -1,12 +1,22 @@
 defaults: &defaults
     macos:
-      xcode: "11.4.1"
+      xcode: "11.6.0"
     shell: /bin/bash --login -eo pipefail
 aliases:
+  - &cache-pull
+    keys:
+      - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+      - gem-cache-v1-{{ arch }}-{{ .Branch }}
+      - gem-cache-v1
+  - &cache-push
+    key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+    paths:
+      - vendor/bundle
   - &prepare
     |
       git submodule update --init --recursive
       sudo gem install bundler
+      bundle config set path 'vendor/bundle'
       bundle install
   - &filter-only-master
     branches:
@@ -19,7 +29,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run: bundle exec rake test:ios
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
@@ -28,7 +40,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run:
           name: "Create and set the default keychain"
           command: |
@@ -43,57 +57,14 @@ jobs:
       - store_artifacts:
           path: build/reports
           destination: test_results
-  facebook_utils:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: *prepare
-      - run: bundle exec rake test:facebook_utils:ios
-      - run: bash <(curl -s https://codecov.io/bash)
-      - store_test_results:
-          path: build/reports
-  twitter_utils:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: *prepare
-      - run: bundle exec rake test:twitter_utils:ios
-      - run: bash <(curl -s https://codecov.io/bash)
-      - store_test_results:
-          path: build/reports
-  parseui:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: *prepare
-      - run: bundle exec rake test:parseui:all
-      - run: bash <(curl -s https://codecov.io/bash)
-      - store_test_results:
-          path: build/reports
-  deployment:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: *prepare
-      - run: bundle exec rake package:release
-  jazzy:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: *prepare
-      - run: ./Scripts/jazzy.sh
   carthage:
     <<: *defaults
     steps:
       - checkout
+      - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run: bundle exec rake test:carthage
-  cocoapods:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: *prepare
-      - run: bundle exec rake test:cocoapods
 
 workflows:
   version: 2
@@ -101,26 +72,12 @@ workflows:
     jobs:
       - ios
       - macos
-      - facebook_utils
-      - twitter_utils
-      - parseui
-      - jazzy
-      - deployment
-      - cocoapods:
-          requires:
-            - deployment
       - carthage:
           requires:
-            - deployment
+            - ios
   nightly:
     jobs:
-      - deployment
-      - cocoapods:
-          requires:
-            - deployment
-      - carthage:
-          requires:
-            - deployment
+      - carthage
     triggers:
       - schedule:
           cron: "0 1 * * *"

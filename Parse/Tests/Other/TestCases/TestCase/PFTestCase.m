@@ -88,10 +88,7 @@
 }
 
 - (void)tearDown {
-    dispatch_sync(_mockQueue, ^{
-        [self->_mocks makeObjectsPerformSelector:@selector(stopMocking)];
-    });
-
+    [_mocks removeAllObjects];
     _mocks = nil;
     _mockQueue = nil;
 
@@ -109,7 +106,7 @@
 }
 
 - (void)waitForTestExpectations {
-    [self waitForExpectationsWithTimeout:15.0 handler:nil];
+    [self waitForExpectationsWithTimeout:25.0 handler:nil];
 }
 
 ///--------------------------------------

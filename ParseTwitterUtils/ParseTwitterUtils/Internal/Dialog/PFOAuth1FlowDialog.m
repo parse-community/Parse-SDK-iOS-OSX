@@ -417,7 +417,7 @@ static CGFloat PFTFloatRound(CGFloat value, NSRoundingMode mode) {
         [self _dismissWithSuccess:YES url:url error:nil];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
-    } else if (navigationAction.navigationType == WKNavigationTypeLinkActivated && [self.dataSource dialog:self shouldOpenURLInExternalBrowser:url]) {
+    } else if (navigationAction.navigationType == UIWebViewNavigationTypeLinkClicked && [self.dataSource dialog:self shouldOpenURLInExternalBrowser:url]) {
         [[UIApplication sharedApplication] openURL:url];
     } else {
         decisionHandler(WKNavigationActionPolicyAllow);

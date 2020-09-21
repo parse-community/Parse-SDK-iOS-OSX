@@ -938,6 +938,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F51535531B57453700C49F56 /* ParseTwitterUtils-iOS.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
@@ -946,6 +947,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F51535531B57453700C49F56 /* ParseTwitterUtils-iOS.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
@@ -1018,6 +1020,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81ECACD91D1E14F300FA7673 /* ParseTwitterUtils-iOS-Dynamic.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_MODULES_AUTOLINK = YES;
 			};
 			name = Debug;
@@ -1026,6 +1029,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81ECACD91D1E14F300FA7673 /* ParseTwitterUtils-iOS-Dynamic.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_MODULES_AUTOLINK = YES;
 			};
 			name = Release;
