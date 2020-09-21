@@ -14,7 +14,7 @@
 #import "PFCommandResult.h"
 #import "PFCommandRunning.h"
 
-@implementation OCMockObject (PFCOmmandRunning)
+@implementation OCMockObject (PFCommandRunning)
 
 - (void)mockCommandResult:(id)result forCommandsPassingTest:(BOOL (^)(PFRESTCommand *command))block {
     PFCommandResult *commandResult = [PFCommandResult commandResultWithResult:result

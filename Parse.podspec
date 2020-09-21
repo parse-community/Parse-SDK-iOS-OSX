@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Parse'
-  s.version          = '1.18.0'
+  s.version          = '1.19.0'
   s.license          =  { :type => 'BSD', :file => 'LICENSE' }
   s.homepage         = 'http://parseplatform.org/'
   s.summary          = 'A library that gives you access to the powerful Parse cloud platform from your iOS/OS X/watchOS/tvOS app.'
@@ -155,7 +155,7 @@ Pod::Spec.new do |s|
     s.requires_arc          = true
     s.ios.deployment_target = '8.0'
     s.source_files        = 'ParseUI/**/*.{h,m}'
-    s.exclude_files = 'ParseUI/ParseUIDemo/**/*', 'ParseUI/Other/ParseUI.h'
+    s.exclude_files = 'ParseUI/ParseUIDemo/**/*', 'ParseUI/Other/ParseUI.h', 'ParseUI/SignInWithAppleTests/'
     s.public_header_files = 'ParseUI/Classes/LogInViewController/*.h',
                             'ParseUI/Classes/SignUpViewController/*.h',
                             'ParseUI/Classes/QueryTableViewController/*.h',

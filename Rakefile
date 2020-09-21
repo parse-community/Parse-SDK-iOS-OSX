@@ -572,7 +572,7 @@ namespace :test do
         t.destinations = [ios_simulator]
         t.configuration = 'Debug'
 
-        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.actions = [XCTask::BuildAction::TEST]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
 

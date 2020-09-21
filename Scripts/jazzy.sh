@@ -2,7 +2,7 @@ mkdir -p ./Parse/Bolts # Create a temporary bolts folder
 cp -R Carthage/Checkouts/Bolts-ObjC/Bolts/**/*.h ./Parse/Bolts # Copy bolts
 
 ver=`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Parse/Parse/Resources/Parse-iOS.Info.plist`
-jazzy \
+bundle exec jazzy \
   --objc \
   --clean \
   --author "Parse Community" \
