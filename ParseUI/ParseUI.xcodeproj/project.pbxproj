@@ -184,8 +184,6 @@
 		B9DDA283243C322D0003061D /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4272027CC2D0066DE1A /* ParseTwitterUtils.framework */; };
 		B9DDA284243C32E50003061D /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4362027CC330066DE1A /* ParseFacebookUtilsV4.framework */; };
 		BC0632E023ABCC8F0089096D /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0632DC23ABCB1D0089096D /* AuthenticationServices.framework */; };
-		BC0632E423AD005E0089096D /* PFAppleUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0632E323AD005E0089096D /* PFAppleUtils.m */; };
-		BC0632E823AD03B30089096D /* PFAppleAuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0632E723AD03B30089096D /* PFAppleAuthenticationProvider.m */; };
 		BC0632EA23AD3F050089096D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13523820282059000F5FD5 /* Bolts.framework */; };
 		BC488EA0246B196800947E3C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC488E9F246B196800947E3C /* ParseUI.framework */; };
 		BC488EA1246B196800947E3C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC488E9F246B196800947E3C /* ParseUI.framework */; };
@@ -1910,13 +1908,11 @@
 				81C5993F1A64346000F574E8 /* SimpleCollectionViewController.m in Sources */,
 				81472FBB1A1AB37500FD6EED /* main.m in Sources */,
 				81C599421A6454C900F574E8 /* PaginatedCollectionViewController.m in Sources */,
-				BC0632E423AD005E0089096D /* PFAppleUtils.m in Sources */,
 				81472FB31A1AB37500FD6EED /* CustomSignUpViewController.m in Sources */,
 				81472FB41A1AB37500FD6EED /* CustomLogInViewController.m in Sources */,
 				81472FB91A1AB37500FD6EED /* CustomProductTableViewController.m in Sources */,
 				819A4B3A1A6808EA00D01241 /* SubtitleImageCollectionViewController.m in Sources */,
 				F57F3D241B0C03DB0087F60B /* DeletionTableViewController.m in Sources */,
-				BC0632E823AD03B30089096D /* PFAppleAuthenticationProvider.m in Sources */,
 				812E5C041A7A8EFB000FBDE1 /* StoryboardCollectionViewController.m in Sources */,
 				81472FB51A1AB37500FD6EED /* SimpleTableViewController.m in Sources */,
 				F57F3D231B0C03D40087F60B /* DeletionCollectionViewController.m in Sources */,
