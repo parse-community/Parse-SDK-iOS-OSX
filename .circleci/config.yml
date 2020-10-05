@@ -72,7 +72,7 @@ workflows:
     jobs:
       - ios
       - macos
-      - carthage:
+      - carthage
   nightly:
     jobs:
       - carthage
