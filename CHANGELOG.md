@@ -1,8 +1,18 @@
 # Parse-SDK-iOS-OSX Changelog
 
 ### master
-[Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.0...master)
+[Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.1...master)
 * _Contributing to this repo? Add info about your change here to be included in next release_
+
+### 1.19.1
+[Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.0...1.19.1)
+
+__Improvements__
+- Allow SDK to build for Mac Catalyst [#1543](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1543), thanks to [Martin Mann](https://github.com/mman)
+
+__Fixes__
+- Pass user details from Sign In With Apple to user [#1551](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1551), thanks to [Darren Black](https://github.com/drdaz)
+- Bolts compilation error in Xcode 12 [#1548](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1548), thanks to [Derek Lee](https://github.com/derekleerock)
 
 ### 1.19.0
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.18.0...1.19.0)
