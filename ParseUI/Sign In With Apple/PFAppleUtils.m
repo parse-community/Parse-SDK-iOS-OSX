@@ -8,7 +8,7 @@
 
 #import "PFAppleUtils.h"
 #import "PFAppleAuthenticationProvider.h"
-@import AuthenticationServices;
+#import <AuthenticationServices/AuthenticationServices.h>
 #import <Bolts/Bolts.h>
 
 NSString *const PFAppleUserAuthenticationType = @"apple";
@@ -53,11 +53,11 @@ API_AVAILABLE(ios(13.0))
     
     __weak typeof(self) wself = self;
     
-    [[[PFUser logInWithAuthTypeInBackground:@"apple"
+    [[[PFUser logInWithAuthTypeInBackground:PFAppleUserAuthenticationType
                                  authData:@{@"token" : tokenString, @"id" : userId}] continueWithSuccessBlock:^id _Nullable(BFTask<__kindof PFUser *> * _Nonnull t) {
         __strong typeof(wself) sself = wself;
-        [sself.completionSource setResult:@{@"user" : t.result,
-                                           @"credential" : cred}];
+        [sself.completionSource setResult:@{PFAppleAuthUserKey : t.result,
+                                            PFAppleAuthCredentialKey : cred}];
         sself.strongSelf = nil;
         return t;
     }] continueWithBlock:^id _Nullable(BFTask * _Nonnull t) {
