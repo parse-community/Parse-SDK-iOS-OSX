@@ -13,6 +13,7 @@ __Improvements__
 __Fixes__
 - Pass user details from Sign In With Apple to user [#1551](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1551), thanks to [Darren Black](https://github.com/drdaz)
 - Bolts compilation error in Xcode 12 [#1548](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1548), thanks to [Derek Lee](https://github.com/derekleerock)
+- App Store submission failed for MinimumOSVersion [#1515](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1515), thanks to [Manuel Trezza](https://github.com/mtrezza)
 
 ### 1.19.0
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.18.0...1.19.0)
