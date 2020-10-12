@@ -9046,7 +9046,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -9065,7 +9065,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
