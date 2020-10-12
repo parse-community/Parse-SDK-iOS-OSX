@@ -184,14 +184,20 @@
 		B9DDA283243C322D0003061D /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4272027CC2D0066DE1A /* ParseTwitterUtils.framework */; };
 		B9DDA284243C32E50003061D /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4362027CC330066DE1A /* ParseFacebookUtilsV4.framework */; };
 		BC0632E023ABCC8F0089096D /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0632DC23ABCB1D0089096D /* AuthenticationServices.framework */; };
-		BC0632E423AD005E0089096D /* PFAppleUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0632E323AD005E0089096D /* PFAppleUtils.m */; };
-		BC0632E823AD03B30089096D /* PFAppleAuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0632E723AD03B30089096D /* PFAppleAuthenticationProvider.m */; };
 		BC0632EA23AD3F050089096D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13523820282059000F5FD5 /* Bolts.framework */; };
 		BC488EA0246B196800947E3C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC488E9F246B196800947E3C /* ParseUI.framework */; };
 		BC488EA1246B196800947E3C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC488E9F246B196800947E3C /* ParseUI.framework */; };
 		BC488EA2246B196800947E3C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC488E9F246B196800947E3C /* ParseUI.framework */; };
 		BC8C2923246B1873000AEE3F /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9497200D0329005D8F4B /* ParseUI.framework */; };
 		BCA5CC8523BFCFB8003BC0A0 /* SignInWithAppleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCBE8CB23BFB89D0044A79C /* SignInWithAppleTests.m */; };
+		BCB2A82E251D337E0030D987 /* PFAppleUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = BC0632E223AD005E0089096D /* PFAppleUtils.h */; };
+		BCB2A82F251D337E0030D987 /* PFAppleUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0632E323AD005E0089096D /* PFAppleUtils.m */; };
+		BCB2A830251D337E0030D987 /* PFAppleAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = BC0632E623AD03B20089096D /* PFAppleAuthenticationProvider.h */; };
+		BCB2A831251D337E0030D987 /* PFAppleAuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0632E723AD03B30089096D /* PFAppleAuthenticationProvider.m */; };
+		BCB2A840251D337F0030D987 /* PFAppleUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = BC0632E223AD005E0089096D /* PFAppleUtils.h */; };
+		BCB2A841251D337F0030D987 /* PFAppleUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0632E323AD005E0089096D /* PFAppleUtils.m */; };
+		BCB2A842251D337F0030D987 /* PFAppleAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = BC0632E623AD03B20089096D /* PFAppleAuthenticationProvider.h */; };
+		BCB2A843251D337F0030D987 /* PFAppleAuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0632E723AD03B30089096D /* PFAppleAuthenticationProvider.m */; };
 		BCCBE8CE23BFB89D0044A79C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A9497200D0329005D8F4B /* ParseUI.framework */; };
 		BCCBE8E023BFC8BF0044A79C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCCBE8DF23BFC8BF0044A79C /* OCMock.framework */; };
 		F57F3D231B0C03D40087F60B /* DeletionCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57F3D201B0C03C90087F60B /* DeletionCollectionViewController.m */; };
@@ -1332,6 +1338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A0ECC03200D8C0200BA84A3 /* PFLoadingView.h in Headers */,
+				BCB2A840251D337F0030D987 /* PFAppleUtils.h in Headers */,
 				4A0ECC04200D8C0200BA84A3 /* PFQueryCollectionViewController.h in Headers */,
 				4A0ECC05200D8C0200BA84A3 /* PFUIAlertView.h in Headers */,
 				4A0ECC06200D8C0200BA84A3 /* PFSignUpViewController.h in Headers */,
@@ -1344,6 +1351,7 @@
 				4A0ECC0D200D8C0200BA84A3 /* PFCollectionViewCell.h in Headers */,
 				4A0ECC0E200D8C0200BA84A3 /* PFDismissButton.h in Headers */,
 				4A0ECC0F200D8C0200BA84A3 /* PFActivityIndicatorCollectionReusableView.h in Headers */,
+				BCB2A842251D337F0030D987 /* PFAppleAuthenticationProvider.h in Headers */,
 				4A0ECC10200D8C0200BA84A3 /* PFQueryTableViewController.h in Headers */,
 				4A0ECC11200D8C0200BA84A3 /* PFLogInViewController.h in Headers */,
 				4A0ECC12200D8C0200BA84A3 /* PFPurchaseTableViewCell.h in Headers */,
@@ -1368,6 +1376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A9A94C6200D03BA005D8F4B /* PFLoadingView.h in Headers */,
+				BCB2A82E251D337E0030D987 /* PFAppleUtils.h in Headers */,
 				4A9A94C9200D03BE005D8F4B /* PFQueryCollectionViewController.h in Headers */,
 				4A9A94B6200D03B6005D8F4B /* PFUIAlertView.h in Headers */,
 				4A9A94AD200D03B6005D8F4B /* PFSignUpViewController.h in Headers */,
@@ -1380,6 +1389,7 @@
 				4A9A94A8200D03B6005D8F4B /* PFCollectionViewCell.h in Headers */,
 				4A9A94BE200D03BA005D8F4B /* PFDismissButton.h in Headers */,
 				4A9A94AF200D03B6005D8F4B /* PFActivityIndicatorCollectionReusableView.h in Headers */,
+				BCB2A830251D337E0030D987 /* PFAppleAuthenticationProvider.h in Headers */,
 				4A9A94CA200D03C8005D8F4B /* PFQueryTableViewController.h in Headers */,
 				4A9A94D3200D03C8005D8F4B /* PFLogInViewController.h in Headers */,
 				4A9A94A4200D03B6005D8F4B /* PFPurchaseTableViewCell.h in Headers */,
@@ -1826,7 +1836,9 @@
 				4A0ECBFC200D8C0200BA84A3 /* PFTableViewCell.m in Sources */,
 				4A0ECBFD200D8C0200BA84A3 /* PFLogInViewController.m in Sources */,
 				4A0ECBFE200D8C0200BA84A3 /* PFSignUpView.m in Sources */,
+				BCB2A843251D337F0030D987 /* PFAppleAuthenticationProvider.m in Sources */,
 				4A0ECBFF200D8C0200BA84A3 /* PFTextField.m in Sources */,
+				BCB2A841251D337F0030D987 /* PFAppleUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1859,7 +1871,9 @@
 				4A9A94A9200D03B6005D8F4B /* PFTableViewCell.m in Sources */,
 				4A9A94D0200D03C8005D8F4B /* PFLogInViewController.m in Sources */,
 				4A9A94AC200D03B6005D8F4B /* PFSignUpView.m in Sources */,
+				BCB2A831251D337E0030D987 /* PFAppleAuthenticationProvider.m in Sources */,
 				4A9A94CE200D03C8005D8F4B /* PFTextField.m in Sources */,
+				BCB2A82F251D337E0030D987 /* PFAppleUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1894,13 +1908,11 @@
 				81C5993F1A64346000F574E8 /* SimpleCollectionViewController.m in Sources */,
 				81472FBB1A1AB37500FD6EED /* main.m in Sources */,
 				81C599421A6454C900F574E8 /* PaginatedCollectionViewController.m in Sources */,
-				BC0632E423AD005E0089096D /* PFAppleUtils.m in Sources */,
 				81472FB31A1AB37500FD6EED /* CustomSignUpViewController.m in Sources */,
 				81472FB41A1AB37500FD6EED /* CustomLogInViewController.m in Sources */,
 				81472FB91A1AB37500FD6EED /* CustomProductTableViewController.m in Sources */,
 				819A4B3A1A6808EA00D01241 /* SubtitleImageCollectionViewController.m in Sources */,
 				F57F3D241B0C03DB0087F60B /* DeletionTableViewController.m in Sources */,
-				BC0632E823AD03B30089096D /* PFAppleAuthenticationProvider.m in Sources */,
 				812E5C041A7A8EFB000FBDE1 /* StoryboardCollectionViewController.m in Sources */,
 				81472FB51A1AB37500FD6EED /* SimpleTableViewController.m in Sources */,
 				F57F3D231B0C03D40087F60B /* DeletionCollectionViewController.m in Sources */,
