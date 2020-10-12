@@ -83,4 +83,8 @@
                            alpha:1.0f];
 }
 
++ (UIColor *)appleButtonBackgroundColor {
+    return [UIColor blackColor];
+}
+
 @end

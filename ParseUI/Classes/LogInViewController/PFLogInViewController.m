@@ -30,6 +30,7 @@
 #import "PFSignUpViewController.h"
 #import "PFTextField.h"
 #import "PFLogInView_Private.h"
+#import "PFAppleUtils.h"
 
 NSString *const PFLogInSuccessNotification = @"com.parse.ui.login.success";
 NSString *const PFLogInFailureNotification = @"com.parse.ui.login.failure";
@@ -52,6 +53,12 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
 @protocol WeaklyReferenceTwitterUtils <NSObject>
 
 + (void)logInWithBlock:(PFUserResultBlock)block;
+
+@end
+
+@protocol WeaklyReferencedAppleUtils <NSObject>
+
++ (BFTask<NSDictionary *> *)logInInBackground;
 
 @end
 
@@ -266,6 +273,9 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
 
     [_logInView.twitterButton removeTarget:nil action:nil forControlEvents:UIControlEventAllEvents];
     [_logInView.twitterButton addTarget:self action:@selector(_loginWithTwitter) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_logInView.appleButton removeTarget:nil action:nil forControlEvents:UIControlEventAllEvents];
+    [_logInView.appleButton addTarget:self action:@selector(_loginWithApple) forControlEvents:UIControlEventTouchUpInside];
 
     [_logInView.signUpButton removeTarget:nil action:nil forControlEvents:UIControlEventAllEvents];
     [_logInView.signUpButton addTarget:self action:@selector(_signupAction) forControlEvents:UIControlEventTouchUpInside];
@@ -317,6 +327,43 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
                                                 @"Password reset error alert title in PFLogInViewController.");
             [PFUIAlertView presentAlertInViewController:self withTitle:title error:error];
         }
+    }];
+}
+
+
+#pragma mark Sign in with Apple
+-(void)_loginWithApple API_AVAILABLE(ios(13.0)){
+    
+    if (self.loading) {
+        return;
+    }
+    
+    self.loading = YES;
+    if ([_logInView.appleButton isKindOfClass:[PFActionButton class]]) {
+        [(PFActionButton *)_logInView.appleButton setLoading:YES];
+    }
+    
+    __weak typeof(self) wself = self;
+    
+    [[PFAppleUtils logInInBackground] continueWithBlock:^id _Nullable(BFTask * _Nonnull t) {
+        __strong typeof(wself) sself = wself;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            sself.loading = NO;
+            if ([sself.logInView.appleButton isKindOfClass:[PFActionButton class]]) {
+                [(PFActionButton *)sself.logInView.appleButton setLoading:NO];
+            }
+            if (t.error) {
+                [sself _loginDidFailWithError:t.error];
+            }
+            else
+            {
+                PFUser *user = t.result[PFAppleAuthUserKey];
+                ASAuthorizationAppleIDCredential *cred = t.result[PFAppleAuthCredentialKey];
+                [sself _loginDidSucceedWithUser:user];
+                [sself.delegate logInViewController:sself didReceiveAppleCredential:cred forUser:user];
+            }
+        });
+        return nil;
     }];
 }
 

@@ -33,6 +33,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@import AuthenticationServices;
+
 @class PFSignUpViewController;
 @class PFUser;
 @protocol PFLogInViewControllerDelegate;
@@ -176,6 +178,15 @@ shouldBeginLogInWithUsername:(NSString *)username
  @param logInController The login view controller where login was cancelled.
  */
 - (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController;
+
+/**
+ Sent to the delegate when user data is received following successful login using Sign In With Apple.
+ 
+ @param logInController The login view controller that received the credentials
+ @param credential The ASAuthorizationAppleIDCredential object received
+ */
+
+-(void)logInViewController:(PFLogInViewController *)logInController didReceiveAppleCredential:(ASAuthorizationAppleIDCredential *)credential forUser:(PFUser *)user API_AVAILABLE(ios(13.0));
 
 @end
 

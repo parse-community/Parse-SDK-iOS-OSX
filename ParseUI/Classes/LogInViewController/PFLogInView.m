@@ -34,6 +34,7 @@
 static NSString *const PFLogInViewDefaultLogoImageName = @"parse_logo.png";
 static NSString *const PFLogInViewDefaultFacebookButtonImageName = @"facebook_icon.png";
 static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon.png";
+static NSString *const PFLogInViewDefaultAppleButtonImageName = @"apple_icon.png";
 
 ///--------------------------------------
 #pragma mark - Accessibility Identifiers
@@ -46,6 +47,7 @@ NSString *const PFLogInViewSignUpButtonAccessibilityIdentifier = @"PFLogInViewSi
 NSString *const PFLogInViewPasswordForgottenButtonAccessibilityIdentifier = @"PFLogInViewPasswordForgottenButtonAccessibilityIdentifier";
 NSString *const PFLogInViewTwitterButtonAccessibilityIdentifier = @"PFLogInViewTwitterButtonAccessibilityIdentifier";
 NSString *const PFLogInViewFacebookButtonAccessibilityIdentifier = @"PFLogInViewFacebookButtonAccessibilityIdentifier";
+NSString *const PFLogInViewAppleButtonAccessibilityIdentifier = @"PFLogInViewAppleButtonAccessibilityIdentifier";
 NSString *const PFLogInViewDismissButtonAccessibilityIdentifier = @"PFLogInViewDismissButtonAccessibilityIdentifier";
 
 @implementation PFLogInView
@@ -84,6 +86,19 @@ NSString *const PFLogInViewDismissButtonAccessibilityIdentifier = @"PFLogInViewD
     [configuration setTitle:PFLocalizedString(@"Twitter", @"Twitter")
              forButtonStyle:PFActionButtonStyleNormal];
     [configuration setTitle:PFLocalizedString(@"Log In with Twitter", @"Log In with Twitter")
+
+             forButtonStyle:PFActionButtonStyleWide];
+
+    return configuration;
+}
+
++ (PFActionButtonConfiguration *)_defaultAppleButtonConfiguration {
+    PFActionButtonConfiguration *configuration = [[PFActionButtonConfiguration alloc] initWithBackgroundImageColor:[PFColor appleButtonBackgroundColor]
+                                                                                                             image:[PFImage imageNamed:PFLogInViewDefaultAppleButtonImageName]];
+
+    [configuration setTitle:PFLocalizedString(@"Apple", @"Apple")
+             forButtonStyle:PFActionButtonStyleNormal];
+    [configuration setTitle:PFLocalizedString(@"Sign in with Apple", @"Sign in with Apple")
 
              forButtonStyle:PFActionButtonStyleWide];
 
@@ -222,6 +237,18 @@ NSString *const PFLogInViewDismissButtonAccessibilityIdentifier = @"PFLogInViewD
         [_twitterButton removeFromSuperview];
         _twitterButton = nil;
     }
+    
+    if (_fields & PFLogInFieldsApple) {
+        if (!_appleButton) {
+            _appleButton = [[PFActionButton alloc] initWithConfiguration:[[self class] _defaultAppleButtonConfiguration]
+                                                               buttonStyle:PFActionButtonStyleNormal];
+            _appleButton.accessibilityIdentifier = PFLogInViewAppleButtonAccessibilityIdentifier;
+            [self addSubview:_appleButton];
+        }
+    } else {
+        [_appleButton removeFromSuperview];
+        _appleButton = nil;
+    }
 }
 
 ///--------------------------------------
@@ -286,7 +313,6 @@ NSString *const PFLogInViewDismissButtonAccessibilityIdentifier = @"PFLogInViewD
         _twitterButton.frame = frame;
 
         contentRect.size.height = CGRectGetMinY(frame) - CGRectGetMinY(contentRect);
-        socialButtonsRect = UIEdgeInsetsInsetRect(contentRect, socialButtonsRectInsets);
     } else if (_facebookButton) {
         CGSize buttonSize = [_facebookButton sizeThatFits:socialButtonsRect.size];
         CGRect frame = PFRectMakeWithOriginSize(socialButtonsRect.origin, buttonSize);
@@ -296,7 +322,6 @@ NSString *const PFLogInViewDismissButtonAccessibilityIdentifier = @"PFLogInViewD
         [(PFActionButton *)_facebookButton setButtonStyle:PFActionButtonStyleWide];
 
         contentRect.size.height = CGRectGetMinY(frame) - CGRectGetMinY(contentRect);
-        socialButtonsRect = UIEdgeInsetsInsetRect(contentRect, socialButtonsRectInsets);
     } else if (_twitterButton) {
         CGSize buttonSize = [_twitterButton sizeThatFits:socialButtonsRect.size];
         CGRect frame = PFRectMakeWithOriginSize(socialButtonsRect.origin, buttonSize);
@@ -306,10 +331,19 @@ NSString *const PFLogInViewDismissButtonAccessibilityIdentifier = @"PFLogInViewD
         [(PFActionButton *)_twitterButton setButtonStyle:PFActionButtonStyleWide];
 
         contentRect.size.height = CGRectGetMinY(frame) - CGRectGetMinY(contentRect);
-        socialButtonsRect = UIEdgeInsetsInsetRect(contentRect, socialButtonsRectInsets);
+    }
+    
+    if (_appleButton) {
+        CGSize buttonSize = [_appleButton sizeThatFits:socialButtonsRect.size];
+        CGRect frame = PFRectMakeWithOriginSize(socialButtonsRect.origin, buttonSize);
+        frame.origin.y = CGRectGetMaxY(socialButtonsRect) - buttonSize.height * 2 - socialButtonsDefaultInset * 2;
+        _appleButton.frame = frame;
+
+        [(PFActionButton *)_appleButton setButtonStyle:PFActionButtonStyleWide];
+        contentRect.size.height = CGRectGetMinY(frame) - CGRectGetMinY(contentRect);
     }
 
-    if (_signUpButton || _facebookButton || _twitterButton) {
+    if (_signUpButton || _facebookButton || _twitterButton || _appleButton) {
         contentRect.size.height -= socialButtonsDefaultInset;
     }
 
