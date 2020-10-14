@@ -1,0 +1,2784 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PFUser Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/objc/Class/PFUser" class="dashAnchor"></a>
+
+    <a title="PFUser Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Parse 1.19.1 Docs
+        </a>
+         (93% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/parse-community/Parse-SDK-iOS-OSX">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://http%3A%2F%2Fparseplatform.org%2FParse-SDK-iOS-OSX%2Fapi%2Fdocsets%2FParse.xml">
+            <img class="header-icon" src="../img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Parse Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      PFUser Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFACL.html">PFACL</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFAnalytics.html">PFAnalytics</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFAnonymousUtils.html">PFAnonymousUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFCloud.html">PFCloud</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFConfig.html">PFConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFEncoder">PFEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFFile">PFFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFFileObject.html">PFFileObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFFileUploadResult">PFFileUploadResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFGeoPoint.html">PFGeoPoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFInstallation.html">PFInstallation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFKnownParseObjectDecoder">PFKnownParseObjectDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFNoObjectEncoder">PFNoObjectEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFObject.html">PFObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFOfflineDecoder">PFOfflineDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFOfflineObjectEncoder">PFOfflineObjectEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFPointerObjectEncoder">PFPointerObjectEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFPointerOrLocalIdObjectEncoder">PFPointerOrLocalIdObjectEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFPolygon.html">PFPolygon</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFPush.html">PFPush</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFQuery.html">PFQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFRelation.html">PFRelation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFRole.html">PFRole</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFSession.html">PFSession</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFUser.html">PFUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Parse.html">Parse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ParseClientConfiguration.html">ParseClientConfiguration</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFInvalidSessionTokenNotification">PFInvalidSessionTokenNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFNetworkDidReceiveURLResponseNotification">PFNetworkDidReceiveURLResponseNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFNetworkNotificationURLRequestUserInfoKey">PFNetworkNotificationURLRequestUserInfoKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFNetworkNotificationURLResponseBodyUserInfoKey">PFNetworkNotificationURLResponseBodyUserInfoKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFNetworkNotificationURLResponseUserInfoKey">PFNetworkNotificationURLResponseUserInfoKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFNetworkWillSendURLRequestNotification">PFNetworkWillSendURLRequestNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFObjectDefaultPin">PFObjectDefaultPin</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFParseErrorDomain">PFParseErrorDomain</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFParseInitializeDidCompleteNotification">PFParseInitializeDidCompleteNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@kPFDeviceType">kPFDeviceType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PFCachePolicy.html">PFCachePolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PFErrorCode.html">PFErrorCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PFLogLevel.html">PFLogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PFFileUploadController.html">PFFileUploadController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PFSubclassing.html">PFSubclassing</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PFUserAuthenticationDelegate.html">PFUserAuthenticationDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ParseMutableClientConfiguration.html">ParseMutableClientConfiguration</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Type%20Definitions.html">Type Definitions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type%20Definitions.html#/c:PFQuery.h@T@PFQueryArrayResultBlock">PFQueryArrayResultBlock</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>PFUser</h1>
+              <div class="declaration">
+                <div class="language">
+                  <p class="aside-title">Objective-C</p>
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">PFUser</span> <span class="p">:</span> <span class="nc"><a href="../Classes/PFObject.html">PFObject</a></span> <span class="o">&lt;</span><span class="n"><a href="../Protocols/PFSubclassing.html">PFSubclassing</a></span><span class="o">&gt;</span></code></pre>
+
+                </div>
+                <div class="language">
+                  <p class="aside-title">Swift</p>
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">PFUser</span> <span class="p">:</span> <span class="kt"><a href="../Classes/PFObject.html">PFObject</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/PFSubclassing.html">PFSubclassing</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>The <code>PFUser</code> class is a local representation of a user persisted to the Parse Data.
+This class is a subclass of a <code><a href="../Classes/PFObject.html">PFObject</a></code>, and retains the same functionality of a <code><a href="../Classes/PFObject.html">PFObject</a></code>,
+but also extends it with various user specific methods, like authentication, signing up, and validation uniqueness.</p>
+
+<p>Many APIs responsible for linking a <code>PFUser</code> with Facebook or Twitter have been deprecated in favor of dedicated
+utilities for each social network. See <code>PFFacebookUtils</code>, <code>PFTwitterUtils</code> and <code><a href="../Classes/PFAnonymousUtils.html">PFAnonymousUtils</a></code> for more information.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Accessing%20the%20Current%20User"></a>
+                <a name="//apple_ref/objc/Section/Accessing the Current User" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Accessing%20the%20Current%20User"></a>
+                  <h3 class="section-name"><p>Accessing the Current User</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)currentUser"></a>
+                    <a name="//apple_ref/objc/Method/+currentUser" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets the currently logged in user from disk and returns an instance of it.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nullable</span> <span class="n">instancetype</span><span class="p">)</span><span class="n">currentUser</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">current</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="k">Self</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Returns a <code>PFUser</code> that is the currently logged in user. If there is none, returns <code>nil</code>.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)getCurrentUserInBackground"></a>
+                    <a name="//apple_ref/objc/Method/+getCurrentUserInBackground" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)getCurrentUserInBackground">+getCurrentUserInBackground</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><em>Asynchronously</em> loads the currently logged in user from disk and returns a task that encapsulates it.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">__kindof</span> <span class="n">PFUser</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">getCurrentUserInBackground</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">getCurrentUserInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFUser</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The task that encapsulates the work being done.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(py)sessionToken"></a>
+                    <a name="//apple_ref/objc/Property/sessionToken" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(py)sessionToken">sessionToken</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The session token for the <code>PFUser</code>.</p>
+
+<p>This is set by the server upon successful authentication.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">sessionToken</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">sessionToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(py)isNew"></a>
+                    <a name="//apple_ref/objc/Property/isNew" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(py)isNew">isNew</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the <code>PFUser</code> was just created from a request.</p>
+
+<p>This is only set after a Facebook or Twitter login.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">isNew</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isNew</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(py)authenticated"></a>
+                    <a name="//apple_ref/objc/Property/authenticated" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(py)authenticated">authenticated</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the user is an authenticated object for the device.</p>
+
+<p>An authenticated <code>PFUser</code> is one that is obtained via a <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(im)signUp:">-signUp:</a></code> or <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)logInWithUsername:password:">+logInWithUsername:password:</a></code> method.
+An authenticated object is required in order to save (with altered values) or delete it.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">assign</span><span class="p">,</span> <span class="n">unsafe_unretained</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span>
+          <span class="n">getter</span><span class="o">=</span><span class="n">isAuthenticated</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">authenticated</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isAuthenticated</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Creating%20a%20New%20User"></a>
+                <a name="//apple_ref/objc/Section/Creating a New User" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Creating%20a%20New%20User"></a>
+                  <h3 class="section-name"><p>Creating a New User</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)user"></a>
+                    <a name="//apple_ref/objc/Method/+user" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)user">+user</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new <code>PFUser</code> object.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">instancetype</span><span class="p">)</span><span class="n">user</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Returns a new <code>PFUser</code> object.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)enableAutomaticUser"></a>
+                    <a name="//apple_ref/objc/Method/+enableAutomaticUser" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)enableAutomaticUser">+enableAutomaticUser</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enables automatic creation of anonymous users.</p>
+
+<p>After calling this method, <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a></code> will always have a value.
+The user will only be created on the server once the user has been saved,
+or once an object with a relation to that user or an ACL that refers to the user has been saved.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)saveEventually">PFObject.-saveEventually</a></code> will not work on if an item being saved has a relation
+to an automatic user that has never been saved.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">enableAutomaticUser</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">enableAutomaticUser</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(py)username"></a>
+                    <a name="//apple_ref/objc/Property/username" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(py)username">username</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The username for the <code>PFUser</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">username</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(py)password"></a>
+                    <a name="//apple_ref/objc/Property/password" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(py)password">password</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>!
+ The password for the <code>PFUser</code>.</p>
+
+<p>This will not be filled in from the server with the password.
+ It is only meant to be set.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">password</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(py)email"></a>
+                    <a name="//apple_ref/objc/Property/email" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(py)email">email</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The email for the <code>PFUser</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">email</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(im)signUpInBackground"></a>
+                    <a name="//apple_ref/objc/Method/-signUpInBackground" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(im)signUpInBackground">-signUpInBackground</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Signs up the user <em>asynchronously</em>.</p>
+
+<p>This will also enforce that the username isn&rsquo;t already taken.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <p>Make sure that password and username are set before calling this method.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">signUpInBackground</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">signUpInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The task, that encapsulates the work being done.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(im)signUpInBackgroundWithBlock:"></a>
+                    <a name="//apple_ref/objc/Method/-signUpInBackgroundWithBlock:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(im)signUpInBackgroundWithBlock:">-signUpInBackgroundWithBlock:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Signs up the user <em>asynchronously</em>.</p>
+
+<p>This will also enforce that the username isn&rsquo;t already taken.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <p>Make sure that password and username are set before calling this method.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">signUpInBackgroundWithBlock</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">PFBooleanResultBlock</span><span class="p">)</span><span class="nv">block</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">signUpInBackground</span><span class="p">(</span><span class="nv">block</span><span class="p">:</span> <span class="kt">PFBooleanResultBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The block to execute.
+It should have the following argument signature: <code>^(BOOL succeeded, NSError *error)</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Logging%20In"></a>
+                <a name="//apple_ref/objc/Section/Logging In" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Logging%20In"></a>
+                  <h3 class="section-name"><p>Logging In</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)logInWithUsernameInBackground:password:"></a>
+                    <a name="//apple_ref/objc/Method/+logInWithUsernameInBackground:password:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)logInWithUsernameInBackground:password:">+logInWithUsernameInBackground:<wbr>password:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes an <em>asynchronous</em> request to login a user with specified credentials.</p>
+
+<p>Returns an instance of the successfully logged in <code>PFUser</code>.
+This also caches the user locally so that calls to <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a></code> will use the latest logged in user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">__kindof</span> <span class="n">PFUser</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span>
+    <span class="nf">logInWithUsernameInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">username</span>
+                         <span class="nf">password</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">password</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logInWithUsername</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFUser</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>username</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The username of the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The password of the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The task, that encapsulates the work being done.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)logInWithUsernameInBackground:password:block:"></a>
+                    <a name="//apple_ref/objc/Method/+logInWithUsernameInBackground:password:block:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)logInWithUsernameInBackground:password:block:">+logInWithUsernameInBackground:<wbr>password:<wbr>block:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes an <em>asynchronous</em> request to log in a user with specified credentials.</p>
+
+<p>Returns an instance of the successfully logged in <code>PFUser</code>.
+This also caches the user locally so that calls to <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a></code> will use the latest logged in user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">logInWithUsernameInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">username</span>
+                             <span class="nf">password</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">password</span>
+                                <span class="nf">block</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">PFUserResultBlock</span><span class="p">)</span><span class="nv">block</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logInWithUsername</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">block</span><span class="p">:</span> <span class="kt">PFUserResultBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>username</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The username of the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The password of the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The block to execute.
+It should have the following argument signature: <code>^(PFUser *user, NSError *error)</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Becoming%20a%20User"></a>
+                <a name="//apple_ref/objc/Section/Becoming a User" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Becoming%20a%20User"></a>
+                  <h3 class="section-name"><p>Becoming a User</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)becomeInBackground:"></a>
+                    <a name="//apple_ref/objc/Method/+becomeInBackground:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)becomeInBackground:">+becomeInBackground:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes an <em>asynchronous</em> request to become a user with the given session token.</p>
+
+<p>Returns an instance of the successfully logged in <code>PFUser</code>.
+This also caches the user locally so that calls to <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a></code> will use the latest logged in user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">__kindof</span> <span class="n">PFUser</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">becomeInBackground</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">sessionToken</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">become</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">sessionToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFUser</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sessionToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The session token for the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The task, that encapsulates the work being done.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)becomeInBackground:block:"></a>
+                    <a name="//apple_ref/objc/Method/+becomeInBackground:block:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)becomeInBackground:block:">+becomeInBackground:<wbr>block:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes an <em>asynchronous</em> request to become a user with the given session token.</p>
+
+<p>Returns an instance of the successfully logged in <code>PFUser</code>. This also caches the user locally
+so that calls to <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a></code> will use the latest logged in user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">becomeInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">sessionToken</span>
+                     <span class="nf">block</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">PFUserResultBlock</span><span class="p">)</span><span class="nv">block</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">become</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">sessionToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">block</span><span class="p">:</span> <span class="kt">PFUserResultBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sessionToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The session token for the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The block to execute.
+The block should have the following argument signature: <code>^(PFUser *user, NSError *error)</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Revocable%20Session"></a>
+                <a name="//apple_ref/objc/Section/Revocable Session" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Revocable%20Session"></a>
+                  <h3 class="section-name"><p>Revocable Session</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)enableRevocableSessionInBackground"></a>
+                    <a name="//apple_ref/objc/Method/+enableRevocableSessionInBackground" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)enableRevocableSessionInBackground">+enableRevocableSessionInBackground</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enables revocable sessions and migrates the currentUser session token to use revocable session if needed.</p>
+
+<p>This method is required if you want to use <code><a href="../Classes/PFSession.html">PFSession</a></code> APIs
+and your application&rsquo;s &lsquo;Require Revocable Session&rsquo; setting is turned off on <code>http://parse.com</code> app settings.
+After returned <code>BFTask</code> completes - <code><a href="../Classes/PFSession.html">PFSession</a></code> class and APIs will be available for use.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span> <span class="o">*</span><span class="p">)</span><span class="n">enableRevocableSessionInBackground</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">enableRevocableSessionInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">AnyObject</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An instance of <code>BFTask</code> that is completed when revocable
+sessions are enabled and currentUser token is migrated.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)enableRevocableSessionInBackgroundWithBlock:"></a>
+                    <a name="//apple_ref/objc/Method/+enableRevocableSessionInBackgroundWithBlock:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)enableRevocableSessionInBackgroundWithBlock:">+enableRevocableSessionInBackgroundWithBlock:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enables revocable sessions and upgrades the currentUser session token to use revocable session if needed.</p>
+
+<p>This method is required if you want to use <code><a href="../Classes/PFSession.html">PFSession</a></code> APIs
+and legacy sessions are enabled in your application settings on <code>http://parse.com/</code>.
+After returned <code>BFTask</code> completes - <code><a href="../Classes/PFSession.html">PFSession</a></code> class and APIs will be available for use.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">enableRevocableSessionInBackgroundWithBlock</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">nullable</span> <span class="n">PFUserSessionUpgradeResultBlock</span><span class="p">)</span><span class="nv">block</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">enableRevocableSessionInBackground</span><span class="p">(</span><span class="nv">block</span><span class="p">:</span> <span class="kt">PFUserSessionUpgradeResultBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Block that will be called when revocable sessions are enabled and currentUser token is migrated.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Logging%20Out"></a>
+                <a name="//apple_ref/objc/Section/Logging Out" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Logging%20Out"></a>
+                  <h3 class="section-name"><p>Logging Out</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)logOutInBackground"></a>
+                    <a name="//apple_ref/objc/Method/+logOutInBackground" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)logOutInBackground">+logOutInBackground</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><em>Asynchronously</em> logs out the currently logged in user.</p>
+
+<p>This will also remove the session from disk, log out of linked services
+and all future calls to <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a></code> will return <code>nil</code>. This is preferrable to using <code>-logOut</code>,
+unless your code is already running from a background thread.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span> <span class="o">*</span><span class="p">)</span><span class="n">logOutInBackground</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logOutInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">AnyObject</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An instance of <code>BFTask</code>, that is resolved with <code>nil</code> result when logging out completes.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)logOutInBackgroundWithBlock:"></a>
+                    <a name="//apple_ref/objc/Method/+logOutInBackgroundWithBlock:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)logOutInBackgroundWithBlock:">+logOutInBackgroundWithBlock:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><em>Asynchronously</em> logs out the currently logged in user.</p>
+
+<p>This will also remove the session from disk, log out of linked services
+and all future calls to <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a></code> will return <code>nil</code>. This is preferrable to using <code>-logOut</code>,
+unless your code is already running from a background thread.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">logOutInBackgroundWithBlock</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">PFUserLogoutResultBlock</span><span class="p">)</span><span class="nv">block</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logOutInBackground</span><span class="p">(</span><span class="nv">block</span><span class="p">:</span> <span class="kt">PFUserLogoutResultBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A block that will be called when logging out completes or fails.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Requesting%20a%20Password%20Reset"></a>
+                <a name="//apple_ref/objc/Section/Requesting a Password Reset" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Requesting%20a%20Password%20Reset"></a>
+                  <h3 class="section-name"><p>Requesting a Password Reset</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)requestPasswordResetForEmailInBackground:"></a>
+                    <a name="//apple_ref/objc/Method/+requestPasswordResetForEmailInBackground:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)requestPasswordResetForEmailInBackground:">+requestPasswordResetForEmailInBackground:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Send a password reset request asynchronously for a specified email and sets an
+error object. If a user account exists with that email, an email will be sent to
+that address with instructions on how to reset their password.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">requestPasswordResetForEmailInBackground</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">email</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">requestPasswordResetForEmail</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Email of the account to send a reset password request.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The task, that encapsulates the work being done.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)requestPasswordResetForEmailInBackground:block:"></a>
+                    <a name="//apple_ref/objc/Method/+requestPasswordResetForEmailInBackground:block:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)requestPasswordResetForEmailInBackground:block:">+requestPasswordResetForEmailInBackground:<wbr>block:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Send a password reset request <em>asynchronously</em> for a specified email.</p>
+
+<p>If a user account exists with that email, an email will be sent to that address
+with instructions on how to reset their password.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">requestPasswordResetForEmailInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">email</span>
+                                           <span class="nf">block</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">PFBooleanResultBlock</span><span class="p">)</span>
+                                                     <span class="n">block</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">requestPasswordResetForEmail</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">block</span><span class="p">:</span> <span class="kt">PFBooleanResultBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Email of the account to send a reset password request.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The block to execute.
+It should have the following argument signature: <code>^(BOOL succeeded, NSError *error)</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Third-party%20Authentication"></a>
+                <a name="//apple_ref/objc/Section/Third-party Authentication" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Third-party%20Authentication"></a>
+                  <h3 class="section-name"><p>Third-party Authentication</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)registerAuthenticationDelegate:forAuthType:"></a>
+                    <a name="//apple_ref/objc/Method/+registerAuthenticationDelegate:forAuthType:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)registerAuthenticationDelegate:forAuthType:">+registerAuthenticationDelegate:<wbr>forAuthType:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Registers a third party authentication delegate.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    This method shouldn&rsquo;t be invoked directly unless developing a third party authentication library.
+
+</div><div class="aside aside-see">
+    <p class="aside-title">See</p>
+    <p>PFUserAuthenticationDelegate</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">registerAuthenticationDelegate</span><span class="p">:</span>
+            <span class="p">(</span><span class="n">nonnull</span> <span class="n">id</span><span class="o">&lt;</span><span class="n"><a href="../Protocols/PFUserAuthenticationDelegate.html">PFUserAuthenticationDelegate</a></span><span class="o">&gt;</span><span class="p">)</span><span class="nv">delegate</span>
+                           <span class="nf">forAuthType</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">authType</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>delegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The third party authenticaiton delegate to be registered.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>authType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the type of third party authentication source.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)logInWithAuthTypeInBackground:authData:"></a>
+                    <a name="//apple_ref/objc/Method/+logInWithAuthTypeInBackground:authData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)logInWithAuthTypeInBackground:authData:">+logInWithAuthTypeInBackground:<wbr>authData:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Logs in a user with third party authentication credentials.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    This method shouldn&rsquo;t be invoked directly unless developing a third party authentication library.
+
+</div><div class="aside aside-see">
+    <p class="aside-title">See</p>
+    <p>PFUserAuthenticationDelegate</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">__kindof</span> <span class="n">PFUser</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span>
+    <span class="nf">logInWithAuthTypeInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">authType</span>
+                         <span class="nf">authData</span><span class="p">:</span>
+                             <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span>
+                                 <span class="n">authData</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logInWithAuthType</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">authType</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">authData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFUser</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>authType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the type of third party authentication source.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>authData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The user credentials of the third party authentication source.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>BFTask</code> that is resolved to <code>PFUser</code> when logging in completes.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(im)linkWithAuthTypeInBackground:authData:"></a>
+                    <a name="//apple_ref/objc/Method/-linkWithAuthTypeInBackground:authData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(im)linkWithAuthTypeInBackground:authData:">-linkWithAuthTypeInBackground:<wbr>authData:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Links this user to a third party authentication library.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    This method shouldn&rsquo;t be invoked directly unless developing a third party authentication library.
+
+</div><div class="aside aside-see">
+    <p class="aside-title">See</p>
+    <p>PFUserAuthenticationDelegate</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span>
+    <span class="nf">linkWithAuthTypeInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">authType</span>
+                        <span class="nf">authData</span><span class="p">:</span>
+                            <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span>
+                                <span class="n">authData</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">linkWithAuthType</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">authType</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">authData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>authType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the type of third party authentication source.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>authData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The user credentials of the third party authentication source.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>BFTask</code> that is resolved to <code>@YES</code> if linking succeeds.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(im)unlinkWithAuthTypeInBackground:"></a>
+                    <a name="//apple_ref/objc/Method/-unlinkWithAuthTypeInBackground:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(im)unlinkWithAuthTypeInBackground:">-unlinkWithAuthTypeInBackground:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Unlinks this user from a third party authentication library.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    This method shouldn&rsquo;t be invoked directly unless developing a third party authentication library.
+
+</div><div class="aside aside-see">
+    <p class="aside-title">See</p>
+    <p>PFUserAuthenticationDelegate</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">unlinkWithAuthTypeInBackground</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">authType</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">unlinkWithAuthType</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">authType</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>authType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the type of third party authentication source.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>BFTask</code> that is resolved to <code>@YES</code> if unlinking succeeds.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(im)isLinkedWithAuthType:"></a>
+                    <a name="//apple_ref/objc/Method/-isLinkedWithAuthType:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(im)isLinkedWithAuthType:">-isLinkedWithAuthType:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicates whether this user is linked with a third party authentication library of a specific type.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    This method shouldn&rsquo;t be invoked directly unless developing a third party authentication library.
+
+</div><div class="aside aside-see">
+    <p class="aside-title">See</p>
+    <p>PFUserAuthenticationDelegate</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">isLinkedWithAuthType</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">authType</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">isLinked</span><span class="p">(</span><span class="n">withAuthType</span> <span class="nv">authType</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>authType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the type of third party authentication source.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>YES</code> if the user is linked with a provider, otherwise <code>NO</code>.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Creating%20a%20New%20User2"></a>
+                <a name="//apple_ref/objc/Section/Creating a New User" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Creating%20a%20New%20User2"></a>
+                  <h3 class="section-name"><p>Creating a New User</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(im)signUpInBackgroundWithTarget:selector:"></a>
+                    <a name="//apple_ref/objc/Method/-signUpInBackgroundWithTarget:selector:" class="dashAnchor"></a>
+                    <a class="token discouraged" href="#/c:objc(cs)PFUser(im)signUpInBackgroundWithTarget:selector:">-signUpInBackgroundWithTarget:<wbr>selector:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="aside aside-deprecated">
+                        <p class="aside-title">Deprecated</p>
+                        <p>Please use <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(im)signUpInBackgroundWithBlock:">PFUser.-signUpInBackgroundWithBlock:</a></code> instead.</p>
+
+                      </div>
+                      <div class="abstract">
+                        <p>Signs up the user <em>asynchronously</em>.</p>
+
+<p>This will also enforce that the username isn&rsquo;t already taken.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <p>Make sure that password and username are set before calling this method.</p>
+
+</div>
+
+<p>@deprecated Please use <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(im)signUpInBackgroundWithBlock:">PFUser.-signUpInBackgroundWithBlock:</a></code> instead.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">signUpInBackgroundWithTarget</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">id</span><span class="p">)</span><span class="nv">target</span>
+                            <span class="nf">selector</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">SEL</span><span class="p">)</span><span class="nv">selector</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">signUpInBackground</span><span class="p">(</span><span class="n">withTarget</span> <span class="nv">target</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>target</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Target object for the selector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The selector that will be called when the asynchrounous request is complete.
+It should have the following signature: <code>(void)callbackWithResult:(NSNumber *)result error:(NSError *)error</code>.
+<code>error</code> will be <code>nil</code> on success and set if there was an error.
+<code>[result boolValue]</code> will tell you whether the call succeeded or not.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Logging%20In2"></a>
+                <a name="//apple_ref/objc/Section/Logging In" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Logging%20In2"></a>
+                  <h3 class="section-name"><p>Logging In</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)logInWithUsernameInBackground:password:target:selector:"></a>
+                    <a name="//apple_ref/objc/Method/+logInWithUsernameInBackground:password:target:selector:" class="dashAnchor"></a>
+                    <a class="token discouraged" href="#/c:objc(cs)PFUser(cm)logInWithUsernameInBackground:password:target:selector:">+logInWithUsernameInBackground:<wbr>password:<wbr>target:<wbr>selector:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="aside aside-deprecated">
+                        <p class="aside-title">Deprecated</p>
+                        <p>Please use <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)logInWithUsernameInBackground:password:block:">PFUser.+logInWithUsernameInBackground:password:block:</a></code> instead.</p>
+
+                      </div>
+                      <div class="abstract">
+                        <p>Makes an <em>asynchronous</em> request to login a user with specified credentials.</p>
+
+<p>Returns an instance of the successfully logged in <code>PFUser</code>.
+This also caches the user locally so that calls to <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a></code> will use the latest logged in user.</p>
+
+<p>@deprecated Please use <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)logInWithUsernameInBackground:password:block:">PFUser.+logInWithUsernameInBackground:password:block:</a></code> instead.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">logInWithUsernameInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">username</span>
+                             <span class="nf">password</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">password</span>
+                               <span class="nf">target</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">id</span><span class="p">)</span><span class="nv">target</span>
+                             <span class="nf">selector</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">SEL</span><span class="p">)</span><span class="nv">selector</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logInWithUsername</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">target</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>username</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The username of the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The password of the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>target</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Target object for the selector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The selector that will be called when the asynchrounous request is complete.
+It should have the following signature: <code>(void)callbackWithUser:(PFUser *)user error:(NSError *)error</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Becoming%20a%20User2"></a>
+                <a name="//apple_ref/objc/Section/Becoming a User" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Becoming%20a%20User2"></a>
+                  <h3 class="section-name"><p>Becoming a User</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)becomeInBackground:target:selector:"></a>
+                    <a name="//apple_ref/objc/Method/+becomeInBackground:target:selector:" class="dashAnchor"></a>
+                    <a class="token discouraged" href="#/c:objc(cs)PFUser(cm)becomeInBackground:target:selector:">+becomeInBackground:<wbr>target:<wbr>selector:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="aside aside-deprecated">
+                        <p class="aside-title">Deprecated</p>
+                        <p>Please use <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)becomeInBackground:block:">PFUser.+becomeInBackground:block:</a></code> instead.</p>
+
+                      </div>
+                      <div class="abstract">
+                        <p>Makes an <em>asynchronous</em> request to become a user with the given session token.</p>
+
+<p>Returns an instance of the successfully logged in <code>PFUser</code>. This also caches the user locally
+so that calls to <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a></code> will use the latest logged in user.</p>
+
+<p>@deprecated Please use <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)becomeInBackground:block:">PFUser.+becomeInBackground:block:</a></code> instead.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">becomeInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">sessionToken</span>
+                    <span class="nf">target</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">id</span><span class="p">)</span><span class="nv">target</span>
+                  <span class="nf">selector</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">SEL</span><span class="p">)</span><span class="nv">selector</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">become</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">sessionToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">target</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sessionToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The session token for the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>target</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Target object for the selector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The selector that will be called when the asynchrounous request is complete.
+It should have the following signature: <code>(void)callbackWithUser:(PFUser *)user error:(NSError *)error</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Requesting%20a%20Password%20Reset2"></a>
+                <a name="//apple_ref/objc/Section/Requesting a Password Reset" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Requesting%20a%20Password%20Reset2"></a>
+                  <h3 class="section-name"><p>Requesting a Password Reset</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)requestPasswordResetForEmailInBackground:target:selector:"></a>
+                    <a name="//apple_ref/objc/Method/+requestPasswordResetForEmailInBackground:target:selector:" class="dashAnchor"></a>
+                    <a class="token discouraged" href="#/c:objc(cs)PFUser(cm)requestPasswordResetForEmailInBackground:target:selector:">+requestPasswordResetForEmailInBackground:<wbr>target:<wbr>selector:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="aside aside-deprecated">
+                        <p class="aside-title">Deprecated</p>
+                        <p>Please use <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)requestPasswordResetForEmailInBackground:block:">PFUser.+requestPasswordResetForEmailInBackground:block:</a></code> instead.</p>
+
+                      </div>
+                      <div class="abstract">
+                        <p>Send a password reset request <em>asynchronously</em> for a specified email and sets an error object.</p>
+
+<p>If a user account exists with that email, an email will be sent to that address
+with instructions on how to reset their password.</p>
+
+<p>@deprecated Please use <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)requestPasswordResetForEmailInBackground:block:">PFUser.+requestPasswordResetForEmailInBackground:block:</a></code> instead.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">requestPasswordResetForEmailInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">email</span>
+                                          <span class="nf">target</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">id</span><span class="p">)</span><span class="nv">target</span>
+                                        <span class="nf">selector</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">SEL</span><span class="p">)</span><span class="nv">selector</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">requestPasswordResetForEmail</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">target</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Email of the account to send a reset password request.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>target</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Target object for the selector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The selector that will be called when the asynchronous request is complete.
+It should have the following signature: <code>(void)callbackWithResult:(NSNumber *)result error:(NSError *)error</code>.
+<code>error</code> will be <code>nil</code> on success and set if there was an error.
+<code>[result boolValue]</code> will tell you whether the call succeeded or not.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Creating%20a%20New%20User3"></a>
+                <a name="//apple_ref/objc/Section/Creating a New User" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Creating%20a%20New%20User3"></a>
+                  <h3 class="section-name"><p>Creating a New User</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(im)signUp"></a>
+                    <a name="//apple_ref/objc/Method/-signUp" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(im)signUp">-signUp</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Signs up the user <em>synchronously</em>.</p>
+
+<p>This will also enforce that the username isn&rsquo;t already taken.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <p>Make sure that password and username are set before calling this method.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">signUp</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Returns <code>YES</code> if the sign up was successful, otherwise <code>NO</code>.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(im)signUp:"></a>
+                    <a name="//apple_ref/objc/Method/-signUp:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(im)signUp:">-signUp:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Signs up the user <em>synchronously</em>.</p>
+
+<p>This will also enforce that the username isn&rsquo;t already taken.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <p>Make sure that password and username are set before calling this method.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">signUp</span><span class="p">:(</span><span class="n">NSError</span> <span class="o">*</span><span class="n">_Nullable</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span><span class="nv">error</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">signUp</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Error object to set on error.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Returns whether the sign up was successful.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Logging%20In3"></a>
+                <a name="//apple_ref/objc/Section/Logging In" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Logging%20In3"></a>
+                  <h3 class="section-name"><p>Logging In</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)logInWithUsername:password:"></a>
+                    <a name="//apple_ref/objc/Method/+logInWithUsername:password:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)logInWithUsername:password:">+logInWithUsername:<wbr>password:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes a <em>synchronous</em> request to login a user with specified credentials.</p>
+
+<p>Returns an instance of the successfully logged in <code>PFUser</code>.
+This also caches the user locally so that calls to <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a></code> will use the latest logged in user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nullable</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">logInWithUsername</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">username</span>
+                                  <span class="nf">password</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">password</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>username</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The username of the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The password of the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Returns an instance of the <code>PFUser</code> on success.
+If login failed for either wrong password or wrong username, returns <code>nil</code>.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)logInWithUsername:password:error:"></a>
+                    <a name="//apple_ref/objc/Method/+logInWithUsername:password:error:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)logInWithUsername:password:error:">+logInWithUsername:<wbr>password:<wbr>error:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes a <em>synchronous</em> request to login a user with specified credentials.</p>
+
+<p>Returns an instance of the successfully logged in <code>PFUser</code>.
+This also caches the user locally so that calls to <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a></code> will use the latest logged in user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nullable</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">logInWithUsername</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">username</span>
+                                  <span class="nf">password</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">password</span>
+                                     <span class="nf">error</span><span class="p">:(</span><span class="n">NSError</span> <span class="o">*</span><span class="n">_Nullable</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span><span class="nv">error</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logIn</span><span class="p">(</span><span class="n">withUsername</span> <span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>username</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The username of the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The password of the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The error object to set on error.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Returns an instance of the <code>PFUser</code> on success.
+If login failed for either wrong password or wrong username, returns <code>nil</code>.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Becoming%20a%20User3"></a>
+                <a name="//apple_ref/objc/Section/Becoming a User" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Becoming%20a%20User3"></a>
+                  <h3 class="section-name"><p>Becoming a User</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)become:"></a>
+                    <a name="//apple_ref/objc/Method/+become:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)become:">+become:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes a <em>synchronous</em> request to become a user with the given session token.</p>
+
+<p>Returns an instance of the successfully logged in <code>PFUser</code>.
+This also caches the user locally so that calls to <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a></code> will use the latest logged in user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nullable</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">become</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">sessionToken</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sessionToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The session token for the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Returns an instance of the <code>PFUser</code> on success.
+If becoming a user fails due to incorrect token, it returns <code>nil</code>.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)become:error:"></a>
+                    <a name="//apple_ref/objc/Method/+become:error:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)become:error:">+become:<wbr>error:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes a <em>synchronous</em> request to become a user with the given session token.</p>
+
+<p>Returns an instance of the successfully logged in <code>PFUser</code>.
+This will also cache the user locally so that calls to <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(cm)currentUser">+currentUser</a></code> will use the latest logged in user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nullable</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">become</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">sessionToken</span>
+                          <span class="nf">error</span><span class="p">:(</span><span class="n">NSError</span> <span class="o">*</span><span class="n">_Nullable</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span><span class="nv">error</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">become</span><span class="p">(</span><span class="n">_</span> <span class="nv">sessionToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sessionToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The session token for the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The error object to set on error.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Returns an instance of the <code>PFUser</code> on success.
+If becoming a user fails due to incorrect token, it returns <code>nil</code>.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Logging%20Out2"></a>
+                <a name="//apple_ref/objc/Section/Logging Out" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Logging%20Out2"></a>
+                  <h3 class="section-name"><p>Logging Out</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)logOut"></a>
+                    <a name="//apple_ref/objc/Method/+logOut" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)logOut">+logOut</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Synchronously* logs out the currently logged in user on disk.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">logOut</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logOut</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Requesting%20a%20Password%20Reset3"></a>
+                <a name="//apple_ref/objc/Section/Requesting a Password Reset" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Requesting%20a%20Password%20Reset3"></a>
+                  <h3 class="section-name"><p>Requesting a Password Reset</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)requestPasswordResetForEmail:"></a>
+                    <a name="//apple_ref/objc/Method/+requestPasswordResetForEmail:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)requestPasswordResetForEmail:">+requestPasswordResetForEmail:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><em>Synchronously</em> Send a password reset request for a specified email.</p>
+
+<p>If a user account exists with that email, an email will be sent to that address
+with instructions on how to reset their password.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">requestPasswordResetForEmail</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">email</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Email of the account to send a reset password request.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Returns <code>YES</code> if the reset email request is successful. <code>NO</code> - if no account was found for the email address.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFUser(cm)requestPasswordResetForEmail:error:"></a>
+                    <a name="//apple_ref/objc/Method/+requestPasswordResetForEmail:error:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFUser(cm)requestPasswordResetForEmail:error:">+requestPasswordResetForEmail:<wbr>error:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><em>Synchronously</em> send a password reset request for a specified email and sets an error object.</p>
+
+<p>If a user account exists with that email, an email will be sent to that address
+with instructions on how to reset their password.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">requestPasswordResetForEmail</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">email</span>
+                               <span class="nf">error</span><span class="p">:(</span><span class="n">NSError</span> <span class="o">*</span><span class="n">_Nullable</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span><span class="nv">error</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">requestPasswordReset</span><span class="p">(</span><span class="n">forEmail</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Email of the account to send a reset password request.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Error object to set on error.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Returns <code>YES</code> if the reset email request is successful. <code>NO</code> - if no account was found for the email address.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2020 <a class="link" href="http://parseplatform.org" target="_blank" rel="external">Parse Community</a>. All rights reserved. (Last updated: 2020-10-14)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

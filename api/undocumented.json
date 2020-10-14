@@ -1,0 +1,299 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Bolts/BFCancellationToken.h",
+      "line": 20,
+      "symbol": "BFCancellationBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Bolts/BFCancellationToken.h",
+      "line": 27,
+      "symbol": "BFCancellationToken",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Bolts/BFCancellationTokenRegistration.h",
+      "line": 19,
+      "symbol": "BFCancellationTokenRegistration",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Bolts/BFGeneric.h",
+      "line": 25,
+      "symbol": "BFVoid",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Bolts/BFTask.h",
+      "line": 21,
+      "symbol": "BFTaskErrorDomain",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Bolts/BFTask.h",
+      "line": 26,
+      "symbol": "kBFMultipleErrorsError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Bolts/BFTask.h",
+      "line": 32,
+      "symbol": "BFTaskMultipleErrorsUserInfoKey",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Bolts/BFTask.h",
+      "line": 42,
+      "symbol": "BFTask",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Bolts/BFTask.h",
+      "line": 47,
+      "symbol": "BFContinuationBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFConfig.h",
+      "line": 20,
+      "symbol": "PFConfigResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFConstants.h",
+      "line": 360,
+      "symbol": "PFBooleanResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFConstants.h",
+      "line": 361,
+      "symbol": "PFIntegerResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFConstants.h",
+      "line": 362,
+      "symbol": "PFArrayResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFConstants.h",
+      "line": 363,
+      "symbol": "PFObjectResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFConstants.h",
+      "line": 364,
+      "symbol": "PFSetResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFConstants.h",
+      "line": 365,
+      "symbol": "PFUserResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFConstants.h",
+      "line": 366,
+      "symbol": "PFDataResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFConstants.h",
+      "line": 367,
+      "symbol": "PFDataStreamResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFConstants.h",
+      "line": 368,
+      "symbol": "PFFilePathResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFConstants.h",
+      "line": 369,
+      "symbol": "PFStringResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFConstants.h",
+      "line": 370,
+      "symbol": "PFIdResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFConstants.h",
+      "line": 371,
+      "symbol": "PFProgressBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFDecoder.h",
+      "line": 14,
+      "symbol": "PFDecoder",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFDecoder.h",
+      "line": 36,
+      "symbol": "PFOfflineDecoder.+decoderWithOfflineObjects:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFDecoder.h",
+      "line": 45,
+      "symbol": "PFKnownParseObjectDecoder.+decoderWithFetchedObjects:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFEncoder.h",
+      "line": 25,
+      "symbol": "PFEncoder.+objectEncoder",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFEncoder.h",
+      "line": 27,
+      "symbol": "PFEncoder.-encodeObject:error:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFEncoder.h",
+      "line": 28,
+      "symbol": "PFEncoder.-encodeParseObject:error:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFEncoder.h",
+      "line": 61,
+      "symbol": "PFOfflineObjectEncoder.+objectEncoderWithOfflineStore:database:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFEncoder.h",
+      "line": 63,
+      "symbol": "PFOfflineObjectEncoder.-encodeFinished",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFFileObject.h",
+      "line": 37,
+      "symbol": "PFFileObject.+new",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFFileUploadResult.h",
+      "line": 15,
+      "symbol": "PFFileUploadResult.url",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFFileUploadResult.h",
+      "line": 16,
+      "symbol": "PFFileUploadResult.name",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFGeoPoint.h",
+      "line": 17,
+      "symbol": "PFGeoPointResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFObject+Subclass.h",
+      "line": 142,
+      "symbol": "PFSubclassingSkipAutomaticRegistration",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFSession.h",
+      "line": 21,
+      "symbol": "PFSessionResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFUser.h",
+      "line": 20,
+      "symbol": "PFUserSessionUpgradeResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/PFUser.h",
+      "line": 21,
+      "symbol": "PFUserLogoutResultBlock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/Parse.h",
+      "line": 124,
+      "symbol": "Parse.+getApplicationId",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/Parse.h",
+      "line": 131,
+      "symbol": "Parse.+getClientKey",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/ParseClientConfiguration.h",
+      "line": 210,
+      "symbol": "ParseClientConfiguration.+new",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX/Parse/Parse/ParseClientConfiguration.h",
+      "line": 211,
+      "symbol": "ParseClientConfiguration.-init",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/travis/build/parse-community/Parse-SDK-iOS-OSX"
+}
