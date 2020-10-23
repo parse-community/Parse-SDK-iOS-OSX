@@ -415,13 +415,13 @@ static CGFloat PFTFloatRound(CGFloat value, NSRoundingMode mode) {
     BOOL hasPrefix = [url.absoluteString hasPrefix:self.redirectURLPrefix];
     if (hasPrefix) {
         NSURLComponents* components = [[NSURLComponents alloc] initWithString:url.absoluteString];
-        NSArray<NSURLQueryItem> * items = components.queryItems;
+        NSArray<NSURLQueryItem *> * items = components.queryItems;
         if (items) {
             for (NSURLQueryItem * queryItem in items) {
                 if ([queryItem.name isEqualToString:@"denied"]) {
                     [self _dismissWithSuccess:NO url:url error:nil];
                     break;
-                } else if ([queryItem.name isEqualToString:@"oauth_verifier"] && [queryItem.name isEqualToString:@"oauth_token" ]) {
+                } else if ([queryItem.name isEqualToString:@"oauth_verifier"] || [queryItem.name isEqualToString:@"oauth_token" ]) {
                     [self _dismissWithSuccess:YES url:url error:nil];
                     break;;
                 }
