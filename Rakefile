@@ -79,137 +79,119 @@ module Constants
 end
 
 namespace :build do
-  desc 'Build iOS framework.'
+  desc 'Build iOS archive.'
   task :ios do
-    task = XCTask::BuildFrameworkTask.new do |t|
+    task = XCTask::CreateArchiveTask.new do |t|
       t.directory = script_folder
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::IOS
-      t.framework_name = 'Parse.framework'
-
-      t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-iOS'
-      t.configuration = 'Release'
+      t.destination = 'generic/platform=iOS'
     end
     result = task.execute
     unless result
-      puts 'Failed to build iOS Framework.'
+      puts 'Failed to build iOS archive.'
       exit(1)
     end
   end
 
-  desc 'Build watchOS framework.'
+  desc 'Build watchOS archive.'
   task :watchos do
-    task = XCTask::BuildFrameworkTask.new do |t|
+    task = XCTask::CreateArchiveTask.new do |t|
       t.directory = script_folder
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::WATCHOS
-      t.framework_name = 'Parse.framework'
-
-      t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-watchOS'
-      t.configuration = 'Release'
+      t.destination = 'generic/platform=watchOS'
     end
     result = task.execute
     unless result
-      puts 'Failed to build watchOS Framework.'
+      puts 'Failed to build watchOS archive.'
       exit(1)
     end
   end
 
-  desc 'Build macOS framework.'
+  desc 'Build macOS archive.'
   task :macos do
-    task = XCTask::BuildFrameworkTask.new do |t|
+    task = XCTask::CreateArchiveTask.new do |t|
       t.directory = script_folder
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::OSX
-      t.framework_name = 'Parse.framework'
-
-      t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-macOS'
-      t.configuration = 'Release'
+      t.destination = 'generic/platform=macOS'
     end
     result = task.execute
     unless result
-      puts 'Failed to build macOS Framework.'
+      puts 'Failed to build macOS archive.'
       exit(1)
     end
   end
 
-  desc 'Build tvOS framework.'
+  desc 'Build tvOS archive.'
   task :tvos do
-    task = XCTask::BuildFrameworkTask.new do |t|
+    task = XCTask::CreateArchiveTask.new do |t|
       t.directory = script_folder
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::TVOS
-      t.framework_name = 'Parse.framework'
-
-      t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-tvOS'
-      t.configuration = 'Release'
+      t.destination = 'generic/platform=tvOS'
     end
     result = task.execute
     unless result
-      puts 'Failed to build tvOS Framework.'
+      puts 'Failed to build tvOS archive.'
       exit(1)
     end
   end
 
   namespace :facebook_utils do
-    desc 'Build iOS FacebookUtils framework.'
+    desc 'Build iOS FacebookUtils archive.'
     task :ios do
-      task = XCTask::BuildFrameworkTask.new do |t|
+      task = XCTask::CreateArchiveTask.new do |t|
         t.directory = script_folder
         t.build_directory = File.join(build_folder, 'iOS')
         t.framework_type = XCTask::FrameworkType::IOS
-        t.framework_name = 'ParseFacebookUtilsV4.framework'
-        t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseFacebookUtilsV4-iOS'
-        t.configuration = 'Release'
+        t.destination = 'generic/platform=iOS'
       end
 
       result = task.execute
       unless result
-        puts 'Failed to build iOS FacebookUtils Framework.'
+        puts 'Failed to build iOS FacebookUtils archive.'
         exit(1)
       end
     end
 
-    desc 'Build tvOS FacebookUtils framework.'
+    desc 'Build tvOS FacebookUtils archive.'
     task :tvos do
-      task = XCTask::BuildFrameworkTask.new do |t|
+      task = XCTask::CreateArchiveTask.new do |t|
         t.directory = script_folder
         t.build_directory = File.join(build_folder, 'tvOS')
         t.framework_type = XCTask::FrameworkType::TVOS
-        t.framework_name = 'ParseFacebookUtilsV4.framework'
-        t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseFacebookUtilsV4-tvOS'
-        t.configuration = 'Release'
+        t.destination = 'generic/platform=tvOS'
       end
       result = task.execute
       unless result
-        puts 'Failed to build tvOS FacebookUtils Framework.'
+        puts 'Failed to build tvOS FacebookUtils archive.'
         exit(1)
       end
     end
   end
 
   namespace :twitter_utils do
-    desc 'Build iOS TwitterUtils framework.'
+    desc 'Build iOS TwitterUtils archive.'
     task :ios do
-      task = XCTask::BuildFrameworkTask.new do |t|
+      task = XCTask::CreateArchiveTask.new do |t|
         t.directory = script_folder
         t.build_directory = File.join(build_folder, 'iOS')
         t.framework_type = XCTask::FrameworkType::IOS
-        t.framework_name = 'ParseTwitterUtils.framework'
-        t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseTwitterUtils-iOS'
-        t.configuration = 'Release'
+        t.destination = 'generic/platform=iOS'
       end
 
       result = task.execute
       unless result
-        puts 'Failed to build iOS TwitterUtils Framework.'
+        puts 'Failed to build iOS TwitterUtils archive.'
         exit(1)
       end
     end
@@ -217,14 +199,12 @@ namespace :build do
 
   namespace :parseui do
     task :framework do
-      task = XCTask::BuildFrameworkTask.new do |t|
+      task = XCTask::CreateArchiveTask.new do |t|
         t.directory = script_folder
         t.build_directory = File.join(build_folder, 'iOS')
         t.framework_type = XCTask::FrameworkType::IOS
-        t.framework_name = 'ParseUI.framework'
-        t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseUI'
-        t.configuration = 'Release'
+        t.destination = 'generic/platform=iOS'
       end
 
       result = task.execute
@@ -283,20 +263,20 @@ namespace :build do
 end
 
 namespace :package do
-  package_ios_name = 'Parse-iOS.zip'
-  package_macos_name = 'Parse-macOS.zip'
-  package_tvos_name = 'Parse-tvOS.zip'
-  package_watchos_name = 'Parse-watchOS.zip'
+  package_ios_name = 'Parse-iOS.xcarchive'
+  package_macos_name = 'Parse-macOS.xcarchive'
+  package_tvos_name = 'Parse-tvOS.xcarchive'
+  package_watchos_name = 'Parse-watchOS.xcarchive'
   package_starter_ios_name = 'ParseStarterProject-iOS.zip'
   package_starter_osx_name = 'ParseStarterProject-OSX.zip'
   package_starter_tvos_name = 'ParseStarterProject-tvOS.zip'
   package_starter_watchos_name = 'ParseStarterProject-watchOS.zip'
-  package_parseui_name = 'ParseUI.zip'
+  package_parseui_name = 'ParseUI.xcarchive'
 
   task :prepare do
-    `rm -rf #{build_folder} && mkdir -p #{build_folder}`
-    `rm -rf #{bolts_build_folder} && mkdir -p #{bolts_build_folder}`
-    `#{bolts_folder}/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos`
+    # `rm -rf #{build_folder} && mkdir -p #{build_folder}`
+    # `rm -rf #{bolts_build_folder} && mkdir -p #{bolts_build_folder}`
+    # `#{bolts_folder}/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos`
   end
 
   task :set_version, [:version] do |_, args|
@@ -315,55 +295,17 @@ namespace :package do
     version = args[:version] || Constants.current_version
     Constants.update_version(version)
 
-    ## Build macOS Framework
+    ## Build XCFramework
     Rake::Task['build:macos'].invoke
-    bolts_path = File.join(bolts_build_folder, 'osx', 'Bolts.framework')
-    osx_framework_path = File.join(build_folder, 'Parse.framework')
-    make_package(release_folder,
-                 [osx_framework_path, bolts_path],
-                 package_macos_name)
-
-    ## Build iOS Framework
     Rake::Task['build:ios'].invoke
-    bolts_path = File.join(bolts_build_folder, 'ios', 'Bolts.framework')
-    ios_framework_path = File.join(build_folder, 'Parse.framework')
-    make_package(release_folder,
-                 [ios_framework_path, bolts_path],
-                 package_ios_name)
-
-    ## Build tvOS Framework
     Rake::Task['build:tvos'].invoke
-    bolts_path = File.join(bolts_build_folder, 'tvOS', 'Bolts.framework')
-    tvos_framework_path = File.join(build_folder, 'Parse.framework')
-    make_package(release_folder,
-                  [tvos_framework_path, bolts_path],
-                  package_tvos_name)
-
-    ## Build watchOS Framework
     Rake::Task['build:watchos'].invoke
-    bolts_path = File.join(bolts_build_folder, 'watchOS', 'Bolts.framework')
-    watchos_framework_path = File.join(build_folder, 'Parse.framework')
-    make_package(release_folder,
-                 [watchos_framework_path, bolts_path],
-                 package_watchos_name)
-
     Rake::Task['build:facebook_utils:ios'].invoke
-    ios_fb_utils_framework_path = File.join(build_folder, 'iOS', 'ParseFacebookUtilsV4.framework')
-    make_package(release_folder, [ios_fb_utils_framework_path], 'ParseFacebookUtils-iOS.zip')
-
     Rake::Task['build:twitter_utils:ios'].invoke
-    ios_tw_utils_framework_path = File.join(build_folder, 'iOS', 'ParseTwitterUtils.framework')
-    make_package(release_folder, [ios_tw_utils_framework_path], 'ParseTwitterUtils-iOS.zip')
-
     Rake::Task['build:facebook_utils:tvos'].invoke
-    tvos_fb_utils_framework_path = File.join(build_folder, 'tvOS', 'ParseFacebookUtilsV4.framework')
-    make_package(release_folder, [tvos_fb_utils_framework_path], 'ParseFacebookUtils-tvOS.zip')
-
     Rake::Task['build:parseui:framework'].invoke
-    parseui_framework_path = File.join(build_folder, 'iOS', 'ParseUI.framework')
-    make_package(release_folder,
-                [parseui_framework_path],
-                package_parseui_name)
+    allArchives = Dir[build_folder + "**/*.xcarchive"]
+    puts(allArchives)
   end
 
   desc 'Build and package all starter projects for the release'
@@ -430,7 +372,7 @@ namespace :package do
   def make_starter_package(target_path, starter_projects, framework_archive, archive_name)
     starter_projects.each do |project_path|
       `git clean -xfd #{project_path}`
-      `cd #{project_path} && unzip -o #{framework_archive}`
+      `cd #{project_path} && cp . #{framework_archive}/Products/@rpath/Parse.framework`
 
       xcodeproj_path = Dir.glob(File.join(project_path, '*.xcodeproj'))[0]
       prepare_xcodeproj(xcodeproj_path)
