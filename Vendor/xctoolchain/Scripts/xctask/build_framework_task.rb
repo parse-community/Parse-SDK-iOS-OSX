@@ -27,6 +27,39 @@ module XCTask
     end
   end
 
+  class CreateArchiveTask
+    attr_accessor :directory
+    attr_accessor :build_directory
+    attr_accessor :scheme
+    attr_accessor :destination
+    
+    attr_accessor :framework_type
+
+
+
+    def initialize
+      @directory = '.'
+      @build_directory = './build'
+      yield self if block_given?
+    end
+
+    def execute
+      Dir.chdir(@directory) unless @directory.nil?
+      system("xcodebuild archive -scheme #{@scheme} -destination #{@destination} -archivePath #{final_archive_path} SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES")
+    end
+
+    private
+
+    def verify
+      FrameworkType.verify(@framework_type)
+    end
+
+    def final_archive_path
+      "#{@build_directory}/#{@scheme}"
+    end
+
+  end
+
   # This class adds ability to easily configure a building of iOS/OSX framework and execute the build process.
   class BuildFrameworkTask
     attr_accessor :directory
