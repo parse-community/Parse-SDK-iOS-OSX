@@ -8,6 +8,7 @@ on:
 
 env:
   CI_XCODE_VER: '/Applications/Xcode_11.7.app/Contents/Developer'
+  CI_XCODE_VER_OLDER: '/Applications/Xcode_11.6.app/Contents/Developer'
 
 jobs:
 
@@ -140,7 +141,7 @@ jobs:
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:all
       env:
-        DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
+        DEVELOPER_DIR: ${{ env.CI_XCODE_VER_OLDER }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
