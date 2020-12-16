@@ -1,0 +1,140 @@
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CI_XCODE_VER: '/Applications/Xcode_11.7.app/Contents/Developer'
+
+jobs:
+
+  ios:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Submodules
+      run: |
+        git submodule update --init --recursive
+        sudo gem install bundler
+        bundle config set path 'vendor/bundle'
+        bundle install
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:ios
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+      
+  macos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Submodules
+      run: |
+        git submodule update --init --recursive
+        sudo gem install bundler
+        bundle config set path 'vendor/bundle'
+        bundle install
+    - name: Create and set the default keychain
+      run: |
+        security create-keychain -p "" temporary
+        security default-keychain -s temporary
+        security unlock-keychain -p "" temporary
+        security set-keychain-settings -lut 7200 temporary
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:macos
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+
+  facebook_utils:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Submodules
+      run: |
+        git submodule update --init --recursive
+        sudo gem install bundler
+        bundle config set path 'vendor/bundle'
+        bundle install
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:facebook_utils:ios
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+
+  twitter_utils:
+    needs: ios
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Submodules
+      run: |
+        git submodule update --init --recursive
+        sudo gem install bundler
+        bundle config set path 'vendor/bundle'
+        bundle install
+    - name: Build
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme ParseLiveQuery-watchOS -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+
+  parseui:
+    needs: ios
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Submodules
+      run: |
+        git submodule update --init --recursive
+    - name: Clean
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c
+    - name: Build
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+
+  cocoapods:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: CocoaPods
+        run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
+  release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Install Bundle
+        run: |
+          bundle config path vendor/bundle
+          bundle install
+      - name: Build Release
+        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
+
+  docs:
+    needs: ios
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Install Bundle
+        run: |
+          bundle config path vendor/bundle
+          bundle install
+      - name: Create Jazzy Docs
+        run: |
+          ./Scripts/jazzy.sh
