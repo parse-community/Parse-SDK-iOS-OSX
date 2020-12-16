@@ -23,7 +23,7 @@ jobs:
         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gem-
-    - name: Submodules
+    - name: Submodules and Bundle Install
       run: |
         git submodule update --init --recursive
         sudo gem install bundler
@@ -46,7 +46,7 @@ jobs:
         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gem-
-    - name: Submodules
+    - name: Submodules and Bundle Install
       run: |
         git submodule update --init --recursive
         sudo gem install bundler
@@ -75,7 +75,7 @@ jobs:
         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gem-
-    - name: Submodules
+    - name: Submodules and Bundle Install
       run: |
         git submodule update --init --recursive
         sudo gem install bundler
@@ -99,14 +99,14 @@ jobs:
         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gem-
-    - name: Submodules
+    - name: Submodules and Bundle Install
       run: |
         git submodule update --init --recursive
         sudo gem install bundler
         bundle config set path 'vendor/bundle'
         bundle install
-    - name: Build
-      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme ParseLiveQuery-watchOS -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:twitter_utils:ios
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
@@ -123,13 +123,14 @@ jobs:
         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gem-
-    - name: Submodules
+    - name: Submodules and Bundle Install
       run: |
         git submodule update --init --recursive
-    - name: Clean
-      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c
-    - name: Build
-      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c
+        sudo gem install bundler
+        bundle config set path 'vendor/bundle'
+        bundle install
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:all
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
@@ -151,12 +152,12 @@ jobs:
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
-      - name: Install Bundle
+      - name: Submodules and Bundle Install
         run: |
-          bundle config path vendor/bundle
+          git submodule update --init --recursive
+          sudo gem install bundler
+          bundle config set path 'vendor/bundle'
           bundle install
-        env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
       - name: Build Release
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
 
@@ -173,8 +174,10 @@ jobs:
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
-      - name: Install Bundle
+      - name: Submodules and Bundle Instal
         run: |
+          git submodule update --init --recursive
+          sudo gem install bundler
           bundle config path vendor/bundle
           bundle install
       - name: Create Jazzy Docs
