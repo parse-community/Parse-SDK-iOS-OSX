@@ -87,7 +87,7 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   twitter_utils:
-    needs: ios
+    needs: facebook_utils
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -111,7 +111,7 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   parseui:
-    needs: ios
+    needs: facebook_utils
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
