@@ -36,11 +36,11 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install
-        env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
       - name: Create Jazzy Docs
         run: |
           ./Scripts/jazzy.sh
+        env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
       - name: Deploy Jazzy Docs
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -65,10 +65,10 @@ jobs:
           sudo gem install bundler
           bundle config set path 'vendor/bundle'
           bundle install
-        env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
       - name: Build Release
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
+        env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
       - name: Deploy assets
         uses: svenstaro/upload-release-action@v2
         with:
