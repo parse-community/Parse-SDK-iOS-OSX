@@ -15,6 +15,14 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Cache Gems
+      id: cache-gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem-
     - name: Submodules
       run: |
         git submodule update --init --recursive
@@ -30,6 +38,14 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Cache Gems
+      id: cache-gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem-
     - name: Submodules
       run: |
         git submodule update --init --recursive
@@ -51,6 +67,14 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Cache Gems
+      id: cache-gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem-
     - name: Submodules
       run: |
         git submodule update --init --recursive
@@ -67,6 +91,14 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Cache Gems
+      id: cache-gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem-
     - name: Submodules
       run: |
         git submodule update --init --recursive
@@ -83,6 +115,14 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Cache Gems
+      id: cache-gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem-
     - name: Submodules
       run: |
         git submodule update --init --recursive
@@ -115,6 +155,8 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install
+        env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
       - name: Build Release
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
 
