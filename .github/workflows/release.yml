@@ -15,7 +15,7 @@ jobs:
       - name: CocoaPods
         run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
       - name: Deploy CocoaPods
-        run: set -o pipefail && env NSUnbufferedIO=YES pod trunk push CertificateSigningRequest.podspec --allow-warnings --verbose
+        run: set -o pipefail && env NSUnbufferedIO=YES pod trunk push Parse.podspec --allow-warnings --verbose
         env:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
           DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
