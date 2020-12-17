@@ -1,9 +1,7 @@
 name: release
-
 on:
-  push:
-    tags: '*'
-    
+  release:
+    types: [published]
 env:
   CI_XCODE_VER: '/Applications/Xcode_11.7.app/Contents/Developer'
 
