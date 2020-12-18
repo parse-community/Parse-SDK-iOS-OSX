@@ -126,10 +126,13 @@ jobs:
         sudo gem install bundler
         bundle config set path 'vendor/bundle'
         bundle install
-    - name: Build-Test
-      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:all
+        carthage update --use-xcframeworks
       env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_VER_OLDER }}
+        DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:demo_swift
+      env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
