@@ -49,6 +49,7 @@ workflows:
   version: 2
   pr:
     jobs:
+      - parseui
       - carthage:
           requires:
             - parseui
