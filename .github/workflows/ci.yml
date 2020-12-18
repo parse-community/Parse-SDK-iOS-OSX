@@ -128,6 +128,8 @@ jobs:
         bundle install
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:all
+      env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_VER_OLDER }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
