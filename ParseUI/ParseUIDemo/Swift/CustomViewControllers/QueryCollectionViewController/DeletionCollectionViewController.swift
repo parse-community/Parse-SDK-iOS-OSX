@@ -16,13 +16,17 @@ import Bolts.BFTask
 class DeletionCollectionViewController: PFQueryCollectionViewController, UIAlertViewDelegate {
     convenience init(className: String?) {
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)
+        layout.sectionInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         layout.minimumInteritemSpacing = 5.0
 
         self.init(collectionViewLayout: layout, className: className)
 
         title = "Deletion Collection"
-        pullToRefreshEnabled = true
+        if #available(iOS 10.0, *) {
+            pullToRefreshEnabled = true
+        } else {
+            // Fallback on earlier versions
+        }
         objectsPerPage = 10
         paginationEnabled = true
 
@@ -38,7 +42,7 @@ class DeletionCollectionViewController: PFQueryCollectionViewController, UIAlert
         super.viewWillLayoutSubviews()
 
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            let bounds = UIEdgeInsetsInsetRect(view.bounds, layout.sectionInset)
+            let bounds = view.bounds.inset(by: layout.sectionInset)
             let sideLength = min(bounds.width, bounds.height) / 2.0 - layout.minimumInteritemSpacing
             layout.itemSize = CGSize(width: sideLength, height: sideLength)
         }
@@ -72,7 +76,7 @@ class DeletionCollectionViewController: PFQueryCollectionViewController, UIAlert
             alertDialog.addAction(UIAlertAction(title: "Save", style: .default) { action in
                 if let title = titleTextField?.text {
                     let object = PFObject(className: self.parseClassName!, dictionary: [ "title": title ])
-                    object.saveEventually().continueOnSuccessWith { _ -> AnyObject! in
+                    object.saveEventually().continueOnSuccessWith { _ -> AnyObject in
                         return self.loadObjects()
                     }
                 }
@@ -128,7 +132,7 @@ class DeletionCollectionViewController: PFQueryCollectionViewController, UIAlert
                 dictionary: [ "title": title ]
             )
             
-            object.saveEventually().continueOnSuccessWith { _ -> AnyObject! in
+            object.saveEventually().continueOnSuccessWith { _ -> AnyObject in
                 return self.loadObjects()
             }
         }

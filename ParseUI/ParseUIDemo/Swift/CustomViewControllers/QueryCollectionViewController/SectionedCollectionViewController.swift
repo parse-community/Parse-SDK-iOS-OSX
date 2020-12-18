@@ -57,12 +57,16 @@ class SectionedCollectionViewController: PFQueryCollectionViewController {
 
     convenience init(className: String?) {
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)
+        layout.sectionInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         layout.minimumInteritemSpacing = 5.0
         self.init(collectionViewLayout: layout, className: className)
 
         title = "Sectioned Collection"
-        pullToRefreshEnabled = true
+        if #available(iOS 10.0, *) {
+            pullToRefreshEnabled = true
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
     // MARK: UIViewController
@@ -70,14 +74,14 @@ class SectionedCollectionViewController: PFQueryCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        collectionView?.register(SimpleCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
+        collectionView?.register(SimpleCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            let bounds = UIEdgeInsetsInsetRect(view.bounds, layout.sectionInset)
+            let bounds = view.bounds.inset(by: layout.sectionInset)
             let sideLength = min(bounds.width, bounds.height) / 2.0 - layout.minimumInteritemSpacing
             layout.itemSize = CGSize(width: sideLength, height: sideLength)
         }
@@ -135,7 +139,7 @@ extension SectionedCollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionElementKindSectionHeader,
+        if kind == UICollectionView.elementKindSectionHeader,
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as? SimpleCollectionReusableView {
                 view.label.text = "Priority \(sectionKeys[indexPath.section])"
                 return view
