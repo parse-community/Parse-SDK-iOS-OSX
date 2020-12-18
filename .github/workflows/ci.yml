@@ -109,7 +109,6 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   parseui:
-    needs: facebook_utils
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2

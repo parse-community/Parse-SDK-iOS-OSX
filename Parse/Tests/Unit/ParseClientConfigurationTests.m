@@ -119,7 +119,7 @@
     ParseClientConfiguration *configuration = [ParseClientConfiguration emptyConfiguration];
 
 #if !PF_TARGET_OS_OSX
-    // Innaccessible bundle identifiers should throw
+    // This is nil is no path is set
     XCTAssertNil(configuration.applicationGroupIdentifier);
 #endif
 
