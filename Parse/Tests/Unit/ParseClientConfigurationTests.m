@@ -120,7 +120,7 @@
 
 #if !PF_TARGET_OS_OSX
     // Innaccessible bundle identifiers should throw
-    XCTAssertThrows(configuration.applicationGroupIdentifier = @"someBundleIdentifier");
+    XCTAssertNil(configuration.applicationGroupIdentifier);
 #endif
 
     // Accessible bundle identifiers should not throw
