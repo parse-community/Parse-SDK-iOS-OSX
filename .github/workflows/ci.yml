@@ -126,7 +126,7 @@ jobs:
         sudo gem install bundler
         bundle config set path 'vendor/bundle'
         bundle install
-        carthage update --use-xcframeworks
+        carthage update
       env:
         DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
     - name: Build-Test
