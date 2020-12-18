@@ -108,31 +108,6 @@ jobs:
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
-  parseui:
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Cache Gems
-      id: cache-gems
-      uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gem-
-    - name: Submodules and Bundle Install
-      run: |
-        git submodule update --init --recursive
-        sudo gem install bundler
-        bundle config set path 'vendor/bundle'
-        bundle install
-    - name: Build-Test
-      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:all
-      env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_VER_OLDER }}
-    - name: Send codecov
-      run: bash <(curl https://codecov.io/bash)
-
   cocoapods:
     runs-on: macos-latest
     steps:

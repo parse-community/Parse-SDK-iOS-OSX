@@ -25,6 +25,17 @@ aliases:
 
 version: 2
 jobs:
+  parseui:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *cache-pull
+      - run: *prepare
+      - save_cache: *cache-push
+      - run: bundle exec rake test:parseui:all
+      - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: build/reports
   carthage:
     <<: *defaults
     steps:
@@ -38,7 +49,9 @@ workflows:
   version: 2
   pr:
     jobs:
-      - carthage
+      - carthage:
+          requires:
+            - parseui
   nightly:
     jobs:
       - carthage
