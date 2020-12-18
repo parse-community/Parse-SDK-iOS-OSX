@@ -135,6 +135,7 @@
 		4A9A94F7200D125A005D8F4B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94F6200D125A005D8F4B /* AudioToolbox.framework */; };
 		70F14FF9258D11B500801D6B /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4362027CC330066DE1A /* ParseFacebookUtilsV4.framework */; };
 		70F15006258D11D000801D6B /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4252027CC2D0066DE1A /* ParseTwitterUtils.framework */; };
+		70F1500E258D13C500801D6B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4592027DC000066DE1A /* Parse.framework */; };
 		8129E5F51A9CB067006752BC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81472FA71A1AB37500FD6EED /* Images.xcassets */; };
 		8129E5F71A9CB067006752BC /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 81472FA91A1AB37500FD6EED /* 0.png */; };
 		8129E5F81A9CB067006752BC /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 81472FAA1A1AB37500FD6EED /* 1.png */; };
@@ -691,6 +692,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70F1500E258D13C500801D6B /* Parse.framework in Frameworks */,
 				4A0ECCAE200DA7F300BA84A3 /* ParseUI.framework in Frameworks */,
 				4A9A94E9200D05AA005D8F4B /* Social.framework in Frameworks */,
 				4A9A94E7200D05A5005D8F4B /* SystemConfiguration.framework in Frameworks */,
