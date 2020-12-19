@@ -65,7 +65,6 @@
 		4A0ECCB2200DA92700BA84A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0ECC73200D993000BA84A3 /* UIKit.framework */; };
 		4A1350D12027F6AB000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E45B2027DC000066DE1A /* Parse.framework */; };
 		4A1350D22027F6AB000F5FD5 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E43A2027CC330066DE1A /* ParseFacebookUtilsV4.framework */; };
-		4A1350D32027F6AB000F5FD5 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4272027CC2D0066DE1A /* ParseTwitterUtils.framework */; };
 		4A1351E1202818EF000F5FD5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351DF202818EE000F5FD5 /* FBSDKLoginKit.framework */; };
 		4A1351E2202818EF000F5FD5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1351E0202818EE000F5FD5 /* FBSDKCoreKit.framework */; };
 		4A9A94A0200D03AA005D8F4B /* PFResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A9424200D0226005D8F4B /* PFResources.m */; };
@@ -132,6 +131,7 @@
 		4A9A94F4200D1248005D8F4B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94E8200D05AA005D8F4B /* Social.framework */; };
 		4A9A94F5200D1252005D8F4B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94E6200D05A5005D8F4B /* SystemConfiguration.framework */; };
 		4A9A94F7200D125A005D8F4B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9A94F6200D125A005D8F4B /* AudioToolbox.framework */; };
+		701070F6258D75DD00187034 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51E4272027CC2D0066DE1A /* ParseTwitterUtils.framework */; };
 		8129E5F51A9CB067006752BC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81472FA71A1AB37500FD6EED /* Images.xcassets */; };
 		8129E5F71A9CB067006752BC /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 81472FA91A1AB37500FD6EED /* 0.png */; };
 		8129E5F81A9CB067006752BC /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 81472FAA1A1AB37500FD6EED /* 1.png */; };
@@ -653,7 +653,7 @@
 				BC8C2923246B1873000AEE3F /* ParseUI.framework in Frameworks */,
 				4A1350D12027F6AB000F5FD5 /* Parse.framework in Frameworks */,
 				4A1350D22027F6AB000F5FD5 /* ParseFacebookUtilsV4.framework in Frameworks */,
-				4A1350D32027F6AB000F5FD5 /* ParseTwitterUtils.framework in Frameworks */,
+				701070F6258D75DD00187034 /* ParseTwitterUtils.framework in Frameworks */,
 				4A0ECCB2200DA92700BA84A3 /* UIKit.framework in Frameworks */,
 				4A9A94F7200D125A005D8F4B /* AudioToolbox.framework in Frameworks */,
 				4A9A94F5200D1252005D8F4B /* SystemConfiguration.framework in Frameworks */,
@@ -2023,6 +2023,11 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(value)",
+					"$(SANITIZE_FLAGS)",
+					"-Wl,-undefined,dynamic_lookup",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
