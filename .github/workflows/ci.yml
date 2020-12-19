@@ -126,7 +126,6 @@ jobs:
         sudo gem install bundler
         bundle config set path 'vendor/bundle'
         bundle install
-        carthage update
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:all
     - name: Send codecov
