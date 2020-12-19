@@ -130,7 +130,7 @@ jobs:
       env:
         DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
     - name: Build-Test
-      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:demo_swift
+      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:all
       env:
           DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
     - name: Send codecov
