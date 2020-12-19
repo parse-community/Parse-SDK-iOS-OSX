@@ -134,7 +134,7 @@
         XCTAssertTrue(succeeded);
         [expectation fulfill];
     }];
-    
+    [self waitForTestExpectations];
 
     // We are using the same directory on OSX, so this check is irrelevant
 #if TARGET_OS_IPHONE
@@ -166,7 +166,6 @@
                                                                      }
                                                               }
                                                        } only:NO];
-    [self waitForTestExpectations];
 }
 
 - (void)testMigratingDataFromExtensionsSandbox {
@@ -184,6 +183,7 @@
         XCTAssertTrue(succeeded);
         [expectation fulfill];
     }];
+    [self waitForTestExpectations];
 
     // We are using the same directory on OSX, so this check is irrelevant
 #if TARGET_OS_IPHONE
@@ -223,7 +223,6 @@
                                                                      }
                                                               }
                                                        } only:NO];
-    [self waitForTestExpectations];
 }
 
 @end
