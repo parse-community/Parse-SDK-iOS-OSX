@@ -163,8 +163,8 @@ jobs:
           DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
 
   docs:
-    needs: facebook_utils
-    runs-on: macos
+    needs: macos
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Cache Gems
