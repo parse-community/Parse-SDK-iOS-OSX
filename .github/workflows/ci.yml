@@ -62,6 +62,7 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   facebook_utils:
+    needs: macos
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -85,7 +86,7 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   twitter_utils:
-    needs: facebook_utils
+    needs: macos
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -109,7 +110,6 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   parseui:
-    needs: facebook_utils
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -163,7 +163,7 @@ jobs:
           DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
 
   docs:
-    needs: facebook_utils
+    needs: macos
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
