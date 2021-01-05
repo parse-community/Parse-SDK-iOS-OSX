@@ -117,10 +117,9 @@
 
 - (void)testExtensionDataSharing {
     ParseClientConfiguration *configuration = [ParseClientConfiguration emptyConfiguration];
-
+ 
 #if !PF_TARGET_OS_OSX
-    // This is nil is no path is set
-    XCTAssertNil(configuration.applicationGroupIdentifier);
+    XCTAssertThrows(configuration.applicationGroupIdentifier = @"someBundleIdentifier");
 #endif
 
     // Accessible bundle identifiers should not throw
