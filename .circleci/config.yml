@@ -1,6 +1,6 @@
 defaults: &defaults
     macos:
-      xcode: "11.6.0"
+      xcode: "11.7.0"
     shell: /bin/bash --login -eo pipefail
 aliases:
   - &cache-pull
@@ -25,38 +25,6 @@ aliases:
 
 version: 2
 jobs:
-  ios:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache: *cache-pull
-      - run: *prepare
-      - save_cache: *cache-push
-      - run: bundle exec rake test:ios
-      - run: bash <(curl -s https://codecov.io/bash)
-      - store_test_results:
-          path: build/reports
-  macos:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache: *cache-pull
-      - run: *prepare
-      - save_cache: *cache-push
-      - run:
-          name: "Create and set the default keychain"
-          command: |
-            security create-keychain -p "" temporary
-            security default-keychain -s temporary
-            security unlock-keychain -p "" temporary
-            security set-keychain-settings -lut 7200 temporary
-      - run: bundle exec rake test:macos
-      - run: bash <(curl -s https://codecov.io/bash)
-      - store_test_results:
-          path: build/reports
-      - store_artifacts:
-          path: build/reports
-          destination: test_results
   carthage:
     <<: *defaults
     steps:
@@ -70,8 +38,6 @@ workflows:
   version: 2
   pr:
     jobs:
-      - ios
-      - macos
       - carthage
   nightly:
     jobs:

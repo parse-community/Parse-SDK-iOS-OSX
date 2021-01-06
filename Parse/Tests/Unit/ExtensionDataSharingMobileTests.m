@@ -60,13 +60,16 @@
 
 - (void)testEnablingDataSharingWithoutAppGroupContainer {
     _testHelper.swizzledGroupContainerDirectoryPath = NO;
-
-    XCTAssertThrows([Parse enableDataSharingWithApplicationGroupIdentifier:@"yolo"]);
-
-    _testHelper.runningInExtensionEnvironment = YES;
-
+    
+    [Parse enableDataSharingWithApplicationGroupIdentifier:@"yolo"];
     XCTAssertThrows([Parse enableDataSharingWithApplicationGroupIdentifier:@"yolo"
                                                      containingApplication:@"parentYolo"]);
+    
+    _testHelper.runningInExtensionEnvironment = YES;
+    XCTAssertThrows([Parse enableDataSharingWithApplicationGroupIdentifier:@"yolo"]);
+    [Parse enableDataSharingWithApplicationGroupIdentifier:@"yolo"
+                                                     containingApplication:@"parentYolo"];
+    
 }
 
 @end
