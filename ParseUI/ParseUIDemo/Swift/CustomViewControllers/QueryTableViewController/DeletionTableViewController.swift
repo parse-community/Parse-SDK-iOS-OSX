@@ -50,7 +50,7 @@ class DeletionTableViewController: PFQueryTableViewController, UIAlertViewDelega
     }
 
     override func tableView(_ tableView: UITableView,
-                            commit editingStyle: UITableViewCellEditingStyle,
+                            commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             removeObject(at: indexPath)
@@ -72,7 +72,7 @@ class DeletionTableViewController: PFQueryTableViewController, UIAlertViewDelega
             alertDialog.addAction(UIAlertAction(title: "Save", style: .default) { _ in
                 if let title = titleTextField.text {
                     let object = PFObject(className: self.parseClassName!, dictionary: [ "title": title ])
-                    object.saveInBackground().continueOnSuccessWith { _ -> AnyObject! in
+                    object.saveInBackground().continueOnSuccessWith { _ -> AnyObject in
                         return self.loadObjects()
                     }
                 }
@@ -110,7 +110,7 @@ class DeletionTableViewController: PFQueryTableViewController, UIAlertViewDelega
 
         if let title = alertView.textField(at: 0)?.text {
             let object = PFObject(className: self.parseClassName!, dictionary: [ "title": title ])
-            object.saveEventually().continueOnSuccessWith { _ -> AnyObject! in
+            object.saveEventually().continueOnSuccessWith { _ -> AnyObject in
                 return self.loadObjects()
             }
         }

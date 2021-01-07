@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: UIApplicationDelegate
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         Parse.setApplicationId("UdNpOP2XFoEiXLZEBDl6xONmCMH8VjETmnEsl0xJ", clientKey: "wNJFho0fQaQFQ2Fe1x9b67lVBakJiAtFj1Uz30A9")
         PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
         PFTwitterUtils.initialize(withConsumerKey: "3Q9hMEKqqSg4ie2pibZ2sVJuv", consumerSecret: "IEZ9wv2d1EpXNGFKGp7sAGdxRtyqtPwygyciFZwTHTGhPp4FMj")
@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(application, open:url, sourceApplication: sourceApplication, annotation: annotation)
+        return ApplicationDelegate.shared.application(application, open:url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
     // MARK: Test Data

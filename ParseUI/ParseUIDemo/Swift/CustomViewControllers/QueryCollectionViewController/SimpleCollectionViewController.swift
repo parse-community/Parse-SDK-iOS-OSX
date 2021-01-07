@@ -30,12 +30,16 @@ class SimpleCollectionViewController: PFQueryCollectionViewController {
 
     convenience init(className: String?) {
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)
+        layout.sectionInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         layout.minimumInteritemSpacing = 5.0
         self.init(collectionViewLayout: layout, className: className)
 
         title = "Simple Collection"
-        pullToRefreshEnabled = true
+        if #available(iOS 10.0, *) {
+            pullToRefreshEnabled = true
+        } else {
+            // Fallback on earlier versions
+        }
         paginationEnabled = false
     }
 
@@ -45,7 +49,7 @@ class SimpleCollectionViewController: PFQueryCollectionViewController {
         super.viewWillLayoutSubviews()
 
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            let bounds = UIEdgeInsetsInsetRect(view.bounds, layout.sectionInset)
+            let bounds = view.bounds.inset(by: layout.sectionInset)
             let sideLength = min(bounds.width, bounds.height) / 2.0 - layout.minimumInteritemSpacing
             layout.itemSize = CGSize(width: sideLength, height: sideLength)
         }
@@ -66,7 +70,7 @@ class SimpleCollectionViewController: PFQueryCollectionViewController {
         if let title = object?["title"] as? String {
             let attributedTitle = NSMutableAttributedString(string: title)
             if let priority = object?["priority"] as? Int {
-                let attributes = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 13.0), NSAttributedStringKey.foregroundColor : UIColor.gray]
+                let attributes = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13.0), NSAttributedString.Key.foregroundColor : UIColor.gray]
                 let string = NSAttributedString(string: "\nPriority: \(priority)", attributes: attributes)
                 attributedTitle.append(string)
             }
