@@ -129,7 +129,12 @@
 
     PFObject *object = [PFObject objectWithClassName:@"TestObject"];
     object[@"yolo"] = @"yarr";
-    XCTAssertTrue([object pin]);
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [object pinInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        XCTAssertTrue(succeeded);
+        [expectation fulfill];
+    }];
+    [self waitForTestExpectations];
 
     // We are using the same directory on OSX, so this check is irrelevant
 #if TARGET_OS_IPHONE
@@ -173,7 +178,12 @@
 
     PFObject *object = [PFObject objectWithClassName:@"TestObject"];
     object[@"yolo"] = @"yarr";
-    XCTAssertTrue([object pin]);
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [object pinInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        XCTAssertTrue(succeeded);
+        [expectation fulfill];
+    }];
+    [self waitForTestExpectations];
 
     // We are using the same directory on OSX, so this check is irrelevant
 #if TARGET_OS_IPHONE

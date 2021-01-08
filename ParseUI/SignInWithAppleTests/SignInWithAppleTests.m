@@ -8,6 +8,9 @@
 
 #import <XCTest/XCTest.h>
 #import "PFAppleUtils.h"
+#import "Parse/PFUser.h"
+#import "PFLoginViewController.h"
+
 @import OCMock;
 
 @interface SignInWithAppleTests : XCTestCase
@@ -59,7 +62,7 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)testLoginSuccess {
+- (void)testAppleUtilsLoginSuccess {
     
     // Create test ASAuthorization and ASAuthorizationAppleIDCredential
     FakeAuth *fakeAuth = [FakeAuth new];
@@ -78,29 +81,33 @@
     id mockUser = OCMClassMock([PFUser class]);
     NSDictionary *authData = @{@"token" : aString,
                                @"id" : aString };
-    NSDictionary *result = @{ @"user" : aString,
-                              @"name" : name };
-    OCMStub(ClassMethod([mockUser logInWithAuthTypeInBackground:@"apple" authData:authData])).andReturn([BFTask taskWithResult:result]);
+    PFUser *loggedInUser = [PFUser new];
+    OCMStub(ClassMethod([mockUser logInWithAuthTypeInBackground:@"apple" authData:authData])).andReturn([BFTask taskWithResult:loggedInUser]);
     
     // Create the login task
     PFAppleLoginManager *manager = [PFAppleLoginManager new];
     BFTask<NSDictionary *> *logInTask = [PFAppleUtils logInInBackgroundWithManager:manager];
     
-    XCTestExpectation *expect = [self expectationWithDescription:@"Task should complete."];
+    XCTestExpectation *expectLoginSuccess = [self expectationWithDescription:@"Login should complete."];
     [logInTask continueWithSuccessBlock:^id _Nullable(BFTask<NSDictionary *> * _Nonnull t) {
-        [expect fulfill];
+        XCTAssert(t.result[@"user"] == loggedInUser);
+        ASAuthorizationAppleIDCredential *credential = t.result[@"credential"];
+        XCTAssert([credential.fullName isEqual:cred.fullName]);
+        XCTAssert([credential.identityToken isEqual:cred.identityToken]);
+        XCTAssert([credential.user isEqual:cred.user]);
+        [expectLoginSuccess fulfill];
         return nil;
     }];
     
     // Call the success callback as Apple would
     [manager authorizationController:manager.controller didCompleteWithAuthorization:(ASAuthorization *)fakeAuth];
-    [self waitForExpectations:@[expect] timeout:2];
+    [self waitForExpectations:@[expectLoginSuccess] timeout:2];
     
     [mockUser stopMocking];
     
 }
 
-- (void)testPFUserLoginFails {
+- (void)testAppleUtilsLoginFailure {
     // Create test ASAuthorization and ASAuthorizationAppleIDCredential
     FakeAuth *fakeAuth = [FakeAuth new];
     FakeCredential *cred = [FakeCredential new];
@@ -138,27 +145,6 @@
     [self waitForExpectations:@[expect] timeout:2];
     
     [mockUser stopMocking];
-}
-
-- (void)testAppleAuthCompletesWithError {
-    
-    // Create the login task
-    PFAppleLoginManager *manager = [PFAppleLoginManager new];
-    BFTask<NSDictionary *> *logInTask = [PFAppleUtils logInInBackgroundWithManager:manager];
-    
-    XCTestExpectation *expect = [self expectationWithDescription:@"Task should fail."];
-    [logInTask continueWithBlock:^id _Nullable(BFTask<NSDictionary *> * _Nonnull t) {
-        if (t.error) {
-            [expect fulfill];
-        }
-        return nil;
-    }];
-    
-    // Call the failure callback as Apple would
-    NSError *err = [[NSError alloc] initWithDomain:@"org.parseplatform.error" code:1337 userInfo:nil];
-    [manager authorizationController:manager.controller didCompleteWithError:err];
-    [self waitForExpectations:@[expect] timeout:2];
-    
 }
 
 @end
