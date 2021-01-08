@@ -2637,6 +2637,7 @@
 		B141170F1E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B14117101E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B14117111E5D081500F70D7A /* PFFileUploadResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B141170A1E5D081500F70D7A /* PFFileUploadResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC150D7325A89F9C0092B00E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518820281768000F5FD5 /* Bolts.framework */; };
 		BCAFF87325A88B7800B95DFC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCAFF87225A88B7800B95DFC /* WebKit.framework */; platformFilter = ios; };
 		F50C66331B33A708001941A6 /* PFPushUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F50C66311B33A708001941A6 /* PFPushUtilities.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F50C66341B33A708001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
@@ -3679,6 +3680,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC150D7325A89F9C0092B00E /* Bolts.framework in Frameworks */,
 				81B3F2021AC5DAA400A92677 /* Cocoa.framework in Frameworks */,
 				81B3F2011AC5DA7600A92677 /* libsqlite3.dylib in Frameworks */,
 				97DE045C163214C0007154E8 /* SystemConfiguration.framework in Frameworks */,
