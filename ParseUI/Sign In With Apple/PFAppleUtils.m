@@ -8,10 +8,12 @@
 
 #import "PFAppleUtils.h"
 #import "PFAppleAuthenticationProvider.h"
-@import AuthenticationServices;
+#import <AuthenticationServices/AuthenticationServices.h>
 #import <Bolts/Bolts.h>
 
 NSString *const PFAppleUserAuthenticationType = @"apple";
+NSString *const PFAppleAuthUserKey = @"user";
+NSString *const PFAppleAuthCredentialKey = @"credential";
 
 API_AVAILABLE(ios(13.0))
 @interface PFAppleLoginManager ()
@@ -46,17 +48,16 @@ API_AVAILABLE(ios(13.0))
 - (void)authorizationController:(ASAuthorizationController *)controller didCompleteWithAuthorization:(ASAuthorization *)authorization {
     ASAuthorizationAppleIDCredential *cred = authorization.credential;
     NSString *userId = cred.user;
-    NSPersonNameComponents *fullName = cred.fullName;
     NSData *token = cred.identityToken;
     NSString *tokenString = [[NSString alloc] initWithData:token encoding:NSUTF8StringEncoding];
     
     __weak typeof(self) wself = self;
     
-    [[[PFUser logInWithAuthTypeInBackground:@"apple"
+    [[[PFUser logInWithAuthTypeInBackground:PFAppleUserAuthenticationType
                                  authData:@{@"token" : tokenString, @"id" : userId}] continueWithSuccessBlock:^id _Nullable(BFTask<__kindof PFUser *> * _Nonnull t) {
         __strong typeof(wself) sself = wself;
-        [sself.completionSource setResult:@{@"user" : t.result,
-                                           @"name" : fullName}];
+        [sself.completionSource setResult:@{PFAppleAuthUserKey : t.result,
+                                            PFAppleAuthCredentialKey : cred}];
         sself.strongSelf = nil;
         return t;
     }] continueWithBlock:^id _Nullable(BFTask * _Nonnull t) {

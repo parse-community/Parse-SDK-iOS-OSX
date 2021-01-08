@@ -2509,6 +2509,7 @@
 		81F0E89D19E6F83E00812A88 /* PFSubclassing.h in Headers */ = {isa = PBXBuildFile; fileRef = E9E81E8316EEF93E001D034F /* PFSubclassing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91115EF91A097AF30092D1C9 /* PFEventuallyPin.h in Headers */ = {isa = PBXBuildFile; fileRef = 91115EF71A097AF30092D1C9 /* PFEventuallyPin.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		91115EFA1A097AF30092D1C9 /* PFEventuallyPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 91115EF81A097AF30092D1C9 /* PFEventuallyPin.m */; };
+		916786CC258CEE8000BB5B4E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518420281768000F5FD5 /* Bolts.framework */; };
 		91CDB94C1A32E5C900FF830F /* PFEventuallyQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DF24911A09BA7600CFC7D4 /* PFEventuallyQueue.m */; };
 		91CDB94D1A32E5C900FF830F /* PFPinningEventuallyQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DF24951A09BAF100CFC7D4 /* PFPinningEventuallyQueue.m */; };
 		91CDB94E1A32E5E800FF830F /* PFEventuallyPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 91115EF81A097AF30092D1C9 /* PFEventuallyPin.m */; };
@@ -2868,13 +2869,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = F5AFC9EA1BA752750076E927;
 			remoteInfo = "Bolts-tvOS";
-		};
-		4A1351FA2028194C000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 81ED94111BE147CF00795F05;
-			remoteInfo = "Bolts-iOS";
 		};
 		4AA8ABFE20CEFC9A009306DD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -3653,6 +3647,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				916786CC258CEE8000BB5B4E /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6919,7 +6914,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4A1351FB2028194C000F5FD5 /* PBXTargetDependency */,
 			);
 			name = "Parse-iOS";
 			productName = "Parse-iOS";
@@ -8742,11 +8736,6 @@
 			name = "Bolts-tvOS";
 			targetProxy = 4A1351F62028193F000F5FD5 /* PBXContainerItemProxy */;
 		};
-		4A1351FB2028194C000F5FD5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bolts-iOS";
-			targetProxy = 4A1351FA2028194C000F5FD5 /* PBXContainerItemProxy */;
-		};
 		4AA8ABFF20CEFC9A009306DD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bolts-watchOS-Dynamic";
@@ -9046,7 +9035,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -9065,7 +9054,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
