@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/parse-community/Parse-SDK-iOS-OSX.git', :tag => s.version.to_s }
 
   s.platform = :ios, :osx, :tvos, :watchos
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.9'
   s.tvos.deployment_target = '10.0'
   s.watchos.deployment_target = '2.0'
@@ -85,7 +85,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'FacebookUtils' do |s|
     s.platform = :ios
-    s.ios.deployment_target = '8.0'
+    s.ios.deployment_target = '9.0'
     s.public_header_files = 'ParseFacebookUtils/ParseFacebookUtils/*.h'
     s.source_files = 'ParseFacebookUtils/ParseFacebookUtils/**/*.{h,m}'
     s.exclude_files = 'ParseFacebookUtils/ParseFacebookUtils/ParseFacebookUtilsV4.h',
@@ -153,7 +153,7 @@ Pod::Spec.new do |s|
   s.subspec 'UI' do |s|
     s.platform              = :ios
     s.requires_arc          = true
-    s.ios.deployment_target = '8.0'
+    s.ios.deployment_target = '9.0'
     s.source_files        = 'ParseUI/**/*.{h,m}'
     s.exclude_files = 'ParseUI/ParseUIDemo/**/*', 'ParseUI/Other/ParseUI.h', 'ParseUI/SignInWithAppleTests/'
     s.public_header_files = 'ParseUI/Classes/LogInViewController/*.h',
