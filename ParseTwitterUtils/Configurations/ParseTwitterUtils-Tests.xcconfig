@@ -11,7 +11,7 @@
 #include "Shared/Product/LogicTests.xcconfig"
 
 PRODUCT_NAME = ParseTwitterUtils-Tests
-IPHONEOS_DEPLOYMENT_TARGET = 8.0
+IPHONEOS_DEPLOYMENT_TARGET = 9.0
 
 FRAMEWORK_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR)/OCMock
 

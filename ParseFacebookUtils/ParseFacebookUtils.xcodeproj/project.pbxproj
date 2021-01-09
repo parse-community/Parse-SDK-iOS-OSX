@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A1350672027EA53000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13505B2027EA26000F5FD5 /* Parse.framework */; };
 		4AAEAA5F200C020E00AA7479 /* PFFacebookUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 813DFC841AB2510300F25A08 /* PFFacebookUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AAEAA60200C020E00AA7479 /* PFFacebookAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA09C91C178DED00B0F875 /* PFFacebookAuthenticationProvider.h */; };
 		4AAEAA61200C020E00AA7479 /* PFFacebookMobileAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA09C61C178DED00B0F875 /* PFFacebookMobileAuthenticationProvider.h */; };
@@ -54,12 +53,10 @@
 		81FE7F801C17790400E6BD34 /* PFFacebookPrivateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E35FD31BAA6F8400348526 /* PFFacebookPrivateUtilities.m */; };
 		B9312D4123C4A290002D4A4C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A7EE9D23C497D2003E606E /* SystemConfiguration.framework */; platformFilter = ios; };
 		B9783177240D32260049C02B /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9783176240D32260049C02B /* OCMock.framework */; };
-		B9A7EEAF23C49A87003E606E /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAEAA75200C020E00AA7479 /* ParseFacebookUtilsV4.framework */; platformFilter = ios; };
 		B9A7EEB823C49CB5003E606E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A7EE9B23C497C3003E606E /* libsqlite3.tbd */; platformFilter = ios; };
 		B9A7EECC23C49DAE003E606E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A7EECB23C49DAD003E606E /* CoreGraphics.framework */; platformFilter = ios; };
 		B9A7EED023C49F05003E606E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A7EECF23C49F04003E606E /* Accelerate.framework */; platformFilter = ios; };
 		B9A7EED323C4A001003E606E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A7EECD23C49DE3003E606E /* libc++.tbd */; platformFilter = ios; };
-		B9DDA268243C31A60003061D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13504F2027EA26000F5FD5 /* Parse.framework */; };
 		B9DDA297243C36120003061D /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DDA296243C36120003061D /* FBSDKLoginKit.framework */; };
 		B9DDA299243C362B0003061D /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DDA298243C362B0003061D /* FBSDKLoginKit.framework */; };
 		B9DDA2AA243C37CD0003061D /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DDA2A9243C37CD0003061D /* FBSDKCoreKit.framework */; };
@@ -255,7 +252,6 @@
 			files = (
 				B9DDA2AD243C37D60003061D /* FBSDKCoreKit.framework in Frameworks */,
 				B9DDA297243C36120003061D /* FBSDKLoginKit.framework in Frameworks */,
-				B9DDA268243C31A60003061D /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +259,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A1350672027EA53000F5FD5 /* Parse.framework in Frameworks */,
 				B9DDA2AA243C37CD0003061D /* FBSDKCoreKit.framework in Frameworks */,
 				B9DDA299243C362B0003061D /* FBSDKLoginKit.framework in Frameworks */,
 			);
@@ -279,7 +274,6 @@
 				B9A7EED023C49F05003E606E /* Accelerate.framework in Frameworks */,
 				B9A7EECC23C49DAE003E606E /* CoreGraphics.framework in Frameworks */,
 				B9A7EEB823C49CB5003E606E /* libsqlite3.tbd in Frameworks */,
-				B9A7EEAF23C49A87003E606E /* ParseFacebookUtilsV4.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1133,7 +1127,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1147,7 +1141,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1194,7 +1188,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1209,7 +1203,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1220,6 +1214,7 @@
 			baseConfigurationReference = 4AAEAA93200C026300AA7479 /* ParseFacebookUtilsV4-tvOS-Dynamic.xcconfig */;
 			buildSettings = {
 				CLANG_MODULES_AUTOLINK = YES;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1228,6 +1223,7 @@
 			baseConfigurationReference = 4AAEAA93200C026300AA7479 /* ParseFacebookUtilsV4-tvOS-Dynamic.xcconfig */;
 			buildSettings = {
 				CLANG_MODULES_AUTOLINK = YES;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -1263,6 +1259,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/tvOS",
 				);
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1274,6 +1271,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/tvOS",
 				);
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -1281,7 +1279,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F52CD64C1B58386F0051AB86 /* ParseFacebookTestApplicationV4.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1289,7 +1287,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F52CD64C1B58386F0051AB86 /* ParseFacebookTestApplicationV4.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
