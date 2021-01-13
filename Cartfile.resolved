@@ -1,2 +1,2 @@
-github "facebook/facebook-objc-sdk" "v8.0.0"
+github "facebook/facebook-ios-sdk" "v8.2.0"
 github "parse-community/Bolts-ObjC" "1.9.1"
