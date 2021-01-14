@@ -2142,7 +2142,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (id)objectForKey:(NSString *)key {
     @synchronized (lock) {
-        if (![self isDataAvailableForKey:key]) { return nil }
+        if (![self isDataAvailableForKey:key]) {
+            return nil;
+        }
         
         id result = _estimatedData[key];
         if ([key isEqualToString:PFObjectACLRESTKey] && [result isKindOfClass:[PFACL class]]) {
