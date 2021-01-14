@@ -743,19 +743,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }
 }
 
-- (BOOL)isDataAvailableForKey:(NSString *)key {
-    if (!key) {
-        return NO;
-    }
-
-    @synchronized (lock) {
-        if (self.dataAvailable) {
-            return YES;
-        }
-        return [_availableKeys containsObject:key];
-    }
-}
-
 ///--------------------------------------
 #pragma mark - Validations
 ///--------------------------------------
@@ -2028,6 +2015,19 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (BOOL)isDataAvailable {
     return self._state.complete;
+}
+
+- (BOOL)isDataAvailableForKey:(NSString *)key {
+    if (!key) {
+        return NO;
+    }
+    
+    @synchronized (lock) {
+        if (self.dataAvailable) {
+            return YES;
+        }
+        return [_availableKeys containsObject:key];
+    }
 }
 
 - (instancetype)refresh {
