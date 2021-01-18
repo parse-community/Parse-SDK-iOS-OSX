@@ -144,7 +144,7 @@
     }
     BFTask *networkTask = [self.dataSource.commandRunner runCommandAsync:command withOptions:options];
     return [networkTask continueWithSuccessBlock:^id(BFTask *task) {
-        if (cachePolicy != kPFCachePolicyIgnoreCache {
+        if (cachePolicy != kPFCachePolicyIgnoreCache) {
             return [self _saveCommandResultAsync:task.result forCommandCacheKey:command.cacheKey];
         }
         // Roll-forward the original result.
