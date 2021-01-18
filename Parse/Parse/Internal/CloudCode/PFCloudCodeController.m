@@ -43,7 +43,7 @@
 
 - (BFTask *)callCloudCodeFunctionAsync:(NSString *)functionName
                         withParameters:(NSDictionary *)parameters
-                           cachePolicy:(PFCachePolicty)cachePolicy
+                           cachePolicy:(PFCachePolicy)cachePolicy
                            maxCacheAge:(NSTimeInterval)maxCacheAge
                           sessionToken:(NSString *)sessionToken{
    
