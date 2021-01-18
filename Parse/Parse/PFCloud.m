@@ -23,19 +23,30 @@
 ///--------------------------------------
 
 + (BFTask *)callFunctionInBackground:(NSString *)functionName withParameters:(NSDictionary *)parameters {
+    return [callFunctionInBackground:functionName withParameters:parameters cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60]
+}
+
++ (BFTask *)callFunctionInBackground:(NSString *)functionName
+                      withParameters:(NSDictionary *)parameters
+                         cachePolicy:(PFCachePolicy)cachePolicy
+                         maxCacheAge:(NSTimeInterval)maxCacheAge {
     return [[PFUser _getCurrentUserSessionTokenAsync] continueWithBlock:^id(BFTask *task) {
         NSString *sessionToken = task.result;
         PFCloudCodeController *controller = [Parse _currentManager].coreManager.cloudCodeController;
         return [controller callCloudCodeFunctionAsync:functionName
                                        withParameters:parameters
+                                          cachePolicy:cachePolicy,
+                                          maxCacheAge:maxCacheAge,
                                          sessionToken:sessionToken];
     }];
 }
 
 + (void)callFunctionInBackground:(NSString *)function
                   withParameters:(NSDictionary *)parameters
+                     cachePolicy:(PFCachePolicy)cachePolicy
+                     maxCacheAge:(NSTimeInterval)maxCacheAge
                            block:(PFIdResultBlock)block {
-    [[self callFunctionInBackground:function withParameters:parameters] thenCallBackOnMainThreadAsync:block];
+    [[self callFunctionInBackground:function withParameters:parameters cachePolicy:cachePolicy maxCacheAge:maxCacheAge] thenCallBackOnMainThreadAsync:block];
 }
 
 @end

@@ -16,7 +16,7 @@
 
 @interface PFCloudCodeController : NSObject
 
-@property (nonatomic, strong, readonly) id<PFCommandRunnerProvider> dataSource;
+@property (nonatomic, strong, readonly) id<PFCommandRunnerProvider, PFKeyValueCacheProvider> dataSource;
 
 ///--------------------------------------
 #pragma mark - Init
@@ -38,12 +38,26 @@
 
  @param functionName Function name to call.
  @param parameters   Parameters to pass. (can't be nil).
+ @param cachePolicy  Cache Policy
+ @param maxCacheAge  Max cache age
  @param sessionToken Session token to use.
 
  @return `BFTask` with a result set to a result of Cloud Function.
  */
 - (BFTask *)callCloudCodeFunctionAsync:(NSString *)functionName
                         withParameters:(NSDictionary *)parameters
+                           cachePolicy:(PFCachePolicy)cachePolicy
+                           maxCacheAge:(NSTimeInterval)maxCacheAge
                           sessionToken:(NSString *)sessionToken;
+
+///--------------------------------------
+#pragma mark - Caching
+///--------------------------------------
+
+- (nullable NSString *)cacheKeyForFunction:(nonnull NSString *)functionName parameters:(nullable NSDictionary *)parameters sessionToken:(nullable NSString *)sessionToken;
+- (BOOL)hasCachedResultForFunction:(nonnull NSString *)functionName parameters:(nullable NSDictionary *)parameters sessionToken:(nullable NSString *)sessionToken;
+
+- (void)clearCachedResultForFunction:(nonnull NSString *)functionName parameters:(nullable NSDictionary *)parameters sessionToken:(nullable NSString *)sessionToken;
+- (void)clearAllCachedResults;
 
 @end
