@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Calls the given cloud function *asynchronously* with the parameters provided.
  
- @param functionName The function name to call.
+ @param function The function name to call.
  @param parameters The parameters to send to the function.
  @param cachePolicy Cache Policy
  @param maxCacheAge Max cache age
@@ -59,8 +59,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)callFunctionInBackground:(NSString *)function
                   withParameters:(nullable NSDictionary *)parameters
-                     cachePolicy:(nonnull PFCachePolicy)cachePolicy
-                     maxCacheAge:(nonnull NSTimeInterval)maxCacheAge
+                     cachePolicy:(nullable PFCachePolicy)cachePolicy
+                     maxCacheAge:(nullable NSTimeInterval)maxCacheAge
                            block:(nullable PFIdResultBlock)block;
 
 @end
