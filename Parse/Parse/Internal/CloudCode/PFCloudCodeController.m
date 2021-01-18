@@ -97,9 +97,12 @@
         }
             break;
         case kPFCachePolicyCacheThenNetwork: {
-            NSError *error = [PFErrorUtilities errorWithCode:kPFErrorInvalidQuery
-                                                     message:@"Cache then network is not supported directly in PFCloudCodeController."];
-            return [BFTask taskWithError:error];
+            BFTask *cacheTask = [self taskWithCacheKey: cacheKey maxCacheAge:maxCacheAge];
+            @weakify(self);
+            return [cacheTask continueWithBlock:^id(BFTask *task) {
+                @strongify(self);
+                return [self _callCloudCodeFunctionAsync:functionName withParameters:parameters cachePolicy:cachePolicy maxCacheAge:maxCacheAge sessionToken:sessionToken];
+            }];
         }
             break;
         default: {
