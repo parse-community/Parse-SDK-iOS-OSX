@@ -90,7 +90,9 @@
             return [cacheTask continueWithBlock:^id(BFTask *task) {
                 @strongify(self);
                 if (task.error) {
-                    return [self _callCloudCodeFunctionAsync:functionName withParameters:parameters cachePolicy:cachePolicy maxCacheAge:maxCacheAge sessionToken:sessionToken];
+                    return [[self _callCloudCodeFunctionAsync:functionName withParameters:parameters cachePolicy:cachePolicy maxCacheAge:maxCacheAge sessionToken:sessionToken] continueWithSuccessBlock:^id(BFTask *task) {
+                        return [self _saveCommandResultAsync:task.result forCommandCacheKey:cacheKey];
+                    }];
                 }
                 return task;
             }];
@@ -140,14 +142,6 @@
     }] continueWithSuccessBlock:^id(BFTask *task) {
         return ((PFCommandResult *)(task.result)).result[@"result"];
     }] continueWithSuccessBlock:^id(BFTask *task) {
-        if (cachePolicy == kPFCachePolicyNetworkOnly ||
-            cachePolicy == kPFCachePolicyNetworkElseCache ||
-            cachePolicy == kPFCachePolicyCacheElseNetwork) {
-            NSString *cacheKey = [self cacheKeyForFunction:functionName parameters:parameters sessionToken:sessionToken];
-            BFTask *newTask = [self _saveCommandResultAsync:task.result forCommandCacheKey:cacheKey];
-            return [[PFDecoder objectDecoder] decodeObject:newTask.result];
-        }
-        
         return [[PFDecoder objectDecoder] decodeObject:task.result];
     }];
 }
