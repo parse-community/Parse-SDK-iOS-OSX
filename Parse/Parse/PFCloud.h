@@ -59,8 +59,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)callFunctionInBackground:(NSString *)function
                   withParameters:(nullable NSDictionary *)parameters
-                     cachePolicy:(nullable PFCachePolicy)cachePolicy
-                     maxCacheAge:(nullable NSTimeInterval)maxCacheAge
+                     cachePolicy:(PFCachePolicy)cachePolicy
+                     maxCacheAge:(NSTimeInterval)maxCacheAge
                            block:(nullable PFIdResultBlock)block;
 
 @end

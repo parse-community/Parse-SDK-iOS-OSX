@@ -23,7 +23,7 @@
 ///--------------------------------------
 
 + (BFTask *)callFunctionInBackground:(NSString *)functionName withParameters:(NSDictionary *)parameters {
-    return [callFunctionInBackground:functionName withParameters:parameters cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60]
+    return [self callFunctionInBackground:functionName withParameters:parameters cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60];
 }
 
 + (BFTask *)callFunctionInBackground:(NSString *)functionName
@@ -35,8 +35,8 @@
         PFCloudCodeController *controller = [Parse _currentManager].coreManager.cloudCodeController;
         return [controller callCloudCodeFunctionAsync:functionName
                                        withParameters:parameters
-                                          cachePolicy:cachePolicy,
-                                          maxCacheAge:maxCacheAge,
+                                          cachePolicy:cachePolicy
+                                          maxCacheAge:maxCacheAge
                                          sessionToken:sessionToken];
     }];
 }
@@ -77,7 +77,7 @@
                   withParameters:(nullable NSDictionary *)parameters
                           target:(nullable id)target
                         selector:(nullable SEL)selector {
-    [self callFunctionInBackground:function withParameters:parameters block:^(id results, NSError *error) {
+    [self callFunctionInBackground:function withParameters:parameters cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60 block:^(id results, NSError *error) {
         [PFInternalUtils safePerformSelector:selector withTarget:target object:results object:error];
     }];
 }

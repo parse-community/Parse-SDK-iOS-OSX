@@ -17,6 +17,8 @@
 #import "PFEncoder.h"
 #import "PFInternalUtils.h"
 #import "PFRESTCloudCommand.h"
+#import "PFJSONSerialization.h"
+#import "PFKeyValueCache.h"
 
 @implementation PFCloudCodeController
 
@@ -52,30 +54,30 @@
     switch (cachePolicy) {
         case kPFCachePolicyIgnoreCache:
         {
-            return [self callCloudCodeFunctionAsync:functionName withParameters:parameters sessionToken:sessionToken];
+            return [self _callCloudCodeFunctionAsync:functionName withParameters:parameters cachePolicy:cachePolicy maxCacheAge:maxCacheAge sessionToken:sessionToken];
         }
             break;
         case kPFCachePolicyNetworkOnly:
         {
-            return [[self callCloudCodeFunctionAsync:functionName withParameters:parameters sessionToken:sessionToken] continueWithSuccessBlock:^id(BFTask *task) {
+            return [[self _callCloudCodeFunctionAsync:functionName withParameters:parameters cachePolicy:cachePolicy maxCacheAge:maxCacheAge sessionToken:sessionToken] continueWithSuccessBlock:^id(BFTask *task) {
                 return [self _saveCommandResultAsync:task.result forCommandCacheKey:cacheKey];
             }];
         }
             break;
         case kPFCachePolicyCacheOnly: {
-            return [self taskWithCacheKey: cacheKey];
+            return [self taskWithCacheKey: cacheKey maxCacheAge:maxCacheAge];
         }
             break;
         case kPFCachePolicyNetworkElseCache: {
             // Don't retry for network-else-cache, because it just slows things down.
-            BFTask *networkTask = [self callCloudCodeFunctionAsync:functionName withParameters:parameters sessionToken:sessionToken];
+            BFTask *networkTask = [self _callCloudCodeFunctionAsync:functionName withParameters:parameters cachePolicy:cachePolicy maxCacheAge:maxCacheAge sessionToken:sessionToken];
             @weakify(self);
             return [networkTask continueWithBlock:^id(BFTask *task) {
                 @strongify(self);
                 if (task.cancelled) {
                     return task;
                 } else if (task.faulted) {
-                    return [self taskWithCacheKey: cacheKey];
+                    return [self taskWithCacheKey: cacheKey maxCacheAge:maxCacheAge];
                 }
                 return [self _saveCommandResultAsync:task.result forCommandCacheKey:cacheKey];
             }];
@@ -83,12 +85,12 @@
             break;
         case kPFCachePolicyCacheElseNetwork:
         {
-            BFTask *cacheTask = [self taskWithCacheKey: cacheKey];
+            BFTask *cacheTask = [self taskWithCacheKey: cacheKey maxCacheAge:maxCacheAge];
             @weakify(self);
             return [cacheTask continueWithBlock:^id(BFTask *task) {
                 @strongify(self);
                 if (task.error) {
-                    return [self callCloudCodeFunctionAsync:functionName withParameters:parameters sessionToken:sessionToken];
+                    return [self _callCloudCodeFunctionAsync:functionName withParameters:parameters cachePolicy:cachePolicy maxCacheAge:maxCacheAge sessionToken:sessionToken];
                 }
                 return task;
             }];
@@ -101,7 +103,7 @@
         }
             break;
         default: {
-            NSString *message = [NSString stringWithFormat:@"Unrecognized cache policy: %d", queryState.cachePolicy];
+            NSString *message = [NSString stringWithFormat:@"Unrecognized cache policy: %d", cachePolicy];
             NSError *error = [PFErrorUtilities errorWithCode:kPFErrorInvalidQuery message:message];
             return [BFTask taskWithError:error];
         }
@@ -110,9 +112,11 @@
     return nil;
 }
 
-- (BFTask *)callCloudCodeFunctionAsync:(NSString *)functionName
+- (BFTask *)_callCloudCodeFunctionAsync:(NSString *)functionName
                         withParameters:(NSDictionary *)parameters
-                        sessionToken:(NSString *)sessionToken{
+                           cachePolicy:(PFCachePolicy)cachePolicy
+                           maxCacheAge:(NSTimeInterval)maxCacheAge
+                          sessionToken:(NSString *)sessionToken{
     @weakify(self);
     return [[[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
@@ -136,6 +140,7 @@
         if (cachePolicy == kPFCachePolicyNetworkOnly ||
             cachePolicy == kPFCachePolicyNetworkElseCache ||
             cachePolicy == kPFCachePolicyCacheElseNetwork) {
+            NSString *cacheKey = [self cacheKeyForFunction:functionName parameters:parameters sessionToken:sessionToken];
             BFTask *newTask = [self _saveCommandResultAsync:task.result forCommandCacheKey:cacheKey];
             return [[PFDecoder objectDecoder] decodeObject:newTask.result];
         }
