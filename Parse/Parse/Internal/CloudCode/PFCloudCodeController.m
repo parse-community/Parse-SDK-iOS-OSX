@@ -202,7 +202,9 @@
     PFCommandResult *result = [PFCommandResult commandResultWithResult:decodedObject
                                                           resultString:jsonString
                                                           httpResponse:nil];
-    return [BFTask taskWithResult:result];
+    return [[BFTask taskWithResult:result] continueWithSuccessBlock:^id(BFTask *task) {
+        return ((PFCommandResult *)(task.result)).result[@"result"];
+    }];
 }
 
 - (BFTask *)_saveCommandResultAsync:(PFCommandResult *)result forCommandCacheKey:(NSString *)cacheKey {
