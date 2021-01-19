@@ -46,7 +46,22 @@
                      cachePolicy:(PFCachePolicy)cachePolicy
                      maxCacheAge:(NSTimeInterval)maxCacheAge
                            block:(PFIdResultBlock)block {
-    [[self callFunctionInBackground:function withParameters:parameters cachePolicy:cachePolicy maxCacheAge:maxCacheAge] thenCallBackOnMainThreadAsync:block];
+    if (cachePolicy == kPFCachePolicyCacheThenNetwork) {
+        [[self callFunctionInBackground:function withParameters:parameters cachePolicy:kPFCachePolicyCacheOnly maxCacheAge:maxCacheAge] thenCallBackOnMainThreadAsync:^(id result, NSError *error) {
+            if ([NSThread currentThread].isMainThread) {
+                block(result, error);
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    block(result, error);
+                });
+            }
+            
+            [[self callFunctionInBackground:function withParameters:parameters cachePolicy:cachePolicy maxCacheAge:maxCacheAge] thenCallBackOnMainThreadAsync:block];
+        }];
+    }
+    else {
+        [[self callFunctionInBackground:function withParameters:parameters cachePolicy:cachePolicy maxCacheAge:maxCacheAge] thenCallBackOnMainThreadAsync:block];
+    }
 }
 
 @end
