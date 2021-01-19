@@ -42,6 +42,8 @@
     id controllerMock = PFClassMock([PFCloudCodeController class]);
     OCMStub([controllerMock callCloudCodeFunctionAsync:OCMOCK_ANY
                                         withParameters:OCMOCK_ANY
+                                           cachePolicy:OCMOCK_ANY
+                                           maxCacheAge:OCMOCK_ANY
                                           sessionToken:OCMOCK_ANY]).andReturn(task);
     return controllerMock;
 }
@@ -178,6 +180,8 @@
 
     OCMVerify([controllerMock callCloudCodeFunctionAsync:[OCMArg isEqual:@"yolo"]
                                           withParameters:[OCMArg isEqual:parameters]
+                                             cachePolicy:kPFCachePolicyNetworkOnly
+                                             maxCacheAge:60
                                             sessionToken:[OCMArg isNil]]);
 }
 
