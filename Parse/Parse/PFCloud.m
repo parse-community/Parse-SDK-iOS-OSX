@@ -56,7 +56,7 @@
                 });
             }
             
-            [[self callFunctionInBackground:function withParameters:parameters cachePolicy:cachePolicy maxCacheAge:maxCacheAge] thenCallBackOnMainThreadAsync:block];
+            [[self callFunctionInBackground:function withParameters:parameters cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:maxCacheAge] thenCallBackOnMainThreadAsync:block];
         }];
     }
     else {
