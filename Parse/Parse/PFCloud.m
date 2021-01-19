@@ -48,12 +48,14 @@
                            block:(PFIdResultBlock)block {
     if (cachePolicy == kPFCachePolicyCacheThenNetwork) {
         [[self callFunctionInBackground:function withParameters:parameters cachePolicy:kPFCachePolicyCacheOnly maxCacheAge:maxCacheAge] thenCallBackOnMainThreadAsync:^(id result, NSError *error) {
-            if ([NSThread currentThread].isMainThread) {
-                block(result, error);
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
+            if (error == NULL) {
+                if ([NSThread currentThread].isMainThread) {
                     block(result, error);
-                });
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        block(result, error);
+                    });
+                }
             }
             
             [[self callFunctionInBackground:function withParameters:parameters cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:maxCacheAge] thenCallBackOnMainThreadAsync:block];
