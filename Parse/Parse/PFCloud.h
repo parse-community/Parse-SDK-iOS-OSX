@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The task, that encapsulates the work being done.
  */
 + (BFTask *)callFunctionInBackground:(NSString *)function
-                      withParameters:(NSDictionary *)parameters
+                      withParameters:(nullable NSDictionary *)parameters
                          cachePolicy:(PFCachePolicy)cachePolicy
                          maxCacheAge:(NSTimeInterval)maxCacheAge;
 
