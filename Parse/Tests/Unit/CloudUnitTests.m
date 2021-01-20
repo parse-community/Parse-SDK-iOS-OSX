@@ -55,11 +55,11 @@
 - (void)testCallFunction {
     [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithResult:@{ @"a" : @"b" }
                                                                                             error:nil];
-    id result = [PFCloud callFunction:@"a" withParameters:nil];
+    id result = [PFCloud callFunction:@"a" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60];
     XCTAssertEqualObjects(result, @{ @"a" : @"b" });
 
     NSError *error = nil;
-    result = [PFCloud callFunction:@"a" withParameters:nil error:&error];
+    result = [PFCloud callFunction:@"a" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60 error:&error];
     XCTAssertEqualObjects(result, @{ @"a" : @"b" });
     XCTAssertNil(error);
 }
@@ -72,7 +72,7 @@
     XCTAssertNil(result);
 
     NSError *cloudError = nil;
-    result = [PFCloud callFunction:@"a" withParameters:nil error:&cloudError];
+    result = [PFCloud callFunction:@"a" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60 error:&cloudError];
     XCTAssertEqualObjects(error, cloudError);
     XCTAssertNil(result);
 }
@@ -82,7 +82,7 @@
     [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithResult:result error:nil];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[PFCloud callFunctionInBackground:@"yolo" withParameters:nil] continueWithBlock:^id(BFTask *task) {
+    [[PFCloud callFunctionInBackground:@"yolo" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60] continueWithBlock:^id(BFTask *task) {
         XCTAssertEqualObjects(task.result, result);
         [expectation fulfill];
         return nil;
@@ -95,7 +95,7 @@
     [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithResult:result error:nil];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [PFCloud callFunctionInBackground:@"yolo" withParameters:nil block:^(id cloudResult, NSError *error) {
+    [PFCloud callFunctionInBackground:@"yolo" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60 block:^(id cloudResult, NSError *error) {
         XCTAssertEqualObjects(cloudResult, result);
         XCTAssertNil(error);
         [expectation fulfill];
@@ -129,7 +129,7 @@
     [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithResult:nil error:error];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[PFCloud callFunctionInBackground:@"yolo" withParameters:nil] continueWithBlock:^id(BFTask *task) {
+    [[PFCloud callFunctionInBackground:@"yolo" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60] continueWithBlock:^id(BFTask *task) {
         XCTAssertEqualObjects(task.error, error);
         [expectation fulfill];
         return nil;
@@ -142,7 +142,7 @@
     [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithResult:nil error:error];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [PFCloud callFunctionInBackground:@"yolo" withParameters:nil block:^(id result, NSError *cloudError) {
+    [PFCloud callFunctionInBackground:@"yolo" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60 block:^(id result, NSError *cloudError) {
         XCTAssertNil(result);
         XCTAssertEqualObjects(error, cloudError);
         [expectation fulfill];
@@ -164,6 +164,8 @@
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFCloud callFunctionInBackground:@"yolo"
                        withParameters:nil
+                          cachePolicy:kPFCachePolicyNetworkOnly
+                          maxCacheAge:60
                                target:mock
                              selector:@selector(callbackWithResult:error:)];
 #pragma clang diagnostic pop

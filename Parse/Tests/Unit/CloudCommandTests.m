@@ -21,6 +21,8 @@
     PFRESTCloudCommand *command = [PFRESTCloudCommand commandForFunction:@"a"
                                                           withParameters:nil
                                                             sessionToken:nil
+                                                             cachePolicy:kPFCachePolicyNetworkOnly
+                                                             maxCacheAge:60
                                                                    error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"functions/a");
@@ -31,6 +33,8 @@
     command = [PFRESTCloudCommand commandForFunction:@"a"
                                       withParameters:@{ @"b" : @"c" }
                                         sessionToken:@"yarr"
+                                         cachePolicy:kPFCachePolicyNetworkOnly
+                                         maxCacheAge:60
                                                error:nil];
     XCTAssertNotNil(command);
     XCTAssertEqualObjects(command.httpPath, @"functions/a");
