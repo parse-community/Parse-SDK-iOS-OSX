@@ -164,8 +164,6 @@
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [PFCloud callFunctionInBackground:@"yolo"
                        withParameters:nil
-                          cachePolicy:kPFCachePolicyNetworkOnly
-                          maxCacheAge:60
                                target:mock
                              selector:@selector(callbackWithResult:error:)];
 #pragma clang diagnostic pop
