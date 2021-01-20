@@ -25,9 +25,9 @@
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 
-- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider, PFKeyValueCacheProvider>)dataSource NS_DESIGNATED_INITIALIZER;
 
-+ (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider>)dataSource;
++ (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider, PFKeyValueCacheProvider>)dataSource;
 
 ///--------------------------------------
 #pragma mark - Cloud Functions

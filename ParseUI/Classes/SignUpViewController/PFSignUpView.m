@@ -213,7 +213,7 @@ NSString *const PFSignUpViewDismissButtonAccessibilityIdentifier = @"PFSignUpVie
         frame.origin.y = currentY + loginButtonTopInset;
         _signUpButton.frame = frame;
 
-        currentY = CGRectGetMaxY(frame);
+//        currentY = CGRectGetMaxY(frame);
     }
 }
 
