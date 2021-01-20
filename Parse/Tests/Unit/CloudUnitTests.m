@@ -55,11 +55,11 @@
 - (void)testCallFunction {
     [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithResult:@{ @"a" : @"b" }
                                                                                             error:nil];
-    id result = [PFCloud callFunction:@"a" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60];
+    id result = [PFCloud callFunction:@"a" withParameters:nil];
     XCTAssertEqualObjects(result, @{ @"a" : @"b" });
 
     NSError *error = nil;
-    result = [PFCloud callFunction:@"a" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60 error:&error];
+    result = [PFCloud callFunction:@"a" withParameters:nil error:&error];
     XCTAssertEqualObjects(result, @{ @"a" : @"b" });
     XCTAssertNil(error);
 }
@@ -72,7 +72,7 @@
     XCTAssertNil(result);
 
     NSError *cloudError = nil;
-    result = [PFCloud callFunction:@"a" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60 error:&cloudError];
+    result = [PFCloud callFunction:@"a" withParameters:nil error:&cloudError];
     XCTAssertEqualObjects(error, cloudError);
     XCTAssertNil(result);
 }
