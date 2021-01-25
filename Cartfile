@@ -1,3 +1,3 @@
 github "parse-community/Bolts-ObjC" ~> 1.9.1
-github "facebook/facebook-ios-sdk" ~> 8.0
+github "facebook/facebook-ios-sdk" ~> 9.0
 
