@@ -21,8 +21,6 @@
 		<string>iPhoneOS</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.19.1</string>
-	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>1.19.0</string>
 </dict>
 </plist>

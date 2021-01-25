@@ -138,6 +138,7 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
     configuration->_containingApplicationBundleIdentifier = [self->_containingApplicationBundleIdentifier copy];
     configuration->_networkRetryAttempts = self->_networkRetryAttempts;
     configuration->_URLSessionConfiguration = self->_URLSessionConfiguration;
+    configuration->_urlSessionChallengeDelegate = self->_urlSessionChallengeDelegate;
     return configuration;
 }
 

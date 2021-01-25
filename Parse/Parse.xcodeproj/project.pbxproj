@@ -29,6 +29,13 @@
 		4AE33A121F5451AD0088DCA0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE33A111F5451AD0088DCA0 /* ViewController.m */; };
 		4AE33A171F5451AD0088DCA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AE33A161F5451AD0088DCA0 /* Assets.xcassets */; };
 		4AE33A1D1F5451AD0088DCA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE33A1C1F5451AD0088DCA0 /* main.m */; };
+		6CDEDDBA239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CDEDDB9239278F900092A1E /* PFURLSessionChallengeDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6CDEDDBB239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CDEDDB9239278F900092A1E /* PFURLSessionChallengeDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6CDEDDBC239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CDEDDB9239278F900092A1E /* PFURLSessionChallengeDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6CDEDDBD239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CDEDDB9239278F900092A1E /* PFURLSessionChallengeDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6CDEDDBE239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CDEDDB9239278F900092A1E /* PFURLSessionChallengeDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6CDEDDBF239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CDEDDB9239278F900092A1E /* PFURLSessionChallengeDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6CDEDDC0239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CDEDDB9239278F900092A1E /* PFURLSessionChallengeDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		702F3A0A1F1179D40043DD72 /* PFPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 702F3A081F1179D40043DD72 /* PFPolygon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		702F3A0B1F1179D40043DD72 /* PFPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 702F3A091F1179D40043DD72 /* PFPolygon.m */; };
 		707095341F170EFB000C50EA /* PFPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 702F3A091F1179D40043DD72 /* PFPolygon.m */; };
@@ -3064,6 +3071,7 @@
 		63CBA36B1612829C0062C84A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		64C47802147336C70092082F /* PFACL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFACL.h; sourceTree = "<group>"; };
 		64C47803147336C70092082F /* PFACL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFACL.m; sourceTree = "<group>"; };
+		6CDEDDB9239278F900092A1E /* PFURLSessionChallengeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFURLSessionChallengeDelegate.h; sourceTree = "<group>"; };
 		702F3A081F1179D40043DD72 /* PFPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPolygon.h; sourceTree = "<group>"; };
 		702F3A091F1179D40043DD72 /* PFPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPolygon.m; sourceTree = "<group>"; };
 		702F3A171F11807B0043DD72 /* PolygonUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolygonUnitTests.m; sourceTree = "<group>"; };
@@ -3705,15 +3713,15 @@
 				9739513816B9D28E0010B884 /* PFAnalytics.h */,
 				9739513916B9D28E0010B884 /* PFAnalytics.m */,
 				638CBBB415191435004F54E4 /* PFAnonymousUtils.h */,
-				81CA29CE1C28DF8F00C4F34A /* PFAnonymousUtils+Deprecated.h */,
 				638CBBB515191435004F54E4 /* PFAnonymousUtils.m */,
+				81CA29CE1C28DF8F00C4F34A /* PFAnonymousUtils+Deprecated.h */,
 				805D3D9F15E31241007E8D10 /* PFCloud.h */,
-				815BE6BF1C29D17C00738638 /* PFCloud+Synchronous.h */,
-				81CA29D71C28E15900C4F34A /* PFCloud+Deprecated.h */,
 				805D3DA015E31241007E8D10 /* PFCloud.m */,
+				81CA29D71C28E15900C4F34A /* PFCloud+Deprecated.h */,
+				815BE6BF1C29D17C00738638 /* PFCloud+Synchronous.h */,
 				81EB6632198A7FA600851598 /* PFConfig.h */,
-				816A64621C29D2820029B197 /* PFConfig+Synchronous.h */,
 				81EB6633198A7FA600851598 /* PFConfig.m */,
+				816A64621C29D2820029B197 /* PFConfig+Synchronous.h */,
 				0925ABEB13D791770095FEFA /* PFConstants.h */,
 				0925ABEC13D791770095FEFA /* PFConstants.m */,
 				96FAF79E1D8443E300EAB299 /* PFDecoder.h */,
@@ -3721,20 +3729,22 @@
 				96FAF7B61D84461D00EAB299 /* PFEncoder.h */,
 				96FAF7B71D84461D00EAB299 /* PFEncoder.m */,
 				81DEF07D199C42A300D86A21 /* PFFileObject.h */,
-				816A646B1C29DA680029B197 /* PFFileObject+Synchronous.h */,
-				81CA29DC1C28EA7400C4F34A /* PFFileObject+Deprecated.h */,
 				81DEF07E199C42A300D86A21 /* PFFileObject.m */,
-				B141170A1E5D081500F70D7A /* PFFileUploadResult.h */,
+				81CA29DC1C28EA7400C4F34A /* PFFileObject+Deprecated.h */,
+				816A646B1C29DA680029B197 /* PFFileObject+Synchronous.h */,
 				B141169D1E5BC24B00F70D7A /* PFFileUploadController.h */,
+				B141170A1E5D081500F70D7A /* PFFileUploadResult.h */,
 				09B119F614880776002B5594 /* PFGeoPoint.h */,
 				09B119F714880776002B5594 /* PFGeoPoint.m */,
 				44B78E11157D21B000A5E97F /* PFInstallation.h */,
 				44B78E12157D21B000A5E97F /* PFInstallation.m */,
+				81DEF089199D555800D86A21 /* PFNetworkActivityIndicatorManager.h */,
+				81DEF08A199D555800D86A21 /* PFNetworkActivityIndicatorManager.m */,
 				0925ABED13D791770095FEFA /* PFObject.h */,
-				E9BBE98E16D18E5800CD7B52 /* PFObject+Subclass.h */,
-				816A64701C29DC000029B197 /* PFObject+Synchronous.h */,
-				81CA29F41C28ED2300C4F34A /* PFObject+Deprecated.h */,
 				0925ABEE13D791770095FEFA /* PFObject.m */,
+				81CA29F41C28ED2300C4F34A /* PFObject+Deprecated.h */,
+				816A64701C29DC000029B197 /* PFObject+Synchronous.h */,
+				E9BBE98E16D18E5800CD7B52 /* PFObject+Subclass.h */,
 				702F3A081F1179D40043DD72 /* PFPolygon.h */,
 				702F3A091F1179D40043DD72 /* PFPolygon.m */,
 				499E425515B6409000A2C28E /* PFProduct.h */,
@@ -3742,27 +3752,26 @@
 				49FDE2EC158C138F00126F64 /* PFPurchase.h */,
 				49FDE2ED158C138F00126F64 /* PFPurchase.m */,
 				0925ABF113D791770095FEFA /* PFPush.h */,
-				816A647B1C29E19A0029B197 /* PFPush+Synchronous.h */,
-				81CA29E51C28EC3B00C4F34A /* PFPush+Deprecated.h */,
 				0925ABF213D791770095FEFA /* PFPush.m */,
+				81CA29E51C28EC3B00C4F34A /* PFPush+Deprecated.h */,
+				816A647B1C29E19A0029B197 /* PFPush+Synchronous.h */,
 				0925ABF313D791770095FEFA /* PFQuery.h */,
-				816A64821C29E3B60029B197 /* PFQuery+Synchronous.h */,
-				81CA29EA1C28ECA300C4F34A /* PFQuery+Deprecated.h */,
 				0925ABF413D791770095FEFA /* PFQuery.m */,
+				81CA29EA1C28ECA300C4F34A /* PFQuery+Deprecated.h */,
+				816A64821C29E3B60029B197 /* PFQuery+Synchronous.h */,
 				8083B859155DAB1B0023EEFA /* PFRelation.h */,
 				8083B85A155DAB1B0023EEFA /* PFRelation.m */,
 				63723F6D1565A085007A1A73 /* PFRole.h */,
 				63723F6E1565A085007A1A73 /* PFRole.m */,
 				812145751AA4A4C1000B23F5 /* PFSession.h */,
 				812145761AA4A4C1000B23F5 /* PFSession.m */,
-				0925ABF513D791770095FEFA /* PFUser.h */,
-				816A64871C29E5A00029B197 /* PFUser+Synchronous.h */,
-				81CA29EF1C28ECFD00C4F34A /* PFUser+Deprecated.h */,
-				0925ABF613D791770095FEFA /* PFUser.m */,
-				811083F11BA2580100FC7F65 /* PFUserAuthenticationDelegate.h */,
 				E9E81E8316EEF93E001D034F /* PFSubclassing.h */,
-				81DEF089199D555800D86A21 /* PFNetworkActivityIndicatorManager.h */,
-				81DEF08A199D555800D86A21 /* PFNetworkActivityIndicatorManager.m */,
+				6CDEDDB9239278F900092A1E /* PFURLSessionChallengeDelegate.h */,
+				0925ABF513D791770095FEFA /* PFUser.h */,
+				0925ABF613D791770095FEFA /* PFUser.m */,
+				81CA29EF1C28ECFD00C4F34A /* PFUser+Deprecated.h */,
+				816A64871C29E5A00029B197 /* PFUser+Synchronous.h */,
+				811083F11BA2580100FC7F65 /* PFUserAuthenticationDelegate.h */,
 			);
 			path = Parse;
 			sourceTree = "<group>";
@@ -5288,6 +5297,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CDEDDBF239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */,
 				816A646F1C29DA680029B197 /* PFFileObject+Synchronous.h in Headers */,
 				810155A51BB3832700D7C7BD /* PFACL.h in Headers */,
 				810155A91BB3832700D7C7BD /* PFConfig.h in Headers */,
@@ -5487,6 +5497,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CDEDDBD239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */,
 				815F23511BD04D150054659F /* PFACL.h in Headers */,
 				815F23551BD04D150054659F /* PFConfig.h in Headers */,
 				815F23561BD04D150054659F /* PFAnalytics.h in Headers */,
@@ -5710,6 +5721,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CDEDDBA239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */,
 				702F3A0A1F1179D40043DD72 /* PFPolygon.h in Headers */,
 				F5B64D8B1BFA646C0038F3CB /* ParseClientConfiguration.h in Headers */,
 				818AAA7019D36B1C00FC1B3C /* PFACL.h in Headers */,
@@ -5937,6 +5949,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CDEDDBB239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */,
 				709EC3301F143C4700C55549 /* PFPolygon.h in Headers */,
 				B14116F41E5D075C00F70D7A /* PFFileUploadController.h in Headers */,
 				81C583841C3B0A98000063C6 /* ParseClientConfiguration.h in Headers */,
@@ -6164,6 +6177,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CDEDDBE239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */,
 				81C584F81C3B0AA1000063C6 /* PFACL.h in Headers */,
 				81C584FB1C3B0AA1000063C6 /* PFConfig.h in Headers */,
 				81C584FC1C3B0AA1000063C6 /* PFAnalytics.h in Headers */,
@@ -6387,6 +6401,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CDEDDC0239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */,
 				7070954D1F171038000C50EA /* PFPolygon.h in Headers */,
 				81C586501C3B0AA9000063C6 /* PFFileObject+Synchronous.h in Headers */,
 				81C586531C3B0AA9000063C6 /* PFACL.h in Headers */,
@@ -6587,6 +6602,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CDEDDBC239278F900092A1E /* PFURLSessionChallengeDelegate.h in Headers */,
 				81F0E89919E6F83E00812A88 /* PFRelation.h in Headers */,
 				707095401F170F1B000C50EA /* PFPolygon.h in Headers */,
 				81F0E88E19E6F7D600812A88 /* Parse.h in Headers */,
@@ -7006,7 +7022,7 @@
 		09D33641139C54930098E916 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Parse Inc.";
 				TargetAttributes = {

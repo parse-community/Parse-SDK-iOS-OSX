@@ -14,10 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFURLSession ()
 
 - (instancetype)initWithURLSession:(NSURLSession *)session
-                          delegate:(id<PFURLSessionDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+                          delegate:(id<PFURLSessionDelegate>)delegate
+       urlSessionChallengeDelegate:(id<PFURLSessionChallengeDelegate>)urlSessionChallengeDelegate NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)sessionWithURLSession:(NSURLSession *)session
-                             delegate:(id<PFURLSessionDelegate>)delegate;
+                             delegate:(id<PFURLSessionDelegate>)delegate
+          urlSessionChallengeDelegate:(id<PFURLSessionChallengeDelegate>)urlSessionChallengeDelegate;
 
 @end
 

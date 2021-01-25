@@ -321,7 +321,8 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
                                                                           retryAttempts:self.configuration.networkRetryAttempts
                                                                           applicationId:self.configuration.applicationId
                                                                               clientKey:self.configuration.clientKey
-                                                                              serverURL:[NSURL URLWithString:self.configuration.server]];
+                                                                              serverURL:[NSURL URLWithString:self.configuration.server]
+                                                              urlSessionChallengeDelegate:self.configuration.urlSessionChallengeDelegate];
         }
         runner = self->_commandRunner;
     });
