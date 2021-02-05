@@ -42,8 +42,8 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
           urlSessionChallengeDelegate:(id<PFURLSessionChallengeDelegate>)urlSessionChallengeDelegate {
     // NOTE: cast to id suppresses warning about designated initializer.
     return [(id)self initWithURLSession:[NSURLSession sessionWithConfiguration:configuration
-                                                                     delegate:self
-                                                                delegateQueue:nil]
+                                                                      delegate:self
+                                                                 delegateQueue:nil]
                                delegate:delegate
             urlSessionChallengeDelegate:urlSessionChallengeDelegate];
 }
@@ -53,16 +53,16 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
        urlSessionChallengeDelegate:(id<PFURLSessionChallengeDelegate>)urlSessionChallengeDelegate{
     self = [super init];
     if (!self) return nil;
-
+    
     _delegate = delegate;
     _urlSession = session;
     _urlSessionChallengeDelegate = urlSessionChallengeDelegate;
-
+    
     _sessionTaskQueue = dispatch_queue_create("com.parse.urlSession.tasks", DISPATCH_QUEUE_SERIAL);
-
+    
     _delegatesDictionary = [NSMutableDictionary dictionary];
     _delegatesAccessQueue = dispatch_queue_create("com.parse.urlSession.delegates", DISPATCH_QUEUE_CONCURRENT);
-
+    
     return self;
 }
 
@@ -96,14 +96,14 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
     if (cancellationToken.cancellationRequested) {
         return [BFTask cancelledTask];
     }
-
+    
     @weakify(self);
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
         if (cancellationToken.cancellationRequested) {
             return [BFTask cancelledTask];
         }
-
+        
         __block NSURLSessionDataTask *task = nil;
         dispatch_sync(self->_sessionTaskQueue, ^{
             task = [self->_urlSession dataTaskWithRequest:request];
@@ -122,14 +122,14 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
     if (cancellationToken.cancellationRequested) {
         return [BFTask cancelledTask];
     }
-
+    
     @weakify(self);
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
         if (cancellationToken.cancellationRequested) {
             return [BFTask cancelledTask];
         }
-
+        
         __block NSURLSessionDataTask *task = nil;
         dispatch_sync(self->_sessionTaskQueue, ^{
             task = [self->_urlSession uploadTaskWithRequest:request fromFile:[NSURL fileURLWithPath:sourceFilePath]];
@@ -148,14 +148,14 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
     if (cancellationToken.cancellationRequested) {
         return [BFTask cancelledTask];
     }
-
+    
     @weakify(self);
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         @strongify(self);
         if (cancellationToken.cancellationRequested) {
             return [BFTask cancelledTask];
         }
-
+        
         __block NSURLSessionDataTask *task = nil;
         dispatch_sync(self->_sessionTaskQueue, ^{
             task = [self->_urlSession dataTaskWithRequest:request];
@@ -170,25 +170,25 @@ typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *r
 
 - (BFTask *)_performDataTask:(NSURLSessionDataTask *)dataTask withDelegate:(PFURLSessionDataTaskDelegate *)delegate {
     [self.delegate urlSession:self willPerformURLRequest:dataTask.originalRequest];
-
+    
     @weakify(self);
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id{
         @strongify(self);
         NSNumber *taskIdentifier = @(dataTask.taskIdentifier);
         [self setDelegate:delegate forDataTask:dataTask];
-
+        
         BFTask *resultTask = [delegate.resultTask continueWithBlock:^id(BFTask *task) {
             @strongify(self);
             [self.delegate urlSession:self
                  didPerformURLRequest:dataTask.originalRequest
                       withURLResponse:delegate.response
                        responseString:delegate.responseString];
-
+            
             [self _removeDelegateForTaskWithIdentifier:taskIdentifier];
             return task;
         }];
         [dataTask resume];
-
+        
         return resultTask;
     }];
 }
@@ -275,6 +275,8 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
          URLSession:session
          didReceiveChallenge:challenge
          completionHandler:completionHandler];
+    } else {
+        completionHandler(.NSURLSessionAuthChallengePerformDefaultHandling)
     }
 }
 
