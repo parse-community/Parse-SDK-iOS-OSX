@@ -13,7 +13,7 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.19.1</string>
+	<string>1.19.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -21,7 +21,7 @@
 		<string>iPhoneOS</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.19.1</string>
+	<string>1.19.2</string>
 	<key>MinimumOSVersion</key>
 	<string>9.0</string>
 </dict>
