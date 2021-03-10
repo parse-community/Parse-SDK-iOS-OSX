@@ -1,8 +1,17 @@
 # Parse-SDK-iOS-OSX Changelog
 
 ### master
-[Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.1...master)
+[Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.2...master)
 * _Contributing to this repo? Add info about your change here to be included in next release_
+
+### 1.19.2
+[Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.1...1.19.2)
+
+__Improvements__
+- Updates Facebook SDK to 9.x ([#1599](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1599)), thanks to [kmaker](https://github.com/kmaker).
+
+__Fixes__
+- Crash in Twitter login flow ([#1566](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1567)), thanks to [dhana](https://github.com/dsp1589).
 
 ### 1.19.1
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.0...1.19.1)
