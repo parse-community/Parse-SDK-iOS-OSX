@@ -23,7 +23,7 @@
     <a href="https://github.com/carthage/carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
     <a href="https://github.com/parse-community/Parse-SDK-iOS-OSX/blob/master/Vendor"><img alt="Dependencies" src="https://img.shields.io/badge/dependencies-2-yellowgreen.svg"></a>
     <a href="https://github.com/parse-community/Parse-SDK-iOS-OSX/actions?query=workflow%3Aci+branch%3Amaster"><img alt="CI status" src="https://github.com/parse-community/Parse-SDK-iOS-OSX/workflows/ci/badge.svg?branch=master"></a>
-    <a href="https://github.com/parse-community/Parse-SDK-iOS-OSX/actions?query=workflow%3Arelease"><img alt="Release status" src="https://github.com/parse-community/Parse-SDK-iOS-OSX/workflows/release/badge.svg?branch=master"></a>
+    <a href="https://github.com/parse-community/Parse-SDK-iOS-OSX/actions?query=workflow%3Arelease"><img alt="Release status" src="https://github.com/parse-community/Parse-SDK-iOS-OSX/actions/workflows/release.yml/badge.svg"></a>
     <a href="https://circleci.com/build-insights/gh/parse-community/Parse-SDK-iOS-OSX/master"><img alt="Build status" src="https://circleci.com/gh/parse-community/Parse-SDK-iOS-OSX.svg?style=shield"></a>
     <a href="https://codecov.io/github/parse-community/Parse-SDK-iOS-OSX?branch=master"><img alt="Coverage status" src="https://img.shields.io/codecov/c/github/parse-community/Parse-SDK-iOS-OSX/master.svg"></a>
     <a href="https://community.parseplatform.org/"><img alt="Join the conversation" src="https://img.shields.io/discourse/https/community.parseplatform.org/topics.svg"></a>
