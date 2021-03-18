@@ -395,6 +395,13 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  */
 @property (nonatomic, assign, readonly, getter=isDataAvailable) BOOL dataAvailable;
 
+/**
+ Gets whether the `PFObject` has data for given key
+ 
+ @return `YES` if data is available for given key
+ */
+- (BOOL)isDataAvailableForKey:(NSString *)key;
+
 #if TARGET_OS_IOS
 
 /**

@@ -743,19 +743,6 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     }
 }
 
-- (BOOL)isDataAvailableForKey:(NSString *)key {
-    if (!key) {
-        return NO;
-    }
-
-    @synchronized (lock) {
-        if (self.dataAvailable) {
-            return YES;
-        }
-        return [_availableKeys containsObject:key];
-    }
-}
-
 ///--------------------------------------
 #pragma mark - Validations
 ///--------------------------------------
@@ -2030,6 +2017,19 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return self._state.complete;
 }
 
+- (BOOL)isDataAvailableForKey:(NSString *)key {
+    if (!key) {
+        return NO;
+    }
+    
+    @synchronized (lock) {
+        if (self.dataAvailable) {
+            return YES;
+        }
+        return [_availableKeys containsObject:key];
+    }
+}
+
 - (instancetype)refresh {
     return [self fetch];
 }
@@ -2142,9 +2142,10 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 
 - (id)objectForKey:(NSString *)key {
     @synchronized (lock) {
-        PFConsistencyAssert([self isDataAvailableForKey:key],
-                            @"Key \"%@\" has no data.  Call fetchIfNeeded before getting its value.", key);
-
+        if (![self isDataAvailableForKey:key]) {
+            return nil;
+        }
+        
         id result = _estimatedData[key];
         if ([key isEqualToString:PFObjectACLRESTKey] && [result isKindOfClass:[PFACL class]]) {
             PFACL *acl = result;

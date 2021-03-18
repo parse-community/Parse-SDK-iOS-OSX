@@ -17,6 +17,8 @@
 #import "PFEncoder.h"
 #import "PFInternalUtils.h"
 #import "PFRESTCloudCommand.h"
+#import "PFJSONSerialization.h"
+#import "PFKeyValueCache.h"
 
 @implementation PFCloudCodeController
 
@@ -24,7 +26,7 @@
 #pragma mark - Init
 ///--------------------------------------s
 
-- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource {
+- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider, PFKeyValueCacheProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
 
@@ -33,7 +35,7 @@
     return self;
 }
 
-+ (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider>)dataSource {
++ (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider, PFKeyValueCacheProvider>)dataSource {
     return [[self alloc] initWithDataSource:dataSource];
 }
 
@@ -43,24 +45,172 @@
 
 - (BFTask *)callCloudCodeFunctionAsync:(NSString *)functionName
                         withParameters:(NSDictionary *)parameters
+                           cachePolicy:(PFCachePolicy)cachePolicy
+                           maxCacheAge:(NSTimeInterval)maxCacheAge
+                          sessionToken:(NSString *)sessionToken{
+   
+    NSString *cacheKey = [self cacheKeyForFunction:functionName parameters:parameters sessionToken:sessionToken];
+    
+    switch (cachePolicy) {
+        case kPFCachePolicyIgnoreCache: {
+            return [self _callCloudCodeFunctionAsync:functionName withParameters:parameters cachePolicy:cachePolicy sessionToken:sessionToken];
+        }
+            break;
+        case kPFCachePolicyNetworkOnly: {
+            return [self _callCloudCodeFunctionAsync:functionName withParameters:parameters cachePolicy:cachePolicy sessionToken:sessionToken];
+        }
+            break;
+        case kPFCachePolicyCacheOnly: {
+            return [self taskWithCacheKey:cacheKey maxCacheAge:maxCacheAge];
+        }
+            break;
+        case kPFCachePolicyNetworkElseCache: {
+            // Don't retry for network-else-cache, because it just slows things down.
+            BFTask *networkTask = [self _callCloudCodeFunctionAsync:functionName withParameters:parameters cachePolicy:cachePolicy sessionToken:sessionToken];
+            @weakify(self);
+            return [networkTask continueWithBlock:^id(BFTask *task) {
+                @strongify(self);
+                if (task.cancelled) {
+                    return task;
+                } else if (task.faulted) {
+                    return [self taskWithCacheKey:cacheKey maxCacheAge:maxCacheAge];
+                }
+                
+                return task;
+            }];
+        }
+            break;
+        case kPFCachePolicyCacheElseNetwork: {
+            BFTask *cacheTask = [self taskWithCacheKey:cacheKey maxCacheAge:maxCacheAge];
+            @weakify(self);
+            return [cacheTask continueWithBlock:^id(BFTask *task) {
+                @strongify(self);
+                if (task.error) {
+                    return [self _callCloudCodeFunctionAsync:functionName withParameters:parameters cachePolicy:cachePolicy sessionToken:sessionToken];
+                }
+                return task;
+            }];
+        }
+            break;
+        case kPFCachePolicyCacheThenNetwork: {
+            NSError *error = [PFErrorUtilities errorWithCode:kPFErrorInvalidQuery
+                                                     message:@"Cache then network is not supported directly in PFCloudCodeController."];
+            return [BFTask taskWithError:error];
+        }
+            break;
+        default: {
+            NSString *message = [NSString stringWithFormat:@"Unrecognized cache policy: %d", cachePolicy];
+            NSError *error = [PFErrorUtilities errorWithCode:kPFErrorInvalidQuery message:message];
+            return [BFTask taskWithError:error];
+        }
+            break;
+    }
+    return nil;
+}
+
+- (BFTask *)_callCloudCodeFunctionAsync:(NSString *)functionName
+                        withParameters:(NSDictionary *)parameters
+                           cachePolicy:(PFCachePolicy)cachePolicy
                           sessionToken:(NSString *)sessionToken {
-    @weakify(self);
     return [[[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
-        @strongify(self);
-        NSError *error;
-        NSDictionary *encodedParameters = [[PFNoObjectEncoder objectEncoder] encodeObject:parameters error:&error];
-        PFPreconditionReturnFailedTask(encodedParameters, error);
-        PFRESTCloudCommand *command = [PFRESTCloudCommand commandForFunction:functionName
-                                                              withParameters:encodedParameters
-                                                                sessionToken:sessionToken
-                                                                       error:&error];
-        PFPreconditionReturnFailedTask(command, error);
-        return [self.dataSource.commandRunner runCommandAsync:command withOptions:PFCommandRunningOptionRetryIfFailed];
+        return [self __callCloudCodeFunctionAsync:functionName withParameters:parameters cachePolicy:cachePolicy sessionToken:sessionToken];
     }] continueWithSuccessBlock:^id(BFTask *task) {
         return ((PFCommandResult *)(task.result)).result[@"result"];
     }] continueWithSuccessBlock:^id(BFTask *task) {
         return [[PFDecoder objectDecoder] decodeObject:task.result];
     }];
+}
+
+- (BFTask *)__callCloudCodeFunctionAsync:(NSString *)functionName
+                         withParameters:(NSDictionary *)parameters
+                            cachePolicy:(PFCachePolicy)cachePolicy
+                           sessionToken:(NSString *)sessionToken {
+    
+    NSError *error;
+    NSDictionary *encodedParameters = [[PFNoObjectEncoder objectEncoder] encodeObject:parameters error:&error];
+    PFPreconditionReturnFailedTask(encodedParameters, error);
+    PFRESTCloudCommand *command = [PFRESTCloudCommand commandForFunction:functionName
+                                                          withParameters:encodedParameters
+                                                            sessionToken:sessionToken
+                                                                   error:&error];
+    PFPreconditionReturnFailedTask(command, error);
+    
+    PFCommandRunningOptions options = 0;
+    if (cachePolicy != kPFCachePolicyNetworkElseCache) {
+        options = PFCommandRunningOptionRetryIfFailed;
+    }
+    BFTask *networkTask = [self.dataSource.commandRunner runCommandAsync:command withOptions:options];
+    return [networkTask continueWithSuccessBlock:^id(BFTask *task) {
+        if (cachePolicy != kPFCachePolicyIgnoreCache) {
+            return [self _saveCommandResultAsync:task.result forCommandCacheKey:command.cacheKey];
+        }
+        // Roll-forward the original result.
+        return task;
+    }];
+}
+
+
+///--------------------------------------
+#pragma mark - Caching
+///--------------------------------------
+
+- (nullable NSString *)cacheKeyForFunction:(nonnull NSString *)functionName parameters:(nullable NSDictionary *)parameters sessionToken:(nullable NSString *)sessionToken {
+    NSDictionary *encodedParameters = [[PFNoObjectEncoder objectEncoder] encodeObject:parameters error:nil];
+    return [PFRESTCloudCommand commandForFunction:functionName
+                                   withParameters:encodedParameters
+                                     sessionToken:sessionToken
+                                            error:nil].cacheKey;
+}
+
+- (BOOL)hasCachedResultForFunction:(nonnull NSString *)functionName parameters:(nullable NSDictionary *)parameters sessionToken:(nullable NSString *)sessionToken {
+    NSString *cacheKey = [self cacheKeyForFunction:functionName parameters:parameters sessionToken:sessionToken];
+    return ([self.dataSource.keyValueCache objectForKey:cacheKey maxAge:60] != nil);
+}
+
+- (void)clearCachedResultForFunction:(nonnull NSString *)functionName parameters:(nullable NSDictionary *)parameters sessionToken:(nullable NSString *)sessionToken {
+    NSString *cacheKey = [self cacheKeyForFunction:functionName parameters:parameters sessionToken:sessionToken];
+    [self.dataSource.keyValueCache removeObjectForKey:cacheKey];
+}
+
+- (void)clearAllCachedResults {
+    [self.dataSource.keyValueCache removeAllObjects];
+}
+
+- (BFTask *)taskWithCacheKey:(NSString*)cacheKey
+                 maxCacheAge:(NSTimeInterval)maxCacheAge {
+                               
+    NSString *jsonString = [self.dataSource.keyValueCache objectForKey:cacheKey maxAge:maxCacheAge];
+    if (!jsonString) {
+        NSError *error = [PFErrorUtilities errorWithCode:kPFErrorCacheMiss
+                                                 message:@"Cache miss."
+                                               shouldLog:NO];
+        return [BFTask taskWithError:error];
+    }
+    
+    NSDictionary *object = [PFJSONSerialization JSONObjectFromString:jsonString];
+    if (!object) {
+        NSError *error = [PFErrorUtilities errorWithCode:kPFErrorCacheMiss
+                                                 message:@"Cache contains corrupted JSON."];
+        return [BFTask taskWithError:error];
+    }
+    
+    NSDictionary *decodedObject = [[PFDecoder objectDecoder] decodeObject:object];
+    
+    PFCommandResult *result = [PFCommandResult commandResultWithResult:decodedObject
+                                                          resultString:jsonString
+                                                          httpResponse:nil];
+    return [[BFTask taskWithResult:result] continueWithSuccessBlock:^id(BFTask *task) {
+        return ((PFCommandResult *)(task.result)).result[@"result"];
+    }];
+}
+
+- (BFTask *)_saveCommandResultAsync:(PFCommandResult *)result forCommandCacheKey:(NSString *)cacheKey {
+    NSString *resultString = result.resultString;
+    if (resultString) {
+        self.dataSource.keyValueCache[cacheKey] = resultString;
+    }
+    // Roll-forward the original result.
+    return [BFTask taskWithResult:result];
 }
 
 @end

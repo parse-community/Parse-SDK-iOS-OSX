@@ -42,6 +42,8 @@
     id controllerMock = PFClassMock([PFCloudCodeController class]);
     OCMStub([controllerMock callCloudCodeFunctionAsync:OCMOCK_ANY
                                         withParameters:OCMOCK_ANY
+                                           cachePolicy:kPFCachePolicyNetworkOnly
+                                           maxCacheAge:60
                                           sessionToken:OCMOCK_ANY]).andReturn(task);
     return controllerMock;
 }
@@ -80,7 +82,7 @@
     [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithResult:result error:nil];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[PFCloud callFunctionInBackground:@"yolo" withParameters:nil] continueWithBlock:^id(BFTask *task) {
+    [[PFCloud callFunctionInBackground:@"yolo" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60] continueWithBlock:^id(BFTask *task) {
         XCTAssertEqualObjects(task.result, result);
         [expectation fulfill];
         return nil;
@@ -93,7 +95,7 @@
     [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithResult:result error:nil];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [PFCloud callFunctionInBackground:@"yolo" withParameters:nil block:^(id cloudResult, NSError *error) {
+    [PFCloud callFunctionInBackground:@"yolo" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60 block:^(id cloudResult, NSError *error) {
         XCTAssertEqualObjects(cloudResult, result);
         XCTAssertNil(error);
         [expectation fulfill];
@@ -127,7 +129,7 @@
     [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithResult:nil error:error];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[PFCloud callFunctionInBackground:@"yolo" withParameters:nil] continueWithBlock:^id(BFTask *task) {
+    [[PFCloud callFunctionInBackground:@"yolo" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60] continueWithBlock:^id(BFTask *task) {
         XCTAssertEqualObjects(task.error, error);
         [expectation fulfill];
         return nil;
@@ -140,7 +142,7 @@
     [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithResult:nil error:error];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [PFCloud callFunctionInBackground:@"yolo" withParameters:nil block:^(id result, NSError *cloudError) {
+    [PFCloud callFunctionInBackground:@"yolo" withParameters:nil cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60 block:^(id result, NSError *cloudError) {
         XCTAssertNil(result);
         XCTAssertEqualObjects(error, cloudError);
         [expectation fulfill];
@@ -178,6 +180,8 @@
 
     OCMVerify([controllerMock callCloudCodeFunctionAsync:[OCMArg isEqual:@"yolo"]
                                           withParameters:[OCMArg isEqual:parameters]
+                                             cachePolicy:kPFCachePolicyNetworkOnly
+                                             maxCacheAge:60
                                             sessionToken:[OCMArg isNil]]);
 }
 

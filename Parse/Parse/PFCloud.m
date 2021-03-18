@@ -23,19 +23,47 @@
 ///--------------------------------------
 
 + (BFTask *)callFunctionInBackground:(NSString *)functionName withParameters:(NSDictionary *)parameters {
+    return [self callFunctionInBackground:functionName withParameters:parameters cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60];
+}
+
++ (BFTask *)callFunctionInBackground:(NSString *)functionName
+                      withParameters:(NSDictionary *)parameters
+                         cachePolicy:(PFCachePolicy)cachePolicy
+                         maxCacheAge:(NSTimeInterval)maxCacheAge {
     return [[PFUser _getCurrentUserSessionTokenAsync] continueWithBlock:^id(BFTask *task) {
         NSString *sessionToken = task.result;
         PFCloudCodeController *controller = [Parse _currentManager].coreManager.cloudCodeController;
         return [controller callCloudCodeFunctionAsync:functionName
                                        withParameters:parameters
+                                          cachePolicy:cachePolicy
+                                          maxCacheAge:maxCacheAge
                                          sessionToken:sessionToken];
     }];
 }
 
 + (void)callFunctionInBackground:(NSString *)function
                   withParameters:(NSDictionary *)parameters
+                     cachePolicy:(PFCachePolicy)cachePolicy
+                     maxCacheAge:(NSTimeInterval)maxCacheAge
                            block:(PFIdResultBlock)block {
-    [[self callFunctionInBackground:function withParameters:parameters] thenCallBackOnMainThreadAsync:block];
+    if (cachePolicy == kPFCachePolicyCacheThenNetwork) {
+        [[self callFunctionInBackground:function withParameters:parameters cachePolicy:kPFCachePolicyCacheOnly maxCacheAge:maxCacheAge] thenCallBackOnMainThreadAsync:^(id result, NSError *error) {
+            if (error == NULL) {
+                if ([NSThread currentThread].isMainThread) {
+                    block(result, error);
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        block(result, error);
+                    });
+                }
+            }
+            
+            [[self callFunctionInBackground:function withParameters:parameters cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:maxCacheAge] thenCallBackOnMainThreadAsync:block];
+        }];
+    }
+    else {
+        [[self callFunctionInBackground:function withParameters:parameters cachePolicy:cachePolicy maxCacheAge:maxCacheAge] thenCallBackOnMainThreadAsync:block];
+    }
 }
 
 @end
@@ -66,7 +94,7 @@
                   withParameters:(nullable NSDictionary *)parameters
                           target:(nullable id)target
                         selector:(nullable SEL)selector {
-    [self callFunctionInBackground:function withParameters:parameters block:^(id results, NSError *error) {
+    [self callFunctionInBackground:function withParameters:parameters cachePolicy:kPFCachePolicyNetworkOnly maxCacheAge:60 block:^(id results, NSError *error) {
         [PFInternalUtils safePerformSelector:selector withTarget:target object:results object:error];
     }];
 }
