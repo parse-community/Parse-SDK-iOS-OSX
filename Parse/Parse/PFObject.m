@@ -225,7 +225,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                                                  error:&localError];
             }
             if (!succeeded) {
-                *error = localError;
+                if (error) {
+                    *error = localError;
+                }
                 return NO;
             }
         }
@@ -259,7 +261,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                                     seenNew:seenNew
                                 currentUser:currentUser
                                         error:&localError]) {
-                *error = localError;
+                if (error) {
+                    *error = localError;
+                }
                 return NO;
             }
         }
@@ -296,7 +300,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             toSearch = [object._estimatedData.dictionaryRepresentation copy];
         }
 
-        NSError *localError;
+        NSError *localError = NULL;
         if (![self collectDirtyChildren:toSearch
                           children:dirtyChildren
                              files:dirtyFiles
@@ -304,7 +308,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                            seenNew:seenNew
                             currentUser:currentUser
                                   error:&localError]) {
-            *error = localError;
+            if (error) {
+                *error = localError;
+            }
             return NO;
         }
 
@@ -1356,7 +1362,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     @synchronized (lock) {
         self._state = [self._state copyByMutatingWithBlock:^(PFMutableObjectState *state) {
             // If the server's data is complete, consider this object to be fetched.
-            state.complete |= completeData;
+            if (completeData) {
+                state.complete = YES;
+            }
 
             [result enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
                 if ([key isEqualToString:PFObjectObjectIdRESTKey]) {
