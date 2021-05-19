@@ -246,11 +246,13 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
 
 - (BOOL)resolveLocalIds:(NSError * __autoreleasing *)error {
     BOOL paramEncodingSucceeded = [self forEachLocalId:^(PFObject *pointer, BOOL *modified, NSError **blockError) {
-        NSError *localError;
+        NSError *localError = NULL;
         BOOL success = [pointer resolveLocalId:&localError];
         *modified = YES;
         if (!success && localError) {
-            *blockError = localError;
+            if (blockError) {
+                *blockError = localError;
+            }
         }
         return success;
     } error: error];
