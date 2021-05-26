@@ -3695,8 +3695,6 @@
 		0925ABB613D791770095FEFA /* Parse */ = {
 			isa = PBXGroup;
 			children = (
-				09809FAE1434F98C00EC3E74 /* Internal */,
-				09809FB81434F98C00EC3E74 /* Resources */,
 				09EEA12D1434FB1F00E3A3FA /* Parse.h */,
 				09EEA12E1434FB1F00E3A3FA /* Parse.m */,
 				F5B64D891BFA646C0038F3CB /* ParseClientConfiguration.h */,
@@ -3765,7 +3763,8 @@
 				81DEF089199D555800D86A21 /* PFNetworkActivityIndicatorManager.h */,
 				81DEF08A199D555800D86A21 /* PFNetworkActivityIndicatorManager.m */,
 			);
-			path = Parse;
+			name = Parse;
+			path = Public;
 			sourceTree = "<group>";
 		};
 		09809FAE1434F98C00EC3E74 /* Internal */ = {
@@ -3848,7 +3847,8 @@
 				F586B34E1B1E3BD70082E3BD /* PFBaseState.h */,
 				F586B34F1B1E3BD70082E3BD /* PFBaseState.m */,
 			);
-			path = Internal;
+			name = Internal;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		09809FB81434F98C00EC3E74 /* Resources */ = {
@@ -3878,6 +3878,8 @@
 			isa = PBXGroup;
 			children = (
 				F55ABB501B4F39DA00A0ECD5 /* Configurations */,
+				09809FAE1434F98C00EC3E74 /* Internal */,
+				09809FB81434F98C00EC3E74 /* Resources */,
 				0925ABB613D791770095FEFA /* Parse */,
 				099C082113AC013900D71869 /* Tests */,
 				4AE33A0C1F5451AD0088DCA0 /* ParseUnitTests-iOS-host */,
@@ -6920,6 +6922,8 @@
 				BCAFF88B25A88C4F00B95DFC /* PBXTargetDependency */,
 			);
 			name = "Parse-iOS";
+			packageProductDependencies = (
+			);
 			productName = "Parse-iOS";
 			productReference = 81C3821C19CCA89E0066284A /* Parse.framework */;
 			productType = "com.apple.product-type.framework";
@@ -7043,6 +7047,8 @@
 				Base,
 			);
 			mainGroup = 09D3363F139C54930098E916;
+			packageReferences = (
+			);
 			productRefGroup = 09D3364B139C54940098E916 /* Products */;
 			projectDirPath = "";
 			projectReferences = (

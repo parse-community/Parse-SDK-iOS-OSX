@@ -6,14 +6,26 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  */
+#if SWIFT_PACKAGE
 
 #import "PFAssert.h"
 #import "PFUserState.h"
 #import "PFUserState_Private.h"
-
 #import "PFMutableUserState.h"
 #import "PFObjectState_Private.h"
 #import "PFUserConstants.h"
+
+#else
+
+#import "PFAssert.h"
+#import "PFUserState.h"
+#import "PFUserState_Private.h"
+#import "PFMutableUserState.h"
+#import "PFObjectState_Private.h"
+#import "PFUserConstants.h"
+
+#endif
+
 
 @implementation PFUserState
 
