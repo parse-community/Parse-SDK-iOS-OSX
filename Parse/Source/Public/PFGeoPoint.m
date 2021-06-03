@@ -8,15 +8,15 @@
  */
 
 #import "PFGeoPoint.h"
-#import "PFGeoPointPrivate.h"
+#import "../Internal/PFGeoPointPrivate.h"
 
 #import <math.h>
 
-#import "PFAssert.h"
-#import "PFCoreManager.h"
-#import "PFHash.h"
-#import "PFLocationManager.h"
-#import "Parse_Private.h"
+#import "../Internal/PFAssert.h"
+#import "../Internal/PFCoreManager.h"
+#import "../Internal/PFHash.h"
+#import "../Internal/PFLocationManager.h"
+#import "../Internal/Parse_Private.h"
 
 const double EARTH_RADIUS_MILES = 3958.8;
 const double EARTH_RADIUS_KILOMETERS = 6371.0;

@@ -8,7 +8,7 @@
  */
 
 #import "PFQuery.h"
-#import "PFQueryPrivate.h"
+#import "../Internal/Query/PFQueryPrivate.h"
 #import "PFQuery+Synchronous.h"
 #import "PFQuery+Deprecated.h"
 
@@ -16,25 +16,25 @@
 #import <Bolts/BFTask.h>
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCommandResult.h"
-#import "PFCoreManager.h"
-#import "PFCurrentUserController.h"
-#import "PFGeoPointPrivate.h"
-#import "PFInternalUtils.h"
-#import "PFKeyValueCache.h"
-#import "PFMutableQueryState.h"
+#import "../Internal/PFAssert.h"
+#import "../Internal/PFCommandResult.h"
+#import "../Internal/PFCoreManager.h"
+#import "../Internal/User/CurrentUserController/PFCurrentUserController.h"
+#import "../Internal/PFGeoPointPrivate.h"
+#import "../Internal/PFInternalUtils.h"
+#import "../Internal/KeyValueCache/PFKeyValueCache.h"
+#import "../Internal/Query/State/PFMutableQueryState.h"
 #import "PFObject.h"
-#import "PFObjectPrivate.h"
-#import "PFOfflineStore.h"
-#import "PFPin.h"
-#import "PFQueryController.h"
-#import "PFQueryUtilities.h"
-#import "PFRESTQueryCommand.h"
-#import "PFUserPrivate.h"
-#import "ParseInternal.h"
-#import "Parse_Private.h"
-#import "PFQueryConstants.h"
+#import "../Internal/PFObjectPrivate.h"
+#import "../Internal/LocalDataStore/OfflineStore/PFOfflineStore.h"
+#import "../Internal/LocalDataStore/Pin/PFPin.h"
+#import "../Internal/Query/Controller/PFQueryController.h"
+#import "../Internal/Query/Utilities/PFQueryUtilities.h"
+#import "../Internal/Commands/PFRESTQueryCommand.h"
+#import "../Internal/User/PFUserPrivate.h"
+#import "../Internal/ParseInternal.h"
+#import "../Internal/Parse_Private.h"
+#import "../Internal/Query/PFQueryConstants.h"
 
 /**
  Checks if an object can be used as value for query equality clauses.

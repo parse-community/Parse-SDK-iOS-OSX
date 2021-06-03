@@ -8,17 +8,17 @@
  */
 
 #import "PFRelation.h"
-#import "PFRelationPrivate.h"
+#import "../Internal/Relation/PFRelationPrivate.h"
 
 #import <Foundation/Foundation.h>
 
-#import "PFAssert.h"
-#import "PFFieldOperation.h"
-#import "PFInternalUtils.h"
-#import "PFMacros.h"
-#import "PFMutableRelationState.h"
-#import "PFObjectPrivate.h"
-#import "PFQueryPrivate.h"
+#import "../Internal/PFAssert.h"
+#import "../Internal/FieldOperation/PFFieldOperation.h"
+#import "../Internal/PFInternalUtils.h"
+#import "../Internal/PFMacros.h"
+#import "../Internal/Relation/State/PFMutableRelationState.h"
+#import "../Internal/PFObjectPrivate.h"
+#import "../Internal/Query/PFQueryPrivate.h"
 
 static NSString *const PFRelationKeyClassName = @"className";
 static NSString *const PFRelationKeyType = @"__type";

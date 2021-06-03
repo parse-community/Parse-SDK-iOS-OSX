@@ -8,12 +8,12 @@
  */
 
 #import "PFAnonymousUtils.h"
-#import "PFAnonymousUtils_Private.h"
+#import "../Internal/User/AuthenticationProviders/Providers/Anonymous/PFAnonymousUtils_Private.h"
 
 #import "BFTask+Private.h"
-#import "PFAnonymousAuthenticationProvider.h"
-#import "PFInternalUtils.h"
-#import "PFUserPrivate.h"
+#import "../Internal/User/AuthenticationProviders/Providers/Anonymous/PFAnonymousAuthenticationProvider.h"
+#import "../Internal/PFInternalUtils.h"
+#import "../Internal/User/PFUserPrivate.h"
 
 @implementation PFAnonymousUtils
 

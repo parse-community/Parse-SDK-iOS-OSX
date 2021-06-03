@@ -8,16 +8,16 @@
  */
 
 #import "PFConfig.h"
-#import "PFConfig_Private.h"
+#import "../Internal/Config/PFConfig_Private.h"
 
 #import "BFTask+Private.h"
-#import "PFConfigController.h"
-#import "PFCoreManager.h"
-#import "PFCurrentConfigController.h"
-#import "PFCurrentUserController.h"
-#import "PFInternalUtils.h"
-#import "PFUserPrivate.h"
-#import "Parse_Private.h"
+#import "../Internal/Config/Controller/PFConfigController.h"
+#import "../Internal/PFCoreManager.h"
+#import "../Internal/Config/Controller/PFCurrentConfigController.h"
+#import "../Internal/User/CurrentUserController/PFCurrentUserController.h"
+#import "../Internal/PFInternalUtils.h"
+#import "../Internal/User/PFUserPrivate.h"
+#import "../Internal/Parse_Private.h"
 
 NSString *const PFConfigParametersRESTKey = @"params";
 

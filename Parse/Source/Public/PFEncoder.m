@@ -9,18 +9,18 @@
 
 #import "PFEncoder.h"
 
-#import "PFACLPrivate.h"
-#import "PFAssert.h"
-#import "PFBase64Encoder.h"
-#import "PFDateFormatter.h"
-#import "PFFieldOperation.h"
-#import "PFFileObject_Private.h"
-#import "PFGeoPointPrivate.h"
-#import "PFPolygonPrivate.h"
-#import "PFObjectPrivate.h"
-#import "PFOfflineStore.h"
-#import "PFRelationPrivate.h"
-#import "PFMacros.h"
+#import "../Internal/ACL/PFACLPrivate.h"
+#import "../Internal/PFAssert.h"
+#import "../Internal/PFBase64Encoder.h"
+#import "../Internal/PFDateFormatter.h"
+#import "../Internal/FieldOperation/PFFieldOperation.h"
+#import "../Internal/File/PFFileObject_Private.h"
+#import "../Internal/PFGeoPointPrivate.h"
+#import "../Internal/PFPolygonPrivate.h"
+#import "../Internal/PFObjectPrivate.h"
+#import "../Internal/LocalDataStore/OfflineStore/PFOfflineStore.h"
+#import "../Internal/Relation/PFRelationPrivate.h"
+#import "../Internal/PFMacros.h"
 
 @implementation PFEncoder
 

@@ -38,3 +38,5 @@ docs/
 .idea/
 ParseFacebookUtils/Vendor
 ParseUI/Vendor
+.swiftpm
+.build

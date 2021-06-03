@@ -8,14 +8,14 @@
  */
 
 #import "ParseClientConfiguration.h"
-#import "ParseClientConfiguration_Private.h"
+#import "../Internal/ParseClientConfiguration_Private.h"
 
-#import "PFAssert.h"
-#import "PFApplication.h"
-#import "PFCommandRunningConstants.h"
-#import "PFFileManager.h"
-#import "PFHash.h"
-#import "PFObjectUtilities.h"
+#import "../Internal/PFAssert.h"
+#import "../Internal/PFApplication.h"
+#import "../Internal/Commands/CommandRunner/PFCommandRunningConstants.h"
+#import "../Internal/PFFileManager.h"
+#import "../Internal/PFHash.h"
+#import "../Internal/Object/Utilities/PFObjectUtilities.h"
 
 NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
 

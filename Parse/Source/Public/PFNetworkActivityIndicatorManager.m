@@ -9,8 +9,8 @@
 
 #import "PFNetworkActivityIndicatorManager.h"
 
-#import "PFApplication.h"
-#import "PFCommandRunningConstants.h"
+#import "../Internal/PFApplication.h"
+#import "../Internal/Commands/CommandRunner/PFCommandRunningConstants.h"
 
 static NSTimeInterval const PFNetworkActivityIndicatorVisibilityDelay = 0.17;
 

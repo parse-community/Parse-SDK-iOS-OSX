@@ -10,14 +10,14 @@
 #import "PFSession.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCoreManager.h"
-#import "PFCurrentUserController.h"
+#import "../Internal/PFAssert.h"
+#import "../Internal/PFCoreManager.h"
+#import "../Internal/User/CurrentUserController/PFCurrentUserController.h"
 #import "PFObject+Subclass.h"
-#import "PFObjectPrivate.h"
-#import "PFSessionController.h"
-#import "PFUserPrivate.h"
-#import "Parse_Private.h"
+#import "../Internal/PFObjectPrivate.h"
+#import "../Internal/Session/Controller/PFSessionController.h"
+#import "../Internal/User/PFUserPrivate.h"
+#import "../Internal/Parse_Private.h"
 
 static BOOL _PFSessionIsWritablePropertyForKey(NSString *key) {
     static NSSet *protectedKeys;

@@ -8,15 +8,15 @@
  */
 
 #import "PFPolygon.h"
-#import "PFPolygonPrivate.h"
+#import "../Internal/PFPolygonPrivate.h"
 
 #import <math.h>
 
-#import "PFAssert.h"
-#import "PFCoreManager.h"
-#import "PFHash.h"
-#import "PFLocationManager.h"
-#import "Parse_Private.h"
+#import "../Internal/PFAssert.h"
+#import "../Internal/PFCoreManager.h"
+#import "../Internal/PFHash.h"
+#import "../Internal/PFLocationManager.h"
+#import "../Internal/Parse_Private.h"
 
 @implementation PFPolygon
 

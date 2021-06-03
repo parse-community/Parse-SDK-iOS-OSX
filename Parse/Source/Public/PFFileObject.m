@@ -8,26 +8,26 @@
  */
 
 #import "PFFileObject.h"
-#import "PFFileObject_Private.h"
+#import "../Internal/File/PFFileObject_Private.h"
 
 #import <Bolts/BFCancellationTokenSource.h>
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFAsyncTaskQueue.h"
-#import "PFCommandResult.h"
-#import "PFCoreManager.h"
-#import "PFErrorUtilities.h"
-#import "PFFileController.h"
-#import "PFFileManager.h"
-#import "PFFileStagingController.h"
-#import "PFInternalUtils.h"
-#import "PFMacros.h"
-#import "PFMutableFileState.h"
-#import "PFRESTFileCommand.h"
-#import "PFThreadsafety.h"
-#import "PFUserPrivate.h"
-#import "Parse_Private.h"
+#import "../Internal/PFAssert.h"
+#import "../Internal/PFAsyncTaskQueue.h"
+#import "../Internal/PFCommandResult.h"
+#import "../Internal/PFCoreManager.h"
+#import "../Internal/PFErrorUtilities.h"
+#import "../Internal/File/Controller/PFFileController.h"
+#import "../Internal/PFFileManager.h"
+#import "../Internal/File/Controller/PFFileStagingController.h"
+#import "../Internal/PFInternalUtils.h"
+#import "../Internal/PFMacros.h"
+#import "../Internal/File/State/PFMutableFileState.h"
+#import "../Internal/Commands/PFRESTFileCommand.h"
+#import "../Internal/ThreadSafety/PFThreadsafety.h"
+#import "../Internal/User/PFUserPrivate.h"
+#import "../Internal/Parse_Private.h"
 
 @interface PFFileObject () {
     dispatch_queue_t _synchronizationQueue;

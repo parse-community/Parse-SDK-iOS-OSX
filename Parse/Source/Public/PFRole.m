@@ -11,9 +11,9 @@
 
 #import <Bolts/BFTask.h>
 
-#import "PFAssert.h"
+#import "../Internal/PFAssert.h"
 #import "PFObject+Subclass.h"
-#import "PFObjectPrivate.h"
+#import "../Internal/PFObjectPrivate.h"
 #import "PFQuery.h"
 
 @implementation PFRole

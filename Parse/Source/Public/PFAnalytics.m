@@ -8,19 +8,19 @@
  */
 
 #import "PFAnalytics.h"
-#import "PFAnalytics_Private.h"
+#import "../Internal/Analytics/PFAnalytics_Private.h"
 
 #if PF_TARGET_OS_OSX
 #import <AppKit/AppKit.h>
 #endif
 
 #import "BFTask+Private.h"
-#import "PFAnalyticsController.h"
-#import "PFAssert.h"
+#import "../Internal/Analytics/Controller/PFAnalyticsController.h"
+#import "../Internal/PFAssert.h"
 #import "PFEncoder.h"
-#import "PFEventuallyQueue.h"
-#import "PFUserPrivate.h"
-#import "Parse_Private.h"
+#import "../Internal/PFEventuallyQueue.h"
+#import "../Internal/User/PFUserPrivate.h"
+#import "../Internal/Parse_Private.h"
 
 @implementation PFAnalytics
 

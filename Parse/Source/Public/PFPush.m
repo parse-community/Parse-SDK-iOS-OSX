@@ -8,27 +8,27 @@
  */
 
 #import "PFPush.h"
-#import "PFPushPrivate.h"
+#import "../Internal/Push/PFPushPrivate.h"
 
 #import <AudioToolbox/AudioToolbox.h>
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
+#import "../Internal/PFAssert.h"
 #import "PFEncoder.h"
-#import "PFHash.h"
-#import "PFInstallationPrivate.h"
-#import "PFKeychainStore.h"
-#import "PFMacros.h"
-#import "PFMutablePushState.h"
-#import "PFMutableQueryState.h"
-#import "PFPushChannelsController.h"
-#import "PFPushController.h"
-#import "PFPushManager.h"
-#import "PFPushUtilities.h"
-#import "PFQueryPrivate.h"
-#import "PFUserPrivate.h"
-#import "Parse_Private.h"
-#import "PFApplication.h"
+#import "../Internal/PFHash.h"
+#import "../Internal/Installation/PFInstallationPrivate.h"
+#import "../Internal/PFKeychainStore.h"
+#import "../Internal/PFMacros.h"
+#import "../Internal/Push/State/PFMutablePushState.h"
+#import "../Internal/Query/State/PFMutableQueryState.h"
+#import "../Internal/Push/ChannelsController/PFPushChannelsController.h"
+#import "../Internal/Push/Controller/PFPushController.h"
+#import "../Internal/Push/Manager/PFPushManager.h"
+#import "../Internal/Push/Utilites/PFPushUtilities.h"
+#import "../Internal/Query/PFQueryPrivate.h"
+#import "../Internal/User/PFUserPrivate.h"
+#import "../Internal/Parse_Private.h"
+#import "../Internal/PFApplication.h"
 
 static Class _pushInternalUtilClass = nil;
 

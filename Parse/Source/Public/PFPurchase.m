@@ -10,13 +10,13 @@
 #import "PFPurchase.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
+#import "../Internal/PFAssert.h"
 #import "PFConstants.h"
-#import "PFPaymentTransactionObserver.h"
+#import "../Internal/Purchase/PaymentTransactionObserver/PFPaymentTransactionObserver.h"
 #import "PFProduct.h"
-#import "PFPurchaseController.h"
-#import "PFUserPrivate.h"
-#import "Parse_Private.h"
+#import "../Internal/Purchase/Controller/PFPurchaseController.h"
+#import "../Internal/User/PFUserPrivate.h"
+#import "../Internal/Parse_Private.h"
 
 @implementation PFPurchase
 

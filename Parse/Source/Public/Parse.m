@@ -9,29 +9,29 @@
 
 #import "BFTask+Private.h"
 #import "Parse.h"
-#import "ParseInternal.h"
-#import "ParseManager.h"
-#import "ParseClientConfiguration_Private.h"
-#import "PFEventuallyPin.h"
+#import "../Internal/ParseInternal.h"
+#import "../Internal/ParseManager.h"
+#import "../Internal/ParseClientConfiguration_Private.h"
+#import "../Internal/PFEventuallyPin.h"
 #import "PFObject+Subclass.h"
-#import "PFOfflineStore.h"
-#import "PFPin.h"
-#import "PFPinningEventuallyQueue.h"
-#import "PFUserPrivate.h"
-#import "PFSystemLogger.h"
+#import "../Internal/LocalDataStore/OfflineStore/PFOfflineStore.h"
+#import "../Internal/LocalDataStore/Pin/PFPin.h"
+#import "../Internal/PFPinningEventuallyQueue.h"
+#import "../Internal/User/PFUserPrivate.h"
+#import "../Internal/PFSystemLogger.h"
 #import "PFSession.h"
-#import "PFFileManager.h"
-#import "PFApplication.h"
-#import "PFKeychainStore.h"
-#import "PFLogging.h"
-#import "PFObjectSubclassingController.h"
-#import "Parse_Private.h"
+#import "../Internal/PFFileManager.h"
+#import "../Internal/PFApplication.h"
+#import "../Internal/PFKeychainStore.h"
+#import "../Internal/PFLogging.h"
+#import "../Internal/Object/Subclassing/PFObjectSubclassingController.h"
+#import "../Internal/Parse_Private.h"
 
 #if !TARGET_OS_WATCH
-#import "PFInstallationPrivate.h"
+#import "../Internal/Installation/PFInstallationPrivate.h"
 #endif
 
-#import "PFCategoryLoader.h"
+#import "../Internal/PFCategoryLoader.h"
 
 NSString *const PFParseInitializeDidCompleteNotification = @"PFParseInitializeDidCompleteNotification";
 

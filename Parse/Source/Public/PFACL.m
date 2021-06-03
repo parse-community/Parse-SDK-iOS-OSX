@@ -8,21 +8,21 @@
  */
 
 #import "PFACL.h"
-#import "PFACLPrivate.h"
+#import "../Internal/ACL/PFACLPrivate.h"
 
 #import "BFTask+Private.h"
-#import "PFACLState.h"
-#import "PFAssert.h"
-#import "PFDefaultACLController.h"
-#import "PFMacros.h"
-#import "PFMutableACLState.h"
-#import "PFObjectPrivate.h"
-#import "PFObjectUtilities.h"
+#import "../Internal/ACL/State/PFACLState.h"
+#import "../Internal/PFAssert.h"
+#import "../Internal/ACL/DefaultACLController/PFDefaultACLController.h"
+#import "../Internal/PFMacros.h"
+#import "../Internal/ACL/State/PFMutableACLState.h"
+#import "../Internal/PFObjectPrivate.h"
+#import "../Internal/Object/Utilities/PFObjectUtilities.h"
 #import "PFRole.h"
 #import "PFUser.h"
-#import "PFUserPrivate.h"
-#import "Parse_Private.h"
-#import "PFCoreManager.h"
+#import "../Internal/User/PFUserPrivate.h"
+#import "../Internal/Parse_Private.h"
+#import "../Internal/PFCoreManager.h"
 
 static NSString *const PFACLPublicKey_ = @"*";
 static NSString *const PFACLUnresolvedKey_ = @"*unresolved";

@@ -10,11 +10,11 @@
 #import "PFCloud.h"
 
 #import "BFTask+Private.h"
-#import "PFCloudCodeController.h"
-#import "PFCommandResult.h"
-#import "PFCoreManager.h"
-#import "PFUserPrivate.h"
-#import "Parse_Private.h"
+#import "../Internal/CloudCode/PFCloudCodeController.h"
+#import "../Internal/PFCommandResult.h"
+#import "../Internal/PFCoreManager.h"
+#import "../Internal/User/PFUserPrivate.h"
+#import "../Internal/Parse_Private.h"
 
 @implementation PFCloud
 
