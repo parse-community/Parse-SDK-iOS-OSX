@@ -9,7 +9,7 @@
 
 #import "PFPaymentTransactionObserver_Private.h"
 
-#import "PFAssert.h"
+#import "../../PFAssert.h"
 
 @implementation PFPaymentTransactionObserver
 

@@ -11,15 +11,15 @@
 #import "PFObjectController_Private.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCommandResult.h"
-#import "PFCommandRunning.h"
-#import "PFErrorUtilities.h"
-#import "PFMacros.h"
-#import "PFObjectPrivate.h"
-#import "PFObjectState.h"
-#import "PFRESTObjectCommand.h"
-#import "PFTaskQueue.h"
+#import "../../PFAssert.h"
+#import "../../PFCommandResult.h"
+#import "../../Commands/CommandRunner/PFCommandRunning.h"
+#import "../../PFErrorUtilities.h"
+#import "../../PFMacros.h"
+#import "../../PFObjectPrivate.h"
+#import "../State/PFObjectState.h"
+#import "../../Commands/PFRESTObjectCommand.h"
+#import "../../PFTaskQueue.h"
 
 @implementation PFObjectController
 

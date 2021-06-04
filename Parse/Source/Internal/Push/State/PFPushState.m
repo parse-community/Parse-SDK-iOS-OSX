@@ -11,8 +11,8 @@
 #import "PFPushState_Private.h"
 
 #import "PFMutablePushState.h"
-#import "PFQueryState.h"
-#import "PFAssert.h"
+#import "../../Query/State/PFQueryState.h"
+#import "../../PFAssert.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

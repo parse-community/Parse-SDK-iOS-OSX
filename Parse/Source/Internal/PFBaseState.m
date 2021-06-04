@@ -15,7 +15,7 @@
 #import "PFAssert.h"
 #import "PFHash.h"
 #import "PFMacros.h"
-#import "PFPropertyInfo.h"
+#import "PropertyInfo/PFPropertyInfo.h"
 
 ///--------------------------------------
 #pragma mark - Helpers

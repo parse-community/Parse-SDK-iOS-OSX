@@ -9,13 +9,13 @@
 
 #import "PFFieldOperation.h"
 
-#import "PFAssert.h"
+#import "../PFAssert.h"
 #import "PFDecoder.h"
-#import "PFInternalUtils.h"
+#import "../PFInternalUtils.h"
 #import "PFObject.h"
-#import "PFOfflineStore.h"
+#import "../LocalDataStore/OfflineStore/PFOfflineStore.h"
 #import "PFRelation.h"
-#import "PFRelationPrivate.h"
+#import "../Relation/PFRelationPrivate.h"
 
 ///--------------------------------------
 #pragma mark - PFFieldOperation

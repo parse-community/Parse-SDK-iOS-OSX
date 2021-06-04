@@ -11,17 +11,17 @@
 
 #import <Bolts/BFTask.h>
 
-#import "PFAssert.h"
-#import "PFCommandResult.h"
-#import "PFCommandRunning.h"
+#import "../../PFAssert.h"
+#import "../../PFCommandResult.h"
+#import "../../Commands/CommandRunner/PFCommandRunning.h"
 #import "PFDecoder.h"
-#import "PFErrorUtilities.h"
-#import "PFJSONSerialization.h"
-#import "PFKeyValueCache.h"
-#import "PFMacros.h"
-#import "PFQueryState.h"
-#import "PFRESTCommand.h"
-#import "PFRESTQueryCommand.h"
+#import "../../PFErrorUtilities.h"
+#import "../../PFJSONSerialization.h"
+#import "../../KeyValueCache/PFKeyValueCache.h"
+#import "../../PFMacros.h"
+#import "../State/PFQueryState.h"
+#import "../../Commands/PFRESTCommand.h"
+#import "../../Commands/PFRESTQueryCommand.h"
 #import "PFUser.h"
 
 @implementation PFCachedQueryController

@@ -10,11 +10,11 @@
 #import "PFInstallationController.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCurrentInstallationController.h"
-#import "PFInstallationPrivate.h"
-#import "PFObjectController.h"
-#import "PFObjectPrivate.h"
+#import "../../PFAssert.h"
+#import "../CurrentInstallationController/PFCurrentInstallationController.h"
+#import "../PFInstallationPrivate.h"
+#import "../../Object/Controller/PFObjectController.h"
+#import "../../PFObjectPrivate.h"
 
 @implementation PFInstallationController
 

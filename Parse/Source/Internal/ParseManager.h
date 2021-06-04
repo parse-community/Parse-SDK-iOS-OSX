@@ -13,7 +13,7 @@
 #import <Parse/PFConstants.h>
 
 #import "PFDataProvider.h"
-#import "PFOfflineStore.h"
+#import "LocalDataStore/OfflineStore/PFOfflineStore.h"
 #import "PFMacros.h"
 
 @class BFTask<__covariant BFGenericType>;

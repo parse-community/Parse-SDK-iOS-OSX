@@ -12,7 +12,7 @@
 #import <sqlite3.h>
 
 #import "PFSQLiteStatement.h"
-#import "PFThreadsafety.h"
+#import "../../ThreadSafety/PFThreadsafety.h"
 
 @interface PFSQLiteDatabaseResult ()
 

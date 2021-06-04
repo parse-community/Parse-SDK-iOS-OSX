@@ -8,10 +8,10 @@
  */
 
 #import "PFMutableQueryState.h"
-#import "PFQueryConstants.h"
+#import "../PFQueryConstants.h"
 
 #import "PFQueryState_Private.h"
-#import "PFMacros.h"
+#import "../../PFMacros.h"
 
 @interface PFMutableQueryState () {
     NSMutableDictionary<NSString *, id> *_conditions;

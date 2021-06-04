@@ -10,16 +10,16 @@
 #import "PFOfflineQueryController.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCommandRunning.h"
-#import "PFObjectPrivate.h"
-#import "PFOfflineStore.h"
-#import "PFPin.h"
-#import "PFPinningObjectStore.h"
-#import "PFQueryState.h"
-#import "PFRESTCommand.h"
-#import "PFRelationPrivate.h"
-#import "PFQueryConstants.h"
+#import "../../PFAssert.h"
+#import "../../Commands/CommandRunner/PFCommandRunning.h"
+#import "../../PFObjectPrivate.h"
+#import "../../LocalDataStore/OfflineStore/PFOfflineStore.h"
+#import "../../LocalDataStore/Pin/PFPin.h"
+#import "../../Object/PinningStore/PFPinningObjectStore.h"
+#import "../State/PFQueryState.h"
+#import "../../Commands/PFRESTCommand.h"
+#import "../../Relation/PFRelationPrivate.h"
+#import "../PFQueryConstants.h"
 
 @interface PFOfflineQueryController () {
     PFOfflineStore *_offlineStore; // TODO: (nlutsenko) Lazy-load this via self.dataSource.

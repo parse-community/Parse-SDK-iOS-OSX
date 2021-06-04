@@ -9,10 +9,10 @@
 
 #import "PFPushManager.h"
 
-#import "PFAssert.h"
-#import "PFMacros.h"
-#import "PFPushChannelsController.h"
-#import "PFPushController.h"
+#import "../../PFAssert.h"
+#import "../../PFMacros.h"
+#import "../ChannelsController/PFPushChannelsController.h"
+#import "../Controller/PFPushController.h"
 
 @interface PFPushManager () {
     dispatch_queue_t _controllerAccessQueue;

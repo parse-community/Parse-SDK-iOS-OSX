@@ -10,11 +10,11 @@
 #import "PFObjectLocalIdStore.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFFileManager.h"
-#import "PFInternalUtils.h"
-#import "PFJSONSerialization.h"
-#import "PFLogging.h"
+#import "../../PFAssert.h"
+#import "../../PFFileManager.h"
+#import "../../PFInternalUtils.h"
+#import "../../PFJSONSerialization.h"
+#import "../../PFLogging.h"
 
 static NSString *const _PFObjectLocalIdStoreDiskFolderPath = @"LocalId";
 

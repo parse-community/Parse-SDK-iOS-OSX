@@ -10,11 +10,11 @@
 #import "PFKeyValueCache_Private.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
+#import "../PFAssert.h"
 #import "PFConstants.h"
-#import "PFFileManager.h"
-#import "PFInternalUtils.h"
-#import "PFLogging.h"
+#import "../PFFileManager.h"
+#import "../PFInternalUtils.h"
+#import "../PFLogging.h"
 
 static const NSUInteger PFKeyValueCacheDefaultDiskCacheSize = 10 << 20;
 static const NSUInteger PFKeyValueCacheDefaultDiskCacheRecords = 1000;

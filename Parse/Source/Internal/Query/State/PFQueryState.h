@@ -11,7 +11,7 @@
 
 #import <Parse/PFConstants.h>
 
-#import "PFBaseState.h"
+#import "../../PFBaseState.h"
 
 @interface PFQueryState : PFBaseState <PFBaseStateSubclass, NSCopying, NSMutableCopying>
 

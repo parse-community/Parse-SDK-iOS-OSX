@@ -10,10 +10,10 @@
 #import "PFUserFileCodingLogic.h"
 
 #import "PFDecoder.h"
-#import "PFMutableUserState.h"
-#import "PFObjectPrivate.h"
-#import "PFUserConstants.h"
-#import "PFUserPrivate.h"
+#import "../../State/PFMutableUserState.h"
+#import "../../../PFObjectPrivate.h"
+#import "../../Constants/PFUserConstants.h"
+#import "../../PFUserPrivate.h"
 
 @interface PFUserFileCodingLogic ()
 

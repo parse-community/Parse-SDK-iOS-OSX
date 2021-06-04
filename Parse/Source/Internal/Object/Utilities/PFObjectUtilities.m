@@ -9,8 +9,8 @@
 
 #import "PFObjectUtilities.h"
 
-#import "PFFieldOperation.h"
-#import "PFOperationSet.h"
+#import "../../FieldOperation/PFFieldOperation.h"
+#import "../OperationSet/PFOperationSet.h"
 
 @implementation PFObjectUtilities
 

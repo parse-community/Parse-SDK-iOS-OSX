@@ -11,7 +11,7 @@
 
 #import <Parse/PFConstants.h>
 
-#import "PFDataProvider.h"
+#import "../../../PFDataProvider.h"
 
 @class BFTask<__covariant BFGenericType>;
 @class PFRESTCommand;

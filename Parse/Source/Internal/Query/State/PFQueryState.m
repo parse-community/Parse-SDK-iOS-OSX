@@ -11,8 +11,8 @@
 #import "PFQueryState_Private.h"
 
 #import "PFMutableQueryState.h"
-#import "PFPropertyInfo.h"
-#import "PFMacros.h"
+#import "../../PropertyInfo/PFPropertyInfo.h"
+#import "../../PFMacros.h"
 
 @implementation PFQueryState
 

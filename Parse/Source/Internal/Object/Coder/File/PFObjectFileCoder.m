@@ -9,10 +9,10 @@
 
 #import "PFObjectFileCoder.h"
 
-#import "PFJSONSerialization.h"
+#import "../../../PFJSONSerialization.h"
 #import "PFObjectFileCodingLogic.h"
-#import "PFObjectPrivate.h"
-#import "PFObjectState.h"
+#import "../../../PFObjectPrivate.h"
+#import "../../State/PFObjectState.h"
 
 @implementation PFObjectFileCoder
 

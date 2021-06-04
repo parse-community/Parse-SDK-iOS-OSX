@@ -11,7 +11,7 @@
 
 #import <Parse/PFPush.h>
 
-#import "PFMacros.h"
+#import "../PFMacros.h"
 
 PF_WATCH_UNAVAILABLE_WARNING
 

@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFDataProvider.h"
+#import "../../PFDataProvider.h"
 
 /**
  A disk-based map of local ids to global Parse objectIds. Every entry in this

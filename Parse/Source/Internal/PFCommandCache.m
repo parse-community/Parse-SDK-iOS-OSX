@@ -24,11 +24,11 @@
 #import "PFFileManager.h"
 #import "PFLogging.h"
 #import "PFMacros.h"
-#import "PFMultiProcessFileLockController.h"
+#import "MultiProcessLock/PFMultiProcessFileLockController.h"
 #import "PFObject.h"
-#import "PFObjectLocalIdStore.h"
+#import "Object/LocalIdStore/PFObjectLocalIdStore.h"
 #import "PFObjectPrivate.h"
-#import "PFRESTCommand.h"
+#import "Commands/PFRESTCommand.h"
 #import "Parse_Private.h"
 
 static NSString *const _PFCommandCacheDiskCacheDirectoryName = @"Command Cache";

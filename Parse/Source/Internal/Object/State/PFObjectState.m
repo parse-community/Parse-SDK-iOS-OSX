@@ -7,16 +7,16 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "PFAssert.h"
+#import "../../PFAssert.h"
 #import "PFObjectState.h"
 #import "PFObjectState_Private.h"
 
-#import "PFDateFormatter.h"
+#import "../../PFDateFormatter.h"
 #import "PFEncoder.h"
 #import "PFMutableObjectState.h"
-#import "PFObjectConstants.h"
-#import "PFObjectUtilities.h"
-#import "PFFieldOperation.h"
+#import "../Constants/PFObjectConstants.h"
+#import "../Utilities/PFObjectUtilities.h"
+#import "../../FieldOperation/PFFieldOperation.h"
 
 @implementation PFObjectState
 

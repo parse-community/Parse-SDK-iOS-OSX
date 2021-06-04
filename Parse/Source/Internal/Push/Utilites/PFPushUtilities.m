@@ -14,13 +14,13 @@
 #if TARGET_OS_IOS
 #import <AudioToolbox/AudioToolbox.h>
 
-#import "PFAlertView.h"
+#import "../../PFAlertView.h"
 #endif
 
-#import "PFInstallationPrivate.h"
-#import "PFKeychainStore.h"
-#import "PFLogging.h"
-#import "PFMacros.h"
+#import "../../Installation/PFInstallationPrivate.h"
+#import "../../PFKeychainStore.h"
+#import "../../PFLogging.h"
+#import "../../PFMacros.h"
 
 @implementation PFPushUtilities
 

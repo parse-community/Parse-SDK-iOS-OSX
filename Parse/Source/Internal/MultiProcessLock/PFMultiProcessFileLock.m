@@ -9,8 +9,8 @@
 
 #import "PFMultiProcessFileLock.h"
 
-#import "PFAssert.h"
-#import "PFMacros.h"
+#import "../PFAssert.h"
+#import "../PFMacros.h"
 
 static const NSTimeInterval PFMultiProcessLockAttemptsDelay = 0.001;
 

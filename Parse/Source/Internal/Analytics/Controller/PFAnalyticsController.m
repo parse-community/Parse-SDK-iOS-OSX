@@ -10,10 +10,10 @@
 #import "PFAnalyticsController.h"
 
 #import "BFTask+Private.h"
-#import "PFAnalyticsUtilities.h"
-#import "PFAssert.h"
-#import "PFEventuallyQueue.h"
-#import "PFRESTAnalyticsCommand.h"
+#import "../Utilities/PFAnalyticsUtilities.h"
+#import "../../PFAssert.h"
+#import "../../PFEventuallyQueue.h"
+#import "../../Commands/PFRESTAnalyticsCommand.h"
 
 @interface PFAnalyticsController ()
 

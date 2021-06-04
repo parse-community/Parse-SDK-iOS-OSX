@@ -13,18 +13,18 @@
 #import <Bolts/BFExecutor.h>
 
 #import "PFACL.h"
-#import "PFAssert.h"
+#import "../../PFAssert.h"
 #import "PFConstants.h"
-#import "PFDateFormatter.h"
+#import "../../PFDateFormatter.h"
 #import "PFDecoder.h"
 #import "PFEncoder.h"
-#import "PFErrorUtilities.h"
+#import "../../PFErrorUtilities.h"
 #import "PFGeoPoint.h"
-#import "PFOfflineStore.h"
-#import "PFQueryPrivate.h"
+#import "../OfflineStore/PFOfflineStore.h"
+#import "../../Query/PFQueryPrivate.h"
 #import "PFRelation.h"
-#import "PFRelationPrivate.h"
-#import "PFQueryConstants.h"
+#import "../../Relation/PFRelationPrivate.h"
+#import "../../Query/PFQueryConstants.h"
 
 typedef BOOL (^PFComparatorDeciderBlock)(id value, id constraint);
 typedef BOOL (^PFSubQueryMatcherBlock)(id object, NSArray *results);

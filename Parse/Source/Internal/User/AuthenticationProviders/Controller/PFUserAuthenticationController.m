@@ -10,14 +10,14 @@
 #import "PFUserAuthenticationController.h"
 
 #import "BFTask+Private.h"
-#import "PFMacros.h"
-#import "PFUserPrivate.h"
-#import "PFObjectPrivate.h"
+#import "../../../PFMacros.h"
+#import "../../PFUserPrivate.h"
+#import "../../../PFObjectPrivate.h"
 #import "PFAnonymousUtils.h"
-#import "PFAnonymousAuthenticationProvider.h"
-#import "PFUserController.h"
-#import "PFCurrentUserController.h"
-#import "PFAssert.h"
+#import "../Providers/Anonymous/PFAnonymousAuthenticationProvider.h"
+#import "../../Controller/PFUserController.h"
+#import "../../CurrentUserController/PFCurrentUserController.h"
+#import "../../../PFAssert.h"
 
 @interface PFUserAuthenticationController () {
     dispatch_queue_t _dataAccessQueue;

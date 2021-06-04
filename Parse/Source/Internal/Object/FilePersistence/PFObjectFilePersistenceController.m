@@ -10,12 +10,12 @@
 #import "PFObjectFilePersistenceController.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFJSONSerialization.h"
-#import "PFMacros.h"
-#import "PFObjectFileCoder.h"
-#import "PFObjectPrivate.h"
-#import "PFPersistenceController.h"
+#import "../../PFAssert.h"
+#import "../../PFJSONSerialization.h"
+#import "../../PFMacros.h"
+#import "../Coder/File/PFObjectFileCoder.h"
+#import "../../PFObjectPrivate.h"
+#import "../../Persistence/PFPersistenceController.h"
 
 @implementation PFObjectFilePersistenceController
 

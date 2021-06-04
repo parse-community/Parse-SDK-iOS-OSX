@@ -8,21 +8,21 @@
  */
 #if SWIFT_PACKAGE
 
-#import "PFAssert.h"
+#import "../../PFAssert.h"
 #import "PFUserState.h"
 #import "PFUserState_Private.h"
 #import "PFMutableUserState.h"
-#import "PFObjectState_Private.h"
-#import "PFUserConstants.h"
+#import "../../Object/State/PFObjectState_Private.h"
+#import "../Constants/PFUserConstants.h"
 
 #else
 
-#import "PFAssert.h"
+#import "../../PFAssert.h"
 #import "PFUserState.h"
 #import "PFUserState_Private.h"
 #import "PFMutableUserState.h"
-#import "PFObjectState_Private.h"
-#import "PFUserConstants.h"
+#import "../../Object/State/PFObjectState_Private.h"
+#import "../Constants/PFUserConstants.h"
 
 #endif
 

@@ -12,7 +12,7 @@
 #import <Parse/PFConstants.h>
 #import <Parse/PFFileObject.h>
 
-#import "PFFileState.h"
+#import "File/State/PFFileState.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

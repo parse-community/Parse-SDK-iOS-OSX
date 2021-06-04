@@ -12,16 +12,16 @@
 #import <Bolts/BFCancellationToken.h>
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCommandResult.h"
-#import "PFCommandRunning.h"
-#import "PFObjectPrivate.h"
-#import "PFOfflineStore.h"
-#import "PFPin.h"
-#import "PFQueryState.h"
-#import "PFRESTQueryCommand.h"
+#import "../../PFAssert.h"
+#import "../../PFCommandResult.h"
+#import "../../Commands/CommandRunner/PFCommandRunning.h"
+#import "../../PFObjectPrivate.h"
+#import "../../LocalDataStore/OfflineStore/PFOfflineStore.h"
+#import "../../LocalDataStore/Pin/PFPin.h"
+#import "../State/PFQueryState.h"
+#import "../../Commands/PFRESTQueryCommand.h"
 #import "PFUser.h"
-#import "Parse_Private.h"
+#import "../../Parse_Private.h"
 
 @interface PFQueryController () <PFQueryControllerSubclass>
 

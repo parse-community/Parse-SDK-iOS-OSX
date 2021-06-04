@@ -9,7 +9,7 @@
 
 #import "PFRESTAnalyticsCommand.h"
 
-#import "PFHTTPRequest.h"
+#import "../HTTPRequest/PFHTTPRequest.h"
 
 /**
  * Predefined events - AppOpened, CrashReport

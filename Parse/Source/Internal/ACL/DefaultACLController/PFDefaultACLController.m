@@ -11,9 +11,9 @@
 
 #import <Bolts/BFTask.h>
 
-#import "PFACLPrivate.h"
-#import "PFAsyncTaskQueue.h"
-#import "PFCurrentUserController.h"
+#import "../PFACLPrivate.h"
+#import "../../PFAsyncTaskQueue.h"
+#import "../../User/CurrentUserController/PFCurrentUserController.h"
 
 @implementation PFDefaultACLController {
     PFAsyncTaskQueue *_taskQueue;

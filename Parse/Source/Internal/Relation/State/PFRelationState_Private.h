@@ -9,7 +9,7 @@
 
 #import "PFRelationState.h"
 
-#import "PFMacros.h"
+#import "../../PFMacros.h"
 
 /**
  Returns NSString representation of a property.

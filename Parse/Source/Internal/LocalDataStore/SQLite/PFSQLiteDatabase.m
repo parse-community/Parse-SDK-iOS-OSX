@@ -16,14 +16,14 @@
 #import <Bolts/BFTaskCompletionSource.h>
 
 #import "BFTask+Private.h"
-#import "PFFileManager.h"
-#import "PFInternalUtils.h"
-#import "PFMacros.h"
-#import "PFMultiProcessFileLockController.h"
+#import "../../PFFileManager.h"
+#import "../../PFInternalUtils.h"
+#import "../../PFMacros.h"
+#import "../../MultiProcessLock/PFMultiProcessFileLockController.h"
 #import "PFSQLiteDatabaseResult.h"
 #import "PFSQLiteStatement.h"
-#import "Parse_Private.h"
-#import "PFThreadsafety.h"
+#import "../../Parse_Private.h"
+#import "../../ThreadSafety/PFThreadsafety.h"
 
 static NSString *const PFSQLiteDatabaseBeginExclusiveOperationCommand = @"BEGIN EXCLUSIVE";
 static NSString *const PFSQLiteDatabaseCommitOperationCommand = @"COMMIT";

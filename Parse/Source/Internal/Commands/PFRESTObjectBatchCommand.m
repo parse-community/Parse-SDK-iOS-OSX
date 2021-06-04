@@ -9,9 +9,9 @@
 
 #import "PFRESTObjectBatchCommand.h"
 
-#import "PFAssert.h"
-#import "PFHTTPRequest.h"
-#import "PFURLConstructor.h"
+#import "../PFAssert.h"
+#import "../HTTPRequest/PFHTTPRequest.h"
+#import "../HTTPRequest/PFURLConstructor.h"
 
 NSUInteger const PFRESTObjectBatchCommandSubcommandsLimit = 50;
 

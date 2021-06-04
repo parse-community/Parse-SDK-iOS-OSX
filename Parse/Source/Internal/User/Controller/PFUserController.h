@@ -9,9 +9,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFCoreDataProvider.h"
-#import "PFDataProvider.h"
-#import "PFObjectControlling.h"
+#import "../../PFCoreDataProvider.h"
+#import "../../PFDataProvider.h"
+#import "../../Object/Controller/PFObjectControlling.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

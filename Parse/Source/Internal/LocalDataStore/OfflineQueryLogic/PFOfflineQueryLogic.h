@@ -11,7 +11,7 @@
 
 #import <Parse/PFConstants.h>
 
-#import "PFMacros.h"
+#import "../../PFMacros.h"
 
 @class BFTask<__covariant BFGenericType>;
 @class PFObject;

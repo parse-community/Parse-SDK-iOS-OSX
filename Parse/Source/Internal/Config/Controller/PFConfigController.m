@@ -10,13 +10,13 @@
 #import "PFConfigController.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCommandResult.h"
-#import "PFCommandRunning.h"
-#import "PFConfig_Private.h"
+#import "../../PFAssert.h"
+#import "../../PFCommandResult.h"
+#import "../../Commands/CommandRunner/PFCommandRunning.h"
+#import "../PFConfig_Private.h"
 #import "PFCurrentConfigController.h"
 #import "PFDecoder.h"
-#import "PFRESTConfigCommand.h"
+#import "../../Commands/PFRESTConfigCommand.h"
 
 @interface PFConfigController () {
     dispatch_queue_t _dataAccessQueue;

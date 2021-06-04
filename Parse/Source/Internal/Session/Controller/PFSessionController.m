@@ -10,11 +10,11 @@
 #import "PFSessionController.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCommandResult.h"
-#import "PFCommandRunning.h"
-#import "PFObjectPrivate.h"
-#import "PFRESTSessionCommand.h"
+#import "../../PFAssert.h"
+#import "../../PFCommandResult.h"
+#import "../../Commands/CommandRunner/PFCommandRunning.h"
+#import "../../PFObjectPrivate.h"
+#import "../../Commands/PFRESTSessionCommand.h"
 #import "PFSession.h"
 
 @implementation PFSessionController

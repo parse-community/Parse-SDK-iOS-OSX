@@ -14,18 +14,18 @@
 #import <Bolts/BFTaskCompletionSource.h>
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCommandResult.h"
-#import "PFCommandRunning.h"
+#import "../../PFAssert.h"
+#import "../../PFCommandResult.h"
+#import "../../Commands/CommandRunner/PFCommandRunning.h"
 #import "PFConstants.h"
 #import "PFDecoder.h"
-#import "PFFileManager.h"
-#import "PFFileObject_Private.h"
-#import "PFHTTPRequest.h"
-#import "PFMacros.h"
-#import "PFPaymentTransactionObserver.h"
-#import "PFProductsRequestHandler.h"
-#import "PFRESTCommand.h"
+#import "../../PFFileManager.h"
+#import "../../File/PFFileObject_Private.h"
+#import "../../HTTPRequest/PFHTTPRequest.h"
+#import "../../PFMacros.h"
+#import "../PaymentTransactionObserver/PFPaymentTransactionObserver.h"
+#import "../../Product/ProductsRequestHandler/PFProductsRequestHandler.h"
+#import "../../Commands/PFRESTCommand.h"
 
 @interface PFPurchaseController () {
     PFProductsRequestHandler *_currentProductsRequestHandler;

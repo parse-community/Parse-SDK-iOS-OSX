@@ -9,8 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFCoreDataProvider.h"
-#import "PFObjectControlling.h"
+#import "../../PFCoreDataProvider.h"
+#import "../../Object/Controller/PFObjectControlling.h"
 
 PF_WATCH_UNAVAILABLE_WARNING
 

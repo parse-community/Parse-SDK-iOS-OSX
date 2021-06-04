@@ -9,7 +9,7 @@
 
 #import "PFAnalyticsUtilities.h"
 
-#import "PFHash.h"
+#import "../../PFHash.h"
 
 @implementation PFAnalyticsUtilities
 

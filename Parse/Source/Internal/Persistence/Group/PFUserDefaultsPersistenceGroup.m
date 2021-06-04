@@ -10,7 +10,7 @@
 #import "PFUserDefaultsPersistenceGroup.h"
 
 #import "BFTask+Private.h"
-#import "PFAsyncTaskQueue.h"
+#import "../../PFAsyncTaskQueue.h"
 
 @interface PFUserDefaultsPersistenceGroup () {
     PFAsyncTaskQueue *_dataAccessQueue;

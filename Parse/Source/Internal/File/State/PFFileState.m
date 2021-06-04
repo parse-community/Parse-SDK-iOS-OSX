@@ -11,7 +11,7 @@
 #import "PFFileState_Private.h"
 
 #import "PFMutableFileState.h"
-#import "PFPropertyInfo.h"
+#import "../../PropertyInfo/PFPropertyInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

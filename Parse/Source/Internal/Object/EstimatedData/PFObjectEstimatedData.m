@@ -9,7 +9,7 @@
 
 #import "PFObjectEstimatedData.h"
 
-#import "PFObjectUtilities.h"
+#import "../Utilities/PFObjectUtilities.h"
 
 @interface PFObjectEstimatedData () {
     NSMutableDictionary *_dataDictionary;

@@ -9,8 +9,8 @@
 
 #import "PFRESTUserCommand.h"
 
-#import "PFAssert.h"
-#import "PFHTTPRequest.h"
+#import "../PFAssert.h"
+#import "../HTTPRequest/PFHTTPRequest.h"
 
 static NSString *const PFRESTUserCommandRevocableSessionHeader = @"X-Parse-Revocable-Session";
 static NSString *const PFRESTUserCommandRevocableSessionHeaderEnabledValue = @"1";

@@ -12,30 +12,30 @@
 #import <Bolts/BFExecutor.h>
 
 #import "BFTask+Private.h"
-#import "PFAnalyticsController.h"
+#import "Analytics/Controller/PFAnalyticsController.h"
 #import "PFAssert.h"
 #import "PFCommandCache.h"
 #import "PFConfig.h"
 #import "PFCoreManager.h"
 #import "PFFileManager.h"
-#import "PFInstallationIdentifierStore.h"
-#import "PFKeyValueCache.h"
+#import "Installation/InstallationIdentifierStore/PFInstallationIdentifierStore.h"
+#import "KeyValueCache/PFKeyValueCache.h"
 #import "PFKeychainStore.h"
 #import "PFLogging.h"
-#import "PFMultiProcessFileLockController.h"
+#import "MultiProcessLock/PFMultiProcessFileLockController.h"
 #import "PFPinningEventuallyQueue.h"
 #import "PFUser.h"
-#import "PFURLSessionCommandRunner.h"
-#import "PFPersistenceController.h"
+#import "Commands/CommandRunner/URLSession/PFURLSessionCommandRunner.h"
+#import "Persistence/PFPersistenceController.h"
 #import "ParseManagerPrivate.h"
 
 #if !TARGET_OS_WATCH
-#import "PFPushManager.h"
+#import "Push/Manager/PFPushManager.h"
 #import "PFInstallation.h"
 #endif
 
 #if TARGET_OS_IOS || TARGET_OS_TV
-#import "PFPurchaseController.h"
+#import "Purchase/Controller/PFPurchaseController.h"
 #import "PFProduct.h"
 #endif
 

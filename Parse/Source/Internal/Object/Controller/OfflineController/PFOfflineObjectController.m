@@ -10,11 +10,11 @@
 #import "PFOfflineObjectController.h"
 
 #import "BFTask+Private.h"
-#import "PFMacros.h"
-#import "PFObjectController_Private.h"
-#import "PFObjectPrivate.h"
-#import "PFObjectState.h"
-#import "PFOfflineStore.h"
+#import "../../../PFMacros.h"
+#import "../PFObjectController_Private.h"
+#import "../../../PFObjectPrivate.h"
+#import "../../State/PFObjectState.h"
+#import "../../../LocalDataStore/OfflineStore/PFOfflineStore.h"
 
 @interface PFOfflineObjectController ()
 

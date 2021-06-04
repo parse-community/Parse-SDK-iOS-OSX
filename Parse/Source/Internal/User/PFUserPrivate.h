@@ -11,7 +11,7 @@
 
 #import <Parse/PFUser.h>
 
-#import "PFMacros.h"
+#import "../PFMacros.h"
 
 extern NSString *const PFUserCurrentUserFileName;
 extern NSString *const PFUserCurrentUserPinName;

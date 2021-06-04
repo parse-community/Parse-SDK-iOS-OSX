@@ -9,7 +9,7 @@
 
 #import "PFFieldOperationDecoder.h"
 
-#import "PFAssert.h"
+#import "../PFAssert.h"
 #import "PFDecoder.h"
 #import "PFFieldOperation.h"
 

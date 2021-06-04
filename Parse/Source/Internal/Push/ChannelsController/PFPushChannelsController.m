@@ -10,11 +10,11 @@
 #import "PFPushChannelsController.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCurrentInstallationController.h"
-#import "PFErrorUtilities.h"
+#import "../../PFAssert.h"
+#import "../../Installation/CurrentInstallationController/PFCurrentInstallationController.h"
+#import "../../PFErrorUtilities.h"
 #import "PFInstallation.h"
-#import "PFInstallationConstants.h"
+#import "../../Installation/Constants/PFInstallationConstants.h"
 
 @interface PFPushChannelsController ()
 

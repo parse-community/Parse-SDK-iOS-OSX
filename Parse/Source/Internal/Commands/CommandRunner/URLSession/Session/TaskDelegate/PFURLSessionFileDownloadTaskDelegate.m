@@ -9,8 +9,8 @@
 
 #import "PFURLSessionFileDownloadTaskDelegate.h"
 
-#import "PFErrorUtilities.h"
-#import "PFHash.h"
+#import "../../../../../PFErrorUtilities.h"
+#import "../../../../../PFHash.h"
 #import "PFURLSessionDataTaskDelegate_Private.h"
 
 @interface PFURLSessionFileDownloadTaskDelegate () {

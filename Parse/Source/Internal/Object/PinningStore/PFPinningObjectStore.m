@@ -10,11 +10,11 @@
 #import "PFPinningObjectStore.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFMacros.h"
-#import "PFOfflineStore.h"
-#import "PFPin.h"
-#import "PFQueryPrivate.h"
+#import "../../PFAssert.h"
+#import "../../PFMacros.h"
+#import "../../LocalDataStore/OfflineStore/PFOfflineStore.h"
+#import "../../LocalDataStore/Pin/PFPin.h"
+#import "../../Query/PFQueryPrivate.h"
 
 @interface PFPinningObjectStore () {
     NSMapTable<NSString *, BFTask<PFPin *> *> *_pinCacheTable;

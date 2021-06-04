@@ -10,8 +10,8 @@
 #import "PFFilePersistenceGroup.h"
 
 #import "BFTask+Private.h"
-#import "PFMultiProcessFileLockController.h"
-#import "PFFileManager.h"
+#import "../../MultiProcessLock/PFMultiProcessFileLockController.h"
+#import "../../PFFileManager.h"
 
 @implementation PFFilePersistenceGroup
 

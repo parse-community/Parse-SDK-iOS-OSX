@@ -11,10 +11,10 @@
 
 #import <objc/runtime.h>
 
-#import "PFAssert.h"
-#import "PFLogging.h"
-#import "PFMacros.h"
-#import "PFPropertyInfo_Private.h"
+#import "../../PFAssert.h"
+#import "../../PFLogging.h"
+#import "../../PFMacros.h"
+#import "../../PropertyInfo/PFPropertyInfo_Private.h"
 
 ///--------------------------------------
 #pragma mark - Helper

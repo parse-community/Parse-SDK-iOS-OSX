@@ -16,7 +16,7 @@
 #import "PFDecoder.h"
 #import "PFEncoder.h"
 #import "PFMulticastDelegate.h"
-#import "PFObjectControlling.h"
+#import "Object/Controller/PFObjectControlling.h"
 
 @class BFTask<__covariant BFGenericType>;
 @class PFCurrentUserController;

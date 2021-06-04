@@ -12,17 +12,17 @@
 #import <Bolts/Bolts.h>
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCommandResult.h"
-#import "PFCommandRunning.h"
-#import "PFErrorUtilities.h"
-#import "PFMacros.h"
-#import "PFObjectController.h"
-#import "PFObjectPrivate.h"
-#import "PFQueryPrivate.h"
-#import "PFRESTQueryCommand.h"
-#import "PFRESTObjectCommand.h"
-#import "PFRESTObjectBatchCommand.h"
+#import "../../PFAssert.h"
+#import "../../PFCommandResult.h"
+#import "../../Commands/CommandRunner/PFCommandRunning.h"
+#import "../../PFErrorUtilities.h"
+#import "../../PFMacros.h"
+#import "../Controller/PFObjectController.h"
+#import "../../PFObjectPrivate.h"
+#import "../../Query/PFQueryPrivate.h"
+#import "../../Commands/PFRESTQueryCommand.h"
+#import "../../Commands/PFRESTObjectCommand.h"
+#import "../../Commands/PFRESTObjectBatchCommand.h"
 
 @implementation PFObjectBatchController
 

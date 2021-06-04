@@ -9,12 +9,12 @@
 
 #import "PFRESTQueryCommand.h"
 
-#import "PFAssert.h"
+#import "../PFAssert.h"
 #import "PFEncoder.h"
-#import "PFHTTPRequest.h"
-#import "PFQueryPrivate.h"
-#import "PFQueryState.h"
-#import "PFQueryConstants.h"
+#import "../HTTPRequest/PFHTTPRequest.h"
+#import "../Query/PFQueryPrivate.h"
+#import "../Query/State/PFQueryState.h"
+#import "../Query/PFQueryConstants.h"
 
 @implementation PFRESTQueryCommand
 

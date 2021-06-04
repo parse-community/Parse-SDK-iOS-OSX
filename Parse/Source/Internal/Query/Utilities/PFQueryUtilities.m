@@ -9,9 +9,9 @@
 
 #import "PFQueryUtilities.h"
 
-#import "PFAssert.h"
+#import "../../PFAssert.h"
 #import "PFConstants.h"
-#import "PFErrorUtilities.h"
+#import "../../PFErrorUtilities.h"
 
 @implementation PFQueryUtilities
 

@@ -10,11 +10,11 @@
 #import "PFPersistenceController.h"
 
 #import "BFTask+Private.h"
-#import "PFAsyncTaskQueue.h"
+#import "../PFAsyncTaskQueue.h"
 
-#import "PFFilePersistenceGroup.h"
-#import "PFUserDefaultsPersistenceGroup.h"
-#import "PFFileManager.h"
+#import "Group/PFFilePersistenceGroup.h"
+#import "Group/PFUserDefaultsPersistenceGroup.h"
+#import "../PFFileManager.h"
 
 static NSString *const PFFilePersistenceParseDirectoryName = @"Parse";
 static NSString *const PFUserDefaultsPersistenceParseKey = @"com.parse";

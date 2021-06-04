@@ -10,10 +10,10 @@
 #import "PFPushController.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCommandRunning.h"
-#import "PFMacros.h"
-#import "PFRESTPushCommand.h"
+#import "../../PFAssert.h"
+#import "../../Commands/CommandRunner/PFCommandRunning.h"
+#import "../../PFMacros.h"
+#import "../../Commands/PFRESTPushCommand.h"
 
 @implementation PFPushController
 

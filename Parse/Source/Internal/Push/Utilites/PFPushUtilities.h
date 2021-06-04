@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFPushPrivate.h"
+#import "../PFPushPrivate.h"
 
 PF_WATCH_UNAVAILABLE_WARNING
 

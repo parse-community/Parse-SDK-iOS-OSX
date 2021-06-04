@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFDataProvider.h"
+#import "../../PFDataProvider.h"
 #import "PFObjectControlling.h"
 
 @class BFTask<__covariant BFGenericType>;

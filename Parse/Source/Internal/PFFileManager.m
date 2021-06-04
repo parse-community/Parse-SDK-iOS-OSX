@@ -14,7 +14,7 @@
 #import "BFTask+Private.h"
 #import "PFAssert.h"
 #import "PFLogging.h"
-#import "PFMultiProcessFileLockController.h"
+#import "MultiProcessLock/PFMultiProcessFileLockController.h"
 
 static NSString *const _PFFileManagerParseDirectoryName = @"Parse";
 

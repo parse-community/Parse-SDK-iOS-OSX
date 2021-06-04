@@ -11,7 +11,7 @@
 
 #import <Parse/PFConstants.h>
 
-#import "PFCoreDataProvider.h"
+#import "../../PFCoreDataProvider.h"
 
 PF_WATCH_UNAVAILABLE_WARNING
 

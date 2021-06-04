@@ -12,7 +12,7 @@
 #import <Parse/PFConstants.h>
 #import <Parse/PFUserAuthenticationDelegate.h>
 
-#import "PFCoreDataProvider.h"
+#import "../../../PFCoreDataProvider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

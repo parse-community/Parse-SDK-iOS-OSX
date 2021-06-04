@@ -11,10 +11,10 @@
 
 #import <Parse/PFConstants.h>
 
-#import "PFCoreDataProvider.h"
-#import "PFCurrentObjectControlling.h"
-#import "PFDataProvider.h"
-#import "PFMacros.h"
+#import "../../PFCoreDataProvider.h"
+#import "../../Object/CurrentController/PFCurrentObjectControlling.h"
+#import "../../PFDataProvider.h"
+#import "../../PFMacros.h"
 
 @class BFTask<__covariant BFGenericType>;
 @class PFUser;

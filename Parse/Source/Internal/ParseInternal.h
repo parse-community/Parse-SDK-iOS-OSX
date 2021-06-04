@@ -14,13 +14,13 @@
 #import "PFAssert.h"
 #import "PFCommandCache.h"
 #import "PFEventuallyQueue.h"
-#import "PFFieldOperation.h"
+#import "FieldOperation/PFFieldOperation.h"
 #import "PFGeoPointPrivate.h"
 #import "PFPolygonPrivate.h"
 #import "PFInternalUtils.h"
-#import "PFKeyValueCache.h"
+#import "KeyValueCache/PFKeyValueCache.h"
 #import "PFObjectPrivate.h"
-#import "PFUserPrivate.h"
+#import "User/PFUserPrivate.h"
 #import "ParseModule.h"
 
 @interface Parse (ParseModules)

@@ -9,8 +9,8 @@
 
 #import "PFObjectFileCodingLogic.h"
 
-#import "PFMutableObjectState.h"
-#import "PFObjectPrivate.h"
+#import "../../State/PFMutableObjectState.h"
+#import "../../../PFObjectPrivate.h"
 
 @implementation PFObjectFileCodingLogic
 

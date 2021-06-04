@@ -9,7 +9,7 @@
 
 #import "PFMutableObjectState.h"
 
-#import "PFDateFormatter.h"
+#import "../../PFDateFormatter.h"
 #import "PFObjectState_Private.h"
 
 @implementation PFMutableObjectState

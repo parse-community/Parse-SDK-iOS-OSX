@@ -9,8 +9,8 @@
 
 #import "PFRESTFileCommand.h"
 
-#import "PFAssert.h"
-#import "PFHTTPRequest.h"
+#import "../PFAssert.h"
+#import "../HTTPRequest/PFHTTPRequest.h"
 
 @implementation PFRESTFileCommand
 

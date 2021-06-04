@@ -10,15 +10,15 @@
 #import "PFRESTCommand.h"
 #import "PFRESTCommand_Private.h"
 
-#import "PFAssert.h"
-#import "PFCoreManager.h"
-#import "PFFieldOperation.h"
-#import "PFHTTPRequest.h"
-#import "PFHash.h"
-#import "PFInternalUtils.h"
-#import "PFObjectLocalIdStore.h"
-#import "PFObjectPrivate.h"
-#import "Parse_Private.h"
+#import "../PFAssert.h"
+#import "../PFCoreManager.h"
+#import "../FieldOperation/PFFieldOperation.h"
+#import "../HTTPRequest/PFHTTPRequest.h"
+#import "../PFHash.h"
+#import "../PFInternalUtils.h"
+#import "../Object/LocalIdStore/PFObjectLocalIdStore.h"
+#import "../PFObjectPrivate.h"
+#import "../Parse_Private.h"
 
 static NSString *const PFRESTCommandHTTPPathEncodingKey = @"httpPath";
 static NSString *const PFRESTCommandHTTPMethodEncodingKey = @"httpMethod";

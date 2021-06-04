@@ -12,13 +12,13 @@
 #import <Bolts/BFTask.h>
 
 #import "PFAssert.h"
-#import "PFHTTPRequest.h"
+#import "HTTPRequest/PFHTTPRequest.h"
 #import "PFInternalUtils.h"
 #import "PFObject+Subclass.h"
 #import "PFObjectPrivate.h"
-#import "PFOfflineStore.h"
+#import "LocalDataStore/OfflineStore/PFOfflineStore.h"
 #import "PFQuery.h"
-#import "PFRESTCommand.h"
+#import "Commands/PFRESTCommand.h"
 
 NSString *const PFEventuallyPinPinName = @"_eventuallyPin";
 

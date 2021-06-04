@@ -16,11 +16,11 @@
 #import "BFTask+Private.h"
 #import "PFAssert.h"
 #import "PFCommandResult.h"
-#import "PFCommandRunning.h"
+#import "Commands/CommandRunner/PFCommandRunning.h"
 #import "PFErrorUtilities.h"
 #import "PFLogging.h"
 #import "PFMacros.h"
-#import "PFRESTCommand.h"
+#import "Commands/PFRESTCommand.h"
 #import "PFTaskQueue.h"
 
 #if !TARGET_OS_WATCH

@@ -9,12 +9,12 @@
 
 #import "PFRESTPushCommand.h"
 
-#import "PFAssert.h"
-#import "PFDateFormatter.h"
-#import "PFHTTPRequest.h"
-#import "PFInternalUtils.h"
-#import "PFPushState.h"
-#import "PFQueryState.h"
+#import "../PFAssert.h"
+#import "../PFDateFormatter.h"
+#import "../HTTPRequest/PFHTTPRequest.h"
+#import "../PFInternalUtils.h"
+#import "../Push/State/PFPushState.h"
+#import "../Query/State/PFQueryState.h"
 #import "PFRESTQueryCommand.h"
 
 @implementation PFRESTPushCommand

@@ -11,7 +11,7 @@
 
 #import <sqlite3.h>
 
-#import "PFThreadsafety.h"
+#import "../../ThreadSafety/PFThreadsafety.h"
 
 @implementation PFSQLiteStatement
 

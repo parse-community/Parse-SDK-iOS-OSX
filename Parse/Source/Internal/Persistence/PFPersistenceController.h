@@ -11,7 +11,7 @@
 
 #import <Parse/PFConstants.h>
 
-#import "PFPersistenceGroup.h"
+#import "Group/PFPersistenceGroup.h"
 
 @class BFTask<__covariant BFGenericType>;
 

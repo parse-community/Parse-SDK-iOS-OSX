@@ -9,7 +9,7 @@
 
 #import "PFURLConstructor.h"
 
-#import "PFAssert.h"
+#import "../PFAssert.h"
 
 @implementation PFURLConstructor
 

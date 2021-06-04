@@ -10,13 +10,13 @@
 #import "PFCurrentInstallationController.h"
 
 #import "BFTask+Private.h"
-#import "PFAsyncTaskQueue.h"
-#import "PFInstallationIdentifierStore.h"
-#import "PFInstallationPrivate.h"
-#import "PFMacros.h"
-#import "PFObjectFilePersistenceController.h"
-#import "PFObjectPrivate.h"
-#import "PFPushPrivate.h"
+#import "../../PFAsyncTaskQueue.h"
+#import "../InstallationIdentifierStore/PFInstallationIdentifierStore.h"
+#import "../PFInstallationPrivate.h"
+#import "../../PFMacros.h"
+#import "../../Object/FilePersistence/PFObjectFilePersistenceController.h"
+#import "../../PFObjectPrivate.h"
+#import "../../Push/PFPushPrivate.h"
 #import "PFQuery.h"
 
 NSString *const PFCurrentInstallationFileName = @"currentInstallation";

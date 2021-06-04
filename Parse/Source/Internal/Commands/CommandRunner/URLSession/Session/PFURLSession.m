@@ -13,12 +13,12 @@
 #import <Bolts/BFTaskCompletionSource.h>
 
 #import "BFTask+Private.h"
-#import "PFCommandResult.h"
-#import "PFMacros.h"
-#import "PFAssert.h"
-#import "PFURLSessionJSONDataTaskDelegate.h"
-#import "PFURLSessionUploadTaskDelegate.h"
-#import "PFURLSessionFileDownloadTaskDelegate.h"
+#import "../../../../PFCommandResult.h"
+#import "../../../../PFMacros.h"
+#import "../../../../PFAssert.h"
+#import "TaskDelegate/PFURLSessionJSONDataTaskDelegate.h"
+#import "TaskDelegate/PFURLSessionUploadTaskDelegate.h"
+#import "TaskDelegate/PFURLSessionFileDownloadTaskDelegate.h"
 
 typedef void (^PFURLSessionTaskCompletionHandler)(NSData *data, NSURLResponse *response, NSError *error);
 

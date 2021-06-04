@@ -12,16 +12,16 @@
 #import <Bolts/BFTaskCompletionSource.h>
 
 #import "BFTask+Private.h"
-#import "PFAnonymousUtils_Private.h"
-#import "PFAssert.h"
-#import "PFAsyncTaskQueue.h"
-#import "PFKeychainStore.h"
-#import "PFMutableUserState.h"
-#import "PFObjectFilePersistenceController.h"
-#import "PFObjectPrivate.h"
+#import "../AuthenticationProviders/Providers/Anonymous/PFAnonymousUtils_Private.h"
+#import "../../PFAssert.h"
+#import "../../PFAsyncTaskQueue.h"
+#import "../../PFKeychainStore.h"
+#import "../State/PFMutableUserState.h"
+#import "../../Object/FilePersistence/PFObjectFilePersistenceController.h"
+#import "../../PFObjectPrivate.h"
 #import "PFQuery.h"
-#import "PFUserConstants.h"
-#import "PFUserPrivate.h"
+#import "../Constants/PFUserConstants.h"
+#import "../PFUserPrivate.h"
 
 @interface PFCurrentUserController () {
     dispatch_queue_t _dataQueue;

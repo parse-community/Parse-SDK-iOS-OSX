@@ -20,8 +20,8 @@
 #import "PFEventuallyQueue_Private.h"
 #import "PFMacros.h"
 #import "PFObjectPrivate.h"
-#import "PFOperationSet.h"
-#import "PFRESTCommand.h"
+#import "Object/OperationSet/PFOperationSet.h"
+#import "Commands/PFRESTCommand.h"
 #import "PFTaskQueue.h"
 
 @interface PFPinningEventuallyQueue () <PFEventuallyQueueSubclass> {

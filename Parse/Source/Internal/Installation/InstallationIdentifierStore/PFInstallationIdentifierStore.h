@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFDataProvider.h"
+#import "../../PFDataProvider.h"
 
 #import <Parse/PFConstants.h>
 

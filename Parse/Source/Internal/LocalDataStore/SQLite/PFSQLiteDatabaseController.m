@@ -12,9 +12,9 @@
 #import <Bolts/BFTask.h>
 #import <Bolts/BFTaskCompletionSource.h>
 
-#import "PFAssert.h"
-#import "PFAsyncTaskQueue.h"
-#import "PFFileManager.h"
+#import "../../PFAssert.h"
+#import "../../PFAsyncTaskQueue.h"
+#import "../../PFFileManager.h"
 #import "PFSQLiteDatabase_Private.h"
 
 @implementation PFSQLiteDatabaseController {

@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFCommandRunning.h"
+#import "../PFCommandRunning.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

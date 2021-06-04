@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "PFRESTCommand.h"
+#import "Commands/PFRESTCommand.h"
 
 @interface PFRESTCommand ()
 

@@ -6,18 +6,18 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  */
-#import "PFAssert.h"
+#import "../../PFAssert.h"
 #import "PFUserController.h"
 
 #import "BFTask+Private.h"
-#import "PFCommandResult.h"
-#import "PFCommandRunning.h"
-#import "PFCurrentUserController.h"
-#import "PFErrorUtilities.h"
-#import "PFMacros.h"
-#import "PFObjectPrivate.h"
-#import "PFRESTUserCommand.h"
-#import "PFUserPrivate.h"
+#import "../../PFCommandResult.h"
+#import "../../Commands/CommandRunner/PFCommandRunning.h"
+#import "../CurrentUserController/PFCurrentUserController.h"
+#import "../../PFErrorUtilities.h"
+#import "../../PFMacros.h"
+#import "../../PFObjectPrivate.h"
+#import "../../Commands/PFRESTUserCommand.h"
+#import "../PFUserPrivate.h"
 
 @implementation PFUserController
 

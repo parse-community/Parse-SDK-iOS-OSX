@@ -10,13 +10,13 @@
 #import "PFCloudCodeController.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCommandResult.h"
-#import "PFCommandRunning.h"
+#import "../PFAssert.h"
+#import "../PFCommandResult.h"
+#import "../Commands/CommandRunner/PFCommandRunning.h"
 #import "PFDecoder.h"
 #import "PFEncoder.h"
-#import "PFInternalUtils.h"
-#import "PFRESTCloudCommand.h"
+#import "../PFInternalUtils.h"
+#import "../Commands/PFRESTCloudCommand.h"
 
 @implementation PFCloudCodeController
 

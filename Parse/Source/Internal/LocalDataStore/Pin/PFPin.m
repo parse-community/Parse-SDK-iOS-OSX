@@ -10,12 +10,12 @@
 #import "PFPin.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
+#import "../../PFAssert.h"
 #import "PFObject+Subclass.h"
-#import "PFObjectPrivate.h"
-#import "PFOfflineStore.h"
-#import "PFQueryPrivate.h"
-#import "Parse_Private.h"
+#import "../../PFObjectPrivate.h"
+#import "../OfflineStore/PFOfflineStore.h"
+#import "../../Query/PFQueryPrivate.h"
+#import "../../Parse_Private.h"
 
 NSString *const PFPinKeyName = @"_name";
 NSString *const PFPinKeyObjects = @"_objects";

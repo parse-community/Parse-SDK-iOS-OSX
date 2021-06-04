@@ -11,7 +11,7 @@
 
 #import <Parse/PFQuery.h>
 
-#import "PFQueryState.h"
+#import "State/PFQueryState.h"
 
 @class BFTask<__covariant BFGenericType>;
 @class PFObject;

@@ -10,11 +10,11 @@
 #import "PFFileStagingController.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFAsyncTaskQueue.h"
-#import "PFDataProvider.h"
-#import "PFFileManager.h"
-#import "PFLogging.h"
+#import "../../PFAssert.h"
+#import "../../PFAsyncTaskQueue.h"
+#import "../../PFDataProvider.h"
+#import "../../PFFileManager.h"
+#import "../../PFLogging.h"
 
 static NSString *const PFFileStagingControllerDirectoryName_ = @"PFFileStaging";
 

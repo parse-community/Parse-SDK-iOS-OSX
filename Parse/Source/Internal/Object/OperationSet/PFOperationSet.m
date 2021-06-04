@@ -7,15 +7,15 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "PFAssert.h"
+#import "../../PFAssert.h"
 #import "PFOperationSet.h"
 
 #import "PFACL.h"
-#import "PFACLPrivate.h"
+#import "../../ACL/PFACLPrivate.h"
 #import "PFDecoder.h"
 #import "PFEncoder.h"
-#import "PFFieldOperation.h"
-#import "PFInternalUtils.h"
+#import "../../FieldOperation/PFFieldOperation.h"
+#import "../../PFInternalUtils.h"
 
 static NSString *const PFOperationSetKeyUUID = @"__uuid";
 static NSString *const PFOperationSetKeyIsSaveEventually = @"__isSaveEventually";

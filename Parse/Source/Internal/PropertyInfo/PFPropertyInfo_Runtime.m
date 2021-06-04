@@ -12,7 +12,7 @@
 #import <objc/message.h>
 #import <objc/runtime.h>
 
-#import "PFAssert.h"
+#import "../PFAssert.h"
 
 /**
  This macro is really interesting. Because ARC will insert implicit retains, releases and other memory managment code

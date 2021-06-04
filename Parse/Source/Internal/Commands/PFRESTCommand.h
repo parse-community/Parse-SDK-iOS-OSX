@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PFNetworkCommand.h"
+#import "../PFNetworkCommand.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

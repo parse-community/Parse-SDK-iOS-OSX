@@ -9,7 +9,7 @@
 
 #import "PFRESTSessionCommand.h"
 
-#import "PFHTTPRequest.h"
+#import "../HTTPRequest/PFHTTPRequest.h"
 
 @implementation PFRESTSessionCommand
 

@@ -10,16 +10,16 @@
 #import "PFCommandURLRequestConstructor.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFCommandRunningConstants.h"
-#import "PFDevice.h"
-#import "PFHTTPRequest.h"
-#import "PFHTTPURLRequestConstructor.h"
-#import "PFInstallationIdentifierStore.h"
-#import "PFInternalUtils.h"
-#import "PFRESTCommand.h"
-#import "PFURLConstructor.h"
-#import "Parse_Private.h"
+#import "../../../PFAssert.h"
+#import "../PFCommandRunningConstants.h"
+#import "../../../PFDevice.h"
+#import "../../../HTTPRequest/PFHTTPRequest.h"
+#import "../../../HTTPRequest/PFHTTPURLRequestConstructor.h"
+#import "../../../Installation/InstallationIdentifierStore/PFInstallationIdentifierStore.h"
+#import "../../../PFInternalUtils.h"
+#import "../../PFRESTCommand.h"
+#import "../../../HTTPRequest/PFURLConstructor.h"
+#import "../../../Parse_Private.h"
 
 @implementation PFCommandURLRequestConstructor
 

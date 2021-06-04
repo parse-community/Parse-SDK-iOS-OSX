@@ -10,12 +10,12 @@
 #import "PFCurrentConfigController.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFConfig_Private.h"
+#import "../../PFAssert.h"
+#import "../PFConfig_Private.h"
 #import "PFDecoder.h"
-#import "PFPersistenceController.h"
-#import "PFJSONSerialization.h"
-#import "PFAsyncTaskQueue.h"
+#import "../../Persistence/PFPersistenceController.h"
+#import "../../PFJSONSerialization.h"
+#import "../../PFAsyncTaskQueue.h"
 
 static NSString *const PFConfigCurrentConfigFileName_ = @"config";
 

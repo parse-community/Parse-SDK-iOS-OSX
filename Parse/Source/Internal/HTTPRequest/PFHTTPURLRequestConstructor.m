@@ -9,7 +9,7 @@
 
 #import "PFHTTPURLRequestConstructor.h"
 
-#import "PFAssert.h"
+#import "../PFAssert.h"
 #import "PFHTTPRequest.h"
 #import "PFURLConstructor.h"
 

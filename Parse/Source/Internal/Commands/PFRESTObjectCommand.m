@@ -9,9 +9,9 @@
 
 #import "PFRESTObjectCommand.h"
 
-#import "PFAssert.h"
-#import "PFHTTPRequest.h"
-#import "PFObjectState.h"
+#import "../PFAssert.h"
+#import "../HTTPRequest/PFHTTPRequest.h"
+#import "../Object/State/PFObjectState.h"
 
 @implementation PFRESTObjectCommand
 

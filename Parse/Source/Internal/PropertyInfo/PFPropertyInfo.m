@@ -11,8 +11,8 @@
 
 #import <objc/message.h>
 
-#import "PFAssert.h"
-#import "PFMacros.h"
+#import "../PFAssert.h"
+#import "../PFMacros.h"
 #import "PFPropertyInfo_Runtime.h"
 
 static inline NSString *safeStringWithPropertyAttributeValue(objc_property_t property, const char *attribute) {

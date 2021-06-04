@@ -10,14 +10,14 @@
 #import "PFInstallationIdentifierStore.h"
 
 #import "BFTask+Private.h"
-#import "PFAssert.h"
-#import "PFFileManager.h"
-#import "PFInternalUtils.h"
-#import "PFMacros.h"
-#import "PFMultiProcessFileLockController.h"
-#import "Parse_Private.h"
-#import "PFAsyncTaskQueue.h"
-#import "PFPersistenceController.h"
+#import "../../PFAssert.h"
+#import "../../PFFileManager.h"
+#import "../../PFInternalUtils.h"
+#import "../../PFMacros.h"
+#import "../../MultiProcessLock/PFMultiProcessFileLockController.h"
+#import "../../Parse_Private.h"
+#import "../../PFAsyncTaskQueue.h"
+#import "../../Persistence/PFPersistenceController.h"
 
 static NSString *const PFInstallationIdentifierFileName = @"installationId";
 
