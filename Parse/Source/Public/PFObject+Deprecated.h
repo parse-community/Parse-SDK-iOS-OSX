@@ -7,8 +7,8 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <Parse/PFConstants.h>
-#import <Parse/PFObject.h>
+#import "PFConstants.h"
+#import "PFObject.h"
 
 /**
  This category lists all methods of `PFObject` that are deprecated and will be removed in the near future.

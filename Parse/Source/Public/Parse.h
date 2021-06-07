@@ -8,65 +8,65 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <Parse/ParseClientConfiguration.h>
-#import <Parse/PFACL.h>
-#import <Parse/PFAnalytics.h>
-#import <Parse/PFAnonymousUtils.h>
-#import <Parse/PFAnonymousUtils+Deprecated.h>
-#import <Parse/PFCloud.h>
-#import <Parse/PFCloud+Deprecated.h>
-#import <Parse/PFCloud+Synchronous.h>
-#import <Parse/PFConfig.h>
-#import <Parse/PFConfig+Synchronous.h>
-#import <Parse/PFConstants.h>
-#import <Parse/PFDecoder.h>
-#import <Parse/PFEncoder.h>
-#import <Parse/PFFileObject.h>
-#import <Parse/PFFileObject+Deprecated.h>
-#import <Parse/PFFileObject+Synchronous.h>
-#import <Parse/PFGeoPoint.h>
-#import <Parse/PFPolygon.h>
-#import <Parse/PFObject.h>
-#import <Parse/PFObject+Subclass.h>
-#import <Parse/PFObject+Synchronous.h>
-#import <Parse/PFObject+Deprecated.h>
-#import <Parse/PFQuery.h>
-#import <Parse/PFQuery+Synchronous.h>
-#import <Parse/PFQuery+Deprecated.h>
-#import <Parse/PFRelation.h>
-#import <Parse/PFRole.h>
-#import <Parse/PFSession.h>
-#import <Parse/PFSubclassing.h>
-#import <Parse/PFUser.h>
-#import <Parse/PFUser+Synchronous.h>
-#import <Parse/PFUser+Deprecated.h>
-#import <Parse/PFUserAuthenticationDelegate.h>
-#import <Parse/PFFileUploadResult.h>
-#import <Parse/PFFileUploadController.h>
+#import "ParseClientConfiguration.h"
+#import "PFACL.h"
+#import "PFAnalytics.h"
+#import "PFAnonymousUtils.h"
+#import "PFAnonymousUtils+Deprecated.h"
+#import "PFCloud.h"
+#import "PFCloud+Deprecated.h"
+#import "PFCloud+Synchronous.h"
+#import "PFConfig.h"
+#import "PFConfig+Synchronous.h"
+#import "PFConstants.h"
+#import "PFDecoder.h"
+#import "PFEncoder.h"
+#import "PFFileObject.h"
+#import "PFFileObject+Deprecated.h"
+#import "PFFileObject+Synchronous.h"
+#import "PFGeoPoint.h"
+#import "PFPolygon.h"
+#import "PFObject.h"
+#import "PFObject+Subclass.h"
+#import "PFObject+Synchronous.h"
+#import "PFObject+Deprecated.h"
+#import "PFQuery.h"
+#import "PFQuery+Synchronous.h"
+#import "PFQuery+Deprecated.h"
+#import "PFRelation.h"
+#import "PFRole.h"
+#import "PFSession.h"
+#import "PFSubclassing.h"
+#import "PFUser.h"
+#import "PFUser+Synchronous.h"
+#import "PFUser+Deprecated.h"
+#import "PFUserAuthenticationDelegate.h"
+#import "PFFileUploadResult.h"
+#import "PFFileUploadController.h"
 
 #if TARGET_OS_IOS
 
-#import <Parse/PFInstallation.h>
-#import <Parse/PFNetworkActivityIndicatorManager.h>
-#import <Parse/PFPush.h>
-#import <Parse/PFPush+Synchronous.h>
-#import <Parse/PFPush+Deprecated.h>
-#import <Parse/PFProduct.h>
-#import <Parse/PFPurchase.h>
+#import "PFInstallation.h"
+#import "PFNetworkActivityIndicatorManager.h"
+#import "PFPush.h"
+#import "PFPush+Synchronous.h"
+#import "PFPush+Deprecated.h"
+#import "PFProduct.h"
+#import "PFPurchase.h"
 
 #elif PF_TARGET_OS_OSX
 
-#import <Parse/PFInstallation.h>
-#import <Parse/PFPush.h>
-#import <Parse/PFPush+Synchronous.h>
-#import <Parse/PFPush+Deprecated.h>
+#import "PFInstallation.h"
+#import "PFPush.h"
+#import "PFPush+Synchronous.h"
+#import "PFPush+Deprecated.h"
 
 #elif TARGET_OS_TV
 
-#import <Parse/PFInstallation.h>
-#import <Parse/PFPush.h>
-#import <Parse/PFProduct.h>
-#import <Parse/PFPurchase.h>
+#import "PFInstallation.h"
+#import "PFPush.h"
+#import "PFProduct.h"
+#import "PFPurchase.h"
 
 #endif
 

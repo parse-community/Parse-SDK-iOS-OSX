@@ -11,8 +11,8 @@
 
 #import <Bolts/BFTask.h>
 
-#import <Parse/PFConstants.h>
-#import <Parse/PFInstallation.h>
+#import "PFConstants.h"
+#import "PFInstallation.h"
 
 PF_WATCH_UNAVAILABLE_WARNING
 
