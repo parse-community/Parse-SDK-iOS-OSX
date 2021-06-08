@@ -11,7 +11,11 @@
 
 #import <StoreKit/StoreKit.h>
 
+#if SWIFT_PACKAGE
+@import Bolts;
+#else
 #import <Bolts/BFTaskCompletionSource.h>
+#endif
 
 #import "BFTask+Private.h"
 #import "../../PFAssert.h"

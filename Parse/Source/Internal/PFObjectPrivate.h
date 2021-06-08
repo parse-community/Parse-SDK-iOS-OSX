@@ -11,7 +11,11 @@
 
 #import "PFObject.h"
 
+#if SWIFT_PACKAGE
+@import Bolts;
+#else
 #import <Bolts/BFTask.h>
+#endif
 
 #import "PFDecoder.h"
 #import "PFEncoder.h"

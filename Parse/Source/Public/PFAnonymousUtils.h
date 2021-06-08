@@ -9,7 +9,11 @@
 
 #import <Foundation/Foundation.h>
 
+#if SWIFT_PACKAGE
+@import Bolts;
+#else
 #import <Bolts/BFTask.h>
+#endif
 
 #import "PFConstants.h"
 #import "PFUser.h"

@@ -9,7 +9,11 @@
 
 #import "PFDefaultACLController.h"
 
+#if SWIFT_PACKAGE
+@import Bolts;
+#else
 #import <Bolts/BFTask.h>
+#endif
 
 #import "../PFACLPrivate.h"
 #import "../../PFAsyncTaskQueue.h"

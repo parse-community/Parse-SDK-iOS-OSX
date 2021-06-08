@@ -9,7 +9,11 @@
 
 #import "ParseManager.h"
 
+#if SWIFT_PACKAGE
+@import Bolts;
+#else
 #import <Bolts/BFExecutor.h>
+#endif
 
 #import "BFTask+Private.h"
 #import "Analytics/Controller/PFAnalyticsController.h"

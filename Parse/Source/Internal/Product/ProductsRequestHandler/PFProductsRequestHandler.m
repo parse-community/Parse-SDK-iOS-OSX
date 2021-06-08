@@ -9,8 +9,13 @@
 
 #import "PFProductsRequestHandler.h"
 
+#if SWIFT_PACKAGE
+@import Bolts;
+#else
 #import <Bolts/BFTask.h>
 #import <Bolts/BFTaskCompletionSource.h>
+#endif
+
 
 @implementation PFProductsRequestResult
 

@@ -10,8 +10,12 @@
 #import "PFMemoryEventuallyQueue.h"
 #import "PFEventuallyQueue_Private.h"
 
+#if SWIFT_PACKAGE
+@import Bolts;
+#else
 #import <Bolts/BFTask.h>
 #import <Bolts/BFExecutor.h>
+#endif
 
 @interface PFMemoryEventuallyQueue () <PFEventuallyQueueSubclass> {
     dispatch_queue_t _dataAccessQueue;

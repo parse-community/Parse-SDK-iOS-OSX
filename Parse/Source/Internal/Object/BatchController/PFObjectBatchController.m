@@ -9,7 +9,11 @@
 
 #import "PFObjectBatchController.h"
 
+#if SWIFT_PACKAGE
+@import Bolts;
+#else
 #import <Bolts/Bolts.h>
+#endif
 
 #import "BFTask+Private.h"
 #import "../../PFAssert.h"

@@ -12,8 +12,12 @@
 #import "PFQuery+Synchronous.h"
 #import "PFQuery+Deprecated.h"
 
+#if SWIFT_PACKAGE
+@import Bolts;
+#else
 #import <Bolts/BFCancellationTokenSource.h>
 #import <Bolts/BFTask.h>
+#endif
 
 #import "BFTask+Private.h"
 #import "../Internal/PFAssert.h"

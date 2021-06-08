@@ -9,8 +9,12 @@
 
 #import "PFSQLiteDatabaseController.h"
 
+#if SWIFT_PACKAGE
+@import Bolts;
+#else
 #import <Bolts/BFTask.h>
 #import <Bolts/BFTaskCompletionSource.h>
+#endif
 
 #import "../../PFAssert.h"
 #import "../../PFAsyncTaskQueue.h"

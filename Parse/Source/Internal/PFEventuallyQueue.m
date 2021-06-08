@@ -10,8 +10,12 @@
 #import "PFEventuallyQueue.h"
 #import "PFEventuallyQueue_Private.h"
 
+#if SWIFT_PACKAGE
+@import Bolts;
+#else
 #import <Bolts/BFExecutor.h>
 #import <Bolts/BFTaskCompletionSource.h>
+#endif
 
 #import "BFTask+Private.h"
 #import "PFAssert.h"

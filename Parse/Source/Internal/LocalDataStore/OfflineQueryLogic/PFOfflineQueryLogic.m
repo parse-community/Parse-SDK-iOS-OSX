@@ -9,8 +9,12 @@
 
 #import "PFOfflineQueryLogic.h"
 
+#if SWIFT_PACKAGE
+@import Bolts;
+#else
 #import <Bolts/BFTask.h>
 #import <Bolts/BFExecutor.h>
+#endif
 
 #import "PFACL.h"
 #import "../../PFAssert.h"
