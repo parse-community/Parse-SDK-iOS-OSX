@@ -16,6 +16,8 @@
 #import <Bolts/BFTaskCompletionSource.h>
 #endif
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_OSX && !TARGET_OS_WATCH
 
 @implementation PFProductsRequestResult
 
@@ -100,3 +102,5 @@
 }
 
 @end
+
+#endif

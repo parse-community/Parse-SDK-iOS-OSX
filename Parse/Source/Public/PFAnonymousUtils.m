@@ -10,7 +10,7 @@
 #import "PFAnonymousUtils.h"
 #import "../Internal/User/AuthenticationProviders/Providers/Anonymous/PFAnonymousUtils_Private.h"
 
-#import "BFTask+Private.h"
+#import "../Internal/BFTask+Private.h"
 #import "../Internal/User/AuthenticationProviders/Providers/Anonymous/PFAnonymousAuthenticationProvider.h"
 #import "../Internal/PFInternalUtils.h"
 #import "../Internal/User/PFUserPrivate.h"

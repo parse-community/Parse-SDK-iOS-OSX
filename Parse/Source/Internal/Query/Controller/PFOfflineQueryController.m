@@ -9,7 +9,7 @@
 
 #import "PFOfflineQueryController.h"
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../../PFAssert.h"
 #import "../../Commands/CommandRunner/PFCommandRunning.h"
 #import "../../PFObjectPrivate.h"

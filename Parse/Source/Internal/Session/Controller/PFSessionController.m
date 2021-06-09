@@ -9,7 +9,7 @@
 
 #import "PFSessionController.h"
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../../PFAssert.h"
 #import "../../PFCommandResult.h"
 #import "../../Commands/CommandRunner/PFCommandRunning.h"

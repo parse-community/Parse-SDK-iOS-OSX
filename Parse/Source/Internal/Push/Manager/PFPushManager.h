@@ -7,6 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_WATCH
+
 #import <Foundation/Foundation.h>
 
 #import "PFConstants.h"
@@ -45,3 +48,5 @@ PF_WATCH_UNAVAILABLE @interface PFPushManager : NSObject
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

@@ -9,7 +9,7 @@
 
 #import "PFUserAuthenticationController.h"
 
-#import "BFTask+Private.h"
+#import "../../../BFTask+Private.h"
 #import "../../../PFMacros.h"
 #import "../../PFUserPrivate.h"
 #import "../../../PFObjectPrivate.h"

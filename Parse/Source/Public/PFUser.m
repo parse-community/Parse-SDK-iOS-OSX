@@ -19,7 +19,7 @@
 #import <Bolts/BFTaskCompletionSource.h>
 #endif
 
-#import "BFTask+Private.h"
+#import "../Internal/BFTask+Private.h"
 #import "../Internal/ACL/PFACLPrivate.h"
 #import "../Internal/User/AuthenticationProviders/Providers/Anonymous/PFAnonymousAuthenticationProvider.h"
 #import "../Internal/User/AuthenticationProviders/Providers/Anonymous/PFAnonymousUtils_Private.h"

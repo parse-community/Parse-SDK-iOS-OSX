@@ -7,6 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_OSX && !TARGET_OS_TV && !TARGET_OS_WATCH
+
 #import "PFAlertView.h"
 
 @interface PFAlertView () <UIAlertViewDelegate>
@@ -107,3 +110,5 @@
 #endif
 
 @end
+
+#endif

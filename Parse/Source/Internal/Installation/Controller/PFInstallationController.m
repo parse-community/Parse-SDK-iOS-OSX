@@ -7,9 +7,12 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_WATCH
+
 #import "PFInstallationController.h"
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../../PFAssert.h"
 #import "../CurrentInstallationController/PFCurrentInstallationController.h"
 #import "../PFInstallationPrivate.h"
@@ -105,3 +108,5 @@
 }
 
 @end
+
+#endif

@@ -6,10 +6,12 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  */
+#import <TargetConditionals.h>
+#if !TARGET_OS_OSX && !TARGET_OS_WATCH
 
 #import "PFPurchase.h"
 
-#import "BFTask+Private.h"
+#import "../Internal/BFTask+Private.h"
 #import "../Internal/PFAssert.h"
 #import "PFConstants.h"
 #import "../Internal/Purchase/PaymentTransactionObserver/PFPaymentTransactionObserver.h"
@@ -87,3 +89,5 @@
 }
 
 @end
+
+#endif

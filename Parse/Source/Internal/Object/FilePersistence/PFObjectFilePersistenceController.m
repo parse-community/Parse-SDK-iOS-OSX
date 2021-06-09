@@ -9,7 +9,7 @@
 
 #import "PFObjectFilePersistenceController.h"
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../../PFAssert.h"
 #import "../../PFJSONSerialization.h"
 #import "../../PFMacros.h"

@@ -17,7 +17,7 @@
 #import <Bolts/BFTaskCompletionSource.h>
 #endif
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../../PFAssert.h"
 #import "../../PFCommandResult.h"
 #import "../../Commands/CommandRunner/PFCommandRunning.h"
@@ -30,6 +30,9 @@
 #import "../PaymentTransactionObserver/PFPaymentTransactionObserver.h"
 #import "../../Product/ProductsRequestHandler/PFProductsRequestHandler.h"
 #import "../../Commands/PFRESTCommand.h"
+
+#import <TargetConditionals.h>
+#if !TARGET_OS_OSX
 
 @interface PFPurchaseController () {
     PFProductsRequestHandler *_currentProductsRequestHandler;
@@ -237,3 +240,5 @@
 }
 
 @end
+
+#endif

@@ -16,7 +16,7 @@
 #import <Bolts/BFTaskCompletionSource.h>
 #endif
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../FileDataStream/PFFileDataStream.h"
 #import "../../PFAssert.h"
 #import "../../PFCommandResult.h"

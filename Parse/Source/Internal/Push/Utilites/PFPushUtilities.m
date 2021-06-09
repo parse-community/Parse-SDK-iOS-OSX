@@ -7,6 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_WATCH
+
 #import "PFPushUtilities.h"
 
 #import <dlfcn.h>
@@ -89,3 +92,5 @@
 #endif
 
 @end
+
+#endif

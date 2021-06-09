@@ -20,6 +20,9 @@
 
 PF_WATCH_UNAVAILABLE_WARNING
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_WATCH
+
 @class PFQuery<PFGenericObject : PFObject *>;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -354,3 +357,5 @@ PF_WATCH_UNAVAILABLE @interface PFPush : NSObject<NSCopying>
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

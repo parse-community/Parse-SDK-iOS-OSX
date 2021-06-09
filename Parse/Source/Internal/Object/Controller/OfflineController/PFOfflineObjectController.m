@@ -9,7 +9,7 @@
 
 #import "PFOfflineObjectController.h"
 
-#import "BFTask+Private.h"
+#import "../../../BFTask+Private.h"
 #import "../../../PFMacros.h"
 #import "../PFObjectController_Private.h"
 #import "../../../PFObjectPrivate.h"

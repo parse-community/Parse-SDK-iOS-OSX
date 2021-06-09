@@ -9,7 +9,7 @@
 
 #import "PFPinningObjectStore.h"
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../../PFAssert.h"
 #import "../../PFMacros.h"
 #import "../../LocalDataStore/OfflineStore/PFOfflineStore.h"

@@ -7,6 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_OSX
+
 #import "PFProduct.h"
 
 typedef enum {
@@ -44,3 +47,5 @@ typedef enum {
 @property (nonatomic, strong) NSString *contentPath;
 
 @end
+
+#endif

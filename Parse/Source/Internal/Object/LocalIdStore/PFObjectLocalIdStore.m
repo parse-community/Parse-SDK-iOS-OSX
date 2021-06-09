@@ -9,7 +9,7 @@
 
 #import "PFObjectLocalIdStore.h"
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../../PFAssert.h"
 #import "../../PFFileManager.h"
 #import "../../PFInternalUtils.h"

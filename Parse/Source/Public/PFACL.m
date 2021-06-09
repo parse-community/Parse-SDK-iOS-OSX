@@ -10,7 +10,7 @@
 #import "PFACL.h"
 #import "../Internal/ACL/PFACLPrivate.h"
 
-#import "BFTask+Private.h"
+#import "../Internal/BFTask+Private.h"
 #import "../Internal/ACL/State/PFACLState.h"
 #import "../Internal/PFAssert.h"
 #import "../Internal/ACL/DefaultACLController/PFDefaultACLController.h"

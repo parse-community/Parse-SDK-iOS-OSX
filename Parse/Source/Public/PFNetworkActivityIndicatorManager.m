@@ -12,6 +12,9 @@
 #import "../Internal/PFApplication.h"
 #import "../Internal/Commands/CommandRunner/PFCommandRunningConstants.h"
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_OSX && !TARGET_OS_WATCH
+
 static NSTimeInterval const PFNetworkActivityIndicatorVisibilityDelay = 0.17;
 
 @interface PFNetworkActivityIndicatorManager () {
@@ -161,3 +164,5 @@ static NSTimeInterval const PFNetworkActivityIndicatorVisibilityDelay = 0.17;
 }
 
 @end
+
+#endif

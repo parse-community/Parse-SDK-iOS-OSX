@@ -9,7 +9,7 @@
 
 #import "PFFilePersistenceGroup.h"
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../../MultiProcessLock/PFMultiProcessFileLockController.h"
 #import "../../PFFileManager.h"
 

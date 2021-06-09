@@ -7,6 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_OSX
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -26,3 +29,5 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFAlertView : NSObject
                 completion:(PFAlertViewCompletion)completion NS_EXTENSION_UNAVAILABLE_IOS("");
 
 @end
+
+#endif

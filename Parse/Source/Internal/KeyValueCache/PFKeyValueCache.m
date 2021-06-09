@@ -9,7 +9,7 @@
 
 #import "PFKeyValueCache_Private.h"
 
-#import "BFTask+Private.h"
+#import "../BFTask+Private.h"
 #import "../PFAssert.h"
 #import "PFConstants.h"
 #import "../PFFileManager.h"

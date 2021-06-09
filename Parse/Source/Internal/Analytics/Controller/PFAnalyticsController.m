@@ -9,7 +9,7 @@
 
 #import "PFAnalyticsController.h"
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../Utilities/PFAnalyticsUtilities.h"
 #import "../../PFAssert.h"
 #import "../../PFEventuallyQueue.h"

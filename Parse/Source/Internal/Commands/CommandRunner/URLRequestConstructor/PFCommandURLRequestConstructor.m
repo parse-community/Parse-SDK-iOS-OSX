@@ -9,7 +9,7 @@
 
 #import "PFCommandURLRequestConstructor.h"
 
-#import "BFTask+Private.h"
+#import "../../../BFTask+Private.h"
 #import "../../../PFAssert.h"
 #import "../PFCommandRunningConstants.h"
 #import "../../../PFDevice.h"

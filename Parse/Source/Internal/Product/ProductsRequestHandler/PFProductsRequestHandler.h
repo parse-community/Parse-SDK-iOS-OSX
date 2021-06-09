@@ -15,6 +15,9 @@
 PF_OSX_UNAVAILABLE_WARNING
 PF_WATCH_UNAVAILABLE_WARNING
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_OSX
+
 @class BFTask<__covariant BFGenericType>;
 
 PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFProductsRequestResult : NSObject
@@ -38,3 +41,5 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFProductsRequestResult : NSO
 - (BFTask *)findProductsAsync;
 
 @end
+
+#endif

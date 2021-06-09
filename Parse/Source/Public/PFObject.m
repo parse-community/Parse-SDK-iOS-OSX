@@ -23,7 +23,7 @@
 #import <Bolts/BFTaskCompletionSource.h>
 #endif
 
-#import "BFTask+Private.h"
+#import "../Internal/BFTask+Private.h"
 #import "../Internal/ACL/PFACLPrivate.h"
 #import "../Internal/PFCommandResult.h"
 #import "../Internal/Commands/CommandRunner/PFCommandRunning.h"

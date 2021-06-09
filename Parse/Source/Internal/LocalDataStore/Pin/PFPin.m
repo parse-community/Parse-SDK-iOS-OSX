@@ -9,7 +9,7 @@
 
 #import "PFPin.h"
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../../PFAssert.h"
 #import "PFObject+Subclass.h"
 #import "../../PFObjectPrivate.h"

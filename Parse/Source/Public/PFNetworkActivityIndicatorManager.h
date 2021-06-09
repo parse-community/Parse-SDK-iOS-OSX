@@ -7,6 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_OSX && !TARGET_OS_WATCH
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -72,3 +75,5 @@ PF_OSX_UNAVAILABLE PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFNetworkAc
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

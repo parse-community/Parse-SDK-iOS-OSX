@@ -7,6 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_WATCH
+
 #import "PFReachability.h"
 
 #import <SystemConfiguration/SystemConfiguration.h>
@@ -209,3 +212,5 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 }
 
 @end
+
+#endif

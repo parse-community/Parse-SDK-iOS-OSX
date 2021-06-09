@@ -15,6 +15,9 @@
 
 PF_WATCH_UNAVAILABLE_WARNING
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_WATCH
+
 @class BFTask<__covariant BFGenericType>;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -49,3 +52,5 @@ PF_WATCH_UNAVAILABLE @interface PFPushChannelsController : NSObject
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

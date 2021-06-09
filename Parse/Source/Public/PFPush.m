@@ -7,12 +7,15 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_WATCH
+
 #import "PFPush.h"
 #import "../Internal/Push/PFPushPrivate.h"
 
 #import <AudioToolbox/AudioToolbox.h>
 
-#import "BFTask+Private.h"
+#import "../Internal/BFTask+Private.h"
 #import "../Internal/PFAssert.h"
 #import "PFEncoder.h"
 #import "../Internal/PFHash.h"
@@ -479,3 +482,5 @@ static Class _pushInternalUtilClass = nil;
 }
 
 @end
+
+#endif

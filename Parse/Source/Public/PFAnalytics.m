@@ -14,7 +14,7 @@
 #import <AppKit/AppKit.h>
 #endif
 
-#import "BFTask+Private.h"
+#import "../Internal/BFTask+Private.h"
 #import "../Internal/Analytics/Controller/PFAnalyticsController.h"
 #import "../Internal/PFAssert.h"
 #import "PFEncoder.h"

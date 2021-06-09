@@ -15,6 +15,9 @@
 
 PF_WATCH_UNAVAILABLE_WARNING
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_WATCH
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol PFPushInternalUtils <NSObject>
@@ -43,3 +46,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

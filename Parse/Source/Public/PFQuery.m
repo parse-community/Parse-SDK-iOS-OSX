@@ -19,7 +19,7 @@
 #import <Bolts/BFTask.h>
 #endif
 
-#import "BFTask+Private.h"
+#import "../Internal/BFTask+Private.h"
 #import "../Internal/PFAssert.h"
 #import "../Internal/PFCommandResult.h"
 #import "../Internal/PFCoreManager.h"

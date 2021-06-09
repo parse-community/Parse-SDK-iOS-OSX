@@ -9,7 +9,7 @@
 
 #import "PFPersistenceController.h"
 
-#import "BFTask+Private.h"
+#import "../BFTask+Private.h"
 #import "../PFAsyncTaskQueue.h"
 
 #import "Group/PFFilePersistenceGroup.h"

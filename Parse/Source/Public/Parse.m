@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "BFTask+Private.h"
+#import "../Internal/BFTask+Private.h"
 #import "Parse.h"
 #import "../Internal/ParseInternal.h"
 #import "../Internal/ParseManager.h"

@@ -7,9 +7,12 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_WATCH
+
 #import "PFCurrentInstallationController.h"
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../../PFAsyncTaskQueue.h"
 #import "../InstallationIdentifierStore/PFInstallationIdentifierStore.h"
 #import "../PFInstallationPrivate.h"
@@ -280,3 +283,5 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
 }
 
 @end
+
+#endif

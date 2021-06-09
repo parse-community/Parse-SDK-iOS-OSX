@@ -19,7 +19,7 @@
 #import <Bolts/BFTaskCompletionSource.h>
 #endif
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../../PFFileManager.h"
 #import "../../PFInternalUtils.h"
 #import "../../PFMacros.h"

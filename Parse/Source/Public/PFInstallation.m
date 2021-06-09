@@ -7,10 +7,13 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_WATCH
+
 #import "PFInstallation.h"
 #import "../Internal/Installation/PFInstallationPrivate.h"
 
-#import "BFTask+Private.h"
+#import "../Internal/BFTask+Private.h"
 #import "../Internal/PFApplication.h"
 #import "../Internal/PFAssert.h"
 #import "../Internal/PFCoreManager.h"
@@ -374,3 +377,5 @@ static NSSet *protectedKeys;
 }
 
 @end
+
+#endif

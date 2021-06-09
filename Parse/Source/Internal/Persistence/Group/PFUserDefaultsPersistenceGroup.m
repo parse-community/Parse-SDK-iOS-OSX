@@ -9,7 +9,7 @@
 
 #import "PFUserDefaultsPersistenceGroup.h"
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../../PFAsyncTaskQueue.h"
 
 @interface PFUserDefaultsPersistenceGroup () {

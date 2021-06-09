@@ -9,7 +9,7 @@
 
 #import "PFSession.h"
 
-#import "BFTask+Private.h"
+#import "../Internal/BFTask+Private.h"
 #import "../Internal/PFAssert.h"
 #import "../Internal/PFCoreManager.h"
 #import "../Internal/User/CurrentUserController/PFCurrentUserController.h"

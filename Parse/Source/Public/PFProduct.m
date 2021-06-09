@@ -7,8 +7,11 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <TargetConditionals.h>
+#if !TARGET_OS_OSX
+
 #import "PFProduct.h"
-#import "PFProduct+Private.h"
+#import "../Internal/PFProduct+Private.h"
 
 #import "../Internal/PFAssert.h"
 #import "PFObject+Subclass.h"
@@ -46,3 +49,5 @@
 @dynamic progress;
 
 @end
+
+#endif

@@ -15,7 +15,7 @@
 #import <Bolts/BFTaskCompletionSource.h>
 #endif
 
-#import "BFTask+Private.h"
+#import "../../BFTask+Private.h"
 #import "../AuthenticationProviders/Providers/Anonymous/PFAnonymousUtils_Private.h"
 #import "../../PFAssert.h"
 #import "../../PFAsyncTaskQueue.h"

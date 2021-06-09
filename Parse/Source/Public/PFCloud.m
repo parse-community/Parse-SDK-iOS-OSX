@@ -9,7 +9,7 @@
 
 #import "PFCloud.h"
 
-#import "BFTask+Private.h"
+#import "../Internal/BFTask+Private.h"
 #import "../Internal/CloudCode/PFCloudCodeController.h"
 #import "../Internal/PFCommandResult.h"
 #import "../Internal/PFCoreManager.h"

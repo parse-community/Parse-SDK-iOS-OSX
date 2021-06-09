@@ -10,7 +10,7 @@
 #import "PFConfig.h"
 #import "../Internal/Config/PFConfig_Private.h"
 
-#import "BFTask+Private.h"
+#import "../Internal/BFTask+Private.h"
 #import "../Internal/Config/Controller/PFConfigController.h"
 #import "../Internal/PFCoreManager.h"
 #import "../Internal/Config/Controller/PFCurrentConfigController.h"
