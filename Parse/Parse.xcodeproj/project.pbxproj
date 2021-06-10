@@ -2634,13 +2634,13 @@
 		BCB3245F265EA25200ED5592 /* PFSystemLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB32453265EA25200ED5592 /* PFSystemLogger.m */; };
 		BCB32460265EA25200ED5592 /* PFSystemLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB32453265EA25200ED5592 /* PFSystemLogger.m */; };
 		BCB32461265EA25200ED5592 /* PFSystemLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB32453265EA25200ED5592 /* PFSystemLogger.m */; };
-		BCB32463265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; };
-		BCB32464265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; };
-		BCB32465265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; };
-		BCB32466265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; };
-		BCB32467265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; };
-		BCB32468265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; };
-		BCB32469265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; };
+		BCB32463265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BCB32464265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BCB32465265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BCB32466265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BCB32467265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BCB32468265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BCB32469265EA41800ED5592 /* PFObject+Subclass.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB32462265EA41800ED5592 /* PFObject+Subclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F50C66331B33A708001941A6 /* PFPushUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F50C66311B33A708001941A6 /* PFPushUtilities.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F50C66341B33A708001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
 		F50C667C1B34B231001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
@@ -5300,6 +5300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				816A646F1C29DA680029B197 /* PFFileObject+Synchronous.h in Headers */,
+				BCB32468265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				810155A51BB3832700D7C7BD /* PFACL.h in Headers */,
 				810155A91BB3832700D7C7BD /* PFConfig.h in Headers */,
 				810155AA1BB3832700D7C7BD /* PFAnalytics.h in Headers */,
@@ -5364,7 +5365,6 @@
 				810155E11BB3832700D7C7BD /* PFFieldOperation.h in Headers */,
 				810155E21BB3832700D7C7BD /* PFObjectPrivate.h in Headers */,
 				810155E31BB3832700D7C7BD /* PFInstallationIdentifierStore.h in Headers */,
-				BCB32468265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				810155E41BB3832700D7C7BD /* PFURLSessionJSONDataTaskDelegate.h in Headers */,
 				810155E51BB3832700D7C7BD /* PFMutableUserState.h in Headers */,
 				810155E61BB3832700D7C7BD /* PFRESTConfigCommand.h in Headers */,
@@ -5499,6 +5499,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				815F23511BD04D150054659F /* PFACL.h in Headers */,
+				BCB32466265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				815F23551BD04D150054659F /* PFConfig.h in Headers */,
 				815F23561BD04D150054659F /* PFAnalytics.h in Headers */,
 				B14116F61E5D076000F70D7A /* PFFileUploadController.h in Headers */,
@@ -5515,7 +5516,6 @@
 				815F23581BD04D150054659F /* PFSQLiteDatabaseController.h in Headers */,
 				815F23591BD04D150054659F /* PFRESTFileCommand.h in Headers */,
 				707095441F170F92000C50EA /* PFPolygon.h in Headers */,
-				BCB32466265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				815F235A1BD04D150054659F /* PFObjectState_Private.h in Headers */,
 				815F235B1BD04D150054659F /* PFBase64Encoder.h in Headers */,
 				815E764F1BDF168A00E1DF8E /* PFPersistenceController.h in Headers */,
@@ -5721,6 +5721,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCB32463265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				702F3A0A1F1179D40043DD72 /* PFPolygon.h in Headers */,
 				F5B64D8B1BFA646C0038F3CB /* ParseClientConfiguration.h in Headers */,
 				818AAA7019D36B1C00FC1B3C /* PFACL.h in Headers */,
@@ -5934,7 +5935,6 @@
 				816A646C1C29DA680029B197 /* PFFileObject+Synchronous.h in Headers */,
 				818AAA7219D36B1C00FC1B3C /* PFAnonymousUtils.h in Headers */,
 				818AAA8319D36B1C00FC1B3C /* PFSubclassing.h in Headers */,
-				BCB32463265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				816A64881C29E5A00029B197 /* PFUser+Synchronous.h in Headers */,
 				818AAA7819D36B1C00FC1B3C /* PFInstallation.h in Headers */,
 				818AAA7B19D36B1C00FC1B3C /* PFPurchase.h in Headers */,
@@ -5949,6 +5949,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				709EC3301F143C4700C55549 /* PFPolygon.h in Headers */,
+				BCB32464265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				B14116F41E5D075C00F70D7A /* PFFileUploadController.h in Headers */,
 				81C583841C3B0A98000063C6 /* ParseClientConfiguration.h in Headers */,
 				81C583891C3B0A98000063C6 /* PFACL.h in Headers */,
@@ -6161,7 +6162,6 @@
 				96FAF7BA1D84462700EAB299 /* PFEncoder.h in Headers */,
 				81C584381C3B0A98000063C6 /* PFAnonymousUtils.h in Headers */,
 				81C584441C3B0A98000063C6 /* PFSubclassing.h in Headers */,
-				BCB32464265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				81C584471C3B0A98000063C6 /* PFUser+Synchronous.h in Headers */,
 				B141170C1E5D081500F70D7A /* PFFileUploadResult.h in Headers */,
 				81C5844D1C3B0A98000063C6 /* PFInstallation.h in Headers */,
@@ -6176,6 +6176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81C584F81C3B0AA1000063C6 /* PFACL.h in Headers */,
+				BCB32467265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				81C584FB1C3B0AA1000063C6 /* PFConfig.h in Headers */,
 				81C584FC1C3B0AA1000063C6 /* PFAnalytics.h in Headers */,
 				B14116F71E5D076100F70D7A /* PFFileUploadController.h in Headers */,
@@ -6192,7 +6193,6 @@
 				81C584FA1C3B0AA1000063C6 /* PFDataProvider.h in Headers */,
 				81C584FD1C3B0AA1000063C6 /* PFSQLiteDatabaseController.h in Headers */,
 				81C584FE1C3B0AA1000063C6 /* PFRESTFileCommand.h in Headers */,
-				BCB32467265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				81C584FF1C3B0AA1000063C6 /* PFObjectState_Private.h in Headers */,
 				81C585001C3B0AA1000063C6 /* PFBase64Encoder.h in Headers */,
 				81C585011C3B0AA1000063C6 /* PFPersistenceController.h in Headers */,
@@ -6399,6 +6399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7070954D1F171038000C50EA /* PFPolygon.h in Headers */,
+				BCB32469265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				81C586501C3B0AA9000063C6 /* PFFileObject+Synchronous.h in Headers */,
 				81C586531C3B0AA9000063C6 /* PFACL.h in Headers */,
 				81C586561C3B0AA9000063C6 /* PFConfig.h in Headers */,
@@ -6505,7 +6506,6 @@
 				81C586C21C3B0AA9000063C6 /* PFAnonymousUtils_Private.h in Headers */,
 				81C586C31C3B0AA9000063C6 /* PFPin.h in Headers */,
 				81C586C41C3B0AA9000063C6 /* PFRESTObjectBatchCommand.h in Headers */,
-				BCB32469265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				81C586C51C3B0AA9000063C6 /* PFSQLiteStatement.h in Headers */,
 				81C586C61C3B0AA9000063C6 /* PFURLSessionCommandRunner.h in Headers */,
 				81C586C71C3B0AA9000063C6 /* PFRESTObjectCommand.h in Headers */,
@@ -6599,6 +6599,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81F0E89919E6F83E00812A88 /* PFRelation.h in Headers */,
+				BCB32465265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				707095401F170F1B000C50EA /* PFPolygon.h in Headers */,
 				81F0E88E19E6F7D600812A88 /* Parse.h in Headers */,
 				815BE6C11C29D17C00738638 /* PFCloud+Synchronous.h in Headers */,
@@ -6741,7 +6742,6 @@
 				4030936D1C81F0B200CF09F8 /* PFQueryConstants.h in Headers */,
 				815EE8F619F976D50076FE5D /* PFRESTCommand.h in Headers */,
 				81A2458E1B1E99C6006A6953 /* PFFieldOperation.h in Headers */,
-				BCB32465265EA41800ED5592 /* PFObject+Subclass.h in Headers */,
 				81C7F49F1AF421FF007B5418 /* PFFileState_Private.h in Headers */,
 				8139B1361A7C2E76002BEF84 /* PFRESTUserCommand.h in Headers */,
 				8166FC591B503741003841A2 /* PFAnalytics_Private.h in Headers */,
