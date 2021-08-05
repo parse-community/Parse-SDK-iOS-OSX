@@ -11,13 +11,13 @@ assignees: ''
 <!--
     Please check all of the following boxes [x] before submitting your issue.
     Click the "Preview" tab for better readability.
-    Thanks for contributing to Parse Swift!
+    Thanks for contributing to the Parse iOS SDK!
 -->
 
-- [ ] I am not disclosing a [vulnerability](https://github.com/parse-community/Parse-Swift/security/policy).
+- [ ] I am not disclosing a [vulnerability](https://github.com/parse-community/Parse-SDK-iOS-OSX/security/policy).
 - [ ] I am not just asking a [question](https://github.com/parse-community/.github/blob/main/SUPPORT.md).
-- [ ] I have searched through [existing issues](https://github.com/parse-community/Parse-Swift/issues?q=is%3Aissue).
-- [ ] I can reproduce the issue with the [latest version of Parse Swift](https://github.com/parse-community/Parse-Swift/releases). <!-- We don't investigate issues for outdated releases. -->
+- [ ] I have searched through [existing issues](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues?q=is%3Aissue).
+- [ ] I can reproduce the issue with the [latest version of the Parse iOS SDK](https://github.com/parse-community/Parse-SDK-iOS-OSX/releases). <!-- We don't investigate issues for outdated releases. -->
 - [ ] I can reproduce the issue with the [latest version of Parse Server](https://github.com/parse-community/parse-server/releases).
 
 ### Issue Description
@@ -36,7 +36,7 @@ assignees: ''
 <!--
     Check one of the following boxes [x] if you added a PR and add the link.
     See the contribution guide for guidance, if you get stuck please do ask for help:
-    https://github.com/parse-community/Parse-Swift/blob/main/CONTRIBUTING.md
+    https://github.com/parse-community/Parse-SDK-iOS-OSX/blob/master/CONTRIBUTING.md
 -->
 
 - [ ] 🤩 I submitted a PR with a fix and a test case.
@@ -45,7 +45,7 @@ assignees: ''
 ###  Environment
 <!-- Be specific with versions, don't use "latest" or semver ranges like "~x.y.z" or "^x.y.z". -->
 
-Parse Swift
+Parse iOS SDK
 - SDK version: `FILL_THIS_OUT`
 - Operating system (iOS, macOS, watchOS, etc.): `FILL_THIS_OUT`
 - Operating system version: `FILL_THIS_OUT`
