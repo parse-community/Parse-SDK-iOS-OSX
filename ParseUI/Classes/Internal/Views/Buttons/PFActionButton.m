@@ -56,8 +56,8 @@ static const UIEdgeInsets PFActionButtonContentEdgeInsets = { .top = 0.0f, .left
     self = [super initWithFrame:CGRectZero];
     if (!self) return nil;
 
-    _buttonStyle = buttonStyle;
-    _configuration = configuration;
+    self.buttonStyle = buttonStyle;
+    self.configuration = configuration;
 
     self.backgroundColor = [UIColor clearColor];
     self.titleLabel.font = [UIFont systemFontOfSize:16.0f];
