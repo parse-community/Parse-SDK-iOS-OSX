@@ -7,7 +7,7 @@ env:
 
 jobs:
   cocoapods:
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
       - uses: actions/checkout@v2
       - name: CocoaPods
@@ -19,7 +19,7 @@ jobs:
           DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
 
   docs:
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
       - uses: actions/checkout@v2
       - name: Cache Gems
@@ -46,7 +46,7 @@ jobs:
           publish_dir: ./docs
 
   release:
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
       - uses: actions/checkout@v2
       - name: Cache Gems

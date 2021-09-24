@@ -10,7 +10,7 @@ env:
 
 jobs:
   ios:
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
     - uses: actions/checkout@v2
     - name: Cache Gems
@@ -33,7 +33,7 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
       
   macos:
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
     - uses: actions/checkout@v2
     - name: Cache Gems
@@ -63,7 +63,7 @@ jobs:
 
   facebook_utils:
     needs: macos
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
     - uses: actions/checkout@v2
     - name: Cache Gems
@@ -87,7 +87,7 @@ jobs:
 
   twitter_utils:
     needs: macos
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
     - uses: actions/checkout@v2
     - name: Cache Gems
@@ -110,7 +110,7 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   parseui:
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
     - uses: actions/checkout@v2
     - name: Cache Gems
@@ -133,14 +133,14 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   cocoapods:
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
       - uses: actions/checkout@v2
       - name: CocoaPods
         run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
 
   release:
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
       - uses: actions/checkout@v2
       - name: Cache Gems
@@ -164,7 +164,7 @@ jobs:
 
   docs:
     needs: macos
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
       - uses: actions/checkout@v2
       - name: Cache Gems
