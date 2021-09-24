@@ -5,8 +5,8 @@ on:
   pull_request:
     branches: [ master ]
 env:
-  CI_XCODE_VER: '/Applications/Xcode_11.7.app/Contents/Developer'
-  CI_XCODE_VER_OLDER: '/Applications/Xcode_11.6.app/Contents/Developer'
+  CI_XCODE_11: '/Applications/Xcode_11.7.app/Contents/Developer'
+  CI_XCODE_13: '/Applications/Xcode_13.0.app/Contents/Developer'
 
 jobs:
   ios:
@@ -29,8 +29,11 @@ jobs:
         bundle install
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:ios
+      env:
+        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
+
       
   macos:
     runs-on: macos-11
@@ -58,6 +61,8 @@ jobs:
         security set-keychain-settings -lut 7200 temporary
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:macos
+      env:
+        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
@@ -82,6 +87,8 @@ jobs:
         bundle install
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:facebook_utils:ios
+      env:
+        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
@@ -106,6 +113,8 @@ jobs:
         bundle install
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:twitter_utils:ios
+      env:
+        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
@@ -129,6 +138,8 @@ jobs:
         bundle install
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:all
+      env:
+        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
@@ -138,6 +149,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: CocoaPods
         run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
+        env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
 
   release:
     runs-on: macos-11
@@ -160,7 +173,7 @@ jobs:
       - name: Build Release
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_11 }}
 
   docs:
     needs: macos
@@ -184,3 +197,5 @@ jobs:
       - name: Create Jazzy Docs
         run: |
           ./Scripts/jazzy.sh
+        env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
