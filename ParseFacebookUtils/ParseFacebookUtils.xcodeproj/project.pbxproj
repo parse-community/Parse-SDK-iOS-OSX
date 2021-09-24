@@ -171,6 +171,118 @@
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = "ParseFacebookUtilsV4-iOS";
 		};
+		BC666EEB26FE4ED30019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666ED926FE4ED30019EEF8 /* FBSDKCoreKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D2697471A5DF40700143BFC;
+			remoteInfo = FBSDKCoreKit;
+		};
+		BC666EED26FE4ED30019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666ED926FE4ED30019EEF8 /* FBSDKCoreKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81B71DA31D19C87400933E93;
+			remoteInfo = "FBSDKCoreKit-Dynamic";
+		};
+		BC666EEF26FE4ED30019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666ED926FE4ED30019EEF8 /* FBSDKCoreKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D2697521A5DF40700143BFC;
+			remoteInfo = FBSDKCoreKitTests;
+		};
+		BC666EF126FE4ED30019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666ED926FE4ED30019EEF8 /* FBSDKCoreKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9DB0FA731BC1CA71005EB8B1;
+			remoteInfo = FBSDKCoreKit_TV;
+		};
+		BC666EF326FE4ED30019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666ED926FE4ED30019EEF8 /* FBSDKCoreKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 814AC8571D1B528900D61E6C;
+			remoteInfo = "FBSDKCoreKit_TV-Dynamic";
+		};
+		BC666EF526FE4ED30019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666ED926FE4ED30019EEF8 /* FBSDKCoreKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C5C4B3B62276B51500CA3706;
+			remoteInfo = FBSDKCoreKit_Basics;
+		};
+		BC666EF726FE4ED30019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666ED926FE4ED30019EEF8 /* FBSDKCoreKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C5C4B4D42276BA1200CA3706;
+			remoteInfo = "FBSDKCoreKit_Basics-Dynamic";
+		};
+		BC666EF926FE4ED30019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666ED926FE4ED30019EEF8 /* FBSDKCoreKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C5C4B3CC2276B67200CA3706;
+			remoteInfo = FBSDKCoreKit_Basics_TV;
+		};
+		BC666EFB26FE4ED30019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666ED926FE4ED30019EEF8 /* FBSDKCoreKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C5C4B4EA2276BA8D00CA3706;
+			remoteInfo = "FBSDKCoreKit_Basics_TV-Dynamic";
+		};
+		BC666F1C26FE4EE90019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666F1226FE4EE90019EEF8 /* FBSDKLoginKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D9DB8D91A114E500086167B;
+			remoteInfo = FBSDKLoginKit;
+		};
+		BC666F1E26FE4EE90019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666F1226FE4EE90019EEF8 /* FBSDKLoginKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 818EB4411D1A283100252851;
+			remoteInfo = "FBSDKLoginKit-Dynamic";
+		};
+		BC666F2026FE4EE90019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666F1226FE4EE90019EEF8 /* FBSDKLoginKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D9DB8E41A114E500086167B;
+			remoteInfo = FBSDKLoginKitTests;
+		};
+		BC666F2226FE4EE90019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666F1226FE4EE90019EEF8 /* FBSDKLoginKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0B9DBF2C207C05CD00662776;
+			remoteInfo = FBSDKLoginKit_TV;
+		};
+		BC666F2426FE4EE90019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666F1226FE4EE90019EEF8 /* FBSDKLoginKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0B9DBF52207C07C600662776;
+			remoteInfo = "FBSDKLoginKit_TV-Dynamic";
+		};
+		BC666F2C26FE52280019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666F1226FE4EE90019EEF8 /* FBSDKLoginKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D9DB8D81A114E500086167B;
+			remoteInfo = FBSDKLoginKit;
+		};
+		BC666F2E26FE52280019EEF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC666ED926FE4ED30019EEF8 /* FBSDKCoreKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D2697461A5DF40700143BFC;
+			remoteInfo = FBSDKCoreKit;
+		};
 		BCC0590D2430CE8C00981B02 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4A1350412027EA26000F5FD5 /* Parse.xcodeproj */;
@@ -236,6 +348,8 @@
 		B9DDA298243C362B0003061D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../ParseLiveQuery-iOS-OSX/Carthage/Build/tvOS/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		B9DDA2A9243C37CD0003061D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../Carthage/Build/tvOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		B9DDA2AC243C37D60003061D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		BC666ED926FE4ED30019EEF8 /* FBSDKCoreKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBSDKCoreKit.xcodeproj; path = "../Carthage/Checkouts/facebook-ios-sdk/FBSDKCoreKit/FBSDKCoreKit.xcodeproj"; sourceTree = "<group>"; };
+		BC666F1226FE4EE90019EEF8 /* FBSDKLoginKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBSDKLoginKit.xcodeproj; path = "../Carthage/Checkouts/facebook-ios-sdk/FBSDKLoginKit/FBSDKLoginKit.xcodeproj"; sourceTree = "<group>"; };
 		D2AAC07E0554694100DB518D /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseFacebookUtilsV4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F52CD64A1B5838560051AB86 /* ParseFacebookUtilsV4-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseFacebookUtilsV4-iOS.xcconfig"; sourceTree = "<group>"; };
 		F52CD64B1B5838620051AB86 /* ParseFacebookUtilsV4-UnitTests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseFacebookUtilsV4-UnitTests.xcconfig"; sourceTree = "<group>"; };
@@ -331,6 +445,8 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC666F1226FE4EE90019EEF8 /* FBSDKLoginKit.xcodeproj */,
+				BC666ED926FE4ED30019EEF8 /* FBSDKCoreKit.xcodeproj */,
 				B9DDA2A9243C37CD0003061D /* FBSDKCoreKit.framework */,
 				B9DDA2AC243C37D60003061D /* FBSDKCoreKit.framework */,
 				B9DDA296243C36120003061D /* FBSDKLoginKit.framework */,
@@ -526,6 +642,34 @@
 			path = tvOS;
 			sourceTree = "<group>";
 		};
+		BC666EDA26FE4ED30019EEF8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC666EEC26FE4ED30019EEF8 /* FBSDKCoreKit.framework */,
+				BC666EEE26FE4ED30019EEF8 /* FBSDKCoreKit.framework */,
+				BC666EF026FE4ED30019EEF8 /* FBSDKCoreKitTests.xctest */,
+				BC666EF226FE4ED30019EEF8 /* FBSDKCoreKit.framework */,
+				BC666EF426FE4ED30019EEF8 /* FBSDKCoreKit.framework */,
+				BC666EF626FE4ED30019EEF8 /* FBSDKCoreKit.framework */,
+				BC666EF826FE4ED30019EEF8 /* FBSDKCoreKit.framework */,
+				BC666EFA26FE4ED30019EEF8 /* FBSDKCoreKit.framework */,
+				BC666EFC26FE4ED30019EEF8 /* FBSDKCoreKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BC666F1326FE4EE90019EEF8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC666F1D26FE4EE90019EEF8 /* FBSDKLoginKit.framework */,
+				BC666F1F26FE4EE90019EEF8 /* FBSDKLoginKit.framework */,
+				BC666F2126FE4EE90019EEF8 /* FBSDKLoginKitTests.xctest */,
+				BC666F2326FE4EE90019EEF8 /* FBSDKLoginKit.framework */,
+				BC666F2526FE4EE90019EEF8 /* FBSDKLoginKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F52CD63A1B58383C0051AB86 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,6 +850,8 @@
 			);
 			dependencies = (
 				4A1350922027F4A9000F5FD5 /* PBXTargetDependency */,
+				BC666F2D26FE52280019EEF8 /* PBXTargetDependency */,
+				BC666F2F26FE52280019EEF8 /* PBXTargetDependency */,
 			);
 			name = "ParseFacebookUtilsV4-iOS";
 			productName = Breakpad;
@@ -771,6 +917,14 @@
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = BC666EDA26FE4ED30019EEF8 /* Products */;
+					ProjectRef = BC666ED926FE4ED30019EEF8 /* FBSDKCoreKit.xcodeproj */;
+				},
+				{
+					ProductGroup = BC666F1326FE4EE90019EEF8 /* Products */;
+					ProjectRef = BC666F1226FE4EE90019EEF8 /* FBSDKLoginKit.xcodeproj */;
+				},
 				{
 					ProductGroup = 4A1350422027EA26000F5FD5 /* Products */;
 					ProjectRef = 4A1350412027EA26000F5FD5 /* Parse.xcodeproj */;
@@ -857,6 +1011,104 @@
 			fileType = wrapper.application;
 			path = "ParseUnitTests-iOS-host.app";
 			remoteRef = 4A1350602027EA26000F5FD5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666EEC26FE4ED30019EEF8 /* FBSDKCoreKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSDKCoreKit.framework;
+			remoteRef = BC666EEB26FE4ED30019EEF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666EEE26FE4ED30019EEF8 /* FBSDKCoreKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSDKCoreKit.framework;
+			remoteRef = BC666EED26FE4ED30019EEF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666EF026FE4ED30019EEF8 /* FBSDKCoreKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FBSDKCoreKitTests.xctest;
+			remoteRef = BC666EEF26FE4ED30019EEF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666EF226FE4ED30019EEF8 /* FBSDKCoreKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSDKCoreKit.framework;
+			remoteRef = BC666EF126FE4ED30019EEF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666EF426FE4ED30019EEF8 /* FBSDKCoreKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSDKCoreKit.framework;
+			remoteRef = BC666EF326FE4ED30019EEF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666EF626FE4ED30019EEF8 /* FBSDKCoreKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSDKCoreKit.framework;
+			remoteRef = BC666EF526FE4ED30019EEF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666EF826FE4ED30019EEF8 /* FBSDKCoreKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSDKCoreKit.framework;
+			remoteRef = BC666EF726FE4ED30019EEF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666EFA26FE4ED30019EEF8 /* FBSDKCoreKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSDKCoreKit.framework;
+			remoteRef = BC666EF926FE4ED30019EEF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666EFC26FE4ED30019EEF8 /* FBSDKCoreKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSDKCoreKit.framework;
+			remoteRef = BC666EFB26FE4ED30019EEF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666F1D26FE4EE90019EEF8 /* FBSDKLoginKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSDKLoginKit.framework;
+			remoteRef = BC666F1C26FE4EE90019EEF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666F1F26FE4EE90019EEF8 /* FBSDKLoginKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSDKLoginKit.framework;
+			remoteRef = BC666F1E26FE4EE90019EEF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666F2126FE4EE90019EEF8 /* FBSDKLoginKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FBSDKLoginKitTests.xctest;
+			remoteRef = BC666F2026FE4EE90019EEF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666F2326FE4EE90019EEF8 /* FBSDKLoginKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSDKLoginKit.framework;
+			remoteRef = BC666F2226FE4EE90019EEF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC666F2526FE4EE90019EEF8 /* FBSDKLoginKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSDKLoginKit.framework;
+			remoteRef = BC666F2426FE4EE90019EEF8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1110,6 +1362,16 @@
 			isa = PBXTargetDependency;
 			target = D2AAC07D0554694100DB518D /* ParseFacebookUtilsV4-iOS */;
 			targetProxy = B9A7EEB623C49C89003E606E /* PBXContainerItemProxy */;
+		};
+		BC666F2D26FE52280019EEF8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSDKLoginKit;
+			targetProxy = BC666F2C26FE52280019EEF8 /* PBXContainerItemProxy */;
+		};
+		BC666F2F26FE52280019EEF8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSDKCoreKit;
+			targetProxy = BC666F2E26FE52280019EEF8 /* PBXContainerItemProxy */;
 		};
 		BCC0590E2430CE8C00981B02 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
