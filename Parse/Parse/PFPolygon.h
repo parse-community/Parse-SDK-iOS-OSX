@@ -9,7 +9,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
-#import "PFGeoPoint.h"
+#import <Parse/PFGeoPoint.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

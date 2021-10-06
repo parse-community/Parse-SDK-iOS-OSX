@@ -13,6 +13,6 @@
 PRODUCT_NAME = ParseTwitterTestApplication
 PRODUCT_BUNDLE_IDENTIFIER = com.parse.twitterutils.testapplication
 
-IPHONEOS_DEPLOYMENT_TARGET = 8.0
+IPHONEOS_DEPLOYMENT_TARGET = 9.0
 
 INFOPLIST_FILE = $(SRCROOT)/Tests/TestApplication/Resources/Info.plist

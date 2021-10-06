@@ -81,6 +81,9 @@
                <Test
                   Identifier = "PFUnitTestCase">
                </Test>
+               <Test
+                  Identifier = "ParseClientConfigurationTests/testExtensionDataSharing">
+               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>

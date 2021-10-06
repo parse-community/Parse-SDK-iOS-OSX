@@ -127,7 +127,8 @@
 
 - (void)testWebViewDelegate {
     NSURL *sampleURL = [NSURL URLWithString:@"http://foo.bar"];
-    NSURL *successURL = [NSURL URLWithString:@"foo://success"];
+    NSURL *successURL = [NSURL URLWithString:@"foo://success/?oauth_verifier=abcd&oauth_token=authtoken123"];
+    NSURL *rejectedURL = [NSURL URLWithString:@"foo://success/?denied=authtoken123"];
 
     //XCTestExpectation *flowExpectation = [[XCTestExpectation alloc] initWithDescription: @"Waiting for redirect"];
     XCTestExpectation *flowExpectation = [self currentSelectorTestExpectation];
@@ -172,7 +173,22 @@
         [canceledExpectation fulfill];
     }];
     
-    [self waitForExpectations:@[policyExpectation, flowExpectation, canceledExpectation] timeout:20];
+    XCTestExpectation *canceledOnDeniedExpectation = [[XCTestExpectation alloc] initWithDescription:@"Waiting for canceled policy decision"];
+    
+    WKNavigation* rejectNavigation = (WKNavigation *)([[NSObject alloc] init]);
+    [flowDialog webView:webView didStartProvisionalNavigation:rejectNavigation];
+    [flowDialog webView:webView didFinishNavigation:rejectNavigation];
+    
+    FakeWKNavigationAction *rejectAction = [[FakeWKNavigationAction alloc] init];
+    rejectAction.navigationType = WKNavigationTypeOther;
+    rejectAction.request = [NSURLRequest requestWithURL:rejectedURL];
+    
+    [flowDialog webView:webView decidePolicyForNavigationAction:rejectAction decisionHandler:^(WKNavigationActionPolicy policy) {
+        XCTAssertTrue(policy == WKNavigationActionPolicyCancel);
+        [canceledOnDeniedExpectation fulfill];
+    }];
+    
+    [self waitForExpectations:@[policyExpectation, flowExpectation, canceledExpectation, canceledOnDeniedExpectation] timeout:20];
 }
 
 @end

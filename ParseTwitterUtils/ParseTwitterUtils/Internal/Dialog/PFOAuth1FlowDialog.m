@@ -414,7 +414,21 @@ static CGFloat PFTFloatRound(CGFloat value, NSRoundingMode mode) {
     NSURL *url = navigationAction.request.URL;
     BOOL hasPrefix = [url.absoluteString hasPrefix:self.redirectURLPrefix];
     if (hasPrefix) {
-        [self _dismissWithSuccess:YES url:url error:nil];
+        NSURLComponents* components = [[NSURLComponents alloc] initWithString:url.absoluteString];
+        NSArray<NSURLQueryItem *> * items = components.queryItems;
+        if (items) {
+            for (NSURLQueryItem * queryItem in items) {
+                if ([queryItem.name isEqualToString:@"denied"]) {
+                    [self _dismissWithSuccess:NO url:url error:nil];
+                    break;
+                } else if ([queryItem.name isEqualToString:@"oauth_verifier"] || [queryItem.name isEqualToString:@"oauth_token" ]) {
+                    [self _dismissWithSuccess:YES url:url error:nil];
+                    break;;
+                }
+            }
+        } else {
+            [self _dismissWithSuccess:NO url:url error:nil];
+        }
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     } else if (navigationAction.navigationType == UIWebViewNavigationTypeLinkClicked && [self.dataSource dialog:self shouldOpenURLInExternalBrowser:url]) {

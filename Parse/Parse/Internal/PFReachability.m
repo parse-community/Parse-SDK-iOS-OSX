@@ -48,7 +48,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 
     if ((flags & kSCNetworkReachabilityFlagsReachable) == 0) {
         // if target host is not reachable
-        return reachabilityState;
+        return NO;
     }
 
     if ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0) {
@@ -77,7 +77,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
     }
 #endif
 
-    return reachabilityState;
+    return (reachabilityState != 0);
 }
 
 ///--------------------------------------

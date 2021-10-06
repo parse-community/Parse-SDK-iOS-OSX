@@ -180,7 +180,9 @@
     }
     [_serverData addEntriesFromDictionary:state.serverData];
 
-    self.complete |= state.complete;
+    if (state.complete) {
+        self.complete = YES;
+    }
 }
 
 - (void)applyOperationSet:(PFOperationSet *)operationSet {

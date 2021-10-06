@@ -1,0 +1,186 @@
+name: ci
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+env:
+  CI_XCODE_VER: '/Applications/Xcode_11.7.app/Contents/Developer'
+  CI_XCODE_VER_OLDER: '/Applications/Xcode_11.6.app/Contents/Developer'
+
+jobs:
+  ios:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache Gems
+      id: cache-gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem-
+    - name: Submodules and Bundle Install
+      run: |
+        git submodule update --init --recursive
+        sudo gem install bundler
+        bundle config set path 'vendor/bundle'
+        bundle install
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:ios
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+      
+  macos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache Gems
+      id: cache-gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem-
+    - name: Submodules and Bundle Install
+      run: |
+        git submodule update --init --recursive
+        sudo gem install bundler
+        bundle config set path 'vendor/bundle'
+        bundle install
+    - name: Create and set the default keychain
+      run: |
+        security create-keychain -p "" temporary
+        security default-keychain -s temporary
+        security unlock-keychain -p "" temporary
+        security set-keychain-settings -lut 7200 temporary
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:macos
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+
+  facebook_utils:
+    needs: macos
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache Gems
+      id: cache-gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem-
+    - name: Submodules and Bundle Install
+      run: |
+        git submodule update --init --recursive
+        sudo gem install bundler
+        bundle config set path 'vendor/bundle'
+        bundle install
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:facebook_utils:ios
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+
+  twitter_utils:
+    needs: macos
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache Gems
+      id: cache-gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem-
+    - name: Submodules and Bundle Install
+      run: |
+        git submodule update --init --recursive
+        sudo gem install bundler
+        bundle config set path 'vendor/bundle'
+        bundle install
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:twitter_utils:ios
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+
+  parseui:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache Gems
+      id: cache-gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem-
+    - name: Submodules and Bundle Install
+      run: |
+        git submodule update --init --recursive
+        sudo gem install bundler
+        bundle config set path 'vendor/bundle'
+        bundle install
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:all
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+
+  cocoapods:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: CocoaPods
+        run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
+
+  release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Submodules and Bundle Install
+        run: |
+          git submodule update --init --recursive
+          sudo gem install bundler
+          bundle config set path 'vendor/bundle'
+          bundle install
+      - name: Build Release
+        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
+        env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
+
+  docs:
+    needs: macos
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Submodules and Bundle Instal
+        run: |
+          git submodule update --init --recursive
+          sudo gem install bundler
+          bundle config path vendor/bundle
+          bundle install
+      - name: Create Jazzy Docs
+        run: |
+          ./Scripts/jazzy.sh

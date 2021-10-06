@@ -15,6 +15,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 extern NSString *const PFAppleUserAuthenticationType;
+extern NSString *const PFAppleAuthUserKey;
+extern NSString *const PFAppleAuthCredentialKey;
 
 API_AVAILABLE(ios(13.0))
 @interface PFAppleLoginManager : NSObject <ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding>
