@@ -70,7 +70,7 @@
 ///--------------------------------------
 
 - (NSString *)preciseStringFromDate:(NSDate *)date {
-    __block NSString *string = nil;
+    __block NSString *string = @"";
     NSTimeInterval interval = date.timeIntervalSince1970;
     dispatch_sync(_synchronizationQueue, ^{
         sqlite3_bind_double(self->_dateToStringStatement, 1, interval);
