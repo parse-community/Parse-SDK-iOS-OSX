@@ -1434,7 +1434,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81472F871A1AB33800FD6EED /* Build configuration list for PBXNativeTarget "ParseUIDemo" */;
 			buildPhases = (
-				4A9A94DB200D0510005D8F4B /* ShellScript */,
 				81472F631A1AB33800FD6EED /* Sources */,
 				81472F641A1AB33800FD6EED /* Frameworks */,
 				81472F651A1AB33800FD6EED /* Resources */,
@@ -1741,22 +1740,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4A9A94DB200D0510005D8F4B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ ! -d $SRCROOT/Vendor ]; then\nmkdir $SRCROOT/Vendor\nfi\n\ncd $SRCROOT/Vendor\n\nif [[ ! -d \"FBSDKCoreKit.framework\" || ! -d \"FBSDKLoginKit.framework\" ]]; then\nARCHIVE_NAME=FBSDK.zip\n\nARCHIVE_URL=\"https://github.com/facebook/facebook-objc-sdk/releases/latest/download/FacebookSDK_Static.zip\"\ncurl -L $ARCHIVE_URL -o $ARCHIVE_NAME\n\nunzip $ARCHIVE_NAME -d fbsdk\nmv fbsdk/FBSDKCoreKit.framework .\nmv fbsdk/FBSDKLoginKit.framework .\n\nrm $ARCHIVE_NAME\nrm -r fbsdk\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4A0ECBE5200D8C0200BA84A3 /* Sources */ = {
