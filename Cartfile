@@ -1,2 +1,2 @@
 github "BoltsFramework/Bolts-ObjC" ~> 1.9.1
-github "facebook/facebook-ios-sdk"
+github "facebook/facebook-ios-sdk" == 11.0.1
