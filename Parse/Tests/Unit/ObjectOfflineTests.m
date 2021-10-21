@@ -80,6 +80,9 @@
 }
 
 - (void)testFetchFromLocalDatastoreViaBlock {
+    
+    XCTExpectFailureWithOptions(@"Suspected issue with async tests and OCMock", XCTExpectedFailureOptions.nonStrictOptions);
+    
     id store = [self mockedOfflineStore];
 
     PFObject *object = [PFObject objectWithClassName:@"Yarr"];
