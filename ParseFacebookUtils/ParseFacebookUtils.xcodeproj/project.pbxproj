@@ -934,7 +934,6 @@
 			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* Breakpad */;
 			packageReferences = (
-				BCCC20EA271F3611003C9D03 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
@@ -1614,17 +1613,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		BCCC20EA271F3611003C9D03 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
-			requirement = {
-				kind = exactVersion;
-				version = 11.0.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
 }
