@@ -126,7 +126,7 @@ Pod::Spec.new do |s|
 
     s.dependency 'Parse/Core'
     s.dependency 'Bolts/Tasks', '~> 1.9.1'
-    s.dependency 'FBSDKTVOSKit', '= 11.0.1'
+    s.dependency 'FBSDKTVOSKit', '= 11.0'
     s.dependency 'FBSDKShareKit', '= 11.0.1'
   end
 
