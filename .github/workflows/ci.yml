@@ -67,7 +67,6 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   facebook_utils:
-    needs: macos
     runs-on: macos-11
     steps:
     - uses: actions/checkout@v2
@@ -93,7 +92,6 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   twitter_utils:
-    needs: macos
     runs-on: macos-11
     steps:
     - uses: actions/checkout@v2
@@ -176,7 +174,6 @@ jobs:
           DEVELOPER_DIR: ${{ env.CI_XCODE_11 }}
 
   docs:
-    needs: macos
     runs-on: macos-11
     steps:
       - uses: actions/checkout@v2
