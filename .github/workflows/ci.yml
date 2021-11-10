@@ -36,7 +36,7 @@ jobs:
 
       
   macos:
-    runs-on: macos-11
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
     - name: Cache Gems
@@ -67,7 +67,8 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   facebook_utils:
-    runs-on: macos-11
+    needs: parseui
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
     - name: Cache Gems
@@ -92,7 +93,8 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   twitter_utils:
-    runs-on: macos-11
+    needs: parseui
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
     - name: Cache Gems
@@ -117,7 +119,7 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   parseui:
-    runs-on: macos-11
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
     - name: Cache Gems
@@ -142,7 +144,7 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   cocoapods:
-    runs-on: macos-11
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: CocoaPods
@@ -151,7 +153,7 @@ jobs:
           DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
 
   release:
-    runs-on: macos-11
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Cache Gems
@@ -174,7 +176,8 @@ jobs:
           DEVELOPER_DIR: ${{ env.CI_XCODE_11 }}
 
   docs:
-    runs-on: macos-11
+    needs: parseui
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Cache Gems
