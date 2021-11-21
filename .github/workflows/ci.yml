@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 14
       - run: npm ci
-      - run: npx semantic-release --dry-run --no-ci --branches "add-auto-release"
+      - run: npx semantic-release --dry-run --no-ci --branches ${{ github.ref }}
 
   ios:
     runs-on: macos-latest
