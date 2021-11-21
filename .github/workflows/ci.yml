@@ -3,12 +3,26 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [ '**' ]
 env:
   CI_XCODE_11: '/Applications/Xcode_11.7.app/Contents/Developer'
   CI_XCODE_13: '/Applications/Xcode_13.1.app/Contents/Developer'
 
 jobs:
+  release-dry-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - run: npm ci
+      - run: npx semantic-release
+      - name: Determine tag for next release
+        run: echo $(git describe --tags --abbrev=0 --exact-match || echo '')
+
   ios:
     runs-on: macos-latest
     steps:
@@ -34,7 +48,6 @@ jobs:
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
-      
   macos:
     runs-on: macos-latest
     steps:
@@ -152,7 +165,7 @@ jobs:
         env:
           DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
 
-  release:
+  upload-assets:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
