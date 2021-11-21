@@ -1,10 +1,4 @@
-# Parse-SDK-iOS-OSX Changelog
-
-### master
-[Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.2...master)
-* _Contributing to this repo? Add info about your change here to be included in next release_
-
-### 1.19.2
+# 1.19.2
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.1...1.19.2)
 
 __Improvements__
@@ -13,7 +7,7 @@ __Improvements__
 __Fixes__
 - Crash in Twitter login flow ([#1566](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1567)), thanks to [dhana](https://github.com/dsp1589).
 
-### 1.19.1
+# 1.19.1
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.0...1.19.1)
 
 __Improvements__
@@ -24,7 +18,7 @@ __Fixes__
 - Bolts compilation error in Xcode 12 ([#1548](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1548)), thanks to [Derek Lee](https://github.com/derekleerock).
 - App Store submission failed for MinimumOSVersion ([#1515](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1515)), thanks to [Manuel Trezza](https://github.com/mtrezza).
 
-### 1.19.0
+# 1.19.0
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.18.0...1.19.0)
 
 __New features__
@@ -38,8 +32,7 @@ __Fixes__
 - Removes deprecated UIWebView usage ([#1511](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1511)), thanks to [Nathan Kellert](https://github.com/parse-community/Parse-SDK-iOS-OSX/commits?author=noobs2ninjas).
 - Fixes building with Xcode 12 ([#1527](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1527)), thanks to [Steffen Matthischke](https://github.com/HeEAaD).
 
-
-### 1.18.0
+# 1.18.0
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.17.3...1.18.0)
 
 __New features__
@@ -66,7 +59,7 @@ __Fixes__
 After getting in contact with the Bolts Framework maintainers from Facebook they have allowed us to get changes in to fix app store declines due to still using UIWebView(iOS only) rather than updating to WKWebView(iOS, macOS, and iPad OS compatible). Those that got declined should be able to re-submit after updating to the latest version of this SDK as well as its dependencies. 
 
 
-### 1.17.3
+# 1.17.3
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.17.2...1.17.3)
 
 __New Features__

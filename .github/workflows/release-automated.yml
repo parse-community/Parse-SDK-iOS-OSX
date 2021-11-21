@@ -1,0 +1,127 @@
+name: release-automated
+on:
+  push:
+    branches: [ master, release, alpha, beta ]
+env:
+  CI_XCODE_11: '/Applications/Xcode_11.7.app/Contents/Developer'
+  CI_XCODE_13: '/Applications/Xcode_13.0.app/Contents/Developer'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      current_tag: ${{ steps.tag.outputs.current_tag }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Submodules and Bundle Install
+        run: |
+          git submodule update --init --recursive
+          sudo gem install bundler
+          bundle config set path 'vendor/bundle'
+          bundle install
+      - run: npm ci
+      - run: npx semantic-release
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Determine tag on current commit
+        id: tag
+        run: echo "::set-output name=current_tag::$(git describe --tags --abbrev=0 --exact-match || echo '')"
+
+  cocoapods:
+    needs: release
+    if: needs.release.outputs.current_tag != ''
+    runs-on: macos-11
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.release.outputs.current_tag }}
+      - name: CocoaPods
+        run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
+      - name: Deploy CocoaPods
+        run: set -o pipefail && env NSUnbufferedIO=YES pod trunk push Parse.podspec --allow-warnings --verbose
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
+
+  assets:
+    needs: release
+    if: needs.release.outputs.current_tag != ''
+    runs-on: macos-11
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.release.outputs.current_tag }}
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Submodules and Bundle Install
+        run: |
+          git submodule update --init --recursive
+          sudo gem install bundler
+          bundle config set path 'vendor/bundle'
+          bundle install
+      - name: Build Release
+        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
+        env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_11 }}
+      - name: Deploy assets
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/release/*
+          tag: ${{ needs.release.outputs.current_tag }}
+          overwrite: true
+          file_glob: true
+
+  publish-docs:
+    needs: release
+    if: needs.release.outputs.current_tag != ''
+    runs-on: macos-11
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.release.outputs.current_tag }}
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Install Bundle
+        run: |
+          bundle config path vendor/bundle
+          bundle install
+      - name: Create Jazzy Docs
+        run: |
+          ./Scripts/jazzy.sh
+        env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
+      - name: Deploy Jazzy Docs
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
