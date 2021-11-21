@@ -79,7 +79,7 @@ async function config() {
         'changelogFile': changelogFile,
       }],
       ["@semantic-release/exec", {
-        "prepareCmd": "bundle install --path ./vendor/bundle && bundle exec rake package:set_version\[${nextRelease.version}\]"
+        "prepareCmd": "bundle exec rake package:set_version\[${nextRelease.version}\]"
       }],
       ['@semantic-release/npm', {
         'npmPublish': false,

@@ -18,6 +18,20 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Submodules and Bundle Install
+        run: |
+          git submodule update --init --recursive
+          sudo gem install bundler
+          bundle config set path 'vendor/bundle'
+          bundle install
       - run: npm ci
       - run: npx semantic-release
         env:
