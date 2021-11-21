@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 14
       - run: npm ci
-      - run: npx semantic-release
+      - run: npx semantic-release --dry-run
       - name: Determine tag for next release
         run: echo $(git describe --tags --abbrev=0 --exact-match || echo '')
 
