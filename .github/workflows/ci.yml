@@ -151,7 +151,7 @@ jobs:
         env:
           DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
 
-  upload-assets:
+  assets:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2

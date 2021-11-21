@@ -44,7 +44,7 @@ jobs:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
           DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
 
-  upload-assets:
+  assets:
     needs: release
     if: needs.release.outputs.current_tag != ''
     runs-on: macos-11
