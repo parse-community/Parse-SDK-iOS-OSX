@@ -9,18 +9,6 @@ env:
   CI_XCODE_13: '/Applications/Xcode_13.1.app/Contents/Developer'
 
 jobs:
-  release-dry-run:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
-      - run: npm ci
-      - run: npx semantic-release --dry-run --no-ci --branches "${{ github.ref }},add-auto-release"
-
   ios:
     runs-on: macos-latest
     steps:
