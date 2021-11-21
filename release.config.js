@@ -47,7 +47,7 @@ async function config() {
       // { name: 'release-3', range: '3.x.x', channel: '3.x' },
       // { name: 'release-4', range: '4.x.x', channel: '4.x' },
     ],
-    dryRun: true,
+    dryRun: false,
     debug: true,
     ci: true,
     tagFormat: '${version}',
@@ -79,13 +79,13 @@ async function config() {
         'changelogFile': changelogFile,
       }],
       ["@semantic-release/exec", {
-        "prepareCmd": "bundle exec rake package:set_version\[${nextRelease.version}\]"
+        "prepareCmd": "bundle install --path ./vendor/bundle && bundle exec rake package:set_version\[${nextRelease.version}\]"
       }],
       ['@semantic-release/npm', {
         'npmPublish': false,
       }],
       ['@semantic-release/git', {
-        assets: [changelogFile, 'package.json', 'package-lock.json', ],
+        assets: [changelogFile, 'package.json', 'package-lock.json', 'Parse.podspec', ['Parse*/**/*.{h,plist}', '!**/xcuserdata/**'] ],
       }],
       ['@semantic-release/github', {
         successComment: getReleaseComment(),
