@@ -45,3 +45,7 @@ ParseUI/Vendor
 # Node
 node_modules/
 npm-debug.log
+
+# Ruby
+.bundle
+Vendor/
