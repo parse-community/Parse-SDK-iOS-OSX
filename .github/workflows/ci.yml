@@ -3,7 +3,7 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [ '**' ]
 env:
   CI_XCODE_11: '/Applications/Xcode_11.7.app/Contents/Developer'
   CI_XCODE_13: '/Applications/Xcode_13.1.app/Contents/Developer'
@@ -34,7 +34,6 @@ jobs:
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
-      
   macos:
     runs-on: macos-latest
     steps:
@@ -152,7 +151,7 @@ jobs:
         env:
           DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
 
-  release:
+  assets:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
