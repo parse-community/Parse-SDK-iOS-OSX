@@ -1,3 +1,10 @@
+## [1.19.3](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.2...1.19.3) (2021-11-21)
+
+
+### Bug Fixes
+
+* compilation errors with Xcode 13 ([#1619](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1619)) ([99ff6ec](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/99ff6ec64ee65b1a60946ea69e4d8039c1c5ae16))
+
 # 1.19.2
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.1...1.19.2)
 
