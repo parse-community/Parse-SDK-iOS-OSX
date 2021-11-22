@@ -2405,13 +2405,6 @@
 			remoteGlobalIDString = 81ED94291BE147CF00795F05;
 			remoteInfo = "Bolts-iOS";
 		};
-		4A13518520281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1D5D7DD31BE3CE8200FD67C7;
-			remoteInfo = "Bolts-iOS-Dynamic";
-		};
 		4A13518720281768000F5FD5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
@@ -2426,26 +2419,12 @@
 			remoteGlobalIDString = F5AFCA021BA752750076E927;
 			remoteInfo = "Bolts-tvOS";
 		};
-		4A13518B20281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81E94D6A1C2B8BF200A6291E;
-			remoteInfo = "Bolts-tvOS-Dynamic";
-		};
 		4A13518D20281768000F5FD5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 8178F99C1BB0F87700AD289D;
 			remoteInfo = "Bolts-watchOS";
-		};
-		4A13518F20281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 819573F11C2B8ECB00BFCA39;
-			remoteInfo = "Bolts-watchOS-Dynamic";
 		};
 		4A13519120281768000F5FD5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2488,20 +2467,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = F5AFC9EA1BA752750076E927;
 			remoteInfo = "Bolts-tvOS";
-		};
-		4AA8ABFE20CEFC9A009306DD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 819573D91C2B8ECB00BFCA39;
-			remoteInfo = "Bolts-watchOS-Dynamic";
-		};
-		4AA8AC0920CEFCAD009306DD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 81E94D521C2B8BF200A6291E;
-			remoteInfo = "Bolts-tvOS-Dynamic";
 		};
 		4ACBE7EA2151FCBF008DFAAF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -3541,12 +3506,9 @@
 			isa = PBXGroup;
 			children = (
 				4A13518420281768000F5FD5 /* Bolts.framework */,
-				4A13518620281768000F5FD5 /* Bolts.framework */,
 				4A13518820281768000F5FD5 /* Bolts.framework */,
 				4A13518A20281768000F5FD5 /* Bolts.framework */,
-				4A13518C20281768000F5FD5 /* Bolts.framework */,
 				4A13518E20281768000F5FD5 /* Bolts.framework */,
-				4A13519020281768000F5FD5 /* Bolts.framework */,
 				4A13519220281768000F5FD5 /* BoltsTests-iOS.xctest */,
 				4A13519420281768000F5FD5 /* BoltsTests-OSX.xctest */,
 				4A13519620281768000F5FD5 /* BoltsTests-tvOS.xctest */,
@@ -6317,7 +6279,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4AA8AC0A20CEFCAD009306DD /* PBXTargetDependency */,
 			);
 			name = "Parse-tvOS-Dynamic";
 			productName = "Parse-iOS";
@@ -6337,7 +6298,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4AA8ABFF20CEFC9A009306DD /* PBXTargetDependency */,
 			);
 			name = "Parse-watchOS-Dynamic";
 			productName = "Parse-iOS";
@@ -6438,13 +6398,6 @@
 			remoteRef = 4A13518320281768000F5FD5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		4A13518620281768000F5FD5 /* Bolts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Bolts.framework;
-			remoteRef = 4A13518520281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		4A13518820281768000F5FD5 /* Bolts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -6459,25 +6412,11 @@
 			remoteRef = 4A13518920281768000F5FD5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		4A13518C20281768000F5FD5 /* Bolts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Bolts.framework;
-			remoteRef = 4A13518B20281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		4A13518E20281768000F5FD5 /* Bolts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Bolts.framework;
 			remoteRef = 4A13518D20281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A13519020281768000F5FD5 /* Bolts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Bolts.framework;
-			remoteRef = 4A13518F20281768000F5FD5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		4A13519220281768000F5FD5 /* BoltsTests-iOS.xctest */ = {
@@ -7914,16 +7853,6 @@
 			name = "Bolts-tvOS";
 			targetProxy = 4A1351F62028193F000F5FD5 /* PBXContainerItemProxy */;
 		};
-		4AA8ABFF20CEFC9A009306DD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bolts-watchOS-Dynamic";
-			targetProxy = 4AA8ABFE20CEFC9A009306DD /* PBXContainerItemProxy */;
-		};
-		4AA8AC0A20CEFCAD009306DD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bolts-tvOS-Dynamic";
-			targetProxy = 4AA8AC0920CEFCAD009306DD /* PBXContainerItemProxy */;
-		};
 		4ACBE7EB2151FCBF008DFAAF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bolts-macOS";
@@ -8210,7 +8139,9 @@
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
 				DEFINES_MODULE = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8229,7 +8160,9 @@
 			baseConfigurationReference = F55ABB531B4F39DA00A0ECD5 /* Parse-iOS.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
 				DEFINES_MODULE = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
