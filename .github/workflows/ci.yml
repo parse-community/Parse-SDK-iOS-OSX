@@ -6,7 +6,7 @@ on:
     branches: [ '**' ]
 env:
   CI_XCODE_11: '/Applications/Xcode_11.7.app/Contents/Developer'
-  CI_XCODE_13: '/Applications/Xcode_13.1.app/Contents/Developer'
+  CI_XCODE_13: '/Applications/Xcode_13.2.app/Contents/Developer'
 
 jobs:
   ios:
