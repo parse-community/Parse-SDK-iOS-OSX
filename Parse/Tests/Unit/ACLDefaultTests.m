@@ -17,6 +17,10 @@
 
 @implementation ACLDefaultTests
 
+- (void)testFail {
+    XCTFail("Fail.");
+}
+
 - (void)testDefaultACL {
     PFACL *newACL = [PFACL ACL];
     [newACL setPublicReadAccess:YES];
