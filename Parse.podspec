@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Parse'
-  s.version          = '1.19.1'
+  s.version          = '1.19.3'
   s.license          =  { :type => 'BSD', :file => 'LICENSE' }
   s.homepage         = 'http://parseplatform.org/'
   s.summary          = 'A library that gives you access to the powerful Parse cloud platform from your iOS/OS X/watchOS/tvOS app.'
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/parse-community/Parse-SDK-iOS-OSX.git', :tag => s.version.to_s }
 
   s.platform = :ios, :osx, :tvos, :watchos
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.9'
   s.tvos.deployment_target = '10.0'
   s.watchos.deployment_target = '2.0'
@@ -85,7 +85,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'FacebookUtils' do |s|
     s.platform = :ios
-    s.ios.deployment_target = '8.0'
+    s.ios.deployment_target = '9.0'
     s.public_header_files = 'ParseFacebookUtils/ParseFacebookUtils/*.h'
     s.source_files = 'ParseFacebookUtils/ParseFacebookUtils/**/*.{h,m}'
     s.exclude_files = 'ParseFacebookUtils/ParseFacebookUtils/ParseFacebookUtilsV4.h',
@@ -104,7 +104,7 @@ Pod::Spec.new do |s|
 
     s.dependency 'Parse/Core'
     s.dependency 'Bolts/Tasks', '~> 1.9.1'
-    s.dependency 'FBSDKLoginKit', '~> 6.x'
+    s.dependency 'FBSDKLoginKit', '= 11.0.1'
   end
 
   s.subspec 'FacebookUtils-tvOS' do |s|
@@ -126,8 +126,8 @@ Pod::Spec.new do |s|
 
     s.dependency 'Parse/Core'
     s.dependency 'Bolts/Tasks', '~> 1.9.1'
-    s.dependency 'FBSDKTVOSKit', '~> 6.x'
-    s.dependency 'FBSDKShareKit', '~> 6.x'
+    s.dependency 'FBSDKTVOSKit', '= 11.0'
+    s.dependency 'FBSDKShareKit', '= 11.0.1'
   end
 
   s.subspec 'TwitterUtils' do |s|
@@ -153,7 +153,7 @@ Pod::Spec.new do |s|
   s.subspec 'UI' do |s|
     s.platform              = :ios
     s.requires_arc          = true
-    s.ios.deployment_target = '8.0'
+    s.ios.deployment_target = '9.0'
     s.source_files        = 'ParseUI/**/*.{h,m}'
     s.exclude_files = 'ParseUI/ParseUIDemo/**/*', 'ParseUI/Other/ParseUI.h', 'ParseUI/SignInWithAppleTests/'
     s.public_header_files = 'ParseUI/Classes/LogInViewController/*.h',

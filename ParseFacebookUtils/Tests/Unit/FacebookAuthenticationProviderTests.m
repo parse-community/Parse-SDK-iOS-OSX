@@ -49,6 +49,7 @@
                                                        dataAccessExpirationDate:nil];
         
         FBSDKLoginManagerLoginResult *result = [[FBSDKLoginManagerLoginResult alloc] initWithToken:token
+																			   authenticationToken:nil
                                                                                        isCancelled:NO
                                                                                 grantedPermissions:[NSSet setWithObject:@"read"]
                                                                                declinedPermissions:[NSSet setWithArray:@[]]];
@@ -93,6 +94,7 @@
                                                        dataAccessExpirationDate:nil];
         
         FBSDKLoginManagerLoginResult *result = [[FBSDKLoginManagerLoginResult alloc] initWithToken:token
+																			   authenticationToken:nil
                                                                                        isCancelled:NO
                                                                                 grantedPermissions:[NSSet setWithObject:@"publish"]
                                                                                declinedPermissions:[NSSet setWithArray:@[]]];
@@ -136,6 +138,7 @@
                                                        dataAccessExpirationDate:nil];
         
         FBSDKLoginManagerLoginResult *result = [[FBSDKLoginManagerLoginResult alloc] initWithToken:token
+																			   authenticationToken:nil
                                                                                        isCancelled:NO
                                                                                 grantedPermissions:[NSSet setWithArray:@[ @"read", @"publish" ]]
                                                                                declinedPermissions:[NSSet setWithArray:@[]]];
@@ -162,7 +165,8 @@
         [invocation getArgument:&handler atIndex:4];
 
         FBSDKLoginManagerLoginResult *result = [[FBSDKLoginManagerLoginResult alloc] initWithToken:nil
-                                                                                       isCancelled:YES
+																			   authenticationToken:nil
+																					   isCancelled:YES
                                                                                 grantedPermissions:[NSSet setWithArray:@[]]
                                                                                declinedPermissions:[NSSet setWithObject:@"publish"]];
 
@@ -231,6 +235,7 @@
                                                        dataAccessExpirationDate:nil];
         
         FBSDKLoginManagerLoginResult *result = [[FBSDKLoginManagerLoginResult alloc] initWithToken:token
+																			   authenticationToken:nil
                                                                                        isCancelled:NO
                                                                                 grantedPermissions:[NSSet setWithObject:@"publish"]
                                                                                declinedPermissions:[NSSet setWithArray:@[]]];
