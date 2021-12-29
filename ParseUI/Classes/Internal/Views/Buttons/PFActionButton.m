@@ -31,7 +31,7 @@ static const UIEdgeInsets PFActionButtonContentEdgeInsets = { .top = 0.0f, .left
     UIActivityIndicatorView *_activityIndicatorView;
 }
 
-@property (nonatomic, strong) PFActionButtonConfiguration *configuration;
+@property (nonatomic, strong) PFActionButtonConfiguration *pfActionButtonConfiguration;
 
 - (instancetype)initWithCoder:(nonnull NSCoder *)decoder NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
@@ -56,8 +56,8 @@ static const UIEdgeInsets PFActionButtonContentEdgeInsets = { .top = 0.0f, .left
     self = [super initWithFrame:CGRectZero];
     if (!self) return nil;
 
-    _buttonStyle = buttonStyle;
-    _configuration = configuration;
+    self.buttonStyle = buttonStyle;
+    self.pfActionButtonConfiguration = configuration;
 
     self.backgroundColor = [UIColor clearColor];
     self.titleLabel.font = [UIFont systemFontOfSize:16.0f];
@@ -150,7 +150,7 @@ static const UIEdgeInsets PFActionButtonContentEdgeInsets = { .top = 0.0f, .left
     if (self.buttonStyle != buttonStyle) {
         _buttonStyle = buttonStyle;
 
-        [self setTitle:[self.configuration titleForButtonStyle:self.buttonStyle] forState:UIControlStateNormal];
+        [self setTitle:[self.pfActionButtonConfiguration titleForButtonStyle:self.buttonStyle] forState:UIControlStateNormal];
     }
 }
 

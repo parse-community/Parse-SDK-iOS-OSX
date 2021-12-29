@@ -3,10 +3,10 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [ '**' ]
 env:
-  CI_XCODE_VER: '/Applications/Xcode_11.7.app/Contents/Developer'
-  CI_XCODE_VER_OLDER: '/Applications/Xcode_11.6.app/Contents/Developer'
+  CI_XCODE_11: '/Applications/Xcode_11.7.app/Contents/Developer'
+  CI_XCODE_13: '/Applications/Xcode_13.1.app/Contents/Developer'
 
 jobs:
   ios:
@@ -29,9 +29,11 @@ jobs:
         bundle install
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:ios
+      env:
+        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
-      
+
   macos:
     runs-on: macos-latest
     steps:
@@ -58,11 +60,13 @@ jobs:
         security set-keychain-settings -lut 7200 temporary
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:macos
+      env:
+        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
   facebook_utils:
-    needs: macos
+    needs: parseui
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -82,11 +86,13 @@ jobs:
         bundle install
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:facebook_utils:ios
+      env:
+        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
   twitter_utils:
-    needs: macos
+    needs: parseui
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -106,6 +112,8 @@ jobs:
         bundle install
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:twitter_utils:ios
+      env:
+        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
@@ -129,6 +137,8 @@ jobs:
         bundle install
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:all
+      env:
+        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
@@ -138,8 +148,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: CocoaPods
         run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
+        env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
 
-  release:
+  assets:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -160,10 +172,10 @@ jobs:
       - name: Build Release
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_11 }}
 
   docs:
-    needs: macos
+    needs: parseui
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -184,3 +196,5 @@ jobs:
       - name: Create Jazzy Docs
         run: |
           ./Scripts/jazzy.sh
+        env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}

@@ -56,7 +56,7 @@
     [collection parseDidInitializeWithApplicationId:@"a" clientKey:nil];
 
     // Run a single runloop tick to trigger the parse initializaiton.
-    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantPast]];
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
 
     XCTAssertEqual(collection.modulesCount, 0);
 }
