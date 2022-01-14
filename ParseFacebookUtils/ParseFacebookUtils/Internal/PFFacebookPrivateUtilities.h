@@ -12,8 +12,7 @@
 
 #import <Bolts/BFExecutor.h>
 #import <Bolts/BFTask.h>
-
-#import <FBSDKCoreKit/FBSDKAccessToken.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import <Parse/PFConstants.h>
 

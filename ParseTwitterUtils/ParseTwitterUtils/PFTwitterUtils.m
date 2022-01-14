@@ -44,7 +44,7 @@ static PFTwitterAuthenticationProvider *authenticationProvider_;
 }
 
 + (void)_assertParseInitialized {
-    PFTWConsistencyAssert([Parse getApplicationId],
+    PFTWConsistencyAssert([Parse applicationId],
                           @"PFTwitterUtils should be initialized after setting up Parse.");
 }
 

@@ -32,23 +32,27 @@
 
     id mockedLoginManager = PFStrictClassMock([FBSDKLoginManager class]);
 
-    OCMStub([mockedLoginManager logInWithReadPermissions:@[ @"read" ]
+    OCMStub([mockedLoginManager logInWithPermissions:@[ @"read" ]
                                       fromViewController:OCMOCK_ANY
                                                  handler:OCMOCK_ANY]).andDo(^(NSInvocation *invocation) {
-        __unsafe_unretained FBSDKLoginManagerRequestTokenHandler handler = nil;
+        __unsafe_unretained FBSDKLoginManagerLoginResultBlock handler = nil;
         [invocation getArgument:&handler atIndex:4];
 
         FBSDKAccessToken *token = [[FBSDKAccessToken alloc] initWithTokenString:@"token"
                                                                     permissions:@[ @"read" ]
-                                                            declinedPermissions:nil
+                                                            declinedPermissions:@[]
+                                                             expiredPermissions:@[]
                                                                           appID:@"appId"
                                                                          userID:@"fbId"
                                                                  expirationDate:[NSDate dateWithTimeIntervalSince1970:1337]
-                                                                    refreshDate:[NSDate dateWithTimeIntervalSince1970:1337]];
+                                                                    refreshDate:[NSDate dateWithTimeIntervalSince1970:1337]
+                                                       dataAccessExpirationDate:nil];
+        
         FBSDKLoginManagerLoginResult *result = [[FBSDKLoginManagerLoginResult alloc] initWithToken:token
+																			   authenticationToken:nil
                                                                                        isCancelled:NO
                                                                                 grantedPermissions:[NSSet setWithObject:@"read"]
-                                                                               declinedPermissions:nil];
+                                                                               declinedPermissions:[NSSet setWithArray:@[]]];
 
         handler(result, nil);
     });
@@ -73,23 +77,27 @@
 
     id mockedLoginManager = PFStrictClassMock([FBSDKLoginManager class]);
 
-    OCMStub([mockedLoginManager logInWithPublishPermissions:@[ @"publish" ]
+    OCMStub([mockedLoginManager logInWithPermissions:@[ @"publish" ]
                                          fromViewController:OCMOCK_ANY
                                                     handler:OCMOCK_ANY]).andDo(^(NSInvocation *invocation) {
-        __unsafe_unretained FBSDKLoginManagerRequestTokenHandler handler = nil;
+        __unsafe_unretained FBSDKLoginManagerLoginResultBlock handler = nil;
         [invocation getArgument:&handler atIndex:4];
 
         FBSDKAccessToken *token = [[FBSDKAccessToken alloc] initWithTokenString:@"token"
                                                                     permissions:@[ @"publish" ]
-                                                            declinedPermissions:nil
+                                                            declinedPermissions:@[]
+                                                             expiredPermissions:@[]
                                                                           appID:@"appId"
                                                                          userID:@"fbId"
                                                                  expirationDate:[NSDate dateWithTimeIntervalSince1970:1337]
-                                                                    refreshDate:[NSDate dateWithTimeIntervalSince1970:1337]];
+                                                                    refreshDate:[NSDate dateWithTimeIntervalSince1970:1337]
+                                                       dataAccessExpirationDate:nil];
+        
         FBSDKLoginManagerLoginResult *result = [[FBSDKLoginManagerLoginResult alloc] initWithToken:token
+																			   authenticationToken:nil
                                                                                        isCancelled:NO
                                                                                 grantedPermissions:[NSSet setWithObject:@"publish"]
-                                                                               declinedPermissions:nil];
+                                                                               declinedPermissions:[NSSet setWithArray:@[]]];
 
         handler(result, nil);
     });
@@ -98,7 +106,7 @@
     provider.loginManager = mockedLoginManager;
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[provider authenticateAsyncWithReadPermissions:nil
+    [[provider authenticateAsyncWithReadPermissions:@[]
                                  publishPermissions:@[ @"publish" ]] continueWithBlock:^id(BFTask *task) {
         XCTAssertEqualObjects(task.result, expectedAuthData);
         [expectation fulfill];
@@ -113,9 +121,34 @@
     PFFacebookMobileAuthenticationProvider *provider = [[PFFacebookMobileAuthenticationProvider alloc] initWithApplication:[UIApplication sharedApplication] launchOptions:nil];
     provider.loginManager = mockedLoginManager;
 
+    OCMStub([mockedLoginManager logInWithPermissions:(@[ @"read", @"publish" ])
+                                  fromViewController:OCMOCK_ANY
+                                             handler:OCMOCK_ANY]).andDo((^(NSInvocation *invocation) {
+        __unsafe_unretained FBSDKLoginManagerLoginResultBlock handler = nil;
+        [invocation getArgument:&handler atIndex:4];
+        
+        FBSDKAccessToken *token = [[FBSDKAccessToken alloc] initWithTokenString:@"token"
+                                                                    permissions:@[ @"read", @"publish" ]
+                                                            declinedPermissions:@[]
+                                                             expiredPermissions:@[]
+                                                                          appID:@"appId"
+                                                                         userID:@"fbId"
+                                                                 expirationDate:[NSDate dateWithTimeIntervalSince1970:1337]
+                                                                    refreshDate:[NSDate dateWithTimeIntervalSince1970:1337]
+                                                       dataAccessExpirationDate:nil];
+        
+        FBSDKLoginManagerLoginResult *result = [[FBSDKLoginManagerLoginResult alloc] initWithToken:token
+																			   authenticationToken:nil
+                                                                                       isCancelled:NO
+                                                                                grantedPermissions:[NSSet setWithArray:@[ @"read", @"publish" ]]
+                                                                               declinedPermissions:[NSSet setWithArray:@[]]];
+        
+        handler(result, nil);
+    }));
+    
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[provider authenticateAsyncWithReadPermissions:@[ @"read" ] publishPermissions:@[ @"publish" ]] continueWithBlock:^id(BFTask *task) {
-        XCTAssertNotNil(task.error);
+        XCTAssertNil(task.error);
         [expectation fulfill];
         return nil;
     }];
@@ -125,15 +158,16 @@
 - (void)testAuthenticateCancel {
     id mockedLoginManager = PFStrictClassMock([FBSDKLoginManager class]);
 
-    OCMStub([mockedLoginManager logInWithPublishPermissions:@[ @"publish" ]
+    OCMStub([mockedLoginManager logInWithPermissions:@[ @"publish" ]
                                          fromViewController:OCMOCK_ANY
                                                     handler:OCMOCK_ANY]).andDo(^(NSInvocation *invocation) {
-        __unsafe_unretained FBSDKLoginManagerRequestTokenHandler handler = nil;
+        __unsafe_unretained FBSDKLoginManagerLoginResultBlock handler = nil;
         [invocation getArgument:&handler atIndex:4];
 
         FBSDKLoginManagerLoginResult *result = [[FBSDKLoginManagerLoginResult alloc] initWithToken:nil
-                                                                                       isCancelled:YES
-                                                                                grantedPermissions:nil
+																			   authenticationToken:nil
+																					   isCancelled:YES
+                                                                                grantedPermissions:[NSSet setWithArray:@[]]
                                                                                declinedPermissions:[NSSet setWithObject:@"publish"]];
 
         handler(result, nil);
@@ -143,7 +177,7 @@
     provider.loginManager = mockedLoginManager;
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[provider authenticateAsyncWithReadPermissions:nil publishPermissions:@[ @"publish" ]] continueWithBlock:^id(BFTask *task) {
+    [[provider authenticateAsyncWithReadPermissions:@[] publishPermissions:@[ @"publish" ]] continueWithBlock:^id(BFTask *task) {
         XCTAssertTrue(task.cancelled);
         [expectation fulfill];
         return nil;
@@ -155,10 +189,10 @@
     NSError *expectedError = [NSError errorWithDomain:@"FBSDK" code:1337 userInfo:nil];
     id mockedLoginManager = PFStrictClassMock([FBSDKLoginManager class]);
 
-    OCMStub([mockedLoginManager logInWithPublishPermissions:@[ @"publish" ]
+    OCMStub([mockedLoginManager logInWithPermissions:@[ @"publish" ]
                                          fromViewController:OCMOCK_ANY
                                                     handler:OCMOCK_ANY]).andDo(^(NSInvocation *invocation) {
-        __unsafe_unretained FBSDKLoginManagerRequestTokenHandler handler = nil;
+        __unsafe_unretained FBSDKLoginManagerLoginResultBlock handler = nil;
         [invocation getArgument:&handler atIndex:4];
 
         handler(nil, expectedError);
@@ -168,7 +202,7 @@
     provider.loginManager = mockedLoginManager;
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[provider authenticateAsyncWithReadPermissions:nil publishPermissions:@[ @"publish" ]] continueWithBlock:^id(BFTask *task) {
+    [[provider authenticateAsyncWithReadPermissions:@[] publishPermissions:@[ @"publish" ]] continueWithBlock:^id(BFTask *task) {
         XCTAssertEqualObjects(task.error, expectedError);
         [expectation fulfill];
         return nil;
@@ -179,32 +213,45 @@
 - (void)testAuthenticateInvalidResults {
     id mockedLoginManager = PFStrictClassMock([FBSDKLoginManager class]);
 
-    OCMStub([mockedLoginManager logInWithPublishPermissions:@[ @"publish" ]
-                                         fromViewController:OCMOCK_ANY
-                                                    handler:OCMOCK_ANY]).andDo(^(NSInvocation *invocation) {
-        __unsafe_unretained FBSDKLoginManagerRequestTokenHandler handler = nil;
-        [invocation getArgument:&handler atIndex:4];
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
 
-        FBSDKAccessToken *token = [[FBSDKAccessToken alloc] initWithTokenString:nil
+    // Test simulates invalid input with a nil user. User is nonnull in the interface. Disabling that warning here.
+    
+    OCMStub([mockedLoginManager logInWithPermissions:@[ @"publish" ]
+                                  fromViewController:OCMOCK_ANY
+                                             handler:OCMOCK_ANY]).andDo(^(NSInvocation *invocation) {
+        __unsafe_unretained FBSDKLoginManagerLoginResultBlock handler = nil;
+        [invocation getArgument:&handler atIndex:4];
+        
+        FBSDKAccessToken *token = [[FBSDKAccessToken alloc] initWithTokenString:@""
                                                                     permissions:@[ @"publish" ]
-                                                            declinedPermissions:nil
+                                                            declinedPermissions:@[]
+                                                             expiredPermissions:@[]
                                                                           appID:@"appId"
                                                                          userID:nil
                                                                  expirationDate:nil
-                                                                    refreshDate:nil];
+                                                                    refreshDate:nil
+                                                       dataAccessExpirationDate:nil];
+        
         FBSDKLoginManagerLoginResult *result = [[FBSDKLoginManagerLoginResult alloc] initWithToken:token
+																			   authenticationToken:nil
                                                                                        isCancelled:NO
                                                                                 grantedPermissions:[NSSet setWithObject:@"publish"]
-                                                                               declinedPermissions:nil];
-
+                                                                               declinedPermissions:[NSSet setWithArray:@[]]];
+        
         handler(result, nil);
     });
+    
+#pragma GCC diagnostic pop
+    
+
 
     PFFacebookMobileAuthenticationProvider *provider = [[PFFacebookMobileAuthenticationProvider alloc] initWithApplication:[UIApplication sharedApplication] launchOptions:nil];
     provider.loginManager = mockedLoginManager;
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[provider authenticateAsyncWithReadPermissions:nil publishPermissions:@[ @"publish" ]] continueWithBlock:^id(BFTask *task) {
+    [[provider authenticateAsyncWithReadPermissions:@[] publishPermissions:@[ @"publish" ]] continueWithBlock:^id(BFTask *task) {
         XCTAssertNil(task.result);
         XCTAssertFalse(task.faulted);
         [expectation fulfill];

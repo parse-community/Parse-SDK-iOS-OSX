@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Parse'
-  s.version          = '1.17.2'
+  s.version          = '1.19.3'
   s.license          =  { :type => 'BSD', :file => 'LICENSE' }
   s.homepage         = 'http://parseplatform.org/'
   s.summary          = 'A library that gives you access to the powerful Parse cloud platform from your iOS/OS X/watchOS/tvOS app.'
@@ -10,13 +10,13 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/parse-community/Parse-SDK-iOS-OSX.git', :tag => s.version.to_s }
 
   s.platform = :ios, :osx, :tvos, :watchos
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.9'
-  s.tvos.deployment_target = '9.0'
+  s.tvos.deployment_target = '10.0'
   s.watchos.deployment_target = '2.0'
 
   s.default_subspec = 'Core'
-  
+
   s.subspec 'Core' do |s|
     s.requires_arc = true
 
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
                      'Parse/Parse/Internal/**/*.{h,m}'
     s.public_header_files = 'Parse/Parse/*.h'
     s.private_header_files = 'Parse/Parse/Internal/**/*.h'
-  
+
     s.ios.exclude_files = 'Parse/Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
     s.osx.exclude_files = 'Parse/Parse/PFNetworkActivityIndicatorManager.{h,m}',
                           'Parse/Parse/PFProduct.{h,m}',
@@ -53,9 +53,9 @@ Pod::Spec.new do |s|
                               'Parse/Parse/Internal/Installation/PFInstallationPrivate.h',
                               'Parse/Parse/Internal/Commands/PFRESTPushCommand.{h,m}',
                               'Parse/Parse/Internal/PFMemoryEventuallyQueue.{h,m}'
-  
+
     s.resource_bundle = { 'Parse' => 'Parse/Parse/Resources/en.lproj' }
-  
+
     s.ios.frameworks = 'AudioToolbox',
                        'CFNetwork',
                        'CoreGraphics',
@@ -77,15 +77,15 @@ Pod::Spec.new do |s|
                         'StoreKit',
                         'SystemConfiguration',
                         'Security'
-  
+
     s.libraries        = 'z', 'sqlite3'
-  
-    s.dependency 'Bolts/Tasks', '~> 1.9'
+
+    s.dependency 'Bolts/Tasks', '1.9.1'
   end
 
   s.subspec 'FacebookUtils' do |s|
     s.platform = :ios
-    s.ios.deployment_target = '8.0'
+    s.ios.deployment_target = '9.0'
     s.public_header_files = 'ParseFacebookUtils/ParseFacebookUtils/*.h'
     s.source_files = 'ParseFacebookUtils/ParseFacebookUtils/**/*.{h,m}'
     s.exclude_files = 'ParseFacebookUtils/ParseFacebookUtils/ParseFacebookUtilsV4.h',
@@ -103,13 +103,13 @@ Pod::Spec.new do |s|
     s.libraries        = 'z', 'sqlite3'
 
     s.dependency 'Parse/Core'
-    s.dependency 'Bolts', '~> 1.9'
-    s.dependency 'FBSDKLoginKit', '~> 4.33'
+    s.dependency 'Bolts/Tasks', '~> 1.9.1'
+    s.dependency 'FBSDKLoginKit', '= 11.0.1'
   end
 
   s.subspec 'FacebookUtils-tvOS' do |s|
     s.platform = :tvos
-    s.tvos.deployment_target = '9.0'
+    s.tvos.deployment_target = '10.0'
     s.public_header_files = 'ParseFacebookUtils/ParseFacebookUtils/*.h'
     s.source_files = 'ParseFacebookUtils/ParseFacebookUtils/**/*.{h,m}'
     s.exclude_files = 'ParseFacebookUtils/ParseFacebookUtils/ParseFacebookUtilsV4.h',
@@ -125,9 +125,9 @@ Pod::Spec.new do |s|
     s.libraries        = 'z', 'sqlite3'
 
     s.dependency 'Parse/Core'
-    s.dependency 'Bolts', '~> 1.9'
-    s.dependency 'FBSDKTVOSKit', '~> 4.33'
-    s.dependency 'FBSDKShareKit', '~> 4.33'
+    s.dependency 'Bolts/Tasks', '~> 1.9.1'
+    s.dependency 'FBSDKTVOSKit', '= 11.0'
+    s.dependency 'FBSDKShareKit', '= 11.0.1'
   end
 
   s.subspec 'TwitterUtils' do |s|
@@ -155,7 +155,7 @@ Pod::Spec.new do |s|
     s.requires_arc          = true
     s.ios.deployment_target = '9.0'
     s.source_files        = 'ParseUI/**/*.{h,m}'
-    s.exclude_files = 'ParseUI/ParseUIDemo/**/*', 'ParseUI/Other/ParseUI.h'
+    s.exclude_files = 'ParseUI/ParseUIDemo/**/*', 'ParseUI/Other/ParseUI.h', 'ParseUI/SignInWithAppleTests/'
     s.public_header_files = 'ParseUI/Classes/LogInViewController/*.h',
                             'ParseUI/Classes/SignUpViewController/*.h',
                             'ParseUI/Classes/QueryTableViewController/*.h',

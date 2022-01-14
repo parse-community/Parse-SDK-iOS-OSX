@@ -31,12 +31,13 @@
     self.applicationId = [[NSUUID UUID] UUIDString];
     self.clientKey = [[NSUUID UUID] UUIDString];
 
+    XCTestExpectation *expect = [self expectationForNotification:PFParseInitializeDidCompleteNotification object:nil handler:^BOOL(NSNotification * _Nonnull notification) {
+        return YES;
+    }];
+    
     [Parse setApplicationId:self.applicationId clientKey:self.clientKey];
-
-    // NOTE: (richardross) This may seem crazy, but this is to solve an issue with OCMock's mocking, which isn't thread
-    // Safe. +[Parse setApplicationId: clientKey:] launches a background task that uses several class methods that are
-    // mocked throughout our unit tests, and this ensures that that task has completed before we continue.
-    [[Parse _currentManager] clearEventuallyQueue];
+    
+    [self waitForExpectations:@[expect] timeout:2];
 }
 
 - (void)tearDown {

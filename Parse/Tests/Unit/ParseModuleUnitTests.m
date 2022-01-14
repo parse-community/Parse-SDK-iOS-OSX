@@ -18,8 +18,9 @@
 
 @implementation ParseTestModule
 
-- (void)parseDidInitializeWithApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey {
+- (BFTask *)parseDidInitializeWithApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey {
     self.didInitializeCalled = YES;
+    return [BFTask taskWithResult:nil];
 }
 
 @end
@@ -55,7 +56,7 @@
     [collection parseDidInitializeWithApplicationId:@"a" clientKey:nil];
 
     // Run a single runloop tick to trigger the parse initializaiton.
-    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantPast]];
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
 
     XCTAssertEqual(collection.modulesCount, 0);
 }

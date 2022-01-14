@@ -104,17 +104,36 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The current configuration in use by the SDK. Returns nil if the SDK has not been initialized yet.
  */
-+ (nullable ParseClientConfiguration *)currentConfiguration;
+@property (nonatomic, nullable, readonly, class) ParseClientConfiguration *currentConfiguration;
+
+/**
+ Sets the server URL to connect to Parse Server. The local client cache is not cleared.
+ @discussion This can be used to update the server URL after this client has been initialized, without having to destroy this client. An example use case is
+ server connection failover, where the clients connects to another URL if the server becomes unreachable at the current URL.
+ @warning The new server URL must point to a Parse Server that connects to the same database. Otherwise, issues may arise
+ related to locally cached data or delayed methods such as saveEventually.
+ @param server  The server URL to set.
+ */
++ (void)setServer:(nonnull NSString *)server;
 
 /**
  The current application id that was used to configure Parse framework.
  */
-+ (NSString *)getApplicationId;
+@property (nonatomic, nonnull, readonly, class) NSString *applicationId;
+
++ (NSString *)getApplicationId PARSE_DEPRECATED("Use applicationId property.");
 
 /**
  The current client key that was used to configure Parse framework.
  */
-+ (nullable NSString *)getClientKey;
+@property (nonatomic, nullable, readonly, class) NSString *clientKey;
+
++ (nullable NSString *)getClientKey PARSE_DEPRECATED("Use clientKey property.");
+
+/**
+ The current server URL to connect to Parse Server.
+ */
+@property (nonatomic, nullable, readonly, class) NSString *server;
 
 ///--------------------------------------
 #pragma mark - Enabling Local Datastore
@@ -128,10 +147,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Flag that indicates whether Local Datastore is enabled.
-
+ 
  @return `YES` if Local Datastore is enabled, otherwise `NO`.
  */
-+ (BOOL)isLocalDatastoreEnabled PF_TV_UNAVAILABLE;
+@property (nonatomic, readonly, class) BOOL isLocalDatastoreEnabled PF_TV_UNAVAILABLE;
 
 ///--------------------------------------
 #pragma mark - Enabling Extensions Data Sharing
@@ -211,30 +230,26 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- Sets the level of logging to display.
+ Gets or sets the level of logging to display.
 
  By default:
- - If running inside an app that was downloaded from iOS App Store - it is set to `PFLogLevelNone`
- - All other cases - it is set to `PFLogLevelWarning`
-
- @param logLevel Log level to set.
- @see PFLogLevel
- */
-+ (void)setLogLevel:(PFLogLevel)logLevel;
-
-/**
- Log level that will be displayed.
-
- By default:
-
  - If running inside an app that was downloaded from iOS App Store - it is set to `PFLogLevelNone`
  - All other cases - it is set to `PFLogLevelWarning`
 
  @return A `PFLogLevel` value.
  @see PFLogLevel
  */
-+ (PFLogLevel)logLevel;
+@property (nonatomic, readwrite, class) PFLogLevel logLevel;
 
 @end
+
+///--------------------------------------
+#pragma mark - Notifications
+///--------------------------------------
+
+/**
+ For testing purposes. Allows testers to know when init is complete.
+ */
+extern NSString *const _Nonnull PFParseInitializeDidCompleteNotification;
 
 NS_ASSUME_NONNULL_END

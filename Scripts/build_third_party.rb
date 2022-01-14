@@ -14,7 +14,7 @@ build_script = ARGV[1]
 if framework_path.nil? || build_script.nil?
   puts "Use this script to build a third party framework for iOS/OSX."
   puts "It is intended to support building Bolts.framework and FacebookSDK.framework"
-  puts "Usage: 'build_third_party.sh <framework_path> <build_script_path>"
+  puts "Usage: 'build_third_party.rb <framework_path> <build_script_path>"
   exit(1)
 end
 

@@ -293,6 +293,7 @@ typedef NS_ENUM(uint8_t, PFUIDemoType) {
             logInController.fields = (PFLogInFieldsUsernameAndPassword
                                       | PFLogInFieldsLogInButton
                                       | PFLogInFieldsPasswordForgotten
+                                      | PFLogInFieldsApple
                                       | PFLogInFieldsFacebook
                                       | PFLogInFieldsTwitter
                                       | PFLogInFieldsSignUpButton

@@ -268,10 +268,17 @@
     configuration.HTTPCookieAcceptPolicy = NSHTTPCookieAcceptPolicyNever;
     configuration.HTTPShouldSetCookies = NO;
 
+#if TARGET_OS_MACCATALYST
+    // Completely disable caching of responses for security reasons.
+    configuration.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
+                                                           diskCapacity:0
+                                                           directoryURL:nil];
+#else
     // Completely disable caching of responses for security reasons.
     configuration.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:[NSURLCache sharedURLCache].memoryCapacity
                                                            diskCapacity:0
                                                                diskPath:nil];
+#endif
 
     NSBundle *bundle = [NSBundle mainBundle];
     NSDictionary *headers = [PFCommandURLRequestConstructor defaultURLRequestHeadersForApplicationId:applicationId

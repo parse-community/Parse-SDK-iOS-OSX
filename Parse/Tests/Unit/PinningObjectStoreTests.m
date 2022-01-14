@@ -14,6 +14,7 @@
 #import "PFPin.h"
 #import "PFPinningObjectStore.h"
 #import "PFUnitTestCase.h"
+#import "Parse.h"
 
 @interface PinningObjectStoreTests : PFUnitTestCase
 
@@ -35,6 +36,12 @@
 ///--------------------------------------
 #pragma mark - Tests
 ///--------------------------------------
+
+- (void)setUp
+{
+    [Parse enableLocalDatastore];
+    [super setUp];
+}
 
 - (void)testConstructors {
     id dataSource = [self mockedDataSource];

@@ -9,8 +9,7 @@
 
 #import "PFFacebookAuthenticationProvider.h"
 
-#import <FBSDKCoreKit/FBSDKAccessToken.h>
-#import <FBSDKCoreKit/FBSDKApplicationDelegate.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import "PFFacebookPrivateUtilities.h"
 

@@ -8,7 +8,7 @@
  */
 
 #import "PFOAuth1FlowDialog.h"
-
+#import <WebKit/WebKit.h>
 #import <Parse/PFNetworkActivityIndicatorManager.h>
 
 @implementation PFOAuth1FlowDialog
@@ -204,9 +204,9 @@ static CGFloat PFTFloatRound(CGFloat value, NSRoundingMode mode) {
         _titleLabel.font = [UIFont boldSystemFontOfSize:titleLabelFontSize];
         [self addSubview:_titleLabel];
 
-        _webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+        _webView = [[WKWebView alloc] initWithFrame:CGRectZero];
         _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _webView.delegate = self;
+        _webView.navigationDelegate = self;
         [self addSubview:_webView];
 
         _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
@@ -240,7 +240,7 @@ static CGFloat PFTFloatRound(CGFloat value, NSRoundingMode mode) {
 #pragma mark Dealloc
 
 - (void)dealloc {
-    _webView.delegate = nil;
+    _webView.navigationDelegate = nil;
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -408,41 +408,54 @@ static CGFloat PFTFloatRound(CGFloat value, NSRoundingMode mode) {
 }
 
 #pragma mark -
-#pragma mark UIWebViewDelegate
+#pragma mark WKWebViewNavigationDelegate
 
-- (BOOL)webView:(UIWebView *)webView
-shouldStartLoadWithRequest:(NSURLRequest *)request
- navigationType:(UIWebViewNavigationType)navigationType {
-    NSURL *url = request.URL;
-
-    if ([url.absoluteString hasPrefix:self.redirectURLPrefix]) {
-        [self _dismissWithSuccess:YES url:url error:nil];
-        return NO;
-    } else if ([_loadingURL isEqual:url]) {
-        return YES;
-    } else if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-        if ([self.dataSource dialog:self shouldOpenURLInExternalBrowser:url]) {
-            [[UIApplication sharedApplication] openURL:url];
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    NSURL *url = navigationAction.request.URL;
+    BOOL hasPrefix = [url.absoluteString hasPrefix:self.redirectURLPrefix];
+    if (hasPrefix) {
+        NSURLComponents* components = [[NSURLComponents alloc] initWithString:url.absoluteString];
+        NSArray<NSURLQueryItem *> * items = components.queryItems;
+        if (items) {
+            for (NSURLQueryItem * queryItem in items) {
+                if ([queryItem.name isEqualToString:@"denied"]) {
+                    [self _dismissWithSuccess:NO url:url error:nil];
+                    break;
+                } else if ([queryItem.name isEqualToString:@"oauth_verifier"] || [queryItem.name isEqualToString:@"oauth_token" ]) {
+                    [self _dismissWithSuccess:YES url:url error:nil];
+                    break;;
+                }
+            }
         } else {
-            return YES;
+            [self _dismissWithSuccess:NO url:url error:nil];
         }
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    } else if (navigationAction.navigationType == UIWebViewNavigationTypeLinkClicked && [self.dataSource dialog:self shouldOpenURLInExternalBrowser:url]) {
+        [[UIApplication sharedApplication] openURL:url];
+    } else {
+        decisionHandler(WKNavigationActionPolicyAllow);
     }
-
-    return YES;
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView {
+
+
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     [[PFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [[PFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
 
     [_activityIndicator stopAnimating];
-    self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    [_webView evaluateJavaScript:@"document.title" completionHandler:^(id _Nullable string, NSError * _Nullable error) {
+        self.title = (NSString *) string;
+        
+    }];
+    
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [[PFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
 
     // 102 == WebKitErrorFrameLoadInterruptedByPolicyChange

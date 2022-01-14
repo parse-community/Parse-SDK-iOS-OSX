@@ -20,6 +20,9 @@
 #
 # This script generates Objective-C byte arrays from the png images.
 
+# Usage: ./convert_images.rb [path/to/images/to/convert/] [Name_Of_Output_Class]
+# Note the final slash on the path argument. It is necessary.
+
 require 'time'
 require 'fileutils'
 
