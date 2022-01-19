@@ -6,7 +6,16 @@
         "repositoryURL": "https://github.com/mman/Bolts-ObjC.git",
         "state": {
           "branch": "spm",
-          "revision": "c7e63d256239204a9d4a28776237d3c37f10ec7c",
+          "revision": "44c78d09636c7404357a83f18bf2114fb4fd74a3",
+          "version": null
+        }
+      },
+      {
+        "package": "OCMock",
+        "repositoryURL": "https://github.com/erikdoe/ocmock.git",
+        "state": {
+          "branch": "master",
+          "revision": "afd2c6924e8a36cb872bc475248b978f743c6050",
           "version": null
         }
       }
