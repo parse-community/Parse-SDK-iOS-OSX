@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Bolts",
+        "repositoryURL": "https://github.com/mman/Bolts-ObjC.git",
+        "state": {
+          "branch": "spm",
+          "revision": "c7e63d256239204a9d4a28776237d3c37f10ec7c",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
