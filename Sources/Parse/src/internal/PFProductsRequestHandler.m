@@ -12,7 +12,8 @@
 #import <Bolts/BFTask.h>
 #import <Bolts/BFTaskCompletionSource.h>
 
-API_UNAVAILABLE(macos, watchos)
+
+PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE
 @implementation PFProductsRequestResult
 
 - (instancetype)initWithProductsResponse:(SKProductsResponse *)response {
@@ -34,7 +35,7 @@ API_UNAVAILABLE(macos, watchos)
 
 @end
 
-API_UNAVAILABLE(macos, watchos)
+PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE
 @implementation PFProductsRequestHandler
 
 ///--------------------------------------

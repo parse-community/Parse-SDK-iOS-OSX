@@ -28,7 +28,6 @@ typedef void (^PFPurchaseDownloadAssetResultBlock)(NSString *_Nullable filePath,
 
  This class is currently for iOS only.
  */
-API_UNAVAILABLE(macos, watchos)
 PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchase : NSObject
 
 /**

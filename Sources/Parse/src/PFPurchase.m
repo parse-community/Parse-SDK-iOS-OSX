@@ -18,15 +18,13 @@
 #import "PFUserPrivate.h"
 #import "Parse_Private.h"
 
-#if TARGET_OS_IOS || TARGET_OS_TV
-API_UNAVAILABLE(macos, watchos)
 @implementation PFPurchase
 
 ///--------------------------------------
 #pragma mark - Public
 ///--------------------------------------
 
-+ (void)addObserverForProduct:(NSString *)productIdentifier block:(PFPurchaseProductObservationBlock)block API_UNAVAILABLE(macos, watchos) {
++ (void)addObserverForProduct:(NSString *)productIdentifier block:(PFPurchaseProductObservationBlock)block {
     // We require the following method to run on the main thread because we want to add the observer
     // *after* all products handlers have been added. Developers might be calling this method multiple
     // times; and if the observer is added after the first call, the observer might not know how to
@@ -87,8 +85,9 @@ API_UNAVAILABLE(macos, watchos)
 ///--------------------------------------
 
 + (PFPurchaseController *)_purchaseController {
+#if TARGET_OS_IOS || TARGET_OS_TV
     return [Parse _currentManager].purchaseController;
+#endif
 }
 
 @end
-#endif

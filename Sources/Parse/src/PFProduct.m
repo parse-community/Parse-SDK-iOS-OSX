@@ -13,7 +13,6 @@
 #import "PFAssert.h"
 #import <Parse/PFObject+Subclass.h>
 
-API_UNAVAILABLE(macos, watchos)
 @implementation PFProduct
 
 @dynamic productIdentifier;
