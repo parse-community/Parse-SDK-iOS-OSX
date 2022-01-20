@@ -12,7 +12,8 @@ let package = Package(
             targets: ["Parse"]),
     ],
     dependencies: [
-        .package(name: "Bolts", url: "https://github.com/mman/Bolts-ObjC.git", branch: "spm")
+        .package(name: "Bolts", url: "https://github.com/mman/Bolts-ObjC.git", branch: "spm"),
+        .package(name: "OCMock", url: "https://github.com/erikdoe/ocmock.git", branch: "master")
     ],
     targets: [
         .target(
@@ -23,6 +24,7 @@ let package = Package(
             cSettings: [.headerSearchPath("include"), .headerSearchPath("src"), .headerSearchPath("src/internal")]),
         .testTarget(
             name: "ParseTests",
-            dependencies: ["Parse"]),
+            dependencies: ["Parse", "Bolts", "OCMock"],
+            cSettings: [.headerSearchPath("../../Sources/Parse/src/"), .headerSearchPath("../../Sources/Parse/src/internal")]),
     ]
 )
