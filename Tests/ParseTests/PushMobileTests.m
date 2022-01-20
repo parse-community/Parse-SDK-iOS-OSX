@@ -9,10 +9,11 @@
 
 #import <OCMock/OCMock.h>
 
-#import "PFPush.h"
+#import <Parse/PFPush.h>
 #import "PFPushUtilities.h"
 #import "PFUnitTestCase.h"
 
+#if TARGET_OS_IOS
 @interface PushMobileTests : PFUnitTestCase
 
 @end
@@ -102,3 +103,4 @@
 }
 
 @end
+#endif

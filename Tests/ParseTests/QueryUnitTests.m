@@ -8,8 +8,7 @@
  */
 
 #import <OCMock/OCMock.h>
-
-@import Bolts.BFTask;
+#import <Bolts/Bolts.h>
 
 #import "PFCoreManager.h"
 #import "PFMacros.h"

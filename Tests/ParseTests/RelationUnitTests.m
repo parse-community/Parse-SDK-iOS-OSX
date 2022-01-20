@@ -11,9 +11,9 @@
 
 @import Darwin.libkern.OSAtomic;
 
-#import "PFDecoder.h"
+#import <Parse/PFDecoder.h>
 #import "PFQueryPrivate.h"
-#import "PFRelation.h"
+#import <Parse/PFRelation.h>
 #import "PFRelationPrivate.h"
 #import "PFUnitTestCase.h"
 

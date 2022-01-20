@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "PFQuery.h"
+#import <Parse/PFQuery.h>
 #import "PFQueryUtilities.h"
 #import "PFTestCase.h"
 

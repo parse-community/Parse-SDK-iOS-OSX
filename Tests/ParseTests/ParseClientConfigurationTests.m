@@ -10,7 +10,7 @@
 @import Foundation;
 
 #import "PFTestCase.h"
-#import "ParseClientConfiguration.h"
+#import <Parse/ParseClientConfiguration.h>
 #import "ParseClientConfiguration_Private.h"
 #import "PFExtensionDataSharingTestHelper.h"
 

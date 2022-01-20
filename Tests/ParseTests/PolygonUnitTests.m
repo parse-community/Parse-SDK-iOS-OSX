@@ -9,12 +9,12 @@
 
 @import CoreLocation.CLLocation;
 
-#import "PFPolygon.h"
-#import "PFEncoder.h"
-#import "PFGeoPoint.h"
+#import <Parse/PFPolygon.h>
+#import <Parse/PFEncoder.h>
+#import <Parse/PFGeoPoint.h>
 #import "PFPolygonPrivate.h"
 #import "PFTestCase.h"
-#import "PFObject.h"
+#import <Parse/PFObject.h>
 
 @interface PolygonUnitTests : PFTestCase {
     NSArray *_testPoints;

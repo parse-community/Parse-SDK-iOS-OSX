@@ -10,7 +10,7 @@
 #import <OCMock/OCMock.h>
 
 #import "PFFieldOperation.h"
-#import "PFObject.h"
+#import <Parse/PFObject.h>
 #import "PFTestCase.h"
 
 @interface FieldOperationTests : PFTestCase

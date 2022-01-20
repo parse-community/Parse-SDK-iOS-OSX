@@ -9,7 +9,7 @@
 
 #import <OCMock/OCMock.h>
 
-#import "PFDecoder.h"
+#import <Parse/PFDecoder.h>
 #import "PFFileManager.h"
 #import "PFInternalUtils.h"
 #import "PFJSONSerialization.h"

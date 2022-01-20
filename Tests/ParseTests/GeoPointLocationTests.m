@@ -9,7 +9,7 @@
 
 #import "CLLocationManager+TestAdditions.h"
 #import "PFCoreManager.h"
-#import "PFGeoPoint.h"
+#import <Parse/PFGeoPoint.h>
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
 

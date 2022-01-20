@@ -8,10 +8,9 @@
  */
 
 #import <OCMock/OCMock.h>
+#import <Bolts/Bolts.h>
 
-@import Bolts.BFTask;
-
-#import "PFObject.h"
+#import <Parse/PFObject.h>
 #import "PFOfflineStore.h"
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"

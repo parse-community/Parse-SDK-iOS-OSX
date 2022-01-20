@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "PFEncoder.h"
+#import <Parse/PFEncoder.h>
 #import "PFFieldOperation.h"
 #import "PFMutableObjectState.h"
 #import "PFOperationSet.h"

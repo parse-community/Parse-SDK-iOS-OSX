@@ -8,8 +8,7 @@
  */
 
 #import <OCMock/OCMock.h>
-
-@import Bolts.BFTask;
+#import <Bolts/Bolts.h>
 
 #import "PFConfigController.h"
 #import "PFConfig_Private.h"

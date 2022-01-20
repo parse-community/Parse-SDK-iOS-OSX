@@ -7,16 +7,15 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <OCMock/OCMock.H>
-
-@import Bolts.BFTask;
+#import <OCMock/OCMock.h>
+#import <Bolts/Bolts.h>
 
 #import "PFCoreManager.h"
 #import "PFCurrentInstallationController.h"
 #import "PFMacros.h"
 #import "PFMutablePushState.h"
 #import "PFMutableQueryState.h"
-#import "PFPush.h"
+#import <Parse/PFPush.h>
 #import "PFPushChannelsController.h"
 #import "PFPushController.h"
 #import "PFPushManager.h"

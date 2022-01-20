@@ -8,8 +8,8 @@
  */
 
 #import "PFDateFormatter.h"
-#import "PFDecoder.h"
-#import "PFObject.h"
+#import <Parse/PFDecoder.h>
+#import <Parse/PFObject.h>
 #import "PFObjectFileCodingLogic.h"
 #import "PFTestCase.h"
 

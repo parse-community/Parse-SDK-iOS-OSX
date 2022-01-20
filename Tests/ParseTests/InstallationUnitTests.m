@@ -8,10 +8,10 @@
  */
 #import <OCMock/OCMock.h>
 
-#import "PFInstallation.h"
+#import <Parse/PFInstallation.h>
 #import "PFApplication.h"
 #import "PFUnitTestCase.h"
-#import "Parse.h"
+#import <Parse/Parse.h>
 #import "Parse_Private.h"
 #import "PFCommandRunning.h"
 #import "ParseManagerPrivate.h"

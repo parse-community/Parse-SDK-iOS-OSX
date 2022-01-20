@@ -8,13 +8,12 @@
  */
 
 #import <OCMock/OCMock.h>
-
-@import Bolts.BFTask;
+#import <Bolts/Bolts.h>
 
 #import "OCMock+Parse.h"
 #import "PFCommandResult.h"
 #import "PFCommandRunning.h"
-#import "PFConfig.h"
+#import <Parse/PFConfig.h>
 #import "PFConfigController.h"
 #import "PFTestCase.h"
 #import "PFPersistenceController.h"

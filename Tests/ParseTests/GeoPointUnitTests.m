@@ -9,7 +9,7 @@
 
 @import CoreLocation.CLLocation;
 
-#import "PFGeoPoint.h"
+#import <Parse/PFGeoPoint.h>
 #import "PFGeoPointPrivate.h"
 #import "PFTestCase.h"
 

@@ -8,11 +8,10 @@
  */
 
 #import <OCMock/OCMock.h>
-
-@import Bolts.BFTask;
+#import <Bolts/Bolts.h>
 
 #import "PFCurrentInstallationController.h"
-#import "PFInstallation.h"
+#import <Parse/PFInstallation.h>
 #import "PFMacros.h"
 #import "PFPushChannelsController.h"
 #import "PFTestCase.h"

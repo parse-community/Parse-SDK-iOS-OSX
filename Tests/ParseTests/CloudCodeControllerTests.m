@@ -8,8 +8,7 @@
  */
 
 #import <OCMock/OCMock.h>
-
-@import Bolts.BFTask;
+#import <Bolts/Bolts.h>
 
 #import "OCMock+Parse.h"
 #import "PFCloudCodeController.h"

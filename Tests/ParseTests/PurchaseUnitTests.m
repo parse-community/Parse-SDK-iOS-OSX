@@ -8,8 +8,7 @@
  */
 
 #import <OCMock/OCMock.h>
-
-@import Bolts.BFTask;
+#import <Bolts/Bolts.h>
 
 #import "PFCommandRunning.h"
 #import "PFFileManager.h"
@@ -21,6 +20,7 @@
 #import "Parse_Private.h"
 #import "PFObjectPrivate.h"
 
+#if TARGET_OS_IOS
 @protocol PurchaseControllerDataSource <PFCommandRunnerProvider, PFFileManagerProvider>
 
 @end
@@ -180,3 +180,4 @@
 }
 
 @end
+#endif

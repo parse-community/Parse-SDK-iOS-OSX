@@ -8,7 +8,7 @@
  */
 
 #import "PFUnitTestCase.h"
-#import "PFUser.h"
+#import <Parse/PFUser.h>
 #import "PFObjectPrivate.h"
 
 @interface UserUnitTests : PFUnitTestCase

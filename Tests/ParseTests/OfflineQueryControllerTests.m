@@ -8,9 +8,7 @@
  */
 
 #import <OCMock/OCMock.h>
-
-@import Bolts.BFCancellationTokenSource;
-@import Bolts.BFTask;
+#import <Bolts/Bolts.h>
 
 #import "OCMock+Parse.h"
 #import "PFCommandResult.h"
@@ -24,7 +22,7 @@
 #import "PFPinningObjectStore.h"
 #import "PFRelationPrivate.h"
 #import "PFTestCase.h"
-#import "PFUser.h"
+#import <Parse/PFUser.h>
 
 @interface OfflineQueryControllerTests : PFTestCase
 

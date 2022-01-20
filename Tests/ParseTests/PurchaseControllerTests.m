@@ -10,13 +10,11 @@
 @import StoreKit;
 
 #import <OCMock/OCMock.h>
-
-@import Bolts.BFExecutor;
-@import Bolts.BFTask;
+#import <Bolts/Bolts.h>
 
 #import "PFCommandResult.h"
 #import "PFCommandRunning.h"
-#import "PFEncoder.h"
+#import <Parse/PFEncoder.h>
 #import "PFFileManager.h"
 #import "PFFileObject_Private.h"
 #import "PFMacros.h"
@@ -31,6 +29,7 @@
 #import "Parse_Private.h"
 #import "BFTask+Private.h"
 
+#if TARGET_OS_IOS
 @protocol PurchaseControllerDataSource <PFCommandRunnerProvider, PFFileManagerProvider>
 
 @end
@@ -373,3 +372,4 @@
 }
 
 @end
+#endif

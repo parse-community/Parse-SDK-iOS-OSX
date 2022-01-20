@@ -8,8 +8,7 @@
  */
 
 #import <OCMock/OCMock.h>
-
-@import Bolts.BFTask;
+#import <Bolts/Bolts.h>
 
 #import "PFCachedQueryController.h"
 #import "PFCommandResult.h"
@@ -17,7 +16,7 @@
 #import "PFJSONSerialization.h"
 #import "PFKeyValueCache.h"
 #import "PFMutableQueryState.h"
-#import "PFObject.h"
+#import <Parse/PFObject.h>
 #import "PFRESTQueryCommand.h"
 #import "PFTestCase.h"
 

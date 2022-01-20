@@ -14,7 +14,7 @@
 #import "PFPin.h"
 #import "PFPinningObjectStore.h"
 #import "PFUnitTestCase.h"
-#import "Parse.h"
+#import <Parse/Parse.h>
 
 @interface PinningObjectStoreTests : PFUnitTestCase
 

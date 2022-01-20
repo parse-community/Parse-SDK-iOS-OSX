@@ -12,7 +12,7 @@
 #import "PFACLPrivate.h"
 #import "PFMacros.h"
 #import "PFObjectPrivate.h"
-#import "PFRole.h"
+#import <Parse/PFRole.h>
 #import "PFUnitTestCase.h"
 #import "PFUserPrivate.h"
 

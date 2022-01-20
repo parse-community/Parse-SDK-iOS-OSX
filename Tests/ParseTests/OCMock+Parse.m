@@ -7,9 +7,10 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "OCMock+Parse.h"
+#import <OCMock/OCMock.h>
+#import <Bolts/Bolts.h>
 
-@import Bolts.BFTask;
+#import "OCMock+Parse.h"
 
 #import "PFCommandResult.h"
 #import "PFCommandRunning.h"

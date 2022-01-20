@@ -7,9 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "PFObject+Subclass.h"
+#import <Parse/PFObject+Subclass.h>
 #import "PFObjectPrivate.h"
-#import "PFSubclassing.h"
+#import <Parse/PFSubclassing.h>
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
 

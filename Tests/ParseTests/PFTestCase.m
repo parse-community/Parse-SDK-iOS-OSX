@@ -9,7 +9,8 @@
 
 #import "PFTestCase.h"
 
-@import Bolts.BFTask;
+#import <OCMock/OCMock.h>
+#import <Bolts/Bolts.h>
 
 #import "PFTestSwizzlingUtilities.h"
 

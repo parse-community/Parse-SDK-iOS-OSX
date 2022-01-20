@@ -8,14 +8,13 @@
  */
 
 #import <OCMock/OCMock.h>
-
-@import Bolts.BFCancellationTokenSource;
+#import <Bolts/Bolts.h>
 
 #import "BFTask+Private.h"
 #import "PFCommandResult.h"
 #import "PFCommandRunning.h"
 #import "PFMutableQueryState.h"
-#import "PFObject.h"
+#import <Parse/PFObject.h>
 #import "PFQueryController.h"
 #import "PFTestCase.h"
 
