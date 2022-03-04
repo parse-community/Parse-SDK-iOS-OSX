@@ -51,7 +51,7 @@
     }
 
 NSDate *expirationDate = [[NSDateFormatter pffb_preciseDateFormatter] dateFromString:expirationDateString];
-    FBSDKAccessToken *token = [[FBSDKAccessToken alloc] initWithTokenString: accessToken permissions:@[] declinedPermissions:@[] expiredPermissions:@[] appID: [FBSDKSettings appID] userID: authData[@"id"] expirationDate: expirationDate refreshDate: nil dataAccessExpirationDate: nil];
+    FBSDKAccessToken *token = [[FBSDKAccessToken alloc] initWithTokenString: accessToken permissions:@[] declinedPermissions:@[] expiredPermissions:@[] appID: [[FBSDKSettings sharedSettings] appID] userID: authData[@"id"] expirationDate: expirationDate refreshDate: nil dataAccessExpirationDate: nil];
     return token;
 }
 

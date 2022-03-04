@@ -12,7 +12,7 @@
 
 #import <Bolts/BFExecutor.h>
 #import <Bolts/BFTask.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
+@import FBSDKCoreKit;
 
 #import <Parse/PFConstants.h>
 
