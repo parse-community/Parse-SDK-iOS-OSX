@@ -8,7 +8,7 @@
  */
 
 @import Accounts;
-@import Bolts.BFTask;
+@import Bolts;
 @import Parse.PFConstants;
 @import Social;
 
