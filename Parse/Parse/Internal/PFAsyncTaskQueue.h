@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Bolts/BFTask.h>
+@import Bolts;
 
 NS_ASSUME_NONNULL_BEGIN
 

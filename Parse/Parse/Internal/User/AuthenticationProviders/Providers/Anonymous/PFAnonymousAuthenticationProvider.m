@@ -9,7 +9,7 @@
 
 #import "PFAnonymousAuthenticationProvider.h"
 
-#import <Bolts/BFTask.h>
+@import Bolts;
 
 NSString *const PFAnonymousUserAuthenticationType = @"anonymous";
 

@@ -10,8 +10,7 @@
 #import "PFURLSessionDataTaskDelegate.h"
 #import "PFURLSessionDataTaskDelegate_Private.h"
 
-#import <Bolts/BFTaskCompletionSource.h>
-#import <Bolts/BFCancellationToken.h>
+@import Bolts;
 
 #import "PFAssert.h"
 #import "PFMacros.h"

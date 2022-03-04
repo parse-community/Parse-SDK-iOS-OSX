@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Bolts/BFTask.h>
+@import Bolts;
 
 #import <Parse/PFObject.h>
 #import <Parse/PFSubclassing.h>

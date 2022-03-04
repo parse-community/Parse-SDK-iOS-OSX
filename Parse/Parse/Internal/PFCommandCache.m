@@ -12,8 +12,7 @@
 #include <mach/mach_time.h>
 #include <sys/xattr.h>
 
-#import <Bolts/BFTask.h>
-#import <Bolts/BFTaskCompletionSource.h>
+@import Bolts;
 
 #import "BFTask+Private.h"
 #import "PFAssert.h"

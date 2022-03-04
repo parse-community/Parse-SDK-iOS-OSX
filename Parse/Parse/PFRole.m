@@ -9,7 +9,7 @@
 
 #import "PFRole.h"
 
-#import <Bolts/BFTask.h>
+@import Bolts;
 
 #import "PFAssert.h"
 #import "PFObject+Subclass.h"

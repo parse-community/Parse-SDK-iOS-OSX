@@ -11,7 +11,7 @@
 
 #import <Parse/PFObject.h>
 
-#import <Bolts/BFTask.h>
+@import Bolts;
 
 #import "PFDecoder.h"
 #import "PFEncoder.h"

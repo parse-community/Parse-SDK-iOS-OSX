@@ -9,7 +9,7 @@
 
 #import "PFDefaultACLController.h"
 
-#import <Bolts/BFTask.h>
+@import Bolts;
 
 #import "PFACLPrivate.h"
 #import "PFAsyncTaskQueue.h"

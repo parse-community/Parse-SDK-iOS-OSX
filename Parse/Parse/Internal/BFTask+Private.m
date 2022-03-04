@@ -9,8 +9,7 @@
 
 #import "BFTask+Private.h"
 
-#import <Bolts/BFExecutor.h>
-#import <Bolts/BFTaskCompletionSource.h>
+@import Bolts;
 
 #import "PFLogging.h"
 

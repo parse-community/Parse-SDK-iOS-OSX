@@ -9,8 +9,7 @@
 
 #import "PFOfflineQueryLogic.h"
 
-#import <Bolts/BFTask.h>
-#import <Bolts/BFExecutor.h>
+@import Bolts;
 
 #import "PFACL.h"
 #import "PFAssert.h"

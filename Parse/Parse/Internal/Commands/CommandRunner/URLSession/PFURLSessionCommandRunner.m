@@ -10,7 +10,7 @@
 #import "PFURLSessionCommandRunner.h"
 #import "PFURLSessionCommandRunner_Private.h"
 
-#import <Bolts/BFTaskCompletionSource.h>
+@import Bolts;
 
 #import "BFTask+Private.h"
 #import "PFAssert.h"

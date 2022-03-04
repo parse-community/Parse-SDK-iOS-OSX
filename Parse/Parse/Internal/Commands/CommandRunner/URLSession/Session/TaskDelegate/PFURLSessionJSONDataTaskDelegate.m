@@ -9,9 +9,7 @@
 
 #import "PFURLSessionJSONDataTaskDelegate.h"
 
-#import <Bolts/BFCancellationToken.h>
-#import <Bolts/BFTask.h>
-#import <Bolts/BFTaskCompletionSource.h>
+@import Bolts;
 
 #import "PFCommandResult.h"
 #import "PFConstants.h"

@@ -9,7 +9,7 @@
 
 #import "PFCurrentUserController.h"
 
-#import <Bolts/BFTaskCompletionSource.h>
+@import Bolts;
 
 #import "BFTask+Private.h"
 #import "PFAnonymousUtils_Private.h"

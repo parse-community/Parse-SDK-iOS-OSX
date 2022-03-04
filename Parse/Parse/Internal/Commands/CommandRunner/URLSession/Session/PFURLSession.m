@@ -10,7 +10,7 @@
 #import "PFURLSession.h"
 #import "PFURLSession_Private.h"
 
-#import <Bolts/BFTaskCompletionSource.h>
+@import Bolts;
 
 #import "BFTask+Private.h"
 #import "PFCommandResult.h"

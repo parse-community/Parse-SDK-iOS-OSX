@@ -9,7 +9,7 @@
 
 #import "PFQueryController.h"
 
-#import <Bolts/BFCancellationToken.h>
+@import Bolts;
 
 #import "BFTask+Private.h"
 #import "PFAssert.h"

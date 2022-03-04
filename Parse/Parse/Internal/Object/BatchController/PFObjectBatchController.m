@@ -9,7 +9,7 @@
 
 #import "PFObjectBatchController.h"
 
-#import <Bolts/Bolts.h>
+@import Bolts;
 
 #import "BFTask+Private.h"
 #import "PFAssert.h"

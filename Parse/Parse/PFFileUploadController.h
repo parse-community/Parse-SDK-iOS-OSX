@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Bolts/BFTask.h>
+@import Bolts;
 
 /**
  A policy interface for overriding the default upload behavior of uploading a PFFileObject

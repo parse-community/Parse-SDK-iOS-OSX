@@ -9,7 +9,7 @@
 
 #import "PFAsyncTaskQueue.h"
 
-#import <Bolts/BFTaskCompletionSource.h>
+@import Bolts;
 
 #import "BFTask+Private.h"
 

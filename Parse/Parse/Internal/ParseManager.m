@@ -9,7 +9,7 @@
 
 #import "ParseManager.h"
 
-#import <Bolts/BFExecutor.h>
+@import Bolts;
 
 #import "BFTask+Private.h"
 #import "PFAnalyticsController.h"

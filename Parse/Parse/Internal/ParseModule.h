@@ -8,7 +8,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <Bolts/Bolts.h>
+@import Bolts;
 
 NS_ASSUME_NONNULL_BEGIN
 
