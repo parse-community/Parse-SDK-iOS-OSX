@@ -13,8 +13,6 @@ require_relative 'Vendor/xctoolchain/Scripts/xctask/build_framework_task'
 script_folder = File.expand_path(File.dirname(__FILE__))
 build_folder = File.join(script_folder, 'build')
 release_folder = File.join(build_folder, 'release')
-bolts_build_folder = File.join(script_folder, 'Carthage', 'Build')
-bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-ObjC')
 ios_simulator = 'platform="iOS Simulator",name="iPhone 11"'
 tvos_simulator = 'platform="tvOS Simulator",name="Apple TV 4K"'
 
@@ -295,8 +293,6 @@ namespace :package do
 
   task :prepare do
     `rm -rf #{build_folder} && mkdir -p #{build_folder}`
-    `rm -rf #{bolts_build_folder} && mkdir -p #{bolts_build_folder}`
-    `#{bolts_folder}/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos`
   end
 
   task :set_version, [:version] do |_, args|
@@ -317,34 +313,30 @@ namespace :package do
 
     ## Build macOS Framework
     Rake::Task['build:macos'].invoke
-    bolts_path = File.join(bolts_build_folder, 'osx', 'Bolts.framework')
     osx_framework_path = File.join(build_folder, 'Parse.framework')
     make_package(release_folder,
-                 [osx_framework_path, bolts_path],
+                 [osx_framework_path],
                  package_macos_name)
 
     ## Build iOS Framework
     Rake::Task['build:ios'].invoke
-    bolts_path = File.join(bolts_build_folder, 'ios', 'Bolts.framework')
     ios_framework_path = File.join(build_folder, 'Parse.framework')
     make_package(release_folder,
-                 [ios_framework_path, bolts_path],
+                 [ios_framework_path],
                  package_ios_name)
 
     ## Build tvOS Framework
     Rake::Task['build:tvos'].invoke
-    bolts_path = File.join(bolts_build_folder, 'tvOS', 'Bolts.framework')
     tvos_framework_path = File.join(build_folder, 'Parse.framework')
     make_package(release_folder,
-                  [tvos_framework_path, bolts_path],
+                  [tvos_framework_path],
                   package_tvos_name)
 
     ## Build watchOS Framework
     Rake::Task['build:watchos'].invoke
-    bolts_path = File.join(bolts_build_folder, 'watchOS', 'Bolts.framework')
     watchos_framework_path = File.join(build_folder, 'Parse.framework')
     make_package(release_folder,
-                 [watchos_framework_path, bolts_path],
+                 [watchos_framework_path],
                  package_watchos_name)
 
     Rake::Task['build:facebook_utils:ios'].invoke
@@ -471,7 +463,7 @@ namespace :test do
       t.sdk = 'iphonesimulator'
       t.destinations = [ios_simulator]
       t.configuration = 'Debug'
-      t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
+      t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "NO",
                                "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
       t.actions = [XCTask::BuildAction::TEST]
@@ -492,7 +484,7 @@ namespace :test do
       t.scheme = 'Parse-macOS'
       t.sdk = 'macosx'
       t.configuration = 'Debug'
-      t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
+      t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "NO",
                                "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
       t.actions = [XCTask::BuildAction::TEST]
@@ -515,7 +507,7 @@ namespace :test do
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
         t.configuration = 'Debug'
-        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
+        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "NO",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
         t.actions = [XCTask::BuildAction::TEST]
@@ -541,7 +533,7 @@ namespace :test do
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
         t.configuration = 'Debug'
-        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
+        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "NO",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
         t.actions = [XCTask::BuildAction::TEST]
@@ -592,7 +584,7 @@ namespace :test do
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
         t.configuration = 'Debug'
-        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
+        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "NO",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
@@ -615,7 +607,7 @@ namespace :test do
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
         t.configuration = 'Debug'
-        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
+        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "NO",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]

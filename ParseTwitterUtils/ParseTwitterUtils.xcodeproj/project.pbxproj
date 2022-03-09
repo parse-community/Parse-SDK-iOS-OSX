@@ -61,7 +61,7 @@
 		BC619D1727D24CBA004FAFB5 /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D1627D24CBA004FAFB5 /* Bolts */; };
 		BC619D2127D24D4E004FAFB5 /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D2027D24D4E004FAFB5 /* Bolts */; };
 		BC619D2427D24ECC004FAFB5 /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D2327D24ECC004FAFB5 /* OCMock */; };
-		BC619D2627D24EFE004FAFB5 /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D2527D24EFE004FAFB5 /* Bolts */; };
+		BC619D2627D24EFE004FAFB5 /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D2527D24EFE004FAFB5 /* Bolts */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

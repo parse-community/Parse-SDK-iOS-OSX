@@ -51,3 +51,4 @@ npm-debug.log
 Vendor/
 .build
 .swiftpm
+Package.resolved

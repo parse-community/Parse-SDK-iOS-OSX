@@ -21,7 +21,6 @@
 		403093761C81F0B200CF09F8 /* PFQueryConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */; };
 		403093771C81F0B200CF09F8 /* PFQueryConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */; };
 		403093781C81F0B200CF09F8 /* PFQueryConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */; };
-		4A13525620282B4D000F5FD5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97010FAC1630B18F00AB761E /* Parse.framework */; };
 		4AAEAA40200BE14B00AA7479 /* third_party_licenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8139B12C1A7BF559002BEF84 /* third_party_licenses.txt */; };
 		4ABF398C1F54592100BBA75A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABF398B1F54592100BBA75A /* Main.storyboard */; };
 		4AE33A0F1F5451AD0088DCA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE33A0E1F5451AD0088DCA0 /* AppDelegate.m */; };
@@ -2641,11 +2640,12 @@
 		BC619D0527D2467D004FAFB5 /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D0427D2467D004FAFB5 /* Bolts */; };
 		BC619D0827D246F3004FAFB5 /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D0727D246F3004FAFB5 /* OCMock */; };
 		BC619D0A27D24765004FAFB5 /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D0927D24765004FAFB5 /* Bolts */; };
-		BC619D0C27D247FD004FAFB5 /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D0B27D247FD004FAFB5 /* OCMock */; };
+		BC619D0C27D247FD004FAFB5 /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D0B27D247FD004FAFB5 /* OCMock */; settings = {ATTRIBUTES = (Required, ); }; };
 		BC619D0E27D2483A004FAFB5 /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D0D27D2483A004FAFB5 /* Bolts */; };
 		BC619D1027D24B62004FAFB5 /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D0F27D24B62004FAFB5 /* Bolts */; };
 		BC619D1227D24B69004FAFB5 /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D1127D24B69004FAFB5 /* Bolts */; };
 		BC619D1427D24B72004FAFB5 /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = BC619D1327D24B72004FAFB5 /* Bolts */; };
+		BCB617B827D7AAB400526B01 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97010FAC1630B18F00AB761E /* Parse.framework */; };
 		F50C66331B33A708001941A6 /* PFPushUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F50C66311B33A708001941A6 /* PFPushUtilities.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F50C66341B33A708001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
 		F50C667C1B34B231001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
@@ -3455,7 +3455,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A13525620282B4D000F5FD5 /* Parse.framework in Frameworks */,
+				BCB617B827D7AAB400526B01 /* Parse.framework in Frameworks */,
 				F5B0B3171B44A2CA00F3EBC4 /* StoreKit.framework in Frameworks */,
 				BC619D0C27D247FD004FAFB5 /* OCMock in Frameworks */,
 				F5B0B3161B44A22300F3EBC4 /* SystemConfiguration.framework in Frameworks */,
