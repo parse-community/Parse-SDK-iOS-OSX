@@ -32,7 +32,9 @@ jobs:
       - restore_cache: *cache-pull
       - run: *prepare
       - save_cache: *cache-push
-      - run: bundle exec rake test:carthage
+      - run:
+          command: bundle exec rake test:carthage
+          no_output_timeout: 30m
 
 workflows:
   version: 2
