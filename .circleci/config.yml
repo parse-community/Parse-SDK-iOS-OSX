@@ -34,7 +34,7 @@ jobs:
       - save_cache: *cache-push
       - run:
           command: bundle exec rake test:carthage
-          no_output_timeout: 30m
+          no_output_timeout: 60m
 
 workflows:
   version: 2
