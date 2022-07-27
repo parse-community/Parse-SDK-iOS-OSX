@@ -35,7 +35,6 @@ jobs:
       - run:
           command: bundle exec rake test:carthage
           no_output_timeout: 60m
-    resource_class: large
 
 workflows:
   version: 2
