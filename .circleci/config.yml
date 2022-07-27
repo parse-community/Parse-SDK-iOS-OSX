@@ -1,7 +1,8 @@
-defaults: &defaults
-    macos:
-      xcode: "13.1.0"
-    shell: /bin/bash --login -eo pipefail
+defaults:
+  &defaults
+  macos:
+    xcode: "13.1.0"
+  shell: /bin/bash --login -eo pipefail
 aliases:
   - &cache-pull
     keys:
@@ -12,12 +13,11 @@ aliases:
     key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
     paths:
       - vendor/bundle
-  - &prepare
-    |
-      git submodule update --init --recursive
-      sudo gem install bundler
-      bundle config set path 'vendor/bundle'
-      bundle install
+  - &prepare |
+    git submodule update --init --recursive
+    sudo gem install bundler
+    bundle config set path 'vendor/bundle'
+    bundle install
   - &filter-only-master
     branches:
       only:
@@ -35,6 +35,7 @@ jobs:
       - run:
           command: bundle exec rake test:carthage
           no_output_timeout: 60m
+    resource_class: large
 
 workflows:
   version: 2
