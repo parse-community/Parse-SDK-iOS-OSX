@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.authors          = 'Parse Community'
   s.social_media_url = 'https://twitter.com/ParsePlatform'
 
-  s.source           = { :git => 'https://github.com/parse-community/Parse-SDK-iOS-OSX.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/adamlevy-emjay/Parse-SDK-iOS-OSX.git', :tag => s.version.to_s }
 
   s.platform = :ios, :osx, :tvos, :watchos
   s.ios.deployment_target = '9.0'
