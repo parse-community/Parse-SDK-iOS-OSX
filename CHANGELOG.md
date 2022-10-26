@@ -1,3 +1,10 @@
+## [1.19.4](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.3...1.19.4) (2022-10-26)
+
+
+### Bug Fixes
+
+* implementation via CocoaPods fails due to missing `FBSDKCoreKit` dependency ([#1666](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1666)) ([ac8a4fa](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/ac8a4fade08c2be59d7ece014ba429067f598deb))
+
 ## [1.19.3](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.2...1.19.3) (2021-11-21)
 
 
