@@ -1,4 +1,4 @@
-![parse-repository-header-sdk-objc](https://user-images.githubusercontent.com/5673677/138286296-f4e855c3-2c8f-4c20-b637-51dd518ba0f6.png)
+![parse-repository-header-sdk-apple](https://user-images.githubusercontent.com/5673677/198421762-993c89e8-8201-40f1-a650-c2e9dde4da82.png)
 
 <h3 align="center">iOS · iPadOS · macOS · watchOS · tvOS</h3>
 
@@ -13,7 +13,6 @@
 
 ![Platforms](http://img.shields.io/cocoapods/p/Parse.svg?style=flat)
 [![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/carthage/carthage)
-
 [![Pod](https://img.shields.io/cocoapods/v/Parse.svg)](https://cocoapods.org/pods/Parse)
 
 [![Backers on Open Collective](https://opencollective.com/parse-server/backers/badge.svg)][open-collective-link]
