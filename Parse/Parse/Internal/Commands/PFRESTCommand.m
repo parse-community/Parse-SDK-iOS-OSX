@@ -250,7 +250,7 @@ static const int PFRESTCommandCacheKeyParseAPIVersion = 2;
         BOOL success = [pointer resolveLocalId:&localError];
         *modified = YES;
         if (!success && localError) {
-            *blockError = localError;
+            if (blockError != NULL) *blockError = localError;
         }
         return success;
     } error: error];

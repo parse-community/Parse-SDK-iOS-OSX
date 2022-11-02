@@ -225,7 +225,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                                                  error:&localError];
             }
             if (!succeeded) {
-                *error = localError;
+                if (error != NULL) *error = localError;
                 return NO;
             }
         }
@@ -259,7 +259,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                                     seenNew:seenNew
                                 currentUser:currentUser
                                         error:&localError]) {
-                *error = localError;
+                if (error != NULL) *error = localError;
                 return NO;
             }
         }
@@ -304,7 +304,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                            seenNew:seenNew
                             currentUser:currentUser
                                   error:&localError]) {
-            *error = localError;
+            if (error != NULL) *error = localError;
             return NO;
         }
 
