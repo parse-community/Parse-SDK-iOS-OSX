@@ -24,7 +24,7 @@
 #import <Bolts/BFTask.h>
 #import <Bolts/BFTaskCompletionSource.h>
 
-#import <Parse/Parse.h>
+#import <Parse.h>
 
 #import "PFActivityIndicatorCollectionReusableView.h"
 #import "PFCollectionViewCell.h"

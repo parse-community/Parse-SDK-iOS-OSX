@@ -11,7 +11,7 @@
 
 #import <Bolts/BFTask.h>
 
-#import <Parse/PFConstants.h>
+#import <PFConstants.h>
 
 @interface PFTwitterPrivateUtilities : NSObject
 

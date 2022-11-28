@@ -21,7 +21,7 @@
 
 #import "AppDelegate.h"
 
-#import <Parse/Parse.h>
+#import <Parse.h>
 #import <ParseTwitterUtils/ParseTwitterUtils.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKApplicationDelegate.h>

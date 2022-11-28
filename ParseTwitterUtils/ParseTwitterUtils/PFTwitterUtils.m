@@ -12,7 +12,7 @@
 #import <Bolts/BFExecutor.h>
 #import <Bolts/BFTaskCompletionSource.h>
 
-#import <Parse/Parse.h>
+#import <Parse.h>
 
 #import "PFTwitterAuthenticationProvider.h"
 #import "PFTwitterPrivateUtilities.h"

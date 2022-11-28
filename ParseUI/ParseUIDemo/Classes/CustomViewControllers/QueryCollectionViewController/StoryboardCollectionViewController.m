@@ -21,7 +21,7 @@
 
 #import "StoryboardCollectionViewController.h"
 
-#import <Parse/PFQuery.h>
+#import <PFQuery.h>
 
 #import <ParseUI/PFCollectionViewCell.h>
 

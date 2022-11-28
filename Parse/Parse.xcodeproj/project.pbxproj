@@ -9050,7 +9050,7 @@
 				);
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -9068,7 +9068,7 @@
 					"@loader_path/Frameworks",
 				);
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

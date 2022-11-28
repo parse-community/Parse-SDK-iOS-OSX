@@ -21,9 +21,9 @@
 
 #import "PFProductTableViewController.h"
 
-#import <Parse/PFProduct.h>
-#import <Parse/PFPurchase.h>
-#import <Parse/PFQuery.h>
+#import <PFProduct.h>
+#import <PFPurchase.h>
+#import <PFQuery.h>
 
 #import "PFUIAlertView.h"
 #import "PFLocalization.h"

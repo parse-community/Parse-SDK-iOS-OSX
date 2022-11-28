@@ -21,7 +21,7 @@
 
 #import "SubtitleImageTableViewController.h"
 
-#import <Parse/PFObject.h>
+#import <PFObject.h>
 
 #import <ParseUI/PFTableViewCell.h>
 

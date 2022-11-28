@@ -21,8 +21,8 @@
 
 #import "SectionedTableViewController.h"
 
-#import <Parse/PFObject.h>
-#import <Parse/PFQuery.h>
+#import <PFObject.h>
+#import <PFQuery.h>
 
 #import <ParseUI/PFTableViewCell.h>
 

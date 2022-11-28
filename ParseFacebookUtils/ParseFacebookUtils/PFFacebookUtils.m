@@ -11,7 +11,7 @@
 
 #import <Bolts/BFExecutor.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <Parse/Parse.h>
+#import <Parse.h>
 
 #import "PFFacebookPrivateUtilities.h"
 

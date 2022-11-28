@@ -23,7 +23,7 @@
 
 #import <Bolts/BFTaskCompletionSource.h>
 
-#import <Parse/PFFileObject.h>
+#import <PFFileObject.h>
 
 #import "PFImageCache.h"
 

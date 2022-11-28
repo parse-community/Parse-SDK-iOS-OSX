@@ -12,8 +12,8 @@
 
 #import <Bolts/BFTask.h>
 
-#import <Parse/PFConstants.h>
-#import <Parse/PFUserAuthenticationDelegate.h>
+#import <PFConstants.h>
+#import <PFUserAuthenticationDelegate.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

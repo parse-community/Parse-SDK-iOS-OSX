@@ -21,8 +21,8 @@
 
 #import "CustomProductTableViewController.h"
 
-#import <Parse/PFObject.h>
-#import <Parse/PFPurchase.h>
+#import <PFObject.h>
+#import <PFPurchase.h>
 
 @implementation CustomProductTableViewController
 

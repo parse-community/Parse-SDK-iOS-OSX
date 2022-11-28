@@ -21,7 +21,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import <Parse/PFConstants.h>
+#import <PFConstants.h>
 
 #ifdef COCOAPODS
 #import "ParseUIConstants.h"

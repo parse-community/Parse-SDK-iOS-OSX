@@ -11,8 +11,8 @@
 
 #import <Bolts/BFTask.h>
 
-#import <Parse/PFConstants.h>
-#import <Parse/PFUser.h>
+#import <PFConstants.h>
+#import <PFUser.h>
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 

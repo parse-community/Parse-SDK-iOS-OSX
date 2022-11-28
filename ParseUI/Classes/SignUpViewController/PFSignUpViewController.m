@@ -21,8 +21,8 @@
 
 #import "PFSignUpViewController.h"
 
-#import <Parse/PFConstants.h>
-#import <Parse/PFUser.h>
+#import <PFConstants.h>
+#import <PFUser.h>
 
 #import "PFUIAlertView.h"
 #import "PFLocalization.h"

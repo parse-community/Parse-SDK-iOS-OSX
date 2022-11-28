@@ -9,7 +9,7 @@
 
 #import "PFOAuth1FlowDialog.h"
 #import <WebKit/WebKit.h>
-#import <Parse/PFNetworkActivityIndicatorManager.h>
+#import <PFNetworkActivityIndicatorManager.h>
 
 @implementation PFOAuth1FlowDialog
 

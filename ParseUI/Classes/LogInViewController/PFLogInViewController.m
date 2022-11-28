@@ -21,7 +21,7 @@
 
 #import "PFLogInViewController.h"
 
-#import <Parse/PFUser.h>
+#import <PFUser.h>
 
 #import "PFActionButton.h"
 #import "PFUIAlertView.h"

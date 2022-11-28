@@ -16,7 +16,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-#import <Parse/PFConstants.h>
+#import <PFConstants.h>
 
 #import "PFFacebookPrivateUtilities.h"
 

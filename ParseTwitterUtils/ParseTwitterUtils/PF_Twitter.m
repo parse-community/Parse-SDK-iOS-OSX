@@ -17,7 +17,7 @@
 #import <Bolts/BFExecutor.h>
 #import <Bolts/BFTaskCompletionSource.h>
 
-#import <Parse/PFConstants.h>
+#import <PFConstants.h>
 
 #import "PFOAuth1FlowDialog.h"
 #import "PFTwitterAlertView.h"

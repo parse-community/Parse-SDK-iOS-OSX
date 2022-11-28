@@ -23,7 +23,7 @@
 
 #import <Bolts/BFTask.h>
 
-#import <Parse/PFObject.h>
+#import <PFObject.h>
 
 @interface DeletionCollectionViewController() <UIAlertViewDelegate>
 
