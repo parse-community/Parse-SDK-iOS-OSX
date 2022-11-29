@@ -39,42 +39,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             // Enable storing and querying data from Local Datastore.
             // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
-            $0.localDatastoreEnabled = true
+            $0.isLocalDatastoreEnabled = true
         }
-        Parse.initializeWithConfiguration(configuration)
+        Parse.initialize(with: configuration)
 
         PFUser.enableAutomaticUser()
 
         let defaultACL = PFACL()
 
         // If you would like all objects to be private by default, remove this line.
-        defaultACL.publicReadAccess = true
+        defaultACL.hasPublicReadAccess = true
 
-        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
+        PFACL.setDefault(defaultACL, withAccessForCurrentUser: true)
 
-        if application.applicationState != UIApplicationState.Background {
+        if application.applicationState != UIApplication.State.background {
             // Track an app open here if we launch with a push, unless
             // "content_available" was used to trigger a background push (introduced in iOS 7).
             // In that case, we skip tracking here to avoid double counting the app-open.
 
-            let oldPushHandlerOnly = !respondsToSelector(#selector(UIApplicationDelegate.application(_:didReceiveRemoteNotification:fetchCompletionHandler:)))
+            let oldPushHandlerOnly = !responds(to: #selector(UIApplicationDelegate.application(_:didReceiveRemoteNotification:fetchCompletionHandler:)))
             var noPushPayload = false
-            if let options = launchOptions {
-                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil
+            if let options = launchOptions as? [String: Any] {
+                noPushPayload = options[UIApplication.LaunchOptionsKey.remoteNotification.rawValue] != nil
             }
             if oldPushHandlerOnly || noPushPayload {
-                PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+                PFAnalytics.trackAppOpened(launchOptions: launchOptions)
             }
         }
 
         if #available(iOS 8.0, *) {
-            let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
-            let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
+            let types: UIUserNotificationType = [.alert, .badge, .sound]
+            let settings = UIUserNotificationSettings(types: types, categories: nil)
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
         } else {
-            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
-            application.registerForRemoteNotificationTypes(types)
+            let types: UIRemoteNotificationType = [.alert, .badge, .sound]
+            application.registerForRemoteNotifications(matching: types)
         }
 
         return true
@@ -85,11 +85,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--------------------------------------
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        let installation = PFInstallation.currentInstallation()
-        installation?.setDeviceTokenFromData(deviceToken)
+        let installation = PFInstallation.current()
+        installation?.setDeviceTokenFrom(deviceToken as Data)
         installation?.saveInBackground()
 
-        PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
+        PFPush.subscribeToChannel(inBackground: "") { succeeded, error in
             if succeeded {
                 print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n")
             } else {
@@ -107,9 +107,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFPush.handlePush(userInfo)
-        if application.applicationState == UIApplicationState.Inactive {
-            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+        PFPush.handle(userInfo)
+        if application.applicationState == UIApplication.State.inactive {
+            PFAnalytics.trackAppOpened(withRemoteNotificationPayload: userInfo)
         }
     }
 

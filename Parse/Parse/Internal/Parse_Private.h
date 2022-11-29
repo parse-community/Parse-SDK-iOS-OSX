@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse.h>
+#import "Parse.h"
 
 #import "ParseManager.h"
 

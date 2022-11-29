@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PFACL.h>
+#import "PFACL.h"
 
 @class PFUser;
 

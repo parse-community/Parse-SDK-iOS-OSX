@@ -19,7 +19,7 @@
  *
  */
 
-#import <ParseUI/PFQueryTableViewController.h>
+#import "PFQueryTableViewController.h"
 
 @interface SubtitleImageTableViewController : PFQueryTableViewController
 

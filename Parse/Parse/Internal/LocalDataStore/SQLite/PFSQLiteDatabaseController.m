@@ -9,8 +9,13 @@
 
 #import "PFSQLiteDatabaseController.h"
 
+#if __has_include(<Bolts/BFTask.h>)
 #import <Bolts/BFTask.h>
 #import <Bolts/BFTaskCompletionSource.h>
+#else
+#import "BFTask.h"
+#import "BFTaskCompletionSource.h"
+#endif
 
 #import "PFAssert.h"
 #import "PFAsyncTaskQueue.h"

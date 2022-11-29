@@ -11,7 +11,7 @@
 
 #import "PFDataProvider.h"
 
-#import <PFConstants.h>
+#import "PFConstants.h"
 
 @class BFTask<__covariant BFGenericType>;
 

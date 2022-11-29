@@ -35,6 +35,8 @@
 	<string>1.1.1</string>
 	<key>FacebookAppID</key>
 	<string>838719136190681</string>
+	<key>FacebookClientToken</key>
+	<string>62b06f3c87ad00fe78ff947abf1e211b</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

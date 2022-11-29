@@ -13,6 +13,4 @@
 PRODUCT_NAME = ParseFacebookUtilsV4
 PRODUCT_BUNDLE_IDENTIFIER = com.parse.facebookutils-tvos
 
-INFOPLIST_FILE = $(SRCROOT)/Resources/Info-tvOS.plist
-
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(SRCROOT)/../Carthage/Build/tvOS
+INFOPLIST_FILE = $(SRCROOT)/ParseFacebookUtils/Resources/Info-tvOS.plist

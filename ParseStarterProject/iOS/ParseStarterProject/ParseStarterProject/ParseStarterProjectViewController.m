@@ -9,7 +9,7 @@
 
 #import "ParseStarterProjectViewController.h"
 
-#import <Parse.h>
+#import <Parse/Parse.h>
 
 @implementation ParseStarterProjectViewController
 

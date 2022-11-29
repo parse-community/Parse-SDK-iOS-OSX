@@ -13,7 +13,7 @@
 PRODUCT_NAME = ParseTwitterUtils
 PRODUCT_BUNDLE_IDENTIFIER = com.parse.twitterutils.ios
 
-INFOPLIST_FILE = $(SRCROOT)/Resources/Info.plist
+INFOPLIST_FILE = $(SRCROOT)/ParseTwitterUtils/Resources/Info-iOS.plist
 
 // TODO: (nlutsenko) Cleanup source code so we can safely ignore local variable shadow warnings.
 GCC_WARN_SHADOW = NO

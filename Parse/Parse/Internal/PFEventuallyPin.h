@@ -9,9 +9,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PFConstants.h>
-#import <PFObject.h>
-#import <PFSubclassing.h>
+#import "PFConstants.h"
+#import "PFObject.h"
+#import "PFSubclassing.h"
 
 @class BFTask<__covariant BFGenericType>;
 @protocol PFNetworkCommand;

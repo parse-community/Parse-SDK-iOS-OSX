@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PFPolygon.h>
+#import "PFPolygon.h"
 
 @class PFPolygon;
 

@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse.h>
+#import "Parse.h"
 
 #import "PFAssert.h"
 #import "PFCommandCache.h"

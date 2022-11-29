@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PFConstants.h>
+#import "PFConstants.h"
 
 PF_WATCH_UNAVAILABLE_WARNING
 

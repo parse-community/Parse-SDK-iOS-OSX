@@ -9,7 +9,7 @@
 
 @import Foundation;
 
-#import <PFConstants.h>
+#import "PFConstants.h"
 
 #import "PFTestSwizzledMethod.h"
 

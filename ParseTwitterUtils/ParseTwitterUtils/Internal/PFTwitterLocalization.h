@@ -10,7 +10,18 @@
 #ifndef PFTwitterLocalization_h
 #define PFTwitterLocalization_h
 
+#import <Foundation/Foundation.h>
+
 #define PFTWLocalizedString(key, comment) \
-[[NSBundle bundleForClass:[self class]] localizedStringForKey:key value:nil table:@"ParseTwitterUtils"]
+[PFTwitterLocalization localizedStringForKey:key]
 
 #endif
+
+/**
+ Used by the above macro to fetch a localized string
+ */
+@interface PFTwitterLocalization : NSObject
+
++ (NSString *)localizedStringForKey:key;
+
+@end

@@ -9,8 +9,13 @@
 
 #import "PFFileController.h"
 
+#if __has_include(<Bolts/BFCancellationToken.h>)
 #import <Bolts/BFCancellationToken.h>
 #import <Bolts/BFTaskCompletionSource.h>
+#else
+#import "BFCancellationToken.h"
+#import "BFTaskCompletionSource.h"
+#endif
 
 #import "BFTask+Private.h"
 #import "PFFileDataStream.h"

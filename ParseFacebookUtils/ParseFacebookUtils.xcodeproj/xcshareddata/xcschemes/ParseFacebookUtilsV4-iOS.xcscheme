@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1130"
+   LastUpgradeVersion = "1410"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -20,63 +20,14 @@
                ReferencedContainer = "container:ParseFacebookUtils.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F535C73A1B54B4A800A7D81E"
-               BuildableName = "ParseFacebookTestApplicationV4.app"
-               BlueprintName = "ParseFacebookTestApplicationV4"
-               ReferencedContainer = "container:ParseFacebookUtils.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "81CB98C51AB7905D00136FA5"
-               BuildableName = "ParseFacebookUtilsV4-UnitTests.xctest"
-               BlueprintName = "ParseFacebookUtilsV4-UnitTests"
-               ReferencedContainer = "container:ParseFacebookUtils.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      disableMainThreadChecker = "YES"
-      codeCoverageEnabled = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D2AAC07D0554694100DB518D"
-            BuildableName = "ParseFacebookUtilsV4.framework"
-            BlueprintName = "ParseFacebookUtilsV4-iOS"
-            ReferencedContainer = "container:ParseFacebookUtils.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "81CB98C51AB7905D00136FA5"
-               BuildableName = "ParseFacebookUtilsV4-UnitTests.xctest"
-               BlueprintName = "ParseFacebookUtilsV4-UnitTests"
-               ReferencedContainer = "container:ParseFacebookUtils.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -89,15 +40,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D2AAC07D0554694100DB518D"
-            BuildableName = "ParseFacebookUtilsV4.framework"
-            BlueprintName = "ParseFacebookUtilsV4-iOS"
-            ReferencedContainer = "container:ParseFacebookUtils.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

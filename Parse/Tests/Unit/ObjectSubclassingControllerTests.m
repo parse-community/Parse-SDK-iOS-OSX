@@ -7,9 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <PFObject+Subclass.h>
-#import <PFRelation.h>
-#import <PFSubclassing.h>
+#import "PFObject+Subclass.h"
+#import "PFRelation.h"
+#import "PFSubclassing.h"
 
 #import "PFObjectPrivate.h"
 #import "PFObjectSubclassingController.h"

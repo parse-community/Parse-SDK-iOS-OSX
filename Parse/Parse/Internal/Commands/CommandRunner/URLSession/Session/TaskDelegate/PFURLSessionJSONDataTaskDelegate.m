@@ -9,9 +9,15 @@
 
 #import "PFURLSessionJSONDataTaskDelegate.h"
 
+#if __has_include(<Bolts/BFCancellationToken.h>)
 #import <Bolts/BFCancellationToken.h>
 #import <Bolts/BFTask.h>
 #import <Bolts/BFTaskCompletionSource.h>
+#else
+#import "BFCancellationToken.h"
+#import "BFTask.h"
+#import "BFTaskCompletionSource.h"
+#endif
 
 #import "PFCommandResult.h"
 #import "PFConstants.h"

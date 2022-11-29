@@ -10,8 +10,13 @@
 #import "PFMemoryEventuallyQueue.h"
 #import "PFEventuallyQueue_Private.h"
 
+#if __has_include(<Bolts/BFTask.h>)
 #import <Bolts/BFTask.h>
 #import <Bolts/BFExecutor.h>
+#else
+#import "BFTask.h"
+#import "BFExecutor.h"
+#endif
 
 @interface PFMemoryEventuallyQueue () <PFEventuallyQueueSubclass> {
     dispatch_queue_t _dataAccessQueue;

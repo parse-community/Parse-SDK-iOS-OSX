@@ -9,8 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PFConstants.h>
-#import <PFUserAuthenticationDelegate.h>
+#import "PFConstants.h"
+#import "PFUserAuthenticationDelegate.h"
 
 #import "PFCoreDataProvider.h"
 

@@ -11,8 +11,8 @@
 
 #import <objc/runtime.h>
 
-#import <PFObject.h>
-#import <PFSubclassing.h>
+#import "PFObject.h"
+#import "PFSubclassing.h"
 
 #import "PFAssert.h"
 #import "PFMacros.h"
