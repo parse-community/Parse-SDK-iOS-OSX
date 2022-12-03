@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "81CB98C51AB7905D00136FA5"
+               BuildableName = "ParseFacebookUtilsiOS-UnitTests.xctest"
+               BlueprintName = "ParseFacebookUtils-UnitTests"
+               ReferencedContainer = "container:../ParseFacebookUtilsiOS/ParseFacebookUtilsiOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
