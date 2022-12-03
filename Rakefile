@@ -558,6 +558,7 @@ namespace :test do
 
   namespace :parseui do
     task :all do
+      Rake::Task['test:parseui:build_carthage'].invoke
       Rake::Task['test:parseui:framework'].invoke
       Rake::Task['test:parseui:demo_objc'].invoke
     end
@@ -579,6 +580,13 @@ namespace :test do
       result = task.execute
       unless result
         puts 'Failed to build ParseUI'
+        exit(1)
+      end
+    end
+
+    task :build_carthage do |_|
+      if !system('carthage update facebook-ios-sdk --use-xcframeworks')
+        puts 'Carthage Tests Failed!'
         exit(1)
       end
     end
