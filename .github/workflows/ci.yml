@@ -79,6 +79,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-gem-
     - name: Submodules and Bundle Install
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git submodule update --init --recursive
         sudo gem install bundler
