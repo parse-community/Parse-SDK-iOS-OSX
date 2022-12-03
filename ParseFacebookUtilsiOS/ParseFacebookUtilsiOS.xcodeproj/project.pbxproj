@@ -25,9 +25,7 @@
 		7C5F7E93292114350035B219 /* PFFacebookMobileAuthenticationProvider_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CACE629291EA75A003359B5 /* PFFacebookMobileAuthenticationProvider_Private.h */; };
 		7C5F7E94292114410035B219 /* PFFacebookUtilsDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CACE623291EA75A003359B5 /* PFFacebookUtilsDevice.m */; };
 		7C5F7E95292114410035B219 /* PFFacebookMobileAuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CACE627291EA75A003359B5 /* PFFacebookMobileAuthenticationProvider.m */; };
-		7C5F7E98292116A80035B219 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5F7E97292116A80035B219 /* File.swift */; };
 		7C5F7ED729211E120035B219 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5F7EAC292119EA0035B219 /* OCMock.framework */; };
-		7C5F7ED829211E390035B219 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5F7E97292116A80035B219 /* File.swift */; };
 		7C5F7EDA29211E5E0035B219 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5F7ED929211E5E0035B219 /* libsqlite3.tbd */; };
 		7C5F7EDC29211E640035B219 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5F7EDB29211E640035B219 /* libc++.tbd */; };
 		7C5F7EDE29211E6A0035B219 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5F7EDD29211E6A0035B219 /* SystemConfiguration.framework */; };
@@ -179,7 +177,6 @@
 		7C5F7E2C29210CF30035B219 /* ParseFacebookTestApplication.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ParseFacebookTestApplication.xcconfig; sourceTree = "<group>"; };
 		7C5F7E2D29210CF30035B219 /* ParseFacebookUtils-UnitTests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseFacebookUtils-UnitTests.xcconfig"; sourceTree = "<group>"; };
 		7C5F7E3929210E580035B219 /* ParseFacebookUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ParseFacebookUtils.xcodeproj; path = ../ParseFacebookUtils/ParseFacebookUtils.xcodeproj; sourceTree = "<group>"; };
-		7C5F7E97292116A80035B219 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		7C5F7E99292119EA0035B219 /* OCMock.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OCMock.xcodeproj; path = ../Carthage/Checkouts/OCMock/Source/OCMock.xcodeproj; sourceTree = "<group>"; };
 		7C5F7ED929211E5E0035B219 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		7C5F7EDB29211E640035B219 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -397,7 +394,6 @@
 		7C5F7E96292116960035B219 /* exclude */ = {
 			isa = PBXGroup;
 			children = (
-				7C5F7E97292116A80035B219 /* File.swift */,
 			);
 			path = exclude;
 			sourceTree = "<group>";
@@ -818,7 +814,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C5F7E94292114410035B219 /* PFFacebookUtilsDevice.m in Sources */,
-				7C5F7E98292116A80035B219 /* File.swift in Sources */,
 				7C5F7E95292114410035B219 /* PFFacebookMobileAuthenticationProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -828,7 +823,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C5F7E2929210C9C0035B219 /* FacebookAuthenticationProviderTests.m in Sources */,
-				7C5F7ED829211E390035B219 /* File.swift in Sources */,
 				7C5F7E2A29210CA00035B219 /* PFFacebookTestCase.m in Sources */,
 				7C5F7E2829210C9C0035B219 /* FacebookUtilsTests.m in Sources */,
 			);
