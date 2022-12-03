@@ -84,6 +84,7 @@ jobs:
         sudo gem install bundler
         bundle config set path 'vendor/bundle'
         bundle install
+        carthage update --use-xcframeworks
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:facebook_utils:ios
       env:
