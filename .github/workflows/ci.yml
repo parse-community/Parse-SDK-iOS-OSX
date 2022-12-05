@@ -68,6 +68,8 @@ jobs:
   facebook_utils:
     needs: parseui
     runs-on: macos-latest
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v2
     - name: Cache Gems
@@ -78,15 +80,13 @@ jobs:
         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gem-
-    - name: Submodules and Bundle Install
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Submodules and Bundle Install          
       run: |
         git submodule update --init --recursive
         sudo gem install bundler
         bundle config set path 'vendor/bundle'
         bundle install
-        carthage update --use-xcframeworks
+        carthage bootstrap --use-xcframeworks
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:facebook_utils:ios
       env:
@@ -122,6 +122,8 @@ jobs:
 
   parseui:
     runs-on: macos-latest
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v2
     - name: Cache Gems
@@ -138,7 +140,7 @@ jobs:
         sudo gem install bundler
         bundle config set path 'vendor/bundle'
         bundle install
-        carthage update --use-xcframeworks
+        carthage bootstrap --use-xcframeworks
     - name: Build-Test
       env:
         DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
