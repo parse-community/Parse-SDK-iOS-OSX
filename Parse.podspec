@@ -80,7 +80,14 @@ Pod::Spec.new do |s|
 
     s.libraries        = 'z', 'sqlite3'
 
-    s.dependency 'Bolts/Tasks', '1.9.2'
+    s.dependency 'Bolts/Tasks', '1.9.1'
+    s.user_target_xcconfig = {
+        'GENERATE_INFOPLIST_FILE' => 'YES'
+    }
+
+    s.pod_target_xcconfig = {
+        'GENERATE_INFOPLIST_FILE' => 'YES'
+    }
   end
 
   s.subspec 'FacebookUtils' do |s|
@@ -102,9 +109,16 @@ Pod::Spec.new do |s|
     s.libraries        = 'z', 'sqlite3'
 
     s.dependency 'Parse/Core'
-    s.dependency 'Bolts/Tasks', '1.9.2'
+    s.dependency 'Bolts/Tasks', '1.9.1'
     s.dependency 'FBSDKCoreKit', '= 15.1.0'
     s.dependency 'FBSDKLoginKit', '= 15.1.0'
+    s.user_target_xcconfig = {
+        'GENERATE_INFOPLIST_FILE' => 'YES'
+    }
+
+    s.pod_target_xcconfig = {
+        'GENERATE_INFOPLIST_FILE' => 'YES'
+    }
   end
 
   s.subspec 'FacebookUtils-iOS' do |s|
@@ -128,9 +142,16 @@ Pod::Spec.new do |s|
 
     s.dependency 'Parse/Core'
     s.dependency 'Parse/FacebookUtils'
-    s.dependency 'Bolts/Tasks', '1.9.2'
+    s.dependency 'Bolts/Tasks', '1.9.1'
     s.dependency 'FBSDKCoreKit', '= 15.1.0'
     s.dependency 'FBSDKLoginKit', '= 15.1.0'
+    s.user_target_xcconfig = {
+        'GENERATE_INFOPLIST_FILE' => 'YES'
+    }
+
+    s.pod_target_xcconfig = {
+        'GENERATE_INFOPLIST_FILE' => 'YES'
+    }
   end
 
   s.subspec 'FacebookUtils-tvOS' do |s|
@@ -152,9 +173,16 @@ Pod::Spec.new do |s|
 
     s.dependency 'Parse/Core'
     s.dependency 'Parse/FacebookUtils'
-    s.dependency 'Bolts/Tasks', '1.9.2'
+    s.dependency 'Bolts/Tasks', '1.9.1'
     s.dependency 'FBSDKTVOSKit', '= 15.1.0'
     s.dependency 'FBSDKShareKit', '= 15.1.0'
+    s.user_target_xcconfig = {
+        'GENERATE_INFOPLIST_FILE' => 'YES'
+    }
+
+    s.pod_target_xcconfig = {
+        'GENERATE_INFOPLIST_FILE' => 'YES'
+    }
   end
 
   s.subspec 'TwitterUtils' do |s|
@@ -176,6 +204,13 @@ Pod::Spec.new do |s|
                         'Social'
     s.libraries        = 'z', 'sqlite3'
     s.dependency 'Parse/Core'
+    s.user_target_xcconfig = {
+        'GENERATE_INFOPLIST_FILE' => 'YES'
+    }
+
+    s.pod_target_xcconfig = {
+        'GENERATE_INFOPLIST_FILE' => 'YES'
+    }
   end
 
   s.subspec 'UI' do |s|
@@ -193,6 +228,13 @@ Pod::Spec.new do |s|
                             'CoreGraphics',
                             'QuartzCore'
     s.dependency 'Parse/Core'
+    s.user_target_xcconfig = {
+        'GENERATE_INFOPLIST_FILE' => 'YES'
+    }
+
+    s.pod_target_xcconfig = {
+        'GENERATE_INFOPLIST_FILE' => 'YES'
+    }
   end
 
   # prepare command for parseUI
