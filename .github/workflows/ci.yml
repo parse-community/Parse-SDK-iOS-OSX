@@ -159,6 +159,8 @@ jobs:
 
   assets:
     runs-on: macos-latest
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Cache Gems
@@ -175,6 +177,7 @@ jobs:
           sudo gem install bundler
           bundle config set path 'vendor/bundle'
           bundle install
+          carthage bootstrap --use-xcframeworks
       - name: Build Release
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
         env:
