@@ -295,7 +295,6 @@ namespace :package do
 
   task :prepare do
     `rm -rf #{build_folder} && mkdir -p #{build_folder}`
-    `rm -rf #{bolts_build_folder} && mkdir -p #{bolts_build_folder}`
     `#{bolts_folder}/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos`
   end
 
