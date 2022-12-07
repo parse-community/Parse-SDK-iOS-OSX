@@ -23,18 +23,18 @@ module Constants
 
   script_folder = File.expand_path(File.dirname(__FILE__))
 
-  PARSE_CONSTANTS_HEADER = File.join(script_folder, 'Parse', 'Parse', 'PFConstants.h')
+  PARSE_CONSTANTS_HEADER = File.join(script_folder, 'Parse', 'Parse', 'Source/PFConstants.h')
   PARSE_PODSPEC = File.join(script_folder, 'Parse.podspec')
 
   PLISTS = [
-    File.join(script_folder, 'Parse','Parse', 'Resources', 'Parse-iOS.Info.plist'),
-    File.join(script_folder, 'Parse','Parse', 'Resources', 'Parse-OSX.Info.plist'),
-    File.join(script_folder, 'Parse','Parse', 'Resources', 'Parse-watchOS.Info.plist'),
-    File.join(script_folder, 'Parse','Parse', 'Resources', 'Parse-tvOS.Info.plist'),
-    File.join(script_folder, 'ParseFacebookUtils', 'Resources', 'Info-iOS.plist'),
-    File.join(script_folder, 'ParseFacebookUtils', 'Resources', 'Info-tvOS.plist'),
-    File.join(script_folder, 'ParseTwitterUtils', 'Resources', 'Info.plist'),
-    File.join(script_folder, 'ParseUI', 'Resources', 'Info.plist'),
+    File.join(script_folder, 'Parse', 'Parse', 'Resources', 'Parse-iOS.Info.plist'),
+    File.join(script_folder, 'Parse', 'Parse', 'Resources', 'Parse-OSX.Info.plist'),
+    File.join(script_folder, 'Parse', 'Parse', 'Resources', 'Parse-watchOS.Info.plist'),
+    File.join(script_folder, 'Parse', 'Parse', 'Resources', 'Parse-tvOS.Info.plist'),
+    File.join(script_folder, 'ParseFacebookUtils', 'ParseFacebookUtils', 'Resources', 'Info-iOS.plist'),
+    File.join(script_folder, 'ParseFacebookUtils', 'ParseFacebookUtils', 'Resources', 'Info-tvOS.plist'),
+    File.join(script_folder, 'ParseTwitterUtils', 'ParseTwitterUtils', 'Resources', 'Info-iOS.plist'),
+    File.join(script_folder, 'ParseUI', 'ParseUI', 'Resources', 'Info-iOS.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
