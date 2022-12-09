@@ -34,9 +34,9 @@
 	<key>CFBundleVersion</key>
 	<string>1.1.1</string>
 	<key>FacebookAppID</key>
-	<string>838719136190681</string>
+	<string>1515945585583756</string>
 	<key>FacebookClientToken</key>
-	<string>62b06f3c87ad00fe78ff947abf1e211b</string>
+	<string>5c2983cb4d07b0693935a24faeb6fe35</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
