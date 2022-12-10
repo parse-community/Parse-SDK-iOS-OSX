@@ -88,6 +88,8 @@ Pod::Spec.new do |s|
     s.pod_target_xcconfig = {
         'GENERATE_INFOPLIST_FILE' => 'YES'
     }
+    # s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'x86_64 armv7 arm64' }
+    # s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'YES' }
   end
 
   s.subspec 'FacebookUtils' do |s|
@@ -112,6 +114,7 @@ Pod::Spec.new do |s|
     s.dependency 'Bolts/Tasks', '1.9.1'
     s.dependency 'FBSDKCoreKit', '= 15.1.0'
     s.dependency 'FBSDKLoginKit', '= 15.1.0'
+    s.dependency 'FBSDKCoreKit_Basics', '= 15.1.0'
     s.user_target_xcconfig = {
         'GENERATE_INFOPLIST_FILE' => 'YES'
     }
@@ -119,6 +122,9 @@ Pod::Spec.new do |s|
     s.pod_target_xcconfig = {
         'GENERATE_INFOPLIST_FILE' => 'YES'
     }
+    s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'x86_64 armv7 arm64' }
+    # s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'YES' }
+    # s.ios.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'iOS-arm64' }
   end
 
   s.subspec 'FacebookUtils-iOS' do |s|
@@ -145,6 +151,7 @@ Pod::Spec.new do |s|
     s.dependency 'Bolts/Tasks', '1.9.1'
     s.dependency 'FBSDKCoreKit', '= 15.1.0'
     s.dependency 'FBSDKLoginKit', '= 15.1.0'
+    s.dependency 'FBSDKCoreKit_Basics', '= 15.1.0'
     s.user_target_xcconfig = {
         'GENERATE_INFOPLIST_FILE' => 'YES'
     }
@@ -152,6 +159,9 @@ Pod::Spec.new do |s|
     s.pod_target_xcconfig = {
         'GENERATE_INFOPLIST_FILE' => 'YES'
     }
+    s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'x86_64 armv7 arm64' }
+    # s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'YES' }
+    # s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   end
 
   s.subspec 'FacebookUtils-tvOS' do |s|
@@ -176,6 +186,7 @@ Pod::Spec.new do |s|
     s.dependency 'Bolts/Tasks', '1.9.1'
     s.dependency 'FBSDKTVOSKit', '= 15.1.0'
     s.dependency 'FBSDKShareKit', '= 15.1.0'
+    s.dependency 'FBSDKCoreKit_Basics', '= 15.1.0'
     s.user_target_xcconfig = {
         'GENERATE_INFOPLIST_FILE' => 'YES'
     }
@@ -183,6 +194,9 @@ Pod::Spec.new do |s|
     s.pod_target_xcconfig = {
         'GENERATE_INFOPLIST_FILE' => 'YES'
     }
+    s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'x86_64 armv7 arm64' }
+    # s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'YES' }
+    # s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   end
 
   s.subspec 'TwitterUtils' do |s|
@@ -211,6 +225,8 @@ Pod::Spec.new do |s|
     s.pod_target_xcconfig = {
         'GENERATE_INFOPLIST_FILE' => 'YES'
     }
+
+    s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'YES' }
   end
 
   s.subspec 'UI' do |s|
@@ -235,6 +251,8 @@ Pod::Spec.new do |s|
     s.pod_target_xcconfig = {
         'GENERATE_INFOPLIST_FILE' => 'YES'
     }
+
+    # s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'YES' }
   end
 
   # prepare command for parseUI
