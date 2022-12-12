@@ -153,7 +153,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: CocoaPods
-        run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
+        run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose --skip-import-validation
         env:
           DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
 

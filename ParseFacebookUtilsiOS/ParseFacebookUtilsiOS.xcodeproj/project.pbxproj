@@ -136,6 +136,76 @@
 			remoteGlobalIDString = 8DE97CA022B43EE60098C63F;
 			remoteInfo = "OCMock watchOS";
 		};
+		841999DE29475911000D241B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841999CF29475911000D241B /* Parse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81C3821C19CCA89E0066284A;
+			remoteInfo = "Parse-iOS";
+		};
+		841999E029475911000D241B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841999CF29475911000D241B /* Parse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81C5845D1C3B0A98000063C6;
+			remoteInfo = "Parse-iOS-Dynamic";
+		};
+		841999E229475911000D241B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841999CF29475911000D241B /* Parse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 816F449B1A8E8933009CDB32;
+			remoteInfo = "ParseUnitTests-iOS";
+		};
+		841999E429475911000D241B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841999CF29475911000D241B /* Parse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 97010FAC1630B18F00AB761E;
+			remoteInfo = "Parse-macOS";
+		};
+		841999E629475911000D241B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841999CF29475911000D241B /* Parse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81C09F861AF97A490043B49C;
+			remoteInfo = "ParseUnitTests-macOS";
+		};
+		841999E829475911000D241B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841999CF29475911000D241B /* Parse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 815F24151BD04D150054659F;
+			remoteInfo = "Parse-tvOS";
+		};
+		841999EA29475911000D241B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841999CF29475911000D241B /* Parse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81C585BF1C3B0AA1000063C6;
+			remoteInfo = "Parse-tvOS-Dynamic";
+		};
+		841999EC29475911000D241B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841999CF29475911000D241B /* Parse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 810156691BB3832700D7C7BD;
+			remoteInfo = "Parse-watchOS";
+		};
+		841999EE29475911000D241B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841999CF29475911000D241B /* Parse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81C5870F1C3B0AA9000063C6;
+			remoteInfo = "Parse-watchOS-Dynamic";
+		};
+		841999F029475911000D241B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841999CF29475911000D241B /* Parse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4AE33A0B1F5451AD0088DCA0;
+			remoteInfo = "ParseUnitTests-iOS-host";
+		};
 		B9A7EE7323C49272003E606E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -213,6 +283,9 @@
 		8121EAAC1D39862400AC0B02 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		8121EAAD1D39862400AC0B02 /* Warnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
 		81CB98C61AB7905D00136FA5 /* ParseFacebookUtilsiOS-UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ParseFacebookUtilsiOS-UnitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		841999BC29475725000D241B /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		841999C729475730000D241B /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		841999CF29475911000D241B /* Parse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parse.xcodeproj; path = "/Users/admin/Documents/Projects/Parse-SDK-iOS-OSX/Parse/Parse.xcodeproj"; sourceTree = "<absolute>"; };
 		D2AAC07E0554694100DB518D /* ParseFacebookUtilsiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseFacebookUtilsiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F535C73B1B54B4A800A7D81E /* ParseFacebookTestApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseFacebookTestApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -285,6 +358,7 @@
 				7C5F7E1929210C970035B219 /* Tests */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				841999CF29475911000D241B /* Parse.xcodeproj */,
 			);
 			indentWidth = 4;
 			name = Breakpad;
@@ -293,6 +367,8 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				841999C729475730000D241B /* Parse.framework */,
+				841999BC29475725000D241B /* Parse.framework */,
 				7C77D0522929157600C4D90E /* Accelerate.framework */,
 				7C77D0502929156900C4D90E /* libc++.tbd */,
 				7C5F7EE129211E870035B219 /* Accelerate.framework */,
@@ -504,6 +580,23 @@
 			path = Project;
 			sourceTree = "<group>";
 		};
+		841999D029475911000D241B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				841999DF29475911000D241B /* Parse.framework */,
+				841999E129475911000D241B /* Parse.framework */,
+				841999E329475911000D241B /* ParseUnitTests-iOS.xctest */,
+				841999E529475911000D241B /* Parse.framework */,
+				841999E729475911000D241B /* ParseUnitTests-macOS.xctest */,
+				841999E929475911000D241B /* Parse.framework */,
+				841999EB29475911000D241B /* Parse.framework */,
+				841999ED29475911000D241B /* Parse.framework */,
+				841999EF29475911000D241B /* Parse.framework */,
+				841999F129475911000D241B /* ParseUnitTests-iOS-host.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F52CD63A1B58383C0051AB86 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
@@ -683,6 +776,10 @@
 					ProjectRef = 7C5F7E99292119EA0035B219 /* OCMock.xcodeproj */;
 				},
 				{
+					ProductGroup = 841999D029475911000D241B /* Products */;
+					ProjectRef = 841999CF29475911000D241B /* Parse.xcodeproj */;
+				},
+				{
 					ProductGroup = 7C5F7E3A29210E580035B219 /* Products */;
 					ProjectRef = 7C5F7E3929210E580035B219 /* ParseFacebookUtils.xcodeproj */;
 				},
@@ -773,6 +870,76 @@
 			fileType = wrapper.framework;
 			path = OCMock.framework;
 			remoteRef = 7C5F7EAF292119EA0035B219 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		841999DF29475911000D241B /* Parse.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Parse.framework;
+			remoteRef = 841999DE29475911000D241B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		841999E129475911000D241B /* Parse.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Parse.framework;
+			remoteRef = 841999E029475911000D241B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		841999E329475911000D241B /* ParseUnitTests-iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ParseUnitTests-iOS.xctest";
+			remoteRef = 841999E229475911000D241B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		841999E529475911000D241B /* Parse.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Parse.framework;
+			remoteRef = 841999E429475911000D241B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		841999E729475911000D241B /* ParseUnitTests-macOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ParseUnitTests-macOS.xctest";
+			remoteRef = 841999E629475911000D241B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		841999E929475911000D241B /* Parse.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Parse.framework;
+			remoteRef = 841999E829475911000D241B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		841999EB29475911000D241B /* Parse.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Parse.framework;
+			remoteRef = 841999EA29475911000D241B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		841999ED29475911000D241B /* Parse.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Parse.framework;
+			remoteRef = 841999EC29475911000D241B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		841999EF29475911000D241B /* Parse.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Parse.framework;
+			remoteRef = 841999EE29475911000D241B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		841999F129475911000D241B /* ParseUnitTests-iOS-host.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "ParseUnitTests-iOS-host.app";
+			remoteRef = 841999F029475911000D241B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
