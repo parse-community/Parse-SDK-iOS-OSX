@@ -122,7 +122,6 @@ Pod::Spec.new do |s|
         'GENERATE_INFOPLIST_FILE' => 'YES'
     }
     s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=*simulator*]' => 'x86_64 armv7 arm64' }
-    # s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'x86_64 armv7 arm64' }
   end
 
   s.subspec 'FacebookUtils-iOS' do |s|
@@ -159,7 +158,6 @@ Pod::Spec.new do |s|
         'GENERATE_INFOPLIST_FILE' => 'YES'
     }
     s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'x86_64 armv7 arm64' }
-    # s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'x86_64 armv7 arm64' }
   end
 
   s.subspec 'FacebookUtils-tvOS' do |s|
@@ -192,7 +190,6 @@ Pod::Spec.new do |s|
         'GENERATE_INFOPLIST_FILE' => 'YES'
     }
     s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=*simulator*]' => 'x86_64 armv7 arm64' }
-    # s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'x86_64 armv7 arm64' }
   end
 
   s.subspec 'TwitterUtils' do |s|

@@ -346,23 +346,23 @@ namespace :package do
                  [watchos_framework_path, bolts_path],
                  package_watchos_name)
 
-    Rake::Task['build:facebook_utils:ios'].invoke
-    ios_fb_utils_framework_path = File.join(build_folder, 'iOS', 'ParseFacebookUtilsV4.framework')
-    make_package(release_folder, [ios_fb_utils_framework_path], 'ParseFacebookUtils-iOS.zip')
+    # Rake::Task['build:facebook_utils:ios'].invoke
+    # ios_fb_utils_framework_path = File.join(build_folder, 'iOS', 'ParseFacebookUtilsV4.framework')
+    # make_package(release_folder, [ios_fb_utils_framework_path], 'ParseFacebookUtils-iOS.zip')
 
-    Rake::Task['build:twitter_utils:ios'].invoke
-    ios_tw_utils_framework_path = File.join(build_folder, 'iOS', 'ParseTwitterUtils.framework')
-    make_package(release_folder, [ios_tw_utils_framework_path], 'ParseTwitterUtils-iOS.zip')
+    # Rake::Task['build:twitter_utils:ios'].invoke
+    # ios_tw_utils_framework_path = File.join(build_folder, 'iOS', 'ParseTwitterUtils.framework')
+    # make_package(release_folder, [ios_tw_utils_framework_path], 'ParseTwitterUtils-iOS.zip')
 
-    Rake::Task['build:facebook_utils:tvos'].invoke
-    tvos_fb_utils_framework_path = File.join(build_folder, 'tvOS', 'ParseFacebookUtilsV4.framework')
-    make_package(release_folder, [tvos_fb_utils_framework_path], 'ParseFacebookUtils-tvOS.zip')
+    # Rake::Task['build:facebook_utils:tvos'].invoke
+    # tvos_fb_utils_framework_path = File.join(build_folder, 'tvOS', 'ParseFacebookUtilsV4.framework')
+    # make_package(release_folder, [tvos_fb_utils_framework_path], 'ParseFacebookUtils-tvOS.zip')
 
-    Rake::Task['build:parseui:framework'].invoke
-    parseui_framework_path = File.join(build_folder, 'iOS', 'ParseUI.framework')
-    make_package(release_folder,
-                [parseui_framework_path],
-                package_parseui_name)
+    # Rake::Task['build:parseui:framework'].invoke
+    # parseui_framework_path = File.join(build_folder, 'iOS', 'ParseUI.framework')
+    # make_package(release_folder,
+    #             [parseui_framework_path],
+    #             package_parseui_name)
   end
 
   desc 'Build and package all starter projects for the release'
