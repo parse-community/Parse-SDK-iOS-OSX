@@ -222,6 +222,10 @@
 		81CB98D31AB7906D00136FA5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Resources/Info.plist; sourceTree = "<group>"; };
 		81ECACD71D1E14E000FA7673 /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseTwitterUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ECACD91D1E14F300FA7673 /* ParseTwitterUtils-iOS-Dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseTwitterUtils-iOS-Dynamic.xcconfig"; sourceTree = "<group>"; };
+		848E11B22959EF2100BA2457 /* FBAEMKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBAEMKit.xcframework; path = "/Users/admin/Documents/Projects/Parse-SDK-iOS-OSX/ParseFacebookUtils/../Carthage/Build/FBAEMKit.xcframework"; sourceTree = "<absolute>"; };
+		848E11B42959EF2100BA2457 /* FBSDKCoreKit_Basics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKCoreKit_Basics.xcframework; path = "/Users/admin/Documents/Projects/Parse-SDK-iOS-OSX/ParseFacebookUtils/../Carthage/Build/FBSDKCoreKit_Basics.xcframework"; sourceTree = "<absolute>"; };
+		848E11B62959EF2100BA2457 /* FBSDKCoreKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKCoreKit.xcframework; path = "/Users/admin/Documents/Projects/Parse-SDK-iOS-OSX/ParseFacebookUtils/../Carthage/Build/FBSDKCoreKit.xcframework"; sourceTree = "<absolute>"; };
+		848E11B82959EF2100BA2457 /* FBSDKLoginKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKLoginKit.xcframework; path = "/Users/admin/Documents/Projects/Parse-SDK-iOS-OSX/ParseFacebookUtils/../Carthage/Build/FBSDKLoginKit.xcframework"; sourceTree = "<absolute>"; };
 		B9783172240D14A50049C02B /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B99F4FFE2444B5B00061A6F5 /* ParseTwitterTestApplication.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ParseTwitterTestApplication.entitlements; sourceTree = "<group>"; };
 		B9A7EEC123C49D94003E606E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -297,6 +301,10 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				848E11B22959EF2100BA2457 /* FBAEMKit.xcframework */,
+				848E11B42959EF2100BA2457 /* FBSDKCoreKit_Basics.xcframework */,
+				848E11B62959EF2100BA2457 /* FBSDKCoreKit.xcframework */,
+				848E11B82959EF2100BA2457 /* FBSDKLoginKit.xcframework */,
 				B9783172240D14A50049C02B /* OCMock.framework */,
 				B9A7EEC123C49D94003E606E /* CoreGraphics.framework */,
 				4A13522820282037000F5FD5 /* Bolts.framework */,
@@ -952,6 +960,7 @@
 			baseConfigurationReference = F51535531B57453700C49F56 /* ParseTwitterUtils-iOS.xcconfig */;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1046,6 +1055,7 @@
 			buildSettings = {
 				CLANG_MODULES_AUTOLINK = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
