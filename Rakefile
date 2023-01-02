@@ -721,12 +721,4 @@ namespace :test do
       end
     end
   end
-
-  desc 'Run Carthage Build'
-  task :carthage do |_|
-    if !system('carthage build --no-skip-current --use-xcframeworks')
-      puts 'Carthage Tests Failed!'
-      exit(1)
-    end
-  end
 end
