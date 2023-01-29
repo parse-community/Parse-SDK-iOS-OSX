@@ -13,7 +13,7 @@ jobs:
     if: github.event.inputs.tag != ''
     runs-on: macos-11
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
