@@ -12,7 +12,7 @@
 [![auto-release](https://img.shields.io/badge/%F0%9F%9A%80-auto--release-9e34eb.svg)](https://github.com/parse-community/Parse-SDK-iOS-OSX/releases)
 
 ![Platforms](http://img.shields.io/cocoapods/p/Parse.svg?style=flat)
-[![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/carthage/carthage)
+![SPM](https://img.shields.io/badge/Swift_Package_Manager-compatible-green?style=flat)
 [![Pod](https://img.shields.io/cocoapods/v/Parse.svg)](https://cocoapods.org/pods/Parse)
 
 [![Backers on Open Collective](https://opencollective.com/parse-server/backers/badge.svg)][open-collective-link]
@@ -29,8 +29,7 @@ A library that gives you access to the powerful Parse Server backend from your i
 
 - [Getting Started](#getting-started)
   - [Other Installation Options](#other-installation-options)
-    - [CocoaPods](#cocoapods)
-    - [Carthage](#carthage)
+    - [Swift Package Manager](#swift-package-manager)
     - [Compiling for yourself](#compiling-for-yourself)
     - [Using Parse as a sub-project](#using-parse-as-a-sub-project)
 - [How Do I Contribute?](#how-do-i-contribute)
@@ -45,11 +44,21 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
 
 ### Other Installation Options
 
+#### Swift Package Manager
+
+1. Open Xcode > File > Add packages...
+2. Add the following package URL:
+  ```
+  https://github.com/parse-community/Parse-SDK-iOS-OSX
+  ```
+3. Add package
+3. Choose the submodules to add
+
 #### [CocoaPods](https://cocoapods.org)
 
 Add the following line to your Podfile:
 ```ruby
-pod 'Parse'
+pod 'ParseCore'
 ```
 
 Run `pod install`, and you should now have the latest parse release.
@@ -66,22 +75,12 @@ pod 'Parse/UI'
 Note that in this case, the Parse framework will contain all headers and classes, so you just have to use:
 
 ```swift
-import Parse
+import ParseCore
 ```
 
 ```objc
-@import Parse;
+@import ParseCore;
 ```
-
-#### [Carthage](https://github.com/carthage/carthage)
-
-Add the following line to your Cartfile:
-```
-github "parse-community/Parse-SDK-iOS-OSX"
-```
-Run `carthage update`, and you should now have the latest version of Parse SDK in your Carthage folder.
-
-This will also compile the ParseTwitterUtils, ParseFacebookUtilsV4 as well as ParseUI frameworks.
 
 #### Compiling for yourself
 
