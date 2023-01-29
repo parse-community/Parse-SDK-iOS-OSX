@@ -8,7 +8,7 @@ env:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: macos-11
     outputs:
       current_tag: ${{ steps.tag.outputs.current_tag }}
     steps:
