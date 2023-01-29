@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.4...2.0.0) (2023-01-29)
+
+
+### Features
+
+* Add Swift Package Manager support; upgrade `ParseFacbookUtils` to Facebook SDK 15 ([#1683](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1683)) ([840390b](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/840390b18c8e567356103d9ff19ca21523c16ac3))
+
+
+### BREAKING CHANGES
+
+* Carthage support is removed; the core module name has changed therefore the import statement is now `import ParseCore` instead of `import Parse` (#1683) ([840390b](840390b))
+
 ## [1.19.4](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.3...1.19.4) (2022-10-26)
 
 
