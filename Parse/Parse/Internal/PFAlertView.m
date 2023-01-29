@@ -9,6 +9,10 @@
 
 #import "PFAlertView.h"
 
+#if TARGET_OS_IOS
+
+#import <UIKit/UIKit.h>
+
 @interface PFAlertView () <UIAlertViewDelegate>
 
 @property (nonatomic, copy) PFAlertViewCompletion completion;
@@ -107,3 +111,5 @@
 #endif
 
 @end
+
+#endif

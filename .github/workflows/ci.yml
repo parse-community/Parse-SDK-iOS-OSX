@@ -6,13 +6,15 @@ on:
     branches: [ '**' ]
 env:
   CI_XCODE_11: '/Applications/Xcode_11.7.app/Contents/Developer'
-  CI_XCODE_13: '/Applications/Xcode_13.1.app/Contents/Developer'
+  CI_XCODE_13: '/Applications/Xcode_13.4.1.app/Contents/Developer'
 
 jobs:
   ios:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
     - name: Cache Gems
       id: cache-gems
       uses: actions/cache@v2
@@ -38,6 +40,8 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
     - name: Cache Gems
       id: cache-gems
       uses: actions/cache@v2
@@ -68,8 +72,12 @@ jobs:
   facebook_utils:
     needs: parseui
     runs-on: macos-latest
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v2
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
     - name: Cache Gems
       id: cache-gems
       uses: actions/cache@v2
@@ -78,12 +86,13 @@ jobs:
         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gem-
-    - name: Submodules and Bundle Install
+    - name: Submodules and Bundle Install          
       run: |
         git submodule update --init --recursive
         sudo gem install bundler
         bundle config set path 'vendor/bundle'
         bundle install
+        carthage bootstrap --use-xcframeworks
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:facebook_utils:ios
       env:
@@ -96,6 +105,8 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
     - name: Cache Gems
       id: cache-gems
       uses: actions/cache@v2
@@ -119,8 +130,12 @@ jobs:
 
   parseui:
     runs-on: macos-latest
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v2
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
     - name: Cache Gems
       id: cache-gems
       uses: actions/cache@v2
@@ -135,10 +150,11 @@ jobs:
         sudo gem install bundler
         bundle config set path 'vendor/bundle'
         bundle install
+        carthage bootstrap --use-xcframeworks
     - name: Build-Test
-      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:all
       env:
         DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
+      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:all
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
@@ -147,14 +163,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: CocoaPods
-        run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
+        run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose --skip-import-validation
         env:
           DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
 
   assets:
-    runs-on: macos-latest
+    runs-on: macos-11
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
       - name: Cache Gems
         id: cache-gems
         uses: actions/cache@v2
@@ -169,6 +189,7 @@ jobs:
           sudo gem install bundler
           bundle config set path 'vendor/bundle'
           bundle install
+          carthage bootstrap --use-xcframeworks
       - name: Build Release
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
         env:
@@ -179,6 +200,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
       - name: Cache Gems
         id: cache-gems
         uses: actions/cache@v2

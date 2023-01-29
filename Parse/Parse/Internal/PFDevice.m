@@ -9,7 +9,7 @@
 
 #import "PFDevice.h"
 
-#import <Parse/PFConstants.h>
+#import "PFConstants.h"
 
 #if TARGET_OS_WATCH
 #import <WatchKit/WatchKit.h>

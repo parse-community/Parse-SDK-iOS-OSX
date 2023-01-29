@@ -19,7 +19,7 @@
  *
  */
 
-#import <ParseUI/PFProductTableViewController.h>
+#import "PFProductTableViewController.h"
 
 @interface CustomProductTableViewController : PFProductTableViewController
 

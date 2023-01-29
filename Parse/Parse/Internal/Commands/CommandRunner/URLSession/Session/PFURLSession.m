@@ -10,7 +10,11 @@
 #import "PFURLSession.h"
 #import "PFURLSession_Private.h"
 
+#if __has_include(<Bolts/BFTaskCompletionSource.h>)
 #import <Bolts/BFTaskCompletionSource.h>
+#else
+#import "BFTaskCompletionSource.h"
+#endif
 
 #import "BFTask+Private.h"
 #import "PFCommandResult.h"

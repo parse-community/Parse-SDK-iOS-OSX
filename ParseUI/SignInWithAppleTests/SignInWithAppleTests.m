@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "ParseUI/PFAppleUtils.h"
+#import "PFAppleUtils.h"
 #import "Parse/PFUser.h"
 
 @import OCMock;

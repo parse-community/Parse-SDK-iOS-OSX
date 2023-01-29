@@ -10,8 +10,13 @@
 #import "PFURLSessionDataTaskDelegate.h"
 #import "PFURLSessionDataTaskDelegate_Private.h"
 
+#if __has_include(<Bolts/BFTaskCompletionSource.h>)
 #import <Bolts/BFTaskCompletionSource.h>
 #import <Bolts/BFCancellationToken.h>
+#else
+#import "BFTaskCompletionSource.h"
+#import "BFCancellationToken.h"
+#endif
 
 #import "PFAssert.h"
 #import "PFMacros.h"
