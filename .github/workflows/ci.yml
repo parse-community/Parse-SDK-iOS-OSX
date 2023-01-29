@@ -193,13 +193,15 @@ jobs:
       - name: Build Release
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_11 }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
 
   docs:
     needs: parseui
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
       - name: Cache Gems
         id: cache-gems
         uses: actions/cache@v2
