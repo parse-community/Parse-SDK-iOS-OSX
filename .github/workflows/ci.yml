@@ -10,7 +10,7 @@ env:
 
 jobs:
   ios:
-    runs-on: macos-11
+    runs-on: macos-12
     steps:
     - uses: actions/checkout@v2
     - name: Setup Ruby
@@ -32,7 +32,7 @@ jobs:
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:ios
       env:
-        DEVELOPER_DIR: ${{ env.CI_XCODE_11 }}
+        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
