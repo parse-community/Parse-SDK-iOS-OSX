@@ -34,7 +34,6 @@ jobs:
           sudo gem install bundler
           bundle config set path 'vendor/bundle'
           bundle install
-          carthage bootstrap --use-xcframeworks
       - run: npm ci
       - run: npx semantic-release
         env:
@@ -84,6 +83,7 @@ jobs:
           sudo gem install bundler
           bundle config set path 'vendor/bundle'
           bundle install
+          carthage bootstrap --use-xcframeworks
       - name: Build Release
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
         env:
