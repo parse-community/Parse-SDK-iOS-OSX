@@ -14,7 +14,7 @@
 #pragma mark - SDK Version
 ///--------------------------------------
 
-#define PARSE_VERSION @"1.19.4"
+#define PARSE_VERSION @"2.0.0"
 
 ///--------------------------------------
 #pragma mark - Platform
@@ -542,4 +542,5 @@ extern NSString *const _Nonnull PFNetworkNotificationURLResponseBodyUserInfoKey;
 #    define PF_TV_UNAVAILABLE_WARNING
 #  endif
 #endif
+
 
