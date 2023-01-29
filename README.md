@@ -13,7 +13,6 @@
 
 ![Platforms](http://img.shields.io/cocoapods/p/Parse.svg?style=flat)
 ![SPM](https://img.shields.io/badge/Swift_Package_Manager-compatible-green?style=flat)
-[![Pod](https://img.shields.io/cocoapods/v/Parse.svg)](https://cocoapods.org/pods/Parse)
 
 [![Backers on Open Collective](https://opencollective.com/parse-server/backers/badge.svg)][open-collective-link]
 [![Sponsors on Open Collective](https://opencollective.com/parse-server/sponsors/badge.svg)][open-collective-link]
@@ -28,21 +27,14 @@ A library that gives you access to the powerful Parse Server backend from your i
 ---
 
 - [Getting Started](#getting-started)
-  - [Other Installation Options](#other-installation-options)
-    - [Swift Package Manager](#swift-package-manager)
-    - [Compiling for yourself](#compiling-for-yourself)
-    - [Using Parse as a sub-project](#using-parse-as-a-sub-project)
+  - [Alternative Installation Options](#alternative-installation-options)
+    - [Download Builds](#download-builds)
+    - [Compile Source](#compile-source)
+    - [Add Sub-Project](#add-sub-project)
 - [How Do I Contribute?](#how-do-i-contribute)
 - [Dependencies](#dependencies)
 
 ## Getting Started
-
-To use parse, head on over to the [releases][releases] page, and download the latest build.
-And you're off!. Take a look at the public [documentation][docs] & [API][api] and start building.
-
-Notice the API docs aren't totally up to date when it comes to latest Swift signature of the methods and more importantly regarding [Push Notifications](http://blog.parse.com/learn/engineering/the-dangerous-world-of-client-push/) which are **no longer supported by Parse server**, keep an eye on [its repo](https://github.com/ParsePlatform/parse-server)
-
-### Other Installation Options
 
 #### Swift Package Manager
 
@@ -52,37 +44,17 @@ Notice the API docs aren't totally up to date when it comes to latest Swift sign
   https://github.com/parse-community/Parse-SDK-iOS-OSX
   ```
 3. Add package
-3. Choose the submodules to add
+3. Choose the submodules you want to install
 
-#### [CocoaPods](https://cocoapods.org)
+Take a look at the public [documentation][docs] & [API][api] and start building.
 
-Add the following line to your Podfile:
-```ruby
-pod 'ParseCore'
-```
+### Alternative Installation Options
 
-Run `pod install`, and you should now have the latest parse release.
+#### Download Builds
 
-If you wish to use the Facebook or Twitter utils or ParseUI,
-you can now leverage Cocoapods 'subspecs'
+Dowload the compiled builds from the asset section in the [releases][releases] page.
 
-```ruby
-pod 'Parse/FacebookUtils'
-pod 'Parse/TwitterUtils'
-pod 'Parse/UI'
-```
-
-Note that in this case, the Parse framework will contain all headers and classes, so you just have to use:
-
-```swift
-import ParseCore
-```
-
-```objc
-@import ParseCore;
-```
-
-#### Compiling for yourself
+#### Compile Source
 
 If you want to manually compile the SDK, clone it locally, and run the following commands in the root directory of the repository:
 
@@ -110,7 +82,7 @@ Compiled frameworks will be in multiple archives inside the `build/release` fold
 - `ParseTwitterUtils-iOS.zip`
 - `ParseUI.zip`
 
-#### Using Parse as a sub-project
+#### Add Sub-Project
 
 You can also include parse as a subproject inside of your application if you'd prefer, although we do not recommend this, as it will increase your indexing time significantly. To do so, just drag and drop the Parse.xcodeproj file into your workspace. Note that unit tests will be unavailable if you use Parse like this, as OCMock will be unable to be found.
 
