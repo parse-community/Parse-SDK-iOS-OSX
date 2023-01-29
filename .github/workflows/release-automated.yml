@@ -64,6 +64,8 @@ jobs:
     needs: release
     if: needs.release.outputs.current_tag != ''
     runs-on: macos-11
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
