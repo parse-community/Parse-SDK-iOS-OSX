@@ -6,7 +6,7 @@ on:
     branches: [ '**' ]
 env:
   CI_XCODE_11: '/Applications/Xcode_11.7.app/Contents/Developer'
-  CI_XCODE_13: '/Applications/Xcode_13.1.app/Contents/Developer'
+  CI_XCODE_13: '/Applications/Xcode_13.4.1.app/Contents/Developer'
 
 jobs:
   ios:
@@ -168,7 +168,7 @@ jobs:
           DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
 
   assets:
-    runs-on: macos-latest
+    runs-on: macos-11
     env:
       GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -193,7 +193,7 @@ jobs:
       - name: Build Release
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_11 }}
 
   docs:
     needs: parseui
