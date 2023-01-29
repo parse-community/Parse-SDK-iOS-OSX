@@ -34,6 +34,7 @@ jobs:
           sudo gem install bundler
           bundle config set path 'vendor/bundle'
           bundle install
+          carthage bootstrap --use-xcframeworks
       - run: npm ci
       - run: npx semantic-release
         env:
