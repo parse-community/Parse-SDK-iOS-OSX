@@ -32,7 +32,7 @@ jobs:
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:ios
       env:
-        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
+        DEVELOPER_DIR: ${{ env.CI_XCODE_11 }}
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
