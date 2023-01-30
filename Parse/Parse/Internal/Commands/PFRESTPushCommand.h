@@ -9,7 +9,7 @@
 
 #import "PFRESTCommand.h"
 
-#import <Parse/PFConstants.h>
+#import "PFConstants.h"
 
 PF_WATCH_UNAVAILABLE_WARNING
 

@@ -13,8 +13,6 @@
 PRODUCT_NAME = ParseTwitterUtils-Tests
 IPHONEOS_DEPLOYMENT_TARGET = 9.0
 
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(BUILT_PRODUCTS_DIR)/OCMock
-
 INFOPLIST_FILE = $(PROJECT_DIR)/Tests/Resources/Info.plist
 
 TEST_HOST = $(BUILT_PRODUCTS_DIR)/ParseTwitterTestApplication.app/ParseTwitterTestApplication

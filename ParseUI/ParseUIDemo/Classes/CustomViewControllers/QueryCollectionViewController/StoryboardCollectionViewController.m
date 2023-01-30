@@ -21,9 +21,13 @@
 
 #import "StoryboardCollectionViewController.h"
 
+#if __has_include(<Parse/PFQuery.h>)
 #import <Parse/PFQuery.h>
+#else
+#import "PFQuery.h"
+#endif
 
-#import <ParseUI/PFCollectionViewCell.h>
+#import "PFCollectionViewCell.h"
 
 @implementation StoryboardCollectionViewController
 

@@ -19,7 +19,7 @@
  *
  */
 
-#import <ParseUI/ParseUI.h>
+#import "ParseUI.h"
 
 @interface StoryboardCollectionViewController : PFQueryCollectionViewController
 

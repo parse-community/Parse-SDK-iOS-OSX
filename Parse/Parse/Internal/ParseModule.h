@@ -8,7 +8,12 @@
  */
 
 #import <Foundation/Foundation.h>
+
+#if __has_include(<Bolts/Bolts.h>)
 #import <Bolts/Bolts.h>
+#else
+#import "Bolts.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

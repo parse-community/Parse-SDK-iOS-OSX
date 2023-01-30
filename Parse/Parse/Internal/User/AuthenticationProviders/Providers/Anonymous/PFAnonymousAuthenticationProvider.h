@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFUserAuthenticationDelegate.h>
+#import "PFUserAuthenticationDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

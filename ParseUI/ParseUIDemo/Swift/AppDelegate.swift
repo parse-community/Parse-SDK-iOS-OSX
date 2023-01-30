@@ -21,7 +21,7 @@
 
 import UIKit
 import Parse
-import ParseFacebookUtilsV4
+import ParseFacebookUtilsiOS
 import ParseTwitterUtils
 
 @UIApplicationMain
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         Parse.setApplicationId("UdNpOP2XFoEiXLZEBDl6xONmCMH8VjETmnEsl0xJ", clientKey: "wNJFho0fQaQFQ2Fe1x9b67lVBakJiAtFj1Uz30A9")
-        PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
+        PFFacebookUtilsDevice.initializeFacebook(applicationLaunchOptions: launchOptions)
         PFTwitterUtils.initialize(withConsumerKey: "3Q9hMEKqqSg4ie2pibZ2sVJuv", consumerSecret: "IEZ9wv2d1EpXNGFKGp7sAGdxRtyqtPwygyciFZwTHTGhPp4FMj")
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: UIDemoViewController())

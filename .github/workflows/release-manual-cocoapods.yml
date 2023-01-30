@@ -1,0 +1,28 @@
+# Trigger this workflow only to manually publish a Cocoapods release; this should only be used
+# in extraordinary circumstances, as releases are normally published automatically as part of
+# the automated release workflow.
+
+name: release-manual-cocoapods
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        default: ''
+        description: 'Reference (tag / SHA):'  
+env:
+  CI_XCODE_13: '/Applications/Xcode_13.4.1.app/Contents/Developer'
+jobs:
+  cocoapods:
+    runs-on: macos-11
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.ref }}
+      - name: CocoaPods
+        run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
+      - name: Deploy CocoaPods
+        run: set -o pipefail && env NSUnbufferedIO=YES pod trunk push Parse.podspec --allow-warnings --verbose
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}

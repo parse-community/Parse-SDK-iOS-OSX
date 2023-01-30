@@ -21,7 +21,7 @@
 
 #import "PFUIDemoViewController.h"
 
-#import <ParseUI/ParseUI.h>
+#import "ParseUI.h"
 
 #import "CustomLogInViewController.h"
 #import "CustomProductTableViewController.h"

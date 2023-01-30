@@ -19,7 +19,7 @@
  *
  */
 
-#import <ParseUI/PFQueryCollectionViewController.h>
+#import "PFQueryCollectionViewController.h"
 
 @interface SectionedCollectionViewController : PFQueryCollectionViewController
 

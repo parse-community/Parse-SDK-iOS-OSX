@@ -9,7 +9,11 @@
 
 #import "PFTwitterPrivateUtilities.h"
 
+#if __has_include(<Bolts/BFExecutor.h>)
 #import <Bolts/BFExecutor.h>
+#else
+#import "BFExecutor.h"
+#endif
 
 @implementation PFTwitterPrivateUtilities
 
