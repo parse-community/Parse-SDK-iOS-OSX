@@ -341,8 +341,8 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
     }
     
     // The Parse framework cannot be bundled with a macOS Command Line Application but needs to be
-    // external to the application. The preferred file system location is '/Library/Frameworks' and we don't
-    // want to filter out the Parse framework if it is installed there. See also:
+    // external to the application. The preferred file system location is '/Library/Frameworks'
+    // and we don't want to filter out the Parse framework if it is installed there. See also:
     // https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/InstallingFrameworks.html#//apple_ref/doc/uid/20002261-97286
     if ([bundle.bundlePath hasPrefix:@"/Library/"]) {
         if ([bundle.bundlePath hasPrefix:@"/Library/Frameworks/"] && [[bundle.bundlePath lastPathComponent] isEqualToString:@"Parse.framework"]) {
