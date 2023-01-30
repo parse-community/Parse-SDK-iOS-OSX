@@ -18,7 +18,8 @@ let package = Package(
     ],
     dependencies: [
         //.package(url: "https://github.com/parse-community/Bolts-ObjC.git", from: "1.10.0"),
-        .package(url: "https://github.com/vazarkevych/Bolts-ObjC.git", branch: "spm"),
+        // .package(url: "https://github.com/vazarkevych/Bolts-ObjC.git", branch: "spm"),
+        .package(url: "https://github.com/mtrezza/Bolts-ObjC.git", branch: "spm-rebase"),
         .package(url: "https://github.com/facebook/facebook-ios-sdk.git", from: "15.1.0")
     ],
     targets: [
