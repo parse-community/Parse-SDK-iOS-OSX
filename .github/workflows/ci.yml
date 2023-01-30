@@ -158,15 +158,6 @@ jobs:
     - name: Send codecov
       run: bash <(curl https://codecov.io/bash)
 
-  cocoapods:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: CocoaPods
-        run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose --skip-import-validation
-        env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
-
   assets:
     runs-on: macos-11
     env:
