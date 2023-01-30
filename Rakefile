@@ -24,7 +24,6 @@ module Constants
   script_folder = File.expand_path(File.dirname(__FILE__))
 
   PARSE_CONSTANTS_HEADER = File.join(script_folder, 'Parse', 'Parse', 'Source/PFConstants.h')
-  PARSE_PODSPEC = File.join(script_folder, 'Parse.podspec')
 
   PLISTS = [
     File.join(script_folder, 'Parse', 'Parse', 'Resources', 'Parse-iOS.Info.plist'),
@@ -62,12 +61,6 @@ module Constants
     PLISTS.each do |plist|
       update_info_plist_version(plist, version)
     end
-
-    podspec_file = File.open(PARSE_PODSPEC, 'r+')
-    podspec = podspec_file.read
-    podspec.gsub!(/(.*s.version\s*=\s*')(.*)(')/, "\\1#{version}\\3")
-    podspec_file.seek(0)
-    podspec_file.write(podspec)
   end
 
   def self.update_info_plist_version(plist_path, version)
@@ -700,23 +693,6 @@ namespace :test do
     results.each do |result|
       unless result
         puts 'Starter Project Tests Failed!'
-        exit(1)
-      end
-    end
-  end
-
-  desc 'Run Podspec Lint'
-  task :cocoapods do |_|
-    podspecs = ['Parse.podspec']
-    results = []
-    system("pod repo update --silent")
-    podspecs.each do |podspec|
-      results << system("pod lib lint #{podspec} --allow-warnings")
-      results << system("pod lib lint #{podspec} --allow-warnings --use-libraries --use-modular-headers")
-    end
-    results.each do |result|
-      unless result
-        puts 'Podspec Tests Failed!'
         exit(1)
       end
     end
