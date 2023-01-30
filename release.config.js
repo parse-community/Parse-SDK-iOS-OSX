@@ -85,7 +85,7 @@ async function config() {
         'npmPublish': false,
       }],
       ['@semantic-release/git', {
-        assets: [changelogFile, 'package.json', 'package-lock.json', 'Parse.podspec', ['Parse*/**/*.{h,plist}', '!**/xcuserdata/**'] ],
+        assets: [changelogFile, 'package.json', 'package-lock.json', ['Parse*/**/*.{h,plist}', '!**/xcuserdata/**'] ],
       }],
       ['@semantic-release/github', {
         successComment: getReleaseComment(),
