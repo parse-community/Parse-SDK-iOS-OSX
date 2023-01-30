@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.0.1...2.0.2) (2023-01-30)
+
+
+### Bug Fixes
+
+* MacOS command line app crashes if Parse framework is installed in `/Library/Frameworks/` ([#1395](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1395)) ([54bc6f3](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/54bc6f3967fad8b8febe35932ce2024ba6928174))
+
 ## [2.0.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.0.0...2.0.1) (2023-01-30)
 
 
