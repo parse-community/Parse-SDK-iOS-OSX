@@ -21,10 +21,14 @@
 
 #import "SubtitleImageCollectionViewController.h"
 
+#if __has_include(<Parse/PFQuery.h>)
 #import <Parse/PFQuery.h>
+#else
+#import "PFQuery.h"
+#endif
 
-#import <ParseUI/PFCollectionViewCell.h>
-#import <ParseUI/PFImageView.h>
+#import "PFCollectionViewCell.h"
+#import "PFImageView.h"
 
 @implementation SubtitleImageCollectionViewController
 

@@ -21,10 +21,15 @@
 
 #import "PaginatedCollectionViewController.h"
 
+#if __has_include(<Parse/PFObject.h>)
 #import <Parse/PFObject.h>
 #import <Parse/PFQuery.h>
+#else
+#import "PFObject.h"
+#import "PFQuery.h"
+#endif
 
-#import <ParseUI/PFCollectionViewCell.h>
+#import "PFCollectionViewCell.h"
 
 @implementation PaginatedCollectionViewController
 

@@ -1,4 +1,4 @@
-![parse-repository-header-sdk-objc](https://user-images.githubusercontent.com/5673677/138286296-f4e855c3-2c8f-4c20-b637-51dd518ba0f6.png)
+![parse-repository-header-sdk-apple](https://user-images.githubusercontent.com/5673677/198421762-993c89e8-8201-40f1-a650-c2e9dde4da82.png)
 
 <h3 align="center">iOS · iPadOS · macOS · watchOS · tvOS</h3>
 
@@ -6,15 +6,12 @@
 
 [![Build Status CI](https://github.com/parse-community/Parse-SDK-iOS-OSX/workflows/ci/badge.svg?branch=master)](https://github.com/parse-community/Parse-SDK-iOS-OSX/actions?query=workflow%3Aci+branch%3Amaster)
 [![Build Status Release](https://github.com/parse-community/Parse-SDK-iOS-OSX/actions/workflows/release-automated.yml/badge.svg)](https://github.com/parse-community/Parse-SDK-iOS-OSX/actions?query=workflow%3Arelease-automated)
-[![Build Status Carthage](https://circleci.com/gh/parse-community/Parse-SDK-iOS-OSX.svg?style=shield)](https://circleci.com/gh/parse-community/Parse-SDK-iOS-OSX/tree/master)
 [![Snyk Badge](https://snyk.io/test/github/parse-community/Parse-SDK-iOS-OSX/badge.svg)](https://snyk.io/test/github/parse-community/Parse-SDK-iOS-OSX)
 [![Coverage](https://img.shields.io/codecov/c/github/parse-community/Parse-SDK-iOS-OSX/master.svg)](https://codecov.io/github/parse-community/Parse-SDK-iOS-OSX?branch=master)
 [![auto-release](https://img.shields.io/badge/%F0%9F%9A%80-auto--release-9e34eb.svg)](https://github.com/parse-community/Parse-SDK-iOS-OSX/releases)
 
 ![Platforms](http://img.shields.io/cocoapods/p/Parse.svg?style=flat)
-[![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/carthage/carthage)
-
-[![Pod](https://img.shields.io/cocoapods/v/Parse.svg)](https://cocoapods.org/pods/Parse)
+![SPM](https://img.shields.io/badge/Swift_Package_Manager-compatible-green?style=flat)
 
 [![Backers on Open Collective](https://opencollective.com/parse-server/backers/badge.svg)][open-collective-link]
 [![Sponsors on Open Collective](https://opencollective.com/parse-server/sponsors/badge.svg)][open-collective-link]
@@ -29,62 +26,34 @@ A library that gives you access to the powerful Parse Server backend from your i
 ---
 
 - [Getting Started](#getting-started)
-  - [Other Installation Options](#other-installation-options)
-    - [CocoaPods](#cocoapods)
-    - [Carthage](#carthage)
-    - [Compiling for yourself](#compiling-for-yourself)
-    - [Using Parse as a sub-project](#using-parse-as-a-sub-project)
+  - [Alternative Installation Options](#alternative-installation-options)
+    - [Download Builds](#download-builds)
+    - [Compile Source](#compile-source)
+    - [Add Sub-Project](#add-sub-project)
 - [How Do I Contribute?](#how-do-i-contribute)
 - [Dependencies](#dependencies)
 
 ## Getting Started
 
-To use parse, head on over to the [releases][releases] page, and download the latest build.
-And you're off!. Take a look at the public [documentation][docs] & [API][api] and start building.
+#### Swift Package Manager
 
-Notice the API docs aren't totally up to date when it comes to latest Swift signature of the methods and more importantly regarding [Push Notifications](http://blog.parse.com/learn/engineering/the-dangerous-world-of-client-push/) which are **no longer supported by Parse server**, keep an eye on [its repo](https://github.com/ParsePlatform/parse-server)
+1. Open Xcode > File > Add packages...
+2. Add the following package URL:
+  ```
+  https://github.com/parse-community/Parse-SDK-iOS-OSX
+  ```
+3. Add package
+3. Choose the submodules you want to install
 
-### Other Installation Options
+Take a look at the public [documentation][docs] & [API][api] and start building.
 
-#### [CocoaPods](https://cocoapods.org)
+### Alternative Installation Options
 
-Add the following line to your Podfile:
-```ruby
-pod 'Parse'
-```
+#### Download Builds
 
-Run `pod install`, and you should now have the latest parse release.
+Dowload the compiled builds from the asset section in the [releases][releases] page.
 
-If you wish to use the Facebook or Twitter utils or ParseUI,
-you can now leverage Cocoapods 'subspecs'
-
-```ruby
-pod 'Parse/FacebookUtils'
-pod 'Parse/TwitterUtils'
-pod 'Parse/UI'
-```
-
-Note that in this case, the Parse framework will contain all headers and classes, so you just have to use:
-
-```swift
-import Parse
-```
-
-```objc
-@import Parse;
-```
-
-#### [Carthage](https://github.com/carthage/carthage)
-
-Add the following line to your Cartfile:
-```
-github "parse-community/Parse-SDK-iOS-OSX"
-```
-Run `carthage update`, and you should now have the latest version of Parse SDK in your Carthage folder.
-
-This will also compile the ParseTwitterUtils, ParseFacebookUtilsV4 as well as ParseUI frameworks.
-
-#### Compiling for yourself
+#### Compile Source
 
 If you want to manually compile the SDK, clone it locally, and run the following commands in the root directory of the repository:
 
@@ -112,7 +81,7 @@ Compiled frameworks will be in multiple archives inside the `build/release` fold
 - `ParseTwitterUtils-iOS.zip`
 - `ParseUI.zip`
 
-#### Using Parse as a sub-project
+#### Add Sub-Project
 
 You can also include parse as a subproject inside of your application if you'd prefer, although we do not recommend this, as it will increase your indexing time significantly. To do so, just drag and drop the Parse.xcodeproj file into your workspace. Note that unit tests will be unavailable if you use Parse like this, as OCMock will be unable to be found.
 

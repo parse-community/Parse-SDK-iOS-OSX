@@ -19,7 +19,7 @@
  *
  */
 
-#import <ParseUI/PFSignUpViewController.h>
+#import "PFSignUpViewController.h"
 
 @interface CustomSignUpViewController : PFSignUpViewController
 

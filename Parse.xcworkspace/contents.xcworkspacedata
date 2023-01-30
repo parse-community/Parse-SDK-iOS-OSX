@@ -8,6 +8,12 @@
       location = "group:ParseFacebookUtils/ParseFacebookUtils.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:ParseFacebookUtilsTvOS/ParseFacebookUtilsTvOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ParseFacebookUtilsiOS/ParseFacebookUtilsiOS.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ParseTwitterUtils/ParseTwitterUtils.xcodeproj">
    </FileRef>
    <FileRef

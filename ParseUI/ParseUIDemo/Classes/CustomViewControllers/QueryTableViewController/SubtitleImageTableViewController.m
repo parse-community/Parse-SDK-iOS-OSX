@@ -21,9 +21,13 @@
 
 #import "SubtitleImageTableViewController.h"
 
+#if __has_include(<Parse/PFObject.h>)
 #import <Parse/PFObject.h>
+#else
+#import "PFObject.h"
+#endif
 
-#import <ParseUI/PFTableViewCell.h>
+#import "PFTableViewCell.h"
 
 @implementation SubtitleImageTableViewController
 

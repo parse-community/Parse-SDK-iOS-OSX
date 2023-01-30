@@ -1,0 +1,48 @@
+name: release-manual-assets
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        default: ''
+        description: 'Version tag:' 
+env:
+  CI_XCODE_11: '/Applications/Xcode_11.7.app/Contents/Developer'
+
+jobs:
+  assets:
+    if: github.event.inputs.tag != ''
+    runs-on: macos-11
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.tag }}
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Submodules and Bundle Install
+        run: |
+          git submodule update --init --recursive
+          sudo gem install bundler
+          bundle config set path 'vendor/bundle'
+          bundle install
+          carthage bootstrap --use-xcframeworks
+      - name: Build Release
+        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
+        env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_11 }}
+      - name: Deploy assets
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/release/*
+          tag: ${{ github.event.inputs.tag }}
+          overwrite: true
+          file_glob: true

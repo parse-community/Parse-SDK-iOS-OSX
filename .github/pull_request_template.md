@@ -11,7 +11,7 @@
 ### Issue Description
 <!-- Add a brief description of the issue this PR solves. -->
 
-Related issue: #`FILL_THIS_OUT`
+Closes: FILL_THIS_OUT
 
 ### Approach
 <!-- Add a description of the approach in this PR. -->
@@ -23,5 +23,4 @@ Related issue: #`FILL_THIS_OUT`
 -->
 
 - [ ] Add tests
-- [ ] Add entry to changelog
 - [ ] Add changes to documentation (guides, repository pages, in-code descriptions)

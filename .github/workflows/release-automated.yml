@@ -4,11 +4,11 @@ on:
     branches: [ master, release, alpha, beta ]
 env:
   CI_XCODE_11: '/Applications/Xcode_11.7.app/Contents/Developer'
-  CI_XCODE_13: '/Applications/Xcode_13.0.app/Contents/Developer'
+  CI_XCODE_13: '/Applications/Xcode_13.4.1.app/Contents/Developer'
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: macos-11
     outputs:
       current_tag: ${{ steps.tag.outputs.current_tag }}
     steps:
@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
       - name: Cache Gems
         id: cache-gems
         uses: actions/cache@v2
@@ -62,6 +64,8 @@ jobs:
     needs: release
     if: needs.release.outputs.current_tag != ''
     runs-on: macos-11
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -81,6 +85,7 @@ jobs:
           sudo gem install bundler
           bundle config set path 'vendor/bundle'
           bundle install
+          carthage bootstrap --use-xcframeworks
       - name: Build Release
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
         env:

@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFInstallation.h>
+#import "PFInstallation.h"
 
 PF_WATCH_UNAVAILABLE_WARNING
 

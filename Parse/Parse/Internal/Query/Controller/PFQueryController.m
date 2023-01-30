@@ -9,7 +9,11 @@
 
 #import "PFQueryController.h"
 
+#if __has_include(<Bolts/BFCancellationToken.h>)
 #import <Bolts/BFCancellationToken.h>
+#else
+#import "BFCancellationToken.h"
+#endif
 
 #import "BFTask+Private.h"
 #import "PFAssert.h"
