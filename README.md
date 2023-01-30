@@ -10,7 +10,6 @@
 [![Coverage](https://img.shields.io/codecov/c/github/parse-community/Parse-SDK-iOS-OSX/master.svg)](https://codecov.io/github/parse-community/Parse-SDK-iOS-OSX?branch=master)
 [![auto-release](https://img.shields.io/badge/%F0%9F%9A%80-auto--release-9e34eb.svg)](https://github.com/parse-community/Parse-SDK-iOS-OSX/releases)
 
-![Platforms](http://img.shields.io/cocoapods/p/Parse.svg?style=flat)
 ![SPM](https://img.shields.io/badge/Swift_Package_Manager-compatible-green?style=flat)
 
 [![Backers on Open Collective](https://opencollective.com/parse-server/backers/badge.svg)][open-collective-link]
@@ -35,7 +34,7 @@ A library that gives you access to the powerful Parse Server backend from your i
 
 ## Getting Started
 
-#### Swift Package Manager
+The easiest way to install the SDK is via Swift Package Manager.
 
 1. Open Xcode > File > Add packages...
 2. Add the following package URL:
