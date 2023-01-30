@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.0.0...2.0.1) (2023-01-30)
+
+
+### Bug Fixes
+
+* Adding via SPM doesn't work due to unstable Bolts dependency ([#1695](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1695)) ([b264df1](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/b264df19e06a928daa222cf34fbe07b1ed51aed9))
+
 # [2.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.4...2.0.0) (2023-01-29)
 
 
