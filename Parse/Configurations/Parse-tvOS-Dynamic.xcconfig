@@ -17,5 +17,3 @@ INFOPLIST_FILE = $(PROJECT_DIR)/Parse/Resources/Parse-tvOS.Info.plist
 
 // TODO: (nlutsenko) Cleanup source code so we can safely ignore local variable shadow warnings.
 GCC_WARN_SHADOW = NO
-
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(SRCROOT)/../Carthage/Build/tvOS

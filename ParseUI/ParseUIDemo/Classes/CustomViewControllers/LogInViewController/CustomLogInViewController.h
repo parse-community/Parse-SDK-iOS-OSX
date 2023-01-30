@@ -19,7 +19,7 @@
  *
  */
 
-#import <ParseUI/PFLogInViewController.h>
+#import "PFLogInViewController.h"
 
 @interface CustomLogInViewController : PFLogInViewController
 

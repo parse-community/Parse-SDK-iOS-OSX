@@ -11,8 +11,8 @@
 
 #import <objc/runtime.h>
 
-#import <Parse/PFObject.h>
-#import <Parse/PFSubclassing.h>
+#import "PFObject.h"
+#import "PFSubclassing.h"
 
 #import "PFAssert.h"
 #import "PFMacros.h"
@@ -336,9 +336,21 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
         return;
     }
     // Filter out any system bundles
-    if ([bundle.bundlePath hasPrefix:@"/System/"] || [bundle.bundlePath hasPrefix:@"/Library/"] || [bundle.bundlePath rangeOfString:@"iPhoneSimulator.sdk"].location != NSNotFound) {
+    if ([bundle.bundlePath hasPrefix:@"/System/"] || [bundle.bundlePath rangeOfString:@"iPhoneSimulator.sdk"].location != NSNotFound) {
         return;
     }
+    
+    // The Parse framework cannot be bundled with a macOS Command Line Application but needs to be
+    // external to the application. The preferred file system location is '/Library/Frameworks'
+    // and we don't want to filter out the Parse framework if it is installed there. See also:
+    // https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/InstallingFrameworks.html#//apple_ref/doc/uid/20002261-97286
+    if ([bundle.bundlePath hasPrefix:@"/Library/"]) {
+        if ([bundle.bundlePath hasPrefix:@"/Library/Frameworks/"] && [[bundle.bundlePath lastPathComponent] isEqualToString:@"Parse.framework"]) {
+            [self _registerSubclassesInBundle:bundle];
+        }
+        return;
+    }
+    
     [self _registerSubclassesInBundle:bundle];
 }
 

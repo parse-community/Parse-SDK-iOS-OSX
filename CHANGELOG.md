@@ -1,10 +1,44 @@
-# Parse-SDK-iOS-OSX Changelog
+## [2.0.2](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.0.1...2.0.2) (2023-01-30)
 
-### master
-[Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.2...master)
-* _Contributing to this repo? Add info about your change here to be included in next release_
 
-### 1.19.2
+### Bug Fixes
+
+* MacOS command line app crashes if Parse framework is installed in `/Library/Frameworks/` ([#1395](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1395)) ([54bc6f3](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/54bc6f3967fad8b8febe35932ce2024ba6928174))
+
+## [2.0.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.0.0...2.0.1) (2023-01-30)
+
+
+### Bug Fixes
+
+* Adding via SPM doesn't work due to unstable Bolts dependency ([#1695](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1695)) ([b264df1](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/b264df19e06a928daa222cf34fbe07b1ed51aed9))
+
+# [2.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.4...2.0.0) (2023-01-29)
+
+
+### Features
+
+* Add Swift Package Manager support; upgrade `ParseFacbookUtils` to Facebook SDK 15 ([#1683](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1683)) ([840390b](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/840390b18c8e567356103d9ff19ca21523c16ac3))
+
+
+### BREAKING CHANGES
+
+* Carthage support is removed; the core module name has changed therefore the import statement is now `import ParseCore` instead of `import Parse` (#1683) ([840390b](840390b))
+
+## [1.19.4](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.3...1.19.4) (2022-10-26)
+
+
+### Bug Fixes
+
+* implementation via CocoaPods fails due to missing `FBSDKCoreKit` dependency ([#1666](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1666)) ([ac8a4fa](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/ac8a4fade08c2be59d7ece014ba429067f598deb))
+
+## [1.19.3](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.2...1.19.3) (2021-11-21)
+
+
+### Bug Fixes
+
+* compilation errors with Xcode 13 ([#1619](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1619)) ([99ff6ec](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/99ff6ec64ee65b1a60946ea69e4d8039c1c5ae16))
+
+# 1.19.2
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.1...1.19.2)
 
 __Improvements__
@@ -13,7 +47,7 @@ __Improvements__
 __Fixes__
 - Crash in Twitter login flow ([#1566](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1567)), thanks to [dhana](https://github.com/dsp1589).
 
-### 1.19.1
+# 1.19.1
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.19.0...1.19.1)
 
 __Improvements__
@@ -24,7 +58,7 @@ __Fixes__
 - Bolts compilation error in Xcode 12 ([#1548](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1548)), thanks to [Derek Lee](https://github.com/derekleerock).
 - App Store submission failed for MinimumOSVersion ([#1515](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1515)), thanks to [Manuel Trezza](https://github.com/mtrezza).
 
-### 1.19.0
+# 1.19.0
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.18.0...1.19.0)
 
 __New features__
@@ -38,8 +72,7 @@ __Fixes__
 - Removes deprecated UIWebView usage ([#1511](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1511)), thanks to [Nathan Kellert](https://github.com/parse-community/Parse-SDK-iOS-OSX/commits?author=noobs2ninjas).
 - Fixes building with Xcode 12 ([#1527](https://github.com/parse-community/Parse-SDK-iOS-OSX/pull/1527)), thanks to [Steffen Matthischke](https://github.com/HeEAaD).
 
-
-### 1.18.0
+# 1.18.0
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.17.3...1.18.0)
 
 __New features__
@@ -66,7 +99,7 @@ __Fixes__
 After getting in contact with the Bolts Framework maintainers from Facebook they have allowed us to get changes in to fix app store declines due to still using UIWebView(iOS only) rather than updating to WKWebView(iOS, macOS, and iPad OS compatible). Those that got declined should be able to re-submit after updating to the latest version of this SDK as well as its dependencies. 
 
 
-### 1.17.3
+# 1.17.3
 [Full Changelog](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/1.17.2...1.17.3)
 
 __New Features__

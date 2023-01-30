@@ -23,18 +23,17 @@ module Constants
 
   script_folder = File.expand_path(File.dirname(__FILE__))
 
-  PARSE_CONSTANTS_HEADER = File.join(script_folder, 'Parse', 'Parse', 'PFConstants.h')
-  PARSE_PODSPEC = File.join(script_folder, 'Parse.podspec')
+  PARSE_CONSTANTS_HEADER = File.join(script_folder, 'Parse', 'Parse', 'Source/PFConstants.h')
 
   PLISTS = [
-    File.join(script_folder, 'Parse','Parse', 'Resources', 'Parse-iOS.Info.plist'),
-    File.join(script_folder, 'Parse','Parse', 'Resources', 'Parse-OSX.Info.plist'),
-    File.join(script_folder, 'Parse','Parse', 'Resources', 'Parse-watchOS.Info.plist'),
-    File.join(script_folder, 'Parse','Parse', 'Resources', 'Parse-tvOS.Info.plist'),
-    File.join(script_folder, 'ParseFacebookUtils', 'Resources', 'Info-iOS.plist'),
-    File.join(script_folder, 'ParseFacebookUtils', 'Resources', 'Info-tvOS.plist'),
-    File.join(script_folder, 'ParseTwitterUtils', 'Resources', 'Info.plist'),
-    File.join(script_folder, 'ParseUI', 'Resources', 'Info.plist'),
+    File.join(script_folder, 'Parse', 'Parse', 'Resources', 'Parse-iOS.Info.plist'),
+    File.join(script_folder, 'Parse', 'Parse', 'Resources', 'Parse-OSX.Info.plist'),
+    File.join(script_folder, 'Parse', 'Parse', 'Resources', 'Parse-watchOS.Info.plist'),
+    File.join(script_folder, 'Parse', 'Parse', 'Resources', 'Parse-tvOS.Info.plist'),
+    File.join(script_folder, 'ParseFacebookUtils', 'ParseFacebookUtils', 'Resources', 'Info-iOS.plist'),
+    File.join(script_folder, 'ParseFacebookUtils', 'ParseFacebookUtils', 'Resources', 'Info-tvOS.plist'),
+    File.join(script_folder, 'ParseTwitterUtils', 'ParseTwitterUtils', 'Resources', 'Info-iOS.plist'),
+    File.join(script_folder, 'ParseUI', 'ParseUI', 'Resources', 'Info-iOS.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
@@ -62,12 +61,6 @@ module Constants
     PLISTS.each do |plist|
       update_info_plist_version(plist, version)
     end
-
-    podspec_file = File.open(PARSE_PODSPEC, 'r+')
-    podspec = podspec_file.read
-    podspec.gsub!(/(.*s.version\s*=\s*')(.*)(')/, "\\1#{version}\\3")
-    podspec_file.seek(0)
-    podspec_file.write(podspec)
   end
 
   def self.update_info_plist_version(plist_path, version)
@@ -295,7 +288,6 @@ namespace :package do
 
   task :prepare do
     `rm -rf #{build_folder} && mkdir -p #{build_folder}`
-    `rm -rf #{bolts_build_folder} && mkdir -p #{bolts_build_folder}`
     `#{bolts_folder}/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos`
   end
 
@@ -703,31 +695,6 @@ namespace :test do
         puts 'Starter Project Tests Failed!'
         exit(1)
       end
-    end
-  end
-
-  desc 'Run Podspec Lint'
-  task :cocoapods do |_|
-    podspecs = ['Parse.podspec']
-    results = []
-    system("pod repo update --silent")
-    podspecs.each do |podspec|
-      results << system("pod lib lint #{podspec} --allow-warnings")
-      results << system("pod lib lint #{podspec} --allow-warnings --use-libraries --use-modular-headers")
-    end
-    results.each do |result|
-      unless result
-        puts 'Podspec Tests Failed!'
-        exit(1)
-      end
-    end
-  end
-
-  desc 'Run Carthage Build'
-  task :carthage do |_|
-    if !system('carthage build --no-skip-current')
-      puts 'Carthage Tests Failed!'
-      exit(1)
     end
   end
 end

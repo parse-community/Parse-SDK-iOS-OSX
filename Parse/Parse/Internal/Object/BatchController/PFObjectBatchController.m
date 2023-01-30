@@ -9,7 +9,12 @@
 
 #import "PFObjectBatchController.h"
 
+#if __has_include(<Bolts/Bolts.h>)
 #import <Bolts/Bolts.h>
+#else
+#import "Bolts.h"
+#endif
+
 
 #import "BFTask+Private.h"
 #import "PFAssert.h"

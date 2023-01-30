@@ -21,8 +21,13 @@
 
 #import "CustomProductTableViewController.h"
 
-#import <Parse/PFObject.h>
+#if __has_include(<Parse/PFQuery.h>)
+#import <Parse/PFQuery.h>
 #import <Parse/PFPurchase.h>
+#else
+#import "PFQuery.h"
+#import "PFPurchase.h"
+#endif
 
 @implementation CustomProductTableViewController
 

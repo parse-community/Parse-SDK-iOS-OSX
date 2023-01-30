@@ -21,7 +21,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import <ParseUI/PFQueryTableViewController.h>
+#import "PFQueryTableViewController.h"
 
 @interface SectionedTableViewController : PFQueryTableViewController
 

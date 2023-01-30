@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - UIApplicationDelegate
     //--------------------------------------
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // ****************************************************************************
         // Initialize Parse SDK
         // ****************************************************************************
@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFUser.enableAutomaticUser()
 
         let defaultACL = PFACL()
-        defaultACL.getPublicReadAccess = true // If you would like all objects to be private by default, remove this line.
+        defaultACL.hasPublicReadAccess = true // If you would like all objects to be private by default, remove this line.
         PFACL.setDefault(defaultACL, withAccessForCurrentUser: true)
 
         return true

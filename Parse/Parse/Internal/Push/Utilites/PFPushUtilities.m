@@ -21,6 +21,7 @@
 #import "PFKeychainStore.h"
 #import "PFLogging.h"
 #import "PFMacros.h"
+#import "PFCoreLocalization.h"
 
 @implementation PFPushUtilities
 
@@ -57,9 +58,7 @@
 #if TARGET_OS_IOS
 
 + (void)showAlertViewWithTitle:(nullable NSString *)title message:(nullable NSString *)message NS_EXTENSION_UNAVAILABLE_IOS("") {
-    NSString *cancelButtonTitle = NSLocalizedStringFromTableInBundle(@"OK", @"Parse",
-                                                                     [NSBundle bundleForClass:[self class]],
-                                                                     @"Default alert view cancel button title.");
+    NSString *cancelButtonTitle = PFCoreLocalizedString(@"OK", @"Default alert view cancel button title.");
     [PFAlertView showAlertWithTitle:title
                             message:message
                   cancelButtonTitle:cancelButtonTitle
