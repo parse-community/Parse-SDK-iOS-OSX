@@ -17,7 +17,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 18
       - name: Setup Ruby
         uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
       - name: Cache Gems
