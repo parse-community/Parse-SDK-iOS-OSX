@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.0.2...2.0.3) (2023-02-20)
+
+
+### Bug Fixes
+
+* `Parse.setServer` does not set new server URL ([#1708](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1708)) ([fd487da](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/fd487da490d7a3ad3f49c86ffde28973d7ef7f71))
+
 ## [2.0.2](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.0.1...2.0.2) (2023-01-30)
 
 
