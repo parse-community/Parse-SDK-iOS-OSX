@@ -100,11 +100,12 @@ static ParseClientConfiguration *currentParseConfiguration_;
 }
 
 + (void)setServer:(nonnull NSString *)server {
+    // Use current config with new server
+    ParseClientConfiguration *config = currentParseManager_ ? currentParseManager_.configuration : currentParseConfiguration_;
+    config.server = server;
+    
     // Re-initialize SDK
-    currentParseConfiguration_.applicationId = currentParseManager_.configuration.applicationId;
-    currentParseConfiguration_.clientKey = currentParseManager_.configuration.clientKey;
-    currentParseConfiguration_.server = server;
-    [self initializeWithConfigurationAllowingReinitialize:currentParseConfiguration_];
+    [self initializeWithConfigurationAllowingReinitialize:config];
 }
 
 + (nullable ParseClientConfiguration *)currentConfiguration {
