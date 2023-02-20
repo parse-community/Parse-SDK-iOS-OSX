@@ -30,9 +30,7 @@ For analyzing bugs, creating bug fixes and features we recommend to clone this r
    ```
    bundle exec rake test:ios
    ```
-   Check the Rakefile and the circleci config for more information.
-   
-5. Make sure your code follows the [style guide](#style-guide).
+   Check the [Rakefile](Rakefile) and the [GitHub workflows](.github/workflows) for more information.
 
 # Bugs
 
