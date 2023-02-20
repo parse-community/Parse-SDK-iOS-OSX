@@ -50,7 +50,7 @@ Take a look at the public [documentation][docs] & [API][api] and start building.
 
 #### Download Builds
 
-Dowload the compiled builds from the asset section in the [releases][releases] page.
+Download the compiled builds from the asset section in the [releases][releases] page.
 
 #### Compile Source
 
