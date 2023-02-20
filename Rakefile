@@ -15,7 +15,7 @@ build_folder = File.join(script_folder, 'build')
 release_folder = File.join(build_folder, 'release')
 bolts_build_folder = File.join(script_folder, 'Carthage', 'Build')
 bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-ObjC')
-ios_simulator = 'platform="iOS Simulator",name="iPhone 11"'
+ios_simulator = 'platform="iOS Simulator",name="iPhone 14"'
 tvos_simulator = 'platform="tvOS Simulator",name="Apple TV 4K"'
 
 module Constants
