@@ -107,11 +107,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, readonly, class) ParseClientConfiguration *currentConfiguration;
 
 /**
- Sets the server URL to connect to Parse Server. The local client cache is not cleared.
- @discussion This can be used to update the server URL after this client has been initialized, without having to destroy this client. An example use case is
- server connection failover, where the clients connects to another URL if the server becomes unreachable at the current URL.
- @warning The new server URL must point to a Parse Server that connects to the same database. Otherwise, issues may arise
- related to locally cached data or delayed methods such as saveEventually.
+ Sets the server URL to connect to Parse Server.
+ @discussion This can be used to update the server URL after the client was initialized. An example use case is server
+ connection failover, where the client connects to another URL if the server becomes unreachable at the current URL. The
+ client will be re-initialized maintaining the same configuration. Any pending requests will still be made against the previous
+ server URL that was set at the time the request was queued.
+ @warning The new server URL must point to a Parse Server that connects to the same database. Otherwise, issues may
+ arise related to locally cached data or delayed methods such as saveEventually.
  @param server  The server URL to set.
  */
 + (void)setServer:(nonnull NSString *)server;
