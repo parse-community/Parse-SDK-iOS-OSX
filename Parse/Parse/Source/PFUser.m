@@ -848,6 +848,10 @@ static BOOL revocableSessionEnabled_;
     [[self authenticationController] registerAuthenticationDelegate:delegate forAuthType:authType];
 }
 
++ (void)unregisterAuthenticationDelegateForAuthType:(NSString *)authType {
+    [[self authenticationController] unregisterAuthenticationDelegateForAuthType:authType];
+}
+
 #pragma mark Log In
 
 + (BFTask<__kindof PFUser *> *)logInWithAuthTypeInBackground:(NSString *)authType
