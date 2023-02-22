@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.0.3...2.1.0) (2023-02-22)
+
+
+### Features
+
+* Add `PFUser.unregisterAuthenticationDelegate` and allow to register delegate gracefully if another delegate is already registered ([#1711](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1711)) ([0ef9351](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/0ef93517136d668991b0226643e06bb15982935c))
+
 ## [2.0.3](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.0.2...2.0.3) (2023-02-20)
 
 
