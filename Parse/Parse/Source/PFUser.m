@@ -848,7 +848,7 @@ static BOOL revocableSessionEnabled_;
     [[self authenticationController] registerAuthenticationDelegate:delegate forAuthType:authType];
 }
 
-+ (void)unregisterAuthType:(NSString *)authType {
++ (void)unregisterAuthenticationDelegateForAuthType:(NSString *)authType {
     [[self authenticationController] unregisterAuthenticationDelegateForAuthType:authType];
 }
 

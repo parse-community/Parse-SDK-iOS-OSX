@@ -302,7 +302,7 @@ typedef void(^PFUserLogoutResultBlock)(NSError *_Nullable error);
 
  @param authType The name of the type of third party authentication source.
  */
-+ (void)unregisterAuthType:(NSString *)authType;
++ (void)unregisterAuthenticationDelegateForAuthType:(NSString *)authType;
 
 /**
  Logs in a user with third party authentication credentials.
