@@ -14,10 +14,13 @@ let package = Package(
         .library(name: "ParseFacebookUtilsiOS", targets: ["ParseFacebookUtilsiOS"]),
         .library(name: "ParseFacebookUtilsTvOS", targets: ["ParseFacebookUtilsTvOS"]),
         .library(name: "ParseTwitterUtils", targets: ["ParseTwitterUtils"]),
-        .library(name: "ParseUI", targets: ["ParseUI"])
+        .library(name: "ParseUI", targets: ["ParseUI"]),
+        .library(name: "ParseLiveQuery", targets: ["ParseLiveQuery"])
     ],
     dependencies: [
         .package(url: "https://github.com/parse-community/Bolts-ObjC.git", from: "1.10.0"),
+        .package(url: "https://github.com/BoltsFramework/Bolts-Swift.git", from: "1.5.0"),
+        .package(url: "https://github.com/daltoniam/Starscream.git", from: "3.1.1"),
         .package(url: "https://github.com/facebook/facebook-ios-sdk.git", from: "15.1.0")
     ],
     targets: [
@@ -75,6 +78,17 @@ let package = Package(
                ],
                 path: "ParseUI/ParseUI",
                 exclude: ["Resources/Info-iOS.plist"],
+                resources: [.process("Resources")],
+                publicHeadersPath: "Source",
+                cSettings: [.headerSearchPath("Internal/**")]),
+ 	.target(name: "ParseLiveQuery",
+               dependencies: [
+                .product(name: "BoltsSwift", package: "Bolts-Swift"),
+		"Starscream",
+		"ParseCore"
+               ],
+                path: "ParseLiveQuery/ParseLiveQuery",
+                exclude: ["Resources/Info.plist", "ParseLiveQuery-watchOS/Info.plist", "ParseLiveQuery-tvOS/Info.plist"],
                 resources: [.process("Resources")],
                 publicHeadersPath: "Source",
                 cSettings: [.headerSearchPath("Internal/**")]),

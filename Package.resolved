@@ -3,11 +3,29 @@
     "pins": [
       {
         "package": "Bolts",
-        "repositoryURL": "https://github.com/rocxteady/Bolts-ObjC",
+        "repositoryURL": "https://github.com/parse-community/Bolts-ObjC.git",
         "state": {
           "branch": null,
-          "revision": "0419586ce3df0a004fbf94533198132de9c9aa0a",
-          "version": null
+          "revision": "1eee96ad3bcfc8964c0a5815ce94f491eb6ac8c2",
+          "version": "1.10.0"
+        }
+      },
+	{
+        "package": "Bolts",
+        "repositoryURL": "https://github.com/BoltsFramework/Bolts-Swift.gitSwift",
+        "state": {
+          "branch": null,
+          "revision": "1eee96ad3bcfc8964c0a5815ce94f491eb6ac8c2",
+          "version": "1.5.0"
+        }
+      },
+	{
+        "package": "Starscream",
+        "repositoryURL": "https://github.com/daltoniam/Starscream.git",
+        "state": {
+          "branch": null,
+          "revision": "1eee96ad3bcfc8964c0a5815ce94f491eb6ac8c2",
+          "version": "4.0.4"
         }
       },
       {
