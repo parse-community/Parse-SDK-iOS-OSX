@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.1.0...2.1.1) (2023-02-26)
+
+
+### Performance Improvements
+
+* Skip registering auth delegate if it's already registered ([#1715](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1715)) ([6d7eadd](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/6d7eadd322d3ac2f011c33d9dbee89b9e051e744))
+
 # [2.1.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.0.3...2.1.0) (2023-02-22)
 
 
