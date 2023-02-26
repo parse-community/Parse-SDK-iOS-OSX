@@ -61,7 +61,7 @@
         
         // If same auth delete is already registered then don't register it again
         if ([self authenticationDelegateForAuthType:authType] == delegate) {
-            NSLog(@"same delegate already registered for authType `%@`.", authType);
+            NSLog(@"skipping registering as same delegate already registered for authType `%@`.", authType);
             return;
         }
         
