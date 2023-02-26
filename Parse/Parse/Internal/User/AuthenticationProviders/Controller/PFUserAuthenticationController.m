@@ -56,10 +56,10 @@
     PFParameterAssert(delegate, @"Authentication delegate can't be `nil`.");
     PFParameterAssert(authType, @"`authType` can't be `nil`.");
     
-    // If auth delete is already registered then unregister it gracefully
-    if ([self authenticationDelegateForAuthType:authType]) {
-        NSLog(@"unregistering existing deletegate to gracefully register new delegate for authType `%@`.", authType);
-        [self unregisterAuthenticationDelegateForAuthType:authType];
+    // If same auth delete is already registered then don't register it again
+    if ([self authenticationDelegateForAuthType:authType] == delegate) {
+        NSLog(@"delegate already registered for authType `%@`.", authType);
+        return;
     }
     
     dispatch_sync(_dataAccessQueue, ^{
