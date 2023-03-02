@@ -19,9 +19,6 @@
 
 @interface PFInternalUtils : NSObject
 
-+ (NSString *)parseServerURLString;
-+ (void)setParseServer:(NSString *)server;
-
 /**
  Clears system time zone cache, gets the name of the time zone
  and caches it. This method is completely thread-safe.

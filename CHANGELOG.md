@@ -1,3 +1,24 @@
+## [2.1.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.1.0...2.1.1) (2023-02-26)
+
+
+### Performance Improvements
+
+* Skip registering auth delegate if it's already registered ([#1715](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1715)) ([6d7eadd](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/6d7eadd322d3ac2f011c33d9dbee89b9e051e744))
+
+# [2.1.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.0.3...2.1.0) (2023-02-22)
+
+
+### Features
+
+* Add `PFUser.unregisterAuthenticationDelegate` and allow to register delegate gracefully if another delegate is already registered ([#1711](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1711)) ([0ef9351](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/0ef93517136d668991b0226643e06bb15982935c))
+
+## [2.0.3](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.0.2...2.0.3) (2023-02-20)
+
+
+### Bug Fixes
+
+* `Parse.setServer` does not set new server URL ([#1708](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1708)) ([fd487da](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/fd487da490d7a3ad3f49c86ffde28973d7ef7f71))
+
 ## [2.0.2](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.0.1...2.0.2) (2023-01-30)
 
 

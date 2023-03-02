@@ -283,7 +283,8 @@ typedef void(^PFUserLogoutResultBlock)(NSError *_Nullable error);
 ///--------------------------------------
 
 /**
- Registers a third party authentication delegate.
+ Registers a third party authentication delegate. If a delegate is already registered for the authType then
+ it is replaced by the new delegate.
 
  @note This method shouldn't be invoked directly unless developing a third party authentication library.
  @see PFUserAuthenticationDelegate
@@ -292,6 +293,16 @@ typedef void(^PFUserLogoutResultBlock)(NSError *_Nullable error);
  @param authType The name of the type of third party authentication source.
  */
 + (void)registerAuthenticationDelegate:(id<PFUserAuthenticationDelegate>)delegate forAuthType:(NSString *)authType;
+
+/**
+ Unregisters a third party authentication delegate. If no delegate is registered, this fails gracefully.
+
+ @note This method shouldn't be invoked directly unless developing a third party authentication library.
+ @see PFUserAuthenticationDelegate
+
+ @param authType The name of the type of third party authentication source.
+ */
++ (void)unregisterAuthenticationDelegateForAuthType:(NSString *)authType;
 
 /**
  Logs in a user with third party authentication credentials.

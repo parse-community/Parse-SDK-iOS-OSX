@@ -40,26 +40,7 @@
 #import "PFProduct.h"
 #endif
 
-static NSString *parseServer_;
-
 @implementation PFInternalUtils
-
-+ (void)initialize {
-    if (self == [PFInternalUtils class]) {
-        [self setParseServer:_ParseDefaultServerURLString];
-    }
-}
-
-+ (NSString *)parseServerURLString {
-    return parseServer_;
-}
-
-// Useful for testing.
-// Beware of race conditions if you call setParseServer while something else may be using
-// httpClient.
-+ (void)setParseServer:(NSString *)server {
-    parseServer_ = [server copy];
-}
 
 + (NSString *)currentSystemTimeZoneName {
     static NSLock *methodLock;

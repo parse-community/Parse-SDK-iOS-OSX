@@ -59,7 +59,6 @@ static ParseClientConfiguration *currentParseConfiguration_;
     PFParameterAssert(clientKey.length, @"`clientKey` should not be nil.");
     currentParseConfiguration_.applicationId = applicationId;
     currentParseConfiguration_.clientKey = clientKey;
-    currentParseConfiguration_.server = [PFInternalUtils parseServerURLString]; // TODO: (nlutsenko) Clean this up after tests are updated.
 
     [self initializeWithConfiguration:currentParseConfiguration_];
 
@@ -69,13 +68,17 @@ static ParseClientConfiguration *currentParseConfiguration_;
 }
 
 + (void)initializeWithConfiguration:(ParseClientConfiguration *)configuration {
+    PFConsistencyAssert(![self currentConfiguration], @"Parse is already initialized.");
+    [self initializeWithConfigurationAllowingReinitialize:configuration];
+}
+
++ (void)initializeWithConfigurationAllowingReinitialize:(ParseClientConfiguration *)configuration {
     PFConsistencyAssert(configuration.applicationId.length != 0,
                         @"You must set your configuration's `applicationId` before calling %s!", __PRETTY_FUNCTION__);
     PFConsistencyAssert(![PFApplication currentApplication].extensionEnvironment ||
                         configuration.applicationGroupIdentifier == nil ||
                         configuration.containingApplicationBundleIdentifier != nil,
                         @"'containingApplicationBundleIdentifier' must be non-nil in extension environment");
-    PFConsistencyAssert(![self currentConfiguration], @"Parse is already initialized.");
 
     ParseManager *manager = [[ParseManager alloc] initWithConfiguration:configuration];
     [manager startManaging];
@@ -94,11 +97,15 @@ static ParseClientConfiguration *currentParseConfiguration_;
                                                             object:nil];
         return nil;
     }];
-    
 }
 
 + (void)setServer:(nonnull NSString *)server {
-    [PFInternalUtils setParseServer:server];
+    // Use current config with new server
+    ParseClientConfiguration *config = currentParseManager_ ? currentParseManager_.configuration : currentParseConfiguration_;
+    config.server = server;
+    
+    // Re-initialize SDK
+    [self initializeWithConfigurationAllowingReinitialize:config];
 }
 
 + (nullable ParseClientConfiguration *)currentConfiguration {
@@ -126,7 +133,9 @@ static ParseClientConfiguration *currentParseConfiguration_;
 }
 
 + (nullable NSString *)server {
-    return [[PFInternalUtils parseServerURLString] copy];
+    ParseClientConfiguration *config = currentParseManager_ ? currentParseManager_.configuration
+                                                            : currentParseConfiguration_;
+    return currentParseManager_.configuration.server;
 }
 
 ///--------------------------------------

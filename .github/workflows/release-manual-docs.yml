@@ -1,0 +1,41 @@
+name: release-manual-docs
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        default: ''
+        description: 'Version tag:' 
+env:
+  CI_XCODE_13: '/Applications/Xcode_13.4.1.app/Contents/Developer'
+
+jobs:
+  publish-docs:
+    if: github.event.inputs.tag != ''
+    runs-on: macos-11
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.tag }}
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Install Bundle
+        run: |
+          bundle config path vendor/bundle
+          bundle install
+      - name: Create Jazzy Docs
+        run: |
+          ./Scripts/jazzy.sh
+        env:
+          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
+      - name: Deploy Jazzy Docs
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
