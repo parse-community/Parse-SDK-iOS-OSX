@@ -160,6 +160,8 @@ jobs:
 
   parse_live_query:
     runs-on: macos-latest
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v2
     - name: Setup Ruby
@@ -178,6 +180,7 @@ jobs:
         sudo gem install bundler
         bundle config set path 'vendor/bundle'
         bundle install
+        carthage bootstrap --use-xcframeworks
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parse_live_query:all
       env:
