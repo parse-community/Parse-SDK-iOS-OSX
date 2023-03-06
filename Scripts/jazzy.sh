@@ -14,7 +14,7 @@ bundle exec jazzy \
   --skip-undocumented \
   --exclude=./Bolts/* \
   --module Parse \
-  --umbrella-header Parse/Parse/Parse.h \
+  --umbrella-header Parse/Parse/Source/Parse.h \
   --framework-root Parse \
   --output docs/api
 
