@@ -187,7 +187,6 @@ jobs:
           DEVELOPER_DIR: ${{ env.CI_XCODE_11 }}
 
   docs:
-    needs: parseui
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
