@@ -27,6 +27,8 @@ jobs:
             ${{ runner.os }}-gem-
       - name: Install Bundle
         run: |
+          git submodule update --init --recursive
+          sudo gem install bundler
           bundle config path vendor/bundle
           bundle install
       - name: Create Jazzy Docs
