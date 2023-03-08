@@ -38,8 +38,10 @@
         PFQueryStatePropertyName(shouldIgnoreACLs): [PFPropertyAttributes attributes],
         PFQueryStatePropertyName(shouldIncludeDeletingEventually): [PFPropertyAttributes attributes],
         PFQueryStatePropertyName(queriesLocalDatastore): [PFPropertyAttributes attributes],
-
-        PFQueryStatePropertyName(localDatastorePinName): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy]
+        PFQueryStatePropertyName(localDatastorePinName): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+        
+        PFQueryStatePropertyName(explain): [PFPropertyAttributes attributes],
+        PFQueryStatePropertyName(hint): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy]
     };
 }
 

@@ -36,6 +36,8 @@
 @dynamic cachePolicy;
 @dynamic maxCacheAge;
 @dynamic trace;
+@dynamic explain;
+@dynamic hint;
 @dynamic shouldIgnoreACLs;
 @dynamic shouldIncludeDeletingEventually;
 @dynamic queriesLocalDatastore;
