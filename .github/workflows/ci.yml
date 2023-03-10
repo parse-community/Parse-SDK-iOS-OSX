@@ -68,23 +68,31 @@ jobs:
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake ${{ matrix.script }}
         env:
           DEVELOPER_DIR: ${{ (matrix.script == 'package:release' && env.CI_XCODE_11) || env.CI_XCODE_14 }}
-      - name: Get Artifact Name
+      - name: Generate Environment Variables
         if: ${{ always() }}
         env:
           ARTIFACT_NAME: ${{ matrix.script }}-logs
+          TEST_RESULTS: ${{ matrix.script }}.xcresult
         run: |
           ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}
+          TEST_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult")
           echo ARTIFACT_NAME=${ARTIFACT_NAME//:/-} >> $GITHUB_ENV # replace colon with dashes
+          echo TEST_RESULTS=${TEST_RESULTS} >> $GITHUB_ENV
+          echo "Artifact Name: $ARTIFACT_NAME"
+          echo "Test Result Location: $TEST_RESULTS"
       - name: Upload Artifact Logs
-        if: ${{ always() }}
+        if: ${{ failure() }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.ARTIFACT_NAME }}
           path: |
-            ~/Library/Logs/DiagnosticReports
             ~/Library/Developer/Xcode/DerivedData/Parse-*/Logs/Test
-      - name: Send Codecov
-        run: bash <(curl https://codecov.io/bash)
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v3.1.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          xcode: true
+          xcode_archive_path: ${{ env.TEST_RESULTS }}
   docs:
     runs-on: macos-12
     steps:
