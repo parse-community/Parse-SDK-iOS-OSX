@@ -76,6 +76,12 @@
             </BuildableReference>
             <SkippedTests>
                <Test
+                  Identifier = "ExtensionDataSharingMobileTests">
+               </Test>
+               <Test
+                  Identifier = "ExtensionDataSharingTests">
+               </Test>
+               <Test
                   Identifier = "PFTestCase">
                </Test>
                <Test

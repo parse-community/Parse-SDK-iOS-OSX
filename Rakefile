@@ -15,7 +15,7 @@ build_folder = File.join(script_folder, 'build')
 release_folder = File.join(build_folder, 'release')
 bolts_build_folder = File.join(script_folder, 'Carthage', 'Build')
 bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-ObjC')
-ios_simulator = 'platform="iOS Simulator",name="iPhone 11"'
+ios_simulator = 'platform="iOS Simulator",name="iPhone 14"'
 tvos_simulator = 'platform="tvOS Simulator",name="Apple TV 4K"'
 
 module Constants
@@ -467,7 +467,7 @@ namespace :test do
                                "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
       t.actions = [XCTask::BuildAction::TEST]
-      t.formatter = XCTask::BuildFormatter::XCPRETTY
+      t.formatter = XCTask::BuildFormatter::XCODEBUILD
     end
     unless task.execute
       puts 'iOS Tests Failed!'
@@ -488,7 +488,7 @@ namespace :test do
                                "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
       t.actions = [XCTask::BuildAction::TEST]
-      t.formatter = XCTask::BuildFormatter::XCPRETTY
+      t.formatter = XCTask::BuildFormatter::XCODEBUILD
     end
     unless task.execute
       puts 'macOS Tests Failed!'
@@ -511,7 +511,7 @@ namespace :test do
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
         t.actions = [XCTask::BuildAction::TEST]
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
+        t.formatter = XCTask::BuildFormatter::XCODEBUILD
       end
 
       result = task.execute
@@ -537,7 +537,7 @@ namespace :test do
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
         t.actions = [XCTask::BuildAction::TEST]
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
+        t.formatter = XCTask::BuildFormatter::XCODEBUILD
       end
 
       result = task.execute
@@ -565,7 +565,7 @@ namespace :test do
         t.configuration = 'Debug'
 
         t.actions = [XCTask::BuildAction::TEST]
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
+        t.formatter = XCTask::BuildFormatter::XCODEBUILD
       end
 
       result = task.execute

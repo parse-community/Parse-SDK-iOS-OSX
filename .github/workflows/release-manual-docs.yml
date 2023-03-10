@@ -6,12 +6,12 @@ on:
         default: ''
         description: 'Version tag:' 
 env:
-  CI_XCODE_13: '/Applications/Xcode_13.4.1.app/Contents/Developer'
+  CI_XCODE_14: '/Applications/Xcode_14.2.app/Contents/Developer'
 
 jobs:
   publish-docs:
     if: github.event.inputs.tag != ''
-    runs-on: macos-11
+    runs-on: macos-12
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -21,7 +21,7 @@ jobs:
         uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
       - name: Cache Gems
         id: cache-gems
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
@@ -37,7 +37,7 @@ jobs:
         run: |
           ./Scripts/jazzy.sh
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_14 }}
       - name: Deploy Jazzy Docs
         uses: peaceiris/actions-gh-pages@v3
         with:

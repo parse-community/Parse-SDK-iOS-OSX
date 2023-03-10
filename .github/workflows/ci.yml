@@ -1,213 +1,114 @@
+---
 name: ci
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
   pull_request:
-    branches: [ '**' ]
+    branches:
+      - "**"
 env:
-  CI_XCODE_11: '/Applications/Xcode_11.7.app/Contents/Developer'
-  CI_XCODE_13: '/Applications/Xcode_13.4.1.app/Contents/Developer'
-
+  CI_XCODE_11: /Applications/Xcode_11.7.app/Contents/Developer
+  CI_XCODE_14: /Applications/Xcode_14.2.app/Contents/Developer
 jobs:
-  ios:
-    runs-on: macos-12
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
-    - name: Cache Gems
-      id: cache-gems
-      uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gem-
-    - name: Submodules and Bundle Install
-      run: |
-        git submodule update --init --recursive
-        sudo gem install bundler
-        bundle config set path 'vendor/bundle'
-        bundle install
-    - name: Build-Test
-      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:ios
-      env:
-        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
-    - name: Send codecov
-      run: bash <(curl https://codecov.io/bash)
-
-  macos:
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
-    - name: Cache Gems
-      id: cache-gems
-      uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gem-
-    - name: Submodules and Bundle Install
-      run: |
-        git submodule update --init --recursive
-        sudo gem install bundler
-        bundle config set path 'vendor/bundle'
-        bundle install
-    - name: Create and set the default keychain
-      run: |
-        security create-keychain -p "" temporary
-        security default-keychain -s temporary
-        security unlock-keychain -p "" temporary
-        security set-keychain-settings -lut 7200 temporary
-    - name: Build-Test
-      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:macos
-      env:
-        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
-    - name: Send codecov
-      run: bash <(curl https://codecov.io/bash)
-
-  facebook_utils:
-    needs: parseui
-    runs-on: macos-latest
+  tests:
     env:
       GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    timeout-minutes: 60
+    strategy:
+      matrix:
+        script:
+          - test:ios
+          - test:macos
+          - test:facebook_utils:ios
+          - test:twitter_utils:ios
+          - test:parseui:all
+          - package:release
+      fail-fast: false
+    runs-on: ${{ (matrix.script == 'package:release' && 'macos-11') || 'macos-12' }}
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
-    - name: Cache Gems
-      id: cache-gems
-      uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gem-
-    - name: Submodules and Bundle Install          
-      run: |
-        git submodule update --init --recursive
-        sudo gem install bundler
-        bundle config set path 'vendor/bundle'
-        bundle install
-        carthage bootstrap --use-xcframeworks
-    - name: Build-Test
-      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:facebook_utils:ios
-      env:
-        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
-    - name: Send codecov
-      run: bash <(curl https://codecov.io/bash)
-
-  twitter_utils:
-    needs: parseui
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
-    - name: Cache Gems
-      id: cache-gems
-      uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gem-
-    - name: Submodules and Bundle Install
-      run: |
-        git submodule update --init --recursive
-        sudo gem install bundler
-        bundle config set path 'vendor/bundle'
-        bundle install
-    - name: Build-Test
-      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:twitter_utils:ios
-      env:
-        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
-    - name: Send codecov
-      run: bash <(curl https://codecov.io/bash)
-
-  parseui:
-    runs-on: macos-latest
-    env:
-      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
-    - name: Cache Gems
-      id: cache-gems
-      uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gem-
-    - name: Submodules and Bundle Install
-      run: |
-        git submodule update --init --recursive
-        sudo gem install bundler
-        bundle config set path 'vendor/bundle'
-        bundle install
-        carthage bootstrap --use-xcframeworks
-    - name: Build-Test
-      env:
-        DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
-      run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake test:parseui:all
-    - name: Send codecov
-      run: bash <(curl https://codecov.io/bash)
-
-  assets:
-    runs-on: macos-11
-    env:
-      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup Ruby
         uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
       - name: Cache Gems
         id: cache-gems
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
-      - name: Submodules and Bundle Install
+      - name: Create and set the default keychain
+        run: |
+          security create-keychain -p "" temporary
+          security default-keychain -s temporary
+          security unlock-keychain -p "" temporary
+          security set-keychain-settings -lut 7200 temporary
+      - name: Submodules
         run: |
           git submodule update --init --recursive
           sudo gem install bundler
           bundle config set path 'vendor/bundle'
-          bundle install
+      - name: Bundle Install
+        if: steps.cache-gems.outputs.cache-hit != 'true'
+        run: bundle install
+      - name: Cache Carthage
+        uses: actions/cache@v3
+        id: carthage-cache
+        with:
+          path: Carthage
+          key: ${{ runner.os }}-carthage-${{ hashFiles('**/Cartfile.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-carthage-
+      - name: Carthage
+        if: ${{ steps.carthage-cache.outputs.cache-hit != 'true' }}
+        run: |
           carthage bootstrap --use-xcframeworks
-      - name: Build Release
-        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
+      - name: Build-Test
+        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake ${{ matrix.script }}
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_11 }}
-
+          DEVELOPER_DIR: ${{ (matrix.script == 'package:release' && env.CI_XCODE_11) || env.CI_XCODE_14 }}
+      - name: Get Artifact Name
+        if: ${{ always() }}
+        env:
+          ARTIFACT_NAME: ${{ matrix.script }}-logs
+        run: |
+          ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}
+          echo ARTIFACT_NAME=${ARTIFACT_NAME//:/-} >> $GITHUB_ENV # replace colon with dashes
+      - name: Upload Artifact Logs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: |
+            ~/Library/Logs/DiagnosticReports
+            ~/Library/Developer/Xcode/DerivedData/Parse-*/Logs/Test
+      - name: Send Codecov
+        run: bash <(curl https://codecov.io/bash)
   docs:
-    runs-on: macos-latest
+    runs-on: macos-12
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup Ruby
         uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
       - name: Cache Gems
         id: cache-gems
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
-      - name: Submodules and Bundle Instal
+      - name: Submodules
         run: |
           git submodule update --init --recursive
           sudo gem install bundler
           bundle config path vendor/bundle
-          bundle install
+      - name: Bundle Install
+        if: steps.cache-gems.outputs.cache-hit != 'true'
+        run: bundle install
       - name: Create Jazzy Docs
         run: |
           ./Scripts/jazzy.sh
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_14 }}
