@@ -27,12 +27,14 @@ jobs:
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
-      - name: Install Bundle
+      - name: Submodules
         run: |
           git submodule update --init --recursive
           sudo gem install bundler
           bundle config path vendor/bundle
-          bundle install
+      - name: Bundle Install
+        if: steps.cache-gems.outputs.cache-hit != 'true'
+        run: bundle install
       - name: Create Jazzy Docs
         run: |
           ./Scripts/jazzy.sh
