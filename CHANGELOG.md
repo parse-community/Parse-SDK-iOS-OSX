@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.1.1...2.2.0) (2023-03-10)
+
+
+### Features
+
+* Add support for `PFQuery.explain` and `PFQuery.hint` ([#1723](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1723)) ([583d266](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/583d2662c05b871bfda75cf6e44608e903b544a2))
+
 ## [2.1.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.1.0...2.1.1) (2023-02-26)
 
 
