@@ -14,7 +14,7 @@ jobs:
   tests:
     env:
       GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    timeout-minutes: 30
+    timeout-minutes: 60
     strategy:
       matrix:
         script:
@@ -99,12 +99,14 @@ jobs:
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
-      - name: Submodules and Bundle Install
+      - name: Submodules
         run: |
           git submodule update --init --recursive
           sudo gem install bundler
           bundle config path vendor/bundle
-          bundle install
+      - name: Bundle Install
+        if: steps.cache-gems.outputs.cache-hit != 'true'
+        run: bundle install
       - name: Create Jazzy Docs
         run: |
           ./Scripts/jazzy.sh
