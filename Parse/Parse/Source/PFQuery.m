@@ -183,6 +183,26 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     return self.state.trace;
 }
 
+#pragma mark Hint
+
+- (void)setHint:(NSString *)hint {
+    self.state.hint = hint;
+}
+
+- (NSString *)hint {
+    return self.state.hint;
+}
+
+#pragma mark Explain
+
+- (void)setExplain:(BOOL)explain {
+    self.state.explain = explain;
+}
+
+- (BOOL)explain {
+    return self.state.explain;
+}
+
 ///--------------------------------------
 #pragma mark - Order
 ///--------------------------------------
@@ -987,6 +1007,18 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
 
     self.state.shouldIgnoreACLs = YES;
 
+    return self;
+}
+
+- (instancetype)explain:(BOOL)explain {
+    [self checkIfCommandIsRunning];
+    self.state.explain = explain;
+    return self;
+}
+
+- (instancetype)hint:(NSString *)indexName {
+    [self checkIfCommandIsRunning];
+    self.state.hint = [indexName copy];
     return self;
 }
 

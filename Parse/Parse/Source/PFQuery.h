@@ -762,6 +762,23 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *_Nullable obje
  */
 - (instancetype)ignoreACLs;
 
+/**
+ Change the source of this query to investigate the query execution plan. Useful for optimizing queries.
+
+ @param explain Used to toggle the information on the query plan.
+ */
+- (void)setExplain:(BOOL)explain;
+
+/**
+ Change the source of this query to force an index selection.
+
+ @param hint The index name that should be used when executing query.
+ */
+- (void)setHint:(nullable NSString *)hint;
+
+@property (nonatomic, copy) NSString *hint;
+@property (nonatomic, assign) BOOL explain;
+
 ///--------------------------------------
 #pragma mark - Advanced Settings
 ///--------------------------------------

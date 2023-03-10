@@ -28,6 +28,8 @@
     state.cachePolicy = kPFCachePolicyCacheOnly;
     state.maxCacheAge = 100500.0;
     state.trace = YES;
+    state.hint = @"_id_";
+    state.explain = YES;
     state.shouldIgnoreACLs = YES;
     state.shouldIncludeDeletingEventually = YES;
     state.queriesLocalDatastore = YES;
@@ -64,6 +66,8 @@
     XCTAssertEqualObjects(state.extraOptions, differentState.extraOptions);
 
     XCTAssertEqualObjects(state.localDatastorePinName, differentState.localDatastorePinName);
+    XCTAssertEqualObjects(state.hint, differentState.hint);
+    XCTAssertEqual(state.explain, differentState.explain);
 }
 
 ///--------------------------------------

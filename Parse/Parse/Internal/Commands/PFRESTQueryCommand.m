@@ -38,6 +38,8 @@
                                        includedKeys:(NSSet *)includedKeys
                                               limit:(NSInteger)limit
                                                skip:(NSInteger)skip
+                                             explain:(BOOL)explain
+                                                hint:(NSString *)hint
                                        extraOptions:(NSDictionary *)extraOptions
                                      tracingEnabled:(BOOL)trace
                                        sessionToken:(NSString *)sessionToken
@@ -48,6 +50,8 @@
                                                        includedKeys:includedKeys
                                                               limit:limit
                                                                skip:skip
+                                                            explain:explain
+                                                               hint:hint
                                                        extraOptions:extraOptions
                                                      tracingEnabled:trace
                                                               error:error];
@@ -100,6 +104,8 @@
                                    includedKeys:queryState.includedKeys
                                           limit:queryState.limit
                                            skip:queryState.skip
+                                        explain:queryState.explain
+                                           hint:queryState.hint
                                    extraOptions:queryState.extraOptions
                                  tracingEnabled:queryState.trace
                                           error:error];
@@ -111,6 +117,8 @@
                                     includedKeys:(NSSet *)includedKeys
                                            limit:(NSInteger)limit
                                             skip:(NSInteger)skip
+                                         explain:(BOOL)explain
+                                            hint:(NSString *)hint
                                     extraOptions:(NSDictionary *)extraOptions
                                   tracingEnabled:(BOOL)trace
                                            error:(NSError **)error {
@@ -139,6 +147,12 @@
         // TODO: (nlutsenko) Double check that tracing still works. Maybe create test for it.
         parameters[@"trace"] = @"1";
     }
+    if (explain) {
+        parameters[@"explain"] =  @"1";
+    }
+    if (hint != nil) {
+        parameters[@"hint"] = hint;
+    }
     [extraOptions enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         parameters[key] = obj;
     }];
@@ -165,6 +179,8 @@
                                                                       includedKeys:subquery.state.includedKeys
                                                                              limit:subquery.state.limit
                                                                               skip:subquery.state.skip
+                                                                           explain:subquery.state.explain
+                                                                              hint:subquery.state.hint
                                                                       extraOptions:nil
                                                                     tracingEnabled:NO
                                                                              error:&encodingError];
@@ -224,8 +240,10 @@
                                                               conditions:subquery.state.conditions
                                                             selectedKeys:subquery.state.selectedKeys
                                                             includedKeys:subquery.state.includedKeys
-                                                                    limit:subquery.state.limit
+                                                                   limit:subquery.state.limit
                                                                     skip:subquery.state.skip
+                                                                 explain:subquery.state.explain
+                                                                    hint:subquery.state.hint
                                                             extraOptions:subquery.state.extraOptions
                                                           tracingEnabled:NO
                                                                    error:&encodingError];

@@ -29,6 +29,9 @@
 @property (nonatomic, assign, readonly) NSInteger limit;
 @property (nonatomic, assign, readonly) NSInteger skip;
 
+@property (nonatomic, assign, readonly) BOOL explain;
+@property (nonatomic, copy, readonly) NSString *hint;
+
 ///--------------------------------------
 #pragma mark - Remote + Caching Options
 ///--------------------------------------
