@@ -84,7 +84,7 @@ jobs:
             ~/Library/Logs/DiagnosticReports
             ~/Library/Developer/Xcode/DerivedData/Parse-*/Logs/Test
       - name: Send Codecov
-        uses: codecov/codecov-action@v3
+        run: bash <(curl https://codecov.io/bash)
   docs:
     runs-on: macos-12
     steps:
