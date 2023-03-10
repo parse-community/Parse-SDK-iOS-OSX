@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PFSubclassing Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/objc/Protocol/PFSubclassing" class="dashAnchor"></a>
+
+    <a title="PFSubclassing Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Parse 2.2.0 Docs
+        </a>
+         (92% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/parse-community/Parse-SDK-iOS-OSX">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://http%3A%2F%2Fparseplatform.org%2FParse-SDK-iOS-OSX%2Fapi%2Fdocsets%2FParse.xml">
+            <img class="header-icon" src="../img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Parse Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      PFSubclassing Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFACL.html">PFACL</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFAnalytics.html">PFAnalytics</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFAnonymousUtils.html">PFAnonymousUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFCloud.html">PFCloud</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFConfig.html">PFConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFEncoder">PFEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFFile">PFFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFFileObject.html">PFFileObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFFileUploadResult">PFFileUploadResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFGeoPoint.html">PFGeoPoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFInstallation.html">PFInstallation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFKnownParseObjectDecoder">PFKnownParseObjectDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFNoObjectEncoder">PFNoObjectEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFObject.html">PFObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFOfflineDecoder">PFOfflineDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFOfflineObjectEncoder">PFOfflineObjectEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFPointerObjectEncoder">PFPointerObjectEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/c:objc(cs)PFPointerOrLocalIdObjectEncoder">PFPointerOrLocalIdObjectEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFPolygon.html">PFPolygon</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFPush.html">PFPush</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFQuery.html">PFQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFRelation.html">PFRelation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFRole.html">PFRole</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFSession.html">PFSession</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PFUser.html">PFUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Parse.html">Parse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ParseClientConfiguration.html">ParseClientConfiguration</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFInvalidSessionTokenNotification">PFInvalidSessionTokenNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFNetworkDidReceiveURLResponseNotification">PFNetworkDidReceiveURLResponseNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFNetworkNotificationURLRequestUserInfoKey">PFNetworkNotificationURLRequestUserInfoKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFNetworkNotificationURLResponseBodyUserInfoKey">PFNetworkNotificationURLResponseBodyUserInfoKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFNetworkNotificationURLResponseUserInfoKey">PFNetworkNotificationURLResponseUserInfoKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFNetworkWillSendURLRequestNotification">PFNetworkWillSendURLRequestNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFObjectDefaultPin">PFObjectDefaultPin</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFParseErrorDomain">PFParseErrorDomain</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@PFParseInitializeDidCompleteNotification">PFParseInitializeDidCompleteNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@kPFDeviceType">kPFDeviceType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PFCachePolicy.html">PFCachePolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PFErrorCode.html">PFErrorCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PFLogLevel.html">PFLogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PFFileUploadController.html">PFFileUploadController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PFSubclassing.html">PFSubclassing</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PFUserAuthenticationDelegate.html">PFUserAuthenticationDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ParseMutableClientConfiguration.html">ParseMutableClientConfiguration</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Type%20Definitions.html">Type Definitions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type%20Definitions.html#/c:PFQuery.h@T@PFQueryArrayResultBlock">PFQueryArrayResultBlock</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>PFSubclassing</h1>
+              <div class="declaration">
+                <div class="language">
+                  <p class="aside-title">Objective-C</p>
+                  <pre class="highlight objective_c"><code><span class="k">@protocol</span> <span class="nc">PFSubclassing</span> <span class="o">&lt;</span><span class="n">NSObject</span><span class="o">&gt;</span></code></pre>
+
+                </div>
+                <div class="language">
+                  <p class="aside-title">Swift</p>
+                  <pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">PFSubclassing</span> <span class="p">:</span> <span class="kt">NSObjectProtocol</span></code></pre>
+
+                </div>
+              </div>
+            <p>If a subclass of <code><a href="../Classes/PFObject.html">PFObject</a></code> conforms to <code>PFSubclassing</code> and calls <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)registerSubclass">PFObject.+registerSubclass</a></code>,
+Parse framework will be able to use that class as the native class for a Parse cloud object.</p>
+
+<p>Classes conforming to this protocol should subclass <code><a href="../Classes/PFObject.html">PFObject</a></code> and
+include <code>PFObject+Subclass.h</code> in their implementation file.
+This ensures the methods in the Subclass category of <code><a href="../Classes/PFObject.html">PFObject</a></code> are exposed in its subclasses only.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)PFSubclassing(cm)parseClassName"></a>
+                    <a name="//apple_ref/objc/Method/+parseClassName" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)PFSubclassing(cm)parseClassName">+parseClassName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The name of the class as seen in the REST API.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">parseClassName</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">parseClassName</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)PFSubclassing(cm)objectWithoutDataWithObjectId:"></a>
+                    <a name="//apple_ref/objc/Method/+objectWithoutDataWithObjectId:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)PFSubclassing(cm)objectWithoutDataWithObjectId:">+objectWithoutDataWithObjectId:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a reference to an existing PFObject for use in creating associations between PFObjects.</p>
+
+<p>Calling <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(py)dataAvailable">PFObject.dataAvailable</a></code> on this object will return <code>NO</code>
+until <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchIfNeeded">PFObject.-fetchIfNeeded</a></code> has been called. No network request will be made.
+A default implementation is provided by <code><a href="../Classes/PFObject.html">PFObject</a></code> which should always be sufficient.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">objectWithoutDataWithObjectId</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">nullable</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">objectId</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">objectWithoutData</span><span class="p">(</span><span class="n">withObjectId</span> <span class="nv">objectId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>objectId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The object id for the referenced object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code><a href="../Classes/PFObject.html">PFObject</a></code> without data.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)PFSubclassing(cm)query"></a>
+                    <a name="//apple_ref/objc/Method/+query" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)PFSubclassing(cm)query">+query</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a query which returns objects of this type.</p>
+
+<p>A default implementation is provided by <code><a href="../Classes/PFObject.html">PFObject</a></code> which should always be sufficient.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nullable</span> <span class="n"><a href="../Classes/PFQuery.html">PFQuery</a></span> <span class="o">*</span><span class="p">)</span><span class="n">query</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">query</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PFQuery.html">PFQuery</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)PFSubclassing(cm)queryWithPredicate:"></a>
+                    <a name="//apple_ref/objc/Method/+queryWithPredicate:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)PFSubclassing(cm)queryWithPredicate:">+queryWithPredicate:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a query for objects of this type with a given predicate.</p>
+
+<p>A default implementation is provided by <code><a href="../Classes/PFObject.html">PFObject</a></code> which should always be sufficient.</p>
+<div class="aside aside-see">
+    <p class="aside-title">See</p>
+    <p>[PFQuery queryWithClassName:predicate:]</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nullable</span> <span class="n"><a href="../Classes/PFQuery.html">PFQuery</a></span> <span class="o">*</span><span class="p">)</span><span class="nf">queryWithPredicate</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSPredicate</span> <span class="o">*</span><span class="p">)</span><span class="nv">predicate</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">query</span><span class="p">(</span><span class="n">with</span> <span class="nv">predicate</span><span class="p">:</span> <span class="kt">NSPredicate</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PFQuery.html">PFQuery</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>predicate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The predicate to create conditions from.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An instance of <code><a href="../Classes/PFQuery.html">PFQuery</a></code>.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)PFSubclassing(cm)registerSubclass"></a>
+                    <a name="//apple_ref/objc/Method/+registerSubclass" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)PFSubclassing(cm)registerSubclass">+registerSubclass</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Lets Parse know this class should be used to instantiate all objects with class type <code>parseClassName</code>.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    This method must be called before <code><a href="../Classes/Parse.html#/c:objc(cs)Parse(cm)setApplicationId:clientKey:">Parse.+setApplicationId:clientKey:</a></code>.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">registerSubclass</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">registerSubclass</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2023 <a class="link" href="http://parseplatform.org" target="_blank" rel="external">Parse Community</a>. All rights reserved. (Last updated: 2023-03-10)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
