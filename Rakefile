@@ -462,9 +462,7 @@ namespace :test do
       t.scheme = 'Parse-iOS'
       t.sdk = 'iphonesimulator'
       t.destinations = [ios_simulator]
-      t.configuration = 'Debug'
-      t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
-                               "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
+      t.configuration = 'Debug -enableCodeCoverage YES'
 
       t.actions = [XCTask::BuildAction::TEST]
       t.formatter = XCTask::BuildFormatter::XCODEBUILD
@@ -483,9 +481,7 @@ namespace :test do
 
       t.scheme = 'Parse-macOS'
       t.sdk = 'macosx'
-      t.configuration = 'Debug'
-      t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
-                               "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
+      t.configuration = 'Debug -enableCodeCoverage YES'
 
       t.actions = [XCTask::BuildAction::TEST]
       t.formatter = XCTask::BuildFormatter::XCODEBUILD
@@ -506,9 +502,7 @@ namespace :test do
         t.scheme = 'ParseFacebookUtilsV4-iOS'
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
-        t.configuration = 'Debug'
-        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
-                                 "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
+        t.configuration = 'Debug -enableCodeCoverage YES'
 
         t.actions = [XCTask::BuildAction::TEST]
         t.formatter = XCTask::BuildFormatter::XCODEBUILD
@@ -532,9 +526,7 @@ namespace :test do
         t.scheme = 'ParseTwitterUtils-iOS'
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
-        t.configuration = 'Debug'
-        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
-                                 "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
+        t.configuration = 'Debug -enableCodeCoverage YES'
 
         t.actions = [XCTask::BuildAction::TEST]
         t.formatter = XCTask::BuildFormatter::XCODEBUILD
@@ -562,7 +554,7 @@ namespace :test do
         t.scheme = 'ParseUI'
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
-        t.configuration = 'Debug'
+        t.configuration = 'Debug -enableCodeCoverage YES'
 
         t.actions = [XCTask::BuildAction::TEST]
         t.formatter = XCTask::BuildFormatter::XCODEBUILD
@@ -584,8 +576,6 @@ namespace :test do
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
         t.configuration = 'Debug'
-        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
-                                 "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
@@ -607,8 +597,6 @@ namespace :test do
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
         t.configuration = 'Debug'
-        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
-                                 "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
