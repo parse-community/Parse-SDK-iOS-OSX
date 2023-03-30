@@ -16,7 +16,7 @@ release_folder = File.join(build_folder, 'release')
 bolts_build_folder = File.join(script_folder, 'Carthage', 'Build')
 bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-ObjC')
 ios_simulator = 'platform="iOS Simulator",name="iPhone 14"'
-tvos_simulator = 'platform="tvOS Simulator",name="Apple TV 4K"'
+tvos_simulator = 'platform="tvOS Simulator",name="Apple TV"'
 watchos_simulator = 'platform="watchOS Simulator",name="Apple Watch Series 8 (45mm)"'
 
 module Constants
@@ -632,7 +632,7 @@ namespace :test do
         t.destinations = [ios_simulator]
         t.configuration = 'Debug'
 
-        t.actions = [XCTask::BuildAction::BUILD]
+        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
 
