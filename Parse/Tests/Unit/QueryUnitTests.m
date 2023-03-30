@@ -213,6 +213,43 @@
     XCTAssertTrue(query.state.trace);
 }
 
+- (void)testExplain {
+    PFQuery *query = [PFQuery queryWithClassName:@"a"];
+    query.explain = YES;
+    XCTAssertTrue(query.explain);
+    XCTAssertTrue(query.state.explain);
+    
+    [query setExplain:NO];
+    XCTAssertFalse(query.explain);
+    XCTAssertFalse(query.state.explain);
+}
+
+- (void)testFindWithExplain {
+    PFQuery *query = [PFQuery queryWithClassName:@"a"];
+    [query setExplain:YES];
+
+    [self mockQueryControllerFindObjectsForQueryState:query.state withResult:@[ @"yolo" ] error:nil];
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[query findObjectsInBackground] continueWithSuccessBlock:^id(BFTask *task) {
+        XCTAssertEqualObjects(task.result, @[ @"yolo" ]);
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
+}
+
+- (void)testHint {
+    PFQuery *query = [PFQuery queryWithClassName:@"a"];
+    query.hint = @"_id_";
+    XCTAssertEqualObjects(query.hint, @"_id_");
+    XCTAssertEqualObjects(query.state.hint, @"_id_");
+    
+    [query setHint:nil];
+    XCTAssertNil(query.hint);
+    XCTAssertNil(query.state.hint);
+}
+
 - (void)testIncludeKey {
     PFQuery *query = [PFQuery queryWithClassName:@"a"];
     [query includeKey:@"yolo"];
@@ -1287,7 +1324,8 @@
 
     query.limit = 10;
     query.skip = 20;
-
+    query.explain = YES;
+    query.hint = @"_id_";
     query.cachePolicy = kPFCachePolicyIgnoreCache;
     query.maxCacheAge = 30.0;
 
@@ -1311,6 +1349,9 @@
     XCTAssertEqual(queryCopy.maxCacheAge, query.maxCacheAge);
 
     XCTAssertEqual(queryCopy.trace, query.trace);
+    
+    XCTAssertEqual(queryCopy.explain, query.explain);
+    XCTAssertEqualObjects(queryCopy.hint, query.hint);
 }
 
 #pragma mark Predicates

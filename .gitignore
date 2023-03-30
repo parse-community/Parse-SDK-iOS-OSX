@@ -2,6 +2,7 @@
 .DS_Store
 
 ## Build generated
+.build/
 build/
 DerivedData
 OCMock.framework

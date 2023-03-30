@@ -15,7 +15,7 @@ build_folder = File.join(script_folder, 'build')
 release_folder = File.join(build_folder, 'release')
 bolts_build_folder = File.join(script_folder, 'Carthage', 'Build')
 bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-ObjC')
-ios_simulator = 'platform="iOS Simulator",name="iPhone 11"'
+ios_simulator = 'platform="iOS Simulator",name="iPhone 14"'
 tvos_simulator = 'platform="tvOS Simulator",name="Apple TV 4K"'
 watchos_simulator = 'platform="watchOS Simulator",name="Apple Watch Series 8 (45mm)"'
 
@@ -466,12 +466,10 @@ namespace :test do
       t.scheme = 'Parse-iOS'
       t.sdk = 'iphonesimulator'
       t.destinations = [ios_simulator]
-      t.configuration = 'Debug'
-      t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
-                               "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
+      t.configuration = 'Debug -enableCodeCoverage YES'
 
       t.actions = [XCTask::BuildAction::TEST]
-      t.formatter = XCTask::BuildFormatter::XCPRETTY
+      t.formatter = XCTask::BuildFormatter::XCODEBUILD
     end
     unless task.execute
       puts 'iOS Tests Failed!'
@@ -487,12 +485,10 @@ namespace :test do
 
       t.scheme = 'Parse-macOS'
       t.sdk = 'macosx'
-      t.configuration = 'Debug'
-      t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
-                               "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
+      t.configuration = 'Debug -enableCodeCoverage YES'
 
       t.actions = [XCTask::BuildAction::TEST]
-      t.formatter = XCTask::BuildFormatter::XCPRETTY
+      t.formatter = XCTask::BuildFormatter::XCODEBUILD
     end
     unless task.execute
       puts 'macOS Tests Failed!'
@@ -510,12 +506,10 @@ namespace :test do
         t.scheme = 'ParseFacebookUtilsV4-iOS'
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
-        t.configuration = 'Debug'
-        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
-                                 "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
+        t.configuration = 'Debug -enableCodeCoverage YES'
 
         t.actions = [XCTask::BuildAction::TEST]
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
+        t.formatter = XCTask::BuildFormatter::XCODEBUILD
       end
 
       result = task.execute
@@ -536,12 +530,10 @@ namespace :test do
         t.scheme = 'ParseTwitterUtils-iOS'
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
-        t.configuration = 'Debug'
-        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
-                                 "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
+        t.configuration = 'Debug -enableCodeCoverage YES'
 
         t.actions = [XCTask::BuildAction::TEST]
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
+        t.formatter = XCTask::BuildFormatter::XCODEBUILD
       end
 
       result = task.execute
@@ -566,10 +558,10 @@ namespace :test do
         t.scheme = 'ParseUI'
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
-        t.configuration = 'Debug'
+        t.configuration = 'Debug -enableCodeCoverage YES'
 
         t.actions = [XCTask::BuildAction::TEST]
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
+        t.formatter = XCTask::BuildFormatter::XCODEBUILD
       end
 
       result = task.execute
@@ -588,8 +580,6 @@ namespace :test do
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
         t.configuration = 'Debug'
-        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
-                                 "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY
@@ -611,8 +601,6 @@ namespace :test do
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
         t.configuration = 'Debug'
-        t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
-                                 "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
         t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
         t.formatter = XCTask::BuildFormatter::XCPRETTY

@@ -4,7 +4,7 @@ on:
     branches: [ master, release, alpha, beta ]
 env:
   CI_XCODE_11: '/Applications/Xcode_11.7.app/Contents/Developer'
-  CI_XCODE_13: '/Applications/Xcode_13.4.1.app/Contents/Developer'
+  CI_XCODE_14: '/Applications/Xcode_14.2.app/Contents/Developer'
 
 jobs:
   release:
@@ -85,29 +85,35 @@ jobs:
   publish-docs:
     needs: release
     if: needs.release.outputs.current_tag != ''
-    runs-on: macos-11
+    runs-on: macos-12
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ needs.release.outputs.current_tag }}
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
       - name: Cache Gems
         id: cache-gems
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
-      - name: Install Bundle
+      - name: Submodules
         run: |
+          git submodule update --init --recursive
+          sudo gem install bundler
           bundle config path vendor/bundle
-          bundle install
+      - name: Bundle Install
+        if: steps.cache-gems.outputs.cache-hit != 'true'
+        run: bundle install
       - name: Create Jazzy Docs
         run: |
           ./Scripts/jazzy.sh
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_13 }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_14 }}
       - name: Deploy Jazzy Docs
         uses: peaceiris/actions-gh-pages@v3
         with:

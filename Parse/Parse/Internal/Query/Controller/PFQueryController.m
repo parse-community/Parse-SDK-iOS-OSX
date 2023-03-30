@@ -77,6 +77,9 @@
         PFCommandResult *result = task.result;
         NSDate *queryReceived = (queryState.trace ? [NSDate date] : nil);
 
+        if (queryState.explain) {
+            return result.result[@"results"];
+        }
         NSArray *resultObjects = result.result[@"results"];
         NSMutableArray *foundObjects = [NSMutableArray arrayWithCapacity:resultObjects.count];
         if (resultObjects != nil) {
