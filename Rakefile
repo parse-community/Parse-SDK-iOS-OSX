@@ -152,6 +152,80 @@ namespace :build do
     end
   end
 
+  namespace :parse_live_query do
+    desc 'Build iOS LiveQuery framework.'
+    task :ios do
+      task = XCTask::BuildFrameworkTask.new do |t|
+        t.directory = script_folder
+        t.build_directory = build_folder
+        t.framework_type = XCTask::FrameworkType::IOS
+        t.framework_name = 'ParseLiveQuery.framework'
+        t.workspace = 'Parse.xcworkspace'
+        t.scheme = 'ParseLiveQuery-iOS'
+        t.configuration = 'Release'
+      end
+      result = task.execute
+      unless result
+        puts 'Failed to build iOS LiveQuery Framework.'
+        exit(1)
+      end
+    end
+
+    desc 'Build watchOS LiveQuery framework.'
+    task :watchos do
+      task = XCTask::BuildFrameworkTask.new do |t|
+        t.directory = script_folder
+        t.build_directory = build_folder
+        t.framework_type = XCTask::FrameworkType::WATCHOS
+        t.framework_name = 'ParseLiveQuery.framework'
+        t.workspace = 'Parse.xcworkspace'
+        t.scheme = 'ParseLiveQuery-watchOS'
+        t.configuration = 'Release'
+      end
+      result = task.execute
+      unless result
+        puts 'Failed to build watchOS LiveQuery Framework.'
+        exit(1)
+      end
+    end
+
+    desc 'Build macOS LiveQuery framework.'
+    task :macos do
+      task = XCTask::BuildFrameworkTask.new do |t|
+        t.directory = script_folder
+        t.build_directory = build_folder
+        t.framework_type = XCTask::FrameworkType::OSX
+        t.framework_name = 'ParseLiveQuery.framework'
+        t.workspace = 'Parse.xcworkspace'
+        t.scheme = 'ParseLiveQuery-macOS'
+        t.configuration = 'Release'
+      end
+      result = task.execute
+      unless result
+        puts 'Failed to build macOS LiveQuery Framework.'
+        exit(1)
+      end
+    end
+
+    desc 'Build tvOS LiveQuery framework.'
+    task :tvos do
+      task = XCTask::BuildFrameworkTask.new do |t|
+        t.directory = script_folder
+        t.build_directory = build_folder
+        t.framework_type = XCTask::FrameworkType::TVOS
+        t.framework_name = 'ParseLiveQuery.framework'
+        t.workspace = 'Parse.xcworkspace'
+        t.scheme = 'ParseLiveQuery-tvOS'
+        t.configuration = 'Release'
+      end
+      result = task.execute
+      unless result
+        puts 'Failed to build tvOS LiveQuery Framework.'
+        exit(1)
+      end
+    end
+  end
+
   namespace :facebook_utils do
     desc 'Build iOS FacebookUtils framework.'
     task :ios do
