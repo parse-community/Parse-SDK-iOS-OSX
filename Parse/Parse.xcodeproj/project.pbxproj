@@ -9029,7 +9029,7 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 			};
 			name = Debug;
 		};
@@ -9046,7 +9046,7 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -9231,7 +9231,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -9240,7 +9240,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F55ABB5A1B4F39DA00A0ECD5 /* ParseUnitTests-macOS.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -9349,7 +9349,7 @@
 			baseConfigurationReference = F55ABB541B4F39DA00A0ECD5 /* Parse-macOS.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 			};
 			name = Debug;
 		};
@@ -9358,7 +9358,7 @@
 			baseConfigurationReference = F55ABB541B4F39DA00A0ECD5 /* Parse-macOS.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 			};
 			name = Release;
 		};
