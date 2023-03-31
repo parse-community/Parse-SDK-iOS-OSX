@@ -20,10 +20,13 @@ BFTask<PFUser *> *AttemptLogin() {
   char buffer[1024];
   fgets(buffer, 1024, stdin);
 
-  NSString *username = [NSString stringWithUTF8String:buffer];
+  NSString *usernameInput = [NSString stringWithUTF8String:buffer];
 
-  NSString *prompt = [NSString stringWithFormat:@"Enter password for %@", username];
-  NSString *password = [NSString stringWithUTF8String:getpass([prompt UTF8String])];
+  NSString *prompt = [NSString stringWithFormat:@"Enter password for %@", usernameInput];
+  NSString *passwordInput = [NSString stringWithUTF8String:getpass([prompt UTF8String])];
+
+  NSString *username = [usernameInput stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+  NSString *password = [passwordInput stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 
   return [[PFUser logInWithUsernameInBackground:username password:password] continueWithBlock:^id (BFTask<PFUser *> *task) {
     if (task.result) {
@@ -43,7 +46,7 @@ BFTask<Room *> *AttemptRoom() {
   NSString *roomName = [NSString stringWithUTF8String:buffer];
 
   return [[[[Room query] whereKey:@"name"
-                          equalTo:roomName]
+                          equalTo:[roomName stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]]]
            getFirstObjectInBackground]
           continueWithBlock:^id _Nullable(BFTask * _Nonnull task) {
             if (task.result) {
@@ -75,7 +78,7 @@ BFTask<Room *> *AttemptRoom() {
 }
 
 - (PFQuery *)queryForChatRoomManager:(ChatRoomManager *)manager {
-  return [[[Message query] whereKey:@"room_name"
+  return [[[Message query] whereKey:@"roomName"
                             equalTo:self.room.name]
                    orderByAscending:@"createdAt"];
 }

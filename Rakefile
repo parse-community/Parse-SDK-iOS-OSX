@@ -439,10 +439,6 @@ namespace :package do
     ios_lq_framework_path = File.join(build_folder, 'iOS', 'ParseLiveQuery.framework')
     make_package(release_folder, [ios_lq_framework_path], 'ParseLiveQuery-iOS.zip')
 
-    # Rake::Task['build:parse_live_query:macos'].invoke
-    # macos_lq_utils_framework_path = File.join(build_folder, 'macOS', 'ParseLiveQuery.framework')
-    # make_package(release_folder, [macos_lq_utils_framework_path], 'ParseLiveQuery-OSX.zip')
-
     Rake::Task['build:parse_live_query:watchos'].invoke
     watchos_lq_fb_utils_framework_path = File.join(build_folder, 'watchOS', 'ParseLiveQuery_watchOS.framework')
     make_package(release_folder, [watchos_lq_fb_utils_framework_path], 'ParseLiveQuery-watchOS.zip')
@@ -450,6 +446,10 @@ namespace :package do
     Rake::Task['build:parse_live_query:tvos'].invoke
     tvos_lq_framework_path = File.join(build_folder, 'tvOS', 'ParseLiveQuery_tvOS.framework')
     make_package(release_folder, [tvos_lq_framework_path], 'ParseLiveQuery-tvOS.zip')
+
+    Rake::Task['build:parse_live_query:macos'].invoke
+    macos_lq_utils_framework_path = File.join(build_folder, 'macOS', 'ParseLiveQuery.framework')
+    make_package(release_folder, [macos_lq_utils_framework_path], 'ParseLiveQuery-OSX.zip')
 
   end
 

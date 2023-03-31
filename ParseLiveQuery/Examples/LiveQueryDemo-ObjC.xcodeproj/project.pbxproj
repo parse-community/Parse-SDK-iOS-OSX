@@ -7,38 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		395FFA7429D761B4006502C5 /* ParseLiveQuery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395FFA4429D75F1F006502C5 /* ParseLiveQuery.framework */; };
 		F509D5461CA9E5B8007B15B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F519CBB41CA9CA04005295C0 /* main.m */; };
 		F509D5471CA9E5B8007B15B0 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = F519CBBC1CA9CA2B005295C0 /* Message.m */; };
 		F509D5481CA9E5B8007B15B0 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = F519CBBF1CA9CA34005295C0 /* Room.m */; };
 		F509D5491CA9E5B8007B15B0 /* ChatRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F519CBCF1CA9CC4D005295C0 /* ChatRoomManager.m */; };
-		F570348B1CAC837800EB3067 /* ParseLiveQuery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F519CBCA1CA9CB31005295C0 /* ParseLiveQuery.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F519CBC71CA9CB31005295C0 /* PBXContainerItemProxy */ = {
+		395FFA4129D75F1F006502C5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F519CBC21CA9CB31005295C0 /* ParseLiveQuery.xcodeproj */;
+			containerPortal = 395FFA3A29D75F1F006502C5 /* ParseLiveQuery.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = F5A9BFCA1BE0248D00E78326;
 			remoteInfo = "ParseLiveQuery-iOS";
 		};
-		F519CBC91CA9CB31005295C0 /* PBXContainerItemProxy */ = {
+		395FFA4329D75F1F006502C5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F519CBC21CA9CB31005295C0 /* ParseLiveQuery.xcodeproj */;
+			containerPortal = 395FFA3A29D75F1F006502C5 /* ParseLiveQuery.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = F5903CEA1BD999C500C3EFFE;
 			remoteInfo = "ParseLiveQuery-OSX";
 		};
-		F57034871CAC836900EB3067 /* PBXContainerItemProxy */ = {
+		395FFA4529D75F1F006502C5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F519CBC21CA9CB31005295C0 /* ParseLiveQuery.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F5903CE91BD999C500C3EFFE;
-			remoteInfo = "ParseLiveQuery-OSX";
+			containerPortal = 395FFA3A29D75F1F006502C5 /* ParseLiveQuery.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 708836722561F502005B32F0;
+			remoteInfo = "ParseLiveQuery-watchOS";
+		};
+		395FFA4729D75F1F006502C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 395FFA3A29D75F1F006502C5 /* ParseLiveQuery.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 708836942561F55B005B32F0;
+			remoteInfo = "ParseLiveQuery-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		395FFA3A29D75F1F006502C5 /* ParseLiveQuery.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ParseLiveQuery.xcodeproj; path = ../ParseLiveQuery.xcodeproj; sourceTree = "<group>"; };
 		46BB59B59BEB1C1B30D1528A /* Pods-LiveQueryDemo-ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveQueryDemo-ObjC.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-LiveQueryDemo-ObjC/Pods-LiveQueryDemo-ObjC.debug.xcconfig"; sourceTree = "<group>"; };
 		B8FE714A9B78962AE71BE6E5 /* Pods_LiveQueryDemo_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveQueryDemo_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA908F914DAEEBB466454E2 /* Pods-LiveQueryDemo-ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveQueryDemo-ObjC.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LiveQueryDemo-ObjC/Pods-LiveQueryDemo-ObjC.release.xcconfig"; sourceTree = "<group>"; };
@@ -49,7 +57,6 @@
 		F519CBBC1CA9CA2B005295C0 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		F519CBBE1CA9CA34005295C0 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
 		F519CBBF1CA9CA34005295C0 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
-		F519CBC21CA9CB31005295C0 /* ParseLiveQuery.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ParseLiveQuery.xcodeproj; path = ../Sources/ParseLiveQuery.xcodeproj; sourceTree = "<group>"; };
 		F519CBCE1CA9CC4D005295C0 /* ChatRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomManager.h; sourceTree = "<group>"; };
 		F519CBCF1CA9CC4D005295C0 /* ChatRoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,17 +66,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F570348B1CAC837800EB3067 /* ParseLiveQuery.framework in Frameworks */,
+				395FFA7429D761B4006502C5 /* ParseLiveQuery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		395FFA3B29D75F1F006502C5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				395FFA4229D75F1F006502C5 /* ParseLiveQuery.framework */,
+				395FFA4429D75F1F006502C5 /* ParseLiveQuery.framework */,
+				395FFA4629D75F1F006502C5 /* ParseLiveQuery_watchOS.framework */,
+				395FFA4829D75F1F006502C5 /* ParseLiveQuery_tvOS.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E0B5CD933BEBE8518E7750F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F519CBC21CA9CB31005295C0 /* ParseLiveQuery.xcodeproj */,
+				395FFA3A29D75F1F006502C5 /* ParseLiveQuery.xcodeproj */,
 				B8FE714A9B78962AE71BE6E5 /* Pods_LiveQueryDemo_ObjC.framework */,
 			);
 			name = Frameworks;
@@ -117,15 +135,6 @@
 			path = "LiveQueryDemo-ObjC";
 			sourceTree = "<group>";
 		};
-		F519CBC31CA9CB31005295C0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F519CBC81CA9CB31005295C0 /* ParseLiveQuery.framework */,
-				F519CBCA1CA9CB31005295C0 /* ParseLiveQuery.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,7 +149,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F57034881CAC836900EB3067 /* PBXTargetDependency */,
 			);
 			name = "LiveQueryDemo-ObjC";
 			productName = LiveQueryDemo;
@@ -174,8 +182,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = F519CBC31CA9CB31005295C0 /* Products */;
-					ProjectRef = F519CBC21CA9CB31005295C0 /* ParseLiveQuery.xcodeproj */;
+					ProductGroup = 395FFA3B29D75F1F006502C5 /* Products */;
+					ProjectRef = 395FFA3A29D75F1F006502C5 /* ParseLiveQuery.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -186,18 +194,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		F519CBC81CA9CB31005295C0 /* ParseLiveQuery.framework */ = {
+		395FFA4229D75F1F006502C5 /* ParseLiveQuery.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ParseLiveQuery.framework;
-			remoteRef = F519CBC71CA9CB31005295C0 /* PBXContainerItemProxy */;
+			remoteRef = 395FFA4129D75F1F006502C5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F519CBCA1CA9CB31005295C0 /* ParseLiveQuery.framework */ = {
+		395FFA4429D75F1F006502C5 /* ParseLiveQuery.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ParseLiveQuery.framework;
-			remoteRef = F519CBC91CA9CB31005295C0 /* PBXContainerItemProxy */;
+			remoteRef = 395FFA4329D75F1F006502C5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		395FFA4629D75F1F006502C5 /* ParseLiveQuery_watchOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ParseLiveQuery_watchOS.framework;
+			remoteRef = 395FFA4529D75F1F006502C5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		395FFA4829D75F1F006502C5 /* ParseLiveQuery_tvOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ParseLiveQuery_tvOS.framework;
+			remoteRef = 395FFA4729D75F1F006502C5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -226,19 +248,10 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		F57034881CAC836900EB3067 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "ParseLiveQuery-OSX";
-			targetProxy = F57034871CAC836900EB3067 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
 		F509D5401CA9E597007B15B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/LiveQueryDemo-ObjC/Info.plist";
@@ -252,7 +265,6 @@
 		F509D5411CA9E597007B15B0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/LiveQueryDemo-ObjC/Info.plist";
