@@ -101,6 +101,7 @@ int main(int argc, const char * argv[]) {
 
     [Parse initializeWithConfiguration:[ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
       configuration.applicationId = @"myAppId";
+//      configuration.clientKey = @"myClientKey";
       configuration.server = @"http://localhost:1337/parse";
     }]];
 

@@ -16,6 +16,7 @@ Room.registerSubclass()
 
 Parse.initialize(with: ParseClientConfiguration {
     $0.applicationId = "myAppId"
+//    $0.clientKey = "myClientKey"
     $0.server = "http://localhost:1337/parse"
     })
 

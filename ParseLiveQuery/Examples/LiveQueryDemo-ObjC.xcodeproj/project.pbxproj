@@ -47,9 +47,6 @@
 
 /* Begin PBXFileReference section */
 		395FFA3A29D75F1F006502C5 /* ParseLiveQuery.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ParseLiveQuery.xcodeproj; path = ../ParseLiveQuery.xcodeproj; sourceTree = "<group>"; };
-		46BB59B59BEB1C1B30D1528A /* Pods-LiveQueryDemo-ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveQueryDemo-ObjC.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-LiveQueryDemo-ObjC/Pods-LiveQueryDemo-ObjC.debug.xcconfig"; sourceTree = "<group>"; };
-		B8FE714A9B78962AE71BE6E5 /* Pods_LiveQueryDemo_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveQueryDemo_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBA908F914DAEEBB466454E2 /* Pods-LiveQueryDemo-ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveQueryDemo-ObjC.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LiveQueryDemo-ObjC/Pods-LiveQueryDemo-ObjC.release.xcconfig"; sourceTree = "<group>"; };
 		F509D5321CA9E597007B15B0 /* LiveQueryDemo-ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiveQueryDemo-ObjC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F509D5441CA9E5AF007B15B0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F519CBB41CA9CA04005295C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -88,18 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				395FFA3A29D75F1F006502C5 /* ParseLiveQuery.xcodeproj */,
-				B8FE714A9B78962AE71BE6E5 /* Pods_LiveQueryDemo_ObjC.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F458A68D8FC5F1A206FE6787 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				46BB59B59BEB1C1B30D1528A /* Pods-LiveQueryDemo-ObjC.debug.xcconfig */,
-				BBA908F914DAEEBB466454E2 /* Pods-LiveQueryDemo-ObjC.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		F519CBA81CA9CA04005295C0 = {
@@ -107,7 +94,6 @@
 			children = (
 				F519CBB31CA9CA04005295C0 /* LiveQueryDemo-ObjC */,
 				F519CBB21CA9CA04005295C0 /* Products */,
-				F458A68D8FC5F1A206FE6787 /* Pods */,
 				E0B5CD933BEBE8518E7750F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";

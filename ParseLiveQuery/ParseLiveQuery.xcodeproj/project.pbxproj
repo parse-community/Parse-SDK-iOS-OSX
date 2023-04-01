@@ -272,20 +272,8 @@
 		09D80FDD1E26C03E00AC7A2D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		09D80FDF1E26C04800AC7A2D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		09D80FE11E26C05200AC7A2D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		39B8579629D75AE00023ADB0 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		39B8579729D75AE00023ADB0 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
-		39B8579829D75AE00023ADB0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		39B8579929D75AE00023ADB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39B8579A29D75AE00023ADB0 /* LiveQueryDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = LiveQueryDemo.xcodeproj; sourceTree = "<group>"; };
 		39B8579E29D75AE00023ADB0 /* LiveQueryDemo-ObjC.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "LiveQueryDemo-ObjC.xcodeproj"; sourceTree = "<group>"; };
-		39B857A329D75AE00023ADB0 /* ChatRoomManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatRoomManager.h; sourceTree = "<group>"; };
-		39B857A429D75AE00023ADB0 /* Room.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
-		39B857A529D75AE00023ADB0 /* Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		39B857A629D75AE00023ADB0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		39B857A729D75AE00023ADB0 /* ChatRoomManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatRoomManager.m; sourceTree = "<group>"; };
-		39B857A829D75AE00023ADB0 /* Room.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
-		39B857A929D75AE00023ADB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		39B857AA29D75AE00023ADB0 /* Message.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		708836722561F502005B32F0 /* ParseLiveQuery_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseLiveQuery_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		708836742561F503005B32F0 /* ParseLiveQuery_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParseLiveQuery_watchOS.h; sourceTree = "<group>"; };
 		708836752561F503005B32F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -383,23 +371,10 @@
 		39B8579429D75AE00023ADB0 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
-				39B8579529D75AE00023ADB0 /* LiveQueryDemo */,
 				39B8579A29D75AE00023ADB0 /* LiveQueryDemo.xcodeproj */,
 				39B8579E29D75AE00023ADB0 /* LiveQueryDemo-ObjC.xcodeproj */,
-				39B857A229D75AE00023ADB0 /* LiveQueryDemo-ObjC */,
 			);
 			path = Examples;
-			sourceTree = "<group>";
-		};
-		39B8579529D75AE00023ADB0 /* LiveQueryDemo */ = {
-			isa = PBXGroup;
-			children = (
-				39B8579629D75AE00023ADB0 /* Message.swift */,
-				39B8579729D75AE00023ADB0 /* Room.swift */,
-				39B8579829D75AE00023ADB0 /* main.swift */,
-				39B8579929D75AE00023ADB0 /* Info.plist */,
-			);
-			path = LiveQueryDemo;
 			sourceTree = "<group>";
 		};
 		39B8579B29D75AE00023ADB0 /* Products */ = {
@@ -416,21 +391,6 @@
 				39B857B429D75AE00023ADB0 /* LiveQueryDemo-ObjC.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		39B857A229D75AE00023ADB0 /* LiveQueryDemo-ObjC */ = {
-			isa = PBXGroup;
-			children = (
-				39B857A329D75AE00023ADB0 /* ChatRoomManager.h */,
-				39B857A429D75AE00023ADB0 /* Room.h */,
-				39B857A529D75AE00023ADB0 /* Message.h */,
-				39B857A629D75AE00023ADB0 /* main.m */,
-				39B857A729D75AE00023ADB0 /* ChatRoomManager.m */,
-				39B857A829D75AE00023ADB0 /* Room.m */,
-				39B857A929D75AE00023ADB0 /* Info.plist */,
-				39B857AA29D75AE00023ADB0 /* Message.m */,
-			);
-			path = "LiveQueryDemo-ObjC";
 			sourceTree = "<group>";
 		};
 		708836732561F503005B32F0 /* ParseLiveQuery-watchOS */ = {
