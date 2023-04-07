@@ -88,6 +88,7 @@ let package = Package(
 		"Parse"
                ],
                 path: "ParseLiveQuery/ParseLiveQuery",
+                exclude: ["Resources/Info.plist"],
                 resources: [.process("Resources")])
     ]
 )
