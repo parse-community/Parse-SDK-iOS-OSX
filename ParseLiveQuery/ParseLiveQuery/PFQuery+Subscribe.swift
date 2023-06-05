@@ -8,6 +8,6 @@
  */
 
 import Foundation
-import Parse
+import ParseCore
 
 

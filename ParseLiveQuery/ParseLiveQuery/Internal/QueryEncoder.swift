@@ -8,7 +8,7 @@
  */
 
 import Foundation
-import Parse
+import ParseCore
 
 /**
  NOTE: This is super hacky, and we need a better answer for this.
