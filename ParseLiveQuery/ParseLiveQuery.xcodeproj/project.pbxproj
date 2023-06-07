@@ -12,6 +12,7 @@
 		094AE9001E25AF3100F408BC /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE8FF1E25AF3100F408BC /* libicucore.tbd */; };
 		09D80FE21E26C05200AC7A2D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FE11E26C05200AC7A2D /* libsqlite3.tbd */; };
 		39506FFB2A304E6B007F9550 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39506FFA2A304E6B007F9550 /* Common.swift */; };
+		39506FFC2A3056B6007F9550 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39506FFA2A304E6B007F9550 /* Common.swift */; };
 		4A819D9D1D937866009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
 		4A819D9E1D93786A009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
 		708836762561F503005B32F0 /* ParseLiveQuery_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 708836742561F503005B32F0 /* ParseLiveQuery_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -895,6 +896,7 @@
 				F59CA92F1C8E496200329737 /* Errors.swift in Sources */,
 				F534A5B41BDB09CE00CBD11A /* Operation.swift in Sources */,
 				F5A88F4A1C9B6EBA002F0E0D /* PFQuery+Subscribe.swift in Sources */,
+				39506FFC2A3056B6007F9550 /* Common.swift in Sources */,
 				4A819D9E1D93786A009C0F61 /* ObjCCompat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
