@@ -8,7 +8,7 @@
  */
 
 import Foundation
-import ParseCore
+//import ParseCore
 import BoltsSwift
 
 /**

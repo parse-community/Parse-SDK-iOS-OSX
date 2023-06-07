@@ -8,7 +8,6 @@
  */
 
 import Foundation
-import ParseCore
 
 enum ClientOperation {
     case connect(applicationId: String, sessionToken: String, clientKey: String?)

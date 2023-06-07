@@ -11,6 +11,7 @@
 		0632EDD51CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */; };
 		094AE9001E25AF3100F408BC /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE8FF1E25AF3100F408BC /* libicucore.tbd */; };
 		09D80FE21E26C05200AC7A2D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FE11E26C05200AC7A2D /* libsqlite3.tbd */; };
+		39506FFB2A304E6B007F9550 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39506FFA2A304E6B007F9550 /* Common.swift */; };
 		4A819D9D1D937866009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
 		4A819D9E1D93786A009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
 		708836762561F503005B32F0 /* ParseLiveQuery_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 708836742561F503005B32F0 /* ParseLiveQuery_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -272,6 +273,7 @@
 		09D80FDD1E26C03E00AC7A2D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		09D80FDF1E26C04800AC7A2D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		09D80FE11E26C05200AC7A2D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		39506FFA2A304E6B007F9550 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		39B8579A29D75AE00023ADB0 /* LiveQueryDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = LiveQueryDemo.xcodeproj; sourceTree = "<group>"; };
 		39B8579E29D75AE00023ADB0 /* LiveQueryDemo-ObjC.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "LiveQueryDemo-ObjC.xcodeproj"; sourceTree = "<group>"; };
 		708836722561F502005B32F0 /* ParseLiveQuery_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseLiveQuery_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -495,6 +497,7 @@
 			isa = PBXGroup;
 			children = (
 				F5591BA91BD97BB70072F966 /* QueryEncoder.swift */,
+				39506FFA2A304E6B007F9550 /* Common.swift */,
 				F534A5B31BDB09CE00CBD11A /* Operation.swift */,
 				F54D58B71C8E3446009F8D6C /* ClientPrivate.swift */,
 			);
@@ -908,6 +911,7 @@
 				F5A88F521C9B7341002F0E0D /* Client.swift in Sources */,
 				F5A88F4F1C9B7341002F0E0D /* Operation.swift in Sources */,
 				F5A88F561C9B7341002F0E0D /* PFQuery+Subscribe.swift in Sources */,
+				39506FFB2A304E6B007F9550 /* Common.swift in Sources */,
 				4A819D9D1D937866009C0F61 /* ObjCCompat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

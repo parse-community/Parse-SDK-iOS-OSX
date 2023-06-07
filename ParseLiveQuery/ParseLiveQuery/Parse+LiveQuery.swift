@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-import ParseCore
+//import ParseCore
 
 extension Parse {
     static func validatedCurrentConfiguration() -> ParseClientConfiguration {
