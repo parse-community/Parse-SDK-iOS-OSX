@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import <Parse/Parse.h>
+#import <Parse.h>
 
 // If you want to use any of the UI components, uncomment this line
 // #import <ParseUI/ParseUI.h>

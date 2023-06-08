@@ -16,7 +16,8 @@ release_folder = File.join(build_folder, 'release')
 bolts_build_folder = File.join(script_folder, 'Carthage', 'Build')
 bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-ObjC')
 ios_simulator = 'platform="iOS Simulator",name="iPhone 14"'
-tvos_simulator = 'platform="tvOS Simulator",name="Apple TV 4K"'
+tvos_simulator = 'platform="tvOS Simulator",name="Apple TV"'
+watchos_simulator = 'platform="watchOS Simulator",name="Apple Watch Series 8 (45mm)"'
 
 module Constants
   require 'plist'
@@ -34,6 +35,9 @@ module Constants
     File.join(script_folder, 'ParseFacebookUtils', 'ParseFacebookUtils', 'Resources', 'Info-tvOS.plist'),
     File.join(script_folder, 'ParseTwitterUtils', 'ParseTwitterUtils', 'Resources', 'Info-iOS.plist'),
     File.join(script_folder, 'ParseUI', 'ParseUI', 'Resources', 'Info-iOS.plist'),
+    File.join(script_folder, 'ParseLiveQuery', 'ParseLiveQuery', 'Resources', 'Info.plist'),
+    File.join(script_folder, 'ParseLiveQuery', 'ParseLiveQuery-tvOS', 'Info.plist'),
+    File.join(script_folder, 'ParseLiveQuery', 'ParseLiveQuery-watchOS', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
     File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
@@ -145,6 +149,80 @@ namespace :build do
     unless result
       puts 'Failed to build tvOS Framework.'
       exit(1)
+    end
+  end
+
+  namespace :parse_live_query do
+    desc 'Build iOS LiveQuery framework.'
+    task :ios do
+      task = XCTask::BuildFrameworkTask.new do |t|
+        t.directory = script_folder
+        t.build_directory = File.join(build_folder, 'iOS')
+        t.framework_type = XCTask::FrameworkType::IOS
+        t.framework_name = 'ParseLiveQuery.framework'
+        t.workspace = 'Parse.xcworkspace'
+        t.scheme = 'ParseLiveQuery-iOS'
+        t.configuration = 'Release'
+      end
+      result = task.execute
+      unless result
+        puts 'Failed to build iOS LiveQuery Framework.'
+        exit(1)
+      end
+    end
+
+    desc 'Build macOS LiveQuery framework.'
+    task :macos do
+      task = XCTask::BuildFrameworkTask.new do |t|
+        t.directory = script_folder
+        t.build_directory = File.join(build_folder, 'macOS')
+        t.framework_type = XCTask::FrameworkType::OSX
+        t.framework_name = 'ParseLiveQuery.framework'
+        t.workspace = 'Parse.xcworkspace'
+        t.scheme = 'ParseLiveQuery-OSX'
+        t.configuration = 'Release'
+      end
+      result = task.execute
+      unless result
+        puts 'Failed to build macOS LiveQuery Framework.'
+        exit(1)
+      end
+    end
+
+    desc 'Build watchOS LiveQuery framework.'
+    task :watchos do
+      task = XCTask::BuildFrameworkTask.new do |t|
+        t.directory = script_folder
+        t.build_directory = File.join(build_folder, 'watchOS')
+        t.framework_type = XCTask::FrameworkType::WATCHOS
+        t.framework_name = 'ParseLiveQuery_watchOS.framework'
+        t.workspace = 'Parse.xcworkspace'
+        t.scheme = 'ParseLiveQuery-watchOS'
+        t.configuration = 'Release'
+      end
+      result = task.execute
+      unless result
+        puts 'Failed to build watchOS LiveQuery Framework.'
+        exit(1)
+      end
+    end
+
+    desc 'Build tvOS LiveQuery framework.'
+    task :tvos do
+      task = XCTask::BuildFrameworkTask.new do |t|
+        t.directory = script_folder
+        t.build_directory = File.join(build_folder, 'tvOS')
+        t.framework_type = XCTask::FrameworkType::TVOS
+        t.framework_name = 'ParseLiveQuery_tvOS.framework'
+        t.workspace = 'Parse.xcworkspace'
+        t.scheme = 'ParseLiveQuery-tvOS'
+        t.configuration = 'Release'
+      end
+      result = task.execute
+      unless result
+        puts 'Failed to build tvOS LiveQuery Framework.'
+        exit(1)
+      end
     end
   end
 
@@ -356,6 +434,23 @@ namespace :package do
     make_package(release_folder,
                 [parseui_framework_path],
                 package_parseui_name)
+    
+    Rake::Task['build:parse_live_query:ios'].invoke
+    ios_lq_framework_path = File.join(build_folder, 'iOS', 'ParseLiveQuery.framework')
+    make_package(release_folder, [ios_lq_framework_path], 'ParseLiveQuery-iOS.zip')
+
+    Rake::Task['build:parse_live_query:watchos'].invoke
+    watchos_lq_fb_utils_framework_path = File.join(build_folder, 'watchOS', 'ParseLiveQuery_watchOS.framework')
+    make_package(release_folder, [watchos_lq_fb_utils_framework_path], 'ParseLiveQuery-watchOS.zip')
+
+    Rake::Task['build:parse_live_query:tvos'].invoke
+    tvos_lq_framework_path = File.join(build_folder, 'tvOS', 'ParseLiveQuery_tvOS.framework')
+    make_package(release_folder, [tvos_lq_framework_path], 'ParseLiveQuery-tvOS.zip')
+
+    Rake::Task['build:parse_live_query:macos'].invoke
+    macos_lq_utils_framework_path = File.join(build_folder, 'macOS', 'ParseLiveQuery.framework')
+    make_package(release_folder, [macos_lq_utils_framework_path], 'ParseLiveQuery-OSX.zip')
+
   end
 
   desc 'Build and package all starter projects for the release'
@@ -609,6 +704,99 @@ namespace :test do
       end
     end
   end
+
+  namespace :parse_live_query do
+    task :all do
+      Rake::Task['test:parse_live_query:ios'].invoke
+      Rake::Task['test:parse_live_query:tvos'].invoke
+      Rake::Task['test:parse_live_query:watchos'].invoke
+      Rake::Task['test:parse_live_query:osx'].invoke
+    end
+
+    task :ios do
+      task = XCTask::BuildTask.new do |t|
+        t.directory = script_folder
+        t.workspace = 'Parse.xcworkspace'
+
+        t.scheme = 'ParseLiveQuery-iOS'
+        t.sdk = 'iphonesimulator'
+        t.destinations = [ios_simulator]
+        t.configuration = 'Debug'
+
+        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+
+      result = task.execute
+      unless result
+        puts 'Failed to build ParseLiveQuery'
+        exit(1)
+      end
+    end
+
+    task :tvos do
+      task = XCTask::BuildTask.new do |t|
+        t.directory = script_folder
+        t.workspace = 'Parse.xcworkspace'
+
+        t.scheme = 'ParseLiveQuery-tvOS'
+        t.destinations = [tvos_simulator]
+        t.configuration = 'Debug'
+        
+
+        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+
+      result = task.execute
+      unless result
+        puts 'Failed to build ParseLiveQuery-tvOS.'
+        exit(1)
+      end
+    end
+
+    task :watchos do
+      task = XCTask::BuildTask.new do |t|
+        t.directory = script_folder
+        t.workspace = 'Parse.xcworkspace'
+
+        t.scheme = 'ParseLiveQuery-watchOS'
+        t.destinations = [watchos_simulator]
+        t.configuration = 'Debug'
+        
+
+        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+
+      result = task.execute
+      unless result
+        puts 'Failed to build ParseLiveQuery-watchOS.'
+        exit(1)
+      end
+    end
+    
+    task :osx do
+      task = XCTask::BuildTask.new do |t|
+        t.directory = script_folder
+        t.workspace = 'Parse.xcworkspace'
+
+        t.scheme = 'ParseLiveQuery-OSX'
+        t.configuration = 'Debug'
+    
+
+        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+
+      result = task.execute
+      unless result
+        puts 'Failed to build ParseLiveQuery-OSX.'
+        exit(1)
+      end
+    end
+  end
+
 
   desc 'Run Starter Project Tests'
   task :starters do |_|

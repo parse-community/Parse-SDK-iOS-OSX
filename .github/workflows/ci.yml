@@ -23,6 +23,7 @@ jobs:
           - test:facebook_utils:ios
           - test:twitter_utils:ios
           - test:parseui:all
+          - test:parse_live_query:all
           - package:release
       fail-fast: false
     runs-on: ${{ (matrix.script == 'package:release' && 'macos-11') || 'macos-12' }}

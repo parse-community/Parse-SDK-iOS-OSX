@@ -605,7 +605,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -648,7 +648,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				SDKROOT = macosx;
 			};
 			name = Release;
