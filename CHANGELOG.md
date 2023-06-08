@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.2.0...2.3.0) (2023-06-08)
+
+
+### Features
+
+* Add LiveQuery module to SDK; this deprecates the separate [Parse LiveQuery SDK](https://github.com/parse-community/ParseLiveQuery-iOS-OSX) ([#1712](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1712)) ([154da34](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/154da34b021abf4f53fa632539505e18b4cf3e8d))
+
 # [2.2.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.1.1...2.2.0) (2023-03-10)
 
 
