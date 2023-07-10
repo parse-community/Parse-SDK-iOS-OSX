@@ -120,3 +120,6 @@ jobs:
           ./Scripts/jazzy.sh
         env:
           DEVELOPER_DIR: ${{ env.CI_XCODE_14 }}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
