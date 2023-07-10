@@ -17,7 +17,7 @@
     NSMutableDictionary<NSString *, id> *_conditions;
     NSMutableArray<NSString *> *_sortKeys;
     NSMutableSet<NSString *> *_includedKeys;
-    NSMutableSet<NSString *> *_excludeKeys;
+    NSMutableSet<NSString *> *_excludedKeys;
     NSMutableDictionary<NSString *, NSString *> *_extraOptions;
 }
 
@@ -171,18 +171,18 @@
 ///--------------------------------------
 
 - (void)excludeKey:(NSString *)key {
-    if (!_excludeKeys) {
-        _excludeKeys = [NSMutableSet setWithObject:key];
+    if (!_excludedKeys) {
+        _excludedKeys = [NSMutableSet setWithObject:key];
     } else {
-        [_excludeKeys addObject:key];
+        [_excludedKeys addObject:key];
     }
 }
 
 - (void)excludeKeys:(NSArray<NSString *> *)keys {
-    if (!_excludeKeys) {
-        _excludeKeys = [NSMutableSet setWithArray:keys];
+    if (!_excludedKeys) {
+        _excludedKeys = [NSMutableSet setWithArray:keys];
     } else {
-        [_excludeKeys addObjectsFromArray:keys];
+        [_excludedKeys addObjectsFromArray:keys];
     }
 }
 
