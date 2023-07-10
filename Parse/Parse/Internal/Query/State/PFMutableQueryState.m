@@ -17,6 +17,7 @@
     NSMutableDictionary<NSString *, id> *_conditions;
     NSMutableArray<NSString *> *_sortKeys;
     NSMutableSet<NSString *> *_includedKeys;
+    NSMutableSet<NSString *> *_excludeKeys;
     NSMutableDictionary<NSString *, NSString *> *_extraOptions;
 }
 
@@ -27,6 +28,7 @@
 @synthesize conditions = _conditions;
 @synthesize sortKeys = _sortKeys;
 @synthesize includedKeys = _includedKeys;
+@synthesize excludedKeys = _excludedKeys;
 @synthesize extraOptions = _extraOptions;
 
 @dynamic parseClassName;
@@ -53,6 +55,7 @@
     attributes[PFQueryStatePropertyName(conditions)] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
     attributes[PFQueryStatePropertyName(sortKeys)] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
     attributes[PFQueryStatePropertyName(includedKeys)] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
+     attributes[PFQueryStatePropertyName(excludedKeys)] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
     attributes[PFQueryStatePropertyName(extraOptions)] = [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeMutableCopy];
 
     return attributes;
@@ -160,6 +163,26 @@
         _includedKeys = [NSMutableSet setWithArray:keys];
     } else {
         [_includedKeys addObjectsFromArray:keys];
+    }
+}
+
+///--------------------------------------
+#pragma mark - Excludes
+///--------------------------------------
+
+- (void)excludeKey:(NSString *)key {
+    if (!_excludeKeys) {
+        _excludeKeys = [NSMutableSet setWithObject:key];
+    } else {
+        [_excludeKeys addObject:key];
+    }
+}
+
+- (void)excludeKeys:(NSArray<NSString *> *)keys {
+    if (!_excludeKeys) {
+        _excludeKeys = [NSMutableSet setWithArray:keys];
+    } else {
+        [_excludeKeys addObjectsFromArray:keys];
     }
 }
 

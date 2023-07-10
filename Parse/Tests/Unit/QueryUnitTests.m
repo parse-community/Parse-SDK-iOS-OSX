@@ -261,6 +261,17 @@
     XCTAssertTrue([query.state.includedKeys containsObject:@"yolo1"]);
 }
 
+- (void)testExcludeKey {
+    PFQuery *query = [PFQuery queryWithClassName:@"a"];
+    [query excludeKey:@"yolo"];
+    XCTAssertEqualObjects(query.state.excludedKeys, (PF_SET(@"yolo")));
+
+    [query excludeKey:@"yolo1"];
+    XCTAssertEqualObjects(query.state.excludedKeys, (PF_SET(@"yolo", @"yolo1")));
+    XCTAssertTrue([query.state.excludedKeys containsObject:@"yolo"]);
+    XCTAssertTrue([query.state.excludedKeys containsObject:@"yolo1"]);
+}
+
 - (void)testSelectKeys {
     PFQuery *query = [PFQuery queryWithClassName:@"a"];
     [query selectKeys:@[ @"a", @"a" ]];
@@ -1320,6 +1331,7 @@
     [query orderByAscending:@"b"];
     [query includeKey:@"c"];
     [query selectKeys:@[ @"d" ]];
+    [query excludeKeys:@[ @"f" ]];
     [query redirectClassNameForKey:@"e"];
 
     query.limit = 10;
@@ -1338,6 +1350,7 @@
     XCTAssertEqualObjects(queryCopy.state.conditions[@"a"], query.state.conditions[@"a"]);
     XCTAssertEqualObjects(queryCopy.state.sortOrderString, query.state.sortOrderString);
     XCTAssertEqualObjects([queryCopy.state.includedKeys anyObject], [query.state.includedKeys anyObject]);
+    XCTAssertEqualObjects([queryCopy.state.excludedKeys anyObject], [query.state.excludedKeys anyObject]);
     XCTAssertEqualObjects([queryCopy.state.selectedKeys anyObject], [query.state.selectedKeys anyObject]);
     XCTAssertEqualObjects([[queryCopy.state.extraOptions allValues] lastObject],
                           [[query.state.extraOptions allValues] lastObject]);

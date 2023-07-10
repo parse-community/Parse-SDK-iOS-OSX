@@ -36,6 +36,7 @@
                                          conditions:(NSDictionary *)conditions
                                        selectedKeys:(NSSet *)selectedKeys
                                        includedKeys:(NSSet *)includedKeys
+                                       excludedKeys:(NSSet *)excludedKeys
                                               limit:(NSInteger)limit
                                                skip:(NSInteger)skip
                                              explain:(BOOL)explain
@@ -48,6 +49,7 @@
                                                          conditions:conditions
                                                        selectedKeys:selectedKeys
                                                        includedKeys:includedKeys
+                                                       excludedKeys:excludedKeys
                                                               limit:limit
                                                                skip:skip
                                                             explain:explain
@@ -102,6 +104,7 @@
                                      conditions:queryState.conditions
                                    selectedKeys:queryState.selectedKeys
                                    includedKeys:queryState.includedKeys
+                                   excludedKeys:queryState.excludedKeys
                                           limit:queryState.limit
                                            skip:queryState.skip
                                         explain:queryState.explain
@@ -115,6 +118,7 @@
                                       conditions:(NSDictionary *)conditions
                                     selectedKeys:(NSSet *)selectedKeys
                                     includedKeys:(NSSet *)includedKeys
+                                    excludedKeys:(NSSet *)excludedKeys
                                            limit:(NSInteger)limit
                                             skip:(NSInteger)skip
                                          explain:(BOOL)explain
@@ -136,6 +140,11 @@
         NSArray *sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES selector:@selector(compare:)] ];
         NSArray *keysArray = [includedKeys sortedArrayUsingDescriptors:sortDescriptors];
         parameters[@"include"] = [keysArray componentsJoinedByString:@","];
+    }
+    if (excludedKeys.count > 0) {
+        NSArray *sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES selector:@selector(compare:)] ];
+        NSArray *keysArray = [excludedKeys sortedArrayUsingDescriptors:sortDescriptors];
+        parameters[@"excludedKeys"] = [keysArray componentsJoinedByString:@","];
     }
     if (limit >= 0) {
         parameters[@"limit"] = [NSString stringWithFormat:@"%d", (int)limit];
@@ -171,12 +180,14 @@
                     PFParameterAssert(subquery.state.skip == 0, @"OR queries do not support sub queries with skip");
                     PFParameterAssert(subquery.state.sortKeys.count == 0, @"OR queries do not support sub queries with order");
                     PFParameterAssert(subquery.state.includedKeys.count == 0, @"OR queries do not support sub-queries with includes");
+                    PFParameterAssert(subquery.state.excludedKeys.count == 0, @"OR queries do not support sub-queries with excludeKeys");
                     PFParameterAssert(subquery.state.selectedKeys == nil, @"OR queries do not support sub-queries with selectKeys");
 
                     NSDictionary *queryDict = [self findCommandParametersWithOrder:subquery.state.sortOrderString
                                                                         conditions:subquery.state.conditions
                                                                       selectedKeys:subquery.state.selectedKeys
                                                                       includedKeys:subquery.state.includedKeys
+                                                                      excludedKeys:subquery.state.excludedKeys
                                                                              limit:subquery.state.limit
                                                                               skip:subquery.state.skip
                                                                            explain:subquery.state.explain
@@ -240,6 +251,7 @@
                                                               conditions:subquery.state.conditions
                                                             selectedKeys:subquery.state.selectedKeys
                                                             includedKeys:subquery.state.includedKeys
+                                                            excludedKeys:subquery.state.excludedKeys
                                                                    limit:subquery.state.limit
                                                                     skip:subquery.state.skip
                                                                  explain:subquery.state.explain
