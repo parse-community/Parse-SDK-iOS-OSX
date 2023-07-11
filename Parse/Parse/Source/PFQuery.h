@@ -455,6 +455,15 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *_Nullable obje
 + (instancetype)orQueryWithSubqueries:(NSArray<PFQuery *> *)queries;
 
 /**
+ Returns a `PFQuery` that is the `and` of the passed in queries.
+
+ @param queries The list of queries to and together.
+
+ @return An instance of `PFQuery` that is the `and` of the passed in queries.
+ */
++ (instancetype)andQueryWithSubqueries:(NSArray<PFQuery *> *)queries;
+
+/**
  Adds a constraint that requires that a key's value matches a value in another key
  in objects returned by a sub query.
 

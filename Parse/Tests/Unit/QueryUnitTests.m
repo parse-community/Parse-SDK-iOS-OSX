@@ -120,6 +120,14 @@
     XCTAssertEqualObjects(query.state.conditions[@"$or"], (@[ query1, query2 ]));
 }
 
+- (void)testAndQuery {
+    PFQuery *query1 = [PFQuery queryWithClassName:@"Yolo"];
+    PFQuery *query2 = [PFQuery queryWithClassName:@"Yolo"];
+
+    PFQuery *query = [PFQuery andQueryWithSubqueries:@[ query1, query2 ]];
+    XCTAssertEqualObjects(query.state.conditions[@"$and"], (@[ query1, query2 ]));
+}
+
 #pragma mark Pagination
 
 - (void)testLimit {

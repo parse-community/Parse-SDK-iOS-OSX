@@ -30,6 +30,7 @@ NSString *const PFQueryKeySelect = @"$select";
 NSString *const PFQueryKeyDontSelect = @"$dontSelect";
 NSString *const PFQueryKeyRelatedTo = @"$relatedTo";
 NSString *const PFQueryKeyOr = @"$or";
+NSString *const PFQueryKeyAnd = @"$and";
 NSString *const PFQueryKeyQuery = @"query";
 NSString *const PFQueryKeyKey = @"key";
 NSString *const PFQueryKeyObject = @"object";

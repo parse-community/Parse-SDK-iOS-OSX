@@ -32,6 +32,7 @@ extern NSString *const PFQueryKeySelect;
 extern NSString *const PFQueryKeyDontSelect;
 extern NSString *const PFQueryKeyRelatedTo;
 extern NSString *const PFQueryKeyOr;
+extern NSString *const PFQueryKeyAnd;
 extern NSString *const PFQueryKeyQuery;
 extern NSString *const PFQueryKeyKey;
 extern NSString *const PFQueryKeyObject;
