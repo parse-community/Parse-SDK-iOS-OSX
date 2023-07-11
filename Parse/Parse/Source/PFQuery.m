@@ -427,6 +427,22 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
 }
 
 ///--------------------------------------
+#pragma mark - Exclude
+///--------------------------------------
+
+- (instancetype)excludeKey:(NSString *)key {
+    [self checkIfCommandIsRunning];
+    [self.state excludeKey:key];
+    return self;
+}
+
+- (instancetype)excludeKeys:(NSArray<NSString *> *)keys {
+    [self checkIfCommandIsRunning];
+    [self.state excludeKeys:keys];
+    return self;
+}
+
+///--------------------------------------
 #pragma mark - Select
 ///--------------------------------------
 

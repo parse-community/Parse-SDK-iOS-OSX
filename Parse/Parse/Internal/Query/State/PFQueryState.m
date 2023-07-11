@@ -26,6 +26,7 @@
         PFQueryStatePropertyName(conditions): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
         PFQueryStatePropertyName(sortKeys): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
         PFQueryStatePropertyName(includedKeys): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
+        PFQueryStatePropertyName(excludedKeys): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
         PFQueryStatePropertyName(selectedKeys): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
         PFQueryStatePropertyName(extraOptions): [PFPropertyAttributes attributesWithAssociationType:PFPropertyInfoAssociationTypeCopy],
 

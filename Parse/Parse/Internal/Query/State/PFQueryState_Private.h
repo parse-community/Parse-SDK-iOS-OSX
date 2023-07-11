@@ -29,6 +29,7 @@
     NSArray<NSString *> *_sortKeys;
 
     NSSet<NSString *> *_includedKeys;
+    NSSet<NSString *> *_excludedKeys;
     NSSet<NSString *> *_selectedKeys;
     NSDictionary<NSString *, NSString *> *_extraOptions;
 

@@ -41,6 +41,7 @@
     [state sortByKey:@"a" ascending:NO];
 
     [state includeKey:@"yolo"];
+    [state excludeKey:@"yolo"];
     [state selectKeys:@[ @"yolo" ]];
     [state redirectClassNameForKey:@"ABC"];
     return state;
@@ -62,6 +63,7 @@
     XCTAssertEqualObjects(state.sortKeys, differentState.sortKeys);
     XCTAssertEqualObjects(state.sortOrderString, differentState.sortOrderString);
     XCTAssertEqualObjects(state.includedKeys, differentState.includedKeys);
+    XCTAssertEqualObjects(state.excludedKeys, differentState.excludedKeys);
     XCTAssertEqualObjects(state.selectedKeys, differentState.selectedKeys);
     XCTAssertEqualObjects(state.extraOptions, differentState.extraOptions);
 
@@ -211,6 +213,23 @@
 
     NSSet *includedKeys = PF_SET(@"a", @"b", @"c");
     XCTAssertEqualObjects(state.includedKeys, includedKeys);
+}
+
+- (void)testExcludeKeys {
+    PFMutableQueryState *state = [[PFMutableQueryState alloc] initWithParseClassName:@"Yarr"];
+    [state excludeKey:@"a"];
+    [state excludeKey:@"b"];
+
+    NSSet *excludedKeys = PF_SET(@"a", @"b");
+    XCTAssertEqualObjects(state.excludedKeys, excludedKeys);
+}
+
+- (void)testExcludeMultipleKeys {
+    PFMutableQueryState *state = [[PFMutableQueryState alloc] initWithParseClassName:@"Yarr"];
+    [state excludeKeys:@[ @"a", @"b", @"c" ]];
+
+    NSSet *excludedKeys = PF_SET(@"a", @"b", @"c");
+    XCTAssertEqualObjects(state.excludedKeys, excludedKeys);
 }
 
 - (void)testSelectKeys {

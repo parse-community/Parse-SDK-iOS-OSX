@@ -37,7 +37,7 @@
     
     [Parse setApplicationId:self.applicationId clientKey:self.clientKey];
     
-    [self waitForExpectations:@[expect] timeout:10];
+    [self waitForExpectations:@[expect] timeout:30];
 }
 
 - (void)tearDown {

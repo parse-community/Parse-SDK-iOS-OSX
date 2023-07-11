@@ -23,6 +23,7 @@
 @property (nonatomic, copy, readonly) NSString *sortOrderString;
 
 @property (nonatomic, copy, readonly) NSSet<NSString *> *includedKeys;
+@property (nonatomic, copy, readonly) NSSet<NSString *> *excludedKeys;
 @property (nonatomic, copy, readonly) NSSet<NSString *> *selectedKeys;
 @property (nonatomic, copy, readonly) NSDictionary<NSString *, NSString *> *extraOptions;
 

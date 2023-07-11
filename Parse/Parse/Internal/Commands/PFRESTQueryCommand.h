@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
                                           conditions:(nullable NSDictionary *)conditions
                                         selectedKeys:(nullable NSSet *)selectedKeys
                                         includedKeys:(nullable NSSet *)includedKeys
+                                        excludedKeys:(nullable NSSet *)excludedKeys
                                                limit:(NSInteger)limit
                                                 skip:(NSInteger)skip
                                              explain:(BOOL)explain
@@ -54,6 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
                                                conditions:(nullable NSDictionary *)conditions
                                              selectedKeys:(nullable NSSet *)selectedKeys
                                              includedKeys:(nullable NSSet *)includedKeys
+                                             excludedKeys:(nullable NSSet *)excludedKeys
                                                     limit:(NSInteger)limit
                                                      skip:(NSInteger)skip
                                                   explain:(BOOL)explain
