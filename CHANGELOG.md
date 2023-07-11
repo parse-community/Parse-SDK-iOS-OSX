@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.3.0...2.4.0) (2023-07-11)
+
+
+### Features
+
+* Add support to exclude `PFObject` fields in query results with `PFQuery.excludeKeys` ([#1731](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1731)) ([98e5faf](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/98e5faf5d0b5eb8761bad1b37458d698262b18ce))
+
 # [2.3.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.2.0...2.3.0) (2023-06-08)
 
 
