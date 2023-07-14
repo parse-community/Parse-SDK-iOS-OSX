@@ -426,6 +426,12 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     return self;
 }
 
+- (instancetype)includeAll {
+    [self checkIfCommandIsRunning];
+    [self.state includeAll];
+    return self;
+}
+
 ///--------------------------------------
 #pragma mark - Exclude
 ///--------------------------------------

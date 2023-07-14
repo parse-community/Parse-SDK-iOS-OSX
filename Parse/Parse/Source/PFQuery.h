@@ -108,6 +108,13 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *_Nullable obje
 - (instancetype)includeKeys:(NSArray<NSString *> *)keys;
 
 /**
+ Make the query include  all `PFObject`s that have a reference.
+
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
+ */
+- (instancetype)includeAll;
+
+/**
  Make the query restrict the fields of the returned `PFObject`s to exclude the provided key.
 
  If this is called multiple times, then all of the keys specified in each of the calls will be excluded.

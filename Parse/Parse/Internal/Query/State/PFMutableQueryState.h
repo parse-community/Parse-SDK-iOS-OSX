@@ -69,6 +69,7 @@
 
 - (void)includeKey:(NSString *)key;
 - (void)includeKeys:(NSArray<NSString *> *)keys;
+- (void)includeAll;
 
 ///--------------------------------------
 #pragma mark - Excludes
