@@ -215,6 +215,14 @@
     XCTAssertEqualObjects(state.includedKeys, includedKeys);
 }
 
+- (void)testIncludeAll {
+    PFMutableQueryState *state = [[PFMutableQueryState alloc] initWithParseClassName:@"Yarr"];
+    [state includeAll];
+
+    NSSet *includedKeys = PF_SET(@"*");
+    XCTAssertEqualObjects(state.includedKeys, includedKeys);
+}
+
 - (void)testExcludeKeys {
     PFMutableQueryState *state = [[PFMutableQueryState alloc] initWithParseClassName:@"Yarr"];
     [state excludeKey:@"a"];
