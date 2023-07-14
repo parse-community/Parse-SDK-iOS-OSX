@@ -247,14 +247,14 @@
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFQuery.h",
-      "line": 801,
+      "line": 808,
       "symbol": "PFQuery.hint",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFQuery.h",
-      "line": 802,
+      "line": 809,
       "symbol": "PFQuery.explain",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
       "warning": "undocumented"
