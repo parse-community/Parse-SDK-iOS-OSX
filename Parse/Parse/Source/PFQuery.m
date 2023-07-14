@@ -689,21 +689,29 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     return [self queryWithClassName:className normalizedPredicate:normalizedPredicate];
 }
 
-+ (instancetype)orQueryWithSubqueries:(NSArray<PFQuery *> *)queries {
-    PFParameterAssert(queries.count, @"Can't create an `or` query from no subqueries.");
++ (instancetype)queryForSubqueries:(NSArray<PFQuery *> *)queries forKey:(NSString *)key {
+    PFParameterAssert(queries.count, @"Can't create an `%@` query from no subqueries.", key);
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:queries.count];
     NSString *className = queries.firstObject.parseClassName;
     for (PFQuery *query in queries) {
         PFParameterAssert([query isKindOfClass:[PFQuery class]],
                           @"All elements should be instances of `PFQuery` class.");
         PFParameterAssert([query.parseClassName isEqualToString:className],
-                          @"All sub queries of an `or` query should be on the same class.");
+                          @"All sub queries of an `%@` query should be on the same class.", key);
 
         [array addObject:query];
     }
     PFQuery *query = [self queryWithClassName:className];
-    [query.state setEqualityConditionWithObject:array forKey:PFQueryKeyOr];
+    [query.state setEqualityConditionWithObject:array forKey:key];
     return query;
+}
+
++ (instancetype)orQueryWithSubqueries:(NSArray<PFQuery *> *)queries {
+    return [self queryForSubqueries:queries forKey:PFQueryKeyOr];
+}
+
++ (instancetype)andQueryWithSubqueries:(NSArray<PFQuery *> *)queries {
+    return [self queryForSubqueries:queries forKey:PFQueryKeyAnd];
 }
 
 ///--------------------------------------
