@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.4.0...2.5.0) (2023-07-14)
+
+
+### Features
+
+* Add support to include all pointers with `PFQuery.includeAll` ([#1734](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1734)) ([04f81e8](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/04f81e803ae679c96e3f37cfe0e0954ea1c210bf))
+
 # [2.4.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.3.0...2.4.0) (2023-07-11)
 
 
