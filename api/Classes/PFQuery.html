@@ -21,7 +21,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          Parse 2.5.0 Docs
+          Parse 2.6.0 Docs
         </a>
          (92% documented)
       </p>
@@ -2620,6 +2620,62 @@ contained within a given rectangular geographic bounding box.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>An instance of <code>PFQuery</code> that is the <code>or</code> of the passed in queries.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)PFQuery(cm)andQueryWithSubqueries:"></a>
+                    <a name="//apple_ref/objc/Method/+andQueryWithSubqueries:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFQuery(cm)andQueryWithSubqueries:">+andQueryWithSubqueries:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a <code>PFQuery</code> that is the <code>and</code> of the passed in queries.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">andQueryWithSubqueries</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFQuery</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">queries</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">andQuery</span><span class="p">(</span><span class="n">withSubqueries</span> <span class="nv">queries</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFQuery</span><span class="o">&lt;</span><span class="kt"><a href="../Classes/PFObject.html">PFObject</a></span><span class="o">&gt;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>queries</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The list of queries to and together.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An instance of <code>PFQuery</code> that is the <code>and</code> of the passed in queries.</p>
                       </div>
                     </section>
                   </div>
