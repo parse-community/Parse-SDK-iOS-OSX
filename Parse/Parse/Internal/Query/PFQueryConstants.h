@@ -19,6 +19,7 @@ extern NSString *const PFQueryKeyGreaterThanOrEqualTo;
 extern NSString *const PFQueryKeyContainedIn;
 extern NSString *const PFQueryKeyNotContainedIn;
 extern NSString *const PFQueryKeyContainsAll;
+extern NSString *const PFQueryKeyContainedBy;
 extern NSString *const PFQueryKeyNearSphere;
 extern NSString *const PFQueryKeyWithin;
 extern NSString *const PFQueryKeyGeoWithin;

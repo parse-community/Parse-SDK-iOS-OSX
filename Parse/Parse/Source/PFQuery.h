@@ -273,6 +273,17 @@ typedef void (^PFQueryArrayResultBlock)(NSArray<PFGenericObject> *_Nullable obje
  */
 - (instancetype)whereKey:(NSString *)key containsAllObjectsInArray:(NSArray *)array;
 
+/**
+ Adds a constraint to the query that requires a particular key's value to
+ be contained by the provided list of values. Get objects where all array elements match
+
+ @param key The key to be constrained.
+ @param array The array of values to search for.
+
+ @return The same instance of `PFQuery` as the receiver. This allows method chaining.
+ */
+- (instancetype)whereKey:(NSString *)key containedBy:(NSArray *)array;
+
 ///--------------------------------------
 #pragma mark - Adding Location Constraints
 ///--------------------------------------

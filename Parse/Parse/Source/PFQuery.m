@@ -303,6 +303,10 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
     return [self whereKey:key condition:PFQueryKeyContainsAll object:array];
 }
 
+- (instancetype)whereKey:(NSString *)key containedBy:(NSArray *)inArray {
+    return [self whereKey:key condition:PFQueryKeyContainedBy object:inArray];
+}
+
 - (instancetype)whereKey:(NSString *)key nearGeoPoint:(PFGeoPoint *)geopoint {
     return [self whereKey:key condition:PFQueryKeyNearSphere object:geopoint];
 }

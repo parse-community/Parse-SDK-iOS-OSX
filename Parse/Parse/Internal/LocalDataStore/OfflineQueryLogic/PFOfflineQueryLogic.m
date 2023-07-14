@@ -330,6 +330,22 @@ greaterThanOrEqualTo:(id)constraint {
 }
 
 /**
+ Matches $containedBy constraints.
+ */
++ (BOOL)matchesValue:(id)value
+      containedBy:(id)constraints {
+    PFParameterAssert(![constraints isKindOfClass:[NSArray class]], @"Constraint type not supported for $containedBy queries");
+    PFParameterAssert(![value isKindOfClass:[NSArray class]], @"Value type not supported for $containedBy queries");
+
+    for (id constraint in (NSArray *)constraints) {
+        if (![self matchesValue:value containedIn:constraint]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+/**
  Matches $regex constraints.
  */
 + (BOOL)matchesValue:(id)value
@@ -446,6 +462,8 @@ greaterThanOrEqualTo:(id)constraint {
         return [self matchesValue:value notContainedIn:constraint];
     } else if ([operator isEqualToString:PFQueryKeyContainsAll]) {
         return [self matchesValue:value containsAllObjectsInArray:constraint];
+    } else if ([operator isEqualToString:PFQueryKeyContainedBy]) {
+        return [self matchesValue:value containedBy:constraint];
     } else if ([operator isEqualToString:PFQueryKeyRegex]) {
         return [self matchesValue:value regex:constraint withOptions:allKeyConstraints[PFQueryOptionKeyRegexOptions]];
     } else if ([operator isEqualToString:PFQueryOptionKeyRegexOptions]) {
