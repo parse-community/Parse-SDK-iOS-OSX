@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.5.0...2.6.0) (2023-07-14)
+
+
+### Features
+
+* Add support for compound AND queries with `PFQuery.andQueryWithSubqueries` ([#1733](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1733)) ([bd09fe4](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/bd09fe446748d26c0e91879fa3cd67e0eb4b5c1b))
+
 # [2.5.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.4.0...2.5.0) (2023-07-14)
 
 
