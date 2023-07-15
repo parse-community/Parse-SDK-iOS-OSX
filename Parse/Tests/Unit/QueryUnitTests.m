@@ -428,7 +428,7 @@
 
 - (void)testWhereContainedBy {
     PFQuery *query = [PFQuery queryWithClassName:@"a"];
-    [query whereKey:@"yolo" containsAllObjectsInArray:@[ @"yarr" ]];
+    [query whereKey:@"yolo" containedBy:@[ @"yarr" ]];
     XCTAssertEqualObjects(query.state.conditions, @{ @"yolo" : @{@"$containedBy" : @[ @"yarr" ]} });
 }
 

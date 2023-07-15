@@ -332,13 +332,10 @@ greaterThanOrEqualTo:(id)constraint {
 /**
  Matches $containedBy constraints.
  */
-+ (BOOL)matchesValue:(id)value
-      containedBy:(id)constraints {
-    PFParameterAssert(![constraints isKindOfClass:[NSArray class]], @"Constraint type not supported for $containedBy queries");
-    PFParameterAssert(![value isKindOfClass:[NSArray class]], @"Value type not supported for $containedBy queries");
-
-    for (id constraint in (NSArray *)constraints) {
-        if (![self matchesValue:value containedIn:constraint]) {
++ (BOOL)matchesValue:(NSArray *)values
+      containedBy:(NSArray *)constraints {
+    for (id value in values) {
+        if (![self matchesValue:value containedIn:constraints]) {
             return NO;
         }
     }
