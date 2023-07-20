@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.6.0...2.7.0) (2023-07-20)
+
+
+### Features
+
+* Add support for `PFQuery.containedBy` ([#1735](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1735)) ([2316a3f](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/2316a3f47f2b19a73bc4a684cefa082cbc2d53d1))
+
 # [2.6.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.5.0...2.6.0) (2023-07-14)
 
 
