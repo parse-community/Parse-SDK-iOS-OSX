@@ -426,6 +426,12 @@
     XCTAssertEqualObjects(query.state.conditions, @{ @"yolo" : @{@"$all" : @[ @"yarr" ]} });
 }
 
+- (void)testWhereContainedBy {
+    PFQuery *query = [PFQuery queryWithClassName:@"a"];
+    [query whereKey:@"yolo" containedBy:@[ @"yarr" ]];
+    XCTAssertEqualObjects(query.state.conditions, @{ @"yolo" : @{@"$containedBy" : @[ @"yarr" ]} });
+}
+
 - (void)testWhereKeyNearGeoPoint {
     PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLatitude:10.0 longitude:20.0];
 

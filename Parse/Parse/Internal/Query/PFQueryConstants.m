@@ -17,6 +17,7 @@ NSString *const PFQueryKeyGreaterThanOrEqualTo = @"$gte";
 NSString *const PFQueryKeyContainedIn = @"$in";
 NSString *const PFQueryKeyNotContainedIn = @"$nin";
 NSString *const PFQueryKeyContainsAll = @"$all";
+NSString *const PFQueryKeyContainedBy = @"$containedBy";
 NSString *const PFQueryKeyNearSphere = @"$nearSphere";
 NSString *const PFQueryKeyWithin = @"$within";
 NSString *const PFQueryKeyGeoWithin = @"$geoWithin";

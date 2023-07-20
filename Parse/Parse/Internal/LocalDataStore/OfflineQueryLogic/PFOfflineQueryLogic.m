@@ -330,6 +330,19 @@ greaterThanOrEqualTo:(id)constraint {
 }
 
 /**
+ Matches $containedBy constraints.
+ */
++ (BOOL)matchesValue:(NSArray *)values
+      containedBy:(NSArray *)constraints {
+    for (id value in values) {
+        if (![self matchesValue:value containedIn:constraints]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+/**
  Matches $regex constraints.
  */
 + (BOOL)matchesValue:(id)value
@@ -446,6 +459,8 @@ greaterThanOrEqualTo:(id)constraint {
         return [self matchesValue:value notContainedIn:constraint];
     } else if ([operator isEqualToString:PFQueryKeyContainsAll]) {
         return [self matchesValue:value containsAllObjectsInArray:constraint];
+    } else if ([operator isEqualToString:PFQueryKeyContainedBy]) {
+        return [self matchesValue:value containedBy:constraint];
     } else if ([operator isEqualToString:PFQueryKeyRegex]) {
         return [self matchesValue:value regex:constraint withOptions:allKeyConstraints[PFQueryOptionKeyRegexOptions]];
     } else if ([operator isEqualToString:PFQueryOptionKeyRegexOptions]) {
