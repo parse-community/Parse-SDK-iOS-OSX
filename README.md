@@ -20,15 +20,11 @@
 
 ---
 
-A library that gives you access to the powerful Parse Server backend from your iOS, iPadOS, macOS, watchOS and tvOS app. For more information about the Parse Platform and its features, see the public [documentation][docs]. Check out some of the [apps using Parse](https://www.appsight.io/sdk/parse).
+A library that gives you access to the powerful Parse Server backend from your iOS, iPadOS, macOS, watchOS and tvOS app. For more information about the Parse Platform and its features, see the public [documentation][docs].
 
 ---
 
 - [Getting Started](#getting-started)
-  - [Alternative Installation Options](#alternative-installation-options)
-    - [Download Builds](#download-builds)
-    - [Compile Source](#compile-source)
-    - [Add Sub-Project](#add-sub-project)
 - [How Do I Contribute?](#how-do-i-contribute)
 - [Dependencies](#dependencies)
 
@@ -46,44 +42,6 @@ The easiest way to install the SDK is via Swift Package Manager.
 
 Take a look at the public [documentation][docs] & [API][api] and start building.
 
-### Alternative Installation Options
-
-#### Download Builds
-
-Dowload the compiled builds from the asset section in the [releases][releases] page.
-
-#### Compile Source
-
-If you want to manually compile the SDK, clone it locally, and run the following commands in the root directory of the repository:
-
-```
-# To pull in extra dependencies (Bolts and OCMock)
-git submodule update --init --recursive
-
-# To install bundler
-gem install bundler
-
-# To install all the gems via bundler
-bundle install
-
-# Build & Package the Frameworks
-bundle exec rake package:frameworks
-```
-
-Compiled frameworks will be in multiple archives inside the `build/release` folder: 
-- `Parse-iOS.zip`
-- `Parse-macOS.zip`
-- `Parse-tvOS.zip`
-- `Parse-watchOS.zip`
-- `ParseFacebookUtils-iOS.zip`
-- `ParseFacebookUtils-tvOS.zip`
-- `ParseTwitterUtils-iOS.zip`
-- `ParseUI.zip`
-
-#### Add Sub-Project
-
-You can also include parse as a subproject inside of your application if you'd prefer, although we do not recommend this, as it will increase your indexing time significantly. To do so, just drag and drop the Parse.xcodeproj file into your workspace. Note that unit tests will be unavailable if you use Parse like this, as OCMock will be unable to be found.
-
 ## How Do I Contribute?
 
 We want to make contributing to this project as easy and transparent as possible. Please refer to the [Contribution Guidelines][contributing].
@@ -97,8 +55,6 @@ We use the following libraries as dependencies inside of Parse:
 
 [docs]: http://docs.parseplatform.org/ios/guide/
 [api]: http://parseplatform.org/Parse-SDK-iOS-OSX/api/
-[parseui-link]: https://github.com/parse-community/ParseUI-iOS
-[releases]: https://github.com/parse-community/Parse-SDK-iOS-OSX/releases
 [contributing]: https://github.com/parse-community/Parse-SDK-iOS-OSX/blob/master/CONTRIBUTING.md
 [bolts-framework]: https://github.com/BoltsFramework/Bolts-ObjC
 [ocmock-framework]: http://ocmock.org

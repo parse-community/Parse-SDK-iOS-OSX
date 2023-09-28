@@ -12,68 +12,9 @@ require_relative 'Vendor/xctoolchain/Scripts/xctask/build_framework_task'
 
 script_folder = File.expand_path(File.dirname(__FILE__))
 build_folder = File.join(script_folder, 'build')
-release_folder = File.join(build_folder, 'release')
-bolts_build_folder = File.join(script_folder, 'Carthage', 'Build')
-bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-ObjC')
 ios_simulator = 'platform="iOS Simulator",name="iPhone 14"'
 tvos_simulator = 'platform="tvOS Simulator",name="Apple TV"'
 watchos_simulator = 'platform="watchOS Simulator",name="Apple Watch Series 8 (45mm)"'
-
-module Constants
-  require 'plist'
-
-  script_folder = File.expand_path(File.dirname(__FILE__))
-
-  PARSE_CONSTANTS_HEADER = File.join(script_folder, 'Parse', 'Parse', 'Source/PFConstants.h')
-
-  PLISTS = [
-    File.join(script_folder, 'Parse', 'Parse', 'Resources', 'Parse-iOS.Info.plist'),
-    File.join(script_folder, 'Parse', 'Parse', 'Resources', 'Parse-OSX.Info.plist'),
-    File.join(script_folder, 'Parse', 'Parse', 'Resources', 'Parse-watchOS.Info.plist'),
-    File.join(script_folder, 'Parse', 'Parse', 'Resources', 'Parse-tvOS.Info.plist'),
-    File.join(script_folder, 'ParseFacebookUtils', 'ParseFacebookUtils', 'Resources', 'Info-iOS.plist'),
-    File.join(script_folder, 'ParseFacebookUtils', 'ParseFacebookUtils', 'Resources', 'Info-tvOS.plist'),
-    File.join(script_folder, 'ParseTwitterUtils', 'ParseTwitterUtils', 'Resources', 'Info-iOS.plist'),
-    File.join(script_folder, 'ParseUI', 'ParseUI', 'Resources', 'Info-iOS.plist'),
-    File.join(script_folder, 'ParseLiveQuery', 'ParseLiveQuery', 'Resources', 'Info.plist'),
-    File.join(script_folder, 'ParseLiveQuery', 'ParseLiveQuery-tvOS', 'Info.plist'),
-    File.join(script_folder, 'ParseLiveQuery', 'ParseLiveQuery-watchOS', 'Info.plist'),
-    File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
-    File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
-    File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
-    File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift', 'Resources', 'Info.plist'),
-    File.join(script_folder, 'ParseStarterProject', 'tvOS', 'ParseStarterProject-Swift', 'ParseStarter', 'Info.plist'),
-    File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter', 'Info.plist'),
-    File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter Extension', 'Info.plist'),
-    File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
-  ]
-
-  def self.current_version
-    constants_file = File.open(PARSE_CONSTANTS_HEADER, 'r').read
-    matches = constants_file.match(/(.*PARSE_VERSION\s*@")(.*)(")/)
-    matches[2] # Return the second match, which is the version itself
-  end
-
-  def self.update_version(version)
-    constants_file = File.open(PARSE_CONSTANTS_HEADER, 'r+')
-    constants = constants_file.read
-    constants.gsub!(/(.*PARSE_VERSION\s*@")(.*)(")/, "\\1#{version}\\3")
-
-    constants_file.seek(0)
-    constants_file.write(constants)
-
-    PLISTS.each do |plist|
-      update_info_plist_version(plist, version)
-    end
-  end
-
-  def self.update_info_plist_version(plist_path, version)
-    info_plist = Plist.parse_xml(plist_path)
-    info_plist['CFBundleShortVersionString'] = version
-    info_plist['CFBundleVersion'] = version
-    File.open(plist_path, 'w') { |f| f.write(info_plist.to_plist) }
-  end
-end
 
 namespace :build do
   desc 'Build iOS framework.'
@@ -83,7 +24,6 @@ namespace :build do
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::IOS
       t.framework_name = 'Parse.framework'
-
       t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-iOS'
       t.configuration = 'Release'
@@ -102,7 +42,6 @@ namespace :build do
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::WATCHOS
       t.framework_name = 'Parse.framework'
-
       t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-watchOS'
       t.configuration = 'Release'
@@ -121,7 +60,6 @@ namespace :build do
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::OSX
       t.framework_name = 'Parse.framework'
-
       t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-macOS'
       t.configuration = 'Release'
@@ -140,7 +78,6 @@ namespace :build do
       t.build_directory = build_folder
       t.framework_type = XCTask::FrameworkType::TVOS
       t.framework_name = 'Parse.framework'
-
       t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-tvOS'
       t.configuration = 'Release'
@@ -309,7 +246,6 @@ namespace :build do
       task = XCTask::BuildTask.new do |t|
         t.directory = script_folder
         t.workspace = 'Parse.xcworkspace'
-
         t.scheme = 'ParseUIDemo'
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
@@ -332,7 +268,6 @@ namespace :build do
       task = XCTask::BuildTask.new do |t|
         t.directory = script_folder
         t.workspace = 'Parse.xcworkspace'
-
         t.scheme = 'ParseUIDemo-Swift'
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
@@ -354,196 +289,25 @@ namespace :build do
 end
 
 namespace :package do
-  package_ios_name = 'Parse-iOS.zip'
-  package_macos_name = 'Parse-macOS.zip'
-  package_tvos_name = 'Parse-tvOS.zip'
-  package_watchos_name = 'Parse-watchOS.zip'
-  package_starter_ios_name = 'ParseStarterProject-iOS.zip'
-  package_starter_osx_name = 'ParseStarterProject-OSX.zip'
-  package_starter_tvos_name = 'ParseStarterProject-tvOS.zip'
-  package_starter_watchos_name = 'ParseStarterProject-watchOS.zip'
-  package_parseui_name = 'ParseUI.zip'
-
-  task :prepare do
-    `rm -rf #{build_folder} && mkdir -p #{build_folder}`
-    `#{bolts_folder}/scripts/build_framework.sh -n -c Release --with-watchos --with-tvos`
-  end
-
-  task :set_version, [:version] do |_, args|
-    version = args[:version] || Constants.current_version
-    Constants.update_version(version)
-  end
-
   desc 'Build all frameworks and starters'
   task :release do |_|
     Rake::Task['package:frameworks'].invoke
-    Rake::Task['package:starters'].invoke
   end
 
-  desc 'Build and package all frameworks for the release'
-  task :frameworks, [:version] => :prepare do |_, args|
-    version = args[:version] || Constants.current_version
-    Constants.update_version(version)
-
-    ## Build macOS Framework
-    Rake::Task['build:macos'].invoke
-    bolts_path = File.join(bolts_build_folder, 'osx', 'Bolts.framework')
-    osx_framework_path = File.join(build_folder, 'Parse.framework')
-    make_package(release_folder,
-                 [osx_framework_path, bolts_path],
-                 package_macos_name)
-
-    ## Build iOS Framework
+  desc 'Build all frameworks'
+  task :frameworks do |_|
     Rake::Task['build:ios'].invoke
-    bolts_path = File.join(bolts_build_folder, 'ios', 'Bolts.framework')
-    ios_framework_path = File.join(build_folder, 'Parse.framework')
-    make_package(release_folder,
-                 [ios_framework_path, bolts_path],
-                 package_ios_name)
-
-    ## Build tvOS Framework
+    Rake::Task['build:macos'].invoke
     Rake::Task['build:tvos'].invoke
-    bolts_path = File.join(bolts_build_folder, 'tvOS', 'Bolts.framework')
-    tvos_framework_path = File.join(build_folder, 'Parse.framework')
-    make_package(release_folder,
-                  [tvos_framework_path, bolts_path],
-                  package_tvos_name)
-
-    ## Build watchOS Framework
     Rake::Task['build:watchos'].invoke
-    bolts_path = File.join(bolts_build_folder, 'watchOS', 'Bolts.framework')
-    watchos_framework_path = File.join(build_folder, 'Parse.framework')
-    make_package(release_folder,
-                 [watchos_framework_path, bolts_path],
-                 package_watchos_name)
-
     Rake::Task['build:facebook_utils:ios'].invoke
-    ios_fb_utils_framework_path = File.join(build_folder, 'iOS', 'ParseFacebookUtilsV4.framework')
-    make_package(release_folder, [ios_fb_utils_framework_path], 'ParseFacebookUtils-iOS.zip')
-
     Rake::Task['build:twitter_utils:ios'].invoke
-    ios_tw_utils_framework_path = File.join(build_folder, 'iOS', 'ParseTwitterUtils.framework')
-    make_package(release_folder, [ios_tw_utils_framework_path], 'ParseTwitterUtils-iOS.zip')
-
     Rake::Task['build:facebook_utils:tvos'].invoke
-    tvos_fb_utils_framework_path = File.join(build_folder, 'tvOS', 'ParseFacebookUtilsV4.framework')
-    make_package(release_folder, [tvos_fb_utils_framework_path], 'ParseFacebookUtils-tvOS.zip')
-
     Rake::Task['build:parseui:framework'].invoke
-    parseui_framework_path = File.join(build_folder, 'iOS', 'ParseUI.framework')
-    make_package(release_folder,
-                [parseui_framework_path],
-                package_parseui_name)
-    
     Rake::Task['build:parse_live_query:ios'].invoke
-    ios_lq_framework_path = File.join(build_folder, 'iOS', 'ParseLiveQuery.framework')
-    make_package(release_folder, [ios_lq_framework_path], 'ParseLiveQuery-iOS.zip')
-
-    Rake::Task['build:parse_live_query:watchos'].invoke
-    watchos_lq_fb_utils_framework_path = File.join(build_folder, 'watchOS', 'ParseLiveQuery_watchOS.framework')
-    make_package(release_folder, [watchos_lq_fb_utils_framework_path], 'ParseLiveQuery-watchOS.zip')
-
-    Rake::Task['build:parse_live_query:tvos'].invoke
-    tvos_lq_framework_path = File.join(build_folder, 'tvOS', 'ParseLiveQuery_tvOS.framework')
-    make_package(release_folder, [tvos_lq_framework_path], 'ParseLiveQuery-tvOS.zip')
-
     Rake::Task['build:parse_live_query:macos'].invoke
-    macos_lq_utils_framework_path = File.join(build_folder, 'macOS', 'ParseLiveQuery.framework')
-    make_package(release_folder, [macos_lq_utils_framework_path], 'ParseLiveQuery-OSX.zip')
-
-  end
-
-  desc 'Build and package all starter projects for the release'
-  task :starters, [:version] => :frameworks do |_, _args|
-    require 'xcodeproj'
-
-    ios_starters = [
-      File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject'),
-      File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift')
-    ]
-    ios_framework_archive = File.join(release_folder, package_ios_name)
-    make_starter_package(release_folder, ios_starters, ios_framework_archive, package_starter_ios_name)
-
-    osx_starters = [
-      File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject'),
-      File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift')
-    ]
-    osx_framework_archive = File.join(release_folder, package_macos_name)
-    make_starter_package(release_folder, osx_starters, osx_framework_archive, package_starter_osx_name)
-
-    tvos_starters = [
-      File.join(script_folder, 'ParseStarterProject', 'tvOS', 'ParseStarterProject-Swift')
-    ]
-    tvos_framework_archive = File.join(release_folder, package_tvos_name)
-    make_starter_package(release_folder, tvos_starters, tvos_framework_archive, package_starter_tvos_name)
-
-    watchos_starters = [
-      File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift')
-    ]
-    watchos_framework_archive = File.join(release_folder, package_watchos_name)
-    watchos_starters.each do |project_path|
-      `git clean -xfd #{project_path}`
-      `mkdir -p #{project_path}/Frameworks/iOS && mkdir -p #{project_path}/Frameworks/watchOS`
-      `cd #{project_path}/Frameworks/iOS && unzip -o #{ios_framework_archive}`
-      `cd #{project_path}/Frameworks/watchOS && unzip -o #{watchos_framework_archive}`
-      xcodeproj_path = Dir.glob(File.join(project_path, '*.xcodeproj'))[0]
-      prepare_xcodeproj(xcodeproj_path)
-    end
-    make_package(release_folder, watchos_starters, package_starter_watchos_name)
-    watchos_starters.each do |project_path|
-      `git clean -xfd #{project_path}`
-      `git checkout #{project_path}`
-    end
-  end
-
-  def make_package(target_path, items, archive_name)
-    temp_folder = File.join(target_path, 'tmp')
-    `mkdir -p #{temp_folder}`
-
-    item_list = ''
-    items.each do |item|
-      `cp -R #{item} #{temp_folder}`
-
-      file_name = File.basename(item)
-      item_list << " #{file_name}"
-    end
-
-    archive_path = File.join(target_path, archive_name)
-    `cd #{temp_folder}; zip -r --symlinks #{archive_path} #{item_list}`
-    `rm -rf #{temp_folder}`
-    puts "Release archive created: #{File.join(target_path, archive_name)}"
-  end
-
-  def make_starter_package(target_path, starter_projects, framework_archive, archive_name)
-    starter_projects.each do |project_path|
-      `git clean -xfd #{project_path}`
-      `cd #{project_path} && unzip -o #{framework_archive}`
-
-      xcodeproj_path = Dir.glob(File.join(project_path, '*.xcodeproj'))[0]
-      prepare_xcodeproj(xcodeproj_path)
-    end
-    make_package(target_path, starter_projects, archive_name)
-
-    starter_projects.each do |project_path|
-      `git clean -xfd #{project_path}`
-      `git checkout #{project_path}`
-    end
-  end
-
-  def prepare_xcodeproj(path)
-    project = Xcodeproj::Project.open(path)
-    project.targets.each do |target|
-      if target.name == 'Bootstrap'
-        target.remove_from_project
-      else
-        target.dependencies.each do |dependency|
-          dependency.remove_from_project if dependency.display_name == 'Bootstrap'
-        end
-      end
-    end
-    project.save
-
-    `rm -rf #{File.join(path, 'xcshareddata', 'xcschemes', '*')}`
+    Rake::Task['build:parse_live_query:tvos'].invoke
+    Rake::Task['build:parse_live_query:watchos'].invoke
   end
 end
 
@@ -797,8 +561,7 @@ namespace :test do
     end
   end
 
-
-  desc 'Run Starter Project Tests'
+  desc 'Build Starter Project'
   task :starters do |_|
     results = []
     ios_schemes = ['ParseStarterProject',
