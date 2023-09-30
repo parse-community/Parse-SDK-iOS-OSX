@@ -1,3 +1,10 @@
+## [2.7.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.7.0...2.7.1) (2023-09-30)
+
+
+### Bug Fixes
+
+* Compilation error on macOS `Undefined symbol: OBJC_CLASS$_PFProductsRequestHandler` ([#1739](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1739)) ([7231bf7](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/7231bf77fb5dd74e05c19c7a67ba61840c43768b))
+
 # [2.7.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.6.0...2.7.0) (2023-07-20)
 
 
