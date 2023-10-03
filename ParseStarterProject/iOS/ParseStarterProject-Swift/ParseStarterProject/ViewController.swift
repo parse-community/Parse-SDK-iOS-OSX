@@ -8,7 +8,7 @@
 */
 
 import UIKit
-import Parse
+import ParseCore
 
 class ViewController: UIViewController {
 
