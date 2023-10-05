@@ -24,7 +24,7 @@ jobs:
           - test:parseui:all
           - test:parse_live_query:all
           - build:starters
-      fail-fast: false
+      fail-fast: true
     runs-on: macos-12
     steps:
       - uses: actions/checkout@v3
@@ -76,10 +76,12 @@ jobs:
         run: |
           ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}
           TEST_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult")
+          BUILD_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcactivitylog")
           echo ARTIFACT_NAME=${ARTIFACT_NAME//:/-} >> $GITHUB_ENV # replace colon with dashes
           echo TEST_RESULTS=${TEST_RESULTS} >> $GITHUB_ENV
           echo "Artifact Name: $ARTIFACT_NAME"
           echo "Test Result Location: $TEST_RESULTS"
+          echo "Build Result Location: $BUILD_RESULTS"
       - name: Upload Artifact Logs
         if: ${{ failure() }}
         uses: actions/upload-artifact@v3
@@ -87,6 +89,7 @@ jobs:
           name: ${{ env.ARTIFACT_NAME }}
           path: |
             ~/Library/Developer/Xcode/DerivedData/Parse-*/Logs/Test
+            ~/Library/Developer/Xcode/DerivedData/**/Logs/Build
       - name: Upload Coverage
         uses: codecov/codecov-action@v3.1.1
         with:

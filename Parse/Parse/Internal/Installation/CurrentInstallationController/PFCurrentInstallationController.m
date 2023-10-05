@@ -9,6 +9,8 @@
 
 #import "PFCurrentInstallationController.h"
 
+#if !TARGET_OS_WATCH
+
 #import "BFTask+Private.h"
 #import "PFAsyncTaskQueue.h"
 #import "PFInstallationIdentifierStore.h"
@@ -280,3 +282,5 @@ NSString *const PFCurrentInstallationPinName = @"_currentInstallation";
 }
 
 @end
+
+#endif

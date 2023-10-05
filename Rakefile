@@ -470,8 +470,7 @@ namespace :build do
     task :all do
       # TODO: watchos objc starter
       # Rake::Task['build:watchos_starters:objc'].invoke
-      # TODO: fix compilation errors
-      # Rake::Task['build:watchos_starters:swift'].invoke
+      Rake::Task['build:watchos_starters:swift'].invoke
     end
 
     task :swift do

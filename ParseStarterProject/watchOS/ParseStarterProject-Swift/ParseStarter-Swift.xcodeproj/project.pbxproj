@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3901ECD82ACF3C7C0076D426 /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 3901ECD72ACF3C7C0076D426 /* ParseObjC */; };
 		391740322AC65AD500588AF7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 391740312AC65A2000588AF7 /* libsqlite3.tbd */; };
 		391740352AC65D0000588AF7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 391740332AC65C6700588AF7 /* libsqlite3.tbd */; };
 		391740372AC65DCB00588AF7 /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 391740362AC65DCB00588AF7 /* ParseObjC */; };
@@ -104,6 +105,7 @@
 			files = (
 				391740322AC65AD500588AF7 /* libsqlite3.tbd in Frameworks */,
 				7C606000292BD3DC00E4B6D2 /* SystemConfiguration.framework in Frameworks */,
+				3901ECD82ACF3C7C0076D426 /* ParseObjC in Frameworks */,
 				7C605FFE292BD3D700E4B6D2 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +268,9 @@
 				068C15651BC8F15300820E44 /* PBXTargetDependency */,
 			);
 			name = "ParseStarter-Swift";
+			packageProductDependencies = (
+				3901ECD72ACF3C7C0076D426 /* ParseObjC */,
+			);
 			productName = ParseStarterProject;
 			productReference = 81BA81451A49DA1800E65899 /* ParseStarter-Swift.app */;
 			productType = "com.apple.product-type.application";
@@ -415,7 +420,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
 		};
@@ -438,7 +443,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -458,7 +463,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
 		};
@@ -478,7 +483,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -664,6 +669,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3901ECD72ACF3C7C0076D426 /* ParseObjC */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParseObjC;
+		};
 		391740362AC65DCB00588AF7 /* ParseObjC */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ParseObjC;
