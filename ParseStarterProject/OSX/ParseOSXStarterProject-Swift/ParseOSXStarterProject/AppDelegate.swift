@@ -8,8 +8,7 @@
 */
 
 import Cocoa
-
-import Parse
+import ParseCore
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

@@ -9,7 +9,7 @@
 
 #import "AppDelegate.h"
 
-#import <Parse.h>
+@import ParseCore;
 
 @implementation AppDelegate
 

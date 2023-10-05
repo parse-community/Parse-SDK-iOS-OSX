@@ -8,7 +8,6 @@ on:
     branches:
       - "**"
 env:
-  CI_XCODE_11: /Applications/Xcode_11.7.app/Contents/Developer
   CI_XCODE_14: /Applications/Xcode_14.2.app/Contents/Developer
 jobs:
   tests:
@@ -24,9 +23,9 @@ jobs:
           - test:twitter_utils:ios
           - test:parseui:all
           - test:parse_live_query:all
-          - package:release
+          - build:starters
       fail-fast: false
-    runs-on: ${{ (matrix.script == 'package:release' && 'macos-11') || 'macos-12' }}
+    runs-on: macos-12
     steps:
       - uses: actions/checkout@v3
       - name: Setup Ruby
@@ -68,7 +67,7 @@ jobs:
       - name: Build-Test
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake ${{ matrix.script }}
         env:
-          DEVELOPER_DIR: ${{ (matrix.script == 'package:release' && env.CI_XCODE_11) || env.CI_XCODE_14 }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_14 }}
       - name: Generate Environment Variables
         if: ${{ always() }}
         env:

@@ -30,6 +30,10 @@ For analyzing bugs, creating bug fixes and features we recommend to clone this r
    ```
    bundle exec rake test:ios
    ```
+5. Ensure the project builds. You can use the [Starter Projects](https://github.com/parse-community/Parse-SDK-iOS-OSX/tree/master/ParseStarterProject) to perform integration tests.
+   ```
+   bundle exec rake build:starters
+   ```
    Check the [Rakefile](Rakefile) and the [GitHub workflows](.github/workflows) for more information.
 
 # Bugs

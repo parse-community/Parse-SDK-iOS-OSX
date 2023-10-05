@@ -12,12 +12,15 @@ require_relative 'Vendor/xctoolchain/Scripts/xctask/build_framework_task'
 
 script_folder = File.expand_path(File.dirname(__FILE__))
 build_folder = File.join(script_folder, 'build')
+starters_folder = File.join(script_folder, 'ParseStarterProject')
 release_folder = File.join(build_folder, 'release')
 bolts_build_folder = File.join(script_folder, 'Carthage', 'Build')
 bolts_folder = File.join(script_folder, 'Carthage', 'Checkouts', 'Bolts-ObjC')
 ios_simulator = 'platform="iOS Simulator",name="iPhone 14"'
 tvos_simulator = 'platform="tvOS Simulator",name="Apple TV"'
 watchos_simulator = 'platform="watchOS Simulator",name="Apple Watch Series 8 (45mm)"'
+
+build_action = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD];
 
 module Constants
   require 'plist'
@@ -317,7 +320,7 @@ namespace :build do
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
-        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
 
@@ -340,7 +343,7 @@ namespace :build do
         t.additional_options = { "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS" => "YES",
                                  "GCC_GENERATE_TEST_COVERAGE_FILES" => "YES" }
 
-        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
 
@@ -350,6 +353,151 @@ namespace :build do
         exit(1)
       end
     end
+  end
+
+  namespace :ios_starters do
+    task :all do
+      Rake::Task['build:ios_starters:objc'].invoke
+      Rake::Task['build:ios_starters:swift'].invoke
+    end
+
+    task :objc do
+      project = 'ParseStarterProject'
+      ios_starters_folder = File.join(starters_folder, 'iOS', project)
+      task = XCTask::BuildTask.new do |t|
+        t.directory = ios_starters_folder
+        t.project = "#{project}.xcodeproj"
+        t.scheme = project
+        t.configuration = 'Debug'
+        t.sdk = 'iphonesimulator'
+        t.destinations = [ios_simulator]
+        t.actions = build_action
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+      unless task.execute
+        puts 'iOS Starter Project Failed!'
+        exit(1)
+      end
+    end
+
+    task :swift do
+      project = 'ParseStarterProject-Swift'
+      ios_starters_folder = File.join(starters_folder, 'iOS', project)
+      task = XCTask::BuildTask.new do |t|
+        t.directory = ios_starters_folder
+        t.project = "#{project}.xcodeproj"
+        t.scheme = project
+        t.configuration = 'Debug'
+        t.sdk = 'iphonesimulator'
+        t.destinations = [ios_simulator]
+        t.actions = build_action
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+      unless task.execute
+        puts 'iOS Starter Project Failed!'
+        exit(1)
+      end
+    end
+  end
+
+  namespace :macos_starters do
+    task :all do
+      Rake::Task['build:macos_starters:objc'].invoke
+      Rake::Task['build:macos_starters:swift'].invoke
+    end
+
+    task :objc do
+      macos_starter_folder = File.join(starters_folder, 'OSX', 'ParseOSXStarterProject')
+      task = XCTask::BuildTask.new do |t|
+        t.directory = macos_starter_folder
+        t.project = 'ParseOSXStarterProject.xcodeproj'
+        t.scheme = 'ParseOSXStarterProject'
+        t.configuration = 'Debug'
+        t.sdk = 'macosx'
+        t.actions = build_action
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+      unless task.execute
+        puts 'macOS Starter Project Failed!'
+        exit(1)
+      end
+    end
+
+    task :swift do
+      macos_starter_folder = File.join(starters_folder, 'OSX', 'ParseOSXStarterProject-Swift')
+      task = XCTask::BuildTask.new do |t|
+        t.directory = macos_starter_folder
+        t.project = 'ParseOSXStarterProject-Swift.xcodeproj'
+        t.scheme = 'ParseOSXStarterProject-Swift'
+        t.configuration = 'Debug'
+        t.sdk = 'macosx'
+        t.actions = build_action
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+      unless task.execute
+        puts 'macOS Starter Project Failed!'
+        exit(1)
+      end
+    end
+  end
+
+  namespace :tvos_starters do
+    task :all do
+      # TODO: tvos objc starter
+      # Rake::Task['build:tvos_starters:objc'].invoke
+      Rake::Task['build:tvos_starters:swift'].invoke
+    end
+
+    task :swift do
+      tvos_starter_folder = File.join(starters_folder, 'tvOS', 'ParseStarterProject-Swift')
+      task = XCTask::BuildTask.new do |t|
+        t.directory = tvos_starter_folder
+        t.project = 'ParseStarter-Swift.xcodeproj'
+        t.scheme = 'ParseStarter'
+        t.configuration = 'Debug'
+        t.destinations = [tvos_simulator]
+        t.actions = build_action
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+      unless task.execute
+        puts 'tvOS Starter Project Failed!'
+        exit(1)
+      end
+    end
+  end
+
+  namespace :watchos_starters do
+    task :all do
+      # TODO: watchos objc starter
+      # Rake::Task['build:watchos_starters:objc'].invoke
+      # TODO: fix compilation errors
+      # Rake::Task['build:watchos_starters:swift'].invoke
+    end
+
+    task :swift do
+      watchos_starter_folder = File.join(starters_folder, 'watchOS', 'ParseStarterProject-Swift')
+      task = XCTask::BuildTask.new do |t|
+        t.directory = watchos_starter_folder
+        t.project = 'ParseStarter-Swift.xcodeproj'
+        t.scheme = 'ParseStarter'
+        t.configuration = 'Debug'
+        t.destinations = [watchos_simulator]
+        t.actions = build_action
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+      unless task.execute
+        puts 'watchOS Starter Project Failed!'
+        exit(1)
+      end
+    end
+  end
+
+  desc 'Build all starters'
+  task :starters do
+    Rake::Task['build:ios_starters:all'].invoke
+    Rake::Task['build:macos_starters:all'].invoke
+    Rake::Task['build:tvos_starters:all'].invoke
+    Rake::Task['build:watchos_starters:all'].invoke
   end
 end
 
@@ -672,7 +820,7 @@ namespace :test do
         t.destinations = [ios_simulator]
         t.configuration = 'Debug'
 
-        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
 
@@ -693,7 +841,7 @@ namespace :test do
         t.destinations = [ios_simulator]
         t.configuration = 'Debug'
 
-        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
 
@@ -723,7 +871,7 @@ namespace :test do
         t.destinations = [ios_simulator]
         t.configuration = 'Debug'
 
-        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
 
@@ -744,7 +892,7 @@ namespace :test do
         t.configuration = 'Debug'
         
 
-        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
 
@@ -765,7 +913,7 @@ namespace :test do
         t.configuration = 'Debug'
         
 
-        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
 
@@ -785,90 +933,13 @@ namespace :test do
         t.configuration = 'Debug'
     
 
-        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
+        t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
 
       result = task.execute
       unless result
         puts 'Failed to build ParseLiveQuery-OSX.'
-        exit(1)
-      end
-    end
-  end
-
-
-  desc 'Run Starter Project Tests'
-  task :starters do |_|
-    results = []
-    ios_schemes = ['ParseStarterProject',
-                   'ParseStarterProject-Swift']
-    osx_schemes = ['ParseOSXStarterProject',
-                   'ParseOSXStarterProject-Swift']
-    tvos_schemes = ['ParseStarter-tvOS']
-    watchos_schemes = ['ParseWatchStarter-watchOS']
-
-    ios_schemes.each do |scheme|
-      task = XCTask::BuildTask.new do |t|
-        t.directory = script_folder
-        t.workspace = 'Parse.xcworkspace'
-
-        t.scheme = scheme
-        t.configuration = 'Debug'
-        t.sdk = 'iphonesimulator'
-        t.destinations = [ios_simulator]
-
-        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
-      end
-      results << task.execute
-    end
-    osx_schemes.each do |scheme|
-      task = XCTask::BuildTask.new do |t|
-        t.directory = script_folder
-        t.workspace = 'Parse.xcworkspace'
-
-        t.scheme = scheme
-        t.configuration = 'Debug'
-        t.sdk = 'macosx'
-
-        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
-      end
-      results << task.execute
-    end
-    watchos_schemes.each do |scheme|
-      task = XCTask::BuildTask.new do |t|
-        t.directory = script_folder
-        t.workspace = 'Parse.xcworkspace'
-
-        t.scheme = scheme
-        t.configuration = 'Debug'
-        t.destinations = [ios_simulator]
-
-        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
-      end
-      results << task.execute
-    end
-    tvos_schemes.each do |scheme|
-      task = XCTask::BuildTask.new do |t|
-        t.directory = script_folder
-        t.workspace = 'Parse.xcworkspace'
-
-        t.scheme = scheme
-        t.configuration = 'Debug'
-        t.destinations = [tvos_simulator]
-
-        t.actions = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD]
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
-      end
-      results << task.execute
-    end
-
-    results.each do |result|
-      unless result
-        puts 'Starter Project Tests Failed!'
         exit(1)
       end
     end

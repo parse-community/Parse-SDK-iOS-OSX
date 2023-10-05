@@ -8,7 +8,7 @@
 */
 
 import WatchKit
-import Parse
+import ParseCore
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
