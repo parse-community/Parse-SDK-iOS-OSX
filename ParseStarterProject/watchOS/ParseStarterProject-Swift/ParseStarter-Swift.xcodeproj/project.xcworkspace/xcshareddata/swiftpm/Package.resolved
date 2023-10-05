@@ -1,43 +1,41 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Bolts",
-        "repositoryURL": "https://github.com/parse-community/Bolts-ObjC.git",
-        "state": {
-          "branch": null,
-          "revision": "1eee96ad3bcfc8964c0a5815ce94f491eb6ac8c2",
-          "version": "1.10.0"
-        }
-      },
-      {
-        "package": "BoltsSwift",
-        "repositoryURL": "https://github.com/BoltsFramework/Bolts-Swift.git",
-        "state": {
-          "branch": null,
-          "revision": "d8c07eee2045a13f34330c0a4664053b5176e3f0",
-          "version": "1.5.0"
-        }
-      },
-      {
-        "package": "Facebook",
-        "repositoryURL": "https://github.com/facebook/facebook-ios-sdk.git",
-        "state": {
-          "branch": null,
-          "revision": "7fd8a930a5b2c940a22efafe0e214ed0df671312",
-          "version": "15.1.0"
-        }
-      },
-      {
-        "package": "Starscream",
-        "repositoryURL": "https://github.com/daltoniam/Starscream.git",
-        "state": {
-          "branch": null,
-          "revision": "ac6c0fc9da221873e01bd1a0d4818498a71eef33",
-          "version": "4.0.6"
-        }
+  "pins" : [
+    {
+      "identity" : "bolts-objc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/parse-community/Bolts-ObjC.git",
+      "state" : {
+        "revision" : "1eee96ad3bcfc8964c0a5815ce94f491eb6ac8c2",
+        "version" : "1.10.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "bolts-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/BoltsFramework/Bolts-Swift.git",
+      "state" : {
+        "revision" : "d8c07eee2045a13f34330c0a4664053b5176e3f0",
+        "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "facebook-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/facebook/facebook-ios-sdk.git",
+      "state" : {
+        "revision" : "7fd8a930a5b2c940a22efafe0e214ed0df671312",
+        "version" : "15.1.0"
+      }
+    },
+    {
+      "identity" : "starscream",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/daltoniam/Starscream.git",
+      "state" : {
+        "revision" : "ac6c0fc9da221873e01bd1a0d4818498a71eef33",
+        "version" : "4.0.6"
+      }
+    }
+  ],
+  "version" : 2
 }

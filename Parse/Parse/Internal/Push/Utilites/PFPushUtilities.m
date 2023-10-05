@@ -17,7 +17,10 @@
 #import "PFAlertView.h"
 #endif
 
+#if !TARGET_OS_WATCH
 #import "PFInstallationPrivate.h"
+#endif
+
 #import "PFKeychainStore.h"
 #import "PFLogging.h"
 #import "PFMacros.h"
@@ -49,13 +52,13 @@
     return store[@"ParsePush"];
 }
 
+#if TARGET_OS_IOS
+
 + (void)clearDeviceToken {
     // Used in test case setup.
     [[PFInstallation currentInstallation] _clearDeviceToken];
     [[[PFKeychainStore alloc] initWithService:@"ParsePush"] removeObjectForKey:@"ParsePush"];
 }
-
-#if TARGET_OS_IOS
 
 + (void)showAlertViewWithTitle:(nullable NSString *)title message:(nullable NSString *)message NS_EXTENSION_UNAVAILABLE_IOS("") {
     NSString *cancelButtonTitle = PFCoreLocalizedString(@"OK", @"Default alert view cancel button title.");
