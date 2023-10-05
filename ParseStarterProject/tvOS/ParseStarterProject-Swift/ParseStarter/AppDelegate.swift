@@ -9,7 +9,8 @@
 
 import UIKit
 
-import Parse
+import ParseCore
+import ParseLiveQuery
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -114,7 +114,7 @@ func == (first: Client.RequestId, second: Client.RequestId) -> Bool {
 // ---------------
 
 extension Client: WebSocketDelegate {
-    public func didReceive(event: WebSocketEvent, client: WebSocket) {
+    public func didReceive(event: WebSocketEvent, client: Starscream.WebSocketClient) {
         switch event {
         
         case .connected(_):
@@ -140,7 +140,7 @@ extension Client: WebSocketDelegate {
         case .error(let error):
             NSLog("ParseLiveQuery: Error processing message: \(String(describing: error))")
         case .viabilityChanged(let isViable):
-            if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket viability channged to \(isViable ? "" : "not-")viable") }
+            if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket viability changed to \(isViable ? "" : "not-")viable") }
             if !isViable {
                 isConnecting = false
             }
@@ -157,6 +157,13 @@ extension Client: WebSocketDelegate {
         case .cancelled:
             isConnecting = false
             if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket connection cancelled...") }
+            // TODO: Better retry logic, unless `disconnect()` was explicitly called
+            if !userDisconnected {
+                reconnect()
+            }
+        case .peerClosed:
+            isConnecting = false
+            if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket connection closed...") }
             // TODO: Better retry logic, unless `disconnect()` was explicitly called
             if !userDisconnected {
                 reconnect()
