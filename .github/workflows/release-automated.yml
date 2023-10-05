@@ -3,12 +3,11 @@ on:
   push:
     branches: [ master, release, alpha, beta ]
 env:
-  CI_XCODE_11: '/Applications/Xcode_11.7.app/Contents/Developer'
   CI_XCODE_14: '/Applications/Xcode_14.2.app/Contents/Developer'
 
 jobs:
   release:
-    runs-on: macos-11
+    runs-on: macos-12
     outputs:
       current_tag: ${{ steps.tag.outputs.current_tag }}
     steps:
@@ -42,45 +41,6 @@ jobs:
       - name: Determine tag on current commit
         id: tag
         run: echo "::set-output name=current_tag::$(git describe --tags --abbrev=0 --exact-match || echo '')"
-
-  assets:
-    needs: release
-    if: needs.release.outputs.current_tag != ''
-    runs-on: macos-11
-    env:
-      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ needs.release.outputs.current_tag }}
-      - name: Cache Gems
-        id: cache-gems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gem-
-      - name: Submodules and Bundle Install
-        run: |
-          git submodule update --init --recursive
-          sudo gem install bundler
-          bundle config set path 'vendor/bundle'
-          bundle install
-          carthage bootstrap --use-xcframeworks
-      - name: Build Release
-        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake package:release
-        env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_11 }}
-      - name: Deploy assets
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: build/release/*
-          tag: ${{ needs.release.outputs.current_tag }}
-          overwrite: true
-          file_glob: true
 
   publish-docs:
     needs: release
