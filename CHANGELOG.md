@@ -1,3 +1,10 @@
+## [2.7.2](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.7.1...2.7.2) (2023-10-05)
+
+
+### Bug Fixes
+
+* Compilation errors `Undefined symbol` and `SystemConfiguration not found` on watchOS ([#1748](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1748)) ([e7df36b](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/e7df36beb735fd7dc4b86127bf86b34fb30b009d))
+
 ## [2.7.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.7.0...2.7.1) (2023-09-30)
 
 
