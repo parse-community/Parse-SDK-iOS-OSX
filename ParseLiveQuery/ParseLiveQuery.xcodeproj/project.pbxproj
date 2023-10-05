@@ -17,8 +17,6 @@
 		4A819D9E1D93786A009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
 		708836762561F503005B32F0 /* ParseLiveQuery_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 708836742561F503005B32F0 /* ParseLiveQuery_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		708836982561F55B005B32F0 /* ParseLiveQuery_tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 708836962561F55B005B32F0 /* ParseLiveQuery_tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9595D6E429AFAB0700D9B731 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95E916A52995270900EFDB34 /* Starscream.framework */; };
-		9595D6E529AFAB0700D9B731 /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 95E916A52995270900EFDB34 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9595D6E629AFAB3300D9B731 /* BoltsSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95E9168D299526F200EFDB34 /* BoltsSwift.framework */; };
 		9595D6E729AFAB3400D9B731 /* BoltsSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 95E9168D299526F200EFDB34 /* BoltsSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		95E91676299526B200EFDB34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE9011E25AF3A00F408BC /* Foundation.framework */; };
@@ -31,8 +29,6 @@
 		95E9167D299526B900EFDB34 /* SystemConfiguration.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FDD1E26C03E00AC7A2D /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		95E916A82995272A00EFDB34 /* BoltsSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95E91689299526F200EFDB34 /* BoltsSwift.framework */; };
 		95E916A92995272A00EFDB34 /* BoltsSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 95E91689299526F200EFDB34 /* BoltsSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		95E916AB2995273D00EFDB34 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95E916A52995270900EFDB34 /* Starscream.framework */; };
-		95E916AC2995273D00EFDB34 /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 95E916A52995270900EFDB34 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		95E916B12995279800EFDB34 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FDF1E26C04800AC7A2D /* AudioToolbox.framework */; };
 		95E916B6299527DC00EFDB34 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FDD1E26C03E00AC7A2D /* SystemConfiguration.framework */; };
 		F534A5B21BDAFE0200CBD11A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534A5B11BDAFE0200CBD11A /* Subscription.swift */; };
@@ -199,20 +195,6 @@
 			remoteGlobalIDString = 065894E71C9A933B000FDDA6;
 			remoteInfo = "BoltsSwift-watchOS";
 		};
-		95E916A42995270900EFDB34 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95E9169F2995270900EFDB34 /* Starscream.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 33CCF0921F5DDC030099B092;
-			remoteInfo = Starscream;
-		};
-		95E916A62995270900EFDB34 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95E9169F2995270900EFDB34 /* Starscream.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 335FA2021F5DF71D00F6D2EC;
-			remoteInfo = "Starscream Tests";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -246,7 +228,6 @@
 				9595D6E729AFAB3400D9B731 /* BoltsSwift.framework in Embed Frameworks */,
 				95E9167B299526B500EFDB34 /* Security.framework in Embed Frameworks */,
 				95E9167D299526B900EFDB34 /* SystemConfiguration.framework in Embed Frameworks */,
-				9595D6E529AFAB0700D9B731 /* Starscream.framework in Embed Frameworks */,
 				95E91679299526B300EFDB34 /* AudioToolbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -259,7 +240,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				95E916A92995272A00EFDB34 /* BoltsSwift.framework in Embed Frameworks */,
-				95E916AC2995273D00EFDB34 /* Starscream.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +265,6 @@
 		708836972561F55B005B32F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95E916532995216A00EFDB34 /* Parse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parse.xcodeproj; path = ../Parse/Parse.xcodeproj; sourceTree = "<group>"; };
 		95E9167E299526F200EFDB34 /* BoltsSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoltsSwift.xcodeproj; path = "../Carthage/Checkouts/Bolts-Swift/BoltsSwift.xcodeproj"; sourceTree = "<group>"; };
-		95E9169F2995270900EFDB34 /* Starscream.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Starscream.xcodeproj; path = ../Carthage/Checkouts/Starscream/Starscream.xcodeproj; sourceTree = "<group>"; };
 		95E916B2299527BD00EFDB34 /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
 		95E916B4299527CC00EFDB34 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		F5256FD31BD71F9A0052FB8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -322,7 +301,6 @@
 			files = (
 				09D80FE21E26C05200AC7A2D /* libsqlite3.tbd in Frameworks */,
 				9595D6E629AFAB3300D9B731 /* BoltsSwift.framework in Frameworks */,
-				9595D6E429AFAB0700D9B731 /* Starscream.framework in Frameworks */,
 				95E91676299526B200EFDB34 /* Foundation.framework in Frameworks */,
 				094AE9001E25AF3100F408BC /* libicucore.tbd in Frameworks */,
 				95E9167A299526B500EFDB34 /* Security.framework in Frameworks */,
@@ -335,7 +313,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95E916AB2995273D00EFDB34 /* Starscream.framework in Frameworks */,
 				95E916A82995272A00EFDB34 /* BoltsSwift.framework in Frameworks */,
 				95E916B6299527DC00EFDB34 /* SystemConfiguration.framework in Frameworks */,
 				95E916B12995279800EFDB34 /* AudioToolbox.framework in Frameworks */,
@@ -352,7 +329,6 @@
 				95E916B2299527BD00EFDB34 /* Network.framework */,
 				95E916532995216A00EFDB34 /* Parse.xcodeproj */,
 				95E9167E299526F200EFDB34 /* BoltsSwift.xcodeproj */,
-				95E9169F2995270900EFDB34 /* Starscream.xcodeproj */,
 				09D80FDD1E26C03E00AC7A2D /* SystemConfiguration.framework */,
 				09D80FDF1E26C04800AC7A2D /* AudioToolbox.framework */,
 				09D80FE11E26C05200AC7A2D /* libsqlite3.tbd */,
@@ -441,15 +417,6 @@
 				95E91691299526F200EFDB34 /* BoltsSwift.framework */,
 				95E91693299526F200EFDB34 /* BoltsSwiftTests.xctest */,
 				95E91695299526F200EFDB34 /* BoltsSwift.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		95E916A02995270900EFDB34 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				95E916A52995270900EFDB34 /* Starscream.framework */,
-				95E916A72995270900EFDB34 /* Starscream Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -673,10 +640,6 @@
 					ProductGroup = 95E916542995216A00EFDB34 /* Products */;
 					ProjectRef = 95E916532995216A00EFDB34 /* Parse.xcodeproj */;
 				},
-				{
-					ProductGroup = 95E916A02995270900EFDB34 /* Products */;
-					ProjectRef = 95E9169F2995270900EFDB34 /* Starscream.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -820,20 +783,6 @@
 			fileType = wrapper.framework;
 			path = BoltsSwift.framework;
 			remoteRef = 95E91694299526F200EFDB34 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		95E916A52995270900EFDB34 /* Starscream.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Starscream.framework;
-			remoteRef = 95E916A42995270900EFDB34 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		95E916A72995270900EFDB34 /* Starscream Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Starscream Tests.xctest";
-			remoteRef = 95E916A62995270900EFDB34 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
