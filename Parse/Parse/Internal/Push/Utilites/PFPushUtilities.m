@@ -17,7 +17,10 @@
 #import "PFAlertView.h"
 #endif
 
+#if !TARGET_OS_WATCH
 #import "PFInstallationPrivate.h"
+#endif
+
 #import "PFKeychainStore.h"
 #import "PFLogging.h"
 #import "PFMacros.h"
@@ -49,11 +52,13 @@
     return store[@"ParsePush"];
 }
 
+#if !TARGET_OS_WATCH
 + (void)clearDeviceToken {
     // Used in test case setup.
     [[PFInstallation currentInstallation] _clearDeviceToken];
     [[[PFKeychainStore alloc] initWithService:@"ParsePush"] removeObjectForKey:@"ParsePush"];
 }
+#endif
 
 #if TARGET_OS_IOS
 

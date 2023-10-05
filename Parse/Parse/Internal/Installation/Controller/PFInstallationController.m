@@ -9,6 +9,8 @@
 
 #import "PFInstallationController.h"
 
+#if !TARGET_OS_WATCH
+
 #import "BFTask+Private.h"
 #import "PFAssert.h"
 #import "PFCurrentInstallationController.h"
@@ -105,3 +107,5 @@
 }
 
 @end
+
+#endif

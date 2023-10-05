@@ -9,6 +9,7 @@
 
 #import "PFReachability.h"
 
+#if !TARGET_OS_WATCH
 #import <SystemConfiguration/SystemConfiguration.h>
 
 #import "PFAssert.h"
@@ -209,3 +210,5 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 }
 
 @end
+
+#endif
