@@ -11,6 +11,10 @@
 		0632EDD51CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */; };
 		094AE9001E25AF3100F408BC /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE8FF1E25AF3100F408BC /* libicucore.tbd */; };
 		09D80FE21E26C05200AC7A2D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FE11E26C05200AC7A2D /* libsqlite3.tbd */; };
+		393363622ACF772800E582D4 /* BoltsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 393363612ACF772800E582D4 /* BoltsSwift */; };
+		393363642ACF773900E582D4 /* BoltsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 393363632ACF773900E582D4 /* BoltsSwift */; };
+		393363672ACF780F00E582D4 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 393363662ACF780F00E582D4 /* Starscream */; };
+		393363692ACF784000E582D4 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 393363682ACF784000E582D4 /* Starscream */; };
 		39506FFB2A304E6B007F9550 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39506FFA2A304E6B007F9550 /* Common.swift */; };
 		39506FFC2A3056B6007F9550 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39506FFA2A304E6B007F9550 /* Common.swift */; };
 		39CE834D2ACF707500142920 /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 39CE834C2ACF707500142920 /* ParseObjC */; };
@@ -164,10 +168,12 @@
 				09D80FE21E26C05200AC7A2D /* libsqlite3.tbd in Frameworks */,
 				95E91676299526B200EFDB34 /* Foundation.framework in Frameworks */,
 				39CE834F2ACF707B00142920 /* ParseObjC in Frameworks */,
+				393363642ACF773900E582D4 /* BoltsSwift in Frameworks */,
 				094AE9001E25AF3100F408BC /* libicucore.tbd in Frameworks */,
 				95E9167A299526B500EFDB34 /* Security.framework in Frameworks */,
 				95E9167C299526B900EFDB34 /* SystemConfiguration.framework in Frameworks */,
 				95E91678299526B300EFDB34 /* AudioToolbox.framework in Frameworks */,
+				393363692ACF784000E582D4 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +184,8 @@
 				39CE834D2ACF707500142920 /* ParseObjC in Frameworks */,
 				95E916B6299527DC00EFDB34 /* SystemConfiguration.framework in Frameworks */,
 				95E916B12995279800EFDB34 /* AudioToolbox.framework in Frameworks */,
+				393363672ACF780F00E582D4 /* Starscream in Frameworks */,
+				393363622ACF772800E582D4 /* BoltsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +409,8 @@
 			name = "ParseLiveQuery-OSX";
 			packageProductDependencies = (
 				39CE834E2ACF707B00142920 /* ParseObjC */,
+				393363632ACF773900E582D4 /* BoltsSwift */,
+				393363682ACF784000E582D4 /* Starscream */,
 			);
 			productName = ParseLiveQuery;
 			productReference = F5903CEA1BD999C500C3EFFE /* ParseLiveQuery.framework */;
@@ -423,6 +433,8 @@
 			name = "ParseLiveQuery-iOS";
 			packageProductDependencies = (
 				39CE834C2ACF707500142920 /* ParseObjC */,
+				393363612ACF772800E582D4 /* BoltsSwift */,
+				393363662ACF780F00E582D4 /* Starscream */,
 			);
 			productName = ParseLiveQuery;
 			productReference = F5A9BFCA1BE0248D00E78326 /* ParseLiveQuery.framework */;
@@ -463,6 +475,10 @@
 				Base,
 			);
 			mainGroup = F5256FC41BD71F9A0052FB8A;
+			packageReferences = (
+				393363602ACF772800E582D4 /* XCRemoteSwiftPackageReference "Bolts-Swift" */,
+				393363652ACF780F00E582D4 /* XCRemoteSwiftPackageReference "Starscream" */,
+			);
 			productRefGroup = F5256FCF1BD71F9A0052FB8A /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -1053,7 +1069,46 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		393363602ACF772800E582D4 /* XCRemoteSwiftPackageReference "Bolts-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BoltsFramework/Bolts-Swift";
+			requirement = {
+				kind = exactVersion;
+				version = 1.5.0;
+			};
+		};
+		393363652ACF780F00E582D4 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dplewis/Starscream";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		393363612ACF772800E582D4 /* BoltsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 393363602ACF772800E582D4 /* XCRemoteSwiftPackageReference "Bolts-Swift" */;
+			productName = BoltsSwift;
+		};
+		393363632ACF773900E582D4 /* BoltsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 393363602ACF772800E582D4 /* XCRemoteSwiftPackageReference "Bolts-Swift" */;
+			productName = BoltsSwift;
+		};
+		393363662ACF780F00E582D4 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 393363652ACF780F00E582D4 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+		393363682ACF784000E582D4 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 393363652ACF780F00E582D4 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
 		39CE834C2ACF707500142920 /* ParseObjC */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ParseObjC;
