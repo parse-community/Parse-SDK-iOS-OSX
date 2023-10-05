@@ -114,7 +114,7 @@ func == (first: Client.RequestId, second: Client.RequestId) -> Bool {
 // ---------------
 
 extension Client: WebSocketDelegate {
-    public func didReceive(event: WebSocketEvent, client: Starscream.WebSocketClient) {
+    public func didReceive(event: WebSocketEvent, client: WebSocketClient) {
         switch event {
         
         case .connected(_):
