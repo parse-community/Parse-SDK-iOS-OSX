@@ -8,7 +8,8 @@
  */
 
 import UIKit
-import ParseCore
+
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
