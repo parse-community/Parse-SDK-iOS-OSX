@@ -524,7 +524,6 @@ namespace :package do
   desc 'Build all frameworks and starters'
   task :release do |_|
     Rake::Task['package:frameworks'].invoke
-    Rake::Task['package:starters'].invoke
   end
 
   desc 'Build and package all frameworks for the release'
@@ -597,50 +596,6 @@ namespace :package do
     Rake::Task['build:parse_live_query:macos'].invoke
     macos_lq_utils_framework_path = File.join(build_folder, 'macOS', 'ParseLiveQuery.framework')
     make_package(release_folder, [macos_lq_utils_framework_path], 'ParseLiveQuery-OSX.zip')
-
-  end
-
-  desc 'Build and package all starter projects for the release'
-  task :starters, [:version] => :frameworks do |_, _args|
-    require 'xcodeproj'
-
-    ios_starters = [
-      File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject'),
-      File.join(script_folder, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift')
-    ]
-    ios_framework_archive = File.join(release_folder, package_ios_name)
-    make_starter_package(release_folder, ios_starters, ios_framework_archive, package_starter_ios_name)
-
-    osx_starters = [
-      File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject'),
-      File.join(script_folder, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift')
-    ]
-    osx_framework_archive = File.join(release_folder, package_macos_name)
-    make_starter_package(release_folder, osx_starters, osx_framework_archive, package_starter_osx_name)
-
-    tvos_starters = [
-      File.join(script_folder, 'ParseStarterProject', 'tvOS', 'ParseStarterProject-Swift')
-    ]
-    tvos_framework_archive = File.join(release_folder, package_tvos_name)
-    make_starter_package(release_folder, tvos_starters, tvos_framework_archive, package_starter_tvos_name)
-
-    watchos_starters = [
-      File.join(script_folder, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift')
-    ]
-    watchos_framework_archive = File.join(release_folder, package_watchos_name)
-    watchos_starters.each do |project_path|
-      `git clean -xfd #{project_path}`
-      `mkdir -p #{project_path}/Frameworks/iOS && mkdir -p #{project_path}/Frameworks/watchOS`
-      `cd #{project_path}/Frameworks/iOS && unzip -o #{ios_framework_archive}`
-      `cd #{project_path}/Frameworks/watchOS && unzip -o #{watchos_framework_archive}`
-      xcodeproj_path = Dir.glob(File.join(project_path, '*.xcodeproj'))[0]
-      prepare_xcodeproj(xcodeproj_path)
-    end
-    make_package(release_folder, watchos_starters, package_starter_watchos_name)
-    watchos_starters.each do |project_path|
-      `git clean -xfd #{project_path}`
-      `git checkout #{project_path}`
-    end
   end
 
   def make_package(target_path, items, archive_name)
