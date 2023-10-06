@@ -8,7 +8,8 @@ on:
     branches:
       - "**"
 env:
-  CI_XCODE_14: /Applications/Xcode_14.2.app/Contents/Developer
+  CI_XCODE_14: /Applications/Xcode_14.3.1.app/Contents/Developer
+  CI_XCODE_15: /Applications/Xcode_15.0.app/Contents/Developer
 jobs:
   tests:
     env:
@@ -24,8 +25,9 @@ jobs:
           - test:parseui:all
           - test:parse_live_query:all
           - build:starters
+          - xcode15 # runs build:starters on XCode 15
       fail-fast: true
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
       - name: Setup Ruby
@@ -65,9 +67,9 @@ jobs:
         run: |
           carthage bootstrap --use-xcframeworks
       - name: Build-Test
-        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake ${{ matrix.script }}
+        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake ${{ matrix.script == 'xcode15' && 'build:starters' || matrix.script }}
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_14 }}
+          DEVELOPER_DIR: ${{ (matrix.script == 'xcode15' && env.CI_XCODE_15) || env.CI_XCODE_14 }}
       - name: Generate Environment Variables
         if: ${{ always() }}
         env:
@@ -96,7 +98,7 @@ jobs:
           xcode: true
           xcode_archive_path: ${{ env.TEST_RESULTS }}
   docs:
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
       - name: Setup Ruby

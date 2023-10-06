@@ -3,11 +3,11 @@ on:
   push:
     branches: [ master, release, alpha, beta ]
 env:
-  CI_XCODE_14: '/Applications/Xcode_14.2.app/Contents/Developer'
+  CI_XCODE_14: '/Applications/Xcode_14.3.1.app/Contents/Developer'
 
 jobs:
   release:
-    runs-on: macos-12
+    runs-on: macos-13
     outputs:
       current_tag: ${{ steps.tag.outputs.current_tag }}
     steps:
@@ -45,7 +45,7 @@ jobs:
   publish-docs:
     needs: release
     if: needs.release.outputs.current_tag != ''
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
