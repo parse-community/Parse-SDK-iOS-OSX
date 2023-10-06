@@ -1,3 +1,10 @@
+## [2.7.3](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.7.2...2.7.3) (2023-10-06)
+
+
+### Bug Fixes
+
+* Compilation errors in `ParseLiveQuery` using `Starscream` 4.0.6 ([#1749](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1749)) ([3da5bde](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/3da5bde7d20ac4ff99aa40dd75fa8f7f3997acae))
+
 ## [2.7.2](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.7.1...2.7.2) (2023-10-05)
 
 
