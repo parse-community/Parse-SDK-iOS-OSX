@@ -24,7 +24,7 @@ jobs:
           - test:parseui:all
           - test:parse_live_query:all
           - build:starters
-      fail-fast: false
+      fail-fast: true
     runs-on: macos-12
     steps:
       - uses: actions/checkout@v3
