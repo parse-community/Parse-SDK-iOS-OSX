@@ -24,13 +24,6 @@
    </FileRef>
    <Group
       location = "container:"
-      name = "Vendor">
-      <FileRef
-         location = "group:Carthage/Checkouts/OCMock/Source/OCMock.xcodeproj">
-      </FileRef>
-   </Group>
-   <Group
-      location = "container:"
       name = "StarterProjects">
       <Group
          location = "container:"

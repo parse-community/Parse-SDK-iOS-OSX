@@ -13,7 +13,7 @@
 PRODUCT_NAME = ParseFacebookUtilsiOS-UnitTests
 PRODUCT_BUNDLE_IDENTIFIER = com.parse.facebookutilsios.unit
 
-IPHONEOS_DEPLOYMENT_TARGET = 9.0
+IPHONEOS_DEPLOYMENT_TARGET = 12.0
 
 INFOPLIST_FILE = $(SRCROOT)/Tests/Resources/Info.plist
 TEST_HOST = $(BUILT_PRODUCTS_DIR)/ParseFacebookTestApplication.app/ParseFacebookTestApplication
