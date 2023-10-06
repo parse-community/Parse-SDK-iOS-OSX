@@ -26,7 +26,7 @@ jobs:
           - test:parse_live_query:all
           - build:starters
           - xcode15 # runs build:starters on XCode 15
-      fail-fast: true
+      fail-fast: false
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
