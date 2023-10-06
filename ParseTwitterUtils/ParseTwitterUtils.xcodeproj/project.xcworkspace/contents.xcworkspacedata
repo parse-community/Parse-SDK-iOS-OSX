@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/nlutsenko/src/parse/ios-client/ParseTwitterUtils/ParseTwitterUtils.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
