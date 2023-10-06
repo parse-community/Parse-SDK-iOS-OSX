@@ -25,9 +25,6 @@ A library that gives you access to the powerful Parse Server backend from your i
 ---
 
 - [Getting Started](#getting-started)
-  - [Alternative Installation Options](#alternative-installation-options)
-    - [Compile Source](#compile-source)
-    - [Add Sub-Project](#add-sub-project)
 - [How Do I Contribute?](#how-do-i-contribute)
 - [Dependencies](#dependencies)
 
@@ -41,35 +38,9 @@ The easiest way to install the SDK is via Swift Package Manager.
   https://github.com/parse-community/Parse-SDK-iOS-OSX
   ```
 3. Add package
-3. Choose the submodules you want to install
+4. Choose the submodules you want to install
 
 Take a look at the public [documentation][docs] & [API][api] and start building.
-
-### Alternative Installation Options
-
-#### Compile Source
-
-If you want to manually compile the SDK, clone it locally, and run the following commands in the root directory of the repository:
-
-```
-# To pull in extra dependencies (Bolts and OCMock)
-git submodule update --init --recursive
-
-# To install bundler
-gem install bundler
-
-# To install all the gems via bundler
-bundle install
-
-# Build & Package the Frameworks
-bundle exec rake package:frameworks
-```
-
-Compiled frameworks will be inside the `build/release` folder.
-
-#### Add Sub-Project
-
-You can also include parse as a subproject inside of your application if you'd prefer, although we do not recommend this, as it will increase your indexing time significantly. To do so, just drag and drop the Parse.xcodeproj file into your workspace. Note that unit tests will be unavailable if you use Parse like this, as OCMock will be unable to be found.
 
 ## How Do I Contribute?
 
