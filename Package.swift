@@ -20,7 +20,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/parse-community/Bolts-ObjC.git", from: "1.10.0"),
         .package(url: "https://github.com/BoltsFramework/Bolts-Swift.git", from: "1.5.0"),
-        .package(url: "https://github.com/daltoniam/Starscream.git", from: "4.0.4"),
+        .package(url: "https://github.com/daltoniam/Starscream.git", from: "4.0.6"),
         .package(url: "https://github.com/facebook/facebook-ios-sdk.git", from: "15.1.0")
     ],
     targets: [
