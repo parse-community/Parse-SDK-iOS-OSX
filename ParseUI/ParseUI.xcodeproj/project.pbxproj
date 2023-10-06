@@ -504,7 +504,7 @@
 		7C77D21F292A56F600C4D90E /* ParseUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C77D220292A575B00C4D90E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7C77D22D292A604700C4D90E /* ParseUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7C77D22F292A604700C4D90E /* ParseUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C77D22F292A604700C4D90E /* ParseUIDemo-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ParseUIDemo-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C77D230292A604700C4D90E /* SignInWithAppleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignInWithAppleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8129E6081A9CB1BE006752BC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8129E6391A9CB320006752BC /* UIDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDemoViewController.swift; sourceTree = "<group>"; };
@@ -628,7 +628,7 @@
 				7C77D162292A510400C4D90E /* ParseUI.framework */,
 				7C77D21F292A56F600C4D90E /* ParseUIDemo.app */,
 				7C77D22D292A604700C4D90E /* ParseUI.framework */,
-				7C77D22F292A604700C4D90E /* ParseUIDemo.app */,
+				7C77D22F292A604700C4D90E /* ParseUIDemo-Swift.app */,
 				7C77D230292A604700C4D90E /* SignInWithAppleTests.xctest */,
 				84745C3F2939EE77002D00B2 /* ParseFacebookUtils.xcodeproj */,
 			);
@@ -1276,7 +1276,7 @@
 			);
 			name = "ParseUIDemo-Swift";
 			productName = ParseUIDemo;
-			productReference = 7C77D22F292A604700C4D90E /* ParseUIDemo.app */;
+			productReference = 7C77D22F292A604700C4D90E /* ParseUIDemo-Swift.app */;
 			productType = "com.apple.product-type.application";
 		};
 		81472F661A1AB33800FD6EED /* ParseUIDemo */ = {
@@ -2198,7 +2198,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.parse.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = ParseUIDemo;
+				PRODUCT_NAME = "ParseUIDemo-Swift";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2238,7 +2238,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.parse.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = ParseUIDemo;
+				PRODUCT_NAME = "ParseUIDemo-Swift";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
