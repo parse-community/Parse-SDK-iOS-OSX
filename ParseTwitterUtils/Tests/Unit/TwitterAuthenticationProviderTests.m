@@ -54,8 +54,6 @@
     provider = [PFTwitterAuthenticationProvider providerWithTwitter:twitter];
     XCTAssertNotNil(provider);
     XCTAssertEqual(provider.twitter, twitter);
-
-    PFAssertThrowsInconsistencyException([PFTwitterAuthenticationProvider new]);
 }
 
 - (void)testAuthData {

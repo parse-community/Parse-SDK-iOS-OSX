@@ -158,10 +158,10 @@ namespace :build do
 
   desc 'Build all starters'
   task :starters do
-    Rake::Task['build:ios_starters:all'].invoke
-    Rake::Task['build:macos_starters:all'].invoke
     Rake::Task['build:tvos_starters:all'].invoke
     Rake::Task['build:watchos_starters:all'].invoke
+    Rake::Task['build:ios_starters:all'].invoke
+    Rake::Task['build:macos_starters:all'].invoke
   end
 end
 
