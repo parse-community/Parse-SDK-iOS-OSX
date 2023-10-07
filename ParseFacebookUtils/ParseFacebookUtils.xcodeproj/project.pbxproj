@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		39E248D12AD1C2510014357C /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 39E248D02AD1C2510014357C /* ParseObjC */; };
 		39E248D32AD1C25B0014357C /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 39E248D22AD1C25B0014357C /* ParseObjC */; };
+		39E24A202AD219600014357C /* FacebookAEM in Frameworks */ = {isa = PBXBuildFile; productRef = 39E24A1F2AD219600014357C /* FacebookAEM */; };
+		39E24A222AD219600014357C /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = 39E24A212AD219600014357C /* FacebookBasics */; };
+		39E24A242AD219600014357C /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 39E24A232AD219600014357C /* FacebookCore */; };
+		39E24A262AD219600014357C /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 39E24A252AD219600014357C /* FacebookLogin */; };
+		39E24A2A2AD219DC0014357C /* FacebookAEM in Frameworks */ = {isa = PBXBuildFile; productRef = 39E24A292AD219DC0014357C /* FacebookAEM */; };
+		39E24A2C2AD219DC0014357C /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = 39E24A2B2AD219DC0014357C /* FacebookBasics */; };
+		39E24A2E2AD219DC0014357C /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 39E24A2D2AD219DC0014357C /* FacebookCore */; };
+		39E24A302AD219DC0014357C /* FacebookTV in Frameworks */ = {isa = PBXBuildFile; productRef = 39E24A2F2AD219DC0014357C /* FacebookTV */; };
 		7C5F7D27292101490035B219 /* PFFacebookUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C5F7D1E292101370035B219 /* PFFacebookUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C5F7D28292101490035B219 /* ParseFacebookUtilsV4.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C5F7D1B292101370035B219 /* ParseFacebookUtilsV4.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C5F7D29292101490035B219 /* PFFacebookAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C5F7D1F292101370035B219 /* PFFacebookAuthenticationProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,31 +39,6 @@
 		7C5F7D422921015E0035B219 /* PFFacebookUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5F7D1A292101370035B219 /* PFFacebookUtils.m */; };
 		7C5F7DF4292105800035B219 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5F7DF3292105800035B219 /* libc++.tbd */; };
 		7C5F7DF6292105880035B219 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5F7DF5292105880035B219 /* Accelerate.framework */; };
-		7C77D01C2929115F00C4D90E /* FBAEMKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240329290C9B00E9364E /* FBAEMKit.xcframework */; };
-		7C77D01D2929115F00C4D90E /* FBSDKCoreKit_Basics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240129290C9A00E9364E /* FBSDKCoreKit_Basics.xcframework */; };
-		7C77D01E2929115F00C4D90E /* FBSDKCoreKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240029290C9A00E9364E /* FBSDKCoreKit.xcframework */; };
-		7C77D01F2929115F00C4D90E /* FBSDKTVOSKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D01B2929114E00C4D90E /* FBSDKTVOSKit.xcframework */; };
-		7C77D0222929118500C4D90E /* FBAEMKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240329290C9B00E9364E /* FBAEMKit.xcframework */; };
-		7C77D0232929118500C4D90E /* FBSDKCoreKit_Basics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240129290C9A00E9364E /* FBSDKCoreKit_Basics.xcframework */; };
-		7C77D0242929118500C4D90E /* FBSDKCoreKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240029290C9A00E9364E /* FBSDKCoreKit.xcframework */; };
-		7C77D0252929118500C4D90E /* FBSDKLoginKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240229290C9B00E9364E /* FBSDKLoginKit.xcframework */; };
-		7C77D0282929119500C4D90E /* FBAEMKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240329290C9B00E9364E /* FBAEMKit.xcframework */; };
-		7C77D0292929119500C4D90E /* FBSDKCoreKit_Basics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240129290C9A00E9364E /* FBSDKCoreKit_Basics.xcframework */; };
-		7C77D02A2929119500C4D90E /* FBSDKCoreKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240029290C9A00E9364E /* FBSDKCoreKit.xcframework */; };
-		7C77D02B2929119500C4D90E /* FBSDKTVOSKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D01B2929114E00C4D90E /* FBSDKTVOSKit.xcframework */; };
-		7C78240429290CA600E9364E /* FBAEMKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240329290C9B00E9364E /* FBAEMKit.xcframework */; };
-		7C78240529290CA600E9364E /* FBSDKCoreKit_Basics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240129290C9A00E9364E /* FBSDKCoreKit_Basics.xcframework */; };
-		7C78240629290CA600E9364E /* FBSDKCoreKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240029290C9A00E9364E /* FBSDKCoreKit.xcframework */; };
-		7C78240729290CA600E9364E /* FBSDKLoginKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240229290C9B00E9364E /* FBSDKLoginKit.xcframework */; };
-		844D0B9F2959AE120026E74D /* FBAEMKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240329290C9B00E9364E /* FBAEMKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		844D0BA02959AE120026E74D /* FBSDKCoreKit_Basics.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240129290C9A00E9364E /* FBSDKCoreKit_Basics.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		844D0BA12959AE120026E74D /* FBSDKCoreKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240029290C9A00E9364E /* FBSDKCoreKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		844D0BA22959AE130026E74D /* FBSDKLoginKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240229290C9B00E9364E /* FBSDKLoginKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		844D0BA32959AE1B0026E74D /* FBAEMKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240329290C9B00E9364E /* FBAEMKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		844D0BA42959AE1B0026E74D /* FBSDKCoreKit_Basics.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240129290C9A00E9364E /* FBSDKCoreKit_Basics.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		844D0BA52959AE1B0026E74D /* FBSDKCoreKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240029290C9A00E9364E /* FBSDKCoreKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		844D0BA62959AE1B0026E74D /* FBSDKLoginKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C78240229290C9B00E9364E /* FBSDKLoginKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		844D0BA72959AE1B0026E74D /* FBSDKTVOSKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D01B2929114E00C4D90E /* FBSDKTVOSKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,10 +48,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				844D0B9F2959AE120026E74D /* FBAEMKit.xcframework in Embed Frameworks */,
-				844D0BA02959AE120026E74D /* FBSDKCoreKit_Basics.xcframework in Embed Frameworks */,
-				844D0BA12959AE120026E74D /* FBSDKCoreKit.xcframework in Embed Frameworks */,
-				844D0BA22959AE130026E74D /* FBSDKLoginKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,11 +58,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				844D0BA32959AE1B0026E74D /* FBAEMKit.xcframework in Embed Frameworks */,
-				844D0BA42959AE1B0026E74D /* FBSDKCoreKit_Basics.xcframework in Embed Frameworks */,
-				844D0BA52959AE1B0026E74D /* FBSDKCoreKit.xcframework in Embed Frameworks */,
-				844D0BA62959AE1B0026E74D /* FBSDKLoginKit.xcframework in Embed Frameworks */,
-				844D0BA72959AE1B0026E74D /* FBSDKTVOSKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,11 +80,6 @@
 		7C5F7D24292101370035B219 /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
 		7C5F7DF3292105800035B219 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.1.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		7C5F7DF5292105880035B219 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.1.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
-		7C77D01B2929114E00C4D90E /* FBSDKTVOSKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKTVOSKit.xcframework; path = ../Carthage/Build/FBSDKTVOSKit.xcframework; sourceTree = "<group>"; };
-		7C78240029290C9A00E9364E /* FBSDKCoreKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKCoreKit.xcframework; path = ../Carthage/Build/FBSDKCoreKit.xcframework; sourceTree = "<group>"; };
-		7C78240129290C9A00E9364E /* FBSDKCoreKit_Basics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKCoreKit_Basics.xcframework; path = ../Carthage/Build/FBSDKCoreKit_Basics.xcframework; sourceTree = "<group>"; };
-		7C78240229290C9B00E9364E /* FBSDKLoginKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKLoginKit.xcframework; path = ../Carthage/Build/FBSDKLoginKit.xcframework; sourceTree = "<group>"; };
-		7C78240329290C9B00E9364E /* FBAEMKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBAEMKit.xcframework; path = ../Carthage/Build/FBAEMKit.xcframework; sourceTree = "<group>"; };
 		8121EA9F1D39862400AC0B02 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		8121EAA11D39862400AC0B02 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
 		8121EAA21D39862400AC0B02 /* macOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = macOS.xcconfig; sourceTree = "<group>"; };
@@ -134,10 +103,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C77D0222929118500C4D90E /* FBAEMKit.xcframework in Frameworks */,
-				7C77D0232929118500C4D90E /* FBSDKCoreKit_Basics.xcframework in Frameworks */,
-				7C77D0242929118500C4D90E /* FBSDKCoreKit.xcframework in Frameworks */,
-				7C77D0252929118500C4D90E /* FBSDKLoginKit.xcframework in Frameworks */,
 				7C5F7DF6292105880035B219 /* Accelerate.framework in Frameworks */,
 				7C5F7DF4292105800035B219 /* libc++.tbd in Frameworks */,
 			);
@@ -147,10 +112,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C77D0282929119500C4D90E /* FBAEMKit.xcframework in Frameworks */,
-				7C77D0292929119500C4D90E /* FBSDKCoreKit_Basics.xcframework in Frameworks */,
-				7C77D02A2929119500C4D90E /* FBSDKCoreKit.xcframework in Frameworks */,
-				7C77D02B2929119500C4D90E /* FBSDKTVOSKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,11 +119,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E24A2C2AD219DC0014357C /* FacebookBasics in Frameworks */,
+				39E24A2A2AD219DC0014357C /* FacebookAEM in Frameworks */,
 				39E248D32AD1C25B0014357C /* ParseObjC in Frameworks */,
-				7C77D01C2929115F00C4D90E /* FBAEMKit.xcframework in Frameworks */,
-				7C77D01D2929115F00C4D90E /* FBSDKCoreKit_Basics.xcframework in Frameworks */,
-				7C77D01E2929115F00C4D90E /* FBSDKCoreKit.xcframework in Frameworks */,
-				7C77D01F2929115F00C4D90E /* FBSDKTVOSKit.xcframework in Frameworks */,
+				39E24A302AD219DC0014357C /* FacebookTV in Frameworks */,
+				39E24A2E2AD219DC0014357C /* FacebookCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,11 +131,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E24A222AD219600014357C /* FacebookBasics in Frameworks */,
+				39E24A202AD219600014357C /* FacebookAEM in Frameworks */,
 				39E248D12AD1C2510014357C /* ParseObjC in Frameworks */,
-				7C78240429290CA600E9364E /* FBAEMKit.xcframework in Frameworks */,
-				7C78240529290CA600E9364E /* FBSDKCoreKit_Basics.xcframework in Frameworks */,
-				7C78240629290CA600E9364E /* FBSDKCoreKit.xcframework in Frameworks */,
-				7C78240729290CA600E9364E /* FBSDKLoginKit.xcframework in Frameworks */,
+				39E24A262AD219600014357C /* FacebookLogin in Frameworks */,
+				39E24A242AD219600014357C /* FacebookCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,11 +171,6 @@
 			children = (
 				7C5F7DF5292105880035B219 /* Accelerate.framework */,
 				7C5F7DF3292105800035B219 /* libc++.tbd */,
-				7C78240329290C9B00E9364E /* FBAEMKit.xcframework */,
-				7C78240129290C9A00E9364E /* FBSDKCoreKit_Basics.xcframework */,
-				7C78240029290C9A00E9364E /* FBSDKCoreKit.xcframework */,
-				7C78240229290C9B00E9364E /* FBSDKLoginKit.xcframework */,
-				7C77D01B2929114E00C4D90E /* FBSDKTVOSKit.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -421,6 +377,10 @@
 			name = "ParseFacebookUtilsV4-tvOS";
 			packageProductDependencies = (
 				39E248D22AD1C25B0014357C /* ParseObjC */,
+				39E24A292AD219DC0014357C /* FacebookAEM */,
+				39E24A2B2AD219DC0014357C /* FacebookBasics */,
+				39E24A2D2AD219DC0014357C /* FacebookCore */,
+				39E24A2F2AD219DC0014357C /* FacebookTV */,
 			);
 			productName = Breakpad;
 			productReference = 81FE7F8B1C17790400E6BD34 /* ParseFacebookUtilsV4.framework */;
@@ -444,6 +404,10 @@
 			name = "ParseFacebookUtilsV4-iOS";
 			packageProductDependencies = (
 				39E248D02AD1C2510014357C /* ParseObjC */,
+				39E24A1F2AD219600014357C /* FacebookAEM */,
+				39E24A212AD219600014357C /* FacebookBasics */,
+				39E24A232AD219600014357C /* FacebookCore */,
+				39E24A252AD219600014357C /* FacebookLogin */,
 			);
 			productName = Breakpad;
 			productReference = D2AAC07E0554694100DB518D /* ParseFacebookUtilsV4.framework */;
@@ -480,6 +444,7 @@
 			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* Breakpad */;
 			packageReferences = (
+				39E24A1E2AD219600014357C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
@@ -857,6 +822,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		39E24A1E2AD219600014357C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk.git";
+			requirement = {
+				kind = exactVersion;
+				version = 15.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		39E248D02AD1C2510014357C /* ParseObjC */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -865,6 +841,46 @@
 		39E248D22AD1C25B0014357C /* ParseObjC */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ParseObjC;
+		};
+		39E24A1F2AD219600014357C /* FacebookAEM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E24A1E2AD219600014357C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookAEM;
+		};
+		39E24A212AD219600014357C /* FacebookBasics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E24A1E2AD219600014357C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookBasics;
+		};
+		39E24A232AD219600014357C /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E24A1E2AD219600014357C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		39E24A252AD219600014357C /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E24A1E2AD219600014357C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+		39E24A292AD219DC0014357C /* FacebookAEM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E24A1E2AD219600014357C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookAEM;
+		};
+		39E24A2B2AD219DC0014357C /* FacebookBasics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E24A1E2AD219600014357C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookBasics;
+		};
+		39E24A2D2AD219DC0014357C /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E24A1E2AD219600014357C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		39E24A2F2AD219DC0014357C /* FacebookTV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E24A1E2AD219600014357C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookTV;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
