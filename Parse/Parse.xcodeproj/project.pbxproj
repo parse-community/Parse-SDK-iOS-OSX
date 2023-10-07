@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		39E22AB62AD0655300D9AE5C /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = 39E22AB52AD0655300D9AE5C /* OCMock */; };
 		39E22ABC2AD0657F00D9AE5C /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = 39E22ABB2AD0657F00D9AE5C /* OCMock */; };
+		39E24A0D2AD214540014357C /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = 39E24A0C2AD214540014357C /* Bolts */; };
+		39E24A0F2AD214720014357C /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = 39E24A0E2AD214720014357C /* Bolts */; };
+		39E24A112AD214810014357C /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = 39E24A102AD214810014357C /* Bolts */; };
+		39E24A132AD214980014357C /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = 39E24A122AD214980014357C /* Bolts */; };
+		39E24A152AD214A40014357C /* Bolts in Frameworks */ = {isa = PBXBuildFile; productRef = 39E24A142AD214A40014357C /* Bolts */; };
 		4030936B1C81F0B200CF09F8 /* PFQueryConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 403093691C81F0B200CF09F8 /* PFQueryConstants.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		4030936C1C81F0B200CF09F8 /* PFQueryConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 403093691C81F0B200CF09F8 /* PFQueryConstants.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		4030936D1C81F0B200CF09F8 /* PFQueryConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 403093691C81F0B200CF09F8 /* PFQueryConstants.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -2699,7 +2704,6 @@
 		B14117071E5D078E00F70D7A /* PFFileUploadResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B14116FB1E5D078E00F70D7A /* PFFileUploadResult.m */; };
 		B14117081E5D078E00F70D7A /* PFFileUploadResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B14116FB1E5D078E00F70D7A /* PFFileUploadResult.m */; };
 		B14117091E5D078E00F70D7A /* PFFileUploadResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B14116FB1E5D078E00F70D7A /* PFFileUploadResult.m */; };
-		BC150D7325A89F9C0092B00E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A13518820281768000F5FD5 /* Bolts.framework */; };
 		F50C66331B33A708001941A6 /* PFPushUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F50C66311B33A708001941A6 /* PFPushUtilities.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F50C66341B33A708001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
 		F50C667C1B34B231001941A6 /* PFPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F50C66321B33A708001941A6 /* PFPushUtilities.m */; };
@@ -2824,125 +2828,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4A13518320281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81ED94291BE147CF00795F05;
-			remoteInfo = "Bolts-iOS";
-		};
-		4A13518520281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1D5D7DD31BE3CE8200FD67C7;
-			remoteInfo = "Bolts-iOS-Dynamic";
-		};
-		4A13518720281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81ED946E1BE14B5200795F05;
-			remoteInfo = "Bolts-macOS";
-		};
-		4A13518920281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F5AFCA021BA752750076E927;
-			remoteInfo = "Bolts-tvOS";
-		};
-		4A13518B20281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81E94D6A1C2B8BF200A6291E;
-			remoteInfo = "Bolts-tvOS-Dynamic";
-		};
-		4A13518D20281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8178F99C1BB0F87700AD289D;
-			remoteInfo = "Bolts-watchOS";
-		};
-		4A13518F20281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 819573F11C2B8ECB00BFCA39;
-			remoteInfo = "Bolts-watchOS-Dynamic";
-		};
-		4A13519120281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8E8C8EE917F23D1D00E3F1C7;
-			remoteInfo = "BoltsTests-iOS";
-		};
-		4A13519320281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8E8C8F1917F241DA00E3F1C7;
-			remoteInfo = "BoltsTests-macOS";
-		};
-		4A13519520281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F5AFCA131BA752770076E927;
-			remoteInfo = "BoltsTests-tvOS";
-		};
-		4A13519720281768000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1EC3016018CDAA8400D06D07;
-			remoteInfo = BoltsTestUI;
-		};
-		4A1351F420281933000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8178F9841BB0F87700AD289D;
-			remoteInfo = "Bolts-watchOS";
-		};
-		4A1351F62028193F000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F5AFC9EA1BA752750076E927;
-			remoteInfo = "Bolts-tvOS";
-		};
-		4AA8ABFE20CEFC9A009306DD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 819573D91C2B8ECB00BFCA39;
-			remoteInfo = "Bolts-watchOS-Dynamic";
-		};
-		4AA8AC0720CEFCA2009306DD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 1D5D7DA61BE3CE8200FD67C7;
-			remoteInfo = "Bolts-iOS-Dynamic";
-		};
-		4AA8AC0920CEFCAD009306DD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 81E94D521C2B8BF200A6291E;
-			remoteInfo = "Bolts-tvOS-Dynamic";
-		};
-		4ACBE7EA2151FCBF008DFAAF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8EDDA62817E17DDC00655F8A;
-			remoteInfo = "Bolts-macOS";
-		};
 		4AE33A2C1F5451B20088DCA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 09D33641139C54930098E916 /* Project object */;
@@ -2963,13 +2848,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 81C3821B19CCA89E0066284A;
 			remoteInfo = "Parse-iOS";
-		};
-		BCAFF88A25A88C4F00B95DFC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 81ED94111BE147CF00795F05;
-			remoteInfo = "Bolts-iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -3004,7 +2882,6 @@
 		09EEA1351435143500E3A3FA /* ParseInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseInternal.h; sourceTree = "<group>"; };
 		403093691C81F0B200CF09F8 /* PFQueryConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFQueryConstants.h; sourceTree = "<group>"; };
 		4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFQueryConstants.m; sourceTree = "<group>"; };
-		4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bolts.xcodeproj; path = "../Carthage/Checkouts/Bolts-ObjC/Bolts.xcodeproj"; sourceTree = "<group>"; };
 		4ABF398B1F54592100BBA75A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4AE33A0B1F5451AD0088DCA0 /* ParseUnitTests-iOS-host.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ParseUnitTests-iOS-host.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE33A0D1F5451AD0088DCA0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -3580,6 +3457,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E24A152AD214A40014357C /* Bolts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3587,6 +3465,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E24A112AD214810014357C /* Bolts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3613,6 +3492,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E24A0D2AD214540014357C /* Bolts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3620,6 +3500,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E24A132AD214980014357C /* Bolts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3643,10 +3524,10 @@
 			files = (
 				7CE6ABEC292078180054D9D2 /* AppKit.framework in Frameworks */,
 				7CE6ABEA292077360054D9D2 /* CoreLocation.framework in Frameworks */,
+				39E24A0F2AD214720014357C /* Bolts in Frameworks */,
 				7CE6ABE9292077310054D9D2 /* Security.framework in Frameworks */,
 				7CE6ABE82920772D0054D9D2 /* SystemConfiguration.framework in Frameworks */,
 				7CE6ABE7292077240054D9D2 /* libsqlite3.tbd in Frameworks */,
-				BC150D7325A89F9C0092B00E /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3811,7 +3692,6 @@
 				7CE6ABDF292074CC0054D9D2 /* SystemConfiguration.framework */,
 				7CE6ABDD292074C70054D9D2 /* AudioToolbox.framework */,
 				7CE6ABD2292074C10054D9D2 /* libsqlite3.tbd */,
-				4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3823,24 +3703,6 @@
 				8101A14719ACDA97008BB503 /* PFAlertView.m */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		4A13517620281768000F5FD5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4A13518420281768000F5FD5 /* Bolts.framework */,
-				4A13518620281768000F5FD5 /* Bolts.framework */,
-				4A13518820281768000F5FD5 /* Bolts.framework */,
-				4A13518A20281768000F5FD5 /* Bolts.framework */,
-				4A13518C20281768000F5FD5 /* Bolts.framework */,
-				4A13518E20281768000F5FD5 /* Bolts.framework */,
-				4A13519020281768000F5FD5 /* Bolts.framework */,
-				4A13519220281768000F5FD5 /* BoltsTests-iOS.xctest */,
-				4A13519420281768000F5FD5 /* BoltsTests-OSX.xctest */,
-				4A13519620281768000F5FD5 /* BoltsTests-tvOS.xctest */,
-				4A13519820281768000F5FD5 /* BoltsTestUI.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		4AE33A0C1F5451AD0088DCA0 /* ParseUnitTests-iOS-host */ = {
@@ -6787,9 +6649,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				4A1351F520281933000F5FD5 /* PBXTargetDependency */,
 			);
 			name = "Parse-watchOS";
+			packageProductDependencies = (
+				39E24A142AD214A40014357C /* Bolts */,
+			);
 			productName = "Parse-iOS";
 			productReference = 810156691BB3832700D7C7BD /* Parse.framework */;
 			productType = "com.apple.product-type.framework";
@@ -6807,9 +6671,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				4A1351F72028193F000F5FD5 /* PBXTargetDependency */,
 			);
 			name = "Parse-tvOS";
+			packageProductDependencies = (
+				39E24A102AD214810014357C /* Bolts */,
+			);
 			productName = "Parse-iOS";
 			productReference = 815F24151BD04D150054659F /* Parse.framework */;
 			productType = "com.apple.product-type.framework";
@@ -6872,9 +6738,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				BCAFF88B25A88C4F00B95DFC /* PBXTargetDependency */,
 			);
 			name = "Parse-iOS";
+			packageProductDependencies = (
+				39E24A0C2AD214540014357C /* Bolts */,
+			);
 			productName = "Parse-iOS";
 			productReference = 81C3821C19CCA89E0066284A /* Parse.framework */;
 			productType = "com.apple.product-type.framework";
@@ -6892,9 +6760,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				4AA8AC0820CEFCA2009306DD /* PBXTargetDependency */,
 			);
 			name = "Parse-iOS-Dynamic";
+			packageProductDependencies = (
+				39E24A122AD214980014357C /* Bolts */,
+			);
 			productName = "Parse-iOS";
 			productReference = 81C5845D1C3B0A98000063C6 /* Parse.framework */;
 			productType = "com.apple.product-type.framework";
@@ -6912,7 +6782,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4AA8AC0A20CEFCAD009306DD /* PBXTargetDependency */,
 			);
 			name = "Parse-tvOS-Dynamic";
 			productName = "Parse-iOS";
@@ -6932,7 +6801,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4AA8ABFF20CEFC9A009306DD /* PBXTargetDependency */,
 			);
 			name = "Parse-watchOS-Dynamic";
 			productName = "Parse-iOS";
@@ -6952,9 +6820,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				4ACBE7EB2151FCBF008DFAAF /* PBXTargetDependency */,
 			);
 			name = "Parse-macOS";
+			packageProductDependencies = (
+				39E24A0E2AD214720014357C /* Bolts */,
+			);
 			productName = ParseMac;
 			productReference = 97010FAC1630B18F00AB761E /* Parse.framework */;
 			productType = "com.apple.product-type.framework";
@@ -7000,15 +6870,10 @@
 			mainGroup = 09D3363F139C54930098E916;
 			packageReferences = (
 				39E22AB42AD0655300D9AE5C /* XCRemoteSwiftPackageReference "ocmock" */,
+				39E24A0B2AD214540014357C /* XCRemoteSwiftPackageReference "Bolts-ObjC" */,
 			);
 			productRefGroup = 09D3364B139C54940098E916 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 4A13517620281768000F5FD5 /* Products */;
-					ProjectRef = 4A1351082027FCFB000F5FD5 /* Bolts.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				81C3821B19CCA89E0066284A /* Parse-iOS */,
@@ -7024,86 +6889,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		4A13518420281768000F5FD5 /* Bolts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Bolts.framework;
-			remoteRef = 4A13518320281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A13518620281768000F5FD5 /* Bolts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Bolts.framework;
-			remoteRef = 4A13518520281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A13518820281768000F5FD5 /* Bolts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Bolts.framework;
-			remoteRef = 4A13518720281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A13518A20281768000F5FD5 /* Bolts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Bolts.framework;
-			remoteRef = 4A13518920281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A13518C20281768000F5FD5 /* Bolts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Bolts.framework;
-			remoteRef = 4A13518B20281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A13518E20281768000F5FD5 /* Bolts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Bolts.framework;
-			remoteRef = 4A13518D20281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A13519020281768000F5FD5 /* Bolts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Bolts.framework;
-			remoteRef = 4A13518F20281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A13519220281768000F5FD5 /* BoltsTests-iOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "BoltsTests-iOS.xctest";
-			remoteRef = 4A13519120281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A13519420281768000F5FD5 /* BoltsTests-OSX.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "BoltsTests-OSX.xctest";
-			remoteRef = 4A13519320281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A13519620281768000F5FD5 /* BoltsTests-tvOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "BoltsTests-tvOS.xctest";
-			remoteRef = 4A13519520281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A13519820281768000F5FD5 /* BoltsTestUI.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = BoltsTestUI.app;
-			remoteRef = 4A13519720281768000F5FD5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4AE33A091F5451AD0088DCA0 /* Resources */ = {
@@ -8657,36 +8442,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4A1351F520281933000F5FD5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bolts-watchOS";
-			targetProxy = 4A1351F420281933000F5FD5 /* PBXContainerItemProxy */;
-		};
-		4A1351F72028193F000F5FD5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bolts-tvOS";
-			targetProxy = 4A1351F62028193F000F5FD5 /* PBXContainerItemProxy */;
-		};
-		4AA8ABFF20CEFC9A009306DD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bolts-watchOS-Dynamic";
-			targetProxy = 4AA8ABFE20CEFC9A009306DD /* PBXContainerItemProxy */;
-		};
-		4AA8AC0820CEFCA2009306DD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bolts-iOS-Dynamic";
-			targetProxy = 4AA8AC0720CEFCA2009306DD /* PBXContainerItemProxy */;
-		};
-		4AA8AC0A20CEFCAD009306DD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bolts-tvOS-Dynamic";
-			targetProxy = 4AA8AC0920CEFCAD009306DD /* PBXContainerItemProxy */;
-		};
-		4ACBE7EB2151FCBF008DFAAF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bolts-macOS";
-			targetProxy = 4ACBE7EA2151FCBF008DFAAF /* PBXContainerItemProxy */;
-		};
 		4AE33A2D1F5451B20088DCA0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -8703,11 +8458,6 @@
 			platformFilter = ios;
 			target = 81C3821B19CCA89E0066284A /* Parse-iOS */;
 			targetProxy = 8111674B1B8402DF003CB026 /* PBXContainerItemProxy */;
-		};
-		BCAFF88B25A88C4F00B95DFC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bolts-iOS";
-			targetProxy = BCAFF88A25A88C4F00B95DFC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -9182,6 +8932,14 @@
 				revision = 67bb9602f0a7541f24dc2d6d0d7389ca3e4c2c89;
 			};
 		};
+		39E24A0B2AD214540014357C /* XCRemoteSwiftPackageReference "Bolts-ObjC" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/parse-community/Bolts-ObjC.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.10.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -9194,6 +8952,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 39E22AB42AD0655300D9AE5C /* XCRemoteSwiftPackageReference "ocmock" */;
 			productName = OCMock;
+		};
+		39E24A0C2AD214540014357C /* Bolts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E24A0B2AD214540014357C /* XCRemoteSwiftPackageReference "Bolts-ObjC" */;
+			productName = Bolts;
+		};
+		39E24A0E2AD214720014357C /* Bolts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E24A0B2AD214540014357C /* XCRemoteSwiftPackageReference "Bolts-ObjC" */;
+			productName = Bolts;
+		};
+		39E24A102AD214810014357C /* Bolts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E24A0B2AD214540014357C /* XCRemoteSwiftPackageReference "Bolts-ObjC" */;
+			productName = Bolts;
+		};
+		39E24A122AD214980014357C /* Bolts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E24A0B2AD214540014357C /* XCRemoteSwiftPackageReference "Bolts-ObjC" */;
+			productName = Bolts;
+		};
+		39E24A142AD214A40014357C /* Bolts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E24A0B2AD214540014357C /* XCRemoteSwiftPackageReference "Bolts-ObjC" */;
+			productName = Bolts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
