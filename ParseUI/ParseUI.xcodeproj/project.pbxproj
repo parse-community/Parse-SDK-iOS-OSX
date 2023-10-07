@@ -184,19 +184,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4A0ECCAC200DA7D100BA84A3 /* PBXContainerItemProxy */ = {
+		39D1F8932AD1AA7D0011B331 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4A9A9496200D0329005D8F4B;
 			remoteInfo = ParseUI;
 		};
-		4A0ECCB0200DA8DC00BA84A3 /* PBXContainerItemProxy */ = {
+		4A0ECCAC200DA7D100BA84A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4A0ECBE4200D8C0200BA84A3;
-			remoteInfo = "ParseUI-Dynamic";
+			remoteGlobalIDString = 4A9A9496200D0329005D8F4B;
+			remoteInfo = ParseUI;
 		};
 		7C77D138292A50BF00C4D90E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1272,7 +1272,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4A0ECCB1200DA8DC00BA84A3 /* PBXTargetDependency */,
+				39D1F8942AD1AA7D0011B331 /* PBXTargetDependency */,
 			);
 			name = "ParseUIDemo-Swift";
 			productName = ParseUIDemo;
@@ -1745,15 +1745,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		39D1F8942AD1AA7D0011B331 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A9A9496200D0329005D8F4B /* ParseUI */;
+			targetProxy = 39D1F8932AD1AA7D0011B331 /* PBXContainerItemProxy */;
+		};
 		4A0ECCAD200DA7D100BA84A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4A9A9496200D0329005D8F4B /* ParseUI */;
 			targetProxy = 4A0ECCAC200DA7D100BA84A3 /* PBXContainerItemProxy */;
-		};
-		4A0ECCB1200DA8DC00BA84A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4A0ECBE4200D8C0200BA84A3 /* ParseUI-Dynamic */;
-			targetProxy = 4A0ECCB0200DA8DC00BA84A3 /* PBXContainerItemProxy */;
 		};
 		7C77D14F292A50F600C4D90E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
