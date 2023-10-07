@@ -13,7 +13,7 @@
 ![iOS](https://img.shields.io/badge/iOS-12.0-green?style=flat)
 ![iPad](https://img.shields.io/badge/ipadOS-12.0-green?style=flat)
 ![macOS](https://img.shields.io/badge/macOS-10.15-green?style=flat)
-![watchOS](https://img.shields.io/badge/watchOS-4.0-green?style=flat)
+![watchOS](https://img.shields.io/badge/watchOS-2.0-green?style=flat)
 ![tvOS](https://img.shields.io/badge/tvOS-12.0-green?style=flat)
 
 ![SPM](https://img.shields.io/badge/Swift_Package_Manager-compatible-green?style=flat)
