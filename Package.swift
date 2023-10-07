@@ -9,7 +9,7 @@ let package = Package(
         .iOS(.v12),
         .macOS(.v10_15),
         .tvOS(.v12),
-        .watchOS(.v4)
+        .watchOS(.v2)
     ],
     products: [
         .library(name: "ParseObjC", targets: ["ParseCore"]),

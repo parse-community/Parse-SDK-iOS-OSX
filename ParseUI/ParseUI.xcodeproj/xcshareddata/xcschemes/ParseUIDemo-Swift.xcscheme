@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8129E5DE1A9CB067006752BC"
-               BuildableName = "ParseUIDemo.app"
+               BuildableName = "ParseUIDemo-Swift.app"
                BlueprintName = "ParseUIDemo-Swift"
                ReferencedContainer = "container:ParseUI.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8129E5DE1A9CB067006752BC"
-            BuildableName = "ParseUIDemo.app"
+            BuildableName = "ParseUIDemo-Swift.app"
             BlueprintName = "ParseUIDemo-Swift"
             ReferencedContainer = "container:ParseUI.xcodeproj">
          </BuildableReference>
@@ -54,7 +54,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8129E5DE1A9CB067006752BC"
-            BuildableName = "ParseUIDemo.app"
+            BuildableName = "ParseUIDemo-Swift.app"
             BlueprintName = "ParseUIDemo-Swift"
             ReferencedContainer = "container:ParseUI.xcodeproj">
          </BuildableReference>
@@ -71,7 +71,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8129E5DE1A9CB067006752BC"
-            BuildableName = "ParseUIDemo.app"
+            BuildableName = "ParseUIDemo-Swift.app"
             BlueprintName = "ParseUIDemo-Swift"
             ReferencedContainer = "container:ParseUI.xcodeproj">
          </BuildableReference>
