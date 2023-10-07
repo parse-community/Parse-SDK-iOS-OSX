@@ -17,15 +17,12 @@
 #import "BFTaskCompletionSource.h"
 #endif
 
+@import ParseFacebookUtils;
+
 #import <FBSDKCoreKit/FBSDKAccessToken.h>
 #import <FBSDKCoreKit/FBSDKConstants.h>
 #import <FBSDKTVOSKit/FBSDKDeviceLoginViewController.h>
 
-#if __has_include(<ParseFacebookUtilsV4/PFFacebookUtils.h>)
-#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
-#else
-#import "PFFacebookUtils.h"
-#endif
 
 @interface PFFacebookDeviceAuthenticationProvider () <FBSDKDeviceLoginViewControllerDelegate> {
     BFTaskCompletionSource *_loginTaskCompletionSource;

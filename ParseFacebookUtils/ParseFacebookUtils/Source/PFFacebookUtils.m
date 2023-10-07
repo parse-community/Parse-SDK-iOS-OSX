@@ -15,11 +15,7 @@
 #import "BFExecutor.h"
 #endif
 
-#if __has_include(<Parse/Parse.h>)
-#import <Parse/Parse.h>
-#else
-#import "Parse.h"
-#endif
+@import ParseCore;
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 

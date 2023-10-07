@@ -20,20 +20,11 @@
  */
 
 #import "PFProductTableViewController.h"
-
-#if __has_include(<Parse/PFProduct.h>)
-#import <Parse/PFProduct.h>
-#import <Parse/PFPurchase.h>
-#import <Parse/PFQuery.h>
-#else
-#import "PFUser.h"
-#import "PFPurchase.h"
-#import "PFQuery.h"
-#endif
-
 #import "PFUIAlertView.h"
 #import "PFLocalization.h"
 #import "PFPurchaseTableViewCell.h"
+
+@import ParseCore;
 
 static NSString *const PFProductMetadataPriceKey = @"price";
 static NSString *const PFProductMetadataPriceLocaleKey = @"priceLocale";
