@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39E248D12AD1C2510014357C /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 39E248D02AD1C2510014357C /* ParseObjC */; };
+		39E248D32AD1C25B0014357C /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 39E248D22AD1C25B0014357C /* ParseObjC */; };
 		7C5F7D27292101490035B219 /* PFFacebookUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C5F7D1E292101370035B219 /* PFFacebookUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C5F7D28292101490035B219 /* ParseFacebookUtilsV4.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C5F7D1B292101370035B219 /* ParseFacebookUtilsV4.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C5F7D29292101490035B219 /* PFFacebookAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C5F7D1F292101370035B219 /* PFFacebookAuthenticationProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -56,107 +58,6 @@
 		844D0BA72959AE1B0026E74D /* FBSDKTVOSKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D01B2929114E00C4D90E /* FBSDKTVOSKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		7C77CFB429290F4100C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81C3821C19CCA89E0066284A;
-			remoteInfo = "Parse-iOS";
-		};
-		7C77CFB629290F4100C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81C5845D1C3B0A98000063C6;
-			remoteInfo = "Parse-iOS-Dynamic";
-		};
-		7C77CFB829290F4100C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 816F449B1A8E8933009CDB32;
-			remoteInfo = "ParseUnitTests-iOS";
-		};
-		7C77CFBA29290F4100C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 97010FAC1630B18F00AB761E;
-			remoteInfo = "Parse-macOS";
-		};
-		7C77CFBC29290F4100C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81C09F861AF97A490043B49C;
-			remoteInfo = "ParseUnitTests-macOS";
-		};
-		7C77CFBE29290F4100C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 815F24151BD04D150054659F;
-			remoteInfo = "Parse-tvOS";
-		};
-		7C77CFC029290F4100C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81C585BF1C3B0AA1000063C6;
-			remoteInfo = "Parse-tvOS-Dynamic";
-		};
-		7C77CFC229290F4100C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 810156691BB3832700D7C7BD;
-			remoteInfo = "Parse-watchOS";
-		};
-		7C77CFC429290F4100C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81C5870F1C3B0AA9000063C6;
-			remoteInfo = "Parse-watchOS-Dynamic";
-		};
-		7C77CFC629290F4100C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4AE33A0B1F5451AD0088DCA0;
-			remoteInfo = "ParseUnitTests-iOS-host";
-		};
-		7C77CFC829290F4500C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 81C3821B19CCA89E0066284A;
-			remoteInfo = "Parse-iOS";
-		};
-		7C77D0192929110300C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 815F22AF1BD04D150054659F;
-			remoteInfo = "Parse-tvOS";
-		};
-		7C77D0202929117E00C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 81C582E11C3B0A98000063C6;
-			remoteInfo = "Parse-iOS-Dynamic";
-		};
-		7C77D0262929118E00C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 81C5845F1C3B0AA1000063C6;
-			remoteInfo = "Parse-tvOS-Dynamic";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		BCCC20E1271F1BAB003C9D03 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -190,6 +91,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		39E248C92AD1C23F0014357C /* Parse-SDK-iOS-OSX */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "Parse-SDK-iOS-OSX"; path = ..; sourceTree = "<group>"; };
 		4AAEAA75200C020E00AA7479 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseFacebookUtilsV4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAEAA90200C022300AA7479 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseFacebookUtilsV4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAEAA92200C025100AA7479 /* ParseFacebookUtilsV4-iOS-Dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseFacebookUtilsV4-iOS-Dynamic.xcconfig"; sourceTree = "<group>"; };
@@ -204,7 +106,6 @@
 		7C5F7D24292101370035B219 /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
 		7C5F7DF3292105800035B219 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.1.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		7C5F7DF5292105880035B219 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.1.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
-		7C77CFA529290F4000C4D90E /* Parse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parse.xcodeproj; path = ../Parse/Parse.xcodeproj; sourceTree = "<group>"; };
 		7C77D01B2929114E00C4D90E /* FBSDKTVOSKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKTVOSKit.xcframework; path = ../Carthage/Build/FBSDKTVOSKit.xcframework; sourceTree = "<group>"; };
 		7C78240029290C9A00E9364E /* FBSDKCoreKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKCoreKit.xcframework; path = ../Carthage/Build/FBSDKCoreKit.xcframework; sourceTree = "<group>"; };
 		7C78240129290C9A00E9364E /* FBSDKCoreKit_Basics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKCoreKit_Basics.xcframework; path = ../Carthage/Build/FBSDKCoreKit_Basics.xcframework; sourceTree = "<group>"; };
@@ -257,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E248D32AD1C25B0014357C /* ParseObjC in Frameworks */,
 				7C77D01C2929115F00C4D90E /* FBAEMKit.xcframework in Frameworks */,
 				7C77D01D2929115F00C4D90E /* FBSDKCoreKit_Basics.xcframework in Frameworks */,
 				7C77D01E2929115F00C4D90E /* FBSDKCoreKit.xcframework in Frameworks */,
@@ -268,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E248D12AD1C2510014357C /* ParseObjC in Frameworks */,
 				7C78240429290CA600E9364E /* FBAEMKit.xcframework in Frameworks */,
 				7C78240529290CA600E9364E /* FBSDKCoreKit_Basics.xcframework in Frameworks */,
 				7C78240629290CA600E9364E /* FBSDKCoreKit.xcframework in Frameworks */,
@@ -292,6 +195,7 @@
 		0867D691FE84028FC02AAC07 /* Breakpad */ = {
 			isa = PBXGroup;
 			children = (
+				39E248C82AD1C23F0014357C /* Packages */,
 				F52CD63A1B58383C0051AB86 /* Configurations */,
 				813DFC7E1AB2510300F25A08 /* ParseFacebookUtils */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
@@ -311,9 +215,16 @@
 				7C78240029290C9A00E9364E /* FBSDKCoreKit.xcframework */,
 				7C78240229290C9B00E9364E /* FBSDKLoginKit.xcframework */,
 				7C77D01B2929114E00C4D90E /* FBSDKTVOSKit.xcframework */,
-				7C77CFA529290F4000C4D90E /* Parse.xcodeproj */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		39E248C82AD1C23F0014357C /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				39E248C92AD1C23F0014357C /* Parse-SDK-iOS-OSX */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 		7C5F7D19292101370035B219 /* Source */ = {
@@ -336,23 +247,6 @@
 				7C5F7D24292101370035B219 /* Info-tvOS.plist */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		7C77CFA629290F4000C4D90E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7C77CFB529290F4100C4D90E /* Parse.framework */,
-				7C77CFB729290F4100C4D90E /* Parse.framework */,
-				7C77CFB929290F4100C4D90E /* ParseUnitTests-iOS.xctest */,
-				7C77CFBB29290F4100C4D90E /* Parse.framework */,
-				7C77CFBD29290F4100C4D90E /* ParseUnitTests-macOS.xctest */,
-				7C77CFBF29290F4100C4D90E /* Parse.framework */,
-				7C77CFC129290F4100C4D90E /* Parse.framework */,
-				7C77CFC329290F4100C4D90E /* Parse.framework */,
-				7C77CFC529290F4100C4D90E /* Parse.framework */,
-				7C77CFC729290F4100C4D90E /* ParseUnitTests-iOS-host.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		8121EA9E1D39862400AC0B02 /* Shared */ = {
@@ -479,7 +373,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7C77D0212929117E00C4D90E /* PBXTargetDependency */,
 			);
 			name = "ParseFacebookUtilsV4-iOS-Dynamic";
 			packageProductDependencies = (
@@ -502,7 +395,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7C77D0272929118E00C4D90E /* PBXTargetDependency */,
 			);
 			name = "ParseFacebookUtilsV4-tvOS-Dynamic";
 			packageProductDependencies = (
@@ -525,9 +417,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				7C77D01A2929110300C4D90E /* PBXTargetDependency */,
 			);
 			name = "ParseFacebookUtilsV4-tvOS";
+			packageProductDependencies = (
+				39E248D22AD1C25B0014357C /* ParseObjC */,
+			);
 			productName = Breakpad;
 			productReference = 81FE7F8B1C17790400E6BD34 /* ParseFacebookUtilsV4.framework */;
 			productType = "com.apple.product-type.framework";
@@ -546,10 +440,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				7C77CFC929290F4500C4D90E /* PBXTargetDependency */,
 			);
 			name = "ParseFacebookUtilsV4-iOS";
 			packageProductDependencies = (
+				39E248D02AD1C2510014357C /* ParseObjC */,
 			);
 			productName = Breakpad;
 			productReference = D2AAC07E0554694100DB518D /* ParseFacebookUtilsV4.framework */;
@@ -589,12 +483,6 @@
 			);
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 7C77CFA629290F4000C4D90E /* Products */;
-					ProjectRef = 7C77CFA529290F4000C4D90E /* Parse.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				D2AAC07D0554694100DB518D /* ParseFacebookUtilsV4-iOS */,
@@ -604,79 +492,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		7C77CFB529290F4100C4D90E /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 7C77CFB429290F4100C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77CFB729290F4100C4D90E /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 7C77CFB629290F4100C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77CFB929290F4100C4D90E /* ParseUnitTests-iOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "ParseUnitTests-iOS.xctest";
-			remoteRef = 7C77CFB829290F4100C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77CFBB29290F4100C4D90E /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 7C77CFBA29290F4100C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77CFBD29290F4100C4D90E /* ParseUnitTests-macOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "ParseUnitTests-macOS.xctest";
-			remoteRef = 7C77CFBC29290F4100C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77CFBF29290F4100C4D90E /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 7C77CFBE29290F4100C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77CFC129290F4100C4D90E /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 7C77CFC029290F4100C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77CFC329290F4100C4D90E /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 7C77CFC229290F4100C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77CFC529290F4100C4D90E /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 7C77CFC429290F4100C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77CFC729290F4100C4D90E /* ParseUnitTests-iOS-host.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "ParseUnitTests-iOS-host.app";
-			remoteRef = 7C77CFC629290F4100C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4AAEAA70200C020E00AA7479 /* Resources */ = {
@@ -712,7 +527,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		4A1351A5202817C7000F5FD5 /* Fetch Latest Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -720,13 +535,14 @@
 			name = "Fetch Latest Dependencies";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ ! -d $SRCROOT/../Carthage/Build ]; then\nmkdir $SRCROOT/../Carthage/Build\nfi\n\ncd $SRCROOT/../Carthage/Build\n\nif [ ! -d \"FBSDKCoreKit.xcframework\" ] || [ ! -d \"FBSDKTVOSKit.xcframework\" ]; then\nARCHIVE_NAME=FBSDK.zip\n\nARCHIVE_URL=\"https://github.com/facebook/facebook-ios-sdk/releases/download/v15.1.0/FacebookSDK-Static_XCFramework.zip\"\ncurl -Lk $ARCHIVE_URL -o $ARCHIVE_NAME\n\nunzip $ARCHIVE_NAME -d fbsdk\nrm -rf FBSDKCoreKit.xcframework\nrm -rf FBSDKTVOSKit.xcframework\n\nmv fbsdk/XCFrameworks/FBSDKCoreKit.xcframework .\nmv fbsdk/XCFrameworks/FBSDKTVOSKit.xcframework .\n\nrm $ARCHIVE_NAME\nrm -r fbsdk\nfi\n";
+			shellScript = "
+";
 		};
 		4A1351B220281814000F5FD5 /* Fetch Latest Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -734,9 +550,10 @@
 			name = "Fetch Latest Dependencies";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ ! -d $SRCROOT/../Carthage/Build ]; then\nmkdir $SRCROOT/../Carthage/Build\nfi\n\ncd $SRCROOT/../Carthage/Build\n\nif [ ! -d \"FBSDKCoreKit.xcframework\" ] || [ ! -d \"FBSDKLoginKit.xcframework\" ] || [ ! -d \"FBSDKCoreKit_Basics.xcframework\" ] || [ ! -d \"FBAEMKit.xcframework\" ]; then\nARCHIVE_NAME=FBSDK.zip\n\nARCHIVE_URL=\"https://github.com/facebook/facebook-ios-sdk/releases/download/v15.1.0/FacebookSDK-Static_XCFramework.zip\"\ncurl -Lk $ARCHIVE_URL -o $ARCHIVE_NAME\n\nunzip $ARCHIVE_NAME -d fbsdk\nrm -rf FBSDKCoreKit.xcframework\nrm -rf FBSDKLoginKit.xcframework\nrm -rf FBSDKCoreKit_Basics.xcframework\nrm -rf FBAEMKit.xcframework\n\nmv fbsdk/XCFrameworks/FBSDKCoreKit.xcframework .\nmv fbsdk/XCFrameworks/FBSDKLoginKit.xcframework .\nmv fbsdk/XCFrameworks/FBSDKCoreKit_Basics.xcframework .\nmv fbsdk/XCFrameworks/FBAEMKit.xcframework .\n\nrm $ARCHIVE_NAME\nrm -r fbsdk\nfi\n";
+			shellScript = "
+";
 		};
 		4AAEAA5D200C020E00AA7479 /* Generate Localizable Strings */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -768,7 +585,7 @@
 		};
 		81B3F2291AC9CA2600A92677 /* Generate Localizable Strings */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -776,13 +593,13 @@
 			name = "Generate Localizable Strings";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR -name '*.m' -print0 | xargs -0 genstrings -q -o $PROJECT_DIR/ParseFacebookUtils/Resources\necho \"Finished converting images\"\n";
 		};
 		81FE7F751C17790400E6BD34 /* Generate Localizable Strings */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -790,7 +607,7 @@
 			name = "Generate Localizable Strings";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR -name '*.m' -print0 | xargs -0 genstrings -q -o $PROJECT_DIR/ParseFacebookUtils/Resources\necho \"Finished converting images\"\n";
 		};
@@ -834,29 +651,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		7C77CFC929290F4500C4D90E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Parse-iOS";
-			targetProxy = 7C77CFC829290F4500C4D90E /* PBXContainerItemProxy */;
-		};
-		7C77D01A2929110300C4D90E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Parse-tvOS";
-			targetProxy = 7C77D0192929110300C4D90E /* PBXContainerItemProxy */;
-		};
-		7C77D0212929117E00C4D90E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Parse-iOS-Dynamic";
-			targetProxy = 7C77D0202929117E00C4D90E /* PBXContainerItemProxy */;
-		};
-		7C77D0272929118E00C4D90E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Parse-tvOS-Dynamic";
-			targetProxy = 7C77D0262929118E00C4D90E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB921F08733DC00010E9CD /* Debug */ = {
@@ -1062,6 +856,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		39E248D02AD1C2510014357C /* ParseObjC */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParseObjC;
+		};
+		39E248D22AD1C25B0014357C /* ParseObjC */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParseObjC;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
 }

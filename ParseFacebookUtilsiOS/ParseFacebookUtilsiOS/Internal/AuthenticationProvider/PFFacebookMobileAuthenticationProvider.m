@@ -18,20 +18,12 @@
 #import "BFTaskCompletionSource.h"
 #endif
 
-#if __has_include(<Parse/PFConstants.h>)
-#import <Parse/PFConstants.h>
-#else
-#import "PFConstants.h"
-#endif
+@import ParseCore;
+@import ParseFacebookUtils;
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-#if __has_include(<ParseFacebookUtilsV4/PFFacebookUtils.h>)
-#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
-#else
-#import "PFFacebookUtils.h"
-#endif
 
 @implementation PFFacebookMobileAuthenticationProvider
 

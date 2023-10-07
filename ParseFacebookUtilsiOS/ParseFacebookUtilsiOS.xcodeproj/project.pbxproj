@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		39E22AC52AD065BA00D9AE5C /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = 39E22AC42AD065BA00D9AE5C /* OCMock */; };
+		39E248E92AD1C4D60014357C /* ParseFacebookUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 39E248E82AD1C4D60014357C /* ParseFacebookUtils */; };
 		7C5F7E2829210C9C0035B219 /* FacebookUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5F7E1B29210C970035B219 /* FacebookUtilsTests.m */; };
 		7C5F7E2929210C9C0035B219 /* FacebookAuthenticationProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5F7E1C29210C970035B219 /* FacebookAuthenticationProviderTests.m */; };
 		7C5F7E2A29210CA00035B219 /* PFFacebookTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5F7E2129210C970035B219 /* PFFacebookTestCase.m */; };
@@ -31,62 +32,11 @@
 		7C5F7EDE29211E6A0035B219 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5F7EDD29211E6A0035B219 /* SystemConfiguration.framework */; };
 		7C5F7EE029211E6E0035B219 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5F7EDF29211E6E0035B219 /* AudioToolbox.framework */; };
 		7C5F7EE229211E870035B219 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5F7EE129211E870035B219 /* Accelerate.framework */; };
-		7C77D047292913DC00C4D90E /* FBAEMKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D045292913CF00C4D90E /* FBAEMKit.xcframework */; };
-		7C77D048292913DC00C4D90E /* FBSDKCoreKit_Basics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D03C292913CF00C4D90E /* FBSDKCoreKit_Basics.xcframework */; };
-		7C77D049292913DC00C4D90E /* FBSDKCoreKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D044292913CF00C4D90E /* FBSDKCoreKit.xcframework */; };
-		7C77D04A292913DC00C4D90E /* FBSDKLoginKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D046292913CF00C4D90E /* FBSDKLoginKit.xcframework */; };
-		7C77D04C292913EC00C4D90E /* FBAEMKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D045292913CF00C4D90E /* FBAEMKit.xcframework */; };
-		7C77D04D292913EC00C4D90E /* FBSDKCoreKit_Basics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D03C292913CF00C4D90E /* FBSDKCoreKit_Basics.xcframework */; };
-		7C77D04E292913EC00C4D90E /* FBSDKCoreKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D044292913CF00C4D90E /* FBSDKCoreKit.xcframework */; };
-		7C77D04F292913EC00C4D90E /* FBSDKLoginKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D046292913CF00C4D90E /* FBSDKLoginKit.xcframework */; };
 		7C77D0512929156900C4D90E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D0502929156900C4D90E /* libc++.tbd */; };
 		7C77D0532929157600C4D90E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D0522929157600C4D90E /* Accelerate.framework */; };
-		7CD81D17292D16DC0074F64D /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5F7E5D29210E590035B219 /* ParseFacebookUtilsV4.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7C5F7E5C29210E590035B219 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C5F7E3929210E580035B219 /* ParseFacebookUtils.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = "ParseFacebookUtilsV4-iOS";
-		};
-		7C5F7E5E29210E590035B219 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C5F7E3929210E580035B219 /* ParseFacebookUtils.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81FE7F8B1C17790400E6BD34;
-			remoteInfo = "ParseFacebookUtilsV4-tvOS";
-		};
-		7C5F7E6029210E590035B219 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C5F7E3929210E580035B219 /* ParseFacebookUtils.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4AAEAA75200C020E00AA7479;
-			remoteInfo = "ParseFacebookUtilsV4-iOS-Dynamic";
-		};
-		7C5F7E6229210E590035B219 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C5F7E3929210E580035B219 /* ParseFacebookUtils.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4AAEAA90200C022300AA7479;
-			remoteInfo = "ParseFacebookUtilsV4-tvOS-Dynamic";
-		};
-		7C5F7E7F29210E600035B219 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C5F7E3929210E580035B219 /* ParseFacebookUtils.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D;
-			remoteInfo = "ParseFacebookUtilsV4-iOS";
-		};
-		7C5F7E8D292114240035B219 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C5F7E3929210E580035B219 /* ParseFacebookUtils.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4AAEAA5B200C020E00AA7479;
-			remoteInfo = "ParseFacebookUtilsV4-iOS-Dynamic";
-		};
 		B9A7EE7323C49272003E606E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -117,6 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		39E248E72AD1C4BE0014357C /* Parse-SDK-iOS-OSX */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "Parse-SDK-iOS-OSX"; path = ..; sourceTree = "<group>"; };
 		4AAEAA75200C020E00AA7479 /* ParseFacebookUtilsiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseFacebookUtilsiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C5F7E1B29210C970035B219 /* FacebookUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FacebookUtilsTests.m; sourceTree = "<group>"; };
 		7C5F7E1C29210C970035B219 /* FacebookAuthenticationProviderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthenticationProviderTests.m; sourceTree = "<group>"; };
@@ -127,16 +78,11 @@
 		7C5F7E2729210C970035B219 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C5F7E2C29210CF30035B219 /* ParseFacebookTestApplication.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ParseFacebookTestApplication.xcconfig; sourceTree = "<group>"; };
 		7C5F7E2D29210CF30035B219 /* ParseFacebookUtils-UnitTests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseFacebookUtils-UnitTests.xcconfig"; sourceTree = "<group>"; };
-		7C5F7E3929210E580035B219 /* ParseFacebookUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ParseFacebookUtils.xcodeproj; path = ../ParseFacebookUtils/ParseFacebookUtils.xcodeproj; sourceTree = "<group>"; };
 		7C5F7ED929211E5E0035B219 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		7C5F7EDB29211E640035B219 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		7C5F7EDD29211E6A0035B219 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7C5F7EDF29211E6E0035B219 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7C5F7EE129211E870035B219 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		7C77D03C292913CF00C4D90E /* FBSDKCoreKit_Basics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKCoreKit_Basics.xcframework; path = ../Carthage/Build/FBSDKCoreKit_Basics.xcframework; sourceTree = "<group>"; };
-		7C77D044292913CF00C4D90E /* FBSDKCoreKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKCoreKit.xcframework; path = ../Carthage/Build/FBSDKCoreKit.xcframework; sourceTree = "<group>"; };
-		7C77D045292913CF00C4D90E /* FBAEMKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBAEMKit.xcframework; path = ../Carthage/Build/FBAEMKit.xcframework; sourceTree = "<group>"; };
-		7C77D046292913CF00C4D90E /* FBSDKLoginKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKLoginKit.xcframework; path = ../Carthage/Build/FBSDKLoginKit.xcframework; sourceTree = "<group>"; };
 		7C77D0502929156900C4D90E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.1.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		7C77D0522929157600C4D90E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.1.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		7CACE61A291EA74D003359B5 /* ParseFacebookUtilsiOS-Dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseFacebookUtilsiOS-Dynamic.xcconfig"; sourceTree = "<group>"; };
@@ -174,10 +120,6 @@
 			files = (
 				7C77D0532929157600C4D90E /* Accelerate.framework in Frameworks */,
 				7C77D0512929156900C4D90E /* libc++.tbd in Frameworks */,
-				7C77D04C292913EC00C4D90E /* FBAEMKit.xcframework in Frameworks */,
-				7C77D04D292913EC00C4D90E /* FBSDKCoreKit_Basics.xcframework in Frameworks */,
-				7C77D04E292913EC00C4D90E /* FBSDKCoreKit.xcframework in Frameworks */,
-				7C77D04F292913EC00C4D90E /* FBSDKLoginKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +127,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CD81D17292D16DC0074F64D /* ParseFacebookUtilsV4.framework in Frameworks */,
 				7C5F7EE229211E870035B219 /* Accelerate.framework in Frameworks */,
 				39E22AC52AD065BA00D9AE5C /* OCMock in Frameworks */,
 				7C5F7EE029211E6E0035B219 /* AudioToolbox.framework in Frameworks */,
@@ -199,10 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C77D047292913DC00C4D90E /* FBAEMKit.xcframework in Frameworks */,
-				7C77D048292913DC00C4D90E /* FBSDKCoreKit_Basics.xcframework in Frameworks */,
-				7C77D049292913DC00C4D90E /* FBSDKCoreKit.xcframework in Frameworks */,
-				7C77D04A292913DC00C4D90E /* FBSDKLoginKit.xcframework in Frameworks */,
+				39E248E92AD1C4D60014357C /* ParseFacebookUtils in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +168,7 @@
 		0867D691FE84028FC02AAC07 /* Breakpad */ = {
 			isa = PBXGroup;
 			children = (
+				39E248E62AD1C4BE0014357C /* Packages */,
 				F52CD63A1B58383C0051AB86 /* Configurations */,
 				7CACE61C291EA75A003359B5 /* ParseFacebookUtilsiOS */,
 				7C5F7E1929210C970035B219 /* Tests */,
@@ -250,13 +189,16 @@
 				7C5F7EDD29211E6A0035B219 /* SystemConfiguration.framework */,
 				7C5F7EDB29211E640035B219 /* libc++.tbd */,
 				7C5F7ED929211E5E0035B219 /* libsqlite3.tbd */,
-				7C77D045292913CF00C4D90E /* FBAEMKit.xcframework */,
-				7C77D03C292913CF00C4D90E /* FBSDKCoreKit_Basics.xcframework */,
-				7C77D044292913CF00C4D90E /* FBSDKCoreKit.xcframework */,
-				7C77D046292913CF00C4D90E /* FBSDKLoginKit.xcframework */,
-				7C5F7E3929210E580035B219 /* ParseFacebookUtils.xcodeproj */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		39E248E62AD1C4BE0014357C /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				39E248E72AD1C4BE0014357C /* Parse-SDK-iOS-OSX */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 		7C5F7E1929210C970035B219 /* Tests */ = {
@@ -327,17 +269,6 @@
 				7C5F7E2729210C970035B219 /* Info.plist */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		7C5F7E3A29210E580035B219 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7C5F7E5D29210E590035B219 /* ParseFacebookUtilsV4.framework */,
-				7C5F7E5F29210E590035B219 /* ParseFacebookUtilsV4.framework */,
-				7C5F7E6129210E590035B219 /* ParseFacebookUtilsV4.framework */,
-				7C5F7E6329210E590035B219 /* ParseFacebookUtilsV4.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		7CACE61C291EA75A003359B5 /* ParseFacebookUtilsiOS */ = {
@@ -486,7 +417,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7C5F7E8E292114240035B219 /* PBXTargetDependency */,
 			);
 			name = "ParseFacebookUtilsiOS-Dynamic";
 			packageProductDependencies = (
@@ -529,10 +459,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				7C5F7E8029210E600035B219 /* PBXTargetDependency */,
 			);
 			name = ParseFacebookUtilsiOS;
 			packageProductDependencies = (
+				39E248E82AD1C4D60014357C /* ParseFacebookUtils */,
 			);
 			productName = Breakpad;
 			productReference = D2AAC07E0554694100DB518D /* ParseFacebookUtilsiOS.framework */;
@@ -608,12 +538,6 @@
 			);
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 7C5F7E3A29210E580035B219 /* Products */;
-					ProjectRef = 7C5F7E3929210E580035B219 /* ParseFacebookUtils.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				D2AAC07D0554694100DB518D /* ParseFacebookUtilsiOS */,
@@ -623,37 +547,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		7C5F7E5D29210E590035B219 /* ParseFacebookUtilsV4.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ParseFacebookUtilsV4.framework;
-			remoteRef = 7C5F7E5C29210E590035B219 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C5F7E5F29210E590035B219 /* ParseFacebookUtilsV4.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ParseFacebookUtilsV4.framework;
-			remoteRef = 7C5F7E5E29210E590035B219 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C5F7E6129210E590035B219 /* ParseFacebookUtilsV4.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ParseFacebookUtilsV4.framework;
-			remoteRef = 7C5F7E6029210E590035B219 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C5F7E6329210E590035B219 /* ParseFacebookUtilsV4.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ParseFacebookUtilsV4.framework;
-			remoteRef = 7C5F7E6229210E590035B219 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4AAEAA70200C020E00AA7479 /* Resources */ = {
@@ -726,16 +619,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7C5F7E8029210E600035B219 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "ParseFacebookUtilsV4-iOS";
-			targetProxy = 7C5F7E7F29210E600035B219 /* PBXContainerItemProxy */;
-		};
-		7C5F7E8E292114240035B219 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "ParseFacebookUtilsV4-iOS-Dynamic";
-			targetProxy = 7C5F7E8D292114240035B219 /* PBXContainerItemProxy */;
-		};
 		B9A7EE7423C49272003E606E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F535C73A1B54B4A800A7D81E /* ParseFacebookTestApplication */;
@@ -753,6 +636,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7CACE61B291EA74D003359B5 /* ParseFacebookUtilsiOS.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -770,6 +654,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7CACE61B291EA74D003359B5 /* ParseFacebookUtilsiOS.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1004,6 +889,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 39E22AC32AD065BA00D9AE5C /* XCRemoteSwiftPackageReference "ocmock" */;
 			productName = OCMock;
+		};
+		39E248E82AD1C4D60014357C /* ParseFacebookUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParseFacebookUtils;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

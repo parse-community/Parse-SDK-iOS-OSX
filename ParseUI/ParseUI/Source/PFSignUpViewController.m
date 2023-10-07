@@ -20,19 +20,12 @@
  */
 
 #import "PFSignUpViewController.h"
-
-#if __has_include(<Parse/PFConstants.h>)
-#import <Parse/PFConstants.h>
-#import <Parse/PFUser.h>
-#else
-#import "PFConstants.h"
-#import "PFUser.h"
-#endif
-
 #import "PFUIAlertView.h"
 #import "PFLocalization.h"
 #import "PFPrimaryButton.h"
 #import "PFTextField.h"
+
+@import ParseCore;
 
 NSString *const PFSignUpSuccessNotification = @"com.parse.ui.signup.success";
 NSString *const PFSignUpFailureNotification = @"com.parse.ui.signup.failure";
