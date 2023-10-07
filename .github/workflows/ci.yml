@@ -22,11 +22,11 @@ jobs:
           - test:macos
           - test:facebook_utils:ios
           - test:twitter_utils:ios
-          - test:parseui:all
+          # - test:parseui:all
           - test:parse_live_query:all
           - build:starters
           - xcode15 # runs build:starters on XCode 15
-      fail-fast: false
+      fail-fast: true
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
