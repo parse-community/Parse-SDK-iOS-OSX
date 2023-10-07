@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		06D00BB51BC790F3005BAA6F /* PFTwitterLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D00BB41BC790F3005BAA6F /* PFTwitterLocalization.h */; };
+		39E22B102AD070A500D9AE5C /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = 39E22B0F2AD070A500D9AE5C /* OCMock */; };
 		7C605D0B292A91D700E4B6D2 /* PFTwitterLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C605D02292A91D700E4B6D2 /* PFTwitterLocalization.m */; };
 		7C605D0C292A91D700E4B6D2 /* PFTwitterLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C605D02292A91D700E4B6D2 /* PFTwitterLocalization.m */; };
 		7C77D07E2929241300C4D90E /* PF_Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C77D079292923FF00C4D90E /* PF_Twitter.m */; };
@@ -56,7 +57,6 @@
 		81ECACCB1D1E14E000FA7673 /* PFTwitterPrivateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E54A61BB5E52000C727E8 /* PFTwitterPrivateUtilities.m */; };
 		81ECACCC1D1E14E000FA7673 /* PF_OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 817A37CA1B4B741A00129AFA /* PF_OAuthCore.m */; };
 		81ECACCD1D1E14E000FA7673 /* PFTwitterAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DAAD51BB5EC79002BDE2B /* PFTwitterAlertView.m */; };
-		B9783173240D14A50049C02B /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9783172240D14A50049C02B /* OCMock.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,8 +162,6 @@
 
 /* Begin PBXFileReference section */
 		06D00BB41BC790F3005BAA6F /* PFTwitterLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFTwitterLocalization.h; sourceTree = "<group>"; };
-		4A0ECBDD200D41B600BA84A3 /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A13522820282037000F5FD5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parse.xcodeproj; path = ../Parse/Parse.xcodeproj; sourceTree = "<group>"; };
 		7C605D02292A91D700E4B6D2 /* PFTwitterLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFTwitterLocalization.m; sourceTree = "<group>"; };
 		7C77D076292923FF00C4D90E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ParseTwitterUtils.strings; sourceTree = "<group>"; };
@@ -222,11 +220,6 @@
 		81CB98D31AB7906D00136FA5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Resources/Info.plist; sourceTree = "<group>"; };
 		81ECACD71D1E14E000FA7673 /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseTwitterUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ECACD91D1E14F300FA7673 /* ParseTwitterUtils-iOS-Dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseTwitterUtils-iOS-Dynamic.xcconfig"; sourceTree = "<group>"; };
-		848E11B22959EF2100BA2457 /* FBAEMKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBAEMKit.xcframework; path = "/Users/admin/Documents/Projects/Parse-SDK-iOS-OSX/ParseFacebookUtils/../Carthage/Build/FBAEMKit.xcframework"; sourceTree = "<absolute>"; };
-		848E11B42959EF2100BA2457 /* FBSDKCoreKit_Basics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKCoreKit_Basics.xcframework; path = "/Users/admin/Documents/Projects/Parse-SDK-iOS-OSX/ParseFacebookUtils/../Carthage/Build/FBSDKCoreKit_Basics.xcframework"; sourceTree = "<absolute>"; };
-		848E11B62959EF2100BA2457 /* FBSDKCoreKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKCoreKit.xcframework; path = "/Users/admin/Documents/Projects/Parse-SDK-iOS-OSX/ParseFacebookUtils/../Carthage/Build/FBSDKCoreKit.xcframework"; sourceTree = "<absolute>"; };
-		848E11B82959EF2100BA2457 /* FBSDKLoginKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBSDKLoginKit.xcframework; path = "/Users/admin/Documents/Projects/Parse-SDK-iOS-OSX/ParseFacebookUtils/../Carthage/Build/FBSDKLoginKit.xcframework"; sourceTree = "<absolute>"; };
-		B9783172240D14A50049C02B /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B99F4FFE2444B5B00061A6F5 /* ParseTwitterTestApplication.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ParseTwitterTestApplication.entitlements; sourceTree = "<group>"; };
 		B9A7EEC123C49D94003E606E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseTwitterUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,7 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9783173240D14A50049C02B /* OCMock.framework in Frameworks */,
+				39E22B102AD070A500D9AE5C /* OCMock in Frameworks */,
 				8168326A1D1E1A8B00315E21 /* AudioToolbox.framework in Frameworks */,
 				8168325E1D1E1A8600315E21 /* libsqlite3.tbd in Frameworks */,
 				816832591D1E1A7E00315E21 /* SystemConfiguration.framework in Frameworks */,
@@ -301,15 +294,8 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				848E11B22959EF2100BA2457 /* FBAEMKit.xcframework */,
-				848E11B42959EF2100BA2457 /* FBSDKCoreKit_Basics.xcframework */,
-				848E11B62959EF2100BA2457 /* FBSDKCoreKit.xcframework */,
-				848E11B82959EF2100BA2457 /* FBSDKLoginKit.xcframework */,
-				B9783172240D14A50049C02B /* OCMock.framework */,
 				B9A7EEC123C49D94003E606E /* CoreGraphics.framework */,
-				4A13522820282037000F5FD5 /* Bolts.framework */,
 				4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */,
-				4A0ECBDD200D41B600BA84A3 /* Parse.framework */,
 				813DFC8E1AB2513300F25A08 /* System Frameworks */,
 			);
 			name = Frameworks;
@@ -627,6 +613,9 @@
 				8166FB951B4F1E9A003841A2 /* PBXTargetDependency */,
 			);
 			name = "ParseTwitterUtils-Tests";
+			packageProductDependencies = (
+				39E22B0F2AD070A500D9AE5C /* OCMock */,
+			);
 			productName = "ParseFacebookUtilsV4-Tests";
 			productReference = 81CB98C61AB7905D00136FA5 /* ParseTwitterUtils-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -699,6 +688,9 @@
 				Base,
 			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* Breakpad */;
+			packageReferences = (
+				39E22B0E2AD070A500D9AE5C /* XCRemoteSwiftPackageReference "ocmock" */,
+			);
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -1110,6 +1102,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		39E22B0E2AD070A500D9AE5C /* XCRemoteSwiftPackageReference "ocmock" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/erikdoe/ocmock";
+			requirement = {
+				kind = revision;
+				revision = 67bb9602f0a7541f24dc2d6d0d7389ca3e4c2c89;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		39E22B0F2AD070A500D9AE5C /* OCMock */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E22B0E2AD070A500D9AE5C /* XCRemoteSwiftPackageReference "ocmock" */;
+			productName = OCMock;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
 }

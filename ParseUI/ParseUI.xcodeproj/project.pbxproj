@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39E22AD72AD0676700D9AE5C /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = 39E22AD62AD0676700D9AE5C /* OCMock */; };
 		7C77D109292A509000C4D90E /* PFPurchaseTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C77D0C9292A507500C4D90E /* PFPurchaseTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C77D10A292A509000C4D90E /* PFTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C77D0CB292A507500C4D90E /* PFTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C77D10B292A509000C4D90E /* PFQueryTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C77D0CD292A507500C4D90E /* PFQueryTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -126,7 +127,6 @@
 		7C77D1A6292A512300C4D90E /* PFDismissButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C77D104292A507500C4D90E /* PFDismissButton.m */; };
 		7C77D1A7292A512300C4D90E /* PFLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C77D108292A507500C4D90E /* PFLoadingView.m */; };
 		7C77D207292A537400C4D90E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D162292A510400C4D90E /* ParseUI.framework */; };
-		7C77D208292A537E00C4D90E /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D202292A534D00C4D90E /* OCMock.framework */; };
 		7C77D221292A575B00C4D90E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D220292A575B00C4D90E /* Social.framework */; };
 		7C77D222292A580800C4D90E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D220292A575B00C4D90E /* Social.framework */; };
 		7C77D22E292A604700C4D90E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C77D22D292A604700C4D90E /* ParseUI.framework */; };
@@ -331,55 +331,6 @@
 			remoteGlobalIDString = F535C73B1B54B4A800A7D81E;
 			remoteInfo = ParseFacebookTestApplication;
 		};
-		7C77D1F9292A534D00C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77D1EF292A534D00C4D90E /* OCMock.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 030EF0A814632FD000B04273;
-			remoteInfo = OCMock;
-		};
-		7C77D1FB292A534D00C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77D1EF292A534D00C4D90E /* OCMock.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 03565A3118F0566E003AE91E;
-			remoteInfo = OCMockTests;
-		};
-		7C77D1FD292A534D00C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77D1EF292A534D00C4D90E /* OCMock.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 030EF0DC14632FF700B04273;
-			remoteInfo = OCMockLib;
-		};
-		7C77D1FF292A534D00C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77D1EF292A534D00C4D90E /* OCMock.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D31108AD1828DB8700737925;
-			remoteInfo = OCMockLibTests;
-		};
-		7C77D201292A534D00C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77D1EF292A534D00C4D90E /* OCMock.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F0B950F11B0080BE00942C38;
-			remoteInfo = "OCMock iOS";
-		};
-		7C77D203292A534D00C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77D1EF292A534D00C4D90E /* OCMock.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 817EB1621BD765130047E85A;
-			remoteInfo = "OCMock tvOS";
-		};
-		7C77D205292A534D00C4D90E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C77D1EF292A534D00C4D90E /* OCMock.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DE97CA022B43EE60098C63F;
-			remoteInfo = "OCMock watchOS";
-		};
 		84745C482939EE77002D00B2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 84745C3F2939EE77002D00B2 /* ParseFacebookUtils.xcodeproj */;
@@ -550,11 +501,10 @@
 		7C77D162292A510400C4D90E /* ParseUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C77D1A8292A51AA00C4D90E /* ParseTwitterUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ParseTwitterUtils.xcodeproj; path = ../ParseTwitterUtils/ParseTwitterUtils.xcodeproj; sourceTree = "<group>"; };
 		7C77D1D5292A522800C4D90E /* ParseFacebookUtilsiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ParseFacebookUtilsiOS.xcodeproj; path = ../ParseFacebookUtilsiOS/ParseFacebookUtilsiOS.xcodeproj; sourceTree = "<group>"; };
-		7C77D1EF292A534D00C4D90E /* OCMock.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OCMock.xcodeproj; path = ../Carthage/Checkouts/OCMock/Source/OCMock.xcodeproj; sourceTree = "<group>"; };
 		7C77D21F292A56F600C4D90E /* ParseUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C77D220292A575B00C4D90E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7C77D22D292A604700C4D90E /* ParseUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7C77D22F292A604700C4D90E /* ParseUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C77D22F292A604700C4D90E /* ParseUIDemo-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ParseUIDemo-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C77D230292A604700C4D90E /* SignInWithAppleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignInWithAppleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8129E6081A9CB1BE006752BC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8129E6391A9CB320006752BC /* UIDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDemoViewController.swift; sourceTree = "<group>"; };
@@ -660,7 +610,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C77D22E292A604700C4D90E /* ParseUI.framework in Frameworks */,
-				7C77D208292A537E00C4D90E /* OCMock.framework in Frameworks */,
+				39E22AD72AD0676700D9AE5C /* OCMock in Frameworks */,
 				7C77D207292A537400C4D90E /* ParseUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -678,7 +628,7 @@
 				7C77D162292A510400C4D90E /* ParseUI.framework */,
 				7C77D21F292A56F600C4D90E /* ParseUIDemo.app */,
 				7C77D22D292A604700C4D90E /* ParseUI.framework */,
-				7C77D22F292A604700C4D90E /* ParseUIDemo.app */,
+				7C77D22F292A604700C4D90E /* ParseUIDemo-Swift.app */,
 				7C77D230292A604700C4D90E /* SignInWithAppleTests.xctest */,
 				84745C3F2939EE77002D00B2 /* ParseFacebookUtils.xcodeproj */,
 			);
@@ -689,7 +639,6 @@
 			isa = PBXGroup;
 			children = (
 				7C77D220292A575B00C4D90E /* Social.framework */,
-				7C77D1EF292A534D00C4D90E /* OCMock.xcodeproj */,
 				7C77D1D5292A522800C4D90E /* ParseFacebookUtilsiOS.xcodeproj */,
 				7C77D1A8292A51AA00C4D90E /* ParseTwitterUtils.xcodeproj */,
 				7C77D129292A50BF00C4D90E /* Parse.xcodeproj */,
@@ -952,20 +901,6 @@
 				7C77D1E2292A522800C4D90E /* ParseFacebookUtilsiOS.framework */,
 				7C77D1E4292A522800C4D90E /* ParseFacebookUtilsiOS-UnitTests.xctest */,
 				7C77D1E6292A522800C4D90E /* ParseFacebookTestApplication.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		7C77D1F0292A534D00C4D90E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7C77D1FA292A534D00C4D90E /* OCMock.framework */,
-				7C77D1FC292A534D00C4D90E /* OCMockTests.xctest */,
-				7C77D1FE292A534D00C4D90E /* libOCMock.a */,
-				7C77D200292A534D00C4D90E /* OCMockLibTests.xctest */,
-				7C77D202292A534D00C4D90E /* OCMock.framework */,
-				7C77D204292A534D00C4D90E /* OCMock.framework */,
-				7C77D206292A534D00C4D90E /* OCMock.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1341,7 +1276,7 @@
 			);
 			name = "ParseUIDemo-Swift";
 			productName = ParseUIDemo;
-			productReference = 7C77D22F292A604700C4D90E /* ParseUIDemo.app */;
+			productReference = 7C77D22F292A604700C4D90E /* ParseUIDemo-Swift.app */;
 			productType = "com.apple.product-type.application";
 		};
 		81472F661A1AB33800FD6EED /* ParseUIDemo */ = {
@@ -1377,6 +1312,9 @@
 				BCCBE8D823BFB9EB0044A79C /* PBXTargetDependency */,
 			);
 			name = SignInWithAppleTests;
+			packageProductDependencies = (
+				39E22AD62AD0676700D9AE5C /* OCMock */,
+			);
 			productName = SignInWithAppleTests;
 			productReference = 7C77D230292A604700C4D90E /* SignInWithAppleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1432,13 +1370,12 @@
 				"pt-BR",
 			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* Breakpad */;
+			packageReferences = (
+				39E22AD52AD0676700D9AE5C /* XCRemoteSwiftPackageReference "ocmock" */,
+			);
 			productRefGroup = 0867D691FE84028FC02AAC07 /* Breakpad */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 7C77D1F0292A534D00C4D90E /* Products */;
-					ProjectRef = 7C77D1EF292A534D00C4D90E /* OCMock.xcodeproj */;
-				},
 				{
 					ProductGroup = 7C77D12A292A50BF00C4D90E /* Products */;
 					ProjectRef = 7C77D129292A50BF00C4D90E /* Parse.xcodeproj */;
@@ -1592,55 +1529,6 @@
 			fileType = wrapper.application;
 			path = ParseFacebookTestApplication.app;
 			remoteRef = 7C77D1E5292A522800C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77D1FA292A534D00C4D90E /* OCMock.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OCMock.framework;
-			remoteRef = 7C77D1F9292A534D00C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77D1FC292A534D00C4D90E /* OCMockTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = OCMockTests.xctest;
-			remoteRef = 7C77D1FB292A534D00C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77D1FE292A534D00C4D90E /* libOCMock.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libOCMock.a;
-			remoteRef = 7C77D1FD292A534D00C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77D200292A534D00C4D90E /* OCMockLibTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = OCMockLibTests.xctest;
-			remoteRef = 7C77D1FF292A534D00C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77D202292A534D00C4D90E /* OCMock.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OCMock.framework;
-			remoteRef = 7C77D201292A534D00C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77D204292A534D00C4D90E /* OCMock.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OCMock.framework;
-			remoteRef = 7C77D203292A534D00C4D90E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7C77D206292A534D00C4D90E /* OCMock.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OCMock.framework;
-			remoteRef = 7C77D205292A534D00C4D90E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		84745C492939EE77002D00B2 /* ParseFacebookUtilsV4.framework */ = {
@@ -1997,7 +1885,8 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -2055,8 +1944,12 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
@@ -2115,8 +2008,12 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SKIP_INSTALL = YES;
@@ -2182,8 +2079,12 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
@@ -2242,8 +2143,12 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SKIP_INSTALL = YES;
@@ -2287,10 +2192,13 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ParseUIDemo/Other/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.parse.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = ParseUIDemo;
+				PRODUCT_NAME = "ParseUIDemo-Swift";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2324,10 +2232,13 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ParseUIDemo/Other/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.parse.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = ParseUIDemo;
+				PRODUCT_NAME = "ParseUIDemo-Swift";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2369,8 +2280,12 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ParseUIDemo/Other/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) /usr/lib/swift @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/lib/swift,
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.ParseUIDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2404,8 +2319,12 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ParseUIDemo/Other/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) /usr/lib/swift @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/lib/swift,
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.ParseUIDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2445,7 +2364,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = SignInWithAppleTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.parseplatform.SignInWithAppleTests;
@@ -2482,7 +2405,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = SignInWithAppleTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.parseplatform.SignInWithAppleTests;
@@ -2551,6 +2478,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		39E22AD52AD0676700D9AE5C /* XCRemoteSwiftPackageReference "ocmock" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/erikdoe/ocmock";
+			requirement = {
+				kind = revision;
+				revision = 67bb9602f0a7541f24dc2d6d0d7389ca3e4c2c89;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		39E22AD62AD0676700D9AE5C /* OCMock */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39E22AD52AD0676700D9AE5C /* XCRemoteSwiftPackageReference "ocmock" */;
+			productName = OCMock;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
 }

@@ -10,6 +10,12 @@
 [![Coverage](https://img.shields.io/codecov/c/github/parse-community/Parse-SDK-iOS-OSX/master.svg)](https://codecov.io/github/parse-community/Parse-SDK-iOS-OSX?branch=master)
 [![auto-release](https://img.shields.io/badge/%F0%9F%9A%80-auto--release-9e34eb.svg)](https://github.com/parse-community/Parse-SDK-iOS-OSX/releases)
 
+![iOS](https://img.shields.io/badge/iOS-12.0-green?style=flat)
+![iPad](https://img.shields.io/badge/ipadOS-12.0-green?style=flat)
+![macOS](https://img.shields.io/badge/macOS-10.15-green?style=flat)
+![watchOS](https://img.shields.io/badge/watchOS-2.0-green?style=flat)
+![tvOS](https://img.shields.io/badge/tvOS-12.0-green?style=flat)
+
 ![SPM](https://img.shields.io/badge/Swift_Package_Manager-compatible-green?style=flat)
 
 [![Backers on Open Collective](https://opencollective.com/parse-server/backers/badge.svg)][open-collective-link]
