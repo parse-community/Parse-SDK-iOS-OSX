@@ -9,7 +9,7 @@
 
 #import "PFConstants.h"
 
-#if TARGET_OS_IOS || PF_TARGET_OS_OSX || TARGET_OS_TV
+#if TARGET_OS_IOS || PF_TARGET_OS_OSX || TARGET_OS_TV || TARGET_OS_VISION
 
 #import "PFInstallation.h"
 #import "PFInstallationPrivate.h"
