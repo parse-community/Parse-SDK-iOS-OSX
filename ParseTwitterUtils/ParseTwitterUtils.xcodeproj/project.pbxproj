@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		06D00BB51BC790F3005BAA6F /* PFTwitterLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D00BB41BC790F3005BAA6F /* PFTwitterLocalization.h */; };
 		39E22B102AD070A500D9AE5C /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = 39E22B0F2AD070A500D9AE5C /* OCMock */; };
+		39E2490B2AD1C6470014357C /* ParseTwitterUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 39E2490A2AD1C6470014357C /* ParseTwitterUtils */; };
+		39E2490D2AD1C6520014357C /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 39E2490C2AD1C6520014357C /* ParseObjC */; };
 		7C605D0B292A91D700E4B6D2 /* PFTwitterLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C605D02292A91D700E4B6D2 /* PFTwitterLocalization.m */; };
 		7C605D0C292A91D700E4B6D2 /* PFTwitterLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C605D02292A91D700E4B6D2 /* PFTwitterLocalization.m */; };
 		7C77D07E2929241300C4D90E /* PF_Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C77D079292923FF00C4D90E /* PF_Twitter.m */; };
@@ -60,90 +62,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4A1350A82027F4B8000F5FD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 81C3821B19CCA89E0066284A;
-			remoteInfo = "Parse-iOS";
-		};
-		4A51E4072027CC0F0066DE1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81C3821C19CCA89E0066284A;
-			remoteInfo = "Parse-iOS";
-		};
-		4A51E4092027CC0F0066DE1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81C5845D1C3B0A98000063C6;
-			remoteInfo = "Parse-iOS-Dynamic";
-		};
-		4A51E40B2027CC0F0066DE1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 816F449B1A8E8933009CDB32;
-			remoteInfo = "ParseUnitTests-iOS";
-		};
-		4A51E40D2027CC0F0066DE1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 97010FAC1630B18F00AB761E;
-			remoteInfo = "Parse-macOS";
-		};
-		4A51E40F2027CC0F0066DE1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81C09F861AF97A490043B49C;
-			remoteInfo = "ParseUnitTests-macOS";
-		};
-		4A51E4112027CC0F0066DE1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 815F24151BD04D150054659F;
-			remoteInfo = "Parse-tvOS";
-		};
-		4A51E4132027CC0F0066DE1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81C585BF1C3B0AA1000063C6;
-			remoteInfo = "Parse-tvOS-Dynamic";
-		};
-		4A51E4152027CC0F0066DE1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 810156691BB3832700D7C7BD;
-			remoteInfo = "Parse-watchOS";
-		};
-		4A51E4172027CC0F0066DE1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81C5870F1C3B0AA9000063C6;
-			remoteInfo = "Parse-watchOS-Dynamic";
-		};
-		4A51E4192027CC0F0066DE1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4AE33A0B1F5451AD0088DCA0;
-			remoteInfo = "ParseUnitTests-iOS-host";
-		};
-		4A51E41B2027CC1C0066DE1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 81C582E11C3B0A98000063C6;
-			remoteInfo = "Parse-iOS-Dynamic";
-		};
 		8166FB941B4F1E9A003841A2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -151,18 +69,11 @@
 			remoteGlobalIDString = 8166FB661B4F1D77003841A2;
 			remoteInfo = ParseTwitterTestApplication;
 		};
-		B9783142240D050B0049C02B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D;
-			remoteInfo = "ParseTwitterUtils-iOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		06D00BB41BC790F3005BAA6F /* PFTwitterLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFTwitterLocalization.h; sourceTree = "<group>"; };
-		4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parse.xcodeproj; path = ../Parse/Parse.xcodeproj; sourceTree = "<group>"; };
+		39E249092AD1C61F0014357C /* Parse-SDK-iOS-OSX */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "Parse-SDK-iOS-OSX"; path = ..; sourceTree = "<group>"; };
 		7C605D02292A91D700E4B6D2 /* PFTwitterLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFTwitterLocalization.m; sourceTree = "<group>"; };
 		7C77D076292923FF00C4D90E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ParseTwitterUtils.strings; sourceTree = "<group>"; };
 		7C77D077292923FF00C4D90E /* Info-iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
@@ -242,6 +153,7 @@
 			files = (
 				39E22B102AD070A500D9AE5C /* OCMock in Frameworks */,
 				8168326A1D1E1A8B00315E21 /* AudioToolbox.framework in Frameworks */,
+				39E2490B2AD1C6470014357C /* ParseTwitterUtils in Frameworks */,
 				8168325E1D1E1A8600315E21 /* libsqlite3.tbd in Frameworks */,
 				816832591D1E1A7E00315E21 /* SystemConfiguration.framework in Frameworks */,
 				816832521D1E1A7900315E21 /* Security.framework in Frameworks */,
@@ -259,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E2490D2AD1C6520014357C /* ParseObjC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,13 +192,13 @@
 		0867D691FE84028FC02AAC07 /* Breakpad */ = {
 			isa = PBXGroup;
 			children = (
+				39E249082AD1C61F0014357C /* Packages */,
 				B99F4FFE2444B5B00061A6F5 /* ParseTwitterTestApplication.entitlements */,
 				F51535381B57451200C49F56 /* Configurations */,
 				8135E48C1B4B6A0E0092F452 /* ParseTwitterUtils */,
 				81CB98D21AB7906D00136FA5 /* Tests */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
-				8EF82AB7049F0059A572B973 /* Pods */,
 			);
 			indentWidth = 4;
 			name = Breakpad;
@@ -295,27 +208,17 @@
 			isa = PBXGroup;
 			children = (
 				B9A7EEC123C49D94003E606E /* CoreGraphics.framework */,
-				4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */,
 				813DFC8E1AB2513300F25A08 /* System Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4A51E3FB2027CC0F0066DE1A /* Products */ = {
+		39E249082AD1C61F0014357C /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				4A51E4082027CC0F0066DE1A /* Parse.framework */,
-				4A51E40A2027CC0F0066DE1A /* Parse.framework */,
-				4A51E40C2027CC0F0066DE1A /* ParseUnitTests-iOS.xctest */,
-				4A51E40E2027CC0F0066DE1A /* Parse.framework */,
-				4A51E4102027CC0F0066DE1A /* ParseUnitTests-macOS.xctest */,
-				4A51E4122027CC0F0066DE1A /* Parse.framework */,
-				4A51E4142027CC0F0066DE1A /* Parse.framework */,
-				4A51E4162027CC0F0066DE1A /* Parse.framework */,
-				4A51E4182027CC0F0066DE1A /* Parse.framework */,
-				4A51E41A2027CC0F0066DE1A /* ParseUnitTests-iOS-host.app */,
+				39E249092AD1C61F0014357C /* Parse-SDK-iOS-OSX */,
 			);
-			name = Products;
+			name = Packages;
 			sourceTree = "<group>";
 		};
 		7C77D074292923FF00C4D90E /* Resources */ = {
@@ -520,13 +423,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		8EF82AB7049F0059A572B973 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		F51535381B57451200C49F56 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,12 +505,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				B9783143240D050B0049C02B /* PBXTargetDependency */,
 				8166FB951B4F1E9A003841A2 /* PBXTargetDependency */,
 			);
 			name = "ParseTwitterUtils-Tests";
 			packageProductDependencies = (
 				39E22B0F2AD070A500D9AE5C /* OCMock */,
+				39E2490A2AD1C6470014357C /* ParseTwitterUtils */,
 			);
 			productName = "ParseFacebookUtilsV4-Tests";
 			productReference = 81CB98C61AB7905D00136FA5 /* ParseTwitterUtils-Tests.xctest */;
@@ -633,7 +529,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4A51E41C2027CC1C0066DE1A /* PBXTargetDependency */,
 			);
 			name = "ParseTwitterUtils-iOS-Dynamic";
 			productName = Breakpad;
@@ -653,9 +548,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				4A1350A92027F4B8000F5FD5 /* PBXTargetDependency */,
 			);
 			name = "ParseTwitterUtils-iOS";
+			packageProductDependencies = (
+				39E2490C2AD1C6520014357C /* ParseObjC */,
+			);
 			productName = Breakpad;
 			productReference = D2AAC07E0554694100DB518D /* ParseTwitterUtils.framework */;
 			productType = "com.apple.product-type.framework";
@@ -693,12 +590,6 @@
 			);
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 4A51E3FB2027CC0F0066DE1A /* Products */;
-					ProjectRef = 4A51E3FA2027CC0F0066DE1A /* Parse.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				D2AAC07D0554694100DB518D /* ParseTwitterUtils-iOS */,
@@ -708,79 +599,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		4A51E4082027CC0F0066DE1A /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 4A51E4072027CC0F0066DE1A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A51E40A2027CC0F0066DE1A /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 4A51E4092027CC0F0066DE1A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A51E40C2027CC0F0066DE1A /* ParseUnitTests-iOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "ParseUnitTests-iOS.xctest";
-			remoteRef = 4A51E40B2027CC0F0066DE1A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A51E40E2027CC0F0066DE1A /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 4A51E40D2027CC0F0066DE1A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A51E4102027CC0F0066DE1A /* ParseUnitTests-macOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "ParseUnitTests-macOS.xctest";
-			remoteRef = 4A51E40F2027CC0F0066DE1A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A51E4122027CC0F0066DE1A /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 4A51E4112027CC0F0066DE1A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A51E4142027CC0F0066DE1A /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 4A51E4132027CC0F0066DE1A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A51E4162027CC0F0066DE1A /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 4A51E4152027CC0F0066DE1A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A51E4182027CC0F0066DE1A /* Parse.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parse.framework;
-			remoteRef = 4A51E4172027CC0F0066DE1A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4A51E41A2027CC0F0066DE1A /* ParseUnitTests-iOS-host.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "ParseUnitTests-iOS-host.app";
-			remoteRef = 4A51E4192027CC0F0066DE1A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8139B1341A7BF6B5002BEF84 /* Resources */ = {
@@ -816,7 +634,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		81B3F2291AC9CA2600A92677 /* Generate Localizable Strings */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -824,7 +642,7 @@
 			name = "Generate Localizable Strings";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# Generate localizable strings\nLOCALIZATION_FOLDER=$PROJECT_DIR/ParseTwitterUtils/Resources/en.lproj\nLOCALIZATION_MACRO=PFTWLocalizedString\n\nfind $PROJECT_DIR/ParseTwitterUtils -name '*.m' -print0 | xargs -0 xcrun extractLocStrings -s $LOCALIZATION_MACRO -q -o $LOCALIZATION_FOLDER\n\nmv $LOCALIZATION_FOLDER/Localizable.strings $LOCALIZATION_FOLDER/ParseTwitterUtils.strings\n";
 			showEnvVarsInLog = 0;
@@ -901,27 +719,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4A1350A92027F4B8000F5FD5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Parse-iOS";
-			targetProxy = 4A1350A82027F4B8000F5FD5 /* PBXContainerItemProxy */;
-		};
-		4A51E41C2027CC1C0066DE1A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Parse-iOS-Dynamic";
-			targetProxy = 4A51E41B2027CC1C0066DE1A /* PBXContainerItemProxy */;
-		};
 		8166FB951B4F1E9A003841A2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
 			target = 8166FB661B4F1D77003841A2 /* ParseTwitterTestApplication */;
 			targetProxy = 8166FB941B4F1E9A003841A2 /* PBXContainerItemProxy */;
-		};
-		B9783143240D050B0049C02B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = D2AAC07D0554694100DB518D /* ParseTwitterUtils-iOS */;
-			targetProxy = B9783142240D050B0049C02B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -941,7 +743,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F51535531B57453700C49F56 /* ParseTwitterUtils-iOS.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -951,7 +753,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F51535531B57453700C49F56 /* ParseTwitterUtils-iOS.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -997,7 +799,7 @@
 			baseConfigurationReference = F51535551B57455200C49F56 /* ParseTwitterTestApplication.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ParseTwitterTestApplication.entitlements;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1008,7 +810,7 @@
 			baseConfigurationReference = F51535551B57455200C49F56 /* ParseTwitterTestApplication.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ParseTwitterTestApplication.entitlements;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1035,7 +837,7 @@
 			baseConfigurationReference = 81ECACD91D1E14F300FA7673 /* ParseTwitterUtils-iOS-Dynamic.xcconfig */;
 			buildSettings = {
 				CLANG_MODULES_AUTOLINK = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1046,7 +848,7 @@
 			baseConfigurationReference = 81ECACD91D1E14F300FA7673 /* ParseTwitterUtils-iOS-Dynamic.xcconfig */;
 			buildSettings = {
 				CLANG_MODULES_AUTOLINK = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1119,6 +921,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 39E22B0E2AD070A500D9AE5C /* XCRemoteSwiftPackageReference "ocmock" */;
 			productName = OCMock;
+		};
+		39E2490A2AD1C6470014357C /* ParseTwitterUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParseTwitterUtils;
+		};
+		39E2490C2AD1C6520014357C /* ParseObjC */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParseObjC;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -9,7 +9,7 @@
 
 #import <OCMock/OCMock.h>
 
-@import Bolts.BFTask;
+@import Bolts;
 
 #import "PFCachedQueryController.h"
 #import "PFCommandResult.h"

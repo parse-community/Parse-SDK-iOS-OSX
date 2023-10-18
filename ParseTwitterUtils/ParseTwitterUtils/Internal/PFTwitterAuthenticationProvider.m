@@ -15,11 +15,7 @@
 #import "BFTask.h"
 #endif
 
-#if __has_include(<Parse/PFConstants.h>)
-#import <Parse/PFConstants.h>
-#else
-#import "PFConstants.h"
-#endif
+@import ParseCore;
 
 #import "PFTwitterPrivateUtilities.h"
 #import "PF_Twitter.h"
