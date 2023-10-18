@@ -4,12 +4,7 @@
 //
 //  Created by Volodymyr Nazarkevych on 29.11.2022.
 //
-
-#if __has_include(<ParseFacebookUtilsV4/PFFacebookUtils.h>)
-#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
-#else
-#import "PFFacebookUtils.h"
-#endif
+@import ParseFacebookUtils;
 
 @interface PFFacebookUtilsDevice : PFFacebookUtils
 

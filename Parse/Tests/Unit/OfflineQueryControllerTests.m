@@ -9,8 +9,7 @@
 
 #import <OCMock/OCMock.h>
 
-@import Bolts.BFCancellationTokenSource;
-@import Bolts.BFTask;
+@import Bolts;
 
 #import "OCMock+Parse.h"
 #import "PFCommandResult.h"
