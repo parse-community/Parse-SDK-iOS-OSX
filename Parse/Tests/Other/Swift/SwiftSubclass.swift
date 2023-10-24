@@ -9,7 +9,7 @@
 
 import Foundation
 
-import Parse
+import ParseCore
 
 @objc
 public class SwiftSubclass: PFObject, PFSubclassing {

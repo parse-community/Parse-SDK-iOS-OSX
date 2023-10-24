@@ -11,7 +11,7 @@
 #import "PFTwitterUtils_Private.h"
 #import "PF_Twitter.h"
 
-@import Parse;
+@import ParseCore;
 
 ///--------------------------------------
 #pragma mark - Tests

@@ -8,8 +8,8 @@
  */
 
 @import Accounts;
-@import Bolts.BFTask;
-@import Parse.PFConstants;
+@import Bolts;
+@import ParseCore;
 @import Social;
 
 #import "PFOAuth1FlowDialog.h"
