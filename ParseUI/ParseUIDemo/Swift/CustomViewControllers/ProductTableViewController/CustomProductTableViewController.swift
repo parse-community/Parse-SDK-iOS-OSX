@@ -21,7 +21,7 @@
 
 import UIKit
 
-import Parse
+import ParseCore
 import ParseUI
 
 class CustomProductTableViewController: PFProductTableViewController {

@@ -7,11 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if __has_include(<ParseFacebookUtilsV4/PFFacebookUtils.h>)
-#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
-#else
-#import "PFFacebookUtils.h"
-#endif
+@import ParseFacebookUtils;
 
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 

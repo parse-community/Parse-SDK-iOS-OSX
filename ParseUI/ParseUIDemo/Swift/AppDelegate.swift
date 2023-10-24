@@ -20,7 +20,7 @@
 */
 
 import UIKit
-import Parse
+import ParseCore
 import ParseFacebookUtilsiOS
 import ParseTwitterUtils
 

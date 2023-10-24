@@ -20,6 +20,7 @@
  */
 
 #import "PFImageView.h"
+#import "PFImageCache.h"
 
 #if __has_include(<Bolts/BFTaskCompletionSource.h>)
 #import <Bolts/BFTaskCompletionSource.h>
@@ -27,13 +28,7 @@
 #import "BFTaskCompletionSource.h"
 #endif
 
-#if __has_include(<Parse/PFFileObject.h>)
-#import <Parse/PFFileObject.h>
-#else
-#import "PFFileObject.h"
-#endif
-
-#import "PFImageCache.h"
+@import ParseCore;
 
 @implementation PFImageView
 

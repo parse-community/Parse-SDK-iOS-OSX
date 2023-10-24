@@ -8,22 +8,10 @@
  */
 
 #import <Foundation/Foundation.h>
-
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-#if __has_include(<Parse/PFConstants.h>)
-#import <Parse/PFConstants.h>
-#import <Parse/PFUser.h>
-#else
-#import "PFConstants.h"
-#import "PFUser.h"
-#endif
-
-#if __has_include(<ParseFacebookUtilsV4/PFFacebookAuthenticationProvider.h>)
-#import <ParseFacebookUtilsV4/PFFacebookAuthenticationProvider.h>
-#else
-#import "PFFacebookAuthenticationProvider.h"
-#endif
+@import ParseCore;
+@import ParseFacebookUtils;
 
 @class BFTask<__covariant BFGenericType>;
 

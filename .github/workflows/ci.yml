@@ -61,18 +61,6 @@ jobs:
       - name: Bundle Install
         if: steps.cache-gems.outputs.cache-hit != 'true'
         run: bundle install
-      - name: Cache Carthage
-        uses: actions/cache@v3
-        id: carthage-cache
-        with:
-          path: Carthage
-          key: ${{ runner.os }}-carthage-${{ hashFiles('**/Cartfile.resolved') }}
-          restore-keys: |
-            ${{ runner.os }}-carthage-
-      - name: Carthage
-        if: ${{ steps.carthage-cache.outputs.cache-hit != 'true' }}
-        run: |
-          carthage bootstrap --use-xcframeworks
       - name: Build-Test
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake ${{ matrix.script == 'xcode15' && 'build:starters' || matrix.script }}
         env:

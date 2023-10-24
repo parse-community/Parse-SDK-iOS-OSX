@@ -9,11 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if __has_include(<Bolts/BFTask.h>)
-#import <Bolts/BFTask.h>
-#else
-#import "BFTask.h"
-#endif
+@import Bolts;
 
 #import "PFConstants.h"
 

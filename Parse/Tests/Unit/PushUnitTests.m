@@ -9,7 +9,7 @@
 
 #import <OCMock/OCMock.H>
 
-@import Bolts.BFTask;
+@import Bolts;
 
 #import "PFCoreManager.h"
 #import "PFCurrentInstallationController.h"

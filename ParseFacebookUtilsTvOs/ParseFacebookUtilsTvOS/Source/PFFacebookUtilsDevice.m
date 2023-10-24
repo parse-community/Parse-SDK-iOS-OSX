@@ -15,17 +15,8 @@
 #import "BFExecutor.h"
 #endif
 
-#if __has_include(<Parse/Parse.h>)
-#import <Parse/Parse.h>
-#else
-#import "Parse.h"
-#endif
-
-#if __has_include(<ParseFacebookUtilsV4/PFFacebookUtils.h>)
-#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
-#else
-#import "PFFacebookUtils.h"
-#endif
+@import ParseCore;
+@import ParseFacebookUtils;
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "PFFacebookDeviceAuthenticationProvider.h"

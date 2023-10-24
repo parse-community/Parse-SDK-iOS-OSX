@@ -20,13 +20,6 @@
  */
 
 #import "PFLogInViewController.h"
-
-#if __has_include(<Parse/PFUser.h>)
-#import <Parse/PFUser.h>
-#else
-#import "PFUser.h"
-#endif
-
 #import "PFActionButton.h"
 #import "PFUIAlertView.h"
 #import "PFLocalization.h"
@@ -35,6 +28,8 @@
 #import "PFTextField.h"
 #import "PFLogInView_Private.h"
 #import "PFAppleUtils.h"
+
+@import ParseCore;
 
 NSString *const PFLogInSuccessNotification = @"com.parse.ui.login.success";
 NSString *const PFLogInFailureNotification = @"com.parse.ui.login.failure";

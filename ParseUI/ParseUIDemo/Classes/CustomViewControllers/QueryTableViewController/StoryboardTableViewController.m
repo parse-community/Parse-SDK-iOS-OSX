@@ -20,16 +20,9 @@
  */
 
 #import "StoryboardTableViewController.h"
-
-#if __has_include(<Parse/PFObject.h>)
-#import <Parse/PFObject.h>
-#import <Parse/PFQuery.h>
-#else
-#import "PFObject.h"
-#import "PFQuery.h"
-#endif
-
 #import "PFTableViewCell.h"
+
+@import ParseCore;
 
 @implementation StoryboardTableViewController
 

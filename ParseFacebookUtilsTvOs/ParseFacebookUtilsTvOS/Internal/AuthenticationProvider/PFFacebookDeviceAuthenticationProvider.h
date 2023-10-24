@@ -9,11 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if __has_include(<ParseFacebookUtilsV4/PFFacebookAuthenticationProvider.h>)
-#import <ParseFacebookUtilsV4/PFFacebookAuthenticationProvider.h>
-#else
-#import "PFFacebookAuthenticationProvider.h"
-#endif
+@import ParseFacebookUtils;
 
 @interface PFFacebookDeviceAuthenticationProvider : PFFacebookAuthenticationProvider
 

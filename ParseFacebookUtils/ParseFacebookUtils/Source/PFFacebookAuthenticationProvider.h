@@ -16,14 +16,7 @@
 #import "BFTask.h"
 #endif
 
-#if __has_include(<Parse/PFConstants.h>)
-#import <Parse/PFConstants.h>
-#import <Parse/PFUserAuthenticationDelegate.h>
-#else
-#import "PFConstants.h"
-#import "PFUserAuthenticationDelegate.h"
-#endif
-
+@import ParseCore;
 
 NS_ASSUME_NONNULL_BEGIN
 
