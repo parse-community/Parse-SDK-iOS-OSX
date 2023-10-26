@@ -106,7 +106,7 @@
 
 - (void)testObjectForUnavailableKey {
     PFObject *object = [PFObject objectWithoutDataWithClassName:@"Yarr" objectId:nil];
-    XCTAssertNil(object[@"yarr"]);
+    PFAssertThrowsInconsistencyException(object[@"yarr"]);
 }
 
 - (void)testSettersWithNilArguments {
