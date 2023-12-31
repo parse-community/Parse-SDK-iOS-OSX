@@ -51,6 +51,8 @@
 
 @synthesize stagedFilePath = _stagedFilePath;
 
++ (BOOL)supportsSecureCoding { return YES; }
+
 ///--------------------------------------
 #pragma mark - Public
 ///--------------------------------------
@@ -501,6 +503,24 @@
 
 + (PFFileController *)fileController {
     return [Parse _currentManager].coreManager.fileController;
+}
+
+#pragma mark - NSSecureCoding
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    PFEncoder *encoder = [PFEncoder objectEncoder];
+    __autoreleasing NSError *error;
+    NSDictionary *dict = [encoder encodeObject:self error:&error];
+    if (dict && error == nil) {
+        [coder encodeObject:dict];
+    }
+}
+
+- (nullable instancetype)initWithCoder:(NSCoder *)coder {
+    NSDictionary *dict = [coder decodeObject];
+    PFDecoder *decoder = [PFDecoder objectDecoder];
+    PFFileObject *fileObject = [decoder decodeObject:dict];
+    return (fileObject.name && fileObject.url) ? fileObject : nil;
 }
 
 @end

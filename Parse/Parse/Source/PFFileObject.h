@@ -31,7 +31,14 @@ __attribute__((unavailable("PFFile was renamed to PFFileObject. Please use it in
  `PFFileObject` representes a file of binary data stored on the Parse servers.
  This can be a image, video, or anything else that an application needs to reference in a non-relational way.
  */
-@interface PFFileObject : NSObject
+@interface PFFileObject : NSObject <NSSecureCoding>
+
+/**
+ Class property required for NSSecureCoding: also it must return YES
+
+ @return Whether the class supports NSSecureCoding..
+ */
++ (BOOL)supportsSecureCoding;
 
 ///--------------------------------------
 #pragma mark - Creating a PFFileObject
