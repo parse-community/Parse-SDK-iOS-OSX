@@ -23,7 +23,7 @@ let package = Package(
         .package(url: "https://github.com/parse-community/Bolts-ObjC.git", from: "1.10.0"),
         .package(url: "https://github.com/BoltsFramework/Bolts-Swift.git", from: "1.5.0"),
         .package(url: "https://github.com/daltoniam/Starscream.git", from: "4.0.6"),
-        .package(url: "https://github.com/facebook/facebook-ios-sdk.git", from: "16.3.1"),
+        .package(url: "https://github.com/facebook/facebook-ios-sdk.git", from: "17.0.0"),
         .package(name: "OCMock", url: "https://github.com/erikdoe/ocmock.git", .revision("67bb9602f0a7541f24dc2d6d0d7389ca3e4c2c89"))
     ],
     targets: [
