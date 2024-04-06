@@ -30,7 +30,7 @@ jobs:
       - name: Submodules and Bundle Install
         run: |
           git submodule update --init --recursive
-          sudo gem install bundler
+          sudo gem install bundler -v 2.4.22
           bundle config set path 'vendor/bundle'
           bundle install
       - run: npm ci
@@ -64,7 +64,7 @@ jobs:
       - name: Submodules
         run: |
           git submodule update --init --recursive
-          sudo gem install bundler
+          sudo gem install bundler -v 2.4.22
           bundle config path vendor/bundle
       - name: Bundle Install
         if: steps.cache-gems.outputs.cache-hit != 'true'
