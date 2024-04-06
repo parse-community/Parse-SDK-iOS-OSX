@@ -14,7 +14,7 @@ jobs:
   tests:
     env:
       GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    timeout-minutes: 60
+    timeout-minutes: 30
     strategy:
       matrix:
         script:
@@ -56,7 +56,7 @@ jobs:
       - name: Submodules
         run: |
           git submodule update --init --recursive
-          sudo gem install bundler
+          sudo gem install bundler -v 2.4.22
           bundle config set path 'vendor/bundle'
       - name: Bundle Install
         if: steps.cache-gems.outputs.cache-hit != 'true'
@@ -94,6 +94,7 @@ jobs:
           xcode_archive_path: ${{ env.TEST_RESULTS }}
   docs:
     runs-on: macos-13
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v3
       - name: Setup Ruby
@@ -109,7 +110,7 @@ jobs:
       - name: Submodules
         run: |
           git submodule update --init --recursive
-          sudo gem install bundler
+          sudo gem install bundler -v 2.4.22
           bundle config path vendor/bundle
       - name: Bundle Install
         if: steps.cache-gems.outputs.cache-hit != 'true'
