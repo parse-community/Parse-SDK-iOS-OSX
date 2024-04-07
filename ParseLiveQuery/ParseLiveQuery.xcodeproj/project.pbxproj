@@ -20,6 +20,7 @@
 		4A819D9D1D937866009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
 		4A819D9E1D93786A009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
 		6B63F1642BC34F3900F89DEE /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 6B63F1632BC34F3900F89DEE /* ParseObjC */; };
+		6B63F1682BC355C900F89DEE /* BoltsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6B63F1672BC355C900F89DEE /* BoltsSwift */; };
 		708836762561F503005B32F0 /* ParseLiveQuery_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 708836742561F503005B32F0 /* ParseLiveQuery_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		708836982561F55B005B32F0 /* ParseLiveQuery_tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 708836962561F55B005B32F0 /* ParseLiveQuery_tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		95E91676299526B200EFDB34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE9011E25AF3A00F408BC /* Foundation.framework */; };
@@ -183,6 +184,7 @@
 				95E916B6299527DC00EFDB34 /* SystemConfiguration.framework in Frameworks */,
 				95E916B12995279800EFDB34 /* AudioToolbox.framework in Frameworks */,
 				6B63F1642BC34F3900F89DEE /* ParseObjC in Frameworks */,
+				6B63F1682BC355C900F89DEE /* BoltsSwift in Frameworks */,
 				393363902ACF889100E582D4 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +434,7 @@
 			packageProductDependencies = (
 				3933638F2ACF889100E582D4 /* Starscream */,
 				6B63F1632BC34F3900F89DEE /* ParseObjC */,
+				6B63F1672BC355C900F89DEE /* BoltsSwift */,
 			);
 			productName = ParseLiveQuery;
 			productReference = F5A9BFCA1BE0248D00E78326 /* ParseLiveQuery.framework */;
@@ -1106,6 +1109,11 @@
 		6B63F1632BC34F3900F89DEE /* ParseObjC */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ParseObjC;
+		};
+		6B63F1672BC355C900F89DEE /* BoltsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 393363602ACF772800E582D4 /* XCRemoteSwiftPackageReference "Bolts-Swift" */;
+			productName = BoltsSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
