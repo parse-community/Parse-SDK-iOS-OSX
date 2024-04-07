@@ -13,6 +13,7 @@
 		39452DFD2AD914110066C2AE /* BoltsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 39452DFC2AD914110066C2AE /* BoltsSwift */; };
 		39E22AD72AD0676700D9AE5C /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = 39E22AD62AD0676700D9AE5C /* OCMock */; };
 		39E249A52AD1DD2E0014357C /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 39E249A42AD1DD2E0014357C /* ParseObjC */; };
+		6B63F1602BC34E4A00F89DEE /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 6B63F15F2BC34E4A00F89DEE /* ParseObjC */; };
 		7C77D109292A509000C4D90E /* PFPurchaseTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C77D0C9292A507500C4D90E /* PFPurchaseTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C77D10A292A509000C4D90E /* PFTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C77D0CB292A507500C4D90E /* PFTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C77D10B292A509000C4D90E /* PFQueryTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C77D0CD292A507500C4D90E /* PFQueryTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -370,6 +371,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B63F1602BC34E4A00F89DEE /* ParseObjC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -977,6 +979,9 @@
 			dependencies = (
 			);
 			name = "ParseUI-Dynamic";
+			packageProductDependencies = (
+				6B63F15F2BC34E4A00F89DEE /* ParseObjC */,
+			);
 			productName = ParseUI;
 			productReference = 7C77D162292A510400C4D90E /* ParseUI.framework */;
 			productType = "com.apple.product-type.framework";
@@ -2084,6 +2089,10 @@
 			productName = OCMock;
 		};
 		39E249A42AD1DD2E0014357C /* ParseObjC */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParseObjC;
+		};
+		6B63F15F2BC34E4A00F89DEE /* ParseObjC */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ParseObjC;
 		};
