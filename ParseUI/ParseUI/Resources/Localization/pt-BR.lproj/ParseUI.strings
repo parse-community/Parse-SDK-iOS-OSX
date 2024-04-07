@@ -22,9 +22,6 @@
 /* Error occurred during deletion */
 "Error occurred during deletion" = "Ocorreu um erro ao apagar";
 
-/* Facebook */
-"Facebook" = "Facebook";
-
 /* Forgot Password? */
 "Forgot Password?" = "Esqueceu a senha?";
 
@@ -39,12 +36,6 @@
 
 /* Log In */
 "Log In" = "Inicial Sessão";
-
-/* Log In with Facebook */
-"Log In with Facebook" = "Iniciar Sessão com o Facebook";
-
-/* Log In with Twitter */
-"Log In with Twitter" = "Iniciar Sessão com o Twitter";
 
 /* Login failed alert title in PFLogInViewController */
 "Login Failed" = "Falha ao Entrar";
@@ -102,9 +93,6 @@
 
 /* Invalid login credentials alert message in PFLogInViewController */
 "The username and password you entered don't match" = "O nome de usuário e a senha fornecidas não batem";
-
-/* Twitter */
-"Twitter" = "Twitter";
 
 /* Username */
 "Username" = "Nome de usuário";

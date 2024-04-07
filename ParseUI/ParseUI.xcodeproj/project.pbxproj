@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		39452DEA2AD8FB9A0066C2AE /* ParseTwitterUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 39452DE92AD8FB9A0066C2AE /* ParseTwitterUtils */; };
 		39452DEC2AD8FC110066C2AE /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 39452DEB2AD8FC110066C2AE /* ParseObjC */; };
 		39452DF82AD9121D0066C2AE /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 39452DF72AD9121D0066C2AE /* ParseObjC */; };
 		39452DFA2AD9121D0066C2AE /* ParseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 39452DF92AD9121D0066C2AE /* ParseUI */; };
 		39452DFD2AD914110066C2AE /* BoltsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 39452DFC2AD914110066C2AE /* BoltsSwift */; };
 		39E22AD72AD0676700D9AE5C /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = 39E22AD62AD0676700D9AE5C /* OCMock */; };
 		39E249A52AD1DD2E0014357C /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 39E249A42AD1DD2E0014357C /* ParseObjC */; };
-		39E249AB2AD1DE8F0014357C /* ParseFacebookUtilsiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 39E249AA2AD1DE8F0014357C /* ParseFacebookUtilsiOS */; };
 		7C77D109292A509000C4D90E /* PFPurchaseTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C77D0C9292A507500C4D90E /* PFPurchaseTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C77D10A292A509000C4D90E /* PFTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C77D0CB292A507500C4D90E /* PFTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C77D10B292A509000C4D90E /* PFQueryTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C77D0CD292A507500C4D90E /* PFQueryTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -222,18 +220,12 @@
 		4A9A948F200D02CE005D8F4B /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		4A9A9490200D02CE005D8F4B /* Warnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
 		4A9A9491200D02CE005D8F4B /* ParseUI-iOS-Dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ParseUI-iOS-Dynamic.xcconfig"; sourceTree = "<group>"; };
-		7C77D0B3292A507500C4D90E /* twitter_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter_icon@3x.png"; sourceTree = "<group>"; };
 		7C77D0B4292A507500C4D90E /* apple_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple_icon@3x.png"; sourceTree = "<group>"; };
-		7C77D0B5292A507500C4D90E /* facebook_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_icon@2x.png"; sourceTree = "<group>"; };
 		7C77D0B6292A507500C4D90E /* parse_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parse_logo.png; sourceTree = "<group>"; };
-		7C77D0B7292A507500C4D90E /* facebook_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_icon@3x.png"; sourceTree = "<group>"; };
 		7C77D0B8292A507500C4D90E /* apple_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple_icon@2x.png"; sourceTree = "<group>"; };
-		7C77D0B9292A507500C4D90E /* twitter_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter_icon@2x.png"; sourceTree = "<group>"; };
 		7C77D0BA292A507500C4D90E /* parse_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parse_logo@2x.png"; sourceTree = "<group>"; };
 		7C77D0BB292A507500C4D90E /* parse_logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parse_logo@3x.png"; sourceTree = "<group>"; };
 		7C77D0BC292A507500C4D90E /* apple_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple_icon.png; sourceTree = "<group>"; };
-		7C77D0BD292A507500C4D90E /* facebook_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_icon.png; sourceTree = "<group>"; };
-		7C77D0BE292A507500C4D90E /* twitter_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_icon.png; sourceTree = "<group>"; };
 		7C77D0BF292A507500C4D90E /* Info-iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
 		7C77D0C2292A507500C4D90E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ParseUI.strings; sourceTree = "<group>"; };
 		7C77D0C3292A507500C4D90E /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/ParseUI.strings; sourceTree = "<group>"; };
@@ -404,8 +396,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39452DEA2AD8FB9A0066C2AE /* ParseTwitterUtils in Frameworks */,
-				39E249AB2AD1DE8F0014357C /* ParseFacebookUtilsiOS in Frameworks */,
 				7C77D222292A580800C4D90E /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,18 +539,12 @@
 		7C77D0B2292A507500C4D90E /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				7C77D0B3292A507500C4D90E /* twitter_icon@3x.png */,
 				7C77D0B4292A507500C4D90E /* apple_icon@3x.png */,
-				7C77D0B5292A507500C4D90E /* facebook_icon@2x.png */,
 				7C77D0B6292A507500C4D90E /* parse_logo.png */,
-				7C77D0B7292A507500C4D90E /* facebook_icon@3x.png */,
 				7C77D0B8292A507500C4D90E /* apple_icon@2x.png */,
-				7C77D0B9292A507500C4D90E /* twitter_icon@2x.png */,
 				7C77D0BA292A507500C4D90E /* parse_logo@2x.png */,
 				7C77D0BB292A507500C4D90E /* parse_logo@3x.png */,
 				7C77D0BC292A507500C4D90E /* apple_icon.png */,
-				7C77D0BD292A507500C4D90E /* facebook_icon.png */,
-				7C77D0BE292A507500C4D90E /* twitter_icon.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1054,10 +1038,6 @@
 				39452DF62AD911740066C2AE /* PBXTargetDependency */,
 			);
 			name = ParseUIDemo;
-			packageProductDependencies = (
-				39E249AA2AD1DE8F0014357C /* ParseFacebookUtilsiOS */,
-				39452DE92AD8FB9A0066C2AE /* ParseTwitterUtils */,
-			);
 			productName = ParseUIDemo;
 			productReference = 7C77D21F292A56F600C4D90E /* ParseUIDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -2081,10 +2061,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		39452DE92AD8FB9A0066C2AE /* ParseTwitterUtils */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ParseTwitterUtils;
-		};
 		39452DEB2AD8FC110066C2AE /* ParseObjC */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ParseObjC;
@@ -2110,10 +2086,6 @@
 		39E249A42AD1DD2E0014357C /* ParseObjC */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ParseObjC;
-		};
-		39E249AA2AD1DE8F0014357C /* ParseFacebookUtilsiOS */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ParseFacebookUtilsiOS;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

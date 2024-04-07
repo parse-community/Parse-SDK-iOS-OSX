@@ -35,26 +35,6 @@ NSString *const PFLogInSuccessNotification = @"com.parse.ui.login.success";
 NSString *const PFLogInFailureNotification = @"com.parse.ui.login.failure";
 NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
 
-/**
- This protocol exists so that we can weakly refer to messages to pass to PFFacebookUtils without
- actually taking a dependency on the symbols.
- */
-@protocol WeaklyReferencedFBUtils <NSObject>
-
-// FBSDKv3
-+ (void)logInWithPermissions:(NSArray *)permissions block:(PFUserResultBlock)block;
-// FBSDKv4
-+ (void)logInInBackgroundWithReadPermissions:(NSArray *)permissions block:(PFUserResultBlock)block;
-+ (void)logInInBackgroundWithPublishPermissions:(NSArray *)permissions block:(PFUserResultBlock)block;
-
-@end
-
-@protocol WeaklyReferenceTwitterUtils <NSObject>
-
-+ (void)logInWithBlock:(PFUserResultBlock)block;
-
-@end
-
 @protocol WeaklyReferencedAppleUtils <NSObject>
 
 + (BFTask<NSDictionary *> *)logInInBackground;
@@ -111,8 +91,6 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
     self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     self.modalPresentationStyle = UIModalPresentationFormSheet;
     _fields = PFLogInFieldsDefault;
-
-    _facebookPermissions = @[ @"public_profile" ];
 
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -266,12 +244,6 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
 
     [_logInView.passwordForgottenButton removeTarget:nil action:nil forControlEvents:UIControlEventAllEvents];
     [_logInView.passwordForgottenButton addTarget:self action:@selector(_forgotPasswordAction) forControlEvents:UIControlEventTouchUpInside];
-
-    [_logInView.facebookButton removeTarget:nil action:nil forControlEvents:UIControlEventAllEvents];
-    [_logInView.facebookButton addTarget:self action:@selector(_loginWithFacebook) forControlEvents:UIControlEventTouchUpInside];
-
-    [_logInView.twitterButton removeTarget:nil action:nil forControlEvents:UIControlEventAllEvents];
-    [_logInView.twitterButton addTarget:self action:@selector(_loginWithTwitter) forControlEvents:UIControlEventTouchUpInside];
     
     [_logInView.appleButton removeTarget:nil action:nil forControlEvents:UIControlEventAllEvents];
     [_logInView.appleButton addTarget:self action:@selector(_loginWithApple) forControlEvents:UIControlEventTouchUpInside];
@@ -364,99 +336,6 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
         });
         return nil;
     }];
-}
-
-#pragma mark Log In With Facebook
-
-- (void)_loginWithFacebook {
-    if (self.loading) {
-        return;
-    }
-
-    self.loading = YES;
-    if ([_logInView.facebookButton isKindOfClass:[PFActionButton class]]) {
-        [(PFActionButton *)_logInView.facebookButton setLoading:YES];
-    }
-
-    __weak typeof(self) wself = self;
-    PFUserResultBlock resultBlock = ^(PFUser *user, NSError *error) {
-        __strong typeof(wself) sself = wself;
-        sself.loading = NO;
-        if ([sself->_logInView.facebookButton isKindOfClass:[PFActionButton class]]) {
-            [(PFActionButton *)sself->_logInView.facebookButton setLoading:NO];
-        }
-
-        if (user) {
-            [sself _loginDidSucceedWithUser:user];
-        } else if (error) {
-            [sself _loginDidFailWithError:error];
-        } else {
-            // User cancelled login.
-        }
-    };
-
-    Class fbUtils = NSClassFromString(@"PFFacebookUtils");
-    if ([fbUtils respondsToSelector:@selector(logInWithPermissions:block:)]) {
-        // Facebook SDK v3 Login
-        [fbUtils logInWithPermissions:_facebookPermissions block:resultBlock];
-    } else if ([fbUtils respondsToSelector:@selector(logInInBackgroundWithReadPermissions:block:)]) {
-        // Facebook SDK v4 Login
-        if ([self _permissionsContainsFacebookPublishPermission:_facebookPermissions]) {
-            [fbUtils logInInBackgroundWithPublishPermissions:_facebookPermissions block:resultBlock];
-        } else {
-            [fbUtils logInInBackgroundWithReadPermissions:_facebookPermissions block:resultBlock];
-        }
-    } else {
-        [NSException raise:NSInternalInconsistencyException
-                    format:@"Can't find PFFacebookUtils. Please link with ParseFacebookUtils or ParseFacebookUtilsV4 to enable login with Facebook."];
-    }
-}
-
-- (BOOL)_permissionsContainsFacebookPublishPermission:(NSArray *)permissions {
-    for (NSString *permission in permissions) {
-        if ([permission hasPrefix:@"publish"] ||
-            [permission hasPrefix:@"manage"] ||
-            [permission isEqualToString:@"ads_management"] ||
-            [permission isEqualToString:@"create_event"] ||
-            [permission isEqualToString:@"rsvp_event"]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-#pragma mark Log In With Twitter
-
-- (void)_loginWithTwitter {
-    if (self.loading) {
-        return;
-    }
-
-    if ([_logInView.facebookButton isKindOfClass:[PFActionButton class]]) {
-        [(PFActionButton *)_logInView.twitterButton setLoading:YES];
-    }
-    self.loading = YES;
-
-    Class twitterUtils = NSClassFromString(@"PFTwitterUtils");
-    if (twitterUtils && [twitterUtils respondsToSelector:@selector(logInWithBlock:)]) {
-        [twitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
-            self.loading = NO;
-            if ([self->_logInView.facebookButton isKindOfClass:[PFActionButton class]]) {
-                [(PFActionButton *)self->_logInView.twitterButton setLoading:NO];
-            }
-
-            if (user) {
-                [self _loginDidSucceedWithUser:user];
-            } else if (error) {
-                [self _loginDidFailWithError:error];
-            } else {
-                // User cancelled login.
-            }
-        }];
-    } else {
-        [NSException raise:NSInternalInconsistencyException
-                    format:@"Can't find PFTwitterUtils. Please link with ParseTwitterUtils to enable login with Twitter."];
-    }
 }
 
 #pragma mark Log In

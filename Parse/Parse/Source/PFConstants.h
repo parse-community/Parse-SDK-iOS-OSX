@@ -321,10 +321,6 @@ typedef NS_ENUM(NSInteger, PFErrorCode) {
      */
     kPFErrorUserCanOnlyBeCreatedThroughSignUp = 207,
     /**
-     An existing Facebook account already linked to another user.
-     */
-    kPFErrorFacebookAccountAlreadyLinked = 208,
-    /**
      An existing account already linked to another user.
      */
     kPFErrorAccountAlreadyLinked = 208,
@@ -334,17 +330,9 @@ typedef NS_ENUM(NSInteger, PFErrorCode) {
     kPFErrorInvalidSessionToken = 209,
     kPFErrorUserIdMismatch = 209,
     /**
-     Facebook id missing from request.
-     */
-    kPFErrorFacebookIdMissing = 250,
-    /**
      Linked id missing from request.
      */
     kPFErrorLinkedIdMissing = 250,
-    /**
-     Invalid Facebook session.
-     */
-    kPFErrorFacebookInvalidSession = 251,
     /**
      Invalid linked session.
      */

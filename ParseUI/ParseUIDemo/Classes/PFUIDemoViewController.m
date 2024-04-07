@@ -55,8 +55,6 @@ typedef NS_ENUM(uint8_t, PFUIDemoType) {
     PFUIDemoTypeLogInPasswordForgotten,
     PFUIDemoTypeLogInDone,
     PFUIDemoTypeLogInEmailAsUsername,
-    PFUIDemoTypeLogInFacebook,
-    PFUIDemoTypeLogInFacebookAndTwitter,
     PFUIDemoTypeLogInAll,
     PFUIDemoTypeLogInAllNavigation,
     PFUIDemoTypeLogInCustomizedLogoAndBackground,
@@ -129,8 +127,6 @@ typedef NS_ENUM(uint8_t, PFUIDemoType) {
                            @"Log In Password Forgotten",
                            @"Log In Done Button",
                            @"Log In Email as Username",
-                           @"Log In Facebook",
-                           @"Log In Facebook and Twitter",
                            @"Log In All",
                            @"Log In All as Navigation",
                            @"Log In Customized Background",
@@ -272,30 +268,12 @@ typedef NS_ENUM(uint8_t, PFUIDemoType) {
             [self presentViewController:logInController animated:YES completion:nil];
             break;
         }
-        case PFUIDemoTypeLogInFacebook: {
-            PFLogInViewController *logInController = [[PFLogInViewController alloc] init];
-            logInController.fields = (PFLogInFieldsUsernameAndPassword
-                                      | PFLogInFieldsFacebook
-                                      | PFLogInFieldsDismissButton);
-            logInController.delegate = self;
-            [self presentViewController:logInController animated:YES completion:nil];
-            break;
-        }
-        case PFUIDemoTypeLogInFacebookAndTwitter: {
-            PFLogInViewController *logInController = [[PFLogInViewController alloc] init];
-            logInController.fields = PFLogInFieldsFacebook | PFLogInFieldsTwitter | PFLogInFieldsDismissButton;
-            logInController.delegate = self;
-            [self presentViewController:logInController animated:YES completion:nil];
-            break;
-        }
         case PFUIDemoTypeLogInAll: {
             PFLogInViewController *logInController = [[PFLogInViewController alloc] init];
             logInController.fields = (PFLogInFieldsUsernameAndPassword
                                       | PFLogInFieldsLogInButton
                                       | PFLogInFieldsPasswordForgotten
                                       | PFLogInFieldsApple
-                                      | PFLogInFieldsFacebook
-                                      | PFLogInFieldsTwitter
                                       | PFLogInFieldsSignUpButton
                                       | PFLogInFieldsDismissButton);
             logInController.delegate = self;
@@ -315,8 +293,6 @@ typedef NS_ENUM(uint8_t, PFUIDemoType) {
             logInController.fields = (PFLogInFieldsUsernameAndPassword
                                       | PFLogInFieldsLogInButton
                                       | PFLogInFieldsPasswordForgotten
-                                      | PFLogInFieldsFacebook
-                                      | PFLogInFieldsTwitter
                                       | PFLogInFieldsSignUpButton
                                       | PFLogInFieldsDismissButton);
             logInController.delegate = self;
@@ -332,7 +308,7 @@ typedef NS_ENUM(uint8_t, PFUIDemoType) {
         }
         case PFUIDemoTypeLogInCustomizedLogoAndBackground: {
             PFLogInViewController *logInController = [[CustomLogInViewController alloc] init];
-            logInController.fields = PFLogInFieldsDefault | PFLogInFieldsFacebook | PFLogInFieldsTwitter;
+            logInController.fields = PFLogInFieldsDefault;
             logInController.delegate= self;
 
             PFSignUpViewController *signUpController = [[CustomSignUpViewController alloc] init];

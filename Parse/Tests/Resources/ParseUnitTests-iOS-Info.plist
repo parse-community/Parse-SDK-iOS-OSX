@@ -33,8 +33,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>FacebookAppID</key>
-	<string>fake_id</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
