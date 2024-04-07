@@ -21,7 +21,7 @@
       },
       {
         "package": "OCMock",
-        "repositoryURL": "https://github.com/erikdoe/ocmock",
+        "repositoryURL": "https://github.com/erikdoe/ocmock.git",
         "state": {
           "branch": null,
           "revision": "67bb9602f0a7541f24dc2d6d0d7389ca3e4c2c89",
