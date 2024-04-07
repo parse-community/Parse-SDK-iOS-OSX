@@ -20,17 +20,8 @@
         }
       },
       {
-        "package": "Facebook",
-        "repositoryURL": "https://github.com/facebook/facebook-ios-sdk.git",
-        "state": {
-          "branch": null,
-          "revision": "7fd8a930a5b2c940a22efafe0e214ed0df671312",
-          "version": "15.1.0"
-        }
-      },
-      {
         "package": "OCMock",
-        "repositoryURL": "https://github.com/erikdoe/ocmock.git",
+        "repositoryURL": "https://github.com/erikdoe/ocmock",
         "state": {
           "branch": null,
           "revision": "67bb9602f0a7541f24dc2d6d0d7389ca3e4c2c89",

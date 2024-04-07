@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,10 +13,7 @@
 		39452DFA2AD9121D0066C2AE /* ParseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 39452DF92AD9121D0066C2AE /* ParseUI */; };
 		39452DFD2AD914110066C2AE /* BoltsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 39452DFC2AD914110066C2AE /* BoltsSwift */; };
 		39E22AD72AD0676700D9AE5C /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = 39E22AD62AD0676700D9AE5C /* OCMock */; };
-		39E249A12AD1DD2E0014357C /* ParseFacebookUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 39E249A02AD1DD2E0014357C /* ParseFacebookUtils */; };
-		39E249A32AD1DD2E0014357C /* ParseFacebookUtilsiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 39E249A22AD1DD2E0014357C /* ParseFacebookUtilsiOS */; };
 		39E249A52AD1DD2E0014357C /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 39E249A42AD1DD2E0014357C /* ParseObjC */; };
-		39E249A72AD1DD3A0014357C /* ParseTwitterUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 39E249A62AD1DD3A0014357C /* ParseTwitterUtils */; };
 		39E249AB2AD1DE8F0014357C /* ParseFacebookUtilsiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 39E249AA2AD1DE8F0014357C /* ParseFacebookUtilsiOS */; };
 		7C77D109292A509000C4D90E /* PFPurchaseTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C77D0C9292A507500C4D90E /* PFPurchaseTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C77D10A292A509000C4D90E /* PFTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C77D0CB292A507500C4D90E /* PFTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -388,10 +385,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39E249A72AD1DD3A0014357C /* ParseTwitterUtils in Frameworks */,
 				39E249A52AD1DD2E0014357C /* ParseObjC in Frameworks */,
-				39E249A32AD1DD2E0014357C /* ParseFacebookUtilsiOS in Frameworks */,
-				39E249A12AD1DD2E0014357C /* ParseFacebookUtils in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1018,10 +1012,7 @@
 			);
 			name = ParseUI;
 			packageProductDependencies = (
-				39E249A02AD1DD2E0014357C /* ParseFacebookUtils */,
-				39E249A22AD1DD2E0014357C /* ParseFacebookUtilsiOS */,
 				39E249A42AD1DD2E0014357C /* ParseObjC */,
-				39E249A62AD1DD3A0014357C /* ParseTwitterUtils */,
 			);
 			productName = ParseUI;
 			productReference = 7C77D22D292A604700C4D90E /* ParseUI.framework */;
@@ -1631,7 +1622,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1702,7 +1697,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1746,7 +1745,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1793,7 +1796,11 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1834,7 +1841,11 @@
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1880,7 +1891,11 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -2092,21 +2107,9 @@
 			package = 39E22AD52AD0676700D9AE5C /* XCRemoteSwiftPackageReference "ocmock" */;
 			productName = OCMock;
 		};
-		39E249A02AD1DD2E0014357C /* ParseFacebookUtils */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ParseFacebookUtils;
-		};
-		39E249A22AD1DD2E0014357C /* ParseFacebookUtilsiOS */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ParseFacebookUtilsiOS;
-		};
 		39E249A42AD1DD2E0014357C /* ParseObjC */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ParseObjC;
-		};
-		39E249A62AD1DD3A0014357C /* ParseTwitterUtils */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ParseTwitterUtils;
 		};
 		39E249AA2AD1DE8F0014357C /* ParseFacebookUtilsiOS */ = {
 			isa = XCSwiftPackageProductDependency;
