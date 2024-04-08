@@ -22,8 +22,8 @@ module Constants
   require 'plist'
 
   script_path = File.expand_path(File.dirname(__FILE__))
-  parse_constants_path = File.join(script_path, 'Parse', 'Parse', 'Source/PFConstants.h')
-  plists = [
+  PARSE_CONSTANT_PATH = File.join(script_path, 'Parse', 'Parse', 'Source/PFConstants.h')
+  PLISTS = [
     File.join(script_path, 'Parse', 'Parse', 'Resources', 'Parse-iOS.Info.plist'),
     File.join(script_path, 'Parse', 'Parse', 'Resources', 'Parse-OSX.Info.plist'),
     File.join(script_path, 'Parse', 'Parse', 'Resources', 'Parse-watchOS.Info.plist'),
@@ -43,20 +43,20 @@ module Constants
   ]
 
   def self.current_version
-    constants_file = File.open(parse_constants_path, 'r').read
+    constants_file = File.open(PARSE_CONSTANT_PATH, 'r').read
     matches = constants_file.match(/(.*PARSE_VERSION\s*@")(.*)(")/)
     matches[2] # Return the second match, which is the version itself
   end
 
   def self.update_version(version)
-    constants_file = File.open(parse_constants_path, 'r+')
+    constants_file = File.open(PARSE_CONSTANT_PATH, 'r+')
     constants = constants_file.read
     constants.gsub!(/(.*PARSE_VERSION\s*@")(.*)(")/, "\\1#{version}\\3")
 
     constants_file.seek(0)
     constants_file.write(constants)
 
-    plists.each do |plist|
+    PLISTS.each do |plist|
       update_info_plist_version(plist, version)
     end
   end
