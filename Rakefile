@@ -21,6 +21,7 @@ build_action = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD];
 module Constants
   require 'plist'
 
+  script_path = File.expand_path(File.dirname(__FILE__))
   parse_constants_path = File.join(script_path, 'Parse', 'Parse', 'Source/PFConstants.h')
   plists = [
     File.join(script_path, 'Parse', 'Parse', 'Resources', 'Parse-iOS.Info.plist'),
