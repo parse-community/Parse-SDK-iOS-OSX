@@ -21,27 +21,27 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          Parse 2.7.3 Docs
+          Parse 3.0.0 Docs
         </a>
-         (93% documented)
+         (94% documented)
       </p>
     
-      <p class="header-col--secondary">
+      <div class="header-col--secondary">
         <form role="search" action="../search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
-      </p>
+      </div>
     
         <p class="header-col header-col--secondary">
           <a class="header-link" href="https://github.com/parse-community/Parse-SDK-iOS-OSX">
-            <img class="header-icon" src="../img/gh.png"/>
+            <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
             View on GitHub
           </a>
         </p>
     
         <p class="header-col header-col--secondary">
           <a class="header-link" href="dash-feed://http%3A%2F%2Fparseplatform.org%2FParse-SDK-iOS-OSX%2Fapi%2Fdocsets%2FParse.xml">
-            <img class="header-icon" src="../img/dash.png"/>
+            <img class="header-icon" src="../img/dash.png" alt="Dash"/>
             Install in Dash
           </a>
         </p>
@@ -49,7 +49,7 @@
 
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">Parse Reference</a>
-      <img class="carat" src="../img/carat.png" />
+      <img class="carat" src="../img/carat.png" alt=""/>
       PFUser Class Reference
     </p>
 
@@ -239,9 +239,6 @@
 This class is a subclass of a <code><a href="../Classes/PFObject.html">PFObject</a></code>, and retains the same functionality of a <code><a href="../Classes/PFObject.html">PFObject</a></code>,
 but also extends it with various user specific methods, like authentication, signing up, and validation uniqueness.</p>
 
-<p>Many APIs responsible for linking a <code>PFUser</code> with Facebook or Twitter have been deprecated in favor of dedicated
-utilities for each social network. See <code>PFFacebookUtils</code>, <code>PFTwitterUtils</code> and <code><a href="../Classes/PFAnonymousUtils.html">PFAnonymousUtils</a></code> for more information.</p>
-
           </div>
         </section>
 
@@ -253,7 +250,7 @@ utilities for each social network. See <code>PFFacebookUtils</code>, <code>PFTwi
                 <a name="//apple_ref/objc/Section/Accessing the Current User" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Accessing%20the%20Current%20User"></a>
-                  <h3 class="section-name"><p>Accessing the Current User</p>
+                  <h3 class="section-name"><span>Accessing the Current User</span>
 </h3>
                 </div>
               </div>
@@ -314,12 +311,12 @@ utilities for each social network. See <code>PFFacebookUtils</code>, <code>PFTwi
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">__kindof</span> <span class="n">PFUser</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">getCurrentUserInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">getCurrentUserInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">getCurrentUserInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFUser</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">getCurrentUserInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -378,8 +375,6 @@ utilities for each social network. See <code>PFFacebookUtils</code>, <code>PFTwi
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Whether the <code>PFUser</code> was just created from a request.</p>
-
-<p>This is only set after a Facebook or Twitter login.</p>
 
                       </div>
                       <div class="declaration">
@@ -442,7 +437,7 @@ An authenticated object is required in order to save (with altered values) or de
                 <a name="//apple_ref/objc/Section/Creating a New User" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Creating%20a%20New%20User"></a>
-                  <h3 class="section-name"><p>Creating a New User</p>
+                  <h3 class="section-name"><span>Creating a New User</span>
 </h3>
                 </div>
               </div>
@@ -498,7 +493,7 @@ The user will only be created on the server once the user has been saved,
 or once an object with a relation to that user or an ACL that refers to the user has been saved.</p>
 <div class="aside aside-warning">
     <p class="aside-title">Warning</p>
-    <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)saveEventually">PFObject.-saveEventually</a></code> will not work on if an item being saved has a relation
+    <code><a href="../Classes/PFObject.html">PFObject.</a></code> will not work on if an item being saved has a relation
 to an automatic user that has never been saved.
 
 </div>
@@ -647,12 +642,12 @@ to an automatic user that has never been saved.
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">signUpInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">signUpInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">signUpInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">signUpInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -730,7 +725,7 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                 <a name="//apple_ref/objc/Section/Logging In" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Logging%20In"></a>
-                  <h3 class="section-name"><p>Logging In</p>
+                  <h3 class="section-name"><span>Logging In</span>
 </h3>
                 </div>
               </div>
@@ -758,14 +753,13 @@ This also caches the user locally so that calls to <code><a href="../Classes/PFU
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">__kindof</span> <span class="n">PFUser</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span>
-    <span class="nf">logInWithUsernameInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">username</span>
-                         <span class="nf">password</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">password</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">logInWithUsernameInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">username</span>
+                           <span class="nf">password</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">password</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logInWithUsername</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFUser</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logInWithUsername</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -896,7 +890,7 @@ It should have the following argument signature: <code>^(PFUser *user, NSError *
                 <a name="//apple_ref/objc/Section/Becoming a User" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Becoming%20a%20User"></a>
-                  <h3 class="section-name"><p>Becoming a User</p>
+                  <h3 class="section-name"><span>Becoming a User</span>
 </h3>
                 </div>
               </div>
@@ -924,13 +918,12 @@ This also caches the user locally so that calls to <code><a href="../Classes/PFU
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">__kindof</span> <span class="n">PFUser</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">becomeInBackground</span><span class="p">:</span>
-    <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">sessionToken</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">becomeInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">sessionToken</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">become</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">sessionToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFUser</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">become</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">sessionToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1036,7 +1029,7 @@ The block should have the following argument signature: <code>^(PFUser *user, NS
                 <a name="//apple_ref/objc/Section/Revocable Session" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Revocable%20Session"></a>
-                  <h3 class="section-name"><p>Revocable Session</p>
+                  <h3 class="section-name"><span>Revocable Session</span>
 </h3>
                 </div>
               </div>
@@ -1065,12 +1058,12 @@ After returned <code>BFTask</code> completes - <code><a href="../Classes/PFSessi
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span> <span class="o">*</span><span class="p">)</span><span class="n">enableRevocableSessionInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">enableRevocableSessionInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">enableRevocableSessionInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">AnyObject</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">enableRevocableSessionInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1146,7 +1139,7 @@ After returned <code>BFTask</code> completes - <code><a href="../Classes/PFSessi
                 <a name="//apple_ref/objc/Section/Logging Out" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Logging%20Out"></a>
-                  <h3 class="section-name"><p>Logging Out</p>
+                  <h3 class="section-name"><span>Logging Out</span>
 </h3>
                 </div>
               </div>
@@ -1175,12 +1168,12 @@ unless your code is already running from a background thread.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span> <span class="o">*</span><span class="p">)</span><span class="n">logOutInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">logOutInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logOutInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">AnyObject</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logOutInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1254,7 +1247,7 @@ unless your code is already running from a background thread.</p>
                 <a name="//apple_ref/objc/Section/Requesting a Password Reset" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Requesting%20a%20Password%20Reset"></a>
-                  <h3 class="section-name"><p>Requesting a Password Reset</p>
+                  <h3 class="section-name"><span>Requesting a Password Reset</span>
 </h3>
                 </div>
               </div>
@@ -1281,13 +1274,12 @@ that address with instructions on how to reset their password.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">requestPasswordResetForEmailInBackground</span><span class="p">:</span>
-    <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">email</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">requestPasswordResetForEmailInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">email</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">requestPasswordResetForEmail</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">requestPasswordResetForEmail</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1394,7 +1386,7 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                 <a name="//apple_ref/objc/Section/Third-party Authentication" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Third-party%20Authentication"></a>
-                  <h3 class="section-name"><p>Third-party Authentication</p>
+                  <h3 class="section-name"><span>Third-party Authentication</span>
 </h3>
                 </div>
               </div>
@@ -1559,16 +1551,15 @@ it is replaced by the new delegate.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">__kindof</span> <span class="n">PFUser</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span>
-    <span class="nf">logInWithAuthTypeInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">authType</span>
-                         <span class="nf">authData</span><span class="p">:</span>
-                             <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span>
-                                 <span class="n">authData</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">logInWithAuthTypeInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">authType</span>
+                           <span class="nf">authData</span><span class="p">:</span>
+                               <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span>
+                                   <span class="n">authData</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logInWithAuthType</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">authType</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">authData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFUser</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">logInWithAuthType</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">authType</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">authData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1639,16 +1630,15 @@ it is replaced by the new delegate.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span>
-    <span class="nf">linkWithAuthTypeInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">authType</span>
-                        <span class="nf">authData</span><span class="p">:</span>
-                            <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span>
-                                <span class="n">authData</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">linkWithAuthTypeInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">authType</span>
+                          <span class="nf">authData</span><span class="p">:</span>
+                              <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span>
+                                  <span class="n">authData</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">linkWithAuthType</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">authType</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">authData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">linkWithAuthType</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">authType</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">authData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1719,13 +1709,12 @@ it is replaced by the new delegate.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">unlinkWithAuthTypeInBackground</span><span class="p">:</span>
-    <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">authType</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">unlinkWithAuthTypeInBackground</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">authType</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">unlinkWithAuthType</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">authType</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">unlinkWithAuthType</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">authType</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1827,7 +1816,7 @@ it is replaced by the new delegate.</p>
                 <a name="//apple_ref/objc/Section/Creating a New User" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Creating%20a%20New%20User2"></a>
-                  <h3 class="section-name"><p>Creating a New User</p>
+                  <h3 class="section-name"><span>Creating a New User</span>
 </h3>
                 </div>
               </div>
@@ -1846,7 +1835,7 @@ it is replaced by the new delegate.</p>
                       <div class="pointer"></div>
                       <div class="aside aside-deprecated">
                         <p class="aside-title">Deprecated</p>
-                        <p>Please use <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(im)signUpInBackgroundWithBlock:">PFUser.-signUpInBackgroundWithBlock:</a></code> instead.</p>
+                        <p>Please use <code>PFUser.-signUpInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="abstract">
@@ -1859,7 +1848,7 @@ it is replaced by the new delegate.</p>
 
 </div>
 
-<p>@deprecated Please use <code><a href="../Classes/PFUser.html#/c:objc(cs)PFUser(im)signUpInBackgroundWithBlock:">PFUser.-signUpInBackgroundWithBlock:</a></code> instead.</p>
+<p>@deprecated Please use <code>PFUser.-signUpInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -1921,7 +1910,7 @@ It should have the following signature: <code>(void)callbackWithResult:(NSNumber
                 <a name="//apple_ref/objc/Section/Logging In" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Logging%20In2"></a>
-                  <h3 class="section-name"><p>Logging In</p>
+                  <h3 class="section-name"><span>Logging In</span>
 </h3>
                 </div>
               </div>
@@ -2035,7 +2024,7 @@ It should have the following signature: <code>(void)callbackWithUser:(PFUser *)u
                 <a name="//apple_ref/objc/Section/Becoming a User" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Becoming%20a%20User2"></a>
-                  <h3 class="section-name"><p>Becoming a User</p>
+                  <h3 class="section-name"><span>Becoming a User</span>
 </h3>
                 </div>
               </div>
@@ -2136,7 +2125,7 @@ It should have the following signature: <code>(void)callbackWithUser:(PFUser *)u
                 <a name="//apple_ref/objc/Section/Requesting a Password Reset" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Requesting%20a%20Password%20Reset2"></a>
-                  <h3 class="section-name"><p>Requesting a Password Reset</p>
+                  <h3 class="section-name"><span>Requesting a Password Reset</span>
 </h3>
                 </div>
               </div>
@@ -2239,7 +2228,7 @@ It should have the following signature: <code>(void)callbackWithResult:(NSNumber
                 <a name="//apple_ref/objc/Section/Creating a New User" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Creating%20a%20New%20User3"></a>
-                  <h3 class="section-name"><p>Creating a New User</p>
+                  <h3 class="section-name"><span>Creating a New User</span>
 </h3>
                 </div>
               </div>
@@ -2352,7 +2341,7 @@ It should have the following signature: <code>(void)callbackWithResult:(NSNumber
                 <a name="//apple_ref/objc/Section/Logging In" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Logging%20In3"></a>
-                  <h3 class="section-name"><p>Logging In</p>
+                  <h3 class="section-name"><span>Logging In</span>
 </h3>
                 </div>
               </div>
@@ -2517,7 +2506,7 @@ If login failed for either wrong password or wrong username, returns <code>nil</
                 <a name="//apple_ref/objc/Section/Becoming a User" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Becoming%20a%20User3"></a>
-                  <h3 class="section-name"><p>Becoming a User</p>
+                  <h3 class="section-name"><span>Becoming a User</span>
 </h3>
                 </div>
               </div>
@@ -2656,7 +2645,7 @@ If becoming a user fails due to incorrect token, it returns <code>nil</code>.</p
                 <a name="//apple_ref/objc/Section/Logging Out" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Logging%20Out2"></a>
-                  <h3 class="section-name"><p>Logging Out</p>
+                  <h3 class="section-name"><span>Logging Out</span>
 </h3>
                 </div>
               </div>
@@ -2701,7 +2690,7 @@ If becoming a user fails due to incorrect token, it returns <code>nil</code>.</p
                 <a name="//apple_ref/objc/Section/Requesting a Password Reset" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Requesting%20a%20Password%20Reset3"></a>
-                  <h3 class="section-name"><p>Requesting a Password Reset</p>
+                  <h3 class="section-name"><span>Requesting a Password Reset</span>
 </h3>
                 </div>
               </div>
@@ -2838,9 +2827,8 @@ with instructions on how to reset their password.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2023 <a class="link" href="http://parseplatform.org" target="_blank" rel="external">Parse Community</a>. All rights reserved. (Last updated: 2023-10-06)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2024 <a class="link" href="http://parseplatform.org" target="_blank" rel="external noopener">Parse Community</a>. All rights reserved. (Last updated: 2024-04-08)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
-</div>
 </html>

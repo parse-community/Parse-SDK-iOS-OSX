@@ -21,27 +21,27 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          Parse 2.7.3 Docs
+          Parse 3.0.0 Docs
         </a>
-         (93% documented)
+         (94% documented)
       </p>
     
-      <p class="header-col--secondary">
+      <div class="header-col--secondary">
         <form role="search" action="../search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
-      </p>
+      </div>
     
         <p class="header-col header-col--secondary">
           <a class="header-link" href="https://github.com/parse-community/Parse-SDK-iOS-OSX">
-            <img class="header-icon" src="../img/gh.png"/>
+            <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
             View on GitHub
           </a>
         </p>
     
         <p class="header-col header-col--secondary">
           <a class="header-link" href="dash-feed://http%3A%2F%2Fparseplatform.org%2FParse-SDK-iOS-OSX%2Fapi%2Fdocsets%2FParse.xml">
-            <img class="header-icon" src="../img/dash.png"/>
+            <img class="header-icon" src="../img/dash.png" alt="Dash"/>
             Install in Dash
           </a>
         </p>
@@ -49,7 +49,7 @@
 
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">Parse Reference</a>
-      <img class="carat" src="../img/carat.png" />
+      <img class="carat" src="../img/carat.png" alt=""/>
       PFFileObject Class Reference
     </p>
 
@@ -249,7 +249,7 @@ This can be a image, video, or anything else that an application needs to refere
                 <a name="//apple_ref/objc/Section/Creating a PFFileObject" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Creating%20a%20PFFileObject"></a>
-                  <h3 class="section-name"><p>Creating a PFFileObject</p>
+                  <h3 class="section-name"><span>Creating a PFFileObject</span>
 </h3>
                 </div>
               </div>
@@ -821,7 +821,7 @@ You may specify <code>nil</code> for this parameter if you do not want the error
                 <a name="//apple_ref/objc/Section/File Properties" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/File%20Properties"></a>
-                  <h3 class="section-name"><p>File Properties</p>
+                  <h3 class="section-name"><span>File Properties</span>
 </h3>
                 </div>
               </div>
@@ -934,7 +934,7 @@ identifier.</p>
                 <a name="//apple_ref/objc/Section/Storing Data with Parse" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Storing%20Data%20with%20Parse"></a>
-                  <h3 class="section-name"><p>Storing Data with Parse</p>
+                  <h3 class="section-name"><span>Storing Data with Parse</span>
 </h3>
                 </div>
               </div>
@@ -964,7 +964,7 @@ identifier.</p>
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">saveInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">saveInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1001,7 +1001,7 @@ identifier.</p>
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">saveInBackground</span><span class="p">(</span><span class="nv">progressBlock</span><span class="p">:</span> <span class="kt">PFProgressBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">saveInBackground</span><span class="p">(</span><span class="nv">progressBlock</span><span class="p">:</span> <span class="kt">PFProgressBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1157,7 +1157,7 @@ identifier.</p>
                 <a name="//apple_ref/objc/Section/Getting Data from Parse" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20Data%20from%20Parse"></a>
-                  <h3 class="section-name"><p>Getting Data from Parse</p>
+                  <h3 class="section-name"><span>Getting Data from Parse</span>
 </h3>
                 </div>
               </div>
@@ -1225,7 +1225,7 @@ identifier.</p>
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getDataInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSData</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getDataInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1269,7 +1269,7 @@ identifier.</p>
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getDataInBackground</span><span class="p">(</span><span class="nv">progressBlock</span><span class="p">:</span> <span class="kt">PFProgressBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSData</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getDataInBackground</span><span class="p">(</span><span class="nv">progressBlock</span><span class="p">:</span> <span class="kt">PFProgressBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1326,7 +1326,7 @@ identifier.</p>
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getDataStreamInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">InputStream</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getDataStreamInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1376,7 +1376,7 @@ the stream, to do proper async file downloading.</p>
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getDataDownloadStreamInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">InputStream</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getDataDownloadStreamInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1416,7 +1416,7 @@ ever holding the entire <code>PFFileObject</code> contents in memory at once.</p
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getDataStreamInBackground</span><span class="p">(</span><span class="nv">progressBlock</span><span class="p">:</span> <span class="kt">PFProgressBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">InputStream</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getDataStreamInBackground</span><span class="p">(</span><span class="nv">progressBlock</span><span class="p">:</span> <span class="kt">PFProgressBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1487,7 +1487,7 @@ the stream, to do proper async file downloading.</p>
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getDataDownloadStreamInBackground</span><span class="p">(</span><span class="nv">progressBlock</span><span class="p">:</span> <span class="kt">PFProgressBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">InputStream</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getDataDownloadStreamInBackground</span><span class="p">(</span><span class="nv">progressBlock</span><span class="p">:</span> <span class="kt">PFProgressBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1793,7 +1793,7 @@ until the file cache is cleared.</p>
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getFilePathInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getFilePathInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1840,7 +1840,7 @@ until the file cache is cleared.</p>
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getFilePathInBackground</span><span class="p">(</span><span class="nv">progressBlock</span><span class="p">:</span> <span class="kt">PFProgressBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getFilePathInBackground</span><span class="p">(</span><span class="nv">progressBlock</span><span class="p">:</span> <span class="kt">PFProgressBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -2014,7 +2014,7 @@ until the file cache is cleared.</p>
                 <a name="//apple_ref/objc/Section/Interrupting a Transfer" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Interrupting%20a%20Transfer"></a>
-                  <h3 class="section-name"><p>Interrupting a Transfer</p>
+                  <h3 class="section-name"><span>Interrupting a Transfer</span>
 </h3>
                 </div>
               </div>
@@ -2059,7 +2059,7 @@ until the file cache is cleared.</p>
                 <a name="//apple_ref/objc/Section/Cache" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Cache"></a>
-                  <h3 class="section-name"><p>Cache</p>
+                  <h3 class="section-name"><span>Cache</span>
 </h3>
                 </div>
               </div>
@@ -2089,7 +2089,7 @@ until the file cache is cleared.</p>
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">clearCachedDataInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">AnyObject</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">clearCachedDataInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -2125,7 +2125,7 @@ until the file cache is cleared.</p>
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">clearAllCachedDataInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">AnyObject</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">clearAllCachedDataInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -2144,7 +2144,7 @@ until the file cache is cleared.</p>
                 <a name="//apple_ref/objc/Section/Saving Files" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Saving%20Files"></a>
-                  <h3 class="section-name"><p>Saving Files</p>
+                  <h3 class="section-name"><span>Saving Files</span>
 </h3>
                 </div>
               </div>
@@ -2163,13 +2163,13 @@ until the file cache is cleared.</p>
                       <div class="pointer"></div>
                       <div class="aside aside-deprecated">
                         <p class="aside-title">Deprecated</p>
-                        <p>Please use <code><a href="../Classes/PFFileObject.html#/c:objc(cs)PFFileObject(im)saveInBackgroundWithBlock:">PFFileObject.-saveInBackgroundWithBlock:</a></code> instead.</p>
+                        <p>Please use <code>PFFileObject.-saveInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="abstract">
                         <p>Saves the file <em>asynchronously</em> and invokes the given selector on a target.</p>
 
-<p>@deprecated Please use <code><a href="../Classes/PFFileObject.html#/c:objc(cs)PFFileObject(im)saveInBackgroundWithBlock:">PFFileObject.-saveInBackgroundWithBlock:</a></code> instead.</p>
+<p>@deprecated Please use <code>PFFileObject.-saveInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -2231,7 +2231,7 @@ It should have the following signature: <code>(void)callbackWithResult:(NSNumber
                 <a name="//apple_ref/objc/Section/Getting Files" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20Files"></a>
-                  <h3 class="section-name"><p>Getting Files</p>
+                  <h3 class="section-name"><span>Getting Files</span>
 </h3>
                 </div>
               </div>
@@ -2250,13 +2250,13 @@ It should have the following signature: <code>(void)callbackWithResult:(NSNumber
                       <div class="pointer"></div>
                       <div class="aside aside-deprecated">
                         <p class="aside-title">Deprecated</p>
-                        <p>Please use <code><a href="../Classes/PFFileObject.html#/c:objc(cs)PFFileObject(im)getDataInBackgroundWithBlock:">PFFileObject.-getDataInBackgroundWithBlock:</a></code> instead.</p>
+                        <p>Please use <code>PFFileObject.-getDataInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="abstract">
                         <p><em>Asynchronously</em> gets the data from cache if available or fetches its contents from the network.</p>
 
-<p>@deprecated Please use <code><a href="../Classes/PFFileObject.html#/c:objc(cs)PFFileObject(im)getDataInBackgroundWithBlock:">PFFileObject.-getDataInBackgroundWithBlock:</a></code> instead.</p>
+<p>@deprecated Please use <code>PFFileObject.-getDataInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -2317,7 +2317,7 @@ It should have the following signature: <code>(void)callbackWithResult:(NSData *
                 <a name="//apple_ref/objc/Section/Storing Data with Parse" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Storing%20Data%20with%20Parse2"></a>
-                  <h3 class="section-name"><p>Storing Data with Parse</p>
+                  <h3 class="section-name"><span>Storing Data with Parse</span>
 </h3>
                 </div>
               </div>
@@ -2416,7 +2416,7 @@ It should have the following signature: <code>(void)callbackWithResult:(NSData *
                 <a name="//apple_ref/objc/Section/Getting Data from Parse" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20Data%20from%20Parse2"></a>
-                  <h3 class="section-name"><p>Getting Data from Parse</p>
+                  <h3 class="section-name"><span>Getting Data from Parse</span>
 </h3>
                 </div>
               </div>
@@ -2605,9 +2605,8 @@ fetching.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2023 <a class="link" href="http://parseplatform.org" target="_blank" rel="external">Parse Community</a>. All rights reserved. (Last updated: 2023-10-06)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2024 <a class="link" href="http://parseplatform.org" target="_blank" rel="external noopener">Parse Community</a>. All rights reserved. (Last updated: 2024-04-08)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
-</div>
 </html>

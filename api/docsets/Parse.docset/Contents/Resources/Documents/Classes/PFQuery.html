@@ -21,27 +21,27 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          Parse 2.7.3 Docs
+          Parse 3.0.0 Docs
         </a>
-         (93% documented)
+         (94% documented)
       </p>
     
-      <p class="header-col--secondary">
+      <div class="header-col--secondary">
         <form role="search" action="../search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
-      </p>
+      </div>
     
         <p class="header-col header-col--secondary">
           <a class="header-link" href="https://github.com/parse-community/Parse-SDK-iOS-OSX">
-            <img class="header-icon" src="../img/gh.png"/>
+            <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
             View on GitHub
           </a>
         </p>
     
         <p class="header-col header-col--secondary">
           <a class="header-link" href="dash-feed://http%3A%2F%2Fparseplatform.org%2FParse-SDK-iOS-OSX%2Fapi%2Fdocsets%2FParse.xml">
-            <img class="header-icon" src="../img/dash.png"/>
+            <img class="header-icon" src="../img/dash.png" alt="Dash"/>
             Install in Dash
           </a>
         </p>
@@ -49,7 +49,7 @@
 
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">Parse Reference</a>
-      <img class="carat" src="../img/carat.png" />
+      <img class="carat" src="../img/carat.png" alt=""/>
       PFQuery Class Reference
     </p>
 
@@ -248,7 +248,7 @@
                 <a name="//apple_ref/objc/Section/Creating a Query for a Class" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Creating%20a%20Query%20for%20a%20Class"></a>
-                  <h3 class="section-name"><p>Creating a Query for a Class</p>
+                  <h3 class="section-name"><span>Creating a Query for a Class</span>
 </h3>
                 </div>
               </div>
@@ -478,7 +478,7 @@
                 <a name="//apple_ref/objc/Section/Adding Basic Constraints" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Adding%20Basic%20Constraints"></a>
-                  <h3 class="section-name"><p>Adding Basic Constraints</p>
+                  <h3 class="section-name"><span>Adding Basic Constraints</span>
 </h3>
                 </div>
               </div>
@@ -1678,7 +1678,7 @@ be contained by the provided list of values. Get objects where all array element
                 <a name="//apple_ref/objc/Section/Adding Location Constraints" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Adding%20Location%20Constraints"></a>
-                  <h3 class="section-name"><p>Adding Location Constraints</p>
+                  <h3 class="section-name"><span>Adding Location Constraints</span>
 </h3>
                 </div>
               </div>
@@ -2241,7 +2241,7 @@ contained within a given rectangular geographic bounding box.</p>
                 <a name="//apple_ref/objc/Section/Adding String Constraints" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Adding%20String%20Constraints"></a>
-                  <h3 class="section-name"><p>Adding String Constraints</p>
+                  <h3 class="section-name"><span>Adding String Constraints</span>
 </h3>
                 </div>
               </div>
@@ -2632,7 +2632,7 @@ contained within a given rectangular geographic bounding box.</p>
                 <a name="//apple_ref/objc/Section/Adding Subqueries" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Adding%20Subqueries"></a>
-                  <h3 class="section-name"><p>Adding Subqueries</p>
+                  <h3 class="section-name"><span>Adding Subqueries</span>
 </h3>
                 </div>
               </div>
@@ -3067,7 +3067,7 @@ in objects returned by a sub query.</p>
                 <a name="//apple_ref/objc/Section/Sorting" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Sorting"></a>
-                  <h3 class="section-name"><p>Sorting</p>
+                  <h3 class="section-name"><span>Sorting</span>
 </h3>
                 </div>
               </div>
@@ -3418,7 +3418,7 @@ in objects returned by a sub query.</p>
                 <a name="//apple_ref/objc/Section/Getting Objects by ID" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20Objects%20by%20ID"></a>
-                  <h3 class="section-name"><p>Getting Objects by ID</p>
+                  <h3 class="section-name"><span>Getting Objects by ID</span>
 </h3>
                 </div>
               </div>
@@ -3455,7 +3455,7 @@ It will reset limit to <code>1</code>, skip to <code>0</code> and remove all con
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getObjectInBackground</span><span class="p">(</span><span class="n">withId</span> <span class="nv">objectId</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFGenericObject</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getObjectInBackground</span><span class="p">(</span><span class="n">withId</span> <span class="nv">objectId</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -3566,7 +3566,7 @@ The block should have the following argument signature: <code>^(NSArray *object,
                 <a name="//apple_ref/objc/Section/Getting User Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20User%20Objects"></a>
-                  <h3 class="section-name"><p>Getting User Objects</p>
+                  <h3 class="section-name"><span>Getting User Objects</span>
 </h3>
                 </div>
               </div>
@@ -3616,7 +3616,7 @@ The block should have the following argument signature: <code>^(NSArray *object,
                 <a name="//apple_ref/objc/Section/Getting all Matches for a Query" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20all%20Matches%20for%20a%20Query"></a>
-                  <h3 class="section-name"><p>Getting all Matches for a Query</p>
+                  <h3 class="section-name"><span>Getting all Matches for a Query</span>
 </h3>
                 </div>
               </div>
@@ -3646,7 +3646,7 @@ The block should have the following argument signature: <code>^(NSArray *object,
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">findObjectsInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSArray</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">findObjectsInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -3718,7 +3718,7 @@ It should have the following argument signature: <code>^(NSArray *objects, NSErr
                 <a name="//apple_ref/objc/Section/Getting the First Match in a Query" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20the%20First%20Match%20in%20a%20Query"></a>
-                  <h3 class="section-name"><p>Getting the First Match in a Query</p>
+                  <h3 class="section-name"><span>Getting the First Match in a Query</span>
 </h3>
                 </div>
               </div>
@@ -3753,7 +3753,7 @@ It should have the following argument signature: <code>^(NSArray *objects, NSErr
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getFirstObjectInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFGenericObject</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getFirstObjectInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -3832,7 +3832,7 @@ It should have the following argument signature: <code>^(PFObject *object, NSErr
                 <a name="//apple_ref/objc/Section/Counting the Matches in a Query" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Counting%20the%20Matches%20in%20a%20Query"></a>
-                  <h3 class="section-name"><p>Counting the Matches in a Query</p>
+                  <h3 class="section-name"><span>Counting the Matches in a Query</span>
 </h3>
                 </div>
               </div>
@@ -3862,7 +3862,7 @@ It should have the following argument signature: <code>^(PFObject *object, NSErr
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">countObjectsInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">countObjectsInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -3933,7 +3933,7 @@ It should have the following argument signature: <code>^(int count, NSError *err
                 <a name="//apple_ref/objc/Section/Cancelling a Query" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Cancelling%20a%20Query"></a>
-                  <h3 class="section-name"><p>Cancelling a Query</p>
+                  <h3 class="section-name"><span>Cancelling a Query</span>
 </h3>
                 </div>
               </div>
@@ -3978,7 +3978,7 @@ It should have the following argument signature: <code>^(int count, NSError *err
                 <a name="//apple_ref/objc/Section/Paginating Results" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Paginating%20Results"></a>
-                  <h3 class="section-name"><p>Paginating Results</p>
+                  <h3 class="section-name"><span>Paginating Results</span>
 </h3>
                 </div>
               </div>
@@ -4061,7 +4061,7 @@ maximum of 1000 results being returned at a time.</p>
                 <a name="//apple_ref/objc/Section/Controlling Caching Behavior" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Controlling%20Caching%20Behavior"></a>
-                  <h3 class="section-name"><p>Controlling Caching Behavior</p>
+                  <h3 class="section-name"><span>Controlling Caching Behavior</span>
 </h3>
                 </div>
               </div>
@@ -4251,7 +4251,7 @@ maximum of 1000 results being returned at a time.</p>
                 <a name="//apple_ref/objc/Section/Query Source" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Query%20Source"></a>
-                  <h3 class="section-name"><p>Query Source</p>
+                  <h3 class="section-name"><span>Query Source</span>
 </h3>
                 </div>
               </div>
@@ -4469,7 +4469,7 @@ maximum of 1000 results being returned at a time.</p>
                 <a name="//apple_ref/objc/Section/Advanced Settings" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Advanced%20Settings"></a>
-                  <h3 class="section-name"><p>Advanced Settings</p>
+                  <h3 class="section-name"><span>Advanced Settings</span>
 </h3>
                 </div>
               </div>
@@ -4519,7 +4519,7 @@ maximum of 1000 results being returned at a time.</p>
                 <a name="//apple_ref/objc/Section/Getting Objects by ID" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20Objects%20by%20ID2"></a>
-                  <h3 class="section-name"><p>Getting Objects by ID</p>
+                  <h3 class="section-name"><span>Getting Objects by ID</span>
 </h3>
                 </div>
               </div>
@@ -4538,7 +4538,7 @@ maximum of 1000 results being returned at a time.</p>
                       <div class="pointer"></div>
                       <div class="aside aside-deprecated">
                         <p class="aside-title">Deprecated</p>
-                        <p>Please use <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)getObjectInBackgroundWithId:block:">PFQuery.-getObjectInBackgroundWithId:block:</a></code> instead.</p>
+                        <p>Please use <code>PFQuery.-getObjectInBackgroundWithId:block:</code> instead.</p>
 
                       </div>
                       <div class="abstract">
@@ -4546,7 +4546,7 @@ maximum of 1000 results being returned at a time.</p>
 
 <p>This mutates the PFQuery. It will reset limit to <code>1</code>, skip to <code>0</code> and remove all conditions, leaving only <code>objectId</code>.</p>
 
-<p>@deprecated Please use <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)getObjectInBackgroundWithId:block:">PFQuery.-getObjectInBackgroundWithId:block:</a></code> instead.</p>
+<p>@deprecated Please use <code>PFQuery.-getObjectInBackgroundWithId:block:</code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -4620,7 +4620,7 @@ Result will be <code>nil</code> if error is set and vice versa.</p>
                 <a name="//apple_ref/objc/Section/Getting all Matches for a Query" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20all%20Matches%20for%20a%20Query2"></a>
-                  <h3 class="section-name"><p>Getting all Matches for a Query</p>
+                  <h3 class="section-name"><span>Getting all Matches for a Query</span>
 </h3>
                 </div>
               </div>
@@ -4639,13 +4639,13 @@ Result will be <code>nil</code> if error is set and vice versa.</p>
                       <div class="pointer"></div>
                       <div class="aside aside-deprecated">
                         <p class="aside-title">Deprecated</p>
-                        <p>Please use <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)findObjectsInBackgroundWithBlock:">PFQuery.-findObjectsInBackgroundWithBlock:</a></code> instead.</p>
+                        <p>Please use <code>PFQuery.-findObjectsInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="abstract">
                         <p>Finds objects <em>asynchronously</em> and calls the given callback with the results.</p>
 
-<p>@deprecated Please use <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)findObjectsInBackgroundWithBlock:">PFQuery.-findObjectsInBackgroundWithBlock:</a></code> instead.</p>
+<p>@deprecated Please use <code>PFQuery.-findObjectsInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -4706,7 +4706,7 @@ Result will be <code>nil</code> if error is set and vice versa.</p>
                 <a name="//apple_ref/objc/Section/Getting the First Match in a Query" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20the%20First%20Match%20in%20a%20Query2"></a>
-                  <h3 class="section-name"><p>Getting the First Match in a Query</p>
+                  <h3 class="section-name"><span>Getting the First Match in a Query</span>
 </h3>
                 </div>
               </div>
@@ -4725,7 +4725,7 @@ Result will be <code>nil</code> if error is set and vice versa.</p>
                       <div class="pointer"></div>
                       <div class="aside aside-deprecated">
                         <p class="aside-title">Deprecated</p>
-                        <p>Please use <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)getFirstObjectInBackgroundWithBlock:">PFQuery.-getFirstObjectInBackgroundWithBlock:</a></code> instead.</p>
+                        <p>Please use <code>PFQuery.-getFirstObjectInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="abstract">
@@ -4736,7 +4736,7 @@ Result will be <code>nil</code> if error is set and vice versa.</p>
 
 </div>
 
-<p>@deprecated Please use <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)getFirstObjectInBackgroundWithBlock:">PFQuery.-getFirstObjectInBackgroundWithBlock:</a></code> instead.</p>
+<p>@deprecated Please use <code>PFQuery.-getFirstObjectInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -4798,7 +4798,7 @@ It should have the following signature: <code>(void)callbackWithResult:(PFObject
                 <a name="//apple_ref/objc/Section/Counting the Matches in a Query" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Counting%20the%20Matches%20in%20a%20Query2"></a>
-                  <h3 class="section-name"><p>Counting the Matches in a Query</p>
+                  <h3 class="section-name"><span>Counting the Matches in a Query</span>
 </h3>
                 </div>
               </div>
@@ -4817,13 +4817,13 @@ It should have the following signature: <code>(void)callbackWithResult:(PFObject
                       <div class="pointer"></div>
                       <div class="aside aside-deprecated">
                         <p class="aside-title">Deprecated</p>
-                        <p>Please use <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)countObjectsInBackgroundWithBlock:">PFQuery.-countObjectsInBackgroundWithBlock:</a></code> instead.</p>
+                        <p>Please use <code>PFQuery.-countObjectsInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="abstract">
                         <p>Counts objects <em>asynchronously</em> and calls the given callback with the count.</p>
 
-<p>@deprecated Please use <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)countObjectsInBackgroundWithBlock:">PFQuery.-countObjectsInBackgroundWithBlock:</a></code> instead.</p>
+<p>@deprecated Please use <code>PFQuery.-countObjectsInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -4883,7 +4883,7 @@ It should have the following signature: <code>(void)callbackWithResult:(NSNumber
                 <a name="//apple_ref/objc/Section/Getting Objects by ID" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20Objects%20by%20ID3"></a>
-                  <h3 class="section-name"><p>Getting Objects by ID</p>
+                  <h3 class="section-name"><span>Getting Objects by ID</span>
 </h3>
                 </div>
               </div>
@@ -5172,7 +5172,7 @@ It will reset limit to <code>1</code>, skip to <code>0</code> and remove all con
                 <a name="//apple_ref/objc/Section/Getting User Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20User%20Objects2"></a>
-                  <h3 class="section-name"><p>Getting User Objects</p>
+                  <h3 class="section-name"><span>Getting User Objects</span>
 </h3>
                 </div>
               </div>
@@ -5300,7 +5300,7 @@ It will reset limit to <code>1</code>, skip to <code>0</code> and remove all con
                 <a name="//apple_ref/objc/Section/Getting all Matches for a Query" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20all%20Matches%20for%20a%20Query3"></a>
-                  <h3 class="section-name"><p>Getting all Matches for a Query</p>
+                  <h3 class="section-name"><span>Getting all Matches for a Query</span>
 </h3>
                 </div>
               </div>
@@ -5400,7 +5400,7 @@ It will reset limit to <code>1</code>, skip to <code>0</code> and remove all con
                 <a name="//apple_ref/objc/Section/Getting the First Match in a Query" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20the%20First%20Match%20in%20a%20Query3"></a>
-                  <h3 class="section-name"><p>Getting the First Match in a Query</p>
+                  <h3 class="section-name"><span>Getting the First Match in a Query</span>
 </h3>
                 </div>
               </div>
@@ -5509,7 +5509,7 @@ It will reset limit to <code>1</code>, skip to <code>0</code> and remove all con
                 <a name="//apple_ref/objc/Section/Counting the Matches in a Query" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Counting%20the%20Matches%20in%20a%20Query3"></a>
-                  <h3 class="section-name"><p>Counting the Matches in a Query</p>
+                  <h3 class="section-name"><span>Counting the Matches in a Query</span>
 </h3>
                 </div>
               </div>
@@ -5608,9 +5608,8 @@ It will reset limit to <code>1</code>, skip to <code>0</code> and remove all con
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2023 <a class="link" href="http://parseplatform.org" target="_blank" rel="external">Parse Community</a>. All rights reserved. (Last updated: 2023-10-06)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2024 <a class="link" href="http://parseplatform.org" target="_blank" rel="external noopener">Parse Community</a>. All rights reserved. (Last updated: 2024-04-08)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
-</div>
 </html>

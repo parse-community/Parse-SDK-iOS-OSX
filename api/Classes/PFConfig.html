@@ -21,27 +21,27 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          Parse 2.7.3 Docs
+          Parse 3.0.0 Docs
         </a>
-         (93% documented)
+         (94% documented)
       </p>
     
-      <p class="header-col--secondary">
+      <div class="header-col--secondary">
         <form role="search" action="../search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
-      </p>
+      </div>
     
         <p class="header-col header-col--secondary">
           <a class="header-link" href="https://github.com/parse-community/Parse-SDK-iOS-OSX">
-            <img class="header-icon" src="../img/gh.png"/>
+            <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
             View on GitHub
           </a>
         </p>
     
         <p class="header-col header-col--secondary">
           <a class="header-link" href="dash-feed://http%3A%2F%2Fparseplatform.org%2FParse-SDK-iOS-OSX%2Fapi%2Fdocsets%2FParse.xml">
-            <img class="header-icon" src="../img/dash.png"/>
+            <img class="header-icon" src="../img/dash.png" alt="Dash"/>
             Install in Dash
           </a>
         </p>
@@ -49,7 +49,7 @@
 
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">Parse Reference</a>
-      <img class="carat" src="../img/carat.png" />
+      <img class="carat" src="../img/carat.png" alt=""/>
       PFConfig Class Reference
     </p>
 
@@ -249,7 +249,7 @@ It enables you to add things like feature gating, a/b testing or simple &ldquo;M
                 <a name="//apple_ref/objc/Section/Current Config" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Current%20Config"></a>
-                  <h3 class="section-name"><p>Current Config</p>
+                  <h3 class="section-name"><span>Current Config</span>
 </h3>
                 </div>
               </div>
@@ -314,12 +314,12 @@ It enables you to add things like feature gating, a/b testing or simple &ldquo;M
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">PFConfig</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">getCurrentConfigInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">getCurrentConfigInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">getCurrentConfigInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFConfig</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">getCurrentConfigInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -338,7 +338,7 @@ It enables you to add things like feature gating, a/b testing or simple &ldquo;M
                 <a name="//apple_ref/objc/Section/Retrieving Config" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Retrieving%20Config"></a>
-                  <h3 class="section-name"><p>Retrieving Config</p>
+                  <h3 class="section-name"><span>Retrieving Config</span>
 </h3>
                 </div>
               </div>
@@ -363,12 +363,12 @@ It enables you to add things like feature gating, a/b testing or simple &ldquo;M
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">PFConfig</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">getConfigInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">getConfigInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">getInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFConfig</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">getInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -439,7 +439,7 @@ It should have the following argument signature: <code>^(PFConfig *config, NSErr
                 <a name="//apple_ref/objc/Section/Parameters" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Parameters"></a>
-                  <h3 class="section-name"><p>Parameters</p>
+                  <h3 class="section-name"><span>Parameters</span>
 </h3>
                 </div>
               </div>
@@ -570,7 +570,7 @@ E.g. <code>NSString *value = config[@&quot;key&quot;];</code></p>
                 <a name="//apple_ref/objc/Section/Retrieving Config" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Retrieving%20Config2"></a>
-                  <h3 class="section-name"><p>Retrieving Config</p>
+                  <h3 class="section-name"><span>Retrieving Config</span>
 </h3>
                 </div>
               </div>
@@ -669,9 +669,8 @@ E.g. <code>NSString *value = config[@&quot;key&quot;];</code></p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2023 <a class="link" href="http://parseplatform.org" target="_blank" rel="external">Parse Community</a>. All rights reserved. (Last updated: 2023-10-06)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2024 <a class="link" href="http://parseplatform.org" target="_blank" rel="external noopener">Parse Community</a>. All rights reserved. (Last updated: 2024-04-08)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
-</div>
 </html>

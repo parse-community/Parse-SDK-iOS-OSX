@@ -21,27 +21,27 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          Parse 2.7.3 Docs
+          Parse 3.0.0 Docs
         </a>
-         (93% documented)
+         (94% documented)
       </p>
     
-      <p class="header-col--secondary">
+      <div class="header-col--secondary">
         <form role="search" action="../search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
-      </p>
+      </div>
     
         <p class="header-col header-col--secondary">
           <a class="header-link" href="https://github.com/parse-community/Parse-SDK-iOS-OSX">
-            <img class="header-icon" src="../img/gh.png"/>
+            <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
             View on GitHub
           </a>
         </p>
     
         <p class="header-col header-col--secondary">
           <a class="header-link" href="dash-feed://http%3A%2F%2Fparseplatform.org%2FParse-SDK-iOS-OSX%2Fapi%2Fdocsets%2FParse.xml">
-            <img class="header-icon" src="../img/dash.png"/>
+            <img class="header-icon" src="../img/dash.png" alt="Dash"/>
             Install in Dash
           </a>
         </p>
@@ -49,7 +49,7 @@
 
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">Parse Reference</a>
-      <img class="carat" src="../img/carat.png" />
+      <img class="carat" src="../img/carat.png" alt=""/>
       PFObject Class Reference
     </p>
 
@@ -250,7 +250,7 @@ This is the main class that is used to interact with objects in your app.</p>
                 <a name="//apple_ref/objc/Section/Creating a PFObject" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Creating%20a%20PFObject"></a>
-                  <h3 class="section-name"><p>Creating a PFObject</p>
+                  <h3 class="section-name"><span>Creating a PFObject</span>
 </h3>
                 </div>
               </div>
@@ -512,7 +512,7 @@ No network request will be made.</p>
                 <a name="//apple_ref/objc/Section/Managing Object Properties" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Managing%20Object%20Properties"></a>
-                  <h3 class="section-name"><p>Managing Object Properties</p>
+                  <h3 class="section-name"><span>Managing Object Properties</span>
 </h3>
                 </div>
               </div>
@@ -720,7 +720,7 @@ It does include things like username and ACL.</p>
                 <a name="//apple_ref/objc/Section/Accessors" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Accessors"></a>
-                  <h3 class="section-name"><p>Accessors</p>
+                  <h3 class="section-name"><span>Accessors</span>
 </h3>
                 </div>
               </div>
@@ -1102,7 +1102,7 @@ Raises an <code>NSInvalidArgumentException</code> if <code>key</code> is <code>n
                       <div class="abstract">
                         <p>Returns the instance of <code><a href="../Classes/PFRelation.html">PFRelation</a></code> class associated with the given key.</p>
 
-<p>@deprecated Please use <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)relationForKey:">PFObject.-relationForKey:</a></code> instead.</p>
+<p>@deprecated Please use <code>PFObject.-relationForKey:</code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -1232,7 +1232,7 @@ server state.</p>
                 <a name="//apple_ref/objc/Section/Array Accessors" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Array%20Accessors"></a>
-                  <h3 class="section-name"><p>Array Accessors</p>
+                  <h3 class="section-name"><span>Array Accessors</span>
 </h3>
                 </div>
               </div>
@@ -1631,7 +1631,7 @@ only adding elements which are not already present in the array.</p>
                 <a name="//apple_ref/objc/Section/Increment" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Increment"></a>
-                  <h3 class="section-name"><p>Increment</p>
+                  <h3 class="section-name"><span>Increment</span>
 </h3>
                 </div>
               </div>
@@ -1759,7 +1759,7 @@ only adding elements which are not already present in the array.</p>
                 <a name="//apple_ref/objc/Section/Saving Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Saving%20Objects"></a>
-                  <h3 class="section-name"><p>Saving Objects</p>
+                  <h3 class="section-name"><span>Saving Objects</span>
 </h3>
                 </div>
               </div>
@@ -1784,12 +1784,12 @@ only adding elements which are not already present in the array.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">saveInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">saveInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">saveInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">saveInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1883,12 +1883,12 @@ can be saved.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">saveEventually</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">saveEventually</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">saveEventually</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">saveEventually</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -1971,7 +1971,7 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                 <a name="//apple_ref/objc/Section/Saving Many Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Saving%20Many%20Objects"></a>
-                  <h3 class="section-name"><p>Saving Many Objects</p>
+                  <h3 class="section-name"><span>Saving Many Objects</span>
 </h3>
                 </div>
               </div>
@@ -1996,13 +1996,12 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">saveAllInBackground</span><span class="p">:</span>
-    <span class="p">(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">saveAllInBackground</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">saveAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">saveAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -2105,7 +2104,7 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                 <a name="//apple_ref/objc/Section/Deleting Many Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Deleting%20Many%20Objects"></a>
-                  <h3 class="section-name"><p>Deleting Many Objects</p>
+                  <h3 class="section-name"><span>Deleting Many Objects</span>
 </h3>
                 </div>
               </div>
@@ -2130,13 +2129,12 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">deleteAllInBackground</span><span class="p">:</span>
-    <span class="p">(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">deleteAllInBackground</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">deleteAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">deleteAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -2239,7 +2237,7 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                 <a name="//apple_ref/objc/Section/Getting an Object" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20an%20Object"></a>
-                  <h3 class="section-name"><p>Getting an Object</p>
+                  <h3 class="section-name"><span>Getting an Object</span>
 </h3>
                 </div>
               </div>
@@ -2284,6 +2282,42 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/c:objc(cs)PFObject(im)isDataAvailableForKey:"></a>
+                    <a name="//apple_ref/objc/Method/-isDataAvailableForKey:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)PFObject(im)isDataAvailableForKey:">-isDataAvailableForKey:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Checks whether the <code>PFObject</code> has data for given key</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">isDataAvailableForKey</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">key</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">isDataAvailable</span><span class="p">(</span><span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>YES</code> if data is available for given key</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/c:objc(cs)PFObject(im)fetchInBackground"></a>
                     <a name="//apple_ref/objc/Method/-fetchInBackground" class="dashAnchor"></a>
                     <a class="token" href="#/c:objc(cs)PFObject(im)fetchInBackground">-fetchInBackground</a>
@@ -2301,12 +2335,12 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">__kindof</span> <span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">fetchInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">fetchInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">fetchInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFObject</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">fetchInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -2390,12 +2424,12 @@ then sets it as a result for the task.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">__kindof</span> <span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">fetchIfNeededInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">fetchIfNeededInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">fetchIfNeededInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFObject</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">fetchIfNeededInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -2466,7 +2500,7 @@ It should have the following argument signature: <code>^(PFObject *object, NSErr
                 <a name="//apple_ref/objc/Section/Getting Many Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20Many%20Objects"></a>
-                  <h3 class="section-name"><p>Getting Many Objects</p>
+                  <h3 class="section-name"><span>Getting Many Objects</span>
 </h3>
                 </div>
               </div>
@@ -2491,13 +2525,12 @@ It should have the following argument signature: <code>^(PFObject *object, NSErr
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSArray</span><span class="o">&lt;</span><span class="n">__kindof</span> <span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">fetchAllInBackground</span><span class="p">:</span>
-    <span class="p">(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">fetchAllInBackground</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">fetchAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSArray</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">fetchAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -2613,13 +2646,12 @@ It should have the following argument signature: <code>^(NSArray *objects, NSErr
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSArray</span><span class="o">&lt;</span><span class="n">__kindof</span> <span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span>
-    <span class="nf">fetchAllIfNeededInBackground</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">fetchAllIfNeededInBackground</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">fetchAllIfNeeded</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSArray</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">fetchAllIfNeeded</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -2723,7 +2755,7 @@ It should have the following argument signature: <code>^(NSArray *objects, NSErr
                 <a name="//apple_ref/objc/Section/Fetching From Local Datastore" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Fetching%20From%20Local%20Datastore"></a>
-                  <h3 class="section-name"><p>Fetching From Local Datastore</p>
+                  <h3 class="section-name"><span>Fetching From Local Datastore</span>
 </h3>
                 </div>
               </div>
@@ -2749,12 +2781,12 @@ if it has not been fetched from the server already.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">__kindof</span> <span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">fetchFromLocalDatastoreInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">fetchFromLocalDatastoreInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">fetchFromLocalDatastoreInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">PFObject</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">fetchFromLocalDatastoreInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -2827,7 +2859,7 @@ It should have the following argument signature: <code>^(PFObject *object, NSErr
                 <a name="//apple_ref/objc/Section/Deleting an Object" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Deleting%20an%20Object"></a>
-                  <h3 class="section-name"><p>Deleting an Object</p>
+                  <h3 class="section-name"><span>Deleting an Object</span>
 </h3>
                 </div>
               </div>
@@ -2852,12 +2884,12 @@ It should have the following argument signature: <code>^(PFObject *object, NSErr
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">deleteInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">deleteInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">deleteInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">deleteInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -2952,12 +2984,12 @@ until the connection can be re-established, and the queued requests can go throu
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">deleteEventually</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">deleteEventually</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">deleteEventually</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">deleteEventually</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -2976,7 +3008,7 @@ until the connection can be re-established, and the queued requests can go throu
                 <a name="//apple_ref/objc/Section/Dirtiness" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Dirtiness"></a>
-                  <h3 class="section-name"><p>Dirtiness</p>
+                  <h3 class="section-name"><span>Dirtiness</span>
 </h3>
                 </div>
               </div>
@@ -3081,7 +3113,7 @@ has been added/updated/removed and not saved yet.</p>
                 <a name="//apple_ref/objc/Section/Pinning" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Pinning"></a>
-                  <h3 class="section-name"><p>Pinning</p>
+                  <h3 class="section-name"><span>Pinning</span>
 </h3>
                 </div>
               </div>
@@ -3104,7 +3136,7 @@ using a default pin name: <code><a href="../Constants.html#/c:@PFObjectDefaultPi
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchFromLocalDatastore">-fetchFromLocalDatastore</a></code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -3121,12 +3153,12 @@ use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">pinInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">pinInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">pinInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">pinInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -3155,7 +3187,7 @@ using a default pin name: <code><a href="../Constants.html#/c:@PFObjectDefaultPi
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchFromLocalDatastore">-fetchFromLocalDatastore</a></code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -3221,7 +3253,7 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call `-fetchFromLocalDatastore on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -3234,13 +3266,12 @@ use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">pinInBackgroundWithName</span><span class="p">:</span>
-    <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">pinInBackgroundWithName</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">pinInBackground</span><span class="p">(</span><span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">pinInBackground</span><span class="p">(</span><span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -3287,7 +3318,7 @@ use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchFromLocalDatastore">-fetchFromLocalDatastore</a></code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -3353,7 +3384,7 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                 <a name="//apple_ref/objc/Section/Pinning Many Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Pinning%20Many%20Objects"></a>
-                  <h3 class="section-name"><p>Pinning Many Objects</p>
+                  <h3 class="section-name"><span>Pinning Many Objects</span>
 </h3>
                 </div>
               </div>
@@ -3376,7 +3407,7 @@ using a default pin name: <code><a href="../Constants.html#/c:@PFObjectDefaultPi
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code>fetchFromLocalDatastore:</code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -3393,13 +3424,12 @@ use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">pinAllInBackground</span><span class="p">:</span>
-    <span class="p">(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">pinAllInBackground</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">pinAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">pinAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -3447,7 +3477,7 @@ using a default pin name: <code><a href="../Constants.html#/c:@PFObjectDefaultPi
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code>fetchFromLocalDatastore:</code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -3526,7 +3556,7 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code>fetchFromLocalDatastore:</code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -3539,14 +3569,13 @@ use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">pinAllInBackground</span><span class="p">:</span>
-                                    <span class="p">(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span>
-                                          <span class="nf">withName</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">pinAllInBackground</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span>
+                <span class="nf">withName</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">pinAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?,</span> <span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">pinAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?,</span> <span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -3605,7 +3634,7 @@ use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code>fetchFromLocalDatastore:</code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -3684,7 +3713,7 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                 <a name="//apple_ref/objc/Section/Unpinning" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Unpinning"></a>
-                  <h3 class="section-name"><p>Unpinning</p>
+                  <h3 class="section-name"><span>Unpinning</span>
 </h3>
                 </div>
               </div>
@@ -3719,12 +3748,12 @@ using a default pin name: <code><a href="../Constants.html#/c:@PFObjectDefaultPi
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">unpinInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">unpinInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">unpinInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">unpinInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -3822,13 +3851,12 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">unpinInBackgroundWithName</span><span class="p">:</span>
-    <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">unpinInBackgroundWithName</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">unpinInBackground</span><span class="p">(</span><span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">unpinInBackground</span><span class="p">(</span><span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -3936,7 +3964,7 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                 <a name="//apple_ref/objc/Section/Unpinning Many Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Unpinning%20Many%20Objects"></a>
-                  <h3 class="section-name"><p>Unpinning Many Objects</p>
+                  <h3 class="section-name"><span>Unpinning Many Objects</span>
 </h3>
                 </div>
               </div>
@@ -3967,12 +3995,12 @@ using a default pin name: <code><a href="../Constants.html#/c:@PFObjectDefaultPi
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">unpinAllObjectsInBackground</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">unpinAllObjectsInBackground</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">unpinAllObjectsInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">unpinAllObjectsInBackground</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -4062,13 +4090,12 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">unpinAllObjectsInBackgroundWithName</span><span class="p">:</span>
-    <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">unpinAllObjectsInBackgroundWithName</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">unpinAllObjectsInBackground</span><span class="p">(</span><span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">unpinAllObjectsInBackground</span><span class="p">(</span><span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -4194,13 +4221,12 @@ using a default pin name: <code><a href="../Constants.html#/c:@PFObjectDefaultPi
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">unpinAllInBackground</span><span class="p">:</span>
-    <span class="p">(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">unpinAllInBackground</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">unpinAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">unpinAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -4330,14 +4356,13 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">BFTask</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">unpinAllInBackground</span><span class="p">:</span>
-                                    <span class="p">(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span>
-                                            <span class="nf">withName</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">unpinAllInBackground</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">PFObject</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">objects</span>
+                  <span class="nf">withName</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">unpinAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?,</span> <span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BFTask</span><span class="o">&lt;</span><span class="kt">NSNumber</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">unpinAll</span><span class="p">(</span><span class="n">inBackground</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">PFObject</span><span class="p">]?,</span> <span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
@@ -4470,7 +4495,7 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                 <a name="//apple_ref/objc/Section/Saving Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Saving%20Objects2"></a>
-                  <h3 class="section-name"><p>Saving Objects</p>
+                  <h3 class="section-name"><span>Saving Objects</span>
 </h3>
                 </div>
               </div>
@@ -4489,13 +4514,13 @@ It should have the following argument signature: <code>^(BOOL succeeded, NSError
                       <div class="pointer"></div>
                       <div class="aside aside-deprecated">
                         <p class="aside-title">Deprecated</p>
-                        <p>Please use <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)saveInBackgroundWithBlock:">PFObject.-saveInBackgroundWithBlock:</a></code> instead.</p>
+                        <p>Please use <code>PFObject.-saveInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="abstract">
                         <p>Saves the <code>PFObject</code> asynchronously and calls the given callback.</p>
 
-<p>@deprecated Please use <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)saveInBackgroundWithBlock:">PFObject.-saveInBackgroundWithBlock:</a></code> instead.</p>
+<p>@deprecated Please use <code>PFObject.-saveInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -4557,7 +4582,7 @@ It should have the following signature: <code>(void)callbackWithResult:(NSNumber
                 <a name="//apple_ref/objc/Section/Saving Many Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Saving%20Many%20Objects2"></a>
-                  <h3 class="section-name"><p>Saving Many Objects</p>
+                  <h3 class="section-name"><span>Saving Many Objects</span>
 </h3>
                 </div>
               </div>
@@ -4657,7 +4682,7 @@ It should have the following signature: <code>(void)callbackWithResult:(NSNumber
                 <a name="//apple_ref/objc/Section/Getting an Object" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20an%20Object2"></a>
-                  <h3 class="section-name"><p>Getting an Object</p>
+                  <h3 class="section-name"><span>Getting an Object</span>
 </h3>
                 </div>
               </div>
@@ -4676,13 +4701,13 @@ It should have the following signature: <code>(void)callbackWithResult:(NSNumber
                       <div class="pointer"></div>
                       <div class="aside aside-deprecated">
                         <p class="aside-title">Deprecated</p>
-                        <p>Please use <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchInBackgroundWithBlock:">PFObject.-fetchInBackgroundWithBlock:</a></code> instead.</p>
+                        <p>Please use <code>PFObject.-fetchInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="abstract">
                         <p><em>Asynchronously</em> refreshes the <code>PFObject</code> and calls the given callback.</p>
 
-<p>@deprecated Please use <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchInBackgroundWithBlock:">PFObject.-fetchInBackgroundWithBlock:</a></code> instead.</p>
+<p>@deprecated Please use <code>PFObject.-fetchInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -4750,13 +4775,13 @@ It should have the following signature: <code>(void)callbackWithResult:(PFObject
                       <div class="pointer"></div>
                       <div class="aside aside-deprecated">
                         <p class="aside-title">Deprecated</p>
-                        <p>Please use <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchInBackgroundWithBlock:">PFObject.-fetchInBackgroundWithBlock:</a></code> instead.</p>
+                        <p>Please use <code>PFObject.-fetchInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="abstract">
                         <p>Fetches the `PFObject <em>asynchronously</em> and calls the given callback.</p>
 
-<p>@deprecated Please use <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchInBackgroundWithBlock:">PFObject.-fetchInBackgroundWithBlock:</a></code> instead.</p>
+<p>@deprecated Please use <code>PFObject.-fetchInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -4824,13 +4849,13 @@ It should have the following signature: <code>(void)callbackWithResult:(PFObject
                       <div class="pointer"></div>
                       <div class="aside aside-deprecated">
                         <p class="aside-title">Deprecated</p>
-                        <p>Please use <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchIfNeededInBackgroundWithBlock:">PFObject.-fetchIfNeededInBackgroundWithBlock:</a></code> instead.</p>
+                        <p>Please use <code>PFObject.-fetchIfNeededInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="abstract">
                         <p>Fetches the PFObject&rsquo;s data asynchronously if <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(py)dataAvailable">dataAvailable</a></code> is <code>NO</code>, then calls the callback.</p>
 
-<p>@deprecated Please use <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchIfNeededInBackgroundWithBlock:">PFObject.-fetchIfNeededInBackgroundWithBlock:</a></code> instead.</p>
+<p>@deprecated Please use <code>PFObject.-fetchIfNeededInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -4892,7 +4917,7 @@ It should have the following signature: <code>(void)callbackWithResult:(PFObject
                 <a name="//apple_ref/objc/Section/Getting Many Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20Many%20Objects2"></a>
-                  <h3 class="section-name"><p>Getting Many Objects</p>
+                  <h3 class="section-name"><span>Getting Many Objects</span>
 </h3>
                 </div>
               </div>
@@ -5081,7 +5106,7 @@ It should have the following signature: <code>(void)callbackWithResult:(NSArray 
                 <a name="//apple_ref/objc/Section/Deleting an Object" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Deleting%20an%20Object2"></a>
-                  <h3 class="section-name"><p>Deleting an Object</p>
+                  <h3 class="section-name"><span>Deleting an Object</span>
 </h3>
                 </div>
               </div>
@@ -5100,13 +5125,13 @@ It should have the following signature: <code>(void)callbackWithResult:(NSArray 
                       <div class="pointer"></div>
                       <div class="aside aside-deprecated">
                         <p class="aside-title">Deprecated</p>
-                        <p>Please use <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)deleteInBackgroundWithBlock:">PFObject.-deleteInBackgroundWithBlock:</a></code> instead.</p>
+                        <p>Please use <code>PFObject.-deleteInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="abstract">
                         <p>Deletes the <code>PFObject</code> <em>asynchronously</em> and calls the given callback.</p>
 
-<p>@deprecated Please use <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)deleteInBackgroundWithBlock:">PFObject.-deleteInBackgroundWithBlock:</a></code> instead.</p>
+<p>@deprecated Please use <code>PFObject.-deleteInBackgroundWithBlock:</code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -5168,7 +5193,7 @@ It should have the following signature: <code>(void)callbackWithResult:(NSNumber
                 <a name="//apple_ref/objc/Section/Deleting Many Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Deleting%20Many%20Objects2"></a>
-                  <h3 class="section-name"><p>Deleting Many Objects</p>
+                  <h3 class="section-name"><span>Deleting Many Objects</span>
 </h3>
                 </div>
               </div>
@@ -5268,7 +5293,7 @@ It should have the following signature: <code>(void)callbackWithResult:(NSNumber
                 <a name="//apple_ref/objc/Section/Methods for Subclasses" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Methods%20for%20Subclasses"></a>
-                  <h3 class="section-name"><p>Methods for Subclasses</p>
+                  <h3 class="section-name"><span>Methods for Subclasses</span>
 </h3>
                 </div>
               </div>
@@ -5517,7 +5542,7 @@ A default implementation is provided by <code>PFObject</code> which should alway
                 <a name="//apple_ref/objc/Section/Saving Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Saving%20Objects3"></a>
-                  <h3 class="section-name"><p>Saving Objects</p>
+                  <h3 class="section-name"><span>Saving Objects</span>
 </h3>
                 </div>
               </div>
@@ -5616,7 +5641,7 @@ A default implementation is provided by <code>PFObject</code> which should alway
                 <a name="//apple_ref/objc/Section/Saving Many Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Saving%20Many%20Objects3"></a>
-                  <h3 class="section-name"><p>Saving Many Objects</p>
+                  <h3 class="section-name"><span>Saving Many Objects</span>
 </h3>
                 </div>
               </div>
@@ -5747,7 +5772,7 @@ A default implementation is provided by <code>PFObject</code> which should alway
                 <a name="//apple_ref/objc/Section/Getting an Object" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20an%20Object3"></a>
-                  <h3 class="section-name"><p>Getting an Object</p>
+                  <h3 class="section-name"><span>Getting an Object</span>
 </h3>
                 </div>
               </div>
@@ -5916,7 +5941,7 @@ A default implementation is provided by <code>PFObject</code> which should alway
                 <a name="//apple_ref/objc/Section/Getting Many Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Getting%20Many%20Objects3"></a>
-                  <h3 class="section-name"><p>Getting Many Objects</p>
+                  <h3 class="section-name"><span>Getting Many Objects</span>
 </h3>
                 </div>
               </div>
@@ -6155,7 +6180,7 @@ and sets an error if it occurs.</p>
                 <a name="//apple_ref/objc/Section/Fetching From Local Datastore" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Fetching%20From%20Local%20Datastore2"></a>
-                  <h3 class="section-name"><p>Fetching From Local Datastore</p>
+                  <h3 class="section-name"><span>Fetching From Local Datastore</span>
 </h3>
                 </div>
               </div>
@@ -6252,7 +6277,7 @@ return <code>kPFErrorCacheMiss</code>.</p>
                 <a name="//apple_ref/objc/Section/Deleting an Object" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Deleting%20an%20Object3"></a>
-                  <h3 class="section-name"><p>Deleting an Object</p>
+                  <h3 class="section-name"><span>Deleting an Object</span>
 </h3>
                 </div>
               </div>
@@ -6351,7 +6376,7 @@ return <code>kPFErrorCacheMiss</code>.</p>
                 <a name="//apple_ref/objc/Section/Deleting Many Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Deleting%20Many%20Objects3"></a>
-                  <h3 class="section-name"><p>Deleting Many Objects</p>
+                  <h3 class="section-name"><span>Deleting Many Objects</span>
 </h3>
                 </div>
               </div>
@@ -6482,7 +6507,7 @@ return <code>kPFErrorCacheMiss</code>.</p>
                 <a name="//apple_ref/objc/Section/Pinning" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Pinning2"></a>
-                  <h3 class="section-name"><p>Pinning</p>
+                  <h3 class="section-name"><span>Pinning</span>
 </h3>
                 </div>
               </div>
@@ -6505,7 +6530,7 @@ using a default pin name: <code><a href="../Constants.html#/c:@PFObjectDefaultPi
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchFromLocalDatastore">-fetchFromLocalDatastore</a></code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -6551,7 +6576,7 @@ using a default pin name: <code><a href="../Constants.html#/c:@PFObjectDefaultPi
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchFromLocalDatastore">-fetchFromLocalDatastore</a></code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -6620,7 +6645,7 @@ use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchFromLocalDatastore">-fetchFromLocalDatastore</a></code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -6680,7 +6705,7 @@ use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(im)fetchFromLocalDatastore">-fetchFromLocalDatastore</a></code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -6749,7 +6774,7 @@ use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code
                 <a name="//apple_ref/objc/Section/Pinning Many Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Pinning%20Many%20Objects2"></a>
-                  <h3 class="section-name"><p>Pinning Many Objects</p>
+                  <h3 class="section-name"><span>Pinning Many Objects</span>
 </h3>
                 </div>
               </div>
@@ -6772,7 +6797,7 @@ using a default pin name: <code><a href="../Constants.html#/c:@PFObjectDefaultPi
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code>fetchFromLocalDatastore:</code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -6837,7 +6862,7 @@ using a default pin name: <code><a href="../Constants.html#/c:@PFObjectDefaultPi
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code>fetchFromLocalDatastore:</code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -6919,7 +6944,7 @@ use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code>fetchFromLocalDatastore:</code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -6992,7 +7017,7 @@ use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code
 
 <p>If those other objects have not been fetched from Parse, they will not be stored. However,
 if they have changed data, all the changes will be retained. To get the objects back later, you can
-use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html#/c:objc(cs)PFQuery(im)fromLocalDatastore">PFQuery.-fromLocalDatastore</a></code>, or you can create an unfetched pointer with
+use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code><a href="../Classes/PFQuery.html">PFQuery.</a></code>, or you can create an unfetched pointer with
 <code><a href="../Classes/PFObject.html#/c:objc(cs)PFObject(cm)objectWithoutDataWithClassName:objectId:">+objectWithoutDataWithClassName:objectId:</a></code> and then call <code>fetchFromLocalDatastore:</code> on it.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
@@ -7074,7 +7099,7 @@ use a <code><a href="../Classes/PFQuery.html">PFQuery</a></code> that uses <code
                 <a name="//apple_ref/objc/Section/Unpinning" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Unpinning2"></a>
-                  <h3 class="section-name"><p>Unpinning</p>
+                  <h3 class="section-name"><span>Unpinning</span>
 </h3>
                 </div>
               </div>
@@ -7321,7 +7346,7 @@ using a default pin name: <code><a href="../Constants.html#/c:@PFObjectDefaultPi
                 <a name="//apple_ref/objc/Section/Unpinning Many Objects" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Unpinning%20Many%20Objects2"></a>
-                  <h3 class="section-name"><p>Unpinning Many Objects</p>
+                  <h3 class="section-name"><span>Unpinning Many Objects</span>
 </h3>
                 </div>
               </div>
@@ -7842,9 +7867,8 @@ using a default pin name: <code><a href="../Constants.html#/c:@PFObjectDefaultPi
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2023 <a class="link" href="http://parseplatform.org" target="_blank" rel="external">Parse Community</a>. All rights reserved. (Last updated: 2023-10-06)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2024 <a class="link" href="http://parseplatform.org" target="_blank" rel="external noopener">Parse Community</a>. All rights reserved. (Last updated: 2024-04-08)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
-</div>
 </html>
