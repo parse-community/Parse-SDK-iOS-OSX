@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B63F16A2BC3560300F89DEE /* ParseLiveQuery in Frameworks */ = {isa = PBXBuildFile; productRef = 6B63F1692BC3560300F89DEE /* ParseLiveQuery */; };
 		F509D5291CA9E53D007B15B0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F85B61C9BB4B600566A29 /* Message.swift */; };
 		F509D52A1CA9E53D007B15B0 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F85B71C9BB4B600566A29 /* Room.swift */; };
 		F509D52B1CA9E53D007B15B0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F85AF1C9BB48200566A29 /* main.swift */; };
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B63F16A2BC3560300F89DEE /* ParseLiveQuery in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +130,9 @@
 			dependencies = (
 			);
 			name = LiveQueryDemo;
+			packageProductDependencies = (
+				6B63F1692BC3560300F89DEE /* ParseLiveQuery */,
+			);
 			productName = AppKitDemo;
 			productReference = F509D5171CA9E4AE007B15B0 /* LiveQueryDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -235,7 +240,10 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/LiveQueryDemo/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.LiveQueryDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -251,7 +259,10 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/LiveQueryDemo/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.LiveQueryDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -358,7 +369,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -384,6 +396,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6B63F1692BC3560300F89DEE /* ParseLiveQuery */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParseLiveQuery;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F59F85A41C9BB48200566A29 /* Project object */;
 }

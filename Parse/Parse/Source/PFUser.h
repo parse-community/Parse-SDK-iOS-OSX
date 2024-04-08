@@ -31,9 +31,6 @@ typedef void(^PFUserLogoutResultBlock)(NSError *_Nullable error);
  The `PFUser` class is a local representation of a user persisted to the Parse Data.
  This class is a subclass of a `PFObject`, and retains the same functionality of a `PFObject`,
  but also extends it with various user specific methods, like authentication, signing up, and validation uniqueness.
-
- Many APIs responsible for linking a `PFUser` with Facebook or Twitter have been deprecated in favor of dedicated
- utilities for each social network. See `PFFacebookUtils`, `PFTwitterUtils` and `PFAnonymousUtils` for more information.
  */
 
 @interface PFUser : PFObject <PFSubclassing>
@@ -65,8 +62,6 @@ typedef void(^PFUserLogoutResultBlock)(NSError *_Nullable error);
 
 /**
  Whether the `PFUser` was just created from a request.
-
- This is only set after a Facebook or Twitter login.
  */
 @property (nonatomic, assign, readonly) BOOL isNew;
 
