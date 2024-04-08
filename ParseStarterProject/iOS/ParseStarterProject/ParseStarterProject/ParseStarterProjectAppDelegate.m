@@ -12,9 +12,6 @@
 // If you want to use any of the UI components, uncomment this line
 // #import <ParseUI/ParseUI.h>
 
-// If you are using Facebook, uncomment this line
-// #import <ParseFacebookUtils/PFFacebookUtils.h>
-
 #import "ParseStarterProjectAppDelegate.h"
 #import "ParseStarterProjectViewController.h"
 
@@ -42,12 +39,6 @@
         // use Local Datastore features or want to use cachePolicy.
         configuration.localDatastoreEnabled = YES;
     }]];
-
-    // ****************************************************************************
-    // If you are using Facebook, uncomment and add your FacebookAppID to your bundle's plist as
-    // described here: https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/
-    // [PFFacebookUtils initializeFacebook];
-    // ****************************************************************************
 
     [PFUser enableAutomaticUser];
 
@@ -131,18 +122,6 @@
 //    if (application.applicationState == UIApplicationStateInactive) {
 //        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
 //    }
-//}
-
-#pragma mark Facebook SDK Integration
-
-///////////////////////////////////////////////////////////
-// Uncomment this method if you are using Facebook
-///////////////////////////////////////////////////////////
-//- (BOOL)application:(UIApplication *)application
-//            openURL:(NSURL *)url
-//  sourceApplication:(NSString *)sourceApplication
-//         annotation:(id)annotation {
-//    return [PFFacebookUtils handleOpenURL:url];
 //}
 
 @end

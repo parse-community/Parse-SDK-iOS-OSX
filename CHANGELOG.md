@@ -1,3 +1,16 @@
+# [3.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.7.3...3.0.0) (2024-04-08)
+
+
+### Features
+
+* Add `PFObject.isDataAvailableForKey` to check if data is available for individual key ([#1756](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1756)) ([dd05d41](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/dd05d411a54712ee927e5fb8af390ae36a60ed7e))
+* Remove `ParseFacebookUtils` and `ParseTwitterUtils` ([#1779](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1779)) ([f1311ee](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/f1311eee00a2419720e85d7ca90fe868e509e4ed))
+
+
+### BREAKING CHANGES
+
+* Removes convenience modules `ParseFacebookUtils` and `ParseTwitterUtils`, instead manually add the 3rd party authentication service SDK to log in and provide the authentication data to `PFUser.logInWithAuthType` to link the Parse User. ([f1311ee](f1311ee))
+
 ## [2.7.3](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.7.2...2.7.3) (2023-10-06)
 
 

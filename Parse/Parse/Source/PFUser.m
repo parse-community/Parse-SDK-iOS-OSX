@@ -223,7 +223,7 @@ static BOOL revocableSessionEnabled_;
 #pragma mark - Service Login
 ///--------------------------------------
 
-// Constructs the command for user_signup_or_login. This is used for Facebook, Twitter, and other linking services.
+// Constructs the command for user_signup_or_login. This is used for authentication services.
 - (PFRESTCommand *)_currentServiceLoginCommandForChanges:(PFOperationSet *)changes error:(NSError **)error {
     @synchronized([self lock]) {
         NSDictionary *parameters = [self _convertToDictionaryForSaving:changes
@@ -342,15 +342,13 @@ static BOOL revocableSessionEnabled_;
 /*
  Merges custom fields from JSON associated with a PFUser:
  {
- "session_token": string,
- "is_new": boolean,
- "auth_data": {
- "facebook": {
- "id": string,
- "access_token": string,
- "expiration_date": string (represents date)
- }
- }
+    "session_token": string,
+    "is_new": boolean,
+    "auth_data": {
+        "<auth_service_name>": {
+            ...
+        }
+    }
  }
  */
 - (void)_mergeFromServerWithResult:(NSDictionary *)result decoder:(PFDecoder *)decoder completeData:(BOOL)completeData {

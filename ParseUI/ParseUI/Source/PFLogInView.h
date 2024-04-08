@@ -40,10 +40,6 @@ typedef NS_OPTIONS(NSInteger, PFLogInFields) {
     PFLogInFieldsPasswordForgotten = 1 << 1,
     /** Login button. */
     PFLogInFieldsLogInButton = 1 << 2,
-    /** Button to login with Facebook. */
-    PFLogInFieldsFacebook = 1 << 3,
-    /** Button to login with Twitter. */
-    PFLogInFieldsTwitter = 1 << 4,
     /** Signup Button. */
     PFLogInFieldsSignUpButton = 1 << 5,
     /** Dismiss Button. */
@@ -68,8 +64,6 @@ extern NSString *const PFLogInViewPasswordFieldAccessibilityIdentifier;
 extern NSString *const PFLogInViewLogInButtonAccessibilityIdentifier;
 extern NSString *const PFLogInViewSignUpButtonAccessibilityIdentifier;
 extern NSString *const PFLogInViewPasswordForgottenButtonAccessibilityIdentifier;
-extern NSString *const PFLogInViewTwitterButtonAccessibilityIdentifier;
-extern NSString *const PFLogInViewFacebookButtonAccessibilityIdentifier;
 extern NSString *const PFLogInViewAppleButtonAccessibilityIdentifier;
 extern NSString *const PFLogInViewDismissButtonAccessibilityIdentifier;
 
@@ -150,16 +144,6 @@ extern NSString *const PFLogInViewDismissButtonAccessibilityIdentifier;
 @property (nullable, nonatomic, strong, readonly) UIButton *logInButton;
 
 /**
- The Facebook button. It is `nil` if the element is not enabled.
- */
-@property (nullable, nonatomic, strong, readonly) UIButton *facebookButton;
-
-/**
- The Twitter button. It is `nil` if the element is not enabled.
- */
-@property (nullable, nonatomic, strong, readonly) UIButton *twitterButton;
-
-/**
  The Apple button. It is 'nil if the element is not enabled.
  */
 @property (nullable, nonatomic, strong, readonly) UIButton *appleButton;
@@ -173,20 +157,6 @@ extern NSString *const PFLogInViewDismissButtonAccessibilityIdentifier;
  It is `nil` if the element is not enabled.
  */
 @property (nullable, nonatomic, strong, readonly) UIButton *dismissButton;
-
-/**
- The facebook/twitter login label.
-
- @deprecated This property is deprecated and will always be nil.
- */
-@property (nullable, nonatomic, strong, readonly) UILabel *externalLogInLabel __attribute__(PARSE_UI_DEPRECATED("This property is deprecated and will always be nil."));
-
-/**
- The sign up label.
-
- @deprecated This property is deprecated and will always be nil.
- */
-@property (nullable, nonatomic, strong, readonly) UILabel *signUpLabel __attribute__(PARSE_UI_DEPRECATED("This property is deprecated and will always be nil."));
 
 @end
 

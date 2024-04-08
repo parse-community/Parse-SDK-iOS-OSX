@@ -69,13 +69,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, weak) id<PFLogInViewControllerDelegate> delegate;
 
 /**
- The facebook permissions that Facebook log in requests for.
-
- If unspecified, the default is basic facebook permissions.
- */
-@property (nullable, nonatomic, copy) NSArray<NSString *> *facebookPermissions;
-
-/**
  The sign up controller if sign up is enabled.
 
  Use this to configure the sign up view, and the transition animation to the sign up view.

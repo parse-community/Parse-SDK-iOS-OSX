@@ -32,10 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
  Data associated with the anonymous user is retained.
  - logIn switches users without converting the anonymous user.
  Data associated with the anonymous user will be lost.
- - Service logIn (e.g. Facebook, Twitter) will attempt to convert
+ - Authentication service logIn will attempt to convert
  the anonymous user into a standard user by linking it to the service.
  If a user already exists that is linked to the service, it will instead switch to the existing user.
- - Service linking (e.g. Facebook, Twitter) will convert the anonymous user
+ - Authentication service linking will convert the anonymous user
  into a standard user by linking it to the service.
  */
 @interface PFAnonymousUtils : NSObject
