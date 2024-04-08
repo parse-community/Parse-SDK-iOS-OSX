@@ -12,10 +12,8 @@
 For analyzing bugs, creating bug fixes and features we recommend to clone this repository locally and add it as a local package to your Xcode project. This way you can edit and inspect the Parse SDK while running your app. You can find step-by-step instructions for how do that in the [Xcode docs](https://developer.apple.com/documentation/xcode/editing-a-package-dependency-as-a-local-package).
 
 1. Fork the repository and create a new branch.
-2. Add unit tests for any new code you add.
+2. Add unit tests for any new code you add:
    - Core Module - [/Parse/Tests/Unit/](/Parse/Tests/Unit/)
-   - Facebook Utils - [/ParseFacebookUtils/Tests/Unit/](/ParseFacebookUtils/Tests/Unit/)
-   - Twitter Utils - [/ParseTwitterUtils/Tests/Unit/](/ParseTwitterUtils/Tests/Unit/)
 3. If you've changed APIs, update the documentation and the [iOS Guide](https://github.com/parse-community/docs/tree/gh-pages/_includes/ios).
 4. Ensure the test suite passes.
    You can run the tests in the command line with rake.

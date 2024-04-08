@@ -201,46 +201,6 @@ namespace :test do
     end
   end
 
-  namespace :facebook_utils do
-    desc 'Test iOS FacebookUtils framework.'
-    task :ios do
-      task = XCTask::BuildTask.new do |t|
-        t.directory = script_folder
-        t.workspace = 'Parse.xcworkspace'
-        t.scheme = 'ParseFacebookUtilsV4-iOS'
-        t.sdk = 'iphonesimulator'
-        t.destinations = [ios_simulator]
-        t.configuration = 'Debug -enableCodeCoverage YES'
-        t.actions = [XCTask::BuildAction::TEST]
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
-      end
-      unless task.execute
-        puts 'Failed to build iOS FacebookUtils Framework.'
-        exit(1)
-      end
-    end
-  end
-
-  namespace :twitter_utils do
-    desc 'Test iOS TwitterUtils framework.'
-    task :ios do
-      task = XCTask::BuildTask.new do |t|
-        t.directory = script_folder
-        t.workspace = 'Parse.xcworkspace'
-        t.scheme = 'ParseTwitterUtils-iOS'
-        t.sdk = 'iphonesimulator'
-        t.destinations = [ios_simulator]
-        t.configuration = 'Debug -enableCodeCoverage YES'
-        t.actions = [XCTask::BuildAction::TEST]
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
-      end
-      unless task.execute
-        puts 'Failed to build iOS TwitterUtils Framework.'
-        exit(1)
-      end
-    end
-  end
-
   namespace :parseui do
     task :all do
       Rake::Task['test:parseui:framework'].invoke

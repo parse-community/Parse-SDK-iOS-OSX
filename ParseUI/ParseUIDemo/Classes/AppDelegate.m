@@ -23,8 +23,6 @@
 #import "PFUIDemoViewController.h"
 
 @import ParseCore;
-@import ParseTwitterUtils;
-@import ParseFacebookUtilsiOS;
 
 @implementation AppDelegate
 
@@ -34,9 +32,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Parse setApplicationId:@"UdNpOP2XFoEiXLZEBDl6xONmCMH8VjETmnEsl0xJ"
                   clientKey:@"wNJFho0fQaQFQ2Fe1x9b67lVBakJiAtFj1Uz30A9"];
-    [PFFacebookUtilsDevice initializeFacebookWithApplicationLaunchOptions:launchOptions];
-    [PFTwitterUtils initializeWithConsumerKey:@"3Q9hMEKqqSg4ie2pibZ2sVJuv"
-                               consumerSecret:@"IEZ9wv2d1EpXNGFKGp7sAGdxRtyqtPwygyciFZwTHTGhPp4FMj"];
 
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[PFUIDemoViewController alloc] init]];
@@ -47,16 +42,6 @@
     });
 
     return YES;
-}
-
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-    return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                          openURL:url
-                                                sourceApplication:sourceApplication
-                                                       annotation:annotation];
 }
 
 #pragma mark -

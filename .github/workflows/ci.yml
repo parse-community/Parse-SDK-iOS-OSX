@@ -20,8 +20,6 @@ jobs:
         script:
           - test:ios
           - test:macos
-          - test:facebook_utils:ios
-          - test:twitter_utils:ios
           - test:parseui:all
           - test:parse_live_query:all
           - build:starters
