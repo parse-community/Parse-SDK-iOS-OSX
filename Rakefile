@@ -9,8 +9,8 @@
 
 require_relative 'Vendor/xctoolchain/Scripts/xctask/build_task'
 
-script_path = File.expand_path(File.dirname(__FILE__))
-starters_path = File.join(script_path, 'ParseStarterProject')
+SCRIPT_PATH = File.expand_path(File.dirname(__FILE__))
+starters_path = File.join(SCRIPT_PATH, 'ParseStarterProject')
 
 ios_simulator = 'platform="iOS Simulator",name="iPhone 14"'
 tvos_simulator = 'platform="tvOS Simulator",name="Apple TV"'
@@ -21,25 +21,24 @@ build_action = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD];
 module Constants
   require 'plist'
 
-  script_path = File.expand_path(File.dirname(__FILE__))
-  PARSE_CONSTANT_PATH = File.join(script_path, 'Parse', 'Parse', 'Source/PFConstants.h')
+  PARSE_CONSTANT_PATH = File.join(SCRIPT_PATH, 'Parse', 'Parse', 'Source/PFConstants.h')
   PLISTS = [
-    File.join(script_path, 'Parse', 'Parse', 'Resources', 'Parse-iOS.Info.plist'),
-    File.join(script_path, 'Parse', 'Parse', 'Resources', 'Parse-OSX.Info.plist'),
-    File.join(script_path, 'Parse', 'Parse', 'Resources', 'Parse-watchOS.Info.plist'),
-    File.join(script_path, 'Parse', 'Parse', 'Resources', 'Parse-tvOS.Info.plist'),
-    File.join(script_path, 'ParseUI', 'ParseUI', 'Resources', 'Info-iOS.plist'),
-    File.join(script_path, 'ParseLiveQuery', 'ParseLiveQuery', 'Resources', 'Info.plist'),
-    File.join(script_path, 'ParseLiveQuery', 'ParseLiveQuery-tvOS', 'Info.plist'),
-    File.join(script_path, 'ParseLiveQuery', 'ParseLiveQuery-watchOS', 'Info.plist'),
-    File.join(script_path, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
-    File.join(script_path, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
-    File.join(script_path, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
-    File.join(script_path, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift', 'Resources', 'Info.plist'),
-    File.join(script_path, 'ParseStarterProject', 'tvOS', 'ParseStarterProject-Swift', 'ParseStarter', 'Info.plist'),
-    File.join(script_path, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter', 'Info.plist'),
-    File.join(script_path, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter Extension', 'Info.plist'),
-    File.join(script_path, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
+    File.join(SCRIPT_PATH, 'Parse', 'Parse', 'Resources', 'Parse-iOS.Info.plist'),
+    File.join(SCRIPT_PATH, 'Parse', 'Parse', 'Resources', 'Parse-OSX.Info.plist'),
+    File.join(SCRIPT_PATH, 'Parse', 'Parse', 'Resources', 'Parse-watchOS.Info.plist'),
+    File.join(SCRIPT_PATH, 'Parse', 'Parse', 'Resources', 'Parse-tvOS.Info.plist'),
+    File.join(SCRIPT_PATH, 'ParseUI', 'ParseUI', 'Resources', 'Info-iOS.plist'),
+    File.join(SCRIPT_PATH, 'ParseLiveQuery', 'ParseLiveQuery', 'Resources', 'Info.plist'),
+    File.join(SCRIPT_PATH, 'ParseLiveQuery', 'ParseLiveQuery-tvOS', 'Info.plist'),
+    File.join(SCRIPT_PATH, 'ParseLiveQuery', 'ParseLiveQuery-watchOS', 'Info.plist'),
+    File.join(SCRIPT_PATH, 'ParseStarterProject', 'iOS', 'ParseStarterProject', 'Resources', 'Info.plist'),
+    File.join(SCRIPT_PATH, 'ParseStarterProject', 'iOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
+    File.join(SCRIPT_PATH, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject', 'Resources', 'Info.plist'),
+    File.join(SCRIPT_PATH, 'ParseStarterProject', 'OSX', 'ParseOSXStarterProject-Swift', 'Resources', 'Info.plist'),
+    File.join(SCRIPT_PATH, 'ParseStarterProject', 'tvOS', 'ParseStarterProject-Swift', 'ParseStarter', 'Info.plist'),
+    File.join(SCRIPT_PATH, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter', 'Info.plist'),
+    File.join(SCRIPT_PATH, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'ParseStarter Extension', 'Info.plist'),
+    File.join(SCRIPT_PATH, 'ParseStarterProject', 'watchOS', 'ParseStarterProject-Swift', 'Resources', 'Info.plist'),
   ]
 
   def self.current_version
@@ -226,7 +225,7 @@ namespace :test do
   desc 'Run iOS Tests'
   task :ios do |_, args|
     task = XCTask::BuildTask.new do |t|
-      t.directory = script_path
+      t.directory = SCRIPT_PATH
       t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-iOS'
       t.sdk = 'iphonesimulator'
@@ -244,7 +243,7 @@ namespace :test do
   desc 'Run macOS Tests'
   task :macos do |_, args|
     task = XCTask::BuildTask.new do |t|
-      t.directory = script_path
+      t.directory = SCRIPT_PATH
       t.workspace = 'Parse.xcworkspace'
       t.scheme = 'Parse-macOS'
       t.sdk = 'macosx'
@@ -267,7 +266,7 @@ namespace :test do
 
     task :framework do
       task = XCTask::BuildTask.new do |t|
-        t.directory = script_path
+        t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseUI'
         t.sdk = 'iphonesimulator'
@@ -284,7 +283,7 @@ namespace :test do
 
     task :demo_objc do
       task = XCTask::BuildTask.new do |t|
-        t.directory = script_path
+        t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseUIDemo'
         t.sdk = 'iphonesimulator'
@@ -301,7 +300,7 @@ namespace :test do
 
     task :demo_swift do
       task = XCTask::BuildTask.new do |t|
-        t.directory = script_path
+        t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseUIDemo-Swift'
         t.sdk = 'iphonesimulator'
@@ -327,7 +326,7 @@ namespace :test do
 
     task :ios do
       task = XCTask::BuildTask.new do |t|
-        t.directory = script_path
+        t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseLiveQuery-iOS'
         t.sdk = 'iphonesimulator'
@@ -344,7 +343,7 @@ namespace :test do
 
     task :tvos do
       task = XCTask::BuildTask.new do |t|
-        t.directory = script_path
+        t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseLiveQuery-tvOS'
         t.destinations = [tvos_simulator]
@@ -360,7 +359,7 @@ namespace :test do
 
     task :watchos do
       task = XCTask::BuildTask.new do |t|
-        t.directory = script_path
+        t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseLiveQuery-watchOS'
         t.destinations = [watchos_simulator]
@@ -376,7 +375,7 @@ namespace :test do
     
     task :osx do
       task = XCTask::BuildTask.new do |t|
-        t.directory = script_path
+        t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseLiveQuery-OSX'
         t.configuration = 'Debug'
