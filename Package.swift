@@ -13,7 +13,6 @@ let package = Package(
     ],
     products: [
         .library(name: "ParseObjC", targets: ["ParseCore"]),
-        .library(name: "ParseUI", targets: ["ParseUI"]),
         .library(name: "ParseLiveQuery", targets: ["ParseLiveQuery"])
     ],
     dependencies: [
@@ -28,17 +27,6 @@ let package = Package(
             dependencies: [.product(name: "Bolts", package: "Bolts-ObjC")],
             path: "Parse/Parse",
             exclude: ["Resources/Parse-tvOS.Info.plist", "Resources/Parse-iOS.Info.plist", "Resources/Parse-OSX.Info.plist", "Resources/Parse-watchOS.Info.plist"],
-            resources: [.process("Resources")],
-            publicHeadersPath: "Source",
-            cSettings: [.headerSearchPath("Internal/**")]
-        ),
-        .target(
-            name: "ParseUI",
-            dependencies: [
-                "ParseCore"
-            ],
-            path: "ParseUI/ParseUI",
-            exclude: ["Resources/Info-iOS.plist"],
             resources: [.process("Resources")],
             publicHeadersPath: "Source",
             cSettings: [.headerSearchPath("Internal/**")]
