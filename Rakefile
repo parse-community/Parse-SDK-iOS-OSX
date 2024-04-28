@@ -211,12 +211,54 @@ namespace :build do
     end
   end
 
+  namespace :live_query_starters do
+    task :all do
+      Rake::Task['build:live_query_starters:objc'].invoke
+      Rake::Task['build:live_query_starters:swift'].invoke
+    end
+
+    task :objc do
+      live_query_starter_folder = File.join(SCRIPT_PATH, 'ParseLiveQuery', 'Examples')
+      task = XCTask::BuildTask.new do |t|
+        t.directory = live_query_starter_folder
+        t.project = 'LiveQueryDemo-ObjC.xcodeproj'
+        t.scheme = 'LiveQueryDemo-ObjC'
+        t.configuration = 'Debug'
+        t.sdk = 'macosx'
+        t.actions = build_action
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+      unless task.execute
+        puts 'Live Query ObjC Starter Project Failed!'
+        exit(1)
+      end
+    end
+
+    task :swift do
+      live_query_starter_folder = File.join(SCRIPT_PATH, 'ParseLiveQuery', 'Examples')
+      task = XCTask::BuildTask.new do |t|
+        t.directory = live_query_starter_folder
+        t.project = 'LiveQueryDemo.xcodeproj'
+        t.scheme = 'LiveQueryDemo'
+        t.configuration = 'Debug'
+        t.sdk = 'macosx'
+        t.actions = build_action
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+      unless task.execute
+        puts 'Live Query Swift Starter Project Failed!'
+        exit(1)
+      end
+    end
+  end
+
   desc 'Build all starters'
   task :starters do
     Rake::Task['build:tvos_starters:all'].invoke
     Rake::Task['build:watchos_starters:all'].invoke
     Rake::Task['build:ios_starters:all'].invoke
     Rake::Task['build:macos_starters:all'].invoke
+    Rake::Task['build:live_query_starters:all'].invoke
   end
 end
 
