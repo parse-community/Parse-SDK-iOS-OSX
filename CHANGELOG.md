@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/3.0.0...4.0.0) (2024-04-28)
+
+
+### Features
+
+* Remove `ParseUI` ([#1783](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1783)) ([139eca7](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/139eca7f2423bf92c5b6d821eaf4cda16816dd6f))
+
+
+### BREAKING CHANGES
+
+* This release removes `ParseUI`. ([139eca7](139eca7))
+
 # [3.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.7.3...3.0.0) (2024-04-08)
 
 

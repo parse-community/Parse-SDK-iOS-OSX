@@ -20,7 +20,6 @@ jobs:
         script:
           - test:ios
           - test:macos
-          - test:parseui:all
           - test:parse_live_query:all
           - build:starters
           - xcode15 # runs build:starters on XCode 15
