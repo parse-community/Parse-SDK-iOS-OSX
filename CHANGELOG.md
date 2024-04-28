@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.0.0...4.0.1) (2024-04-28)
+
+
+### Bug Fixes
+
+* LiveQuery starter project fails to build ([#1784](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1784)) ([0821194](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/08211940c839b8b9896d715891795049a6378766))
+
 # [4.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/3.0.0...4.0.0) (2024-04-28)
 
 
