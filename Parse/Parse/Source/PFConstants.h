@@ -285,6 +285,10 @@ typedef NS_ENUM(NSInteger, PFErrorCode) {
      */
     kPFErrorRequestLimitExceeded = 155,
     /**
+     Request was a duplicate and has been discarded due to idempotency rules.
+     */
+    kPFErrorDuplicateRequest = 159,
+    /**
      Invalid event name.
      */
     kPFErrorInvalidEventName = 160,
