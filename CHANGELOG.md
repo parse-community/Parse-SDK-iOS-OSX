@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.0.1...4.1.0) (2024-06-17)
+
+
+### Features
+
+* Add idempotency ([#1790](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1790)) ([dcdf457](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/dcdf45743eab1126a76aba34e555fb2575f67a3b))
+
 ## [4.0.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.0.0...4.0.1) (2024-04-28)
 
 
