@@ -141,7 +141,7 @@
     if (clientKey) {
         mutableHeaders[PFCommandHeaderNameClientKey] = clientKey;
     }
-
+    mutableHeaders[PFCommandHeaderNameRequestId] = [[NSUUID UUID] UUIDString];
     mutableHeaders[PFCommandHeaderNameClientVersion] = [versionPrefix stringByAppendingString:PARSE_VERSION];
     mutableHeaders[PFCommandHeaderNameOSVersion] = [PFDevice currentDevice].operatingSystemFullVersion;
 

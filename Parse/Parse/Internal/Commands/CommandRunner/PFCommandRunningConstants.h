@@ -27,6 +27,7 @@ extern NSString *const PFCommandHeaderNameAppBuildVersion;
 extern NSString *const PFCommandHeaderNameAppDisplayVersion;
 extern NSString *const PFCommandHeaderNameOSVersion;
 extern NSString *const PFCommandHeaderNameSessionToken;
+extern NSString *const PFCommandHeaderNameRequestId;
 
 ///--------------------------------------
 #pragma mark - HTTP Method Override
