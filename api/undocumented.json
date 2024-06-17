@@ -9,84 +9,84 @@
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFConstants.h",
-      "line": 349,
+      "line": 353,
       "symbol": "PFBooleanResultBlock",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFConstants.h",
-      "line": 350,
+      "line": 354,
       "symbol": "PFIntegerResultBlock",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFConstants.h",
-      "line": 351,
+      "line": 355,
       "symbol": "PFArrayResultBlock",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFConstants.h",
-      "line": 352,
+      "line": 356,
       "symbol": "PFObjectResultBlock",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFConstants.h",
-      "line": 353,
+      "line": 357,
       "symbol": "PFSetResultBlock",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFConstants.h",
-      "line": 354,
+      "line": 358,
       "symbol": "PFUserResultBlock",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFConstants.h",
-      "line": 355,
+      "line": 359,
       "symbol": "PFDataResultBlock",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFConstants.h",
-      "line": 356,
+      "line": 360,
       "symbol": "PFDataStreamResultBlock",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFConstants.h",
-      "line": 357,
+      "line": 361,
       "symbol": "PFFilePathResultBlock",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFConstants.h",
-      "line": 358,
+      "line": 362,
       "symbol": "PFStringResultBlock",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFConstants.h",
-      "line": 359,
+      "line": 363,
       "symbol": "PFIdResultBlock",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/Parse-SDK-iOS-OSX/Parse-SDK-iOS-OSX/Parse/Parse/Source/PFConstants.h",
-      "line": 360,
+      "line": 364,
       "symbol": "PFProgressBlock",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
       "warning": "undocumented"
