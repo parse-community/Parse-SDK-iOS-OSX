@@ -1,3 +1,10 @@
+## [4.1.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.1.0...4.1.1) (2024-07-15)
+
+
+### Bug Fixes
+
+* SPM build issues with Xcode 16 ([#1795](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1795)) ([5381325](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/5381325fae622eaa5292146ea322a00c0f46e97d))
+
 # [4.1.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.0.1...4.1.0) (2024-06-17)
 
 
