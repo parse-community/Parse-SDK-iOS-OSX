@@ -84,13 +84,15 @@ jobs:
           path: |
             ~/Library/Developer/Xcode/DerivedData/Parse-*/Logs/Test
             ~/Library/Developer/Xcode/DerivedData/**/Logs/Build
-      - name: Parse Xcode test results for code coverage
+      - name: Install test parsing dependencies
         # Workaround as codecov cannot parse xcresult files;
         # https://github.com/codecov/uploader/issues/1078
         # https://github.com/codecov/codecov-action/issues/1367
         run: |
-          echo COVERAGE_PATH=build/coverage.xml >> $GITHUB_ENV
           brew install a7ex/homebrew-formulae/xcresultparser
+      - name: Parse Xcode test results for code coverage
+        run: |
+          echo COVERAGE_PATH=build/coverage.xml >> $GITHUB_ENV
           set -o pipefail && \
             xcresultparser --output-format cobertura \
             "$TEST_RESULTS" >"$COVERAGE_PATH"
