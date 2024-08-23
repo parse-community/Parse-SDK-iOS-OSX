@@ -85,6 +85,9 @@ jobs:
             ~/Library/Developer/Xcode/DerivedData/Parse-*/Logs/Test
             ~/Library/Developer/Xcode/DerivedData/**/Logs/Build
       - name: Upload code coverage
+        # Cannot use codecov/codecov-action@v4 due to not being able to parse xcresult files
+        # https://github.com/codecov/uploader/issues/1078
+        # https://github.com/codecov/codecov-action/issues/1367
         uses: codecov/codecov-action@v3
         with:
           # Set to `true` once codecov token bug is fixed; https://github.com/parse-community/parse-server/issues/9129
