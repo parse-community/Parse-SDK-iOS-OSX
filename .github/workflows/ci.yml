@@ -91,8 +91,12 @@ jobs:
         run: |
           brew install a7ex/homebrew-formulae/xcresultparser
       - name: Parse Xcode test results for code coverage
+        env:
+          COVERAGE_PATH: build/${{ matrix.script }}-coverage.xml
         run: |
-          echo COVERAGE_PATH=build/coverage.xml >> $GITHUB_ENV
+          echo COVERAGE_PATH=${COVERAGE_PATH} >> $GITHUB_ENV
+          echo "TEST_RESULTS: $TEST_RESULTS"
+          echo "COVERAGE_PATH: $COVERAGE_PATH"
           set -o pipefail && \
             xcresultparser --output-format cobertura \
             "$TEST_RESULTS" >"$COVERAGE_PATH"
