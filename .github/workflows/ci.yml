@@ -96,9 +96,10 @@ jobs:
         env:
           COVERAGE_PATH: ${{ github.workspace }}/build/${{ matrix.script }}-coverage.xml
         run: |
-          echo COVERAGE_PATH=${COVERAGE_PATH//:/-} >> $GITHUB_ENV
+          COVERAGE_PATH=${COVERAGE_PATH//:/-}
+          echo COVERAGE_PATH=$COVERAGE_PATH >> $GITHUB_ENV
           echo "TEST_RESULTS: $TEST_RESULTS"
-          echo "COVERAGE_PATH: ${{ env.COVERAGE_PATH }}"
+          echo "COVERAGE_PATH: $COVERAGE_PATH"
           set -o pipefail && \
             xcresultparser --output-format cobertura \
             "$TEST_RESULTS" >"$COVERAGE_PATH"
