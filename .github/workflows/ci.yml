@@ -85,14 +85,15 @@ jobs:
             ~/Library/Developer/Xcode/DerivedData/Parse-*/Logs/Test
             ~/Library/Developer/Xcode/DerivedData/**/Logs/Build
       - name: Install test parsing dependencies
-        if: env.TEST_RESULTS != ''
         # Workaround as codecov cannot parse xcresult files;
         # https://github.com/codecov/uploader/issues/1078
         # https://github.com/codecov/codecov-action/issues/1367
         run: |
+          if [ "${{ matrix.script }}" != "test:ios" ]; then
+            exit 0
+          fi
           brew install a7ex/homebrew-formulae/xcresultparser
       - name: Convert Xcode test results for code coverage upload
-        if: env.TEST_RESULTS != ''
         env:
           COVERAGE_PATH: build/${{ matrix.script }}-coverage.xml
         run: |
@@ -103,7 +104,6 @@ jobs:
             xcresultparser --output-format cobertura \
             "$TEST_RESULTS" >"$COVERAGE_PATH"
       - name: Upload code coverage
-        if: env.TEST_RESULTS != ''
         uses: codecov/codecov-action@v4
         with:
           # Set to `true` once codecov token bug is fixed; https://github.com/parse-community/parse-server/issues/9129
