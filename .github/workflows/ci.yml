@@ -94,7 +94,7 @@ jobs:
       - name: Convert Xcode test results for code coverage upload
         if: matrix.script == 'test:ios'
         env:
-          COVERAGE_PATH: ${GITHUB_WORKSPACE}/build/${{ matrix.script }}-coverage.xml
+          COVERAGE_PATH: ${{ github.workspace }}/build/${{ matrix.script }}-coverage.xml
         run: |
           echo COVERAGE_PATH=${COVERAGE_PATH//:/-} >> $GITHUB_ENV
           echo "TEST_RESULTS: $TEST_RESULTS"
