@@ -313,7 +313,7 @@ namespace :test do
         t.scheme = 'ParseLiveQuery-iOS'
         t.sdk = 'iphonesimulator'
         t.destinations = [ios_simulator]
-        t.configuration = 'Debug -enableCodeCoverage YES'
+        t.configuration = 'Debug'
         t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
@@ -329,7 +329,7 @@ namespace :test do
         t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseLiveQuery-tvOS'
         t.destinations = [tvos_simulator]
-        t.configuration = 'Debug -enableCodeCoverage YES'
+        t.configuration = 'Debug'
         t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
@@ -345,7 +345,7 @@ namespace :test do
         t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseLiveQuery-watchOS'
         t.destinations = [watchos_simulator]
-        t.configuration = 'Debug -enableCodeCoverage YES'
+        t.configuration = 'Debug'
         t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
@@ -360,7 +360,7 @@ namespace :test do
         t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseLiveQuery-OSX'
-        t.configuration = 'Debug -enableCodeCoverage YES'
+        t.configuration = 'Debug'
         t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
