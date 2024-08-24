@@ -12,6 +12,6 @@
     "@semantic-release/exec": "6.0.2",
     "@semantic-release/git": "10.0.0",
     "@semantic-release/release-notes-generator": "10.0.2",
-    "semantic-release": "20.1.0"
+    "semantic-release": "24.1.0"
   }
 }
