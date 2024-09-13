@@ -14,7 +14,7 @@
 #pragma mark - SDK Version
 ///--------------------------------------
 
-#define PARSE_VERSION @"3.0.0"
+#define PARSE_VERSION @"4.1.1"
 
 ///--------------------------------------
 #pragma mark - Platform
@@ -284,6 +284,10 @@ typedef NS_ENUM(NSInteger, PFErrorCode) {
      Application has exceeded its request limit.
      */
     kPFErrorRequestLimitExceeded = 155,
+    /**
+     Request was a duplicate and has been discarded due to idempotency rules.
+     */
+    kPFErrorDuplicateRequest = 159,
     /**
      Invalid event name.
      */

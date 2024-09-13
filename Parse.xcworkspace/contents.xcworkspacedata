@@ -7,9 +7,6 @@
    <FileRef
       location = "group:ParseLiveQuery/ParseLiveQuery.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:ParseUI/ParseUI.xcodeproj">
-   </FileRef>
    <Group
       location = "container:"
       name = "StarterProjects">
