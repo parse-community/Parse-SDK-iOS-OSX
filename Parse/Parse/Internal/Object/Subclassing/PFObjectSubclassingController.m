@@ -357,7 +357,18 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
 - (void)_registerSubclassesInBundle:(NSBundle *)bundle {
     PFConsistencyAssert(bundle.loaded, @"Cannot register subclasses in an unloaded bundle: %@", bundle);
 
-    const char *executablePath = bundle.executablePath.UTF8String;
+    [self _registerSubclassesInExecutablePath:bundle.executablePath];
+    
+#if defined(DEBUG) && DEBUG
+    if (bundle == [NSBundle mainBundle]) {
+        NSString *executablePath = [NSString stringWithFormat:@"%@.debug.dylib", bundle.executablePath];
+        [self _registerSubclassesInExecutablePath:executablePath];
+    }
+#endif
+}
+
+- (void)_registerSubclassesInExecutablePath:(NSString *)exePath {
+    const char *executablePath = exePath.UTF8String;
     if (executablePath == NULL) {
         return;
     }
