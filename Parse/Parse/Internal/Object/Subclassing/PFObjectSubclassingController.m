@@ -381,6 +381,14 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
         unsigned bundleClassCount = 0;
 
         for (int i = 0; i < sizeof(potentialPaths) / sizeof(*potentialPaths); i++) {
+            #ifdef DEBUG
+                const char *debugSuffix = ".debug.dylib";
+                if (strlen(potentialPaths[i]) + strlen(debugSuffix) < sizeof(potentialPaths[i])) {
+                    strcat(potentialPaths[i], debugSuffix);
+                } else {
+                    printf("Error: Not enough space to append the suffix.\n");
+                }
+            #endif
             classNames = objc_copyClassNamesForImage(potentialPaths[i], &bundleClassCount);
             if (bundleClassCount) {
                 break;
