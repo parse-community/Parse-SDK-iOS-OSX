@@ -2,8 +2,14 @@
  * Semantic Release Config
  */
 
-const fs = require('fs').promises;
-const path = require('path');
+// For CommonJS use:
+// const { readFile } = require('fs').promises;
+// const { resolve } = require('path');
+
+// For ES6 modules use:
+import { readFile } from 'fs/promises';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 // Get env vars
 const ref = process.env.GITHUB_REF;
@@ -24,9 +30,9 @@ const templates = {
 async function config() {
 
   // Get branch
-  const branch = ref.split('/').pop();
+  const branch = ref?.split('/')?.pop()?.split('-')[0] || '(current branch could not be determined)';
   console.log(`Running on branch: ${branch}`);
-  
+
   // Set changelog file
   //const changelogFile = `./changelogs/CHANGELOG_${branch}.md`;
   const changelogFile = `./CHANGELOG.md`;
@@ -37,10 +43,12 @@ async function config() {
 
   const config = {
     branches: [
+      'main',
       'master',
-      // { name: 'alpha', prerelease: true },
-      // { name: 'beta', prerelease: true },
-      // 'next-major',
+      'release',
+      { name: 'alpha', prerelease: true },
+      { name: 'beta', prerelease: true },
+      'next-major',
       // Long-Term-Support branches
       // { name: 'release-1', range: '1.x.x', channel: '1.x' },
       // { name: 'release-2', range: '2.x.x', channel: '2.x' },
@@ -59,13 +67,13 @@ async function config() {
           { scope: 'no-release', release: false },
         ],
         parserOpts: {
-          noteKeywords: [ 'BREAKING CHANGE', 'BREAKING CHANGES', 'BREAKING' ],
+          noteKeywords: [ 'BREAKING CHANGE' ],
         },
       }],
       ['@semantic-release/release-notes-generator', {
         preset: 'angular',
         parserOpts: {
-          noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES', 'BREAKING']
+          noteKeywords: [ 'BREAKING CHANGE' ]
         },
         writerOpts: {
           commitsSort: ['subject', 'scope'],
@@ -100,13 +108,14 @@ async function config() {
 
 async function loadTemplates() {
   for (const template of Object.keys(templates)) {
-    const text = await readFile(path.resolve(__dirname, resourcePath, templates[template].file));
+    // For ES6 modules use:
+    const fileUrl = import.meta.url;
+    const __dirname = dirname(fileURLToPath(fileUrl));
+
+    const filePath = resolve(__dirname, resourcePath, templates[template].file);
+    const text = await readFile(filePath, 'utf-8');
     templates[template].text = text;
   }
-}
-
-async function readFile(filePath) {
-  return await fs.readFile(filePath, 'utf-8');
 }
 
 function getReleaseComment() {
@@ -115,4 +124,8 @@ function getReleaseComment() {
   return comment;
 }
 
-module.exports = config();
+// For CommonJS use:
+// module.exports = config();
+
+// For ES6 modules use:
+export default config();
