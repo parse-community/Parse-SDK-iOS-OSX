@@ -1,6 +1,6 @@
 ![parse-repository-header-sdk-apple](https://user-images.githubusercontent.com/5673677/198421762-993c89e8-8201-40f1-a650-c2e9dde4da82.png)
 
-<h3 align="center">iOS · iPadOS · macOS · watchOS · tvOS</h3>
+<h3 align="center">iOS · iPadOS · macOS · watchOS · tvOS · visionOS</h3>
 
 ---
 
@@ -27,7 +27,7 @@
 
 ---
 
-A library that gives you access to the powerful Parse Server backend from your iOS, iPadOS, macOS, watchOS and tvOS app. For more information about the Parse Platform and its features, see the public [documentation][docs].
+A library that gives you access to the powerful Parse Server backend from your iOS, iPadOS, macOS, watchOS, tvOS, and visionOS app. For more information about the Parse Platform and its features, see the public [documentation][docs].
 
 ---
 
