@@ -1,3 +1,10 @@
+## [4.1.2](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.1.1...4.1.2) (2024-10-14)
+
+
+### Bug Fixes
+
+* App crashes on launch and SwiftUI preview when built with Xcode 16 due to unregistered Parse subclasses ([#1811](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1811)) ([d363a78](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/d363a7867b1b211b6f1b9a8c08f27fb208518f76))
+
 ## [4.1.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.1.0...4.1.1) (2024-07-15)
 
 
