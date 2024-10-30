@@ -22,9 +22,9 @@ jobs:
           - test:ios
           - test:macos
           - test:parse_live_query:all
-          - xcode14 # runs build:starters on XCode 14
-          - xcode15 # runs build:starters on XCode 15
-          - xcode16 # runs build:starters on XCode 16
+          - xcode14 # runs build:starters on Xcode 14
+          - xcode15 # runs build:starters on Xcode 15
+          - xcode16 # runs build:starters on Xcode 16
       fail-fast: false
     runs-on: ${{ ((matrix.script == 'xcode15' || matrix.script == 'xcode16') && 'macos-14') || 'macos-13' }}
     steps:
