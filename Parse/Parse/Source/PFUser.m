@@ -11,15 +11,6 @@
 #import "PFUserPrivate.h"
 #import "PFUser+Synchronous.h"
 #import "PFObject+Synchronous.h"
-
-#if __has_include(<Bolts/BFExecutor.h>)
-#import <Bolts/BFExecutor.h>
-#import <Bolts/BFTaskCompletionSource.h>
-#else
-#import "BFExecutor.h"
-#import "BFTaskCompletionSource.h"
-#endif
-
 #import "BFTask+Private.h"
 #import "PFACLPrivate.h"
 #import "PFAnonymousAuthenticationProvider.h"
@@ -50,6 +41,8 @@
 #import "PFUserController.h"
 #import "PFUserFileCodingLogic.h"
 #import "Parse_Private.h"
+
+@import Bolts;
 
 NSString *const PFUserCurrentUserFileName = @"currentUser";
 NSString *const PFUserCurrentUserPinName = @"_currentUser";

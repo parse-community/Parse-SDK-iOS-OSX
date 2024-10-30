@@ -44,11 +44,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /**
- Whether the data is available in memory or needs to be downloaded.
- */
-@property (nonatomic, assign, readonly, getter=isDataAvailable) BOOL dataAvailable;
-
-/**
  *Synchronously* gets the data from cache if available or fetches its contents from the network.
 
  @return The `NSData` object containing file data. Returns `nil` if there was an error in fetching.

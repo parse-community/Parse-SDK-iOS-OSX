@@ -22,6 +22,8 @@
 #import "PFUserPrivate.h"
 #import "Parse_Private.h"
 
+@import Bolts;
+
 @implementation PFAnalytics
 
 ///--------------------------------------

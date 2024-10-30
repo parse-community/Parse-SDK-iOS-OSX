@@ -9,6 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PFConstants.h"
+
 @class PFQuery<PFGenericObject : PFObject *>;
 
 NS_ASSUME_NONNULL_BEGIN

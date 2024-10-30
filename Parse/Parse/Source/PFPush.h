@@ -9,14 +9,10 @@
 
 #import <Foundation/Foundation.h>
 
-#if __has_include(<Bolts/BFTask.h>)
-#import <Bolts/BFTask.h>
-#else
-#import "BFTask.h"
-#endif
-
 #import "PFConstants.h"
 #import "PFInstallation.h"
+
+@class BFTask<__covariant BFGenericType>;
 
 PF_WATCH_UNAVAILABLE_WARNING
 

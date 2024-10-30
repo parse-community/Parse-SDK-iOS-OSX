@@ -17,11 +17,7 @@
 #import <objc/objc-sync.h>
 #import <objc/runtime.h>
 
-#if __has_include(<Bolts/BFTaskCompletionSource.h>)
-#import <Bolts/BFTaskCompletionSource.h>
-#else
-#import "BFTaskCompletionSource.h"
-#endif
+@import Bolts;
 
 #import "BFTask+Private.h"
 #import "PFACLPrivate.h"

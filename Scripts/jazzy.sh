@@ -1,6 +1,3 @@
-mkdir -p ./Parse/Bolts # Create a temporary bolts folder
-cp -R Carthage/Checkouts/Bolts-ObjC/Bolts/**/*.h ./Parse/Bolts # Copy bolts
-
 ver=`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Parse/Parse/Resources/Parse-iOS.Info.plist`
 set -eo pipefail && bundle exec jazzy \
   --objc \
@@ -12,10 +9,7 @@ set -eo pipefail && bundle exec jazzy \
   --module-version ${ver} \
   --theme fullwidth \
   --skip-undocumented \
-  --exclude=./Bolts/* \
   --module Parse \
   --umbrella-header Parse/Parse/Source/Parse.h \
   --framework-root Parse \
   --output docs/api
-
-rm -rf ./Parse/Bolts # cleanup temporary bolts

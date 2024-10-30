@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#if __has_include(<Bolts/BFTask.h>)
-#import <Bolts/BFTask.h>
-#else
-#import "BFTask.h"
-#endif
 
+#import "PFConstants.h"
 #import "PFFileUploadResult.h"
+
+@class BFTask<__covariant BFGenericType>;
+@class BFCancellationToken;
 
 /**
  A policy interface for overriding the default upload behavior of uploading a PFFileObject
