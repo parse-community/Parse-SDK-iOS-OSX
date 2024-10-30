@@ -26,7 +26,7 @@ jobs:
           - xcode15 # runs build:starters on XCode 15
           - xcode16 # runs build:starters on XCode 16
       fail-fast: false
-    runs-on: ${{ (matrix.script == 'xcode14' && 'macos-13') || 'macos-14' }}
+    runs-on: ${{ ((matrix.script == 'xcode15' || matrix.script == 'xcode16') && 'macos-14') || 'macos-13' }}
     steps:
       - uses: actions/checkout@v4
       - name: Cache SPM
