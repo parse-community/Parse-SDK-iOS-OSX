@@ -19,5 +19,6 @@ NSString *const PFCommandHeaderNameAppBuildVersion = @"X-Parse-App-Build-Version
 NSString *const PFCommandHeaderNameAppDisplayVersion = @"X-Parse-App-Display-Version";
 NSString *const PFCommandHeaderNameOSVersion = @"X-Parse-OS-Version";
 NSString *const PFCommandHeaderNameSessionToken = @"X-Parse-Session-Token";
+NSString *const PFCommandHeaderNameRequestId = @"X-Parse-Request-Id";
 
 NSString *const PFCommandParameterNameMethodOverride = @"_method";

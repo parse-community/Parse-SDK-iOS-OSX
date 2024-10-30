@@ -14,13 +14,12 @@ jobs:
   tests:
     env:
       GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    timeout-minutes: 30
+    timeout-minutes: 45
     strategy:
       matrix:
         script:
           - test:ios
           - test:macos
-          - test:parseui:all
           - test:parse_live_query:all
           - build:starters
           - xcode15 # runs build:starters on XCode 15
@@ -85,11 +84,34 @@ jobs:
           path: |
             ~/Library/Developer/Xcode/DerivedData/Parse-*/Logs/Test
             ~/Library/Developer/Xcode/DerivedData/**/Logs/Build
-      - name: Upload Coverage
-        uses: codecov/codecov-action@v3.1.1
+      - name: Install test parsing dependencies
+        if: matrix.script == 'test:ios'
+        # Workaround as codecov cannot parse xcresult files;
+        # https://github.com/codecov/uploader/issues/1078
+        # https://github.com/codecov/codecov-action/issues/1367
+        run: |
+          brew install a7ex/homebrew-formulae/xcresultparser
+      - name: Convert Xcode test results for code coverage upload
+        if: matrix.script == 'test:ios'
+        env:
+          COVERAGE_PATH: ${{ github.workspace }}/build/${{ matrix.script }}-coverage.xml
+        run: |
+          COVERAGE_PATH=${COVERAGE_PATH//:/-}
+          echo COVERAGE_PATH=$COVERAGE_PATH >> $GITHUB_ENV
+          echo "TEST_RESULTS: $TEST_RESULTS"
+          echo "COVERAGE_PATH: $COVERAGE_PATH"
+          set -o pipefail && \
+            xcresultparser --output-format cobertura \
+            "$TEST_RESULTS" >"$COVERAGE_PATH"
+      - name: Upload code coverage
+        if: matrix.script == 'test:ios'
+        uses: codecov/codecov-action@v4
         with:
-          xcode: true
-          xcode_archive_path: ${{ env.TEST_RESULTS }}
+          # Set to `true` once codecov token bug is fixed; https://github.com/parse-community/parse-server/issues/9129
+          fail_ci_if_error: false
+          token: ${{ secrets.CODECOV_TOKEN }}
+          plugin: xcode
+          file: ${{ env.COVERAGE_PATH }}
   docs:
     runs-on: macos-13
     timeout-minutes: 15

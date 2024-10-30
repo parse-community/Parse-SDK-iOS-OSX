@@ -27,7 +27,6 @@ module Constants
     File.join(SCRIPT_PATH, 'Parse', 'Parse', 'Resources', 'Parse-OSX.Info.plist'),
     File.join(SCRIPT_PATH, 'Parse', 'Parse', 'Resources', 'Parse-watchOS.Info.plist'),
     File.join(SCRIPT_PATH, 'Parse', 'Parse', 'Resources', 'Parse-tvOS.Info.plist'),
-    File.join(SCRIPT_PATH, 'ParseUI', 'ParseUI', 'Resources', 'Info-iOS.plist'),
     File.join(SCRIPT_PATH, 'ParseLiveQuery', 'ParseLiveQuery', 'Resources', 'Info.plist'),
     File.join(SCRIPT_PATH, 'ParseLiveQuery', 'ParseLiveQuery-tvOS', 'Info.plist'),
     File.join(SCRIPT_PATH, 'ParseLiveQuery', 'ParseLiveQuery-watchOS', 'Info.plist'),
@@ -212,12 +211,54 @@ namespace :build do
     end
   end
 
+  namespace :live_query_starters do
+    task :all do
+      Rake::Task['build:live_query_starters:objc'].invoke
+      Rake::Task['build:live_query_starters:swift'].invoke
+    end
+
+    task :objc do
+      live_query_starter_folder = File.join(SCRIPT_PATH, 'ParseLiveQuery', 'Examples')
+      task = XCTask::BuildTask.new do |t|
+        t.directory = live_query_starter_folder
+        t.project = 'LiveQueryDemo-ObjC.xcodeproj'
+        t.scheme = 'LiveQueryDemo-ObjC'
+        t.configuration = 'Debug'
+        t.sdk = 'macosx'
+        t.actions = build_action
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+      unless task.execute
+        puts 'Live Query ObjC Starter Project Failed!'
+        exit(1)
+      end
+    end
+
+    task :swift do
+      live_query_starter_folder = File.join(SCRIPT_PATH, 'ParseLiveQuery', 'Examples')
+      task = XCTask::BuildTask.new do |t|
+        t.directory = live_query_starter_folder
+        t.project = 'LiveQueryDemo.xcodeproj'
+        t.scheme = 'LiveQueryDemo'
+        t.configuration = 'Debug'
+        t.sdk = 'macosx'
+        t.actions = build_action
+        t.formatter = XCTask::BuildFormatter::XCPRETTY
+      end
+      unless task.execute
+        puts 'Live Query Swift Starter Project Failed!'
+        exit(1)
+      end
+    end
+  end
+
   desc 'Build all starters'
   task :starters do
     Rake::Task['build:tvos_starters:all'].invoke
     Rake::Task['build:watchos_starters:all'].invoke
     Rake::Task['build:ios_starters:all'].invoke
     Rake::Task['build:macos_starters:all'].invoke
+    Rake::Task['build:live_query_starters:all'].invoke
   end
 end
 
@@ -254,65 +295,6 @@ namespace :test do
     unless task.execute
       puts 'macOS Tests Failed!'
       exit(1)
-    end
-  end
-
-  namespace :parseui do
-    task :all do
-      Rake::Task['test:parseui:framework'].invoke
-      Rake::Task['test:parseui:demo_objc'].invoke
-      Rake::Task['test:parseui:demo_swift'].invoke
-    end
-
-    task :framework do
-      task = XCTask::BuildTask.new do |t|
-        t.directory = SCRIPT_PATH
-        t.workspace = 'Parse.xcworkspace'
-        t.scheme = 'ParseUI'
-        t.sdk = 'iphonesimulator'
-        t.destinations = [ios_simulator]
-        t.configuration = 'Debug -enableCodeCoverage YES'
-        t.actions = [XCTask::BuildAction::TEST]
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
-      end
-      unless task.execute
-        puts 'Failed to build ParseUI'
-        exit(1)
-      end
-    end
-
-    task :demo_objc do
-      task = XCTask::BuildTask.new do |t|
-        t.directory = SCRIPT_PATH
-        t.workspace = 'Parse.xcworkspace'
-        t.scheme = 'ParseUIDemo'
-        t.sdk = 'iphonesimulator'
-        t.destinations = [ios_simulator]
-        t.configuration = 'Debug'
-        t.actions = build_action
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
-      end
-      unless task.execute
-        puts 'Failed to build ParseUI Demo.'
-        exit(1)
-      end
-    end
-
-    task :demo_swift do
-      task = XCTask::BuildTask.new do |t|
-        t.directory = SCRIPT_PATH
-        t.workspace = 'Parse.xcworkspace'
-        t.scheme = 'ParseUIDemo-Swift'
-        t.sdk = 'iphonesimulator'
-        t.destinations = [ios_simulator]
-        t.configuration = 'Debug'
-        t.actions = build_action
-        t.formatter = XCTask::BuildFormatter::XCPRETTY
-      end
-      unless task.execute
-        puts 'Failed to build iOS ParseUI Swift Demo.'
-        exit(1)
-      end
     end
   end
 

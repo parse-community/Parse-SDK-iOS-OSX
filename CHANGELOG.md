@@ -1,3 +1,43 @@
+## [4.1.2](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.1.1...4.1.2) (2024-10-14)
+
+
+### Bug Fixes
+
+* App crashes on launch and SwiftUI preview when built with Xcode 16 due to unregistered Parse subclasses ([#1811](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1811)) ([d363a78](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/d363a7867b1b211b6f1b9a8c08f27fb208518f76))
+
+## [4.1.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.1.0...4.1.1) (2024-07-15)
+
+
+### Bug Fixes
+
+* SPM build issues with Xcode 16 ([#1795](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1795)) ([5381325](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/5381325fae622eaa5292146ea322a00c0f46e97d))
+
+# [4.1.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.0.1...4.1.0) (2024-06-17)
+
+
+### Features
+
+* Add idempotency ([#1790](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1790)) ([dcdf457](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/dcdf45743eab1126a76aba34e555fb2575f67a3b))
+
+## [4.0.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.0.0...4.0.1) (2024-04-28)
+
+
+### Bug Fixes
+
+* LiveQuery starter project fails to build ([#1784](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1784)) ([0821194](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/08211940c839b8b9896d715891795049a6378766))
+
+# [4.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/3.0.0...4.0.0) (2024-04-28)
+
+
+### Features
+
+* Remove `ParseUI` ([#1783](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1783)) ([139eca7](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/139eca7f2423bf92c5b6d821eaf4cda16816dd6f))
+
+
+### BREAKING CHANGES
+
+* This release removes `ParseUI`. ([139eca7](139eca7))
+
 # [3.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/2.7.3...3.0.0) (2024-04-08)
 
 
