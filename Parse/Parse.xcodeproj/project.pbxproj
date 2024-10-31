@@ -8907,8 +8907,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/erikdoe/ocmock";
 			requirement = {
-				kind = revision;
-				revision = 67bb9602f0a7541f24dc2d6d0d7389ca3e4c2c89;
+				kind = exactVersion;
+				version = 3.9.4;
 			};
 		};
 		39E24A0B2AD214540014357C /* XCRemoteSwiftPackageReference "Bolts-ObjC" */ = {

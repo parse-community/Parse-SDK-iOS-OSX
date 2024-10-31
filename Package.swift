@@ -19,7 +19,7 @@ let package = Package(
         .package(url: "https://github.com/parse-community/Bolts-ObjC.git", from: "1.10.0"),
         .package(url: "https://github.com/BoltsFramework/Bolts-Swift.git", from: "1.5.0"),
         .package(url: "https://github.com/daltoniam/Starscream.git", from: "4.0.8"),
-        .package(name: "OCMock", url: "https://github.com/erikdoe/ocmock.git", .revision("67bb9602f0a7541f24dc2d6d0d7389ca3e4c2c89"))
+        .package(name: "OCMock", url: "https://github.com/erikdoe/ocmock.git", from: "3.9.4")
     ],
     targets: [
         .target(
