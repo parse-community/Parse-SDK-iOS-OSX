@@ -135,7 +135,7 @@ static ParseClientConfiguration *currentParseConfiguration_;
 + (nullable NSString *)server {
     ParseClientConfiguration *config = currentParseManager_ ? currentParseManager_.configuration
                                                             : currentParseConfiguration_;
-    return currentParseManager_.configuration.server;
+    return config.server;
 }
 
 ///--------------------------------------
