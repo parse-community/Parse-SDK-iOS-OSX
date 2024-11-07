@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 noPushPayload = options[UIApplication.LaunchOptionsKey.remoteNotification] == nil
             }
             if oldPushHandlerOnly || noPushPayload {
-                PFAnalytics.trackAppOpened(launchOptions: launchOptions)
+                PFAnalytics.trackAppOpenedWithLaunchOptions(inBackground: launchOptions)
             }
         }
 
@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         PFPush.handle(userInfo)
         if application.applicationState == UIApplication.State.inactive {
-            PFAnalytics.trackAppOpened(withRemoteNotificationPayload: userInfo)
+            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(inBackground: userInfo)
         }
     }
 
