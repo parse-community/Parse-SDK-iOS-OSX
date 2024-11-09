@@ -9,7 +9,8 @@ on:
       - "**"
 env:
   CI_XCODE_14: /Applications/Xcode_14.2.app/Contents/Developer
-  CI_XCODE_15: /Applications/Xcode_15.0.app/Contents/Developer
+  CI_XCODE_15: /Applications/Xcode_15.4.0.app/Contents/Developer
+  CI_XCODE_16: /Applications/Xcode_16.0.app/Contents/Developer
 jobs:
   tests:
     env:
@@ -21,29 +22,24 @@ jobs:
           - test:ios
           - test:macos
           - test:parse_live_query:all
-          - build:starters
-          - xcode15 # runs build:starters on XCode 15
+          - xcode14 # runs build:starters on Xcode 14
+          - xcode15 # runs build:starters on Xcode 15
+          - xcode16 # runs build:starters on Xcode 16
       fail-fast: false
-    runs-on: macos-13
+    runs-on: ${{ ((matrix.script == 'xcode15' || matrix.script == 'xcode16') && 'macos-14') || 'macos-13' }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Cache SPM
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/Library/Developer/Xcode/DerivedData/Parse*/SourcePackages/
           key: ${{ runner.os }}-spm-${{ hashFiles('Parse.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: |
                   ${{ runner.os }}-spm-
       - name: Setup Ruby
-        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
-      - name: Cache Gems
-        id: cache-gems
-        uses: actions/cache@v3
+        uses: ruby/setup-ruby@v1
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gem-
+          bundler-cache: true
       - name: Create and set the default keychain
         run: |
           security create-keychain -p "" temporary
@@ -51,17 +47,11 @@ jobs:
           security unlock-keychain -p "" temporary
           security set-keychain-settings -lut 7200 temporary
       - name: Submodules
-        run: |
-          git submodule update --init --recursive
-          sudo gem install bundler -v 2.4.22
-          bundle config set path 'vendor/bundle'
-      - name: Bundle Install
-        if: steps.cache-gems.outputs.cache-hit != 'true'
-        run: bundle install
+        run: git submodule update --init --recursive
       - name: Build-Test
-        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake ${{ matrix.script == 'xcode15' && 'build:starters' || matrix.script }}
+        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake ${{ ((matrix.script == 'xcode14' || matrix.script == 'xcode15' || matrix.script == 'xcode16') && 'build:starters') || matrix.script }}
         env:
-          DEVELOPER_DIR: ${{ (matrix.script == 'xcode15' && env.CI_XCODE_15) || env.CI_XCODE_14 }}
+          DEVELOPER_DIR: ${{ (matrix.script == 'xcode15' && env.CI_XCODE_15) || (matrix.script == 'xcode16' && env.CI_XCODE_16) || env.CI_XCODE_14 }}
       - name: Generate Environment Variables
         if: ${{ always() }}
         env:
@@ -116,25 +106,13 @@ jobs:
     runs-on: macos-13
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Ruby
-        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
-      - name: Cache Gems
-        id: cache-gems
-        uses: actions/cache@v3
+        uses: ruby/setup-ruby@v1
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gem-
+          bundler-cache: true
       - name: Submodules
-        run: |
-          git submodule update --init --recursive
-          sudo gem install bundler -v 2.4.22
-          bundle config path vendor/bundle
-      - name: Bundle Install
-        if: steps.cache-gems.outputs.cache-hit != 'true'
-        run: bundle install
+        run: git submodule update --init --recursive
       - name: Create Jazzy Docs
         run: |
           ./Scripts/jazzy.sh

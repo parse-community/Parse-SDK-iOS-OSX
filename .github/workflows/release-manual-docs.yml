@@ -14,27 +14,15 @@ jobs:
     runs-on: macos-13
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.inputs.tag }}
       - name: Setup Ruby
-        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
-      - name: Cache Gems
-        id: cache-gems
-        uses: actions/cache@v3
+        uses: ruby/setup-ruby@v1
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gem-
+          bundler-cache: true
       - name: Submodules
-        run: |
-          git submodule update --init --recursive
-          sudo gem install bundler -v 2.4.22
-          bundle config path vendor/bundle
-      - name: Bundle Install
-        if: steps.cache-gems.outputs.cache-hit != 'true'
-        run: bundle install
+        run: git submodule update --init --recursive
       - name: Create Jazzy Docs
         run: |
           ./Scripts/jazzy.sh
