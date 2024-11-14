@@ -15,8 +15,6 @@
 #import "PFInternalUtils.h"
 #import "PFUserPrivate.h"
 
-@import Bolts;
-
 @implementation PFAnonymousUtils
 
 ///--------------------------------------

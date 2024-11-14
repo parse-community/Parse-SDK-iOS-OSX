@@ -51,7 +51,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //
         // ****************************************************************************
 
-        PFAnalytics.trackAppOpenedWithLaunchOptions(inBackground: nil)
+        PFAnalytics.trackAppOpened(launchOptions: nil)
     }
 
     func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -75,6 +75,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Uncomment these lines to track Push Notifications open rate in Analytics.
     //
     // func application(application: NSApplication, didReceiveRemoteNotification userInfo: [String : AnyObject]) {
-    //   PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(inBackground: userInfo)
+    //   PFAnalytics.trackAppOpened(withRemoteNotificationPayload: userInfo)
     // }
 }

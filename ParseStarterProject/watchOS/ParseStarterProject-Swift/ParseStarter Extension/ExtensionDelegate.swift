@@ -33,7 +33,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         Parse.initialize(with: configuration)
 
         // Track application opened event in Analytics
-        PFAnalytics.trackAppOpenedWithLaunchOptions(inBackground: nil)
+        PFAnalytics.trackAppOpened(launchOptions: nil)
     }
 
     func applicationDidBecomeActive() {

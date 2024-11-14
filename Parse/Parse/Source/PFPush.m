@@ -33,8 +33,6 @@
 #import "Parse_Private.h"
 #import "PFApplication.h"
 
-@import Bolts;
-
 static Class _pushInternalUtilClass = nil;
 
 @interface PFPush ()

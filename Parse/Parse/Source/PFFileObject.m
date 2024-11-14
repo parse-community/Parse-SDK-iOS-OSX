@@ -10,7 +10,11 @@
 #import "PFFileObject.h"
 #import "PFFileObject_Private.h"
 
-@import Bolts;
+#if __has_include(<Bolts/BFCancellationTokenSource.h>)
+#import <Bolts/BFCancellationTokenSource.h>
+#else
+#import "BFCancellationTokenSource.h"
+#endif
 
 #import "BFTask+Private.h"
 #import "PFAssert.h"

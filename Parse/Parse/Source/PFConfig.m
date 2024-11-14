@@ -19,8 +19,6 @@
 #import "PFUserPrivate.h"
 #import "Parse_Private.h"
 
-@import Bolts;
-
 NSString *const PFConfigParametersRESTKey = @"params";
 
 @interface PFConfig ()
