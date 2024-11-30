@@ -1,3 +1,10 @@
+# [4.2.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.1.2...4.2.0) (2024-11-30)
+
+
+### Features
+
+* Add support for Xcode 16 ([#1824](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1824)) ([643d486](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/643d486583efb61c76fcb1243282493880edc695))
+
 ## [4.1.2](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.1.1...4.1.2) (2024-10-14)
 
 
