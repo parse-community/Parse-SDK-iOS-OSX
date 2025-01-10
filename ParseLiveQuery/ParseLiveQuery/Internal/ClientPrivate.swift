@@ -12,15 +12,21 @@ import Starscream
 import BoltsSwift
 
 private func parseObject<T: PFObject>(_ objectDictionary: [String:AnyObject]) throws -> T {
-    guard let _ = objectDictionary["className"] as? String else {
-        throw LiveQueryErrors.InvalidJSONError(json: objectDictionary, expectedKey: "parseClassName")
+
+	var mydict = objectDictionary
+    guard let _ = mydict["className"] as? String else {
+        throw LiveQueryErrors.InvalidJSONError(json: mydict, expectedKey: "parseClassName")
     }
-    guard let _ = objectDictionary["objectId"] as? String else {
-        throw LiveQueryErrors.InvalidJSONError(json: objectDictionary, expectedKey: "objectId")
+    guard let _ = mydict["objectId"] as? String else {
+        throw LiveQueryErrors.InvalidJSONError(json: mydict, expectedKey: "objectId")
     }
 
-    guard let object =  PFDecoder.object().decode(objectDictionary) as? T else {
-        throw LiveQueryErrors.InvalidJSONObject(json: objectDictionary, details: "cannot decode json into \(T.self)")
+	if mydict["__type"] as? String == nil {
+		mydict["__type"] = "Pointer" as AnyObject
+	}
+
+    guard let object =  PFDecoder.object().decode(mydict) as? T else {
+        throw LiveQueryErrors.InvalidJSONObject(json: mydict, details: "cannot decode json into \(T.self)")
     }
 
     return object
