@@ -8,7 +8,6 @@ on:
     branches:
       - "**"
 env:
-  CI_XCODE_14: /Applications/Xcode_14.2.app/Contents/Developer
   CI_XCODE_15: /Applications/Xcode_15.4.0.app/Contents/Developer
   CI_XCODE_16: /Applications/Xcode_16.0.app/Contents/Developer
 jobs:
@@ -22,11 +21,10 @@ jobs:
           - test:ios
           - test:macos
           - test:parse_live_query:all
-          - xcode14 # runs build:starters on Xcode 14
           - xcode15 # runs build:starters on Xcode 15
           - xcode16 # runs build:starters on Xcode 16
       fail-fast: false
-    runs-on: ${{ ((matrix.script == 'xcode15' || matrix.script == 'xcode16') && 'macos-14') || 'macos-13' }}
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
       - name: Cache SPM
@@ -49,9 +47,9 @@ jobs:
       - name: Submodules
         run: git submodule update --init --recursive
       - name: Build-Test
-        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake ${{ ((matrix.script == 'xcode14' || matrix.script == 'xcode15' || matrix.script == 'xcode16') && 'build:starters') || matrix.script }}
+        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake ${{ ((matrix.script == 'xcode15' || matrix.script == 'xcode16') && 'build:starters') || matrix.script }}
         env:
-          DEVELOPER_DIR: ${{ (matrix.script == 'xcode15' && env.CI_XCODE_15) || (matrix.script == 'xcode16' && env.CI_XCODE_16) || env.CI_XCODE_14 }}
+          DEVELOPER_DIR: ${{ (matrix.script == 'xcode15' && env.CI_XCODE_15) || (matrix.script == 'xcode16' && env.CI_XCODE_16) }}
       - name: Generate Environment Variables
         if: ${{ always() }}
         env:
@@ -103,7 +101,7 @@ jobs:
           plugin: xcode
           file: ${{ env.COVERAGE_PATH }}
   docs:
-    runs-on: macos-13
+    runs-on: macos-14
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -117,7 +115,7 @@ jobs:
         run: |
           ./Scripts/jazzy.sh
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_14 }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_16 }}
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
