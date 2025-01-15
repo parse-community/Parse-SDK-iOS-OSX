@@ -9,7 +9,7 @@ on:
       - "**"
 env:
   CI_XCODE_15: /Applications/Xcode_15.4.0.app/Contents/Developer
-  CI_XCODE_16: /Applications/Xcode_16.0.app/Contents/Developer
+  CI_XCODE_16: /Applications/Xcode_16.2.0.app/Contents/Developer
 jobs:
   tests:
     env:
