@@ -70,7 +70,8 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
 
 - (void)setServer:(NSString *)server {
     PFParameterAssert(server.length, @"Server should not be `nil`.");
-    PFParameterAssert([NSURL URLWithString:server], @"Server should be a valid URL.");
+    NSURL *url = [NSURL URLWithString:server];
+    PFParameterAssert(url && url.scheme && url.host, @"Server should be a valid URL.");
     _server = [server copy];
 }
 
