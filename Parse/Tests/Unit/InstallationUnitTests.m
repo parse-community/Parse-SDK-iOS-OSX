@@ -90,6 +90,7 @@
     [[NSApplication sharedApplication] dockTile].badgeLabel = @"10";
 #endif
     PFInstallation *installation = [PFInstallation currentInstallation];
+    NSLog(@"iconBadgeNumber, %@", @([PFApplication currentApplication].iconBadgeNumber));
     PFAssertEqualInts(installation.badge, 10, @"Installation should have the same badge as application");
 }
 
