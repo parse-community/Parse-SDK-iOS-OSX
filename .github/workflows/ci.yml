@@ -66,7 +66,7 @@ jobs:
           echo "Build Result Location: $BUILD_RESULTS"
       - name: Upload Artifact Logs
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.ARTIFACT_NAME }}
           path: |
