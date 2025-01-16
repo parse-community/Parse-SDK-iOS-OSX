@@ -82,6 +82,9 @@
                   Identifier = "ExtensionDataSharingTests">
                </Test>
                <Test
+                  Identifier = "InstallationUnitTests/testInstallationHasApplicationBadge">
+               </Test>
+               <Test
                   Identifier = "PFTestCase">
                </Test>
                <Test
