@@ -14,7 +14,7 @@ starters_path = File.join(SCRIPT_PATH, 'ParseStarterProject')
 
 ios_simulator = 'platform="iOS Simulator",name="iPhone 16"'
 tvos_simulator = 'platform="tvOS Simulator",name="Apple TV"'
-watchos_simulator = 'platform="watchOS Simulator",name="Apple Watch Series 9 (45mm)"'
+watchos_simulator = 'platform="watchOS Simulator",name="Apple Watch Series 10 (46mm)"'
 
 build_action = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD];
 
