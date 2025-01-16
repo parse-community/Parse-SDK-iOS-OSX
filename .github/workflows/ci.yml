@@ -49,7 +49,7 @@ jobs:
       - name: Build-Test
         run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake ${{ ((matrix.script == 'xcode15' || matrix.script == 'xcode16') && 'build:starters') || matrix.script }}
         env:
-          DEVELOPER_DIR: ${{ (matrix.script == 'xcode16' && env.CI_XCODE_16) || env.CI_XCODE_15 }}
+          DEVELOPER_DIR: ${{ (matrix.script == 'xcode15' && env.CI_XCODE_15) || env.CI_XCODE_16 }}
       - name: Generate Environment Variables
         if: ${{ always() }}
         env:
