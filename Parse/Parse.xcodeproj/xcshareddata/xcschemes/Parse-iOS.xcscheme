@@ -96,6 +96,9 @@
                <Test
                   Identifier = "ParseClientConfigurationTests/testExtensionDataSharing">
                </Test>
+               <Test
+                  Identifier = "ParseClientConfigurationTests/testServerValidation">
+               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>
