@@ -66,12 +66,13 @@ Parse Apple SDK is compatible with the following versions of Parse Server.
 
 The Parse Apple SDK is continuously tested with the most recent releases of Xcode to ensure compatibility. We follow the annual release schedule of Xcode to support the current and previous major Xcode version.
 
-| Version  | Minimum Version | End-of-Life  | Parse Apple SDK Support |
-|----------|-----------------|--------------|-------------------------|
-| Xcode 13 | 13.1            | October 2022 | >= 1.19.3 <2.7.2        |
-| Xcode 14 | 14.2            | October 2023 | >= 2.7.2                |
-| Xcode 15 | 15.4            | October 2024 | >= 3.0.0                |
-| Xcode 16 | 16.0            | October 2025 | >= 4.2.0                |
+| Xcode Version | iOS Version | Release Date   | End-of-Support Date | Parse Apple SDK Support |
+|---------------|-------------|----------------|---------------------|-------------------------|
+| Xcode 13      | iOS 15      | September 2021 | October 2022        | >= 1.19.3 <2.7.2        |
+| Xcode 14      | iOS 16      | September 2022 | October 2023        | >= 2.7.2                |
+| Xcode 15      | iOS 17      | September 2023 | October 2024        | >= 3.0.0                |
+| Xcode 16      | iOS 18      | September 2024 | tbd                 | >= 4.2.0                |
+| Xcode 17      | iOS 19      | tbd            | tbd                 | tbd                     |
 
 ## How Do I Contribute?
 
