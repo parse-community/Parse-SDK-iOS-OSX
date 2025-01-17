@@ -32,6 +32,9 @@ A library that gives you access to the powerful Parse Server backend from your i
 ---
 
 - [Getting Started](#getting-started)
+- [Compatibility](#compatibility)
+  - [Parse Server](#parse-server)
+  - [Xcode](#xcode)
 - [How Do I Contribute?](#how-do-i-contribute)
 - [Dependencies](#dependencies)
 
@@ -48,6 +51,27 @@ The easiest way to install the SDK is via Swift Package Manager.
 4. Choose the submodules you want to install
 
 Take a look at the public [documentation][docs] & [API][api] and start building.
+
+## Compatibility
+
+### Parse Server
+
+Parse Apple SDK is compatible with the following versions of Parse Server.
+
+| Parse Apple SDK | Parse Server |
+|-----------------|--------------|
+| 1.0.0           | >= 1.0.0     |
+
+### Xcode
+
+The Parse Apple SDK is continuously tested with the most recent releases of Xcode to ensure compatibility. We follow the annual release schedule of Xcode to support the current and previous major Xcode version.
+
+| Version  | Minimum Version | End-of-Life  | Parse Apple SDK Support |
+|----------|-----------------|--------------|-------------------------|
+| Xcode 13 | 13.1            | October 2022 | >= 1.19.3 <2.7.2        |
+| Xcode 14 | 14.2            | October 2023 | >= 2.7.2                |
+| Xcode 15 | 15.4            | October 2024 | >= 3.0.0                |
+| Xcode 16 | 16.0            | October 2025 | >= 4.2.0                |
 
 ## How Do I Contribute?
 
