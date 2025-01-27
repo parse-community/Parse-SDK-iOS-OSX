@@ -153,12 +153,16 @@ jobs:
             script: test:parse_live_query:osx
             macosVersion: 15
             developerDir: CI_XCODE_16
-          - name: LiveQuery Module, watchOS 8
+          - name: LiveQuery Module, watchOS 11
             script: test:parse_live_query:watchos
-            macosVersion: 15
-            watchOsVersion: '8.0'
+            watchOsVersion: '11.2'
             watchDeviceModel: Apple Watch Series 10 (46mm)
             developerDir: CI_XCODE_16
+          - name: LiveQuery Module, watchOS 10
+            script: test:parse_live_query:watchos
+            watchOsVersion: '10.5'
+            watchDeviceModel: Apple Watch Series 9 (45mm)
+            developerDir: CI_XCODE_15
       fail-fast: false
     runs-on: macos-${{ matrix.macosVersion || 14 }}
     name: ${{ matrix.name }}
