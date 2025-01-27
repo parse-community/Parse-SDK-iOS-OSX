@@ -111,7 +111,7 @@ jobs:
             script: build:starters
             iosVersion: '17.5'
             iosDeviceModel: iPhone 15
-            watchOsVersion: '11.2'
+            watchOsVersion: '11.1'
             watchDeviceModel: Apple Watch Series 10 (46mm)
             developerDir: CI_XCODE_15
           - name: Xcode 16
@@ -157,7 +157,7 @@ jobs:
             developerDir: CI_XCODE_16
           - name: LiveQuery Module, watchOS 11
             script: test:parse_live_query:watchos
-            watchOsVersion: '11.2'
+            watchOsVersion: '11.1'
             watchDeviceModel: Apple Watch Series 10 (46mm)
             developerDir: CI_XCODE_16
           - name: LiveQuery Module, watchOS 10
