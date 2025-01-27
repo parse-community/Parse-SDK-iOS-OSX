@@ -19,6 +19,13 @@ ios_device_model = ENV.fetch('IOS_DEVICE_MODEL')
 tv_device_model = ENV.fetch('TV_DEVICE_MODEL')
 watch_device_model = ENV.fetch('WATCH_DEVICE_MODEL')
 
+puts "IOS_VERSION: #{ios_version}"
+puts "TV_OS_VERSION: #{tvos_version}"
+puts "WATCH_OS_VERSION: #{watchos_version}"
+puts "IOS_DEVICE_MODEL: #{ios_device_model}"
+puts "TV_DEVICE_MODEL: #{tv_device_model}"
+puts "WATCH_DEVICE_MODEL: #{watch_device_model}"
+
 ios_simulator = "platform=\"iOS Simulator\",name=\"#{ios_device_model}\",OS=\"#{ios_version}\""
 tvos_simulator = "platform=\"tvOS Simulator\",name=\"#{tv_device_model}\",OS=\"#{tvos_version}\""
 watchos_simulator = "platform=\"watchOS Simulator\",name=\"#{watch_device_model}\",OS=\"#{watchos_version}\""
