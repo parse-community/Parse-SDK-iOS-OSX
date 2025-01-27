@@ -387,7 +387,7 @@ namespace :test do
         t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
         t.scheme = 'ParseLiveQuery-watchOS'
-        t.destinations = [watchos_simulator]
+        t.destinations = [watchos_simulator, ios_simulator]
         t.configuration = 'Debug'
         t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
