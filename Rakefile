@@ -15,7 +15,7 @@ starters_path = File.join(SCRIPT_PATH, 'ParseStarterProject')
 puts "Device model: #{ENV['DEVICE_MODEL']}"
 puts "OS version: #{ENV['OS_VERSION']}"
 
-ios_simulator = "platform=\"iOS Simulator\",name=#{ENV['DEVICE_MODEL'] || 'iPhone 16'},OS=#{ENV['OS_VERSION'] || '17.0'}"
+ios_simulator = "platform=\"iOS Simulator\",name=\"#{ENV['DEVICE_MODEL'] || 'iPhone 16'}\",OS=\"#{ENV['OS_VERSION'] || '17.0'}\""
 tvos_simulator = 'platform="tvOS Simulator",name="Apple TV"'
 watchos_simulator = 'platform="watchOS Simulator",name="Apple Watch Series 10 (46mm)"'
 

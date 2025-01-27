@@ -116,12 +116,12 @@ jobs:
           - name: iOS 17, iPhone 15
             script: test:ios
             osVersion: '17.5'
-            deviceModel: iPhone 15
+            deviceModel: 'iPhone 15'
             developerDir: CI_XCODE_16
           - name: iOS 18, iPhone 16
             script: test:ios
             osVersion: '18.1'
-            deviceModel: iPhone 16
+            deviceModel: 'iPhone 16'
             developerDir: CI_XCODE_16
           - name: macOS 14
             script: test:macos
