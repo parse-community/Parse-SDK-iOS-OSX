@@ -108,9 +108,23 @@ jobs:
       matrix:
         include:
           - name: Xcode 15
-            developerDir: 'CI_XCODE_15'
+            script: build:starters
+            developerDir: CI_XCODE_15
           - name: Xcode 16
-            developerDir: 'CI_XCODE_16'
+            script: build:starters
+            developerDir: CI_XCODE_16
+          - name: iOS 17, iPhone 16
+            script: test:ios
+            iosVersion: 17
+            developerDir: CI_XCODE_16
+          - name: iOS 18, iPhone 16
+            script: test:ios
+            iosVersion: 18
+            developerDir: CI_XCODE_16
+          - name: macOS 14
+            script: test:macos
+            macosVersion: 14
+            developerDir: CI_XCODE_16
       fail-fast: false
     runs-on: macos-14
     name: ${{ matrix.name }}
@@ -136,14 +150,14 @@ jobs:
       - name: Submodules
         run: git submodule update --init --recursive
       - name: Build-Test
-        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake 'build:starters'
+        run: set -o pipefail && env NSUnbufferedIO=YES IOS_VERSION=${{ matrix.iosVersion }} bundle exec rake ${{ matrix.script }}
         env:
           DEVELOPER_DIR: ${{ env[matrix.developerDir] }}
       - name: Generate Environment Variables
         if: ${{ always() }}
         env:
-          ARTIFACT_NAME: ${{ matrix.developerDir }}-logs
-          TEST_RESULTS: ${{ matrix.developerDir }}.xcresult
+          ARTIFACT_NAME: ${{ matrix.script }}-logs
+          TEST_RESULTS: ${{ matrix.script }}.xcresult
         run: |
           ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}
           TEST_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult")
@@ -161,6 +175,34 @@ jobs:
           path: |
             ~/Library/Developer/Xcode/DerivedData/Parse-*/Logs/Test
             ~/Library/Developer/Xcode/DerivedData/**/Logs/Build
+      - name: Install test parsing dependencies
+        if: matrix.script == 'test:ios'
+        # Workaround as codecov cannot parse xcresult files;
+        # https://github.com/codecov/uploader/issues/1078
+        # https://github.com/codecov/codecov-action/issues/1367
+        run: |
+          brew install a7ex/homebrew-formulae/xcresultparser
+      - name: Convert Xcode test results for code coverage upload
+        if: matrix.script == 'test:ios'
+        env:
+          COVERAGE_PATH: ${{ github.workspace }}/build/${{ matrix.script }}-coverage.xml
+        run: |
+          COVERAGE_PATH=${COVERAGE_PATH//:/-}
+          echo COVERAGE_PATH=$COVERAGE_PATH >> $GITHUB_ENV
+          echo "TEST_RESULTS: $TEST_RESULTS"
+          echo "COVERAGE_PATH: $COVERAGE_PATH"
+          set -o pipefail && \
+            xcresultparser --output-format cobertura \
+            "$TEST_RESULTS" >"$COVERAGE_PATH"
+      - name: Upload code coverage
+        if: matrix.script == 'test:ios'
+        uses: codecov/codecov-action@v4
+        with:
+          # Set to `true` once codecov token bug is fixed; https://github.com/parse-community/parse-server/issues/9129
+          fail_ci_if_error: false
+          token: ${{ secrets.CODECOV_TOKEN }}
+          plugin: xcode
+          file: ${{ env.COVERAGE_PATH }}
   docs:
     runs-on: macos-14
     timeout-minutes: 15
