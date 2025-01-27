@@ -13,8 +13,8 @@ SCRIPT_PATH = File.expand_path(File.dirname(__FILE__))
 starters_path = File.join(SCRIPT_PATH, 'ParseStarterProject')
 
 ios_simulator = "platform=\"iOS Simulator\",name=\"#{ENV['DEVICE_MODEL'] || 'iPhone 16'}\",OS=\"#{ENV['IOS_VERSION'] || '17.0'}\""
-tvos_simulator = 'platform="tvOS Simulator",name="Apple TV"'
-watchos_simulator = 'platform="watchOS Simulator",name="Apple Watch Series 10 (46mm)"'
+tvos_simulator = "platform=\"tvOS Simulator\",name=\"Apple TV\""
+watchos_simulator = "platform=\"watchOS Simulator\",name=\"#{ENV['WATCH_DEVICE_MODEL'] || 'Apple Watch Series 10 (46mm)'}\",OS=\"#{ENV['WATCH_OS_VERSION'] || '8.0'}\""
 
 build_action = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD];
 
