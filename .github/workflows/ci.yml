@@ -117,7 +117,17 @@ jobs:
             tvDeviceModel: Apple TV
             macosVersion: 14
             developerDir: CI_XCODE_15
-          - name: Xcode 16
+          - name: Xcode 16 old
+            script: build:starters
+            iosVersion: '18.1'
+            iosDeviceModel: iPhone 16
+            watchOsVersion: '11.1'
+            watchDeviceModel: Apple Watch Series 10 (46mm)
+            tvOsVersion: '18.1'
+            tvDeviceModel: Apple TV
+            macosVersion: 15
+            developerDir: CI_XCODE_16
+          - name: Xcode 16 new
             script: build:starters
             iosVersion: '18.2'
             iosDeviceModel: iPhone 16 Pro Max
