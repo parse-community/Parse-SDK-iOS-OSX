@@ -110,32 +110,34 @@ jobs:
           - name: Xcode 15
             script: build:starters
             iosVersion: '17.5'
-            deviceModel: iPhone 15
+            iosDeviceModel: iPhone 15
+            watchOsVersion: '11.2'
+            watchDeviceModel: Apple Watch Series 10 (46mm)
             developerDir: CI_XCODE_15
           - name: Xcode 16
             script: build:starters
             iosVersion: '18.1'
-            deviceModel: iPhone 16
+            iosDeviceModel: iPhone 16
             developerDir: CI_XCODE_16
           - name: Core Module, iOS 17
             script: test:ios
             iosVersion: '17.5'
-            deviceModel: iPhone 15
+            iosDeviceModel: iPhone 15
             developerDir: CI_XCODE_16
           - name: LiveQuery Module, iOS 17
             script: test:parse_live_query:ios
             iosVersion: '17.5'
-            deviceModel: iPhone 15
+            iosDeviceModel: iPhone 15
             developerDir: CI_XCODE_16
           - name: Core Module, iOS 18
             script: test:ios
             iosVersion: '18.1'
-            deviceModel: iPhone 16
+            iosDeviceModel: iPhone 16
             developerDir: CI_XCODE_16
           - name: LiveQuery Module, iOS 18
             script: test:parse_live_query:ios
             iosVersion: '18.1'
-            deviceModel: iPhone 16
+            iosDeviceModel: iPhone 16
             developerDir: CI_XCODE_16
           - name: Core Module, macOS 14
             script: test:macos
@@ -198,7 +200,7 @@ jobs:
       - name: Submodules
         run: git submodule update --init --recursive
       - name: Build-Test
-        run: set -o pipefail && env NSUnbufferedIO=YES IOS_VERSION="${{ matrix.iosVersion }}" DEVICE_MODEL="${{ matrix.deviceModel }}" WATCH_DEVICE_MODEL="${{ matrix.watchDeviceModel }}" WATCH_OS_VERSION="${{ matrix.watchOsVersion }}" TV_DEVICE_MODEL="${{ matrix.tvDeviceModel }}" TV_OS_VERSION="${{ matrix.tvOsVersion }}" bundle exec rake ${{ matrix.script }}
+        run: set -o pipefail && env NSUnbufferedIO=YES IOS_VERSION="${{ matrix.iosVersion }}" IOS_DEVICE_MODEL="${{ matrix.iosDeviceModel }}" WATCH_DEVICE_MODEL="${{ matrix.watchDeviceModel }}" WATCH_OS_VERSION="${{ matrix.watchOsVersion }}" TV_DEVICE_MODEL="${{ matrix.tvDeviceModel }}" TV_OS_VERSION="${{ matrix.tvOsVersion }}" bundle exec rake ${{ matrix.script }}
         env:
           DEVELOPER_DIR: ${{ env[matrix.developerDir] }}
       - name: Generate Environment Variables
