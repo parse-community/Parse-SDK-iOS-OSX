@@ -113,13 +113,23 @@ jobs:
           - name: Xcode 16
             script: build:starters
             developerDir: CI_XCODE_16
-          - name: iOS 17, iPhone 15
+          - name: Core Module, iOS 17, iPhone 15
             script: test:ios
             iosVersion: '17.5'
             deviceModel: iPhone 15
             developerDir: CI_XCODE_16
-          - name: iOS 18, iPhone 16
+          - name: LiveQuery Module, iOS 17, iPhone 15
+            script: test:parse_live_query:ios
+            iosVersion: '17.5'
+            deviceModel: iPhone 15
+            developerDir: CI_XCODE_16
+          - name: Core Module, iOS 18, iPhone 16
             script: test:ios
+            iosVersion: '18.1'
+            deviceModel: iPhone 16
+            developerDir: CI_XCODE_16
+          - name: LiveQuery Module, iOS 18, iPhone 16
+            script: test:parse_live_query:ios
             iosVersion: '18.1'
             deviceModel: iPhone 16
             developerDir: CI_XCODE_16
