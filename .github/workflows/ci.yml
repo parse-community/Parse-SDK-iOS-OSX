@@ -100,6 +100,66 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           plugin: xcode
           file: ${{ env.COVERAGE_PATH }}
+  test-xcode:
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    timeout-minutes: 45
+    strategy:
+      matrix:
+        include:
+          - name: Xcode 15
+            developerDir: 'CI_XCODE_15'
+          - name: Xcode 16
+            developerDir: 'CI_XCODE_16'
+      fail-fast: false
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache SPM
+        uses: actions/cache@v4
+        with:
+          path: ~/Library/Developer/Xcode/DerivedData/Parse*/SourcePackages/
+          key: ${{ runner.os }}-spm-${{ hashFiles('Parse.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: |
+                  ${{ runner.os }}-spm-
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Create and set the default keychain
+        run: |
+          security create-keychain -p "" temporary
+          security default-keychain -s temporary
+          security unlock-keychain -p "" temporary
+          security set-keychain-settings -lut 7200 temporary
+      - name: Submodules
+        run: git submodule update --init --recursive
+      - name: Build-Test
+        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake 'build:starters'
+        env:
+          DEVELOPER_DIR: ${{ env[matrix.developerDir] }}
+      - name: Generate Environment Variables
+        if: ${{ always() }}
+        env:
+          ARTIFACT_NAME: ${{ matrix.developerDir }}-logs
+          TEST_RESULTS: ${{ matrix.developerDir }}.xcresult
+        run: |
+          ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}
+          TEST_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult")
+          BUILD_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcactivitylog")
+          echo ARTIFACT_NAME=${ARTIFACT_NAME//:/-} >> $GITHUB_ENV # replace colon with dashes
+          echo TEST_RESULTS=${TEST_RESULTS} >> $GITHUB_ENV
+          echo "Artifact Name: $ARTIFACT_NAME"
+          echo "Test Result Location: $TEST_RESULTS"
+          echo "Build Result Location: $BUILD_RESULTS"
+      - name: Upload Artifact Logs
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/Parse-*/Logs/Test
+            ~/Library/Developer/Xcode/DerivedData/**/Logs/Build
   docs:
     runs-on: macos-14
     timeout-minutes: 15
