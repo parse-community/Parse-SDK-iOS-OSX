@@ -151,8 +151,8 @@ jobs:
             script: test:parse_live_query:osx
             macosVersion: 15
             developerDir: CI_XCODE_16
-          - name: LiveQuery Module, watchOS 
-            script: test:parse_live_query:osx
+          - name: LiveQuery Module, watchOS
+            script: test:parse_live_query:watchos
             macosVersion: 15
             watchOsVersion: '8.0'
             watchDeviceModel: Apple Watch Series 10 (46mm)
