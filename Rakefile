@@ -12,9 +12,16 @@ require_relative 'Vendor/xctoolchain/Scripts/xctask/build_task'
 SCRIPT_PATH = File.expand_path(File.dirname(__FILE__))
 starters_path = File.join(SCRIPT_PATH, 'ParseStarterProject')
 
-ios_simulator = "platform=\"iOS Simulator\",name=\"#{ENV['IOS_DEVICE_MODEL'] || 'iPhone 16'}\",OS=\"#{ENV['IOS_VERSION'] || '17.5'}\""
-tvos_simulator = "platform=\"tvOS Simulator\",name=\"#{ENV['TV_DEVICE_MODEL'] || 'Apple TV'}\",OS=\"#{ENV['TV_OS_VERSION'] || '18.1'}\""
-watchos_simulator = "platform=\"watchOS Simulator\",name=\"#{ENV['WATCH_DEVICE_MODEL'] || 'Apple Watch Series 10 (46mm)'}\",OS=\"#{ENV['WATCH_OS_VERSION'] || '11.2'}\""
+ios_version = ENV.fetch('IOS_VERSION')
+tvos_version = ENV.fetch('TV_OS_VERSION')
+watchos_version = ENV.fetch('WATCH_OS_VERSION')
+ios_device_model = ENV.fetch('IOS_DEVICE_MODEL')
+tv_device_model = ENV.fetch('TV_DEVICE_MODEL')
+watch_device_model = ENV.fetch('WATCH_DEVICE_MODEL')
+
+ios_simulator = "platform=\"iOS Simulator\",name=\"#{ios_device_model}\",OS=\"#{ios_version}\""
+tvos_simulator = "platform=\"tvOS Simulator\",name=\"#{tv_device_model}\",OS=\"#{tvos_version}\""
+watchos_simulator = "platform=\"watchOS Simulator\",name=\"#{watch_device_model}\",OS=\"#{watchos_version}\""
 
 build_action = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD];
 
