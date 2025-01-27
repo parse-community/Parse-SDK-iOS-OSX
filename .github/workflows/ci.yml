@@ -111,13 +111,19 @@ jobs:
             script: build:starters
             iosVersion: '17.5'
             iosDeviceModel: iPhone 15
-            watchOsVersion: '11.1'
-            watchDeviceModel: Apple Watch Series 10 (46mm)
+            watchOsVersion: '10.5'
+            watchDeviceModel: Apple Watch Series 9 (45mm)
+            tvOsVersion: '17.5'
+            tvDeviceModel: Apple TV
             developerDir: CI_XCODE_15
           - name: Xcode 16
             script: build:starters
             iosVersion: '18.1'
             iosDeviceModel: iPhone 16
+            watchOsVersion: '11.1'
+            watchDeviceModel: Apple Watch Series 10 (46mm)
+            tvOsVersion: '18.1'
+            tvDeviceModel: Apple TV
             developerDir: CI_XCODE_16
           - name: Core Module, iOS 17
             script: test:ios
