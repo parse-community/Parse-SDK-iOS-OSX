@@ -113,6 +113,8 @@ jobs:
           - name: Xcode 16
             script: build:starters
             developerDir: CI_XCODE_16
+            iosVersion: '18.1'
+            deviceModel: iPhone 15
           - name: Core Module, iOS 17, iPhone 15
             script: test:ios
             iosVersion: '17.5'
