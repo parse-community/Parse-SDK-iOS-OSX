@@ -109,12 +109,14 @@ jobs:
         include:
           - name: Xcode 15
             script: build:starters
+            iosVersion: '17.5'
+            deviceModel: iPhone 15
             developerDir: CI_XCODE_15
           - name: Xcode 16
             script: build:starters
-            developerDir: CI_XCODE_16
             iosVersion: '18.1'
-            deviceModel: iPhone 15
+            deviceModel: iPhone 16
+            developerDir: CI_XCODE_16
           - name: Core Module, iOS 17, iPhone 15
             script: test:ios
             iosVersion: '17.5'
@@ -151,7 +153,7 @@ jobs:
             script: test:parse_live_query:osx
             macosVersion: 15
             developerDir: CI_XCODE_16
-          - name: LiveQuery Module, watchOS
+          - name: LiveQuery Module, watchOS 8
             script: test:parse_live_query:watchos
             macosVersion: 15
             watchOsVersion: '8.0'
