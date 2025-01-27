@@ -113,6 +113,7 @@ jobs:
             developerDir: 'CI_XCODE_16'
       fail-fast: false
     runs-on: macos-14
+    name: ${{ matrix.name }}
     steps:
       - uses: actions/checkout@v4
       - name: Cache SPM
