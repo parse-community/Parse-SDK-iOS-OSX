@@ -127,7 +127,7 @@ jobs:
             tvDeviceModel: Apple TV
             macosVersion: 15
             developerDir: CI_XCODE_16
-          - name: LiveQuery Module Build, iOS 17, macOS 14, watchOS 10, tvOS 17
+          - name: LiveQuery Module Build, Xcode 15, iOS 17, macOS 14, watchOS 10, tvOS 17
             script: build:starters
             iosVersion: '17.5'
             iosDeviceModel: iPhone 15
@@ -137,7 +137,7 @@ jobs:
             tvDeviceModel: Apple TV
             macosVersion: 14
             developerDir: CI_XCODE_15
-          - name: LiveQuery Module Build, iOS 18, macOS 15, watchOS 11, tvOS 18
+          - name: LiveQuery Module Build, Xcode 16, iOS 18, macOS 15, watchOS 11, tvOS 18
             script: build:starters
             iosVersion: '18.1'
             iosDeviceModel: iPhone 16

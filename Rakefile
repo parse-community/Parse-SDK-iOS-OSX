@@ -96,6 +96,9 @@ namespace :build do
     end
 
     task :objc do
+      puts 'Running iOS ObjC Starter Project'
+      puts "IOS_VERSION: #{ios_version}"
+      puts "IOS_DEVICE_MODEL: #{ios_device_model}"
       project = 'ParseStarterProject'
       ios_starters_path = File.join(starters_path, 'iOS', project)
       task = XCTask::BuildTask.new do |t|
@@ -243,7 +246,7 @@ namespace :build do
     end
 
     task :objc do
-      puts 'Running Live Query ObjC Starter Project'
+      puts 'Running Live Query macOS ObjC Starter Project'
       live_query_starter_folder = File.join(SCRIPT_PATH, 'ParseLiveQuery', 'Examples')
       task = XCTask::BuildTask.new do |t|
         t.directory = live_query_starter_folder
@@ -261,7 +264,7 @@ namespace :build do
     end
 
     task :swift do
-      puts 'Running Live Query Swift Starter Project'
+      puts 'Running Live Query macOS Swift Starter Project'
       live_query_starter_folder = File.join(SCRIPT_PATH, 'ParseLiveQuery', 'Examples')
       task = XCTask::BuildTask.new do |t|
         t.directory = live_query_starter_folder
@@ -292,6 +295,9 @@ end
 namespace :test do
   desc 'Run iOS Tests'
   task :ios do |_, args|
+    puts 'Running iOS Tests'
+    puts "IOS_VERSION: #{ios_version}"
+    puts "IOS_DEVICE_MODEL: #{ios_device_model}"
     task = XCTask::BuildTask.new do |t|
       t.directory = SCRIPT_PATH
       t.workspace = 'Parse.xcworkspace'
@@ -310,6 +316,7 @@ namespace :test do
 
   desc 'Run macOS Tests'
   task :macos do |_, args|
+    puts 'Running macOS Tests'
     task = XCTask::BuildTask.new do |t|
       t.directory = SCRIPT_PATH
       t.workspace = 'Parse.xcworkspace'
@@ -334,6 +341,9 @@ namespace :test do
     end
 
     task :ios do
+      puts 'Running ParseLiveQuery iOS Tests'
+      puts "IOS_VERSION: #{ios_version}"
+      puts "IOS_DEVICE_MODEL: #{ios_device_model}"
       task = XCTask::BuildTask.new do |t|
         t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
@@ -351,6 +361,9 @@ namespace :test do
     end
 
     task :tvos do
+      puts 'Running ParseLiveQuery tvOS Tests'
+      puts "TV_OS_VERSION: #{tvos_version}"
+      puts "TV_DEVICE_MODEL: #{tv_device_model}"
       task = XCTask::BuildTask.new do |t|
         t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
@@ -367,6 +380,9 @@ namespace :test do
     end
 
     task :watchos do
+      puts 'Running ParseLiveQuery watchOS Tests'
+      puts "WATCH_OS_VERSION: #{watchos_version}"
+      puts "WATCH_DEVICE_MODEL: #{watch_device_model}"
       task = XCTask::BuildTask.new do |t|
         t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
@@ -383,6 +399,7 @@ namespace :test do
     end
     
     task :osx do
+      puts 'Running ParseLiveQuery macOS Tests'
       task = XCTask::BuildTask.new do |t|
         t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
