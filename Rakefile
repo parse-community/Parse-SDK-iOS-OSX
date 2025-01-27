@@ -228,7 +228,7 @@ namespace :build do
         t.project = 'ParseStarter-Swift.xcodeproj'
         t.scheme = 'ParseStarter'
         t.configuration = 'Debug'
-        t.destinations = [watchos_simulator]
+        t.destinations = [watchos_simulator, ios_simulator]
         t.actions = build_action
         t.formatter = XCTask::BuildFormatter::XCPRETTY
       end
