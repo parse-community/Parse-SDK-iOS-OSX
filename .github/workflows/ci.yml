@@ -113,19 +113,19 @@ jobs:
           - name: Xcode 16
             script: build:starters
             developerDir: CI_XCODE_16
-          - name: iOS 17, iPhone 16
+          - name: iOS 17, iPhone 15
             script: test:ios
-            iosVersion: '17.5'
-            deviceModel: iPhone 16
+            osVersion: '17.5'
+            deviceModel: iPhone 15
             developerDir: CI_XCODE_16
           - name: iOS 18, iPhone 16
             script: test:ios
-            iosVersion: '18.1'
+            osVersion: '18.1'
             deviceModel: iPhone 16
             developerDir: CI_XCODE_16
           - name: macOS 14
             script: test:macos
-            macosVersion: 14
+            osVersion: 14
             developerDir: CI_XCODE_16
       fail-fast: false
     runs-on: macos-14
@@ -152,7 +152,7 @@ jobs:
       - name: Submodules
         run: git submodule update --init --recursive
       - name: Build-Test
-        run: set -o pipefail && env NSUnbufferedIO=YES IOS_VERSION=${{ matrix.iosVersion }} bundle exec rake ${{ matrix.script }}
+        run: set -o pipefail && env NSUnbufferedIO=YES OS_VERSION=${{ matrix.osVersion }} DEVICE_MODEL=${{ matrix.deviceModel }} bundle exec rake ${{ matrix.script }}
         env:
           DEVELOPER_DIR: ${{ env[matrix.developerDir] }}
       - name: Generate Environment Variables
