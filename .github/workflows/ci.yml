@@ -152,7 +152,7 @@ jobs:
       - name: Submodules
         run: git submodule update --init --recursive
       - name: Build-Test
-        run: set -o pipefail && env NSUnbufferedIO=YES OS_VERSION=${{ matrix.osVersion }} DEVICE_MODEL=${{ matrix.deviceModel }} bundle exec rake ${{ matrix.script }}
+        run: set -o pipefail && env NSUnbufferedIO=YES OS_VERSION="${{ matrix.osVersion }}" DEVICE_MODEL="${{ matrix.deviceModel }}" bundle exec rake ${{ matrix.script }}
         env:
           DEVELOPER_DIR: ${{ env[matrix.developerDir] }}
       - name: Generate Environment Variables
