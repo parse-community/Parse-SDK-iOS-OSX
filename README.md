@@ -68,9 +68,9 @@ The Parse Apple SDK is continuously tested with the most recent releases of Xcod
 
 | Xcode Version | iOS Version | macOS Version | macOS Version | Release Date   | End-of-Support Date | Parse Apple SDK Support |
 |---------------|-------------|---------------|---------------|----------------|---------------------|-------------------------|
-| Xcode 13      | iOS 15      | macOS 12      | watchOS 8     | September 2021 | October 2022        | >= 1.19.3 <2.7.2        |
-| Xcode 14      | iOS 16      | macOS 13      | watchOS 9     | September 2022 | October 2023        | >= 2.7.2 <= 5.0.0       |
-| Xcode 15      | iOS 17      | macOS 14      | watchOS 10    | September 2023 | October 2024        | >= 3.0.0                |
+| Xcode 13      | iOS 15      | macOS 12      | watchOS 8     | September 2021 | October 2023        | >= 1.19.3 <2.7.2        |
+| Xcode 14      | iOS 16      | macOS 13      | watchOS 9     | September 2022 | October 2024        | >= 2.7.2 <= 5.0.0       |
+| Xcode 15      | iOS 17      | macOS 14      | watchOS 10    | September 2023 | October 2025        | >= 3.0.0                |
 | Xcode 16      | iOS 18      | macOS 15      | watchOS 11    | September 2024 | tbd                 | >= 4.2.0                |
 
 ## How Do I Contribute?
