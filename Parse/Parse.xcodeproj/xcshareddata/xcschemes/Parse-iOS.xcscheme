@@ -82,6 +82,12 @@
                   Identifier = "ExtensionDataSharingTests">
                </Test>
                <Test
+                  Identifier = "InstallationUnitTests/testInstallationHasApplicationBadge">
+               </Test>
+               <Test
+                  Identifier = "InstallationUnitTests/testInstallationSetsApplicationBadge">
+               </Test>
+               <Test
                   Identifier = "PFTestCase">
                </Test>
                <Test
@@ -89,6 +95,9 @@
                </Test>
                <Test
                   Identifier = "ParseClientConfigurationTests/testExtensionDataSharing">
+               </Test>
+               <Test
+                  Identifier = "ParseClientConfigurationTests/testServerValidation">
                </Test>
             </SkippedTests>
          </TestableReference>
