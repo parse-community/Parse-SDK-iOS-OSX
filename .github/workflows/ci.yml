@@ -110,9 +110,9 @@ jobs:
           - name: Xcode 15
             script: build:starters
             iosVersion: '17.0'
-            iosDeviceModel: iPhone 15
+            iosDeviceModel: iPhone 16
             watchOsVersion: '10.0'
-            watchDeviceModel: Apple Watch Series 9 (45mm)
+            watchDeviceModel: Apple Watch Series 10 (46mm)
             tvOsVersion: '17.5'
             tvDeviceModel: Apple TV
             macosVersion: 14
