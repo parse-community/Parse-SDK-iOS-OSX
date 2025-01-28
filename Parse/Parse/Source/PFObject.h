@@ -880,6 +880,19 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
                     withName:(NSString *)name
                        block:(nullable PFBooleanResultBlock)block;
 
+///--------------------------------------
+#pragma mark - Serialization
+///--------------------------------------
+
+/**
+ Creates a PFObject from a dictionary object.
+
+ @param dictionary Undecoded dictionary.
+ @param defaultClassName The className of the resulting object if none is given by the dictionary.
+ */
++ (id)fromDictionary:(NSDictionary *)dictionary
+    defaultClassName:(NSString *)defaultClassName;
+
 @end
 
 NS_ASSUME_NONNULL_END
