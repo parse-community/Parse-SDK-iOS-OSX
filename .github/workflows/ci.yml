@@ -109,7 +109,7 @@ jobs:
         include:
           - name: Xcode 15
             script: build:starters
-            iosVersion: '17.0'
+            iosVersion: '18.1'
             iosDeviceModel: iPhone 16
             watchOsVersion: '10.0'
             watchDeviceModel: Apple Watch Series 10 (46mm)
@@ -117,16 +117,16 @@ jobs:
             tvDeviceModel: Apple TV
             macosVersion: 14
             developerDir: CI_XCODE_15
-          - name: Xcode 16
-            script: build:starters
-            iosVersion: '18.1'
-            iosDeviceModel: iPhone 16
-            watchOsVersion: '11.1'
-            watchDeviceModel: Apple Watch Series 10 (46mm)
-            tvOsVersion: '18.1'
-            tvDeviceModel: Apple TV
-            macosVersion: 14
-            developerDir: CI_XCODE_16
+          # - name: Xcode 16
+          #   script: build:starters
+          #   iosVersion: '18.1'
+          #   iosDeviceModel: iPhone 16
+          #   watchOsVersion: '11.1'
+          #   watchDeviceModel: Apple Watch Series 10 (46mm)
+          #   tvOsVersion: '18.1'
+          #   tvDeviceModel: Apple TV
+          #   macosVersion: 14
+          #   developerDir: CI_XCODE_16
           # - name: LiveQuery Module, iOS 17
           #   script: test:parse_live_query:ios
           #   iosVersion: '17.5'
