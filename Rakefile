@@ -12,9 +12,9 @@ require_relative 'Vendor/xctoolchain/Scripts/xctask/build_task'
 SCRIPT_PATH = File.expand_path(File.dirname(__FILE__))
 starters_path = File.join(SCRIPT_PATH, 'ParseStarterProject')
 
-ios_simulator = 'platform="iOS Simulator",name="iPhone 15"'
+ios_simulator = 'platform="iOS Simulator",name="iPhone 14"'
 tvos_simulator = 'platform="tvOS Simulator",name="Apple TV"'
-watchos_simulator = 'platform="watchOS Simulator",name="Apple Watch Series 7 (45mm)"'
+watchos_simulator = 'platform="watchOS Simulator",name="Apple Watch Series 8 (45mm)"'
 
 build_action = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD];
 
