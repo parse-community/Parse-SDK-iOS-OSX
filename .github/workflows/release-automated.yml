@@ -3,11 +3,11 @@ on:
   push:
     branches: [ master, release, alpha, beta ]
 env:
-  CI_XCODE_14: '/Applications/Xcode_14.2.app/Contents/Developer'
+  CI_XCODE_16: /Applications/Xcode_16.1.0.app/Contents/Developer
 
 jobs:
   release:
-    runs-on: macos-13
+    runs-on: macos-15
     outputs:
       current_tag: ${{ steps.tag.outputs.current_tag }}
     steps:
@@ -19,7 +19,10 @@ jobs:
           node-version: 22
           cache: npm
       - name: Setup Ruby
-        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.0'
+          bundler-cache: true
       - name: Cache Gems
         id: cache-gems
         uses: actions/cache@v2
@@ -46,7 +49,7 @@ jobs:
   publish-docs:
     needs: release
     if: needs.release.outputs.current_tag != ''
-    runs-on: macos-13
+    runs-on: macos-15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -62,7 +65,7 @@ jobs:
         run: |
           ./Scripts/jazzy.sh
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_14 }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_16 }}
       - name: Deploy Jazzy Docs
         uses: peaceiris/actions-gh-pages@v3
         with:

@@ -8,25 +8,106 @@ on:
     branches:
       - "**"
 env:
-  CI_XCODE_14: /Applications/Xcode_14.2.app/Contents/Developer
   CI_XCODE_15: /Applications/Xcode_15.4.0.app/Contents/Developer
-  CI_XCODE_16: /Applications/Xcode_16.0.app/Contents/Developer
+  CI_XCODE_16: /Applications/Xcode_16.1.0.app/Contents/Developer
 jobs:
-  tests:
+  test-xcode:
     env:
       GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     timeout-minutes: 45
     strategy:
       matrix:
-        script:
-          - test:ios
-          - test:macos
-          - test:parse_live_query:all
-          - xcode14 # runs build:starters on Xcode 14
-          - xcode15 # runs build:starters on Xcode 15
-          - xcode16 # runs build:starters on Xcode 16
+        include:
+          # Xcode
+          - name: Xcode 15
+            script: build:starters
+            iosVersion: '18.1'
+            iosDeviceModel: iPhone 16
+            watchOsVersion: '11.1'
+            watchDeviceModel: Apple Watch Series 10 (46mm)
+            tvOsVersion: '18.1'
+            tvDeviceModel: Apple TV
+            macosVersion: 14
+            developerDir: CI_XCODE_15
+          - name: Xcode 16
+            script: build:starters
+            iosVersion: '18.1'
+            iosDeviceModel: iPhone 16
+            watchOsVersion: '11.1'
+            watchDeviceModel: Apple Watch Series 10 (46mm)
+            tvOsVersion: '18.1'
+            tvDeviceModel: Apple TV
+            macosVersion: 14
+            developerDir: CI_XCODE_16
+          # Core Module
+          - name: Core Module, iOS 17
+            script: test:ios
+            iosVersion: '17.5'
+            iosDeviceModel: iPhone 15
+            macosVersion: 15
+            developerDir: CI_XCODE_16
+          - name: Core Module, iOS 18
+            script: test:ios
+            iosVersion: '18.1'
+            iosDeviceModel: iPhone 16
+            macosVersion: 15
+            developerDir: CI_XCODE_16
+          - name: Core Module, macOS 14
+            script: test:macos
+            macosVersion: 14
+            developerDir: CI_XCODE_16
+          - name: Core Module, macOS 15
+            script: test:macos
+            macosVersion: 15
+            developerDir: CI_XCODE_16
+          # LiveQuery Module
+          - name: LiveQuery Module, iOS 17
+            script: test:parse_live_query:ios
+            iosVersion: '17.5'
+            iosDeviceModel: iPhone 15
+            macosVersion: 15
+            developerDir: CI_XCODE_16
+          - name: LiveQuery Module, iOS 18
+            script: test:parse_live_query:ios
+            iosVersion: '18.1'
+            iosDeviceModel: iPhone 16
+            macosVersion: 15
+            developerDir: CI_XCODE_16
+          - name: LiveQuery Module, macOS 14
+            script: test:parse_live_query:osx
+            macosVersion: 14
+            developerDir: CI_XCODE_15
+          - name: LiveQuery Module, macOS 15
+            script: test:parse_live_query:osx
+            macosVersion: 15
+            developerDir: CI_XCODE_16
+          - name: LiveQuery Module, watchOS 10
+            script: test:parse_live_query:watchos
+            watchOsVersion: '10.5'
+            watchDeviceModel: Apple Watch Series 9 (45mm)
+            macosVersion: 15
+            developerDir: CI_XCODE_15
+          - name: LiveQuery Module, watchOS 11
+            script: test:parse_live_query:watchos
+            watchOsVersion: '11.1'
+            watchDeviceModel: Apple Watch Series 10 (46mm)
+            macosVersion: 15
+            developerDir: CI_XCODE_16
+          - name: LiveQuery Module, tvOS 17
+            script: test:parse_live_query:tvos
+            tvOsVersion: '17.5'
+            tvDeviceModel: Apple TV
+            macosVersion: 15
+            developerDir: CI_XCODE_16
+          - name: LiveQuery Module, tvOS 18
+            script: test:parse_live_query:tvos
+            tvOsVersion: '18.1'
+            tvDeviceModel: Apple TV
+            macosVersion: 15
+            developerDir: CI_XCODE_16
       fail-fast: false
-    runs-on: ${{ ((matrix.script == 'xcode15' || matrix.script == 'xcode16') && 'macos-14') || 'macos-13' }}
+    runs-on: macos-${{ matrix.macosVersion }}
+    name: ${{ matrix.name }}
     steps:
       - uses: actions/checkout@v4
       - name: Cache SPM
@@ -49,9 +130,9 @@ jobs:
       - name: Submodules
         run: git submodule update --init --recursive
       - name: Build-Test
-        run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake ${{ ((matrix.script == 'xcode14' || matrix.script == 'xcode15' || matrix.script == 'xcode16') && 'build:starters') || matrix.script }}
+        run: set -o pipefail && env NSUnbufferedIO=YES IOS_VERSION="${{ matrix.iosVersion }}" IOS_DEVICE_MODEL="${{ matrix.iosDeviceModel }}" WATCH_DEVICE_MODEL="${{ matrix.watchDeviceModel }}" WATCH_OS_VERSION="${{ matrix.watchOsVersion }}" TV_DEVICE_MODEL="${{ matrix.tvDeviceModel }}" TV_OS_VERSION="${{ matrix.tvOsVersion }}" bundle exec rake ${{ matrix.script }}
         env:
-          DEVELOPER_DIR: ${{ (matrix.script == 'xcode15' && env.CI_XCODE_15) || (matrix.script == 'xcode16' && env.CI_XCODE_16) || env.CI_XCODE_14 }}
+          DEVELOPER_DIR: ${{ env[matrix.developerDir] }}
       - name: Generate Environment Variables
         if: ${{ always() }}
         env:
@@ -68,7 +149,7 @@ jobs:
           echo "Build Result Location: $BUILD_RESULTS"
       - name: Upload Artifact Logs
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.ARTIFACT_NAME }}
           path: |
@@ -103,7 +184,7 @@ jobs:
           plugin: xcode
           file: ${{ env.COVERAGE_PATH }}
   docs:
-    runs-on: macos-13
+    runs-on: macos-14
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -117,7 +198,7 @@ jobs:
         run: |
           ./Scripts/jazzy.sh
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_14 }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_16 }}
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true

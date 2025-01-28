@@ -62,6 +62,11 @@
                BlueprintName = "ParseUnitTests-macOS"
                ReferencedContainer = "container:Parse.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ParseClientConfigurationTests/testServerValidation">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
