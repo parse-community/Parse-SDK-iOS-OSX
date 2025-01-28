@@ -114,7 +114,7 @@ jobs:
             iosDeviceModel: iPhone 16
             watchOsVersion: '10.0'
             watchDeviceModel: Apple Watch Series 10 (46mm)
-            tvOsVersion: '17.5'
+            tvOsVersion: '18.1'
             tvDeviceModel: Apple TV
             macosVersion: 14
             developerDir: CI_XCODE_15
