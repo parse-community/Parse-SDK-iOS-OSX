@@ -809,8 +809,8 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return YES;
 }
 
-+ (id)objectFromDictionary:(NSDictionary *)dictionary
-           defaultClassName:(NSString *)defaultClassName {
++ (id)fromDictionary:(NSDictionary *)dictionary
+    defaultClassName:(NSString *)defaultClassName {
     return [self _objectFromDictionary:dictionary
                       defaultClassName:defaultClassName
                           completeData:YES];

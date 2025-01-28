@@ -890,8 +890,8 @@ NS_REQUIRES_PROPERTY_DEFINITIONS
  @param dictionary Undecoded dictionary.
  @param defaultClassName The className of the resulting object if none is given by the dictionary.
  */
-+ (id)objectFromDictionary:(NSDictionary *)dictionary
-          defaultClassName:(NSString *)defaultClassName;
++ (id)fromDictionary:(NSDictionary *)dictionary
+    defaultClassName:(NSString *)defaultClassName;
 
 @end
 
