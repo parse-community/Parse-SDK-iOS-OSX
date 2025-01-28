@@ -12,9 +12,23 @@ require_relative 'Vendor/xctoolchain/Scripts/xctask/build_task'
 SCRIPT_PATH = File.expand_path(File.dirname(__FILE__))
 starters_path = File.join(SCRIPT_PATH, 'ParseStarterProject')
 
-ios_simulator = 'platform="iOS Simulator",name="iPhone 14"'
-tvos_simulator = 'platform="tvOS Simulator",name="Apple TV"'
-watchos_simulator = 'platform="watchOS Simulator",name="Apple Watch Series 8 (45mm)"'
+ios_version = ENV.fetch('IOS_VERSION', '')
+ios_device_model = ENV.fetch('IOS_DEVICE_MODEL', '')
+tvos_version = ENV.fetch('TV_OS_VERSION', '')
+tv_device_model = ENV.fetch('TV_DEVICE_MODEL', '')
+watchos_version = ENV.fetch('WATCH_OS_VERSION', '')
+watch_device_model = ENV.fetch('WATCH_DEVICE_MODEL', '')
+
+puts "IOS_VERSION: #{ios_version}"
+puts "IOS_DEVICE_MODEL: #{ios_device_model}"
+puts "TV_OS_VERSION: #{tvos_version}"
+puts "TV_DEVICE_MODEL: #{tv_device_model}"
+puts "WATCH_OS_VERSION: #{watchos_version}"
+puts "WATCH_DEVICE_MODEL: #{watch_device_model}"
+
+ios_simulator = "platform=\"iOS Simulator\",name=\"#{ios_device_model}\",OS=\"#{ios_version}\""
+tvos_simulator = "platform=\"tvOS Simulator\",name=\"#{tv_device_model}\",OS=\"#{tvos_version}\""
+watchos_simulator = "platform=\"watchOS Simulator\",name=\"#{watch_device_model}\",OS=\"#{watchos_version}\""
 
 build_action = [XCTask::BuildAction::CLEAN, XCTask::BuildAction::BUILD];
 
@@ -82,6 +96,9 @@ namespace :build do
     end
 
     task :objc do
+      puts 'Running iOS ObjC Starter Project'
+      puts "IOS_VERSION: #{ios_version}"
+      puts "IOS_DEVICE_MODEL: #{ios_device_model}"
       project = 'ParseStarterProject'
       ios_starters_path = File.join(starters_path, 'iOS', project)
       task = XCTask::BuildTask.new do |t|
@@ -101,6 +118,9 @@ namespace :build do
     end
 
     task :swift do
+      puts 'Running iOS Swift Starter Project'
+      puts "IOS_VERSION: #{ios_version}"
+      puts "IOS_DEVICE_MODEL: #{ios_device_model}"
       project = 'ParseStarterProject-Swift'
       ios_starters_path = File.join(starters_path, 'iOS', project)
       task = XCTask::BuildTask.new do |t|
@@ -127,6 +147,7 @@ namespace :build do
     end
 
     task :objc do
+      puts 'Running macOS ObjC Starter Project'
       macos_starter_folder = File.join(starters_path, 'OSX', 'ParseOSXStarterProject')
       task = XCTask::BuildTask.new do |t|
         t.directory = macos_starter_folder
@@ -144,6 +165,7 @@ namespace :build do
     end
 
     task :swift do
+      puts 'Running macOS Swift Starter Project'
       macos_starter_folder = File.join(starters_path, 'OSX', 'ParseOSXStarterProject-Swift')
       task = XCTask::BuildTask.new do |t|
         t.directory = macos_starter_folder
@@ -169,6 +191,9 @@ namespace :build do
     end
 
     task :swift do
+      puts 'Running tvOS Swift Starter Project'
+      puts "TV_OS_VERSION: #{tvos_version}"
+      puts "TV_DEVICE_MODEL: #{tv_device_model}"
       tvos_starter_folder = File.join(starters_path, 'tvOS', 'ParseStarterProject-Swift')
       task = XCTask::BuildTask.new do |t|
         t.directory = tvos_starter_folder
@@ -194,6 +219,9 @@ namespace :build do
     end
 
     task :swift do
+      puts 'Running watchOS Swift Starter Project'
+      puts "WATCH_OS_VERSION: #{watchos_version}"
+      puts "WATCH_DEVICE_MODEL: #{watch_device_model}"
       watchos_starter_folder = File.join(starters_path, 'watchOS', 'ParseStarterProject-Swift')
       task = XCTask::BuildTask.new do |t|
         t.directory = watchos_starter_folder
@@ -218,6 +246,7 @@ namespace :build do
     end
 
     task :objc do
+      puts 'Running Live Query macOS ObjC Starter Project'
       live_query_starter_folder = File.join(SCRIPT_PATH, 'ParseLiveQuery', 'Examples')
       task = XCTask::BuildTask.new do |t|
         t.directory = live_query_starter_folder
@@ -235,6 +264,7 @@ namespace :build do
     end
 
     task :swift do
+      puts 'Running Live Query macOS Swift Starter Project'
       live_query_starter_folder = File.join(SCRIPT_PATH, 'ParseLiveQuery', 'Examples')
       task = XCTask::BuildTask.new do |t|
         t.directory = live_query_starter_folder
@@ -265,6 +295,9 @@ end
 namespace :test do
   desc 'Run iOS Tests'
   task :ios do |_, args|
+    puts 'Running iOS Tests'
+    puts "IOS_VERSION: #{ios_version}"
+    puts "IOS_DEVICE_MODEL: #{ios_device_model}"
     task = XCTask::BuildTask.new do |t|
       t.directory = SCRIPT_PATH
       t.workspace = 'Parse.xcworkspace'
@@ -283,6 +316,7 @@ namespace :test do
 
   desc 'Run macOS Tests'
   task :macos do |_, args|
+    puts 'Running macOS Tests'
     task = XCTask::BuildTask.new do |t|
       t.directory = SCRIPT_PATH
       t.workspace = 'Parse.xcworkspace'
@@ -307,6 +341,9 @@ namespace :test do
     end
 
     task :ios do
+      puts 'Running ParseLiveQuery iOS Tests'
+      puts "IOS_VERSION: #{ios_version}"
+      puts "IOS_DEVICE_MODEL: #{ios_device_model}"
       task = XCTask::BuildTask.new do |t|
         t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
@@ -324,6 +361,9 @@ namespace :test do
     end
 
     task :tvos do
+      puts 'Running ParseLiveQuery tvOS Tests'
+      puts "TV_OS_VERSION: #{tvos_version}"
+      puts "TV_DEVICE_MODEL: #{tv_device_model}"
       task = XCTask::BuildTask.new do |t|
         t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
@@ -340,6 +380,9 @@ namespace :test do
     end
 
     task :watchos do
+      puts 'Running ParseLiveQuery watchOS Tests'
+      puts "WATCH_OS_VERSION: #{watchos_version}"
+      puts "WATCH_DEVICE_MODEL: #{watch_device_model}"
       task = XCTask::BuildTask.new do |t|
         t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'
@@ -356,6 +399,7 @@ namespace :test do
     end
     
     task :osx do
+      puts 'Running ParseLiveQuery macOS Tests'
       task = XCTask::BuildTask.new do |t|
         t.directory = SCRIPT_PATH
         t.workspace = 'Parse.xcworkspace'

@@ -1,3 +1,29 @@
+# [5.1.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/5.0.0...5.1.0) (2025-01-28)
+
+
+### Features
+
+* Add `PFObject.fromDictionary` to create an object from dictionary ([#1834](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1834)) ([e197cfa](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/e197cfa1c7827786156c5559088eb3752c9f4e92))
+
+# [5.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.2.0...5.0.0) (2025-01-28)
+
+
+### Features
+
+* Remove support for Xcode 14 ([#1835](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1835)) ([e94c4d5](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/e94c4d5498e0f1241dba88a89e0547b8e6cccccb))
+
+
+### BREAKING CHANGES
+
+* This release removes support for Xcode 14. ([e94c4d5](e94c4d5))
+
+# [4.2.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.1.2...4.2.0) (2024-11-30)
+
+
+### Features
+
+* Add support for Xcode 16 ([#1824](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1824)) ([643d486](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/643d486583efb61c76fcb1243282493880edc695))
+
 ## [4.1.2](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.1.1...4.1.2) (2024-10-14)
 
 

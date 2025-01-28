@@ -4,17 +4,11 @@
 
 ---
 
-[![Build Status CI](https://github.com/parse-community/Parse-SDK-iOS-OSX/workflows/ci/badge.svg?branch=master)](https://github.com/parse-community/Parse-SDK-iOS-OSX/actions?query=workflow%3Aci+branch%3Amaster)
+[![Build Status CI](https://github.com/parse-community/Parse-SDK-iOS-OSX/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/parse-community/Parse-SDK-iOS-OSX/actions?query=workflow%3Aci+branch%3Amaster)
 [![Build Status Release](https://github.com/parse-community/Parse-SDK-iOS-OSX/actions/workflows/release-automated.yml/badge.svg)](https://github.com/parse-community/Parse-SDK-iOS-OSX/actions?query=workflow%3Arelease-automated)
 [![Snyk Badge](https://snyk.io/test/github/parse-community/Parse-SDK-iOS-OSX/badge.svg)](https://snyk.io/test/github/parse-community/Parse-SDK-iOS-OSX)
 [![Coverage](https://img.shields.io/codecov/c/github/parse-community/Parse-SDK-iOS-OSX/master.svg)](https://codecov.io/github/parse-community/Parse-SDK-iOS-OSX?branch=master)
 [![auto-release](https://img.shields.io/badge/%F0%9F%9A%80-auto--release-9e34eb.svg)](https://github.com/parse-community/Parse-SDK-iOS-OSX/releases)
-
-![iOS](https://img.shields.io/badge/iOS-12.0-green?style=flat)
-![iPad](https://img.shields.io/badge/ipadOS-12.0-green?style=flat)
-![macOS](https://img.shields.io/badge/macOS-10.15-green?style=flat)
-![watchOS](https://img.shields.io/badge/watchOS-2.0-green?style=flat)
-![tvOS](https://img.shields.io/badge/tvOS-12.0-green?style=flat)
 
 ![SPM](https://img.shields.io/badge/Swift_Package_Manager-compatible-green?style=flat)
 
@@ -32,6 +26,9 @@ A library that gives you access to the powerful Parse Server backend from your i
 ---
 
 - [Getting Started](#getting-started)
+- [Compatibility](#compatibility)
+  - [Parse Server](#parse-server)
+  - [Xcode, iOS, macOS, tvOS, watchOS](#xcode-ios-macos-tvos-watchos)
 - [How Do I Contribute?](#how-do-i-contribute)
 - [Dependencies](#dependencies)
 
@@ -48,6 +45,27 @@ The easiest way to install the SDK is via Swift Package Manager.
 4. Choose the submodules you want to install
 
 Take a look at the public [documentation][docs] & [API][api] and start building.
+
+## Compatibility
+
+### Parse Server
+
+Parse Apple SDK is compatible with the following versions of Parse Server.
+
+| Parse Apple SDK | Parse Server |
+|-----------------|--------------|
+| 1.0.0           | >= 1.0.0     |
+
+### Xcode, iOS, macOS, tvOS, watchOS
+
+The Parse Apple SDK is continuously tested with the most recent releases of Xcode to ensure compatibility. We follow the annual release schedule of Xcode to support the current and previous major Xcode version.
+
+| Xcode Version | iOS Version | macOS Version | watchOS Version | tvOS Version | Release Date   | End-of-Support Date | Parse Apple SDK Support |
+|---------------|-------------|---------------|-----------------|--------------|----------------|---------------------|-------------------------|
+| Xcode 13      | iOS 15      | macOS 12      | watchOS 8       | tvOS 15      | September 2021 | October 2023        | >= 1.19.3 < 2.7.2       |
+| Xcode 14      | iOS 16      | macOS 13      | watchOS 9       | tvOS 16      | September 2022 | October 2024        | >= 2.7.2 < 5.0.0        |
+| Xcode 15      | iOS 17      | macOS 14      | watchOS 10      | tvOS 17      | September 2023 | October 2025        | >= 3.0.0                |
+| Xcode 16      | iOS 18      | macOS 15      | watchOS 11      | tvOS 18      | September 2024 | tbd                 | >= 4.2.0                |
 
 ## How Do I Contribute?
 
