@@ -11,95 +11,6 @@ env:
   CI_XCODE_15: /Applications/Xcode_15.4.0.app/Contents/Developer
   CI_XCODE_16: /Applications/Xcode_16.1.0.app/Contents/Developer
 jobs:
-  # tests:
-  #   env:
-  #     GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #   timeout-minutes: 45
-  #   strategy:
-  #     matrix:
-  #       script:
-  #         - test:ios
-  #         - test:macos
-  #         - test:parse_live_query:all
-  #         - xcode15 # runs build:starters on Xcode 15
-  #         - xcode16 # runs build:starters on Xcode 16
-  #     fail-fast: false
-  #   runs-on: macos-14
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - name: Cache SPM
-  #       uses: actions/cache@v4
-  #       with:
-  #         path: ~/Library/Developer/Xcode/DerivedData/Parse*/SourcePackages/
-  #         key: ${{ runner.os }}-spm-${{ hashFiles('Parse.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
-  #         restore-keys: |
-  #                 ${{ runner.os }}-spm-
-  #     - name: Setup Ruby
-  #       uses: ruby/setup-ruby@v1
-  #       with:
-  #         bundler-cache: true
-  #     - name: Create and set the default keychain
-  #       run: |
-  #         security create-keychain -p "" temporary
-  #         security default-keychain -s temporary
-  #         security unlock-keychain -p "" temporary
-  #         security set-keychain-settings -lut 7200 temporary
-  #     - name: Submodules
-  #       run: git submodule update --init --recursive
-  #     - name: Build-Test
-  #       run: set -o pipefail && env NSUnbufferedIO=YES bundle exec rake ${{ ((matrix.script == 'xcode15' || matrix.script == 'xcode16') && 'build:starters') || matrix.script }}
-  #       env:
-  #         DEVELOPER_DIR: ${{ (matrix.script == 'xcode15' && env.CI_XCODE_15) || env.CI_XCODE_16 }}
-  #     - name: Generate Environment Variables
-  #       if: ${{ always() }}
-  #       env:
-  #         ARTIFACT_NAME: ${{ matrix.script }}-logs
-  #         TEST_RESULTS: ${{ matrix.script }}.xcresult
-  #       run: |
-  #         ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}
-  #         TEST_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult")
-  #         BUILD_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcactivitylog")
-  #         echo ARTIFACT_NAME=${ARTIFACT_NAME//:/-} >> $GITHUB_ENV # replace colon with dashes
-  #         echo TEST_RESULTS=${TEST_RESULTS} >> $GITHUB_ENV
-  #         echo "Artifact Name: $ARTIFACT_NAME"
-  #         echo "Test Result Location: $TEST_RESULTS"
-  #         echo "Build Result Location: $BUILD_RESULTS"
-  #     - name: Upload Artifact Logs
-  #       if: ${{ failure() }}
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: ${{ env.ARTIFACT_NAME }}
-  #         path: |
-  #           ~/Library/Developer/Xcode/DerivedData/Parse-*/Logs/Test
-  #           ~/Library/Developer/Xcode/DerivedData/**/Logs/Build
-  #     - name: Install test parsing dependencies
-  #       if: matrix.script == 'test:ios'
-  #       # Workaround as codecov cannot parse xcresult files;
-  #       # https://github.com/codecov/uploader/issues/1078
-  #       # https://github.com/codecov/codecov-action/issues/1367
-  #       run: |
-  #         brew install a7ex/homebrew-formulae/xcresultparser
-  #     - name: Convert Xcode test results for code coverage upload
-  #       if: matrix.script == 'test:ios'
-  #       env:
-  #         COVERAGE_PATH: ${{ github.workspace }}/build/${{ matrix.script }}-coverage.xml
-  #       run: |
-  #         COVERAGE_PATH=${COVERAGE_PATH//:/-}
-  #         echo COVERAGE_PATH=$COVERAGE_PATH >> $GITHUB_ENV
-  #         echo "TEST_RESULTS: $TEST_RESULTS"
-  #         echo "COVERAGE_PATH: $COVERAGE_PATH"
-  #         set -o pipefail && \
-  #           xcresultparser --output-format cobertura \
-  #           "$TEST_RESULTS" >"$COVERAGE_PATH"
-  #     - name: Upload code coverage
-  #       if: matrix.script == 'test:ios'
-  #       uses: codecov/codecov-action@v4
-  #       with:
-  #         # Set to `true` once codecov token bug is fixed; https://github.com/parse-community/parse-server/issues/9129
-  #         fail_ci_if_error: false
-  #         token: ${{ secrets.CODECOV_TOKEN }}
-  #         plugin: xcode
-  #         file: ${{ env.COVERAGE_PATH }}
   test-xcode:
     env:
       GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -195,7 +106,7 @@ jobs:
             macosVersion: 15
             developerDir: CI_XCODE_16
       fail-fast: false
-    runs-on: macos-${{ matrix.macosVersion || 14 }}
+    runs-on: macos-${{ matrix.macosVersion }}
     name: ${{ matrix.name }}
     steps:
       - uses: actions/checkout@v4
