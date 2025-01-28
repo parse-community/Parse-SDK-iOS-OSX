@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/5.0.0...5.1.0) (2025-01-28)
+
+
+### Features
+
+* Add `PFObject.fromDictionary` to create an object from dictionary ([#1834](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1834)) ([e197cfa](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/e197cfa1c7827786156c5559088eb3752c9f4e92))
+
 # [5.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.2.0...5.0.0) (2025-01-28)
 
 
