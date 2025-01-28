@@ -93,13 +93,13 @@ jobs:
             watchDeviceModel: Apple Watch Series 9 (45mm)
             macosVersion: 15
             developerDir: CI_XCODE_15
-          - name: LiveQuery Module, tvOS 17.5
+          - name: LiveQuery Module, tvOS 17
             script: test:parse_live_query:tvos
             tvOsVersion: '17.5'
             tvDeviceModel: Apple TV
             macosVersion: 15
             developerDir: CI_XCODE_16
-          - name: LiveQuery Module, tvOS 18.1
+          - name: LiveQuery Module, tvOS 18
             script: test:parse_live_query:tvos
             tvOsVersion: '18.1'
             tvDeviceModel: Apple TV
