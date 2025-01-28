@@ -12,12 +12,12 @@ require_relative 'Vendor/xctoolchain/Scripts/xctask/build_task'
 SCRIPT_PATH = File.expand_path(File.dirname(__FILE__))
 starters_path = File.join(SCRIPT_PATH, 'ParseStarterProject')
 
-ios_version = ENV.fetch('IOS_VERSION')
-ios_device_model = ENV.fetch('IOS_DEVICE_MODEL')
-tvos_version = ENV.fetch('TV_OS_VERSION')
-tv_device_model = ENV.fetch('TV_DEVICE_MODEL')
-watchos_version = ENV.fetch('WATCH_OS_VERSION')
-watch_device_model = ENV.fetch('WATCH_DEVICE_MODEL')
+ios_version = ENV.fetch('IOS_VERSION', '')
+ios_device_model = ENV.fetch('IOS_DEVICE_MODEL', '')
+tvos_version = ENV.fetch('TV_OS_VERSION', '')
+tv_device_model = ENV.fetch('TV_DEVICE_MODEL', '')
+watchos_version = ENV.fetch('WATCH_OS_VERSION', '')
+watch_device_model = ENV.fetch('WATCH_DEVICE_MODEL', '')
 
 puts "IOS_VERSION: #{ios_version}"
 puts "IOS_DEVICE_MODEL: #{ios_device_model}"
