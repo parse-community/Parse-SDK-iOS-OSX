@@ -107,6 +107,7 @@ jobs:
     strategy:
       matrix:
         include:
+          # Xcode
           - name: Xcode 15
             script: build:starters
             iosVersion: '18.1'
@@ -127,6 +128,7 @@ jobs:
           #   tvDeviceModel: Apple TV
           #   macosVersion: 14
           #   developerDir: CI_XCODE_16
+          # LiveQuery Module
           # - name: LiveQuery Module, iOS 17
           #   script: test:parse_live_query:ios
           #   iosVersion: '17.5'
@@ -165,6 +167,7 @@ jobs:
           #   tvOsVersion: '18.1'
           #   tvDeviceModel: Apple TV
           #   developerDir: CI_XCODE_16
+          # Core Module
           # - name: Core Module, iOS 17
           #   script: test:ios
           #   iosVersion: '17.5'
