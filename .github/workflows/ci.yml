@@ -118,74 +118,74 @@ jobs:
             tvDeviceModel: Apple TV
             macosVersion: 14
             developerDir: CI_XCODE_15
-          # - name: Xcode 16
-          #   script: build:starters
-          #   iosVersion: '18.1'
-          #   iosDeviceModel: iPhone 16
-          #   watchOsVersion: '11.1'
-          #   watchDeviceModel: Apple Watch Series 10 (46mm)
-          #   tvOsVersion: '18.1'
-          #   tvDeviceModel: Apple TV
-          #   macosVersion: 14
-          #   developerDir: CI_XCODE_16
+          - name: Xcode 16
+            script: build:starters
+            iosVersion: '18.1'
+            iosDeviceModel: iPhone 16
+            watchOsVersion: '11.1'
+            watchDeviceModel: Apple Watch Series 10 (46mm)
+            tvOsVersion: '18.1'
+            tvDeviceModel: Apple TV
+            macosVersion: 14
+            developerDir: CI_XCODE_16
           # LiveQuery Module
-          # - name: LiveQuery Module, iOS 17
-          #   script: test:parse_live_query:ios
-          #   iosVersion: '17.5'
-          #   iosDeviceModel: iPhone 15
-          #   developerDir: CI_XCODE_16
-          # - name: LiveQuery Module, iOS 18
-          #   script: test:parse_live_query:ios
-          #   iosVersion: '18.1'
-          #   iosDeviceModel: iPhone 16
-          #   developerDir: CI_XCODE_16
-          # - name: LiveQuery Module, macOS 14
-          #   script: test:parse_live_query:osx
-          #   macosVersion: 14
-          #   developerDir: CI_XCODE_15
-          # - name: LiveQuery Module, macOS 15
-          #   script: test:parse_live_query:osx
-          #   macosVersion: 15
-          #   developerDir: CI_XCODE_16
-          # - name: LiveQuery Module, watchOS 11
-          #   script: test:parse_live_query:watchos
-          #   watchOsVersion: '11.1'
-          #   watchDeviceModel: Apple Watch Series 10 (46mm)
-          #   developerDir: CI_XCODE_16
-          # - name: LiveQuery Module, watchOS 10
-          #   script: test:parse_live_query:watchos
-          #   watchOsVersion: '10.5'
-          #   watchDeviceModel: Apple Watch Series 9 (45mm)
-          #   developerDir: CI_XCODE_15
-          # - name: LiveQuery Module, tvOS 17.5
-          #   script: test:parse_live_query:tvos
-          #   tvOsVersion: '17.5'
-          #   tvDeviceModel: Apple TV
-          #   developerDir: CI_XCODE_16
-          # - name: LiveQuery Module, tvOS 18.1
-          #   script: test:parse_live_query:tvos
-          #   tvOsVersion: '18.1'
-          #   tvDeviceModel: Apple TV
-          #   developerDir: CI_XCODE_16
+          - name: LiveQuery Module, iOS 17
+            script: test:parse_live_query:ios
+            iosVersion: '17.5'
+            iosDeviceModel: iPhone 15
+            developerDir: CI_XCODE_16
+          - name: LiveQuery Module, iOS 18
+            script: test:parse_live_query:ios
+            iosVersion: '18.1'
+            iosDeviceModel: iPhone 16
+            developerDir: CI_XCODE_16
+          - name: LiveQuery Module, macOS 14
+            script: test:parse_live_query:osx
+            macosVersion: 14
+            developerDir: CI_XCODE_15
+          - name: LiveQuery Module, macOS 15
+            script: test:parse_live_query:osx
+            macosVersion: 15
+            developerDir: CI_XCODE_16
+          - name: LiveQuery Module, watchOS 11
+            script: test:parse_live_query:watchos
+            watchOsVersion: '11.1'
+            watchDeviceModel: Apple Watch Series 10 (46mm)
+            developerDir: CI_XCODE_16
+          - name: LiveQuery Module, watchOS 10
+            script: test:parse_live_query:watchos
+            watchOsVersion: '10.5'
+            watchDeviceModel: Apple Watch Series 9 (45mm)
+            developerDir: CI_XCODE_15
+          - name: LiveQuery Module, tvOS 17.5
+            script: test:parse_live_query:tvos
+            tvOsVersion: '17.5'
+            tvDeviceModel: Apple TV
+            developerDir: CI_XCODE_16
+          - name: LiveQuery Module, tvOS 18.1
+            script: test:parse_live_query:tvos
+            tvOsVersion: '18.1'
+            tvDeviceModel: Apple TV
+            developerDir: CI_XCODE_16
           # Core Module
-          # - name: Core Module, iOS 17
-          #   script: test:ios
-          #   iosVersion: '17.5'
-          #   iosDeviceModel: iPhone 15
-          #   developerDir: CI_XCODE_16
-          # - name: Core Module, iOS 18
-          #   script: test:ios
-          #   iosVersion: '18.1'
-          #   iosDeviceModel: iPhone 16
-          #   developerDir: CI_XCODE_16
-          # - name: Core Module, macOS 14
-          #   script: test:macos
-          #   macosVersion: 14
-          #   developerDir: CI_XCODE_16
-          # - name: Core Module, macOS 15
-          #   script: test:macos
-          #   macosVersion: 15
-          #   developerDir: CI_XCODE_16
+          - name: Core Module, iOS 17
+            script: test:ios
+            iosVersion: '17.5'
+            iosDeviceModel: iPhone 15
+            developerDir: CI_XCODE_16
+          - name: Core Module, iOS 18
+            script: test:ios
+            iosVersion: '18.1'
+            iosDeviceModel: iPhone 16
+            developerDir: CI_XCODE_16
+          - name: Core Module, macOS 14
+            script: test:macos
+            macosVersion: 14
+            developerDir: CI_XCODE_16
+          - name: Core Module, macOS 15
+            script: test:macos
+            macosVersion: 15
+            developerDir: CI_XCODE_16
       fail-fast: false
     runs-on: macos-${{ matrix.macosVersion || 14 }}
     name: ${{ matrix.name }}
