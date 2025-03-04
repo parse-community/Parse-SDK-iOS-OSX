@@ -167,6 +167,39 @@ typedef void(^PFUserLogoutResultBlock)(NSError *_Nullable error);
  */
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(nullable PFUserResultBlock)block;
 
+/**
+ Makes an *asynchronous* request to login a user with specified credentials and additional data.
+
+ Returns an instance of the successfully logged in `PFUser`.
+ This also caches the user locally so that calls to `+currentUser` will use the latest logged in user.
+
+ @param username The username of the user.
+ @param password The password of the user.
+ @param authData Additional data to be sent with the login request.
+
+ @return The task, that encapsulates the work being done.
+ */
++ (BFTask<__kindof PFUser *> *)logInWithUsernameInBackground:(NSString *)username
+                                                    password:(NSString *)password
+                                              authData:(NSDictionary *)authData;
+
+/**
+ Makes an *asynchronous* request to log in a user with specified credentials and additional data.
+
+ Returns an instance of the successfully logged in `PFUser`.
+ This also caches the user locally so that calls to `+currentUser` will use the latest logged in user.
+
+ @param username The username of the user.
+ @param password The password of the user.
+ @param authData Additional data to be sent with the login request.
+ @param block The block to execute.
+ It should have the following argument signature: `^(PFUser *user, NSError *error)`.
+ */
++ (void)logInWithUsernameInBackground:(NSString *)username
+                          password:(NSString *)password
+                            authData:(NSDictionary *)authData
+                                    block:(nullable PFUserResultBlock)block;
+
 ///--------------------------------------
 #pragma mark - Becoming a User
 ///--------------------------------------

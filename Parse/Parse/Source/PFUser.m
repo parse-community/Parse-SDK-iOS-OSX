@@ -184,7 +184,13 @@ static BOOL revocableSessionEnabled_;
     @synchronized([self lock]) {
         NSMutableDictionary *serialized = [super _convertToDictionaryForSaving:changes withObjectEncoder:encoder error:error];
         if (self.authData.count > 0) {
-            serialized[PFUserAuthDataRESTKey] = [self.authData copy];
+            NSMutableDictionary *authDataCopy = [self.authData mutableCopy];
+            // Remove 'mfa' from authData to prevent it from being saved to the server.
+            // This ensures that MFA setup changes are not unintentionally triggered.
+            [authDataCopy removeObjectForKey:@"mfa"];
+            if (authDataCopy.count > 0) {
+                serialized[PFUserAuthDataRESTKey] = [authDataCopy copy];
+            }
         }
         return serialized;
     }
@@ -836,6 +842,22 @@ static BOOL revocableSessionEnabled_;
                              password:(NSString *)password
                                 block:(PFUserResultBlock)block {
     [[self logInWithUsernameInBackground:username password:password] thenCallBackOnMainThreadAsync:block];
+}
+
++ (BFTask *)logInWithUsernameInBackground:(NSString *)username
+                                password:(NSString *)password
+                          authData:(NSDictionary *)authData {
+    return [[self userController] logInCurrentUserAsyncWithUsername:username
+                                                           password:password
+                                                   authData:authData
+                                                   revocableSession:[self _isRevocableSessionEnabled]];
+}
+
++ (void)logInWithUsernameInBackground:(NSString *)username
+                            password:(NSString *)password
+                          authData:(NSDictionary *)authData
+                              block:(PFUserResultBlock)block {
+    [[self logInWithUsernameInBackground:username password:password authData:authData] thenCallBackOnMainThreadAsync:block];
 }
 
 ///--------------------------------------

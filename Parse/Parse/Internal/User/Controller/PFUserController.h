@@ -38,6 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (BFTask *)logInCurrentUserAsyncWithUsername:(NSString *)username
                                      password:(NSString *)password
                              revocableSession:(BOOL)revocableSession;
+- (BFTask *)logInCurrentUserAsyncWithUsername:(NSString *)username
+                                     password:(NSString *)password
+                             authData:(NSDictionary *)authData
+                             revocableSession:(BOOL)revocableSession;
 
 //TODO: (nlutsenko) Move this method into PFUserAuthenticationController after PFUser is decoupled further.
 - (BFTask *)logInCurrentUserAsyncWithAuthType:(NSString *)authType

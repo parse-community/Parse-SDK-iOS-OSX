@@ -23,6 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
                                     password:(NSString *)password
                             revocableSession:(BOOL)revocableSessionEnabled
                                        error:(NSError **)error;
++ (instancetype)logInUserCommandWithUsername:(NSString *)username
+                                    password:(NSString *)password
+                                    authData:(NSDictionary *)authData
+                            revocableSession:(BOOL)revocableSessionEnabled
+                                       error:(NSError **)error;
 + (instancetype)serviceLoginUserCommandWithAuthenticationType:(NSString *)authenticationType
                                            authenticationData:(NSDictionary *)authenticationData
                                              revocableSession:(BOOL)revocableSessionEnabled

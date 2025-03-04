@@ -141,6 +141,34 @@
     }];
 }
 
+- (BFTask *)logInCurrentUserAsyncWithUsername:(NSString *)username
+                                    password:(NSString *)password
+                                    authData:(NSDictionary *)authData
+                                    revocableSession:(BOOL)revocableSession {
+    @weakify(self);
+    return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+        @strongify(self);
+        NSError *error;
+        PFRESTCommand *command = [PFRESTUserCommand logInUserCommandWithUsername:username
+                                                                      password:password
+                                                                      authData:authData
+                                                                  revocableSession:revocableSession
+                                                                             error:&error];
+        PFPreconditionReturnFailedTask(command, error);
+        return [self.commonDataSource.commandRunner runCommandAsync:command
+                                                        withOptions:PFCommandRunningOptionRetryIfFailed];
+    }] continueWithSuccessBlock:^id(BFTask *task) {
+        PFCommandResult *result = task.result;
+        PFUser *user = [PFUser _objectFromDictionary:result.result
+                                    defaultClassName:[PFUser parseClassName]
+                                        completeData:YES];
+        @synchronized ([user lock]) {
+            [user startSave];
+            return [user _handleServiceLoginCommandResult:result];
+        }
+    }];
+}
+
 ///--------------------------------------
 #pragma mark - Reset Password
 ///--------------------------------------
