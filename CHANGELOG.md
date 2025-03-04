@@ -1,3 +1,17 @@
+## [5.1.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/5.1.0...5.1.1) (2025-01-31)
+
+
+### Bug Fixes
+
+* `Parse.setServer` doesn't properly validate URL ([#1844](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1844)) ([d7b1c8e](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/d7b1c8e3ff723a0e5873c14884c1d33647ce66b1))
+
+# [5.1.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/5.0.0...5.1.0) (2025-01-28)
+
+
+### Features
+
+* Add `PFObject.fromDictionary` to create an object from dictionary ([#1834](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1834)) ([e197cfa](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/e197cfa1c7827786156c5559088eb3752c9f4e92))
+
 # [5.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/4.2.0...5.0.0) (2025-01-28)
 
 

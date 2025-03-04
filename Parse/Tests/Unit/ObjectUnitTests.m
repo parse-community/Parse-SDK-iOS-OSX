@@ -361,4 +361,13 @@
     XCTAssertNil(error);
 }
 
+- (void)testFromDictionary {
+    NSDictionary *dict = @{ @"objectId": @"XYZ", @"score" : @1.0 };
+    PFObject *object = [PFObject fromDictionary:dict
+                               defaultClassName:@"Test"];
+
+    XCTAssertEqualObjects(dict[@"objectId"], object.objectId);
+    XCTAssertEqualObjects(dict[@"score"], object[@"score"]);
+}
+
 @end
