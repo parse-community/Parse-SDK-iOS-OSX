@@ -65,6 +65,26 @@ static NSString *const PFRESTUserCommandRevocableSessionHeaderEnabledValue = @"1
                                 error:error];
 }
 
++ (instancetype)logInUserCommandWithUsername:(NSString *)username
+                                    password:(NSString *)password
+                            authData:(NSDictionary *)authData
+                            revocableSession:(BOOL)revocableSessionEnabled
+                                       error:(NSError **) error {
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{
+        @"username" : username,
+        @"password" : password,
+        @"authData" : authData
+    }];
+    
+    return [self _commandWithHTTPPath:@"login"
+                           httpMethod:PFHTTPRequestMethodGET
+                           parameters:parameters
+                         sessionToken:nil
+                     revocableSession:revocableSessionEnabled
+                                error:error];
+}
+
+
 + (instancetype)serviceLoginUserCommandWithAuthenticationType:(NSString *)authenticationType
                                            authenticationData:(NSDictionary *)authenticationData
                                              revocableSession:(BOOL)revocableSessionEnabled
