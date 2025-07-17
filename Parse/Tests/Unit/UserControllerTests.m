@@ -219,6 +219,47 @@
     OCMVerifyAll(commandRunner);
 }
 
+- (void)testLogInCurrentUserWithUsernamePasswordAuthData {
+    id commonDataSource = [self mockedCommonDataSource];
+    id coreDataSource = [self mockedCoreDataSource];
+    id commandRunner = [commonDataSource commandRunner];
+
+    NSDictionary *authData = @{ @"mfa" : @{ @"token" : @"000000" } };
+    id commandResult = @{ @"objectId" : @"a",
+                          @"yarr" : @1 };
+    [commandRunner mockCommandResult:commandResult forCommandsPassingTest:^BOOL(id obj) {
+        PFRESTCommand *command = obj;
+
+        XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodGET);
+        XCTAssertNotEqual([command.httpPath rangeOfString:@"login"].location, NSNotFound);
+        XCTAssertNil(command.sessionToken);
+        XCTAssertEqualObjects(command.parameters, (@{ @"username" : @"yolo" , @"password" : @"yarr", @"authData" : authData }));
+        XCTAssertEqualObjects(command.additionalRequestHeaders, @{ @"X-Parse-Revocable-Session" : @"1" });
+
+        return YES;
+    }];
+
+    id currentUserController = [coreDataSource currentUserController];
+    PFUserController *controller = [PFUserController controllerWithCommonDataSource:commonDataSource
+                                                                     coreDataSource:coreDataSource];
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[controller logInCurrentUserAsyncWithUsername:@"yolo"
+                                          password:@"yarr"
+                                          authData:authData
+                                  revocableSession:YES] continueWithBlock:^id(BFTask *task) {
+        PFUser *user = task.result;
+        XCTAssertNotNil(user);
+        XCTAssertEqualObjects(user.objectId, @"a");
+        XCTAssertEqualObjects(user[@"yarr"], @1);
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
+
+    OCMVerifyAll(currentUserController);
+}
+
 - (void)testRequestPasswordReset {
     id commonDataSource = [self mockedCommonDataSource];
     id coreDataSource = [self mockedCoreDataSource];
