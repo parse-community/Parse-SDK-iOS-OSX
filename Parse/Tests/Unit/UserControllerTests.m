@@ -184,6 +184,57 @@
     OCMVerifyAll(currentUserController);
 }
 
+- (void)testLogInCurrentUserWithUsernamePasswordAndAuthData {
+    id commonDataSource = [self mockedCommonDataSource];
+    id coreDataSource = [self mockedCoreDataSource];
+    id commandRunner = [commonDataSource commandRunner];
+
+    id commandResult = @{ @"objectId" : @"a",
+                          @"yarr" : @1 };
+    [commandRunner mockCommandResult:commandResult forCommandsPassingTest:^BOOL(id obj) {
+        PFRESTCommand *command = obj;
+
+        XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
+        XCTAssertNotEqual([command.httpPath rangeOfString:@"login"].location, NSNotFound);
+        XCTAssertNil(command.sessionToken);
+        NSDictionary *expected = @{ @"username": @"yolo",
+                                     @"password": @"yarr",
+                                     @"authData": @{ @"mfa": @{ @"token": @"654321" } } };
+        XCTAssertEqualObjects(command.parameters, expected);
+        XCTAssertEqualObjects(command.additionalRequestHeaders, @{ @"X-Parse-Revocable-Session" : @"1" });
+
+        return YES;
+    }];
+
+    __block PFUser *savedUser = nil;
+
+    id currentUserController = [coreDataSource currentUserController];
+    [OCMExpect([currentUserController saveCurrentObjectAsync:[OCMArg checkWithBlock:^BOOL(id obj) {
+        savedUser = obj;
+        return (savedUser != nil);
+    }]]) andReturn:[BFTask taskWithResult:nil]];
+
+    PFUserController *controller = [PFUserController controllerWithCommonDataSource:commonDataSource
+                                                                     coreDataSource:coreDataSource];
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    NSDictionary *params = @{ @"authData": @{ @"mfa": @{ @"token": @"654321" } } };
+    [[controller logInCurrentUserAsyncWithUsername:@"yolo"
+                                          password:@"yarr"
+                                         parameters:params
+                                   revocableSession:YES] continueWithBlock:^id(BFTask *task) {
+        PFUser *user = task.result;
+        XCTAssertNotNil(user);
+        XCTAssertEqualObjects(user.objectId, @"a");
+        XCTAssertEqualObjects(user[@"yarr"], @1);
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
+
+    OCMVerifyAll(currentUserController);
+}
+
 - (void)testLogInCurrentUserWithUsernamePasswordNullResult {
     id commonDataSource = [self mockedCommonDataSource];
     id coreDataSource = [self mockedCoreDataSource];

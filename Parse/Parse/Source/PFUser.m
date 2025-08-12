@@ -366,6 +366,12 @@ static BOOL revocableSessionEnabled_;
         // Merge the linked service metadata
         NSDictionary *newAuthData = [decoder decodeObject:result[PFUserAuthDataRESTKey]];
         if (newAuthData) {
+            // Remove transient MFA auth provider from persisted state
+            if ([newAuthData isKindOfClass:[NSDictionary class]] && newAuthData[@"mfa"]) {
+                NSMutableDictionary *mutable = [newAuthData mutableCopy];
+                [mutable removeObjectForKey:@"mfa"];
+                newAuthData = [mutable copy];
+            }
             [self.authData removeAllObjects];
             [self.linkedServiceNames removeAllObjects];
             [newAuthData enumerateKeysAndObjectsUsingBlock:^(id key, id linkData, BOOL *stop) {
@@ -646,6 +652,12 @@ static BOOL revocableSessionEnabled_;
 
         if (object[PFUserAuthDataRESTKey] != nil) {
             NSDictionary *newAuthData = object[PFUserAuthDataRESTKey];
+            // Remove transient MFA auth provider from persisted state
+            if ([newAuthData isKindOfClass:[NSDictionary class]] && newAuthData[@"mfa"]) {
+                NSMutableDictionary *mutable = [newAuthData mutableCopy];
+                [mutable removeObjectForKey:@"mfa"];
+                newAuthData = [mutable copy];
+            }
             [newAuthData enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
                 self.authData[key] = obj;
                 if (obj != nil) {
@@ -836,6 +848,26 @@ static BOOL revocableSessionEnabled_;
                              password:(NSString *)password
                                 block:(PFUserResultBlock)block {
     [[self logInWithUsernameInBackground:username password:password] thenCallBackOnMainThreadAsync:block];
+}
+
++ (BFTask<__kindof PFUser *> *)logInWithUsernameInBackground:(NSString *)username
+                                                    password:(NSString *)password
+                                                    authData:(NSDictionary<NSString *,id> *)authData {
+    NSDictionary *parameters = nil;
+    if (authData.count > 0) {
+        parameters = @{ @"authData": authData };
+    }
+    return [[self userController] logInCurrentUserAsyncWithUsername:username
+                                                            password:password
+                                                           parameters:parameters
+                                                    revocableSession:[self _isRevocableSessionEnabled]];
+}
+
++ (void)logInWithUsernameInBackground:(NSString *)username
+                              password:(NSString *)password
+                               authData:(NSDictionary<NSString *,id> *)authData
+                                  block:(PFUserResultBlock)block {
+    [[self logInWithUsernameInBackground:username password:password authData:authData] thenCallBackOnMainThreadAsync:block];
 }
 
 ///--------------------------------------
