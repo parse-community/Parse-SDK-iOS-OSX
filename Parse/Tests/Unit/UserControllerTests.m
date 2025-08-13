@@ -190,7 +190,8 @@
     id commandRunner = [commonDataSource commandRunner];
 
     id commandResult = @{ @"objectId" : @"a",
-                          @"yarr" : @1 };
+                          @"yarr" : @1,
+                          @"authData" : @{ @"mfa" : @{ @"status" : @"enabled" }, @"other" : @{ @"k" : @"v" } } };
     [commandRunner mockCommandResult:commandResult forCommandsPassingTest:^BOOL(id obj) {
         PFRESTCommand *command = obj;
 
@@ -227,6 +228,10 @@
         XCTAssertNotNil(user);
         XCTAssertEqualObjects(user.objectId, @"a");
         XCTAssertEqualObjects(user[@"yarr"], @1);
+        // Assert transient MFA data was not persisted on PFUser (via public API)
+        XCTAssertFalse([user isLinkedWithAuthType:@"mfa"]);
+        // Non-MFA auth providers should still be present if provided
+        XCTAssertTrue([user isLinkedWithAuthType:@"other"]);
         [expectation fulfill];
         return nil;
     }];
