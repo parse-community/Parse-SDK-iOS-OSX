@@ -23,6 +23,15 @@ NS_ASSUME_NONNULL_BEGIN
                                     password:(NSString *)password
                             revocableSession:(BOOL)revocableSessionEnabled
                                        error:(NSError **)error;
+/**
+ Creates a login command with a JSON body, allowing additional parameters such as authData.
+
+ This posts to the login route and is required for features like MFA where additional
+ authentication data must be supplied alongside username/password.
+ */
++ (instancetype)logInUserCommandWithParameters:(NSDictionary *)parameters
+                              revocableSession:(BOOL)revocableSessionEnabled
+                                         error:(NSError **)error;
 + (instancetype)serviceLoginUserCommandWithAuthenticationType:(NSString *)authenticationType
                                            authenticationData:(NSDictionary *)authenticationData
                                              revocableSession:(BOOL)revocableSessionEnabled

@@ -66,7 +66,20 @@
                                                                  message:@"Invalid Session Token."]];
         }
 
-        PFUser *user = [PFUser _objectFromDictionary:dictionary
+        // Sanitize response: do not persist transient MFA authData provider
+        NSMutableDictionary *sanitized = [dictionary mutableCopy];
+        id authData = sanitized[@"authData"];
+        if ([authData isKindOfClass:[NSDictionary class]] && authData[@"mfa"]) {
+            NSMutableDictionary *mutableAuth = [authData mutableCopy];
+            [mutableAuth removeObjectForKey:@"mfa"]; // transient provider, do not persist
+            if (mutableAuth.count > 0) {
+                sanitized[@"authData"] = mutableAuth;
+            } else {
+                [sanitized removeObjectForKey:@"authData"];
+            }
+        }
+
+        PFUser *user = [PFUser _objectFromDictionary:sanitized
                                     defaultClassName:[PFUser parseClassName]
                                         completeData:YES];
         // Serialize the object to disk so we can later access it via currentUser
@@ -106,6 +119,46 @@
                                         completeData:YES];
 
         // Serialize the object to disk so we can later access it via currentUser
+        PFCurrentUserController *controller = self.coreDataSource.currentUserController;
+        return [[controller saveCurrentObjectAsync:user] continueWithBlock:^id(BFTask *task) {
+            return user;
+        }];
+    }];
+}
+
+- (BFTask *)logInCurrentUserAsyncWithUsername:(NSString *)username
+                                     password:(NSString *)password
+                                    parameters:(NSDictionary *)parameters
+                             revocableSession:(BOOL)revocableSession {
+    @weakify(self);
+    return [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+        NSError *error = nil;
+        NSMutableDictionary *merged = [@{ @"username": username ?: @"",
+                                          @"password": password ?: @"" } mutableCopy];
+        if (parameters.count > 0) {
+            // Prevent authData from being persisted later by only sending it with the request body
+            // and not mutating the PFUser object here. The server response will drive authData merge.
+            [merged addEntriesFromDictionary:parameters];
+        }
+        PFRESTCommand *command = [PFRESTUserCommand logInUserCommandWithParameters:merged
+                                                                 revocableSession:revocableSession
+                                                                            error:&error];
+        PFPreconditionReturnFailedTask(command, error);
+        return [self.commonDataSource.commandRunner runCommandAsync:command
+                                                        withOptions:PFCommandRunningOptionRetryIfFailed];
+    }] continueWithSuccessBlock:^id(BFTask *task) {
+        @strongify(self);
+        PFCommandResult *result = task.result;
+        NSDictionary *dictionary = result.result;
+
+        if ([dictionary isKindOfClass:[NSNull class]] || !dictionary) {
+            return [BFTask taskWithError:[PFErrorUtilities errorWithCode:kPFErrorObjectNotFound
+                                                                 message:@"Invalid login credentials."]];
+        }
+
+        PFUser *user = [PFUser _objectFromDictionary:dictionary
+                                    defaultClassName:[PFUser parseClassName]
+                                        completeData:YES];
         PFCurrentUserController *controller = self.coreDataSource.currentUserController;
         return [[controller saveCurrentObjectAsync:user] continueWithBlock:^id(BFTask *task) {
             return user;

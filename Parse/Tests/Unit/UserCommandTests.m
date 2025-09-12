@@ -41,6 +41,25 @@
     XCTAssertFalse(command.revocableSessionEnabled);
 }
 
+- (void)testLogInCommandWithParametersBody {
+    NSDictionary *params = @{ @"username": @"a",
+                               @"password": @"b",
+                               @"authData": @{ @"mfa": @{ @"token": @"123456" } } };
+    PFRESTUserCommand *command = [PFRESTUserCommand logInUserCommandWithParameters:params
+                                                                 revocableSession:YES
+                                                                            error:nil];
+    XCTAssertNotNil(command);
+    XCTAssertEqualObjects(command.httpPath, @"login");
+    XCTAssertEqualObjects(command.httpMethod, PFHTTPRequestMethodPOST);
+    XCTAssertNotNil(command.parameters);
+    XCTAssertEqualObjects(command.parameters[@"username"], @"a");
+    XCTAssertEqualObjects(command.parameters[@"password"], @"b");
+    XCTAssertEqualObjects(command.parameters[@"authData"], (@{ @"mfa": @{ @"token": @"123456" } }));
+    XCTAssertEqual(command.additionalRequestHeaders.count, 1);
+    XCTAssertTrue(command.revocableSessionEnabled);
+    XCTAssertNil(command.sessionToken);
+}
+
 - (void)testServiceLoginCommandWithAuthTypeData {
     PFRESTUserCommand *command = [PFRESTUserCommand serviceLoginUserCommandWithAuthenticationType:@"a"
                                                                                authenticationData:@{ @"b" : @"c" }
