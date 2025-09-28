@@ -47,13 +47,28 @@
     }
 
     NSString *type = dictionary[@"__type"];
-    // Inject __type = @"Object" if missing but className/objectId present
+    // Inject __type = @"Object" if missing but className/objectId present and on the presence of additional data fields so that bare pointer stubs continue to fall back to the legacy dictionary path.
     if (!type && dictionary[@"className"] && dictionary[@"objectId"]) {
-        NSMutableDictionary *mutable = [dictionary mutableCopy];
-        mutable[@"__type"] = @"Object";
-        type = @"Object";
-        dictionary = mutable;
-    }
+        static NSSet<NSString *> *pointerKeys;
+        static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                pointerKeys = [NSSet setWithObjects:@"className", @"objectId", @"localId", nil];
+            });
+        BOOL hasAdditionalFields = NO;
+        for (NSString *key in dictionary) {
+            if (![pointerKeys containsObject:key]) {
+                hasAdditionalFields = YES;
+                break;
+            }
+        }
+        if (!hasAdditionalFields) {
+            return dictionary;
+        }
+         NSMutableDictionary *mutable = [dictionary mutableCopy];
+         mutable[@"__type"] = @"Object";
+         type = @"Object";
+         dictionary = mutable;
+     }
     if (type) {
         if ([type isEqualToString:@"Date"]) {
             return [[PFDateFormatter sharedFormatter] dateFromString:dictionary[@"iso"]];
