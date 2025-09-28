@@ -18,11 +18,7 @@ private func parseObject<T: PFObject>(_ objectDictionary: [String:AnyObject]) th
     guard let _ = objectDictionary["objectId"] as? String else {
         throw LiveQueryErrors.InvalidJSONError(json: objectDictionary, expectedKey: "objectId")
     }
-
-    //workaround to fix missing __type key Decoder expects with value "Object"
-    var dict = objectDictionary
-        dict["__type"] = String("Object") as AnyObject
-    guard let object =  PFDecoder.object().decode(dict) as? T else {
+    guard let object =  PFDecoder.object().decode(objectDictionary) as? T else {
         throw LiveQueryErrors.InvalidJSONObject(json: objectDictionary, details: "cannot decode json into \(T.self)")
     }
 

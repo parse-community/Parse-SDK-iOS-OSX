@@ -47,6 +47,13 @@
     }
 
     NSString *type = dictionary[@"__type"];
+    // Inject __type = @"Object" if missing but className/objectId present
+    if (!type && dictionary[@"className"] && dictionary[@"objectId"]) {
+        NSMutableDictionary *mutable = [dictionary mutableCopy];
+        mutable[@"__type"] = @"Object";
+        type = @"Object";
+        dictionary = mutable;
+    }
     if (type) {
         if ([type isEqualToString:@"Date"]) {
             return [[PFDateFormatter sharedFormatter] dateFromString:dictionary[@"iso"]];
