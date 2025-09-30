@@ -71,6 +71,7 @@ GEM
       ffi (>= 1.15.0)
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-darwin)
+    ffi (1.17.0-x86_64-linux-gnu)
     fourflusher (2.3.1)
     fuzzy_match (2.0.4)
     gh_inspector (1.1.3)
@@ -102,7 +103,7 @@ GEM
     public_suffix (4.0.7)
     rake (13.2.1)
     redcarpet (3.6.0)
-    rexml (3.3.9)
+    rexml (3.4.2)
     rouge (2.0.7)
     ruby-macho (2.5.1)
     sassc (2.4.0)
@@ -110,6 +111,7 @@ GEM
     securerandom (0.3.1)
     sqlite3 (1.7.3-arm64-darwin)
     sqlite3 (1.7.3-x86_64-darwin)
+    sqlite3 (1.7.3-x86_64-linux)
     typhoeus (1.4.1)
       ethon (>= 0.9.0)
     tzinfo (2.0.6)
@@ -129,6 +131,7 @@ GEM
 PLATFORMS
   arm64-darwin
   x86_64-darwin
+  x86_64-linux
 
 DEPENDENCIES
   jazzy (= 0.15.3)
