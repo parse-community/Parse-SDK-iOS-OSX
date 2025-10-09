@@ -167,6 +167,24 @@ typedef void(^PFUserLogoutResultBlock)(NSError *_Nullable error);
  */
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(nullable PFUserResultBlock)block;
 
+/**
+ Logs in a user with username and password and additional authentication data (e.g., MFA).
+
+ The authData keys must follow the Parse Server spec, for example:
+     @{ @"mfa": @{ @"token": authCode } }
+
+ This data is only sent as part of the login request and is not persisted on the PFUser instance.
+ */
++ (BFTask<__kindof PFUser *> *)logInWithUsernameInBackground:(NSString *)username
+                                                    password:(NSString *)password
+                                                    authData:(nullable NSDictionary<NSString *, id> *)authData;
+
+/** Block variant of login with additional authData. */
++ (void)logInWithUsernameInBackground:(NSString *)username
+                              password:(NSString *)password
+                               authData:(nullable NSDictionary<NSString *, id> *)authData
+                                  block:(nullable PFUserResultBlock)block;
+
 ///--------------------------------------
 #pragma mark - Becoming a User
 ///--------------------------------------
