@@ -144,7 +144,7 @@
     if (excludedKeys.count > 0) {
         NSArray *sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES selector:@selector(compare:)] ];
         NSArray *keysArray = [excludedKeys sortedArrayUsingDescriptors:sortDescriptors];
-        parameters[@"excludedKeys"] = [keysArray componentsJoinedByString:@","];
+        parameters[@"excludeKeys"] = [keysArray componentsJoinedByString:@","];
     }
     if (limit >= 0) {
         parameters[@"limit"] = [NSString stringWithFormat:@"%d", (int)limit];
