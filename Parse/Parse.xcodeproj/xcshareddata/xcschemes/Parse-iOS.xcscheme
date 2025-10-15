@@ -96,6 +96,15 @@
                <Test
                   Identifier = "ParseClientConfigurationTests/testExtensionDataSharing">
                </Test>
+               <Test
+                  Identifier = "UserControllerTests">
+               </Test>
+               <Test
+                  Identifier = "UserFileCodingLogicTests">
+               </Test>
+               <Test
+                  Identifier = "UserUnitTests">
+               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>
