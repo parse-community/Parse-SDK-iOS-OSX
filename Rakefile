@@ -26,7 +26,7 @@ puts "TV_DEVICE_MODEL: #{tv_device_model}"
 puts "WATCH_OS_VERSION: #{watchos_version}"
 puts "WATCH_DEVICE_MODEL: #{watch_device_model}"
 
-ios_simulator = "platform=\"iOS Simulator\",name=\"#{ios_device_model}\",OS=\"#{ios_version}\""
+ios_simulator = "platform=\"iOS Simulator\",arch:arm64,name=\"#{ios_device_model}\",OS=\"#{ios_version}\""
 tvos_simulator = "platform=\"tvOS Simulator\",name=\"#{tv_device_model}\",OS=\"#{tvos_version}\""
 watchos_simulator = "platform=\"watchOS Simulator\",name=\"#{watch_device_model}\",OS=\"#{watchos_version}\""
 
