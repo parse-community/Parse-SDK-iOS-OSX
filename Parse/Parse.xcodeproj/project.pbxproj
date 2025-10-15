@@ -2830,6 +2830,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		39DAC2AD2E9FF6A000B88F5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09D33641139C54930098E916 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81C3821B19CCA89E0066284A;
+			remoteInfo = "Parse-iOS";
+		};
+		39DAC2AF2E9FF6AC00B88F5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09D33641139C54930098E916 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97010FAB1630B18F00AB761E;
+			remoteInfo = "Parse-macOS";
+		};
 		4AE33A2C1F5451B20088DCA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 09D33641139C54930098E916 /* Project object */;
@@ -6682,6 +6696,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				39DAC2AE2E9FF6A000B88F5B /* PBXTargetDependency */,
 				4AE33A2D1F5451B20088DCA0 /* PBXTargetDependency */,
 			);
 			name = "ParseUnitTests-iOS";
@@ -6705,6 +6720,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				39DAC2B02E9FF6AC00B88F5B /* PBXTargetDependency */,
 			);
 			name = "ParseUnitTests-macOS";
 			packageProductDependencies = (
@@ -8432,6 +8448,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		39DAC2AE2E9FF6A000B88F5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81C3821B19CCA89E0066284A /* Parse-iOS */;
+			targetProxy = 39DAC2AD2E9FF6A000B88F5B /* PBXContainerItemProxy */;
+		};
+		39DAC2B02E9FF6AC00B88F5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97010FAB1630B18F00AB761E /* Parse-macOS */;
+			targetProxy = 39DAC2AF2E9FF6AC00B88F5B /* PBXContainerItemProxy */;
+		};
 		4AE33A2D1F5451B20088DCA0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
