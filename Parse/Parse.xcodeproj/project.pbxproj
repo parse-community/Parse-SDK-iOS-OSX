@@ -6630,6 +6630,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 810156661BB3832700D7C7BD /* Build configuration list for PBXNativeTarget "Parse-watchOS" */;
 			buildPhases = (
+				810155081BB3832700D7C7BD /* Generate Localizable Strings */,
 				810155091BB3832700D7C7BD /* Sources */,
 				8101559D1BB3832700D7C7BD /* Frameworks */,
 				8101559E1BB3832700D7C7BD /* Headers */,
@@ -6651,6 +6652,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 815F24121BD04D150054659F /* Build configuration list for PBXNativeTarget "Parse-tvOS" */;
 			buildPhases = (
+				815F22B21BD04D150054659F /* Generate Localizable Strings */,
 				815F22B31BD04D150054659F /* Sources */,
 				815F23481BD04D150054659F /* Frameworks */,
 				815F23491BD04D150054659F /* Headers */,
@@ -6717,6 +6719,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81C3823819CCA89F0066284A /* Build configuration list for PBXNativeTarget "Parse-iOS" */;
 			buildPhases = (
+				81C3823C19CCA9950066284A /* Generate Localizable Strings */,
 				81C3821719CCA89E0066284A /* Sources */,
 				81C3821819CCA89E0066284A /* Frameworks */,
 				818AAA6D19D3687900FC1B3C /* Headers */,
@@ -6738,6 +6741,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81C5845A1C3B0A98000063C6 /* Build configuration list for PBXNativeTarget "Parse-iOS-Dynamic" */;
 			buildPhases = (
+				81C582E41C3B0A98000063C6 /* Generate Localizable Strings */,
 				81C582E51C3B0A98000063C6 /* Sources */,
 				81C5837E1C3B0A98000063C6 /* Frameworks */,
 				81C5837F1C3B0A98000063C6 /* Headers */,
@@ -6759,6 +6763,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81C585BC1C3B0AA1000063C6 /* Build configuration list for PBXNativeTarget "Parse-tvOS-Dynamic" */;
 			buildPhases = (
+				81C584621C3B0AA1000063C6 /* Generate Localizable Strings */,
 				81C584631C3B0AA1000063C6 /* Sources */,
 				81C584F01C3B0AA1000063C6 /* Frameworks */,
 				81C584F11C3B0AA1000063C6 /* Headers */,
@@ -6777,6 +6782,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81C5870C1C3B0AA9000063C6 /* Build configuration list for PBXNativeTarget "Parse-watchOS-Dynamic" */;
 			buildPhases = (
+				81C585C41C3B0AA9000063C6 /* Generate Localizable Strings */,
 				81C585C51C3B0AA9000063C6 /* Sources */,
 				81C5864B1C3B0AA9000063C6 /* Frameworks */,
 				81C5864C1C3B0AA9000063C6 /* Headers */,
@@ -6795,6 +6801,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97010FB41630B18F00AB761E /* Build configuration list for PBXNativeTarget "Parse-macOS" */;
 			buildPhases = (
+				97010FB71630B1B800AB761E /* Generate Localizable Strings */,
 				97010FA81630B18F00AB761E /* Sources */,
 				97010FA91630B18F00AB761E /* Frameworks */,
 				97010FAA1630B18F00AB761E /* Headers */,
@@ -6961,6 +6968,107 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		810155081BB3832700D7C7BD /* Generate Localizable Strings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Localizable Strings";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 xcrun extractLocStrings -q -o $PROJECT_DIR/Parse/Resources/en.lproj\n";
+		};
+		815F22B21BD04D150054659F /* Generate Localizable Strings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Localizable Strings";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 xcrun extractLocStrings -q -o $PROJECT_DIR/Parse/Resources/en.lproj\n";
+		};
+		81C3823C19CCA9950066284A /* Generate Localizable Strings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Localizable Strings";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 xcrun extractLocStrings -q -o $PROJECT_DIR/Parse/Resources/en.lproj\n";
+		};
+		81C582E41C3B0A98000063C6 /* Generate Localizable Strings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Localizable Strings";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 xcrun extractLocStrings -q -o $PROJECT_DIR/Parse/Resources/en.lproj\n";
+		};
+		81C584621C3B0AA1000063C6 /* Generate Localizable Strings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Localizable Strings";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 xcrun extractLocStrings -q -o $PROJECT_DIR/Parse/Resources/en.lproj\n";
+		};
+		81C585C41C3B0AA9000063C6 /* Generate Localizable Strings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Localizable Strings";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 xcrun extractLocStrings -q -o $PROJECT_DIR/Parse/Resources/en.lproj\n";
+		};
+		97010FB71630B1B800AB761E /* Generate Localizable Strings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Localizable Strings";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Generate localizable strings\nfind $PROJECT_DIR/Parse -name '*.m' -print0 | xargs -0 xcrun extractLocStrings -q -o $PROJECT_DIR/Parse/Resources/en.lproj\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4AE33A071F5451AD0088DCA0 /* Sources */ = {
