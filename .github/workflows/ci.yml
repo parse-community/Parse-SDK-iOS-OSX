@@ -58,7 +58,7 @@ jobs:
             developerDir: CI_XCODE_15
           - name: Core Module, macOS 15
             script: test:macos
-            macosVersion: macos-15-intel
+            macosVersion: 15-intel
             developerDir: CI_XCODE_16
           # LiveQuery Module
           - name: LiveQuery Module, iOS 17
