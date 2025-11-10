@@ -8,8 +8,7 @@
  */
 
 #import <Foundation/Foundation.h>
-
-#include <TargetConditionals.h>
+#import <TargetConditionals.h>
 
 ///--------------------------------------
 #pragma mark - SDK Version
