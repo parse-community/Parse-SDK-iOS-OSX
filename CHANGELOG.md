@@ -1,3 +1,15 @@
+# [6.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/5.1.1...6.0.0) (2025-11-17)
+
+
+### Features
+
+* Remove support for Xcode 15  ([#1865](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1865)) ([b22393c](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/b22393ce823aa470f8ead10f66f02b41132ef706))
+
+
+### BREAKING CHANGES
+
+* Removes support for Xcode 15 (iOS 17, macOS 14, watchOS 10, tvOS 17). ([b22393c](b22393c))
+
 ## [5.1.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/5.1.0...5.1.1) (2025-01-31)
 
 

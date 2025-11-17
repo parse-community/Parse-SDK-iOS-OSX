@@ -1,6 +1,6 @@
 {
   "name": "parse-sdk-ios-osx",
-  "version": "5.1.1",
+  "version": "6.0.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
     "@semantic-release/commit-analyzer": "13.0.1",
     "@semantic-release/exec": "7.1.0",
     "@semantic-release/git": "10.0.1",
-    "@semantic-release/release-notes-generator": "14.0.3",
-    "semantic-release": "24.2.7"
+    "@semantic-release/release-notes-generator": "14.1.0",
+    "semantic-release": "25.0.2"
   }
 }
