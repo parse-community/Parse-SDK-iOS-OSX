@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/6.0.1...6.1.0) (2025-11-18)
+
+
+### Features
+
+* Add `PFUser.logInWithUsernameInBackground` that takes additional auth data ([#1858](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1858)) ([0854f8d](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/0854f8d844986ff1dab4f19fcdb68c0eba012eb4))
+
 ## [6.0.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/6.0.0...6.0.1) (2025-11-17)
 
 
