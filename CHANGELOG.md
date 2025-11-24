@@ -1,3 +1,17 @@
+## [6.1.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/6.1.0...6.1.1) (2025-11-19)
+
+
+### Bug Fixes
+
+* LiveQuery event lost for operation on class with pointer field ([#1863](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1863)) ([cfd1bc4](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/cfd1bc4b71228b7faf633231a8952c0a6e6b18b4))
+
+# [6.1.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/6.0.1...6.1.0) (2025-11-18)
+
+
+### Features
+
+* Add `PFUser.logInWithUsernameInBackground` that takes additional auth data ([#1858](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1858)) ([0854f8d](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/0854f8d844986ff1dab4f19fcdb68c0eba012eb4))
+
 ## [6.0.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/6.0.0...6.0.1) (2025-11-17)
 
 
