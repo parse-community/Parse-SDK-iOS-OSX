@@ -84,6 +84,7 @@ static ParseClientConfiguration *currentParseConfiguration_;
     [manager startManaging];
 
     currentParseManager_ = manager;
+    currentParseConfiguration_ = configuration;
 
 #if TARGET_OS_IOS
     [PFNetworkActivityIndicatorManager sharedManager].enabled = YES;
@@ -135,7 +136,7 @@ static ParseClientConfiguration *currentParseConfiguration_;
 + (nullable NSString *)server {
     ParseClientConfiguration *config = currentParseManager_ ? currentParseManager_.configuration
                                                             : currentParseConfiguration_;
-    return currentParseManager_.configuration.server;
+    return config.server;
 }
 
 ///--------------------------------------
