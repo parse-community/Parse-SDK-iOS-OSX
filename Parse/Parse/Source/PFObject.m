@@ -211,7 +211,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 + (BOOL)collectDirtyChildren:(id)node
                     children:(NSMutableSet *)dirtyChildren
                        files:(NSMutableSet *)dirtyFiles
-                        seen:(NSSet *)seen
+                        seen:(NSMutableSet *)seen
                      seenNew:(NSSet *)seenNew
                  currentUser:(PFUser *)currentUser
                        error:(NSError * __autoreleasing *)error {
@@ -292,7 +292,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
             if ([seen containsObject:object]) {
                 return YES;
             }
-            seen = [seen setByAddingObject:object];
+            [seen addObject:object];
 
             // Recurse into this object's children looking for dirty children.
             // We only need to look at the child object's current estimated data,
@@ -334,7 +334,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
     return [self collectDirtyChildren:child
                              children:dirtyChildren
                                 files:dirtyFiles
-                                 seen:[NSSet set]
+                                 seen:[NSMutableSet set]
                               seenNew:[NSSet set]
                           currentUser:currentUser
                                 error:error];
