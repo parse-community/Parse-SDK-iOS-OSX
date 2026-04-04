@@ -12,6 +12,13 @@ jobs:
   publish-docs:
     if: github.event.inputs.tag != ''
     runs-on: macos-15
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,8 +36,12 @@ jobs:
           ./Scripts/jazzy.sh
         env:
           DEVELOPER_DIR: ${{ env.CI_XCODE_16 }}
-      - name: Deploy Jazzy Docs
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          path: ./docs
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
