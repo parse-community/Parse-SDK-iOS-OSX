@@ -21,7 +21,7 @@ For analyzing bugs, creating bug fixes and features we recommend to clone this r
    Install all dependencies:
    ```
    git submodule update --init --recursive
-   gem install bundler -v 2.5.22
+   gem install bundler -v 4.0.10
    bundle install
    ```
    Run the tests:
