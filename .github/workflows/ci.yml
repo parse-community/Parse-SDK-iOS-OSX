@@ -46,7 +46,7 @@ jobs:
             script: test:parse_live_query:osx
             macosVersion: 15
             developerDir: CI_XCODE_16
-          - name: LiveQuery Module, watchOS 10
+          - name: LiveQuery Module, watchOS 11
             script: test:parse_live_query:watchos
             watchOsVersion: '11.5'
             watchDeviceModel: Apple Watch Series 10 (46mm)
@@ -129,8 +129,8 @@ jobs:
       - name: Generate Environment Variables
         if: ${{ always() }}
         env:
-          ARTIFACT_NAME: ${{ matrix.script }}-logs
-          TEST_RESULTS: ${{ matrix.script }}.xcresult
+          ARTIFACT_NAME: ${{ matrix.name }}-logs
+          TEST_RESULTS: ${{ matrix.name }}.xcresult
         run: |
           ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}
           TEST_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult")
