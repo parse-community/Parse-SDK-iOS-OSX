@@ -23,6 +23,7 @@ GEM
     base64 (0.3.0)
     benchmark (0.5.0)
     bigdecimal (4.1.1)
+    cgi (0.5.1)
     claide (1.1.0)
     cocoapods (1.16.2)
       addressable (~> 2.8)
@@ -135,6 +136,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  cgi (= 0.5.1)
   jazzy (= 0.15.4)
   plist (= 3.7.1)
   rake (= 13.2.1)
@@ -149,6 +151,7 @@ CHECKSUMS
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   benchmark (0.5.0) sha256=465df122341aedcb81a2a24b4d3bd19b6c67c1530713fd533f3ff034e419236c
   bigdecimal (4.1.1) sha256=1c09efab961da45203c8316b0cdaec0ff391dfadb952dd459584b63ebf8054ca
+  cgi (0.5.1) sha256=e93fcafc69b8a934fe1e6146121fa35430efa8b4a4047c4893764067036f18e9
   claide (1.1.0) sha256=6d3c5c089dde904d96aa30e73306d0d4bd444b1accb9b3125ce14a3c0183f82e
   cocoapods (1.16.2) sha256=0ff1c860f32df3db8b16df09b58da1a6bb2a12fe55f6d5e8be994a74fadd1e5e
   cocoapods-core (1.16.2) sha256=4bb1b5c420691e60cf36fa227dec6bc48c096c34c97bb7aa512ea7f3246fc12b
