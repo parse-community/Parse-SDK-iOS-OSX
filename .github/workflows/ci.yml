@@ -64,7 +64,7 @@ jobs:
             iosVersion: '26.4'
             iosDeviceModel: iPhone 17 Pro Max
             watchOsVersion: '26.4'
-            watchDeviceModel: Apple Watch Series 11 (46mm)
+            watchDeviceModel: Apple Watch SE 3 (40mm)
             tvOsVersion: '26.4'
             tvDeviceModel: Apple TV
             macosVersion: 26
@@ -89,7 +89,7 @@ jobs:
           - name: LiveQuery Module, watchOS 26.4
             script: test:parse_live_query:watchos
             watchOsVersion: '26.4'
-            watchDeviceModel: Apple Watch Series 11 (46mm)
+            watchDeviceModel: Apple Watch SE 3 (40mm)
             macosVersion: 26
             developerDir: CI_XCODE_26
           - name: LiveQuery Module, tvOS 26.4
