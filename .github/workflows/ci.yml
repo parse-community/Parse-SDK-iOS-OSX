@@ -130,12 +130,12 @@ jobs:
         if: ${{ always() }}
         env:
           ARTIFACT_NAME: ${{ matrix.name }}-logs
-          TEST_RESULTS: ${{ matrix.name }}.xcresult
+          TEST_RESULTS: ${{ matrix.script }}.xcresult
         run: |
           ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}
           TEST_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult")
           BUILD_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcactivitylog")
-          echo ARTIFACT_NAME=${ARTIFACT_NAME//:/-} >> $GITHUB_ENV # replace colon with dashes
+          echo ARTIFACT_NAME=${ARTIFACT_NAME// /_} >> $GITHUB_ENV # replace space with underscore
           echo TEST_RESULTS=${TEST_RESULTS} >> $GITHUB_ENV
           echo "Artifact Name: $ARTIFACT_NAME"
           echo "Test Result Location: $TEST_RESULTS"
