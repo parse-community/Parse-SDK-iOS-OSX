@@ -62,7 +62,7 @@ jobs:
           - name: Xcode 26
             script: build:starters
             iosVersion: '26.4'
-            iosDeviceModel: iPhone 17
+            iosDeviceModel: iPhone 17 Pro Max
             watchOsVersion: '26.4'
             watchDeviceModel: Apple Watch Series 11 (46mm)
             tvOsVersion: '26.4'
@@ -73,13 +73,13 @@ jobs:
           - name: Core Module, iOS 26.4
             script: test:ios
             iosVersion: '26.4'
-            iosDeviceModel: iPhone 17
+            iosDeviceModel: iPhone 17 Pro Max
             macosVersion: 26
             developerDir: CI_XCODE_26
           - name: LiveQuery Module, iOS 26.4
             script: test:parse_live_query:ios
             iosVersion: '26.4'
-            iosDeviceModel: iPhone 17
+            iosDeviceModel: iPhone 17 Pro Max
             macosVersion: 26
             developerDir: CI_XCODE_26
           - name: LiveQuery Module, macOS 26
