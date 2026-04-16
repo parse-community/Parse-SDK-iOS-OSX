@@ -66,7 +66,7 @@ The Parse Apple SDK is continuously tested with the most recent releases of Xcod
 | Xcode 14      | iOS 16      | macOS 13      | watchOS 9       | tvOS 16      | September 2022 | October 2024        | >= 2.7.2 < 5.0.0        |
 | Xcode 15      | iOS 17      | macOS 14      | watchOS 10      | tvOS 17      | September 2023 | October 2025        | >= 3.0.0 <= 5.1.1       |
 | Xcode 16      | iOS 18      | macOS 15      | watchOS 11      | tvOS 18      | September 2024 | tbd                 | >= 4.2.0                |
-| Xcode 26      | iOS 26      | macOS 26      | watchOS 26      | tvOS 26      | September 2025 | tbd                 | >= 6.1.1                |
+| Xcode 26      | iOS 26      | macOS 26      | watchOS 26      | tvOS 26      | September 2025 | tbd                 | >= 6.2.0                |
 
 ## How Do I Contribute?
 
