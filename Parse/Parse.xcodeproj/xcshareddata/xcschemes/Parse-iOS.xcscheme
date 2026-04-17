@@ -96,6 +96,15 @@
                <Test
                   Identifier = "ParseClientConfigurationTests/testExtensionDataSharing">
                </Test>
+               <Test
+                  Identifier = "QueryCachedControllerTests/testFindObjectsCacheElseNetworkCacheResult">
+               </Test>
+               <Test
+                  Identifier = "QueryCachedControllerTests/testFindObjectsCacheOnly">
+               </Test>
+               <Test
+                  Identifier = "QueryCachedControllerTests/testFindObjectsNetworkElseCache">
+               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>

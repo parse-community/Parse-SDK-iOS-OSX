@@ -1,8 +1,30 @@
-mkdir -p ./Parse/Bolts # Create a temporary bolts folder
-cp -R Carthage/Checkouts/Bolts-ObjC/Bolts/**/*.h ./Parse/Bolts # Copy bolts
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+bolts_headers_dir=""
+for candidate in \
+  "./.build/checkouts/Bolts-ObjC/Bolts" \
+  "./.build/checkouts/Bolts/Bolts" \
+  "./build/checkouts/Bolts-ObjC/Bolts" \
+  "./SourcePackages/checkouts/Bolts-ObjC/Bolts"; do
+  if [[ -d "$candidate" ]]; then
+    bolts_headers_dir="$candidate"
+    break
+  fi
+done
+
+if [[ -z "$bolts_headers_dir" ]]; then
+  echo "Unable to locate Bolts headers. Resolve SwiftPM dependencies first (for example, run 'swift package resolve')."
+  exit 1
+fi
+
+mkdir -p ./Parse/Bolts
+cp -R "$bolts_headers_dir"/. ./Parse/Bolts
+trap 'rm -rf ./Parse/Bolts' EXIT
 
 ver=`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Parse/Parse/Resources/Parse-iOS.Info.plist`
-set -eo pipefail && bundle exec jazzy \
+bundle exec jazzy \
   --objc \
   --clean \
   --author "Parse Community" \
@@ -17,5 +39,3 @@ set -eo pipefail && bundle exec jazzy \
   --umbrella-header Parse/Parse/Source/Parse.h \
   --framework-root Parse \
   --output docs/api
-
-rm -rf ./Parse/Bolts # cleanup temporary bolts

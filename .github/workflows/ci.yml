@@ -9,6 +9,7 @@ on:
       - "**"
 env:
   CI_XCODE_16: /Applications/Xcode_16.4.0.app/Contents/Developer
+  CI_XCODE_26: /Applications/Xcode_26.4.app/Contents/Developer
 jobs:
   test-xcode:
     env:
@@ -17,7 +18,7 @@ jobs:
     strategy:
       matrix:
         include:
-          # Xcode
+          # Xcode 16
           - name: Xcode 16
             script: build:starters
             iosVersion: '18.5'
@@ -57,6 +58,46 @@ jobs:
             tvDeviceModel: Apple TV
             macosVersion: 15
             developerDir: CI_XCODE_16
+          # Xcode 26
+          - name: Xcode 26
+            script: build:starters
+            iosVersion: '26.4'
+            iosDeviceModel: iPhone 17 Pro Max
+            watchOsVersion: '26.4'
+            watchDeviceModel: Apple Watch SE 3 (40mm)
+            tvOsVersion: '26.4'
+            tvDeviceModel: Apple TV
+            macosVersion: 26
+            developerDir: CI_XCODE_26
+          # Core Module
+          - name: Core Module, iOS 26.4
+            script: test:ios
+            iosVersion: '26.4'
+            iosDeviceModel: iPhone 17 Pro Max
+            macosVersion: 26
+            developerDir: CI_XCODE_26
+          - name: LiveQuery Module, iOS 26.4
+            script: test:parse_live_query:ios
+            iosVersion: '26.4'
+            iosDeviceModel: iPhone 17 Pro Max
+            macosVersion: 26
+            developerDir: CI_XCODE_26
+          - name: LiveQuery Module, macOS 26
+            script: test:parse_live_query:osx
+            macosVersion: 26
+            developerDir: CI_XCODE_26
+          - name: LiveQuery Module, watchOS 26.4
+            script: test:parse_live_query:watchos
+            watchOsVersion: '26.4'
+            watchDeviceModel: Apple Watch SE 3 (40mm)
+            macosVersion: 26
+            developerDir: CI_XCODE_26
+          - name: LiveQuery Module, tvOS 26.4
+            script: test:parse_live_query:tvos
+            tvOsVersion: '26.4'
+            tvDeviceModel: Apple TV
+            macosVersion: 26
+            developerDir: CI_XCODE_26
       fail-fast: false
     runs-on: macos-${{ matrix.macosVersion }}
     name: ${{ matrix.name }}
@@ -85,25 +126,11 @@ jobs:
         run: set -o pipefail && env NSUnbufferedIO=YES IOS_VERSION="${{ matrix.iosVersion }}" IOS_DEVICE_MODEL="${{ matrix.iosDeviceModel }}" WATCH_DEVICE_MODEL="${{ matrix.watchDeviceModel }}" WATCH_OS_VERSION="${{ matrix.watchOsVersion }}" TV_DEVICE_MODEL="${{ matrix.tvDeviceModel }}" TV_OS_VERSION="${{ matrix.tvOsVersion }}" bundle exec rake ${{ matrix.script }}
         env:
           DEVELOPER_DIR: ${{ env[matrix.developerDir] }}
-      - name: Generate Environment Variables
-        if: ${{ always() }}
-        env:
-          ARTIFACT_NAME: ${{ matrix.script }}-logs
-          TEST_RESULTS: ${{ matrix.script }}.xcresult
-        run: |
-          ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}
-          TEST_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult")
-          BUILD_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcactivitylog")
-          echo ARTIFACT_NAME=${ARTIFACT_NAME//:/-} >> $GITHUB_ENV # replace colon with dashes
-          echo TEST_RESULTS=${TEST_RESULTS} >> $GITHUB_ENV
-          echo "Artifact Name: $ARTIFACT_NAME"
-          echo "Test Result Location: $TEST_RESULTS"
-          echo "Build Result Location: $BUILD_RESULTS"
       - name: Upload Artifact Logs
         if: ${{ failure() }}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACT_NAME }}
+          name: ${{ matrix.name }}-logs
           path: |
             ~/Library/Developer/Xcode/DerivedData/Parse-*/Logs/Test
             ~/Library/Developer/Xcode/DerivedData/**/Logs/Build
@@ -119,7 +146,9 @@ jobs:
         env:
           COVERAGE_PATH: ${{ github.workspace }}/build/${{ matrix.script }}-coverage.xml
         run: |
+          TEST_RESULTS=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult")
           COVERAGE_PATH=${COVERAGE_PATH//:/-}
+          echo TEST_RESULTS=${TEST_RESULTS} >> $GITHUB_ENV
           echo COVERAGE_PATH=$COVERAGE_PATH >> $GITHUB_ENV
           echo "TEST_RESULTS: $TEST_RESULTS"
           echo "COVERAGE_PATH: $COVERAGE_PATH"
@@ -146,6 +175,8 @@ jobs:
           bundler-cache: true
       - name: Submodules
         run: git submodule update --init --recursive
+      - name: SPM
+        run: swift package resolve
       - name: Create Jazzy Docs
         run: |
           ./Scripts/jazzy.sh
