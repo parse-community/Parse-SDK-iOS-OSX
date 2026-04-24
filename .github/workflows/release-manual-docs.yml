@@ -31,6 +31,8 @@ jobs:
           bundler-cache: true
       - name: Submodules
         run: git submodule update --init --recursive
+      - name: SPM
+        run: swift package resolve
       - name: Create Jazzy Docs
         run: |
           ./Scripts/jazzy.sh
