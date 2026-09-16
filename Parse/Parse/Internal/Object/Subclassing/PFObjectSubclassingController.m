@@ -128,13 +128,10 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
                                                                                             queue:nil
                                                                                        usingBlock:^(NSNotification *note) {
                                                                                            @strongify(self);
-                                                                                           [self _registerSubclassesInLoadedBundle:note.object];
+                                                                                           [self _registerLoadedSubclasses];
                                                                                        }];
     }
-    NSArray *bundles = [[NSBundle allFrameworks] arrayByAddingObjectsFromArray:[NSBundle allBundles]];
-    for (NSBundle *bundle in bundles) {
-        [self _registerSubclassesInLoadedBundle:bundle];
-    }
+    [self _registerLoadedSubclasses];
 }
 
 - (void)registerSubclass:(Class<PFSubclassing>)kls {
@@ -330,99 +327,46 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
     _registeredSubclasses[[kls parseClassName]] = subclassInfo;
 }
 
-- (void)_registerSubclassesInLoadedBundle:(NSBundle *)bundle {
-    // Skip bundles that aren't loaded yet.
-    if (![bundle isKindOfClass:NSBundle.class] || !bundle.loaded || !bundle.executablePath) {
-        return;
-    }
-    // Filter out any system bundles
-    if ([bundle.bundlePath hasPrefix:@"/System/"] || [bundle.bundlePath rangeOfString:@"iPhoneSimulator.sdk"].location != NSNotFound) {
-        return;
-    }
-    
-    // The Parse framework cannot be bundled with a macOS Command Line Application but needs to be
-    // external to the application. The preferred file system location is '/Library/Frameworks'
-    // and we don't want to filter out the Parse framework if it is installed there. See also:
-    // https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/InstallingFrameworks.html#//apple_ref/doc/uid/20002261-97286
-    if ([bundle.bundlePath hasPrefix:@"/Library/"]) {
-        if ([bundle.bundlePath hasPrefix:@"/Library/Frameworks/"] && [[bundle.bundlePath lastPathComponent] isEqualToString:@"Parse.framework"]) {
-            [self _registerSubclassesInBundle:bundle];
-        }
-        return;
-    }
-    
-    [self _registerSubclassesInBundle:bundle];
-}
-
-- (void)_registerSubclassesInBundle:(NSBundle *)bundle {
-    PFConsistencyAssert(bundle.loaded, @"Cannot register subclasses in an unloaded bundle: %@", bundle);
-
-    [self _registerSubclassesInExecutablePath:bundle.executablePath];
-    
-#if defined(DEBUG) && DEBUG
-    if (bundle == [NSBundle mainBundle]) {
-        NSString *executablePath = [NSString stringWithFormat:@"%@.debug.dylib", bundle.executablePath];
-        [self _registerSubclassesInExecutablePath:executablePath];
-    }
-#endif
-}
-
-- (void)_registerSubclassesInExecutablePath:(NSString *)exePath {
-    const char *executablePath = exePath.UTF8String;
-    if (executablePath == NULL) {
-        return;
-    }
-
+- (void)_registerLoadedSubclasses {
+    // Walk the runtime's class list once instead of asking `objc_copyClassNamesForImage` for every loaded
+    // bundle. That path-based API makes libobjc resolve the on-disk path of every loaded image through dyld,
+    // and on iOS 27 dyld implements that lookup by walking every loader's segments, so it is O(images^2)
+    // per call. With ~3000 images in the process that made this scan take ~60 s.
     dispatch_sync(_registeredSubclassesAccessQueue, ^{
         Class pfObjectClass = [PFObject class];
 
-        // There are two different paths that we will need to check for the bundle, depending on the platform.
-        // - First, we need to check the raw executable path fom the bundle.
-        //   This should be valid for most frameworks on macOS, and iOS/watchOS/tvOS simulators.
-        // - Second, we need to check the symlink resolved path - including /private/var on iOS.
-        //   This should be valid for iOS, watchOS, and tvOS devices.
-        // In case there are other platforms that require checking multiple paths that we add support for,
-        // just use a simple array here.
-        char potentialPaths[2][PATH_MAX] = { };
-
-        strncpy(potentialPaths[0], executablePath, PATH_MAX);
-        realpath(potentialPaths[0], potentialPaths[1]);
-
-        const char **classNames = NULL;
-        unsigned bundleClassCount = 0;
-
-        for (int i = 0; i < sizeof(potentialPaths) / sizeof(*potentialPaths); i++) {
-            classNames = objc_copyClassNamesForImage(potentialPaths[i], &bundleClassCount);
-            if (bundleClassCount) {
-                break;
-            }
-
-            free(classNames);
-            classNames = NULL;
+        unsigned classCount = 0;
+        Class *classList = objc_copyClassList(&classCount);
+        if (classList == NULL) {
+            return;
         }
 
-        for (unsigned i = 0; i < bundleClassCount; i++) {
-            Class bundleClass = objc_getClass(classNames[i]);
+        for (unsigned i = 0; i < classCount; i++) {
+            Class cls = classList[i];
             // For obvious reasons, don't register the PFObject class.
-            if (bundleClass == pfObjectClass) {
+            if (cls == pfObjectClass) {
                 continue;
             }
-            // NOTE: Cannot use isSubclassOfClass here. Some classes may be part of a system bundle (even
-            // though we attempt to filter those out) that may be an internal class which doesn't inherit from NSObject.
+            // NOTE: Cannot use isSubclassOfClass here. Some classes may be part of a system bundle
+            // that may be an internal class which doesn't inherit from NSObject.
             // Scary, I know!
-            for (Class kls = bundleClass; kls != nil; kls = class_getSuperclass(kls)) {
-                if (kls == pfObjectClass) {
-                    // Do -conformsToProtocol: as late in the checking as possible, as its SUUUPER slow.
-                    // Behind the scenes this is a strcmp (lolwut?)
-                    if ([bundleClass conformsToProtocol:@protocol(PFSubclassing)] &&
-                        ![bundleClass conformsToProtocol:@protocol(PFSubclassingSkipAutomaticRegistration)]) {
-                        [self _rawRegisterSubclass:bundleClass];
-                    }
-                    break;
+            for (Class kls = class_getSuperclass(cls); kls != nil; kls = class_getSuperclass(kls)) {
+                if (kls != pfObjectClass) {
+                    continue;
                 }
+                // Do -conformsToProtocol: as late in the checking as possible, as its SUUUPER slow.
+                // Behind the scenes this is a strcmp (lolwut?)
+                if ([cls conformsToProtocol:@protocol(PFSubclassing)] &&
+                    ![cls conformsToProtocol:@protocol(PFSubclassingSkipAutomaticRegistration)]) {
+                    // Rescans (e.g. after NSBundleDidLoadNotification) must not churn already-registered classes.
+                    if ([self->_registeredSubclasses[[cls parseClassName]] subclass] != cls) {
+                        [self _rawRegisterSubclass:cls];
+                    }
+                }
+                break;
             }
         }
-        free(classNames);
+        free(classList);
     });
 }
 
