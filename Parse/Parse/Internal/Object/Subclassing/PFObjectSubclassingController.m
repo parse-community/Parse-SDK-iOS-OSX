@@ -354,6 +354,10 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
                 if (kls != pfObjectClass) {
                     continue;
                 }
+                // Skip duplicates of a class compiled into multiple images, as registering a second copy throws
+                if (objc_getClass(class_getName(cls)) != cls) {
+                    break;
+                }
                 // Do -conformsToProtocol: as late in the checking as possible, as its SUUUPER slow.
                 // Behind the scenes this is a strcmp (lolwut?)
                 if ([cls conformsToProtocol:@protocol(PFSubclassing)] &&
