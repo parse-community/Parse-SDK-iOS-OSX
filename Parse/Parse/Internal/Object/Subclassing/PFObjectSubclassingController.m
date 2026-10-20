@@ -332,6 +332,7 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
     // bundle. That path-based API makes libobjc resolve the on-disk path of every loaded image through dyld,
     // and on iOS 27 dyld implements that lookup by walking every loader's segments, so it is O(images^2)
     // per call. With ~3000 images in the process that made this scan take ~60 s.
+    // Trade-off: `objc_copyClassList` realizes every class in the process, which costs several MB of memory.
     dispatch_sync(_registeredSubclassesAccessQueue, ^{
         Class pfObjectClass = [PFObject class];
 
