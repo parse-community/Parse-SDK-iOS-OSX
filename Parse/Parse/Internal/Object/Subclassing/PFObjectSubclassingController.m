@@ -358,6 +358,10 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
                 if (objc_getClass(class_getName(cls)) != cls) {
                     break;
                 }
+                // Skip classes created at runtime, such as KVO subclasses (slow, hence checked only here)
+                if (class_getImageName(cls) == NULL) {
+                    break;
+                }
                 // Do -conformsToProtocol: as late in the checking as possible, as its SUUUPER slow.
                 // Behind the scenes this is a strcmp (lolwut?)
                 if ([cls conformsToProtocol:@protocol(PFSubclassing)] &&
