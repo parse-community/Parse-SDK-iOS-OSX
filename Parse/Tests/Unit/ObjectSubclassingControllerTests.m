@@ -7,9 +7,12 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+#import <objc/runtime.h>
+
 #import "PFObject+Subclass.h"
 #import "PFRelation.h"
 #import "PFSubclassing.h"
+#import "PFUser.h"
 
 #import "PFObjectPrivate.h"
 #import "PFObjectSubclassingController.h"
@@ -43,6 +46,15 @@
 @end
 
 @interface GoodSubclass : TestSubclass
+@end
+
+@interface AutoSubclass : PFObject<PFSubclassing>
+
+@property (nonatomic, copy) NSString *localValue;
+
+@end
+
+@interface AutoChildSubclass : AutoSubclass<PFSubclassingSkipAutomaticRegistration>
 @end
 
 @implementation TestSubclass
@@ -84,6 +96,19 @@
 @end
 
 @implementation GoodSubclass
+@end
+
+@implementation AutoSubclass
+
+@dynamic localValue;
+
++ (NSString *)parseClassName {
+    return @"AutoSubclass";
+}
+
+@end
+
+@implementation AutoChildSubclass
 @end
 
 @interface ObjectSubclassingControllerTests : PFUnitTestCase
@@ -169,6 +194,40 @@
 
     XCTAssertThrows([subclassingController registerSubclass:[NotSubclass class]]);
     XCTAssertEqual([GoodSubclass class], [subclassingController subclassForParseClassName:@"TestSubclass"]);
+}
+
+- (void)testScanForUnregisteredSubclasses {
+    PFObjectSubclassingController *subclassingController = [[PFObjectSubclassingController alloc] init];
+    [subclassingController scanForUnregisteredSubclasses:NO];
+
+    XCTAssertEqual([AutoSubclass class], [subclassingController subclassForParseClassName:@"AutoSubclass"]);
+    XCTAssertEqual([PFUser class], [subclassingController subclassForParseClassName:[PFUser parseClassName]]);
+    XCTAssertEqual([SwiftSubclass class], [subclassingController subclassForParseClassName:@"SwiftSubclass"]);
+    XCTAssertNil([subclassingController subclassForParseClassName:@"TestSubclass"]);
+}
+
+- (void)testRescanKeepsMoreSpecificSubclass {
+    PFObjectSubclassingController *subclassingController = [[PFObjectSubclassingController alloc] init];
+    [subclassingController scanForUnregisteredSubclasses:NO];
+    [subclassingController registerSubclass:[AutoChildSubclass class]];
+
+    [subclassingController scanForUnregisteredSubclasses:NO];
+    XCTAssertEqual([AutoChildSubclass class], [subclassingController subclassForParseClassName:@"AutoSubclass"]);
+}
+
+- (void)testRescanSkipsKVOSubclasses {
+    PFObjectSubclassingController *subclassingController = [[PFObjectSubclassingController alloc] init];
+    [subclassingController scanForUnregisteredSubclasses:NO];
+
+    AutoSubclass *object = [[AutoSubclass alloc] initWithClassName:@"AutoSubclass"];
+    [object addObserver:self forKeyPath:@"localValue" options:0 context:NULL];
+    // KVO replaces the object's class with a subclass created at runtime
+    XCTAssertNotEqual([AutoSubclass class], object_getClass(object));
+
+    [subclassingController scanForUnregisteredSubclasses:NO];
+    XCTAssertEqual([AutoSubclass class], [subclassingController subclassForParseClassName:@"AutoSubclass"]);
+
+    [object removeObserver:self forKeyPath:@"localValue"];
 }
 
 - (void)testForwardingMethodSignature {
