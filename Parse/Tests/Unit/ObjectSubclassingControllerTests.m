@@ -230,6 +230,16 @@
     [object removeObserver:self forKeyPath:@"localValue"];
 }
 
+- (void)testRegisterSubclassesInLoadedBundle {
+    // Fallback scan before iOS 16, macOS 13, tvOS 16 and watchOS 9
+    PFObjectSubclassingController *subclassingController = [[PFObjectSubclassingController alloc] init];
+    [subclassingController _registerSubclassesInLoadedBundle:[NSBundle bundleForClass:[AutoSubclass class]]];
+
+    XCTAssertEqual([AutoSubclass class], [subclassingController subclassForParseClassName:@"AutoSubclass"]);
+    XCTAssertEqual([SwiftSubclass class], [subclassingController subclassForParseClassName:@"SwiftSubclass"]);
+    XCTAssertNil([subclassingController subclassForParseClassName:@"TestSubclass"]);
+}
+
 - (void)testForwardingMethodSignature {
     PFObjectSubclassingController *subclassingController = [[PFObjectSubclassingController alloc] init];
     [subclassingController registerSubclass:[PropertySubclass class]];
