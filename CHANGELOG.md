@@ -1,3 +1,15 @@
+# [7.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/6.2.0...7.0.0) (2026-10-21)
+
+
+### Features
+
+* Add Xcode 27 support ([#1918](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1918)) ([c2df29e](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/c2df29e4f5e56fa525fdfc47dc75eb1634296961))
+
+
+### BREAKING CHANGES
+
+* Removes support for Xcode 16 (iOS 18, macOS 15, watchOS 11, tvOS 18) and raises the minimum deployment targets to iOS 15.0, macOS 12.0, tvOS 15.0 and watchOS 9.0. ([c2df29e](c2df29e))
+
 # [6.2.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/6.1.1...6.2.0) (2026-10-21)
 
 
