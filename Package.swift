@@ -6,10 +6,10 @@ let package = Package(
     name: "ParseObjC",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v12),
-        .macOS(.v10_15),
-        .tvOS(.v12),
-        .watchOS(.v2)
+        .iOS(.v15),
+        .macOS(.v12),
+        .tvOS(.v15),
+        .watchOS("9.0") // .v9 requires swift-tools-version 5.7
     ],
     products: [
         .library(name: "ParseObjC", targets: ["ParseCore"]),

@@ -8,8 +8,8 @@ on:
     branches:
       - "**"
 env:
-  CI_XCODE_16: /Applications/Xcode_16.4.0.app/Contents/Developer
   CI_XCODE_26: /Applications/Xcode_26.4.app/Contents/Developer
+  CI_XCODE_27: /Applications/Xcode_27.1.app/Contents/Developer
 jobs:
   test-xcode:
     env:
@@ -18,46 +18,6 @@ jobs:
     strategy:
       matrix:
         include:
-          # Xcode 16
-          - name: Xcode 16
-            script: build:starters
-            iosVersion: '18.5'
-            iosDeviceModel: iPhone 16
-            watchOsVersion: '11.5'
-            watchDeviceModel: Apple Watch Series 10 (46mm)
-            tvOsVersion: '18.5'
-            tvDeviceModel: Apple TV
-            macosVersion: 15
-            developerDir: CI_XCODE_16
-          # Core Module
-          - name: Core Module, iOS 18
-            script: test:ios
-            iosVersion: '18.5'
-            iosDeviceModel: iPhone 16
-            macosVersion: 15
-            developerDir: CI_XCODE_16
-          - name: LiveQuery Module, iOS 18
-            script: test:parse_live_query:ios
-            iosVersion: '18.5'
-            iosDeviceModel: iPhone 16
-            macosVersion: 15
-            developerDir: CI_XCODE_16
-          - name: LiveQuery Module, macOS 15
-            script: test:parse_live_query:osx
-            macosVersion: 15
-            developerDir: CI_XCODE_16
-          - name: LiveQuery Module, watchOS 11
-            script: test:parse_live_query:watchos
-            watchOsVersion: '11.5'
-            watchDeviceModel: Apple Watch Series 10 (46mm)
-            macosVersion: 15
-            developerDir: CI_XCODE_16
-          - name: LiveQuery Module, tvOS 18
-            script: test:parse_live_query:tvos
-            tvOsVersion: '18.5'
-            tvDeviceModel: Apple TV
-            macosVersion: 15
-            developerDir: CI_XCODE_16
           # Xcode 26
           - name: Xcode 26
             script: build:starters
@@ -67,39 +27,81 @@ jobs:
             watchDeviceModel: Apple Watch SE 3 (40mm)
             tvOsVersion: '26.4'
             tvDeviceModel: Apple TV
-            macosVersion: 26
+            runner: macos-26
             developerDir: CI_XCODE_26
           # Core Module
           - name: Core Module, iOS 26.4.1
             script: test:ios
             iosVersion: '26.4.1'
             iosDeviceModel: iPhone 17 Pro Max
-            macosVersion: 26
+            runner: macos-26
             developerDir: CI_XCODE_26
+            # Upload coverage from a single job; xcresultparser doesn't build with Xcode 27 yet
+            coverage: true
           - name: LiveQuery Module, iOS 26.4.1
             script: test:parse_live_query:ios
             iosVersion: '26.4.1'
             iosDeviceModel: iPhone 17 Pro Max
-            macosVersion: 26
+            runner: macos-26
             developerDir: CI_XCODE_26
           - name: LiveQuery Module, macOS 26
             script: test:parse_live_query:osx
-            macosVersion: 26
+            runner: macos-26
             developerDir: CI_XCODE_26
           - name: LiveQuery Module, watchOS 26.4
             script: test:parse_live_query:watchos
             watchOsVersion: '26.4'
             watchDeviceModel: Apple Watch SE 3 (40mm)
-            macosVersion: 26
+            runner: macos-26
             developerDir: CI_XCODE_26
           - name: LiveQuery Module, tvOS 26.4
             script: test:parse_live_query:tvos
             tvOsVersion: '26.4'
             tvDeviceModel: Apple TV
-            macosVersion: 26
+            runner: macos-26
             developerDir: CI_XCODE_26
+          # Xcode 27
+          - name: Xcode 27
+            script: build:starters
+            iosVersion: '27.0'
+            iosDeviceModel: iPhone 18 Pro Max
+            watchOsVersion: '27.0'
+            watchDeviceModel: Apple Watch SE 3 (40mm)
+            tvOsVersion: '27.0'
+            tvDeviceModel: Apple TV 4K (3rd generation)
+            runner: xcode-27
+            developerDir: CI_XCODE_27
+          # Core Module
+          - name: Core Module, iOS 27.0
+            script: test:ios
+            iosVersion: '27.0'
+            iosDeviceModel: iPhone 18 Pro Max
+            runner: xcode-27
+            developerDir: CI_XCODE_27
+          - name: LiveQuery Module, iOS 27.0
+            script: test:parse_live_query:ios
+            iosVersion: '27.0'
+            iosDeviceModel: iPhone 18 Pro Max
+            runner: xcode-27
+            developerDir: CI_XCODE_27
+          - name: LiveQuery Module, macOS 27
+            script: test:parse_live_query:osx
+            runner: xcode-27
+            developerDir: CI_XCODE_27
+          - name: LiveQuery Module, watchOS 27.0
+            script: test:parse_live_query:watchos
+            watchOsVersion: '27.0'
+            watchDeviceModel: Apple Watch SE 3 (40mm)
+            runner: xcode-27
+            developerDir: CI_XCODE_27
+          - name: LiveQuery Module, tvOS 27.0
+            script: test:parse_live_query:tvos
+            tvOsVersion: '27.0'
+            tvDeviceModel: Apple TV 4K (3rd generation)
+            runner: xcode-27
+            developerDir: CI_XCODE_27
       fail-fast: false
-    runs-on: macos-${{ matrix.macosVersion }}
+    runs-on: ${{ matrix.runner }}
     name: ${{ matrix.name }}
     steps:
       - uses: actions/checkout@v4
@@ -135,14 +137,14 @@ jobs:
             ~/Library/Developer/Xcode/DerivedData/Parse-*/Logs/Test
             ~/Library/Developer/Xcode/DerivedData/**/Logs/Build
       - name: Install test parsing dependencies
-        if: matrix.script == 'test:ios'
+        if: matrix.coverage
         # Workaround as codecov cannot parse xcresult files;
         # https://github.com/codecov/uploader/issues/1078
         # https://github.com/codecov/codecov-action/issues/1367
         run: |
           brew install a7ex/homebrew-formulae/xcresultparser
       - name: Convert Xcode test results for code coverage upload
-        if: matrix.script == 'test:ios'
+        if: matrix.coverage
         env:
           COVERAGE_PATH: ${{ github.workspace }}/build/${{ matrix.script }}-coverage.xml
         run: |
@@ -156,7 +158,7 @@ jobs:
             xcresultparser --output-format cobertura \
             "$TEST_RESULTS" >"$COVERAGE_PATH"
       - name: Upload code coverage
-        if: matrix.script == 'test:ios'
+        if: matrix.coverage
         uses: codecov/codecov-action@v4
         with:
           # Set to `true` once codecov token bug is fixed; https://github.com/parse-community/parse-server/issues/9129
@@ -165,7 +167,7 @@ jobs:
           plugin: xcode
           file: ${{ env.COVERAGE_PATH }}
   docs:
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -181,7 +183,7 @@ jobs:
         run: |
           ./Scripts/jazzy.sh
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_16 }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_26 }}
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true

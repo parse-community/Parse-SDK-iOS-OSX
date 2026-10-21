@@ -6,12 +6,12 @@ on:
         default: ''
         description: 'Version tag:' 
 env:
-  CI_XCODE_16: /Applications/Xcode_16.4.0.app/Contents/Developer
+  CI_XCODE_26: /Applications/Xcode_26.4.app/Contents/Developer
 
 jobs:
   publish-docs:
     if: github.event.inputs.tag != ''
-    runs-on: macos-15
+    runs-on: macos-26
     permissions:
       contents: read
       pages: write
@@ -36,7 +36,7 @@ jobs:
         run: |
           ./Scripts/jazzy.sh
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_16 }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_26 }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
