@@ -9,6 +9,7 @@
 
 #import "PFUnitTestCase.h"
 
+#import "PFApplication.h"
 #import "PFObjectSubclassingController.h"
 #import "Parse_Private.h"
 
@@ -28,6 +29,17 @@
 - (void)setUp {
     [super setUp];
 
+    // On a freshly booted iOS 27 simulator, PFApplication's first read of the app icon badge number on the main queue takes minutes
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [PFApplication currentApplication];
+        XCTestExpectation *badgeRead = [self expectationWithDescription:@"Read app icon badge number"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [badgeRead fulfill];
+        });
+        [self waitForExpectations:@[badgeRead] timeout:600];
+    });
+
     self.applicationId = [[NSUUID UUID] UUIDString];
     self.clientKey = [[NSUUID UUID] UUIDString];
 
@@ -37,8 +49,7 @@
     
     [Parse setApplicationId:self.applicationId clientKey:self.clientKey];
     
-    // On a freshly booted iOS 27 simulator the first initialization can take minutes, as reading the app icon badge number blocks the main thread
-    [self waitForExpectations:@[expect] timeout:600];
+    [self waitForExpectations:@[expect] timeout:30];
 }
 
 - (void)tearDown {
