@@ -9,6 +9,7 @@
 
 #import "PFObjectSubclassingController.h"
 
+#import <mach-o/dyld.h>
 #import <objc/runtime.h>
 
 #import "PFObject.h"
@@ -128,8 +129,16 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
                                                                                             queue:nil
                                                                                        usingBlock:^(NSNotification *note) {
                                                                                            @strongify(self);
+                                                                                           if (@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)) {
+                                                                                               [self _registerSubclassesInLoadedImages];
+                                                                                               return;
+                                                                                           }
                                                                                            [self _registerSubclassesInLoadedBundle:note.object];
                                                                                        }];
+    }
+    if (@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)) {
+        [self _registerSubclassesInLoadedImages];
+        return;
     }
     NSArray *bundles = [[NSBundle allFrameworks] arrayByAddingObjectsFromArray:[NSBundle allBundles]];
     for (NSBundle *bundle in bundles) {
@@ -328,6 +337,34 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
         subclassInfo = [PFObjectSubclassInfo subclassInfoWithSubclass:kls];
     }
     _registeredSubclasses[[kls parseClassName]] = subclassInfo;
+}
+
+- (void)_registerSubclassesInLoadedImages API_AVAILABLE(ios(16.0), macos(13.0), tvos(16.0), watchos(9.0)) {
+    // Enumerate classes by image header, as resolving image paths with `objc_copyClassNamesForImage` is O(images^2)
+    // on iOS 27. System images in the dyld shared cache are skipped.
+    dispatch_sync(_registeredSubclassesAccessQueue, ^{
+        Class pfObjectClass = [PFObject class];
+        uint32_t imageCount = _dyld_image_count();
+        for (uint32_t i = 0; i < imageCount; i++) {
+            const struct mach_header *header = _dyld_get_image_header(i);
+            if (header == NULL || (header->flags & MH_DYLIB_IN_CACHE) != 0) {
+                continue;
+            }
+            objc_enumerateClasses(header, NULL, @protocol(PFSubclassing), pfObjectClass, ^(Class cls, BOOL *stop) {
+                // Skip duplicates of a class compiled into multiple images, as registering a second copy throws
+                if (objc_getClass(class_getName(cls)) != cls) {
+                    return;
+                }
+                if ([cls conformsToProtocol:@protocol(PFSubclassingSkipAutomaticRegistration)]) {
+                    return;
+                }
+                // Rescans (e.g. after NSBundleDidLoadNotification) must not churn already-registered classes
+                if ([self->_registeredSubclasses[[cls parseClassName]] subclass] != cls) {
+                    [self _rawRegisterSubclass:cls];
+                }
+            });
+        }
+    });
 }
 
 - (void)_registerSubclassesInLoadedBundle:(NSBundle *)bundle {
