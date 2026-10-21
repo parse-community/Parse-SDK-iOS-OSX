@@ -37,7 +37,8 @@
     
     [Parse setApplicationId:self.applicationId clientKey:self.clientKey];
     
-    [self waitForExpectations:@[expect] timeout:30];
+    // On a freshly booted iOS 27 simulator the first initialization can take minutes, as reading the app icon badge number blocks the main thread
+    [self waitForExpectations:@[expect] timeout:600];
 }
 
 - (void)tearDown {
