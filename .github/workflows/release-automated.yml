@@ -3,7 +3,7 @@ on:
   push:
     branches: [ master, release, alpha, beta ]
 env:
-  CI_XCODE_16: /Applications/Xcode_16.4.0.app/Contents/Developer
+  CI_XCODE_26: /Applications/Xcode_26.4.app/Contents/Developer
 
 jobs:
   release:
@@ -21,7 +21,6 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1.0'
           bundler-cache: true
       - name: Cache Gems
         id: cache-gems
@@ -49,7 +48,7 @@ jobs:
   publish-docs:
     needs: release
     if: needs.release.outputs.current_tag != ''
-    runs-on: macos-15
+    runs-on: macos-26
     permissions:
       contents: read
       pages: write
@@ -68,11 +67,13 @@ jobs:
           bundler-cache: true
       - name: Submodules
         run: git submodule update --init --recursive
+      - name: SPM
+        run: swift package resolve
       - name: Create Jazzy Docs
         run: |
           ./Scripts/jazzy.sh
         env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_16 }}
+          DEVELOPER_DIR: ${{ env.CI_XCODE_26 }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

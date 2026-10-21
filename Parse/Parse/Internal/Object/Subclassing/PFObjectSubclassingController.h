@@ -24,6 +24,9 @@
 - (void)registerSubclass:(Class<PFSubclassing>)kls;
 - (void)unregisterSubclass:(Class<PFSubclassing>)kls;
 
+// For testing only
+- (void)_registerSubclassesInLoadedBundle:(NSBundle *)bundle;
+
 ///--------------------------------------
 #pragma mark - Forwarding
 ///--------------------------------------
