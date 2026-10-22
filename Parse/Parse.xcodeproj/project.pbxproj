@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01E60F8A8E9B602591E0B5CC /* PFTestFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D85FB0697B1043A042D7D67E /* PFTestFileManager.m */; };
 		39A6B6772AD8EA8000123017 /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 39A6B6762AD8EA8000123017 /* ParseObjC */; };
 		39A6B6792AD8EB1D00123017 /* ParseObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 39A6B6782AD8EB1D00123017 /* ParseObjC */; };
 		39E22AB62AD0655300D9AE5C /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = 39E22AB52AD0655300D9AE5C /* OCMock */; };
@@ -2699,6 +2700,7 @@
 		A6E295901E961744009917BF /* ParseManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E295801E961727009917BF /* ParseManagerPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A6E295911E961744009917BF /* ParseManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E295801E961727009917BF /* ParseManagerPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A6E295921E961744009917BF /* ParseManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E295801E961727009917BF /* ParseManagerPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A8B4ABB9F357FED09283AA7F /* PFTestFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D85FB0697B1043A042D7D67E /* PFTestFileManager.m */; };
 		B14117031E5D078E00F70D7A /* PFFileUploadResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B14116FB1E5D078E00F70D7A /* PFFileUploadResult.m */; };
 		B14117041E5D078E00F70D7A /* PFFileUploadResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B14116FB1E5D078E00F70D7A /* PFFileUploadResult.m */; };
 		B14117051E5D078E00F70D7A /* PFFileUploadResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B14116FB1E5D078E00F70D7A /* PFFileUploadResult.m */; };
@@ -2870,6 +2872,7 @@
 		09B119FB1488429D002B5594 /* PFGeoPointPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGeoPointPrivate.h; sourceTree = "<group>"; };
 		09EEA1351435143500E3A3FA /* ParseInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseInternal.h; sourceTree = "<group>"; };
 		0B44F92ADE0CCF861DC90C7D /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		228CCE41FBAFDA2BF0E45901 /* PFTestFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFTestFileManager.h; sourceTree = "<group>"; };
 		403093691C81F0B200CF09F8 /* PFQueryConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFQueryConstants.h; sourceTree = "<group>"; };
 		4030936A1C81F0B200CF09F8 /* PFQueryConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFQueryConstants.m; sourceTree = "<group>"; };
 		4ABF398B1F54592100BBA75A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -3387,6 +3390,7 @@
 		97E18AE51623835600B17A67 /* PFLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLocationManager.m; sourceTree = "<group>"; };
 		A6E295801E961727009917BF /* ParseManagerPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParseManagerPrivate.h; sourceTree = "<group>"; };
 		B14116FB1E5D078E00F70D7A /* PFFileUploadResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFileUploadResult.m; sourceTree = "<group>"; };
+		D85FB0697B1043A042D7D67E /* PFTestFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFTestFileManager.m; sourceTree = "<group>"; };
 		DE08142C2CDCFD1BD56419FE /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		F50C66311B33A708001941A6 /* PFPushUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPushUtilities.h; sourceTree = "<group>"; };
 		F50C66321B33A708001941A6 /* PFPushUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPushUtilities.m; sourceTree = "<group>"; };
@@ -5013,6 +5017,8 @@
 		F5ADB9C41B6C502F002A819E /* FileManager */ = {
 			isa = PBXGroup;
 			children = (
+				228CCE41FBAFDA2BF0E45901 /* PFTestFileManager.h */,
+				D85FB0697B1043A042D7D67E /* PFTestFileManager.m */,
 				F5ADB9C51B6C503E002A819E /* TestFileManager.h */,
 				F5ADB9C61B6C503E002A819E /* TestFileManager.m */,
 			);
@@ -7407,6 +7413,7 @@
 				8149167D1B66D44600EFD14F /* ObjectBatchCommandTests.m in Sources */,
 				814916691B66D44600EFD14F /* FileUnitTests.m in Sources */,
 				F5ADB9C71B6C503E002A819E /* TestFileManager.m in Sources */,
+				A8B4ABB9F357FED09283AA7F /* PFTestFileManager.m in Sources */,
 				814916331B66D44500EFD14F /* AnalyticsUnitTests.m in Sources */,
 				F51050A01B6AA4D100749060 /* ExtensionDataSharingTests.m in Sources */,
 				814916B91B66D44600EFD14F /* PushMobileTests.m in Sources */,
@@ -7598,6 +7605,7 @@
 				8149166A1B66D44600EFD14F /* FileUnitTests.m in Sources */,
 				814916341B66D44500EFD14F /* AnalyticsUnitTests.m in Sources */,
 				F5ADB9C81B6C503E002A819E /* TestFileManager.m in Sources */,
+				01E60F8A8E9B602591E0B5CC /* PFTestFileManager.m in Sources */,
 				814916921B66D44600EFD14F /* ObjectSubclassingControllerTests.m in Sources */,
 				814916C21B66D44600EFD14F /* QueryControllerUnitTests.m in Sources */,
 				8149169A1B66D44600EFD14F /* ObjectUtilitiesTests.m in Sources */,

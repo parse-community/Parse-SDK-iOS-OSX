@@ -15,6 +15,7 @@
 #import "PFJSONSerialization.h"
 #import "PFObjectLocalIdStore.h"
 #import "PFTestCase.h"
+#import "PFTestFileManager.h"
 
 @interface ObjectLocalIdStoreTests : PFTestCase
 
@@ -28,7 +29,7 @@
 
 - (id<PFFileManagerProvider>)mockedDataSource {
     id<PFFileManagerProvider> dataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
-    [OCMStub(dataSource.fileManager) andReturn:PFStrictClassMock([PFFileManager class])];
+    [OCMStub(dataSource.fileManager) andReturn:PFStrictClassMock([PFTestFileManager class])];
     return dataSource;
 }
 
