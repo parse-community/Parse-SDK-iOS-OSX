@@ -1,3 +1,10 @@
+## [7.0.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/7.0.0...7.0.1) (2026-10-22)
+
+
+### Bug Fixes
+
+* App crashes when query reads cached result containing `className` ([#1926](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1926)) ([f7812ad](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/f7812ade1e46b9212d73c82f7b2eadefdacdf290))
+
 # [7.0.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/6.2.0...7.0.0) (2026-10-21)
 
 
