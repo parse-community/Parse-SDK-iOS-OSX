@@ -66,4 +66,10 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
 - (void)terminate NS_REQUIRES_SUPER;
 - (void)removeAllCommands NS_REQUIRES_SUPER;
 
+/**
+ Waits for the current run of commands to finish. If the run waits to retry a command, it stops waiting
+ without retrying the command, which stays in the queue. Call this after `pause`, so that no new run starts.
+ */
+- (void)waitForRunningCommands;
+
 @end

@@ -205,13 +205,17 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 }
 
 - (void)clearEventuallyQueue {
+    __block PFEventuallyQueue *queue = nil;
     dispatch_sync(_preloadQueue, ^{
         dispatch_sync(self->_eventuallyQueueAccessQueue, ^{
             [self->_eventuallyQueue removeAllCommands];
             [self->_eventuallyQueue pause];
+            queue = self->_eventuallyQueue;
             self->_eventuallyQueue = nil;
         });
     });
+    // Wait for commands that are already running, as they may still access the local datastore
+    [queue waitForRunningCommands];
 }
 
 ///--------------------------------------

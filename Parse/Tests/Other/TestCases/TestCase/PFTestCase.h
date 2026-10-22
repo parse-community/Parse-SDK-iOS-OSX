@@ -28,6 +28,15 @@
 - (void)waitForTestExpectations;
 
 ///--------------------------------------
+#pragma mark - Application
+///--------------------------------------
+
+/**
+ Waits once per process for the application to be ready to initialize Parse.
+ */
+- (void)warmUpApplication;
+
+///--------------------------------------
 #pragma mark - File Asserts
 ///--------------------------------------
 

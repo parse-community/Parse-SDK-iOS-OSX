@@ -11,6 +11,7 @@
 
 @import Bolts;
 
+#import "PFApplication.h"
 #import "PFTestSwizzlingUtilities.h"
 
 @interface BFTask ()
@@ -107,6 +108,23 @@
 
 - (void)waitForTestExpectations {
     [self waitForExpectationsWithTimeout:25.0 handler:nil];
+}
+
+///--------------------------------------
+#pragma mark - Application
+///--------------------------------------
+
+- (void)warmUpApplication {
+    // On a freshly booted iOS 27 simulator, PFApplication's first read of the app icon badge number on the main queue takes minutes
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [PFApplication currentApplication];
+        XCTestExpectation *badgeRead = [self expectationWithDescription:@"Read app icon badge number"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [badgeRead fulfill];
+        });
+        [self waitForExpectations:@[badgeRead] timeout:600];
+    });
 }
 
 ///--------------------------------------
