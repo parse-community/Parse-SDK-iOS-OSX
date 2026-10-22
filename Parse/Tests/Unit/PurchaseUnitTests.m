@@ -15,6 +15,7 @@
 #import "PFFileManager.h"
 #import "PFPaymentTransactionObserver_Private.h"
 #import "PFPurchaseController.h"
+#import "PFTestFileManager.h"
 #import "PFTestSKPaymentTransaction.h"
 #import "PFTestSKProduct.h"
 #import "PFUnitTestCase.h"
@@ -39,7 +40,7 @@
     id dataSource = PFStrictProtocolMock(@protocol(PurchaseControllerDataSource));
     id commandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
     OCMStub([dataSource commandRunner]).andReturn(commandRunner);
-    id fileManager = PFStrictClassMock([PFFileManager class]);
+    id fileManager = PFStrictClassMock([PFTestFileManager class]);
     OCMStub([dataSource fileManager]).andReturn(fileManager);
     id bundle = PFStrictClassMock([NSBundle class]);
 

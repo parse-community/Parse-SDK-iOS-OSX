@@ -17,6 +17,7 @@
 #import "PFFileManager.h"
 #import "PFMutableFileState.h"
 #import "PFTestCase.h"
+#import "PFTestFileManager.h"
 
 @protocol FileControllerDataSource <PFCommandRunnerProvider, PFFileManagerProvider>
 
@@ -51,7 +52,7 @@
     id mockedCommandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
     OCMStub([mockedDataSource commandRunner]).andReturn(mockedCommandRunner);
 
-    id mockedFileManager = PFStrictClassMock([PFFileManager class]);
+    id mockedFileManager = PFStrictClassMock([PFTestFileManager class]);
 
     OCMStub([mockedDataSource fileManager]).andReturn(mockedFileManager);
     OCMStub([mockedFileManager parseLocalSandboxDataDirectoryPath]).andReturn([self temporaryDirectory]);
@@ -449,7 +450,7 @@
 - (void)testUploadCancel {
     id mockedDataSource = PFStrictProtocolMock(@protocol(FileControllerDataSource));
     id mockedCommandRunner = PFStrictProtocolMock(@protocol(PFCommandRunning));
-    id mockedFileManager = PFStrictClassMock([PFFileManager class]);
+    id mockedFileManager = PFStrictClassMock([PFTestFileManager class]);
 
     NSString *temporaryPath = [self temporaryDirectory];
     NSString *downloadsPath = [temporaryPath stringByAppendingPathComponent:@"downloads"];
@@ -496,7 +497,7 @@
 
 - (void)testClearFileCache {
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
-    id mockedFileManager = PFStrictClassMock([PFFileManager class]);
+    id mockedFileManager = PFStrictClassMock([PFTestFileManager class]);
 
     NSString *temporaryPath = [self temporaryDirectory];
     NSString *downloadsPath = [temporaryPath stringByAppendingPathComponent:@"downloads"];
@@ -522,7 +523,7 @@
 
 - (void)testClearAllFilesCache {
     id mockedDataSource = PFStrictProtocolMock(@protocol(PFFileManagerProvider));
-    id mockedFileManager = PFStrictClassMock([PFFileManager class]);
+    id mockedFileManager = PFStrictClassMock([PFTestFileManager class]);
 
     NSString *temporaryPath = [self temporaryDirectory];
     NSString *downloadsPath = [temporaryPath stringByAppendingPathComponent:@"downloads"];
