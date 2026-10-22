@@ -18,7 +18,11 @@ private func parseObject<T: PFObject>(_ objectDictionary: [String:AnyObject]) th
     guard let _ = objectDictionary["objectId"] as? String else {
         throw LiveQueryErrors.InvalidJSONError(json: objectDictionary, expectedKey: "objectId")
     }
-    guard let object =  PFDecoder.object().decode(objectDictionary) as? T else {
+
+    // Parse Server may omit __type in event objects, but PFDecoder needs it to decode a PFObject
+    var typedObjectDictionary = objectDictionary
+    typedObjectDictionary["__type"] = "Object" as AnyObject
+    guard let object = PFDecoder.object().decode(typedObjectDictionary) as? T else {
         throw LiveQueryErrors.InvalidJSONObject(json: objectDictionary, details: "cannot decode json into \(T.self)")
     }
 
