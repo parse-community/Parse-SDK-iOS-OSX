@@ -205,6 +205,16 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     });
 }
 
+- (void)waitForRunningCommands {
+    // Stop a run of commands that waits to retry a command
+    dispatch_sync(_synchronizationQueue, ^{
+        if (self->_retryingSemaphore) {
+            dispatch_semaphore_signal(self->_retryingSemaphore);
+        }
+    });
+    dispatch_sync(_processingQueue, ^{});
+}
+
 ///--------------------------------------
 #pragma mark - Running Commands
 ///--------------------------------------
@@ -264,16 +274,22 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
                                error.code != kPFErrorConnectionFailed));
 
             if (!permanent) {
+                __block dispatch_semaphore_t semaphore = NULL;
+                dispatch_sync(_synchronizationQueue, ^{
+                    // Stop instead of waiting to retry if the queue is paused; checked on this queue to not miss a wake-up
+                    if (self.running) {
+                        self->_retryingSemaphore = dispatch_semaphore_create(0);
+                        semaphore = self->_retryingSemaphore;
+                    }
+                });
+                if (!semaphore) {
+                    return;
+                }
+
                 PFLogWarning(PFLoggingTagCommon,
                              @"Attempt at runEventually command timed out. Waiting %f seconds. %d retries remaining.",
                              self.retryInterval,
                              (int)retriesCount);
-
-                __block dispatch_semaphore_t semaphore = NULL;
-                dispatch_sync(_synchronizationQueue, ^{
-                    self->_retryingSemaphore = dispatch_semaphore_create(0);
-                    semaphore = self->_retryingSemaphore;
-                });
 
                 dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW,
                                                             (int64_t)(self.retryInterval * NSEC_PER_SEC));
