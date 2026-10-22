@@ -216,6 +216,26 @@
     XCTAssertEqualObjects(object.createdAt, [NSDate dateWithTimeIntervalSince1970:2.0]);
 }
 
+- (void)testDecodingDictionaryWithClassNameAndObjectIdWithoutType {
+    PFDecoder *decoder = [[PFDecoder alloc] init];
+
+    NSDictionary *decoded = [decoder decodeObject:@{ @"dictionary" : @{@"className" : @"Yolo",
+                                                                       @"objectId" : @"123",
+                                                                       @"name" : @"yarr",
+                                                                       @"date" : @{@"__type" : @"Date",
+                                                                                   @"iso" : @"1970-01-01T00:00:01.000Z"}} }];
+    XCTAssertNotNil(decoded);
+
+    NSDictionary *dictionary = decoded[@"dictionary"];
+    XCTAssertNotNil(dictionary);
+    PFAssertIsKindOfClass(dictionary, [NSDictionary class]);
+
+    XCTAssertEqualObjects(dictionary[@"className"], @"Yolo");
+    XCTAssertEqualObjects(dictionary[@"objectId"], @"123");
+    XCTAssertEqualObjects(dictionary[@"name"], @"yarr");
+    XCTAssertEqualObjects(dictionary[@"date"], [NSDate dateWithTimeIntervalSince1970:1.0]);
+}
+
 - (void)testDecodingUnknownType {
     PFDecoder *decoder = [[PFDecoder alloc] init];
 
