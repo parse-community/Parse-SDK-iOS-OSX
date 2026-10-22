@@ -19,7 +19,7 @@ private func parseObject<T: PFObject>(_ objectDictionary: [String:AnyObject]) th
         throw LiveQueryErrors.InvalidJSONError(json: objectDictionary, expectedKey: "objectId")
     }
 
-    // Parse Server may omit __type in event objects, but PFDecoder needs it to decode a PFObject
+    // Event objects are Parse Objects by protocol, but PFDecoder needs __type to decode them
     var typedObjectDictionary = objectDictionary
     typedObjectDictionary["__type"] = "Object" as AnyObject
     guard let object = PFDecoder.object().decode(typedObjectDictionary) as? T else {
