@@ -60,6 +60,22 @@
     return mockedDataSource;
 }
 
+// Completes the download that the streams read from and waits until it has also cached the file, so it can't outlive the test
+- (void)completeDownloadWithTaskCompletionSource:(BFTaskCompletionSource *)taskCompletionSource
+                                         streams:(NSArray<NSInputStream *> *)streams {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"downloadFinished"];
+    expectation.expectedFulfillmentCount = streams.count;
+    id mockedStreamDelegate = PFProtocolMock(@protocol(NSStreamDelegate));
+    OCMStub([mockedStreamDelegate stream:OCMOCK_ANY handleEvent:NSStreamEventHasBytesAvailable]).andDo(^(NSInvocation *invocation) {
+        [expectation fulfill];
+    });
+    for (NSInputStream *stream in streams) {
+        stream.delegate = mockedStreamDelegate;
+    }
+    [taskCompletionSource trySetResult:nil];
+    [self waitForExpectations:@[ expectation ] timeout:25.0];
+}
+
 ///--------------------------------------
 #pragma mark - XCTestCase
 ///--------------------------------------
@@ -290,6 +306,8 @@
     id mockedFileManager = [mockedDataSource fileManager];
     OCMStub([mockedFileManager parseCacheItemPathForPathComponent:@"PFFileCache"]).andReturn(downloadsPath);
 
+    BFTaskCompletionSource *taskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
+
     id mockedCommandRunner = [mockedDataSource commandRunner];
     OCMStub([mockedCommandRunner runFileDownloadCommandAsyncWithFileURL:tempPath
                                                          targetFilePath:[OCMArg isNotNil]
@@ -300,7 +318,7 @@
             block(100);
         }
         return block != nil;
-    }]]).andReturn([BFTask taskWithResult:nil]);
+    }]]).andReturn(taskCompletionSource.task);
 
     PFFileController *fileController = [PFFileController controllerWithDataSource:mockedDataSource];
     PFFileState *fileState = [[PFMutableFileState alloc] initWithName:@"sampleData"
@@ -308,6 +326,7 @@
                                                              mimeType:@"application/octet-stream"];
 
     __block int progress = -1;
+    __block NSInputStream *stream = nil;
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [[fileController downloadFileStreamAsyncWithState:fileState
                                     cancellationToken:nil
@@ -318,10 +337,13 @@
                                         }] continueWithBlock:^id(BFTask *task) {
                                             XCTAssertNil(task.error);
                                             PFAssertIsKindOfClass(task.result, [NSInputStream class]);
+                                            stream = task.result;
                                             [expectation fulfill];
                                             return nil;
                                         }];
     [self waitForTestExpectations];
+
+    [self completeDownloadWithTaskCompletionSource:taskCompletionSource streams:@[ stream ]];
 }
 
 - (void)testDownloadStreamSharesOperations {
@@ -356,6 +378,7 @@
                                                             urlString:[tempPath absoluteString]
                                                              mimeType:@"application/octet-stream"];
 
+    __block NSInputStream *firstStream = nil;
     XCTestExpectation *firstExpectation = [self expectationWithDescription:@"downloadFileAsyncWithStateNumber1"];
     [[fileController downloadFileStreamAsyncWithState:fileState cancellationToken:nil progressBlock:^(int percentDone) {
         XCTAssertGreaterThan(percentDone, 0);
@@ -363,6 +386,7 @@
     }] continueWithBlock:^id(BFTask *task) {
         XCTAssertNil(task.error);
         PFAssertIsKindOfClass(task.result, [NSInputStream class]);
+        firstStream = task.result;
         [firstExpectation fulfill];
         return nil;
     }];
@@ -373,6 +397,7 @@
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
 
+    __block NSInputStream *secondStream = nil;
     XCTestExpectation *secondExpectation = [self expectationWithDescription:@"downloadFileAsyncWithStateNumber2"];
     [[fileController downloadFileStreamAsyncWithState:fileState cancellationToken:nil progressBlock:^(int percentDone) {
         XCTAssertGreaterThan(percentDone, 0);
@@ -381,6 +406,7 @@
     }] continueWithBlock:^id(BFTask *task) {
         XCTAssertNil(task.error);
         PFAssertIsKindOfClass(task.result, [NSInputStream class]);
+        secondStream = task.result;
         [secondExpectation fulfill];
         return nil;
     }];
@@ -392,9 +418,9 @@
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
 
-    [taskCompletionSource trySetResult:nil];
-
     [self waitForExpectations:@[firstExpectation, secondExpectation] timeout:50.0];
+
+    [self completeDownloadWithTaskCompletionSource:taskCompletionSource streams:@[ firstStream, secondStream ]];
 }
 
 - (void)testUpload {
