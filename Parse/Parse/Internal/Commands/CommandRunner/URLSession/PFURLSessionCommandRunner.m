@@ -46,7 +46,6 @@
 
 @synthesize applicationId = _applicationId;
 @synthesize clientKey = _clientKey;
-@synthesize serverURL = _serverURL;
 @synthesize initialRetryDelay = _initialRetryDelay;
 
 ///--------------------------------------
@@ -82,7 +81,6 @@
     _retryAttempts = retryAttempts;
     _applicationId = [applicationId copy];
     _clientKey = [clientKey copy];
-    _serverURL = serverURL;
 
     return self;
 }
@@ -138,6 +136,15 @@
 
 - (id<PFInstallationIdentifierStoreProvider>)dataSource {
     return _requestConstructor.dataSource;
+}
+
+- (NSURL *)serverURL {
+    return _requestConstructor.serverURL;
+}
+
+- (void)setServerURL:(NSURL *)serverURL {
+    // The request constructor reads the server URL whenever it constructs a request
+    _requestConstructor.serverURL = serverURL;
 }
 
 ///--------------------------------------

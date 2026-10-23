@@ -75,6 +75,18 @@ PFInstallationIdentifierStoreProvider>
 - (void)loadOfflineStoreWithOptions:(PFOfflineStoreOptions)options;
 
 ///--------------------------------------
+#pragma mark - Server
+///--------------------------------------
+
+/**
+ Sets the server URL of the configuration and the command runner. Requests that are already being sent are
+ completed against the previous server URL.
+
+ @param server The server URL to set.
+ */
+- (void)setServer:(NSString *)server;
+
+///--------------------------------------
 #pragma mark - Eventually Queue
 ///--------------------------------------
 

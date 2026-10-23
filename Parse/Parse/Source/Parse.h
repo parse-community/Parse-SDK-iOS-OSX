@@ -110,10 +110,13 @@ NS_ASSUME_NONNULL_BEGIN
  Sets the server URL to connect to Parse Server.
  @discussion This can be used to update the server URL after the client was initialized. An example use case is server
  connection failover, where the client connects to another URL if the server becomes unreachable at the current URL. The
- client will be re-initialized maintaining the same configuration. Any pending requests will still be made against the previous
- server URL that was set at the time the request was queued.
+ client keeps its configuration and state, for example the current user and the pending commands of delayed methods such
+ as saveEventually. Requests to the server that are already being sent are completed against the previous server URL.
+ All other requests to the server, including retries and pending commands of delayed methods, are made against the new
+ server URL. URLs of files that were already received don't change.
  @warning The new server URL must point to a Parse Server that connects to the same database. Otherwise, issues may
- arise related to locally cached data or delayed methods such as saveEventually.
+ arise related to locally cached data or delayed methods such as saveEventually. Batch requests that are in progress,
+ for example of saveAll, fail if the new server URL has a different path.
  @param server  The server URL to set.
  */
 + (void)setServer:(nonnull NSString *)server;

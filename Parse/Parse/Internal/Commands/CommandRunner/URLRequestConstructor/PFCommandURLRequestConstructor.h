@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PFCommandURLRequestConstructor : NSObject
 
 @property (nonatomic, weak, readonly) id<PFInstallationIdentifierStoreProvider> dataSource;
-@property (nonatomic, strong, readonly) NSURL *serverURL;
+@property (atomic, strong) NSURL *serverURL;
 
 ///--------------------------------------
 #pragma mark - Init
