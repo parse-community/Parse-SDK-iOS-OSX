@@ -133,6 +133,8 @@
     NSString *versionPrefix = @"apple-tv";
 #elif TARGET_OS_WATCH
     NSString *versionPrefix = @"apple-watch";
+#elif TARGET_OS_VISION
+    NSString *versionPrefix = @"vision";
 #endif
 
     NSMutableDictionary *mutableHeaders = [NSMutableDictionary dictionary];

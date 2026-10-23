@@ -13,7 +13,7 @@
 
 #if TARGET_OS_WATCH
 #import <WatchKit/WatchKit.h>
-#elif TARGET_OS_IOS || TARGET_OS_TV
+#elif TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_VISION
 #import <UIKit/UIKit.h>
 #elif PF_TARGET_OS_OSX
 #import <CoreServices/CoreServices.h>
@@ -77,7 +77,7 @@ static NSString *PFDeviceSysctlByName(NSString *name) {
     if (!name) {
 #if TARGET_OS_WATCH
         name = [WKInterfaceDevice currentDevice].model;
-#elif TARGET_OS_IOS || TARGET_OS_TV
+#elif TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_VISION
         name = [UIDevice currentDevice].model;
 #elif TARGET_OS_MAC
         name = @"Mac";
@@ -95,7 +95,7 @@ static NSString *PFDeviceSysctlByName(NSString *name) {
     return version;
 }
 - (NSString *)operatingSystemVersion {
-#if TARGET_OS_IOS
+#if TARGET_OS_IOS || TARGET_OS_VISION
     return [UIDevice currentDevice].systemVersion;
 #elif TARGET_OS_WATCH || TARGET_OS_TV
     NSOperatingSystemVersion version = [NSProcessInfo processInfo].operatingSystemVersion;
