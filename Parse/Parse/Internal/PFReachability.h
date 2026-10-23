@@ -45,6 +45,12 @@ PF_WATCH_UNAVAILABLE @interface PFReachability : NSObject
 + (instancetype)sharedParseReachability;
 
 /*
+ Monitors the host of the URL instead of the previous host, unless it's the same host,
+ and notifies listeners of its state
+ */
+- (void)monitorHostOfURL:(NSURL *)url;
+
+/*
  Adds a weak reference to the listener,
  callbacks are executed on the main thread when status or flags change.
  */

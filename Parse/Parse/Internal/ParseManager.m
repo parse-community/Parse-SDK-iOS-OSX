@@ -37,6 +37,7 @@
 #if !TARGET_OS_WATCH
 #import "PFPushManager.h"
 #import "PFInstallation.h"
+#import "PFReachability.h"
 #endif
 
 #if TARGET_OS_IOS || TARGET_OS_TV
@@ -165,9 +166,15 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 - (void)setServer:(NSString *)server {
     // Throws for an invalid server URL before anything is changed
     self.configuration.server = server;
+    NSURL *serverURL = [NSURL URLWithString:server];
 
     // Change the server URL of the command runner, as releasing the runner would cancel the requests it is sending
-    self.commandRunner.serverURL = [NSURL URLWithString:server];
+    self.commandRunner.serverURL = serverURL;
+
+#if !TARGET_OS_WATCH
+    // Monitor the reachability of the new server, as the eventually queue sends commands only while it's reachable
+    [[PFReachability sharedParseReachability] monitorHostOfURL:serverURL];
+#endif
 
     // Retry pending commands with the new server URL instead of after the retry interval, without waiting for the queue
     dispatch_async(_eventuallyQueueAccessQueue, ^{

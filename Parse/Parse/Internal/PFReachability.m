@@ -23,17 +23,20 @@
     dispatch_queue_t _synchronizationQueue;
     NSMutableArray *_listenersArray;
 
+    NSString *_host;
     SCNetworkReachabilityRef _networkReachability;
 }
 
 @property (nonatomic, assign, readwrite) SCNetworkReachabilityFlags flags;
+
+- (void)_setFlags:(SCNetworkReachabilityFlags)flags ofNetworkReachability:(SCNetworkReachabilityRef)networkReachability;
 
 @end
 
 static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, void *info) {
     NSCAssert(info != NULL, @"info was NULL in ReachabilityCallback");
     PFReachability *reachability = (__bridge PFReachability *)info;
-    reachability.flags = flags;
+    [reachability _setFlags:flags ofNetworkReachability:target];
 }
 
 @implementation PFReachability
@@ -91,7 +94,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 
     _synchronizationQueue = dispatch_queue_create("com.parse.reachability", DISPATCH_QUEUE_CONCURRENT);
     _listenersArray = [NSMutableArray array];
-    [self _startMonitoringReachabilityWithURL:url];
+    [self monitorHostOfURL:url];
 
     return self;
 }
@@ -111,12 +114,7 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 ///--------------------------------------
 
 - (void)dealloc {
-    if (_networkReachability != NULL) {
-        SCNetworkReachabilitySetCallback(_networkReachability, NULL, NULL);
-        SCNetworkReachabilitySetDispatchQueue(_networkReachability, NULL);
-        CFRelease(_networkReachability);
-        _networkReachability = NULL;
-    }
+    [self _stopMonitoringReachability];
 }
 
 ///--------------------------------------
@@ -173,6 +171,19 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
     });
 }
 
+- (void)_setFlags:(SCNetworkReachabilityFlags)flags ofNetworkReachability:(SCNetworkReachabilityRef)networkReachability {
+    // Retained by the block, so that the reachability of another host can't get the same address meanwhile
+    id target = (__bridge id)networkReachability;
+    dispatch_barrier_async(_synchronizationQueue, ^{
+        // Ignore flags of a previous host that were set while the host changed
+        if ((__bridge SCNetworkReachabilityRef)target != self->_networkReachability) {
+            return;
+        }
+        self->_flags = flags;
+        [self _notifyAllListeners];
+    });
+}
+
 - (SCNetworkReachabilityFlags)flags {
     __block SCNetworkReachabilityFlags flags;
     dispatch_sync(_synchronizationQueue, ^{
@@ -189,14 +200,23 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
 #pragma mark - Reachability
 ///--------------------------------------
 
-- (void)_startMonitoringReachabilityWithURL:(NSURL *)url {
+- (void)monitorHostOfURL:(NSURL *)url {
     dispatch_barrier_async(_synchronizationQueue, ^{
+        // Keep monitoring the same host, as a new reachability reports a host name as reachable until it's resolved
+        if (self->_networkReachability != NULL && url.host && [url.host caseInsensitiveCompare:self->_host] == NSOrderedSame) {
+            return;
+        }
+        [self _stopMonitoringReachability];
+
+        self->_host = [url.host copy];
         self->_networkReachability = SCNetworkReachabilityCreateWithName(NULL, url.host.UTF8String);
         if (self->_networkReachability != NULL) {
-            // Set the initial flags
+            // Set the initial flags, or keep the flags of the previous host if they are unknown
             SCNetworkReachabilityFlags flags;
-            SCNetworkReachabilityGetFlags(self->_networkReachability, &flags);
-            self.flags = flags;
+            if (SCNetworkReachabilityGetFlags(self->_networkReachability, &flags)) {
+                self->_flags = flags;
+                [self _notifyAllListeners];
+            }
 
             // Set up notification for changes in reachability.
             SCNetworkReachabilityContext context = {0, (__bridge void *)(self), NULL, NULL, NULL};
@@ -207,6 +227,15 @@ static void _reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReac
             }
         }
     });
+}
+
+- (void)_stopMonitoringReachability {
+    if (_networkReachability != NULL) {
+        SCNetworkReachabilitySetCallback(_networkReachability, NULL, NULL);
+        SCNetworkReachabilitySetDispatchQueue(_networkReachability, NULL);
+        CFRelease(_networkReachability);
+        _networkReachability = NULL;
+    }
 }
 
 @end
