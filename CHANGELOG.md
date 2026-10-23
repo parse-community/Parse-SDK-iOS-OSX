@@ -1,3 +1,10 @@
+## [7.0.3](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/7.0.2...7.0.3) (2026-10-23)
+
+
+### Bug Fixes
+
+* Pending `saveEventually` requests wait for previous server host to be reachable after `Parse.setServer` ([#1937](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1937)) ([3c4bdb2](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/3c4bdb2d07f212a54a8df8b67e42253b59e0aea7))
+
 ## [7.0.2](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/7.0.1...7.0.2) (2026-10-23)
 
 
