@@ -215,6 +215,17 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     dispatch_sync(_processingQueue, ^{});
 }
 
+- (void)retryPendingCommands {
+    dispatch_sync(_synchronizationQueue, ^{
+        // Stop a run of commands that waits, or is about to wait, to retry a command, and start a new run that retries it
+        self->_retryRequested = YES;
+        if (self->_retryingSemaphore) {
+            dispatch_semaphore_signal(self->_retryingSemaphore);
+        }
+        dispatch_source_merge_data(self->_processingQueueSource, 1);
+    });
+}
+
 ///--------------------------------------
 #pragma mark - Running Commands
 ///--------------------------------------
@@ -222,6 +233,10 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 - (void)_runCommands {
     PFAssertIsOnDispatchQueue(_processingQueue);
 
+    dispatch_sync(_synchronizationQueue, ^{
+        // This run retries the commands that a retry was requested for
+        self->_retryRequested = NO;
+    });
     [self _runCommandsWithRetriesCount:self.maxAttemptsCount];
 }
 
@@ -276,8 +291,8 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
             if (!permanent) {
                 __block dispatch_semaphore_t semaphore = NULL;
                 dispatch_sync(_synchronizationQueue, ^{
-                    // Stop instead of waiting to retry if the queue is paused; checked on this queue to not miss a wake-up
-                    if (self.running) {
+                    // Stop instead of waiting to retry if the queue is paused or a new run retries the command; checked on this queue to not miss a wake-up
+                    if (self.running && !self->_retryRequested) {
                         self->_retryingSemaphore = dispatch_semaphore_create(0);
                         semaphore = self->_retryingSemaphore;
                     }

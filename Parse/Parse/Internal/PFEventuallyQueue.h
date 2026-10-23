@@ -72,4 +72,11 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
  */
 - (void)waitForRunningCommands;
 
+/**
+ Retries pending commands right away instead of after the retry interval, for example after the server URL changed.
+ A command that waits to be retried, or that is running and then fails with an error that is retried, is retried by
+ a new run of commands. This doesn't wait for commands to run.
+ */
+- (void)retryPendingCommands;
+
 @end

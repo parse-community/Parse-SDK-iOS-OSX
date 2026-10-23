@@ -31,6 +31,10 @@ extern NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval;
     dispatch_source_t _processingQueueSource;
 
     dispatch_semaphore_t _retryingSemaphore;
+    /**
+     Whether a run of commands stops instead of waiting to retry a command, as a new run retries it right away.
+     */
+    BOOL _retryRequested;
 
     NSMutableDictionary *_taskCompletionSources;
 

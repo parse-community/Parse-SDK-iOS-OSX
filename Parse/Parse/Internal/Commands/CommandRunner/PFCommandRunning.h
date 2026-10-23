@@ -33,7 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSString *applicationId;
 @property (nonatomic, copy, readonly) NSString *clientKey;
-@property (nonatomic, strong, readonly) NSURL *serverURL;
+/**
+ The server URL of requests. Requests that are created after it is set are sent to the new server URL.
+ */
+@property (atomic, strong) NSURL *serverURL;
 
 @property (nonatomic, assign) NSTimeInterval initialRetryDelay;
 

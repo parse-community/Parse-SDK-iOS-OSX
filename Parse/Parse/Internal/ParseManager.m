@@ -31,6 +31,7 @@
 #import "PFUser.h"
 #import "PFURLSessionCommandRunner.h"
 #import "PFPersistenceController.h"
+#import "ParseClientConfiguration_Private.h"
 #import "ParseManagerPrivate.h"
 
 #if !TARGET_OS_WATCH
@@ -155,6 +156,23 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 
 - (BOOL)isOfflineStoreLoaded {
     return self.configuration.localDatastoreEnabled;
+}
+
+///--------------------------------------
+#pragma mark - Server
+///--------------------------------------
+
+- (void)setServer:(NSString *)server {
+    // Throws for an invalid server URL before anything is changed
+    self.configuration.server = server;
+
+    // Change the server URL of the command runner, as releasing the runner would cancel the requests it is sending
+    self.commandRunner.serverURL = [NSURL URLWithString:server];
+
+    // Retry pending commands with the new server URL instead of after the retry interval, without waiting for the queue
+    dispatch_async(_eventuallyQueueAccessQueue, ^{
+        [self->_eventuallyQueue retryPendingCommands];
+    });
 }
 
 ///--------------------------------------
