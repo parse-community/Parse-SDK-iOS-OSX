@@ -165,6 +165,18 @@ static dispatch_time_t PFTimeFromNow(NSTimeInterval seconds) {
     _notReachable = !reachable;
 }
 
+- (void)waitForReachability {
+    // The reachability notifies listeners in a block that it dispatches while it changes the host
+    dispatch_queue_t queue = [[PFReachability sharedParseReachability] valueForKey:@"_synchronizationQueue"];
+    dispatch_barrier_sync(queue, ^{});
+    dispatch_barrier_sync(queue, ^{});
+}
+
+- (void)monitorReachabilityOfServer:(NSString *)server {
+    [[PFReachability sharedParseReachability] monitorHostOfURL:[NSURL URLWithString:server]];
+    [self waitForReachability];
+}
+
 - (BOOL)waitForCondition:(BOOL (^)(void))condition {
     NSDate *timeout = [NSDate dateWithTimeIntervalSinceNow:10];
     while (!condition()) {
@@ -200,6 +212,8 @@ static dispatch_time_t PFTimeFromNow(NSTimeInterval seconds) {
 
 - (void)assertSetServerSendsCommandOnceEnqueuedBeforeSetServer:(BOOL)enqueuedBeforeSetServer {
     [self initializeParse];
+    // Monitor a loopback address, whose reachability doesn't change, so that setting the server to the same host keeps queues offline
+    [self monitorReachabilityOfServer:@"https://127.0.0.1/parse"];
     // Keep the eventually queues of other managers offline, as they would also run the pending command
     [self simulateReachable:NO];
     ParseManager *manager = [Parse _currentManager];
@@ -214,7 +228,7 @@ static dispatch_time_t PFTimeFromNow(NSTimeInterval seconds) {
         saveTask = [self saveEventuallyObject:object inQueue:queue];
     }
 
-    [Parse setServer:@"https://example.com/parse"];
+    [Parse setServer:@"https://127.0.0.1/other"];
     PFEventuallyQueue *currentQueue = [Parse _currentManager].eventuallyQueue;
     NSMutableArray<PFRESTCommand *> *commands = [NSMutableArray array];
     XCTestExpectation *commandSent = [self expectationWithDescription:@"Command sent"];
@@ -366,6 +380,27 @@ static dispatch_time_t PFTimeFromNow(NSTimeInterval seconds) {
     XCTAssertEqualObjects(commandRunner.serverURL, [NSURL URLWithString:@"https://example.org/parse"]);
 }
 
+- (void)testSetServerMonitorsReachabilityOfNewHost {
+    [self initializeParse];
+    // Start from a loopback address, whose reachability doesn't change, as previous tests may have set another host
+    [self monitorReachabilityOfServer:@"https://127.0.0.1/parse"];
+    PFEventuallyQueue *queue = [Parse _currentManager].eventuallyQueue;
+    queue.connected = NO;
+
+    // Setting a server on the same host keeps monitoring the host
+    [Parse setServer:@"https://127.0.0.1/other"];
+    [self waitForReachability];
+    XCTAssertFalse(queue.connected);
+
+    // Setting a server on another host monitors the new host, which is reachable without network
+    ParseSetupUnitTestsReachabilityListener *listener = [[ParseSetupUnitTestsReachabilityListener alloc] initWithState:PFReachabilityStateReachableViaWiFi];
+    [[PFReachability sharedParseReachability] addListener:listener];
+    [Parse setServer:@"https://127.0.0.2/parse"];
+    XCTAssertEqual(dispatch_semaphore_wait(listener.notified, PFTimeFromNow(10)), 0L);
+    [[PFReachability sharedParseReachability] removeListener:listener];
+    XCTAssertTrue(queue.connected);
+}
+
 - (void)testSetServerSendsPendingCommandOnce {
     [self assertSetServerSendsCommandOnceEnqueuedBeforeSetServer:NO];
 }
@@ -386,6 +421,8 @@ static dispatch_time_t PFTimeFromNow(NSTimeInterval seconds) {
 
 - (void)testSetServerRetriesCommandWaitingToBeRetried {
     [self initializeParse];
+    // Monitor a loopback address, whose reachability doesn't change, so that setting the server to the same host keeps queues offline
+    [self monitorReachabilityOfServer:@"https://127.0.0.1/parse"];
     // Keep the eventually queues of other managers offline, so that only this queue runs commands
     [self simulateReachable:NO];
     PFEventuallyQueue *queue = [Parse _currentManager].eventuallyQueue;
@@ -411,7 +448,7 @@ static dispatch_time_t PFTimeFromNow(NSTimeInterval seconds) {
     }];
 
     // The command is retried with the new server right away instead of after the retry interval
-    [Parse setServer:@"https://example.com/parse"];
+    [Parse setServer:@"https://127.0.0.1/other"];
     [self waitForExpectations:@[ commandSent ] timeout:10];
     [queue waitForRunningCommands];
 
@@ -422,6 +459,8 @@ static dispatch_time_t PFTimeFromNow(NSTimeInterval seconds) {
 
 - (void)testSetServerRetriesRunningCommandThatFails {
     [self initializeParse];
+    // Monitor a loopback address, whose reachability doesn't change, so that setting the server to the same host keeps queues offline
+    [self monitorReachabilityOfServer:@"https://127.0.0.1/parse"];
     // Keep the eventually queues of other managers offline, so that only this queue runs commands
     [self simulateReachable:NO];
     PFEventuallyQueue *queue = [Parse _currentManager].eventuallyQueue;
@@ -450,7 +489,7 @@ static dispatch_time_t PFTimeFromNow(NSTimeInterval seconds) {
     // Setting the server doesn't wait for the running command
     dispatch_group_t settingServer = dispatch_group_create();
     dispatch_group_async(settingServer, dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
-        [Parse setServer:@"https://example.com/parse"];
+        [Parse setServer:@"https://127.0.0.1/other"];
     });
     XCTAssertEqual(dispatch_group_wait(settingServer, PFTimeFromNow(10)), 0L);
     // Accessing the queue waits until setting the server asked the queue to retry its commands
