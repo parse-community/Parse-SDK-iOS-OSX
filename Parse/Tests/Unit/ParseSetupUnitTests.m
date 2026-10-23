@@ -384,6 +384,87 @@ static dispatch_time_t PFTimeFromNow(NSTimeInterval seconds) {
     [self assertSetServerSendsCommandOnceEnqueuedBeforeSetServer:YES];
 }
 
+- (void)testSetServerRetriesCommandWaitingToBeRetried {
+    [self initializeParse];
+    // Keep the eventually queues of other managers offline, so that only this queue runs commands
+    [self simulateReachable:NO];
+    PFEventuallyQueue *queue = [Parse _currentManager].eventuallyQueue;
+    [queue pause];
+    queue.connected = YES;
+    [self mockCommandRunnerFailingWithTemporaryErrorAndDo:^{}];
+
+    // The run of commands reads the retry interval once it waits to retry a command
+    dispatch_semaphore_t waitingToRetry = dispatch_semaphore_create(0);
+    id queueMock = PFPartialMock(queue);
+    OCMStub([queueMock retryInterval]).andDo(^(NSInvocation *invocation) {
+        dispatch_semaphore_signal(waitingToRetry);
+    }).andForwardToRealObject();
+    [queue resume];
+    [self enqueueCommandInQueue:queue];
+    XCTAssertEqual(dispatch_semaphore_wait(waitingToRetry, PFTimeFromNow(10)), 0L);
+
+    NSMutableArray<PFRESTCommand *> *commands = [NSMutableArray array];
+    XCTestExpectation *commandSent = [self expectationWithDescription:@"Command sent"];
+    commandSent.assertForOverFulfill = NO;
+    [Parse _currentManager].commandRunner = [self mockCommandRunnerRecordingCommands:commands andDo:^{
+        [commandSent fulfill];
+    }];
+
+    // The command is retried with the new server right away instead of after the retry interval
+    [Parse setServer:@"https://example.com/parse"];
+    [self waitForExpectations:@[ commandSent ] timeout:10];
+    [queue waitForRunningCommands];
+
+    XCTAssertEqual([Parse _currentManager].eventuallyQueue, queue);
+    XCTAssertEqual(commands.count, 1);
+    XCTAssertEqual(queue.commandCount, 0);
+}
+
+- (void)testSetServerRetriesRunningCommandThatFails {
+    [self initializeParse];
+    // Keep the eventually queues of other managers offline, so that only this queue runs commands
+    [self simulateReachable:NO];
+    PFEventuallyQueue *queue = [Parse _currentManager].eventuallyQueue;
+    [queue pause];
+    queue.connected = YES;
+
+    // Block the command until it is released, then fail it with an error that is retried
+    dispatch_semaphore_t commandStarted = dispatch_semaphore_create(0);
+    dispatch_semaphore_t commandReleased = dispatch_semaphore_create(0);
+    [self mockCommandRunnerFailingWithTemporaryErrorAndDo:^{
+        dispatch_semaphore_signal(commandStarted);
+        dispatch_semaphore_wait(commandReleased, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_signal(commandReleased);
+    }];
+    [queue resume];
+    [self enqueueCommandInQueue:queue];
+    XCTAssertEqual(dispatch_semaphore_wait(commandStarted, PFTimeFromNow(10)), 0L);
+
+    NSMutableArray<PFRESTCommand *> *commands = [NSMutableArray array];
+    XCTestExpectation *commandSent = [self expectationWithDescription:@"Command sent"];
+    commandSent.assertForOverFulfill = NO;
+    [Parse _currentManager].commandRunner = [self mockCommandRunnerRecordingCommands:commands andDo:^{
+        [commandSent fulfill];
+    }];
+
+    // Setting the server doesn't wait for the running command
+    dispatch_group_t settingServer = dispatch_group_create();
+    dispatch_group_async(settingServer, dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
+        [Parse setServer:@"https://example.com/parse"];
+    });
+    XCTAssertEqual(dispatch_group_wait(settingServer, PFTimeFromNow(10)), 0L);
+    // Accessing the queue waits until setting the server asked the queue to retry its commands
+    XCTAssertEqual([Parse _currentManager].eventuallyQueue, queue);
+
+    // The command fails after the server was set, so it is retried with the new server right away
+    dispatch_semaphore_signal(commandReleased);
+    [self waitForExpectations:@[ commandSent ] timeout:10];
+    [queue waitForRunningCommands];
+
+    XCTAssertEqual(commands.count, 1);
+    XCTAssertEqual(queue.commandCount, 0);
+}
+
 - (void)testLDSEnabledWithoutInitializer {
     XCTAssertFalse([Parse isLocalDatastoreEnabled]);
     [Parse enableLocalDatastore];

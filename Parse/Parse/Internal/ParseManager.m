@@ -168,6 +168,11 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 
     // Change the server URL of the command runner, as releasing the runner would cancel the requests it is sending
     self.commandRunner.serverURL = [NSURL URLWithString:server];
+
+    // Retry pending commands with the new server URL instead of after the retry interval, without waiting for the queue
+    dispatch_async(_eventuallyQueueAccessQueue, ^{
+        [self->_eventuallyQueue retryPendingCommands];
+    });
 }
 
 ///--------------------------------------

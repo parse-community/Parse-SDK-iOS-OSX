@@ -80,7 +80,7 @@ PFInstallationIdentifierStoreProvider>
 
 /**
  Sets the server URL of the configuration and the command runner. Requests that are already being sent are
- completed against the previous server URL.
+ completed against the previous server URL. The eventually queue retries its pending commands right away.
 
  @param server The server URL to set.
  */

@@ -113,7 +113,8 @@ NS_ASSUME_NONNULL_BEGIN
  client keeps its configuration and state, for example the current user and the pending commands of delayed methods such
  as saveEventually. Requests to the server that are already being sent are completed against the previous server URL.
  All other requests to the server, including retries and pending commands of delayed methods, are made against the new
- server URL. URLs of files that were already received don't change.
+ server URL. Pending commands of delayed methods that wait to be retried are retried right away. URLs of files that were
+ already received don't change.
  @warning The new server URL must point to a Parse Server that connects to the same database. Otherwise, issues may
  arise related to locally cached data or delayed methods such as saveEventually. Batch requests that are in progress,
  for example of saveAll, fail if the new server URL has a different path.
