@@ -31,6 +31,7 @@ static dispatch_time_t PFTimeFromNow(NSTimeInterval seconds) {
 @interface PFReachability (ParseSetupUnitTests)
 
 - (void)setFlags:(SCNetworkReachabilityFlags)flags;
+- (void)_setFlags:(SCNetworkReachabilityFlags)flags ofNetworkReachability:(SCNetworkReachabilityRef)networkReachability;
 
 @end
 
@@ -399,6 +400,18 @@ static dispatch_time_t PFTimeFromNow(NSTimeInterval seconds) {
     XCTAssertEqual(dispatch_semaphore_wait(listener.notified, PFTimeFromNow(10)), 0L);
     [[PFReachability sharedParseReachability] removeListener:listener];
     XCTAssertTrue(queue.connected);
+}
+
+- (void)testReachabilityIgnoresFlagsOfPreviousHost {
+    PFReachability *reachability = [[PFReachability alloc] initWithURL:[NSURL URLWithString:@"https://127.0.0.1/parse"]];
+    XCTAssertNotEqual(reachability.currentState, PFReachabilityStateNotReachable);
+
+    // Flags of a host that is no longer monitored, as set by a callback that ran right before the host changed
+    SCNetworkReachabilityRef previousNetworkReachability = SCNetworkReachabilityCreateWithName(NULL, "127.0.0.2");
+    [reachability _setFlags:0 ofNetworkReachability:previousNetworkReachability];
+    CFRelease(previousNetworkReachability);
+
+    XCTAssertNotEqual(reachability.currentState, PFReachabilityStateNotReachable);
 }
 
 - (void)testSetServerSendsPendingCommandOnce {
