@@ -1,3 +1,10 @@
+## [7.0.2](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/7.0.1...7.0.2) (2026-10-23)
+
+
+### Bug Fixes
+
+* App crashes with "Task should be completed." or sends `saveEventually` requests twice after `Parse.setServer` ([#1934](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1934)) ([955b230](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/955b230dc642eef13d3b812875b07168a665cac4))
+
 ## [7.0.1](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/7.0.0...7.0.1) (2026-10-22)
 
 
