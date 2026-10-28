@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Docs
-gem 'jazzy', '0.15.4'
+gem 'jazzy', '0.15.5'
 gem 'cgi', '0.5.1'
 
 # Development

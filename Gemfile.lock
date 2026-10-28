@@ -79,7 +79,7 @@ GEM
       mutex_m
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
-    jazzy (0.15.4)
+    jazzy (0.15.5)
       activesupport (>= 5.0, < 8)
       cocoapods (~> 1.5)
       logger
@@ -89,7 +89,7 @@ GEM
       rexml (>= 3.2.7, < 4.0)
       rouge (>= 2.0.6, < 5.0)
       sassc (~> 2.1)
-      sqlite3 (~> 1.3)
+      sqlite3 (>= 1.3, < 3.0)
       xcinvoke (~> 0.3.0)
     json (2.19.9)
     liferaft (0.0.6)
@@ -113,8 +113,9 @@ GEM
     sassc (2.4.0)
       ffi (~> 1.9)
     securerandom (0.4.1)
-    sqlite3 (1.7.3)
+    sqlite3 (2.10.2)
       mini_portile2 (~> 2.8.0)
+    sqlite3 (2.10.2-arm64-darwin)
     typhoeus (1.6.0)
       ethon (>= 0.18.0)
     tzinfo (2.0.6)
@@ -137,7 +138,7 @@ PLATFORMS
 
 DEPENDENCIES
   cgi (= 0.5.1)
-  jazzy (= 0.15.4)
+  jazzy (= 0.15.5)
   plist (= 3.7.1)
   rake (= 13.2.1)
   xcpretty (= 0.3.0)
@@ -174,7 +175,7 @@ CHECKSUMS
   gh_inspector (1.1.3) sha256=04cca7171b87164e053aa43147971d3b7f500fcb58177698886b48a9fc4a1939
   httpclient (2.9.0) sha256=4b645958e494b2f86c2f8a2f304c959baa273a310e77a2931ddb986d83e498c8
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
-  jazzy (0.15.4) sha256=d7766c62fe722b0b1b868c05e79be1fab3249ab2279435f3a0adcb1d955a3c4a
+  jazzy (0.15.5) sha256=5bd97aa6e1c0a023eecd8ddd0034a2bf3d291c8eef1d8ba7db2e9829f53804d7
   json (2.19.9) sha256=9b9025b7cdddafa38d316eca0b2358488e42d417045c1b90d216a9fefe46b79a
   liferaft (0.0.6) sha256=631ec13c52d2e62851d4e761f5ff5e090ef26437f92dc451effa3f82fa5a5acd
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
@@ -196,7 +197,8 @@ CHECKSUMS
   ruby-macho (2.5.1) sha256=9075e52e0f9270b552a90b24fcc6219ad149b0d15eae1bc364ecd0ac8984f5c9
   sassc (2.4.0) sha256=4c60a2b0a3b36685c83b80d5789401c2f678c1652e3288315a1551d811d9f83e
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
-  sqlite3 (1.7.3) sha256=fa77f63c709548f46d4e9b6bb45cda52aa3881aa12cc85991132758e8968701c
+  sqlite3 (2.10.2) sha256=f1ea68cd3287f8a49f39a088ac9e4bd0ef4e7f394c3d4a60dd4c7e44b0566964
+  sqlite3 (2.10.2-arm64-darwin) sha256=5b0d235ea037e6dcd1b8387a19d73be571917db9f93044d35741cf933a21a37d
   typhoeus (1.6.0) sha256=bacc41c23e379547e29801dc235cd1699b70b955a1ba3d32b2b877aa844c331d
   tzinfo (2.0.6) sha256=8daf828cc77bcf7d63b0e3bdb6caa47e2272dcfaf4fbfe46f8c3a9df087a829b
   xcinvoke (0.3.0) sha256=67e936a5afa64659c58687c3d316947e287dcddb63769cb9778089bef9c1fe9a
