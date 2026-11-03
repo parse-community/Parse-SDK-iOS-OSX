@@ -10,6 +10,7 @@
 @import Foundation;
 
 #import "PFTestCase.h"
+#import "Parse_Private.h"
 #import "ParseClientConfiguration.h"
 #import "ParseClientConfiguration_Private.h"
 #import "PFExtensionDataSharingTestHelper.h"
@@ -143,6 +144,28 @@
         PFAssertThrowsInvalidArgumentException(configuration.server = @"");
         PFAssertThrowsInvalidArgumentException(configuration.server = @"Yolo Yarr");
     }];
+}
+
+- (void)testSetServerURL {
+    ParseClientConfiguration *config = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+        configuration.applicationId = @"foo";
+        configuration.clientKey = @"bar";
+        configuration.server = @"http://localhost";
+        configuration.localDatastoreEnabled = YES;
+        configuration.networkRetryAttempts = 1337;
+    }];
+
+    [Parse initializeWithConfiguration:config];
+
+    XCTAssertEqualObjects(config.server, @"http://localhost");
+    XCTAssertEqualObjects(config.server, [Parse server]);
+
+    [Parse setServer:@"http://example.org"];
+    XCTAssertEqualObjects([Parse server], @"http://example.org");
+    
+    // Should get server from current config instead of manager
+    [Parse _clearCurrentManager];
+    XCTAssertEqualObjects([Parse server], @"http://example.org");
 }
 
 @end
