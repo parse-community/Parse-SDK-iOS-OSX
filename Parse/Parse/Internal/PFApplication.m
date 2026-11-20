@@ -9,7 +9,7 @@
 
 #import "PFApplication.h"
 
-#if TARGET_OS_IOS || TARGET_OS_TV
+#if TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_VISION
 #import <UIKit/UIKit.h>
 #elif PF_TARGET_OS_OSX
 #import <AppKit/AppKit.h>
