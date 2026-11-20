@@ -52,6 +52,13 @@
 - (BFTask *)thenCallBackOnMainThreadAsync:(void(^)(id result, NSError *error))block;
 
 /**
+ Identical to thenCallBackOnMainThreadAsync:, except that the block will not be called
+ if the cancellation token is cancelled before the block runs on the main thread.
+ */
+- (BFTask *)thenCallBackOnMainThreadAsync:(void(^)(id result, NSError *error))block
+                        cancellationToken:(BFCancellationToken *)cancellationToken;
+
+/**
  Identical to thenCallBackOnMainThreadAsync:, except that the result of a successful
  task will be converted to a BOOL using the boolValue method, and that will
  be passed to the block instead of the original result.

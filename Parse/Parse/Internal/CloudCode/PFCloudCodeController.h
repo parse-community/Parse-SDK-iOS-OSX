@@ -12,6 +12,7 @@
 #import "PFConstants.h"
 #import "PFDataProvider.h"
 
+@class BFCancellationToken;
 @class BFTask<__covariant BFGenericType>;
 
 @interface PFCloudCodeController : NSObject
@@ -45,5 +46,21 @@
 - (BFTask *)callCloudCodeFunctionAsync:(NSString *)functionName
                         withParameters:(NSDictionary *)parameters
                           sessionToken:(NSString *)sessionToken;
+
+/**
+ Calls a Cloud Code function and returns the result of its execution.
+
+ @param functionName      Function name to call.
+ @param parameters        Parameters to pass, or `nil`.
+ @param sessionToken      Session token to use.
+ @param cancellationToken Cancellation token or `nil`.
+
+ @return `BFTask` with the result of the Cloud Function, or a cancelled task if the token is cancelled
+ before decoding the result starts.
+ */
+- (BFTask *)callCloudCodeFunctionAsync:(NSString *)functionName
+                        withParameters:(NSDictionary *)parameters
+                          sessionToken:(NSString *)sessionToken
+                     cancellationToken:(BFCancellationToken *)cancellationToken;
 
 @end
