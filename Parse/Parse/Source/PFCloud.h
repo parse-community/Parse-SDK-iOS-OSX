@@ -11,8 +11,10 @@
 
 #if __has_include(<Bolts/BFTask.h>)
 #import <Bolts/BFTask.h>
+#import <Bolts/BFCancellationTokenSource.h>
 #else
 #import "BFTask.h"
+#import "BFCancellationTokenSource.h"
 #endif
 
 #import "PFConstants.h"
@@ -46,6 +48,52 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)callFunctionInBackground:(NSString *)function
                   withParameters:(nullable NSDictionary *)parameters
+                           block:(nullable PFIdResultBlock)block;
+
+/**
+ Calls the given cloud function *asynchronously* with the parameters provided
+ and allows the call to be cancelled.
+
+ To cancel the call, pass the `token` of a `BFCancellationTokenSource` and call `cancel` on the source.
+ A token can be passed to several calls to cancel them together. If the call is cancelled before it completes,
+ the task is cancelled without waiting for the request to end; a cancelled task has no result and no error.
+ A call that completes at the same time as it is cancelled may still have a result or error.
+ A token that is already cancelled cancels the call without sending a request.
+
+ @warning Cancelling only affects the client. If the request has already reached the server,
+ the cloud function keeps running there and its changes are not rolled back.
+
+ @param function The function name to call.
+ @param parameters The parameters to send to the function.
+ @param cancellationToken The token to cancel the call with, or `nil`.
+
+ @return The task, that encapsulates the work being done.
+ */
++ (BFTask<id> *)callFunctionInBackground:(NSString *)function
+                          withParameters:(nullable NSDictionary *)parameters
+                       cancellationToken:(nullable BFCancellationToken *)cancellationToken;
+
+/**
+ Calls the given cloud function *asynchronously* with the parameters provided
+ and executes the given block when it is done, unless the call is cancelled.
+
+ To cancel the call, pass the `token` of a `BFCancellationTokenSource` and call `cancel` on the source.
+ A token can be passed to several calls to cancel them together. Cancelling ensures that the block won't be called,
+ unless it is already being called. Cancel on the main thread, where the block is called, to be sure that
+ the block isn't called after `cancel` returns.
+
+ @warning Cancelling only affects the client. If the request has already reached the server,
+ the cloud function keeps running there and its changes are not rolled back.
+
+ @param function The function name to call.
+ @param parameters The parameters to send to the function.
+ @param cancellationToken The token to cancel the call with, or `nil`.
+ @param block The block to execute when the function call finished.
+ It should have the following argument signature: `^(id result, NSError *error)`.
+ */
++ (void)callFunctionInBackground:(NSString *)function
+                  withParameters:(nullable NSDictionary *)parameters
+               cancellationToken:(nullable BFCancellationToken *)cancellationToken
                            block:(nullable PFIdResultBlock)block;
 
 @end
