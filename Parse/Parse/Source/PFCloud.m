@@ -87,7 +87,8 @@
 
 /**
  Calls the function with a token of its own, which is cancelled when the given token is cancelled.
- The given token is not read anymore once the call has started.
+ Once the call has started, the given token is only read before the block is called, which is safe even if its source
+ was disposed.
 
  @return The task of the call, which is cancelled without waiting for the request if the given token is cancelled
  before the call completes.
@@ -138,13 +139,35 @@
         return nil;
     }];
 
+    PFIdResultBlock callBlock = nil;
+    if (block) {
+        callBlock = ^(id result, NSError *error) {
+            // While another thread is cancelling the given token, the call may not be cancelled yet,
+            // and a cancel on the main thread returns at once
+            if (![self _isCancellationRequestedForToken:cancellationToken]) {
+                block(result, error);
+            }
+        };
+    }
     // The call stays cancellable until the block is called, so that cancelling also stops a queued block
-    [[taskCompletionSource.task thenCallBackOnMainThreadAsync:block
+    [[taskCompletionSource.task thenCallBackOnMainThreadAsync:callBlock
                                             cancellationToken:callCancellationToken] continueWithBlock:^id(BFTask *task) {
         [canceller removeCallCancellationTokenSource:callCancellationTokenSource];
         return nil;
     }];
     return taskCompletionSource.task;
+}
+
+/**
+ Whether cancellation was requested for the token, or `NO` if the source of the token was disposed.
+ */
++ (BOOL)_isCancellationRequestedForToken:(BFCancellationToken *)cancellationToken {
+    @try {
+        return cancellationToken.cancellationRequested;
+    } @catch (__unused NSException *exception) {
+        // Thrown by Bolts if the source was disposed; a cancel that returned before that has already cancelled the call
+        return NO;
+    }
 }
 
 @end
