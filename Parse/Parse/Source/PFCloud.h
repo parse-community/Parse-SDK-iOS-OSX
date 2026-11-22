@@ -73,8 +73,8 @@ NS_ASSUME_NONNULL_BEGIN
  Calls the given cloud function *asynchronously* with the parameters provided, in a call that `cancel` can cancel,
  and executes the given block when it is done, unless the call is cancelled.
 
- Cancelling ensures that the block won't be called, unless it is already being called. Cancel on the main thread,
- where the block is called, to be sure that the block isn't called after `cancel` returns.
+ Cancelling ensures that the block won't be called, unless the main thread has already started calling it.
+ Cancel on the main thread, where the block is called, to be sure that the block isn't called after `cancel` returns.
 
  @warning Cancelling only affects the client. If the request has already reached the server,
  the cloud function keeps running there and its changes are not rolled back.
