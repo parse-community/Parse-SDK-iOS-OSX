@@ -1,3 +1,10 @@
+# [7.1.0](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/7.0.3...7.1.0) (2026-11-22)
+
+
+### Features
+
+* Add cancellation of Cloud Code function calls ([#1950](https://github.com/parse-community/Parse-SDK-iOS-OSX/issues/1950)) ([52c528f](https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/52c528fdbe10faf6043c8ac717c31763cc1c6eb8))
+
 ## [7.0.3](https://github.com/parse-community/Parse-SDK-iOS-OSX/compare/7.0.2...7.0.3) (2026-10-23)
 
 
