@@ -592,8 +592,8 @@
         return nil;
     }];
     XCTAssertEqual(dispatch_semaphore_wait(secondCancelStarted, dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC)), 0);
-    // Gives the second cancel time to return while the first is held up
-    dispatch_semaphore_wait(secondCancelReturned, dispatch_time(DISPATCH_TIME_NOW, 200 * NSEC_PER_MSEC));
+    // The second cancel doesn't return while the first is held up
+    XCTAssertNotEqual(dispatch_semaphore_wait(secondCancelReturned, dispatch_time(DISPATCH_TIME_NOW, 200 * NSEC_PER_MSEC)), 0);
     dispatch_semaphore_signal(firstCancelResumed);
     [firstCancelTask waitUntilFinished];
     [secondCancelTask waitUntilFinished];
