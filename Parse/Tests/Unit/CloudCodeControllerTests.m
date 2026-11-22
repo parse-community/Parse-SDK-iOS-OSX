@@ -137,10 +137,6 @@
                                             cancellationToken:OCMOCK_ANY]) andDo:^(NSInvocation *invocation) {
         [commandExpectation fulfill];
     }] andReturn:commandTaskCompletionSource.task];
-    [[OCMStub([[runner ignoringNonObjectArgs] runCommandAsync:OCMOCK_ANY
-                                                  withOptions:0]) andDo:^(NSInvocation *invocation) {
-        [commandExpectation fulfill];
-    }] andReturn:commandTaskCompletionSource.task];
     id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
     OCMStub([dataSource commandRunner]).andReturn(runner);
     BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];

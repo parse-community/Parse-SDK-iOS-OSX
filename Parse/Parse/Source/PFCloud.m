@@ -9,11 +9,11 @@
 
 #import "PFCloud.h"
 
-#import <objc/runtime.h>
-
-#if __has_include(<Bolts/BFTaskCompletionSource.h>)
+#if __has_include(<Bolts/BFCancellationTokenSource.h>)
+#import <Bolts/BFCancellationTokenSource.h>
 #import <Bolts/BFTaskCompletionSource.h>
 #else
+#import "BFCancellationTokenSource.h"
 #import "BFTaskCompletionSource.h"
 #endif
 
@@ -21,25 +21,26 @@
 #import "PFCloudCodeController.h"
 #import "PFCommandResult.h"
 #import "PFCoreManager.h"
+#import "PFMacros.h"
 #import "PFUserPrivate.h"
 #import "Parse_Private.h"
 
-/**
- Cancels the calls that use the same cancellation token, with a single observer on the token.
+@implementation PFCloud {
+    NSMutableSet<BFCancellationTokenSource *> *_callCancellationTokenSources;
+}
 
- Bolts keeps the observers of a token until the token is deallocated,
- and disposing a token with more than 128 observers throws an exception.
- */
-@interface PFCloudCallCanceller : NSObject
+///--------------------------------------
+#pragma mark - Init
+///--------------------------------------
 
-+ (instancetype)cancellerForToken:(BFCancellationToken *)cancellationToken;
+- (instancetype)init {
+    self = [super init];
+    if (!self) return nil;
 
-- (void)addCallCancellationTokenSource:(BFCancellationTokenSource *)callCancellationTokenSource;
-- (void)removeCallCancellationTokenSource:(BFCancellationTokenSource *)callCancellationTokenSource;
+    _callCancellationTokenSources = [NSMutableSet set];
 
-@end
-
-@implementation PFCloud
+    return self;
+}
 
 ///--------------------------------------
 #pragma mark - Public
@@ -61,24 +62,23 @@
     [[self callFunctionInBackground:function withParameters:parameters] thenCallBackOnMainThreadAsync:block];
 }
 
-+ (BFTask *)callFunctionInBackground:(NSString *)function
-                      withParameters:(NSDictionary *)parameters
-                   cancellationToken:(BFCancellationToken *)cancellationToken {
-    if (!cancellationToken) {
-        return [self callFunctionInBackground:function withParameters:parameters];
-    }
-    return [self _callFunctionInBackground:function withParameters:parameters cancellationToken:cancellationToken block:nil];
+- (BFTask *)callFunctionInBackground:(NSString *)function withParameters:(NSDictionary *)parameters {
+    return [self _callFunctionInBackground:function withParameters:parameters block:nil];
 }
 
-+ (void)callFunctionInBackground:(NSString *)function
+- (void)callFunctionInBackground:(NSString *)function
                   withParameters:(NSDictionary *)parameters
-               cancellationToken:(BFCancellationToken *)cancellationToken
                            block:(PFIdResultBlock)block {
-    if (!cancellationToken) {
-        [self callFunctionInBackground:function withParameters:parameters block:block];
-        return;
+    [self _callFunctionInBackground:function withParameters:parameters block:block];
+}
+
+- (void)cancel {
+    @synchronized(self) {
+        NSArray<BFCancellationTokenSource *> *callCancellationTokenSources = _callCancellationTokenSources.allObjects;
+        [_callCancellationTokenSources removeAllObjects];
+        // Cancelled while holding the lock, so that a concurrent cancel only returns once all calls are cancelled
+        [callCancellationTokenSources makeObjectsPerformSelector:@selector(cancel)];
     }
-    [self _callFunctionInBackground:function withParameters:parameters cancellationToken:cancellationToken block:block];
 }
 
 ///--------------------------------------
@@ -86,39 +86,28 @@
 ///--------------------------------------
 
 /**
- Calls the function with a token of its own, which is cancelled when the given token is cancelled.
- Once the call has started, the given token is only read before the block is called, which is safe even if its source
- was disposed.
+ Calls the function with a cancellation token of its own, which `cancel` cancels until the call has completed,
+ and with a block, until the block has been called.
 
- @return The task of the call, which is cancelled without waiting for the request if the given token is cancelled
- before the call completes.
+ @return The task of the call, which is cancelled without waiting for the request if the call is cancelled
+ before it completes.
  */
-+ (BFTask *)_callFunctionInBackground:(NSString *)function
+- (BFTask *)_callFunctionInBackground:(NSString *)function
                        withParameters:(NSDictionary *)parameters
-                    cancellationToken:(BFCancellationToken *)cancellationToken
                                 block:(PFIdResultBlock)block {
-    if (cancellationToken.cancellationRequested) {
-        return [BFTask cancelledTask];
-    }
-
-    BFCancellationTokenSource *callCancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
-    BFCancellationToken *callCancellationToken = callCancellationTokenSource.token;
+    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
+    BFCancellationToken *cancellationToken = cancellationTokenSource.token;
     BFTaskCompletionSource *taskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
     __weak BFTaskCompletionSource *weakTaskCompletionSource = taskCompletionSource;
-    [callCancellationToken registerCancellationObserverWithBlock:^{
+    [cancellationToken registerCancellationObserverWithBlock:^{
         // Not on the cancelling thread, where continuations of the task could block it or deadlock
         BFTaskCompletionSource *strongTaskCompletionSource = weakTaskCompletionSource;
         [[BFExecutor defaultPriorityBackgroundExecutor] execute:^{
             [strongTaskCompletionSource trySetCancelled];
         }];
     }];
-
-    PFCloudCallCanceller *canceller = [PFCloudCallCanceller cancellerForToken:cancellationToken];
-    [canceller addCallCancellationTokenSource:callCancellationTokenSource];
-    // Checked again, as the canceller doesn't cancel calls that are added after the token was cancelled
-    if (cancellationToken.cancellationRequested) {
-        [canceller removeCallCancellationTokenSource:callCancellationTokenSource];
-        return [BFTask cancelledTask];
+    @synchronized(self) {
+        [_callCancellationTokenSources addObject:cancellationTokenSource];
     }
 
     [[[PFUser _getCurrentUserSessionTokenAsync] continueWithBlock:^id(BFTask *task) {
@@ -127,8 +116,8 @@
         return [controller callCloudCodeFunctionAsync:function
                                        withParameters:parameters
                                          sessionToken:sessionToken
-                                    cancellationToken:callCancellationToken];
-    } cancellationToken:callCancellationToken] continueWithBlock:^id(BFTask *task) {
+                                    cancellationToken:cancellationToken];
+    } cancellationToken:cancellationToken] continueWithBlock:^id(BFTask *task) {
         if (task.cancelled) {
             [taskCompletionSource trySetCancelled];
         } else if (task.faulted) {
@@ -139,89 +128,20 @@
         return nil;
     }];
 
-    PFIdResultBlock callBlock = nil;
-    if (block) {
-        callBlock = ^(id result, NSError *error) {
-            // While another thread is cancelling the given token, the call may not be cancelled yet,
-            // and a cancel on the main thread returns at once
-            if (![self _isCancellationRequestedForToken:cancellationToken]) {
-                block(result, error);
-            }
-        };
-    }
     // The call stays cancellable until the block is called, so that cancelling also stops a queued block
-    [[taskCompletionSource.task thenCallBackOnMainThreadAsync:callBlock
-                                            cancellationToken:callCancellationToken] continueWithBlock:^id(BFTask *task) {
-        [canceller removeCallCancellationTokenSource:callCancellationTokenSource];
+    @weakify(self);
+    [[taskCompletionSource.task thenCallBackOnMainThreadAsync:block
+                                            cancellationToken:cancellationToken] continueWithBlock:^id(BFTask *task) {
+        @strongify(self);
+        if (!self) {
+            return nil;
+        }
+        @synchronized(self) {
+            [self->_callCancellationTokenSources removeObject:cancellationTokenSource];
+        }
         return nil;
     }];
     return taskCompletionSource.task;
-}
-
-/**
- Whether cancellation was requested for the token, or `NO` if the source of the token was disposed.
- */
-+ (BOOL)_isCancellationRequestedForToken:(BFCancellationToken *)cancellationToken {
-    @try {
-        return cancellationToken.cancellationRequested;
-    } @catch (__unused NSException *exception) {
-        // Thrown by Bolts if the source was disposed; a cancel that returned before that has already cancelled the call
-        return NO;
-    }
-}
-
-@end
-
-///--------------------------------------
-#pragma mark - Call Canceller
-///--------------------------------------
-
-@implementation PFCloudCallCanceller {
-    NSMutableSet<BFCancellationTokenSource *> *_callCancellationTokenSources;
-}
-
-+ (instancetype)cancellerForToken:(BFCancellationToken *)cancellationToken {
-    @synchronized(self) {
-        PFCloudCallCanceller *canceller = objc_getAssociatedObject(cancellationToken, _cmd);
-        if (!canceller) {
-            canceller = [[self alloc] init];
-            objc_setAssociatedObject(cancellationToken, _cmd, canceller, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-            [cancellationToken registerCancellationObserverWithBlock:^{
-                [canceller _cancelCalls];
-            }];
-        }
-        return canceller;
-    }
-}
-
-- (instancetype)init {
-    self = [super init];
-    if (!self) return nil;
-
-    _callCancellationTokenSources = [NSMutableSet set];
-
-    return self;
-}
-
-- (void)addCallCancellationTokenSource:(BFCancellationTokenSource *)callCancellationTokenSource {
-    @synchronized(self) {
-        [_callCancellationTokenSources addObject:callCancellationTokenSource];
-    }
-}
-
-- (void)removeCallCancellationTokenSource:(BFCancellationTokenSource *)callCancellationTokenSource {
-    @synchronized(self) {
-        [_callCancellationTokenSources removeObject:callCancellationTokenSource];
-    }
-}
-
-- (void)_cancelCalls {
-    NSArray<BFCancellationTokenSource *> *callCancellationTokenSources = nil;
-    @synchronized(self) {
-        callCancellationTokenSources = _callCancellationTokenSources.allObjects;
-        [_callCancellationTokenSources removeAllObjects];
-    }
-    [callCancellationTokenSources makeObjectsPerformSelector:@selector(cancel)];
 }
 
 @end

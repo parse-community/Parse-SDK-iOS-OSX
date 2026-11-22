@@ -46,10 +46,6 @@
     OCMStub([controllerMock callCloudCodeFunctionAsync:OCMOCK_ANY
                                         withParameters:OCMOCK_ANY
                                           sessionToken:OCMOCK_ANY]).andReturn(task);
-    OCMStub([controllerMock callCloudCodeFunctionAsync:OCMOCK_ANY
-                                        withParameters:OCMOCK_ANY
-                                          sessionToken:OCMOCK_ANY
-                                     cancellationToken:OCMOCK_ANY]).andReturn(task);
     return controllerMock;
 }
 
@@ -231,44 +227,13 @@
 #pragma mark - Cancellation
 ///--------------------------------------
 
-- (void)testCallFunctionWithNilCancellationToken {
-    NSDictionary *result = @{ @"a" : @{@"b" : @"c"} };
-    [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithResult:result error:nil];
-
-    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[PFCloud callFunctionInBackground:@"yolo" withParameters:nil cancellationToken:nil] continueWithBlock:^id(BFTask *task) {
-        XCTAssertEqualObjects(task.result, result);
-        [expectation fulfill];
-        return nil;
-    }];
-    [self waitForTestExpectations];
-}
-
-- (void)testCallFunctionViaBlockWithNilCancellationToken {
-    NSDictionary *result = @{ @"a" : @{@"b" : @"c"} };
-    [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithResult:result error:nil];
-
-    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [PFCloud callFunctionInBackground:@"yolo"
-                       withParameters:nil
-                    cancellationToken:nil
-                                block:^(id cloudResult, NSError *error) {
-        XCTAssertEqualObjects(cloudResult, result);
-        XCTAssertNil(error);
-        [expectation fulfill];
-    }];
-    [self waitForTestExpectations];
-}
-
-- (void)testCallFunctionWithCancellationTokenReturnsResult {
+- (void)testInstanceCallFunctionReturnsResult {
     NSDictionary *result = @{ @"a" : @{@"b" : @"c"} };
     [self mockCloudCodeControllerWithTask:[BFTask taskWithResult:result] callHandler:nil];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
+    PFCloud *cloud = [[PFCloud alloc] init];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[PFCloud callFunctionInBackground:@"yolo"
-                        withParameters:nil
-                     cancellationToken:cancellationTokenSource.token] continueWithBlock:^id(BFTask *task) {
+    [[cloud callFunctionInBackground:@"yolo" withParameters:nil] continueWithBlock:^id(BFTask *task) {
         XCTAssertEqualObjects(task.result, result);
         XCTAssertFalse(task.cancelled);
         [expectation fulfill];
@@ -277,15 +242,13 @@
     [self waitForTestExpectations];
 }
 
-- (void)testCallFunctionWithCancellationTokenReturnsError {
+- (void)testInstanceCallFunctionReturnsError {
     NSError *error = [NSError errorWithDomain:@"ParseTestDomain" code:100500 userInfo:nil];
     [self mockCloudCodeControllerWithTask:[BFTask taskWithError:error] callHandler:nil];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
+    PFCloud *cloud = [[PFCloud alloc] init];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[PFCloud callFunctionInBackground:@"yolo"
-                        withParameters:nil
-                     cancellationToken:cancellationTokenSource.token] continueWithBlock:^id(BFTask *task) {
+    [[cloud callFunctionInBackground:@"yolo" withParameters:nil] continueWithBlock:^id(BFTask *task) {
         XCTAssertEqualObjects(task.error, error);
         XCTAssertNil(task.result);
         [expectation fulfill];
@@ -294,14 +257,12 @@
     [self waitForTestExpectations];
 }
 
-- (void)testCallFunctionWithCancellationTokenReturnsCancelledRequest {
+- (void)testInstanceCallFunctionReturnsCancelledRequest {
     [self mockCloudCodeControllerWithTask:[BFTask cancelledTask] callHandler:nil];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
+    PFCloud *cloud = [[PFCloud alloc] init];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[PFCloud callFunctionInBackground:@"yolo"
-                        withParameters:nil
-                     cancellationToken:cancellationTokenSource.token] continueWithBlock:^id(BFTask *task) {
+    [[cloud callFunctionInBackground:@"yolo" withParameters:nil] continueWithBlock:^id(BFTask *task) {
         XCTAssertTrue(task.cancelled);
         [expectation fulfill];
         return nil;
@@ -309,7 +270,22 @@
     [self waitForTestExpectations];
 }
 
-- (void)testCallFunctionCancellationCancelsRequest {
+- (void)testInstanceCallFunctionViaBlock {
+    NSDictionary *result = @{ @"a" : @{@"b" : @"c"} };
+    [self mockCloudCodeControllerWithTask:[BFTask taskWithResult:result] callHandler:nil];
+    PFCloud *cloud = [[PFCloud alloc] init];
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [cloud callFunctionInBackground:@"yolo" withParameters:nil block:^(id cloudResult, NSError *error) {
+        XCTAssertTrue([NSThread isMainThread]);
+        XCTAssertEqualObjects(cloudResult, result);
+        XCTAssertNil(error);
+        [expectation fulfill];
+    }];
+    [self waitForTestExpectations];
+}
+
+- (void)testCancelCancelsRequest {
     NSDictionary *parameters = @{ @"a" : @{@"b" : @YES} };
     BFTaskCompletionSource *requestTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
     XCTestExpectation *requestExpectation = [self currentSelectorTestExpectation];
@@ -325,40 +301,18 @@
         requestCancellationToken = cancellationToken;
         [requestExpectation fulfill];
     }];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
+    PFCloud *cloud = [[PFCloud alloc] init];
 
-    [PFCloud callFunctionInBackground:@"yolo" withParameters:parameters cancellationToken:cancellationTokenSource.token];
+    [cloud callFunctionInBackground:@"yolo" withParameters:parameters];
     [self waitForTestExpectations];
     XCTAssertNotNil(requestCancellationToken);
     XCTAssertFalse(requestCancellationToken.cancellationRequested);
-    [cancellationTokenSource cancel];
+    [cloud cancel];
 
     XCTAssertTrue(requestCancellationToken.cancellationRequested);
 }
 
-- (void)testCallFunctionWithCancelledTokenSendsNoRequest {
-    // A completed session token task lets a request start synchronously
-    [self mockCurrentUserSessionTokenWithTask:[BFTask taskWithResult:nil]];
-    __block BOOL requested = NO;
-    [self mockCloudCodeControllerWithTask:[BFTask taskWithResult:@"a"]
-                              callHandler:^(NSString *function,
-                                            NSDictionary *parameters,
-                                            NSString *sessionToken,
-                                            BFCancellationToken *cancellationToken) {
-        requested = YES;
-    }];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
-    [cancellationTokenSource cancel];
-
-    BFTask *task = [PFCloud callFunctionInBackground:@"yolo"
-                                      withParameters:nil
-                                   cancellationToken:cancellationTokenSource.token];
-
-    XCTAssertTrue(task.cancelled);
-    XCTAssertFalse(requested);
-}
-
-- (void)testCallFunctionCancelledWhileRunningIsCancelledWithoutResponse {
+- (void)testCancelCancelsTaskWithoutWaitingForResponse {
     BFTaskCompletionSource *requestTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
     XCTestExpectation *requestExpectation = [self expectationWithDescription:@"request"];
     [self mockCloudCodeControllerWithTask:requestTaskCompletionSource.task
@@ -368,13 +322,11 @@
                                             BFCancellationToken *cancellationToken) {
         [requestExpectation fulfill];
     }];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
-    BFTask *task = [PFCloud callFunctionInBackground:@"yolo"
-                                      withParameters:nil
-                                   cancellationToken:cancellationTokenSource.token];
+    PFCloud *cloud = [[PFCloud alloc] init];
+    BFTask *task = [cloud callFunctionInBackground:@"yolo" withParameters:nil];
     [self waitForTestExpectations];
 
-    [cancellationTokenSource cancel];
+    [cloud cancel];
 
     XCTestExpectation *expectation = [self currentSelectorTestExpectation];
     [task continueWithBlock:^id(BFTask *cancelledTask) {
@@ -385,7 +337,7 @@
     [self waitForTestExpectations];
 }
 
-- (void)testCallFunctionCancelledOnMainThreadDoesNotCompleteTaskOnMainThread {
+- (void)testCancelOnMainThreadDoesNotCompleteTaskOnMainThread {
     BFTaskCompletionSource *requestTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
     XCTestExpectation *requestExpectation = [self expectationWithDescription:@"request"];
     [self mockCloudCodeControllerWithTask:requestTaskCompletionSource.task
@@ -395,10 +347,8 @@
                                             BFCancellationToken *cancellationToken) {
         [requestExpectation fulfill];
     }];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
-    BFTask *task = [PFCloud callFunctionInBackground:@"yolo"
-                                      withParameters:nil
-                                   cancellationToken:cancellationTokenSource.token];
+    PFCloud *cloud = [[PFCloud alloc] init];
+    BFTask *task = [cloud callFunctionInBackground:@"yolo" withParameters:nil];
     [self waitForTestExpectations];
 
     // Continuations that run on the cancelling thread could deadlock or block it
@@ -409,37 +359,33 @@
         [expectation fulfill];
         return nil;
     }];
-    [cancellationTokenSource cancel];
+    [cloud cancel];
     [self waitForTestExpectations];
 
     XCTAssertFalse(completedOnMainThread);
 }
 
-- (void)testCallFunctionCancellationCancelsAllCallsWithSameToken {
+- (void)testCancelCancelsAllCallsOfInstance {
+    // A completed session token task lets the requests start synchronously
+    [self mockCurrentUserSessionTokenWithTask:[BFTask taskWithResult:nil]];
     BFTaskCompletionSource *requestTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
-    XCTestExpectation *requestsExpectation = [self expectationWithDescription:@"requests"];
-    requestsExpectation.expectedFulfillmentCount = 2;
     NSMutableArray<BFCancellationToken *> *requestCancellationTokens = [NSMutableArray array];
     [self mockCloudCodeControllerWithTask:requestTaskCompletionSource.task
                               callHandler:^(NSString *function,
                                             NSDictionary *parameters,
                                             NSString *sessionToken,
                                             BFCancellationToken *cancellationToken) {
-        @synchronized(requestCancellationTokens) {
-            [requestCancellationTokens addObject:cancellationToken];
-        }
-        [requestsExpectation fulfill];
+        [requestCancellationTokens addObject:cancellationToken];
     }];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
+    PFCloud *cloud = [[PFCloud alloc] init];
     NSArray<BFTask *> *tasks = @[
-        [PFCloud callFunctionInBackground:@"yolo" withParameters:nil cancellationToken:cancellationTokenSource.token],
-        [PFCloud callFunctionInBackground:@"yolo" withParameters:nil cancellationToken:cancellationTokenSource.token]
+        [cloud callFunctionInBackground:@"yolo" withParameters:nil],
+        [cloud callFunctionInBackground:@"yolo" withParameters:nil]
     ];
-    [self waitForTestExpectations];
-
-    [cancellationTokenSource cancel];
-
     XCTAssertEqual(requestCancellationTokens.count, 2);
+
+    [cloud cancel];
+
     for (BFCancellationToken *requestCancellationToken in requestCancellationTokens) {
         XCTAssertTrue(requestCancellationToken.cancellationRequested);
     }
@@ -454,45 +400,96 @@
     [self waitForTestExpectations];
 }
 
-- (void)testCancellationTokenSourceUsedForManyCallsCanBeDisposed {
-    [self mockCloudCodeControllerWithTask:[BFTask taskWithResult:@"a"] callHandler:nil];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
-    NSMutableArray<BFTask *> *tasks = [NSMutableArray array];
-    // Bolts throws when disposing a token with more than 128 observers
-    for (int i = 0; i < 200; i++) {
-        [tasks addObject:[PFCloud callFunctionInBackground:@"yolo"
-                                            withParameters:nil
-                                         cancellationToken:cancellationTokenSource.token]];
+- (void)testCancelDoesNotCancelCallsOfOtherInstances {
+    [self mockCurrentUserSessionTokenWithTask:[BFTask taskWithResult:nil]];
+    BFTaskCompletionSource *requestTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
+    NSMutableArray<BFCancellationToken *> *requestCancellationTokens = [NSMutableArray array];
+    [self mockCloudCodeControllerWithTask:requestTaskCompletionSource.task
+                              callHandler:^(NSString *function,
+                                            NSDictionary *parameters,
+                                            NSString *sessionToken,
+                                            BFCancellationToken *cancellationToken) {
+        [requestCancellationTokens addObject:cancellationToken];
+    }];
+    PFCloud *cloud = [[PFCloud alloc] init];
+    PFCloud *otherCloud = [[PFCloud alloc] init];
+    [cloud callFunctionInBackground:@"yolo" withParameters:nil];
+    [otherCloud callFunctionInBackground:@"yolo" withParameters:nil];
+    XCTAssertEqual(requestCancellationTokens.count, 2);
+
+    [cloud cancel];
+
+    XCTAssertTrue(requestCancellationTokens.firstObject.cancellationRequested);
+    XCTAssertFalse(requestCancellationTokens.lastObject.cancellationRequested);
+}
+
+- (void)testCancelDoesNotCancelLaterCalls {
+    [self mockCurrentUserSessionTokenWithTask:[BFTask taskWithResult:nil]];
+    BFTaskCompletionSource *requestTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
+    NSMutableArray<BFCancellationToken *> *requestCancellationTokens = [NSMutableArray array];
+    [self mockCloudCodeControllerWithTask:requestTaskCompletionSource.task
+                              callHandler:^(NSString *function,
+                                            NSDictionary *parameters,
+                                            NSString *sessionToken,
+                                            BFCancellationToken *cancellationToken) {
+        [requestCancellationTokens addObject:cancellationToken];
+    }];
+    PFCloud *cloud = [[PFCloud alloc] init];
+    [cloud callFunctionInBackground:@"yolo" withParameters:nil];
+
+    [cloud cancel];
+    [cloud callFunctionInBackground:@"yolo" withParameters:nil];
+
+    XCTAssertEqual(requestCancellationTokens.count, 2);
+    XCTAssertTrue(requestCancellationTokens.firstObject.cancellationRequested);
+    XCTAssertFalse(requestCancellationTokens.lastObject.cancellationRequested);
+}
+
+- (void)testCancelDoesNotCancelCompletedCalls {
+    [self mockCurrentUserSessionTokenWithTask:[BFTask taskWithResult:nil]];
+    __block BFCancellationToken *requestCancellationToken = nil;
+    [self mockCloudCodeControllerWithTask:[BFTask taskWithResult:@"a"]
+                              callHandler:^(NSString *function,
+                                            NSDictionary *parameters,
+                                            NSString *sessionToken,
+                                            BFCancellationToken *cancellationToken) {
+        requestCancellationToken = cancellationToken;
+    }];
+    PFCloud *cloud = [[PFCloud alloc] init];
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [cloud callFunctionInBackground:@"yolo" withParameters:nil block:^(id result, NSError *error) {
+        [expectation fulfill];
+    }];
+    [self waitForTestExpectations];
+
+    [cloud cancel];
+
+    XCTAssertNotNil(requestCancellationToken);
+    XCTAssertFalse(requestCancellationToken.cancellationRequested);
+}
+
+- (void)testCallFunctionOfReleasedInstanceCallsBlock {
+    [self mockCurrentUserSessionTokenWithTask:[BFTask taskWithResult:nil]];
+    BFTaskCompletionSource *requestTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
+    [self mockCloudCodeControllerWithTask:requestTaskCompletionSource.task callHandler:nil];
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    __weak PFCloud *weakCloud = nil;
+    @autoreleasepool {
+        PFCloud *cloud = [[PFCloud alloc] init];
+        weakCloud = cloud;
+        [cloud callFunctionInBackground:@"yolo" withParameters:nil block:^(id result, NSError *error) {
+            XCTAssertEqualObjects(result, @"a");
+            [expectation fulfill];
+        }];
     }
-    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [[BFTask taskForCompletionOfAllTasks:tasks] continueWithBlock:^id(BFTask *task) {
-        [expectation fulfill];
-        return nil;
-    }];
-    [self waitForTestExpectations];
 
-    XCTAssertNoThrow([cancellationTokenSource dispose]);
-}
-
-- (void)testCallFunctionViaBlockWithCancellationToken {
-    NSDictionary *result = @{ @"a" : @{@"b" : @"c"} };
-    [self mockCloudCodeControllerWithTask:[BFTask taskWithResult:result] callHandler:nil];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
-
-    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [PFCloud callFunctionInBackground:@"yolo"
-                       withParameters:nil
-                    cancellationToken:cancellationTokenSource.token
-                                block:^(id cloudResult, NSError *error) {
-        XCTAssertTrue([NSThread isMainThread]);
-        XCTAssertEqualObjects(cloudResult, result);
-        XCTAssertNil(error);
-        [expectation fulfill];
-    }];
+    // Running calls don't keep the instance alive
+    XCTAssertNil(weakCloud);
+    requestTaskCompletionSource.result = @"a";
     [self waitForTestExpectations];
 }
 
-- (void)testCallFunctionViaBlockCancelledWhileRunningDoesNotCallBlock {
+- (void)testCancelWhileRunningDoesNotCallBlock {
     BFTaskCompletionSource *requestTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
     XCTestExpectation *requestExpectation = [self currentSelectorTestExpectation];
     [self mockCloudCodeControllerWithTask:requestTaskCompletionSource.task
@@ -502,33 +499,34 @@
                                             BFCancellationToken *cancellationToken) {
         [requestExpectation fulfill];
     }];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
+    PFCloud *cloud = [[PFCloud alloc] init];
     __block BOOL blockCalled = NO;
-    [PFCloud callFunctionInBackground:@"yolo"
-                       withParameters:nil
-                    cancellationToken:cancellationTokenSource.token
-                                block:^(id result, NSError *error) {
+    [cloud callFunctionInBackground:@"yolo" withParameters:nil block:^(id result, NSError *error) {
         blockCalled = YES;
     }];
     [self waitForTestExpectations];
 
-    [cancellationTokenSource cancel];
+    [cloud cancel];
     requestTaskCompletionSource.result = @"a";
     [self waitForMainQueue];
 
     XCTAssertFalse(blockCalled);
 }
 
-- (void)testCallFunctionViaBlockCancelledOnMainThreadBeforeBlockIsCalledDoesNotCallBlock {
+- (void)testCancelOnMainThreadBeforeBlockIsCalledDoesNotCallBlock {
     BFTaskCompletionSource *sessionTokenTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
     [self mockCurrentUserSessionTokenWithTask:sessionTokenTaskCompletionSource.task];
-    [self mockCloudCodeControllerWithTask:[BFTask taskWithResult:@"a"] callHandler:nil];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
+    __block BOOL requested = NO;
+    [self mockCloudCodeControllerWithTask:[BFTask taskWithResult:@"a"]
+                              callHandler:^(NSString *function,
+                                            NSDictionary *parameters,
+                                            NSString *sessionToken,
+                                            BFCancellationToken *cancellationToken) {
+        requested = YES;
+    }];
+    PFCloud *cloud = [[PFCloud alloc] init];
     __block BOOL blockCalled = NO;
-    [PFCloud callFunctionInBackground:@"yolo"
-                       withParameters:nil
-                    cancellationToken:cancellationTokenSource.token
-                                block:^(id result, NSError *error) {
+    [cloud callFunctionInBackground:@"yolo" withParameters:nil block:^(id result, NSError *error) {
         blockCalled = YES;
     }];
 
@@ -537,94 +535,70 @@
         sessionTokenTaskCompletionSource.result = nil;
         return nil;
     }] waitUntilFinished];
-    [cancellationTokenSource cancel];
+    XCTAssertTrue(requested);
+    [cloud cancel];
     [self waitForMainQueue];
 
     XCTAssertFalse(blockCalled);
 }
 
-- (void)testCallFunctionViaBlockCancelledOnMainThreadWhileAnotherThreadCancelsDoesNotCallBlock {
+- (void)testCancelWhileAnotherThreadCancelsReturnsOnceAllCallsAreCancelled {
     [self mockCurrentUserSessionTokenWithTask:[BFTask taskWithResult:nil]];
     BFTaskCompletionSource *requestTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
-    [self mockCloudCodeControllerWithTask:requestTaskCompletionSource.task callHandler:nil];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
-    // Registered before the call, so that it holds up the other thread before the call is cancelled
-    dispatch_semaphore_t otherThreadCancelling = dispatch_semaphore_create(0);
-    dispatch_semaphore_t otherThreadResumed = dispatch_semaphore_create(0);
-    [cancellationTokenSource.token registerCancellationObserverWithBlock:^{
-        dispatch_semaphore_signal(otherThreadCancelling);
-        dispatch_semaphore_wait(otherThreadResumed, dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC));
+    NSMutableArray<BFCancellationToken *> *requestCancellationTokens = [NSMutableArray array];
+    [self mockCloudCodeControllerWithTask:requestTaskCompletionSource.task
+                              callHandler:^(NSString *function,
+                                            NSDictionary *parameters,
+                                            NSString *sessionToken,
+                                            BFCancellationToken *cancellationToken) {
+        [requestCancellationTokens addObject:cancellationToken];
     }];
-    __block BOOL blockCalled = NO;
-    [PFCloud callFunctionInBackground:@"yolo"
-                       withParameters:nil
-                    cancellationToken:cancellationTokenSource.token
-                                block:^(id result, NSError *error) {
-        blockCalled = YES;
-    }];
+    PFCloud *cloud = [[PFCloud alloc] init];
+    [cloud callFunctionInBackground:@"yolo" withParameters:nil];
+    [cloud callFunctionInBackground:@"yolo" withParameters:nil];
+    XCTAssertEqual(requestCancellationTokens.count, 2);
+    // Holds up the first cancel after it has cancelled one of the calls
+    dispatch_semaphore_t firstCancelHeld = dispatch_semaphore_create(0);
+    dispatch_semaphore_t firstCancelResumed = dispatch_semaphore_create(0);
+    __block BOOL firstCancelWasHeld = NO;
+    for (BFCancellationToken *requestCancellationToken in requestCancellationTokens) {
+        [requestCancellationToken registerCancellationObserverWithBlock:^{
+            BOOL holdUp = NO;
+            @synchronized(requestCancellationTokens) {
+                holdUp = !firstCancelWasHeld;
+                firstCancelWasHeld = YES;
+            }
+            if (holdUp) {
+                dispatch_semaphore_signal(firstCancelHeld);
+                dispatch_semaphore_wait(firstCancelResumed, dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC));
+            }
+        }];
+    }
 
-    // Complete the call on a background thread while the main thread waits, so that the block is queued on the main thread
-    [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
-        requestTaskCompletionSource.result = @"a";
+    BFTask *firstCancelTask = [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+        [cloud cancel];
         return nil;
-    }] waitUntilFinished];
-    BFTask *otherThreadTask = [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
-        [cancellationTokenSource cancel];
+    }];
+    XCTAssertEqual(dispatch_semaphore_wait(firstCancelHeld, dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC)), 0);
+    dispatch_semaphore_t secondCancelStarted = dispatch_semaphore_create(0);
+    dispatch_semaphore_t secondCancelReturned = dispatch_semaphore_create(0);
+    __block BOOL allCallsCancelledWhenSecondCancelReturned = NO;
+    BFTask *secondCancelTask = [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
+        dispatch_semaphore_signal(secondCancelStarted);
+        [cloud cancel];
+        allCallsCancelledWhenSecondCancelReturned = (requestCancellationTokens.firstObject.cancellationRequested &&
+                                                     requestCancellationTokens.lastObject.cancellationRequested);
+        dispatch_semaphore_signal(secondCancelReturned);
         return nil;
     }];
-    XCTAssertEqual(dispatch_semaphore_wait(otherThreadCancelling, dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC)), 0);
-    // Returns at once, as the other thread has already requested cancellation
-    [cancellationTokenSource cancel];
-    [self waitForMainQueue];
-    dispatch_semaphore_signal(otherThreadResumed);
-    [otherThreadTask waitUntilFinished];
+    XCTAssertEqual(dispatch_semaphore_wait(secondCancelStarted, dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC)), 0);
+    // Gives the second cancel time to return while the first is held up
+    dispatch_semaphore_wait(secondCancelReturned, dispatch_time(DISPATCH_TIME_NOW, 200 * NSEC_PER_MSEC));
+    dispatch_semaphore_signal(firstCancelResumed);
+    [firstCancelTask waitUntilFinished];
+    [secondCancelTask waitUntilFinished];
 
-    XCTAssertFalse(blockCalled);
-}
-
-- (void)testCallFunctionViaBlockCancelledAndDisposedBeforeBlockIsCalledDoesNotCallBlock {
-    [self mockCurrentUserSessionTokenWithTask:[BFTask taskWithResult:nil]];
-    BFTaskCompletionSource *requestTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
-    [self mockCloudCodeControllerWithTask:requestTaskCompletionSource.task callHandler:nil];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
-    __block BOOL blockCalled = NO;
-    [PFCloud callFunctionInBackground:@"yolo"
-                       withParameters:nil
-                    cancellationToken:cancellationTokenSource.token
-                                block:^(id result, NSError *error) {
-        blockCalled = YES;
-    }];
-
-    // Complete the call on a background thread while the main thread waits, so that the block is queued on the main thread
-    [[BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
-        requestTaskCompletionSource.result = @"a";
-        return nil;
-    }] waitUntilFinished];
-    [cancellationTokenSource cancel];
-    [cancellationTokenSource dispose];
-    [self waitForMainQueue];
-
-    XCTAssertFalse(blockCalled);
-}
-
-- (void)testCallFunctionViaBlockWithDisposedCancellationTokenSourceCallsBlock {
-    [self mockCurrentUserSessionTokenWithTask:[BFTask taskWithResult:nil]];
-    BFTaskCompletionSource *requestTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
-    [self mockCloudCodeControllerWithTask:requestTaskCompletionSource.task callHandler:nil];
-    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
-
-    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
-    [PFCloud callFunctionInBackground:@"yolo"
-                       withParameters:nil
-                    cancellationToken:cancellationTokenSource.token
-                                block:^(id result, NSError *error) {
-        XCTAssertEqualObjects(result, @"a");
-        XCTAssertNil(error);
-        [expectation fulfill];
-    }];
-    [cancellationTokenSource dispose];
-    requestTaskCompletionSource.result = @"a";
-    [self waitForTestExpectations];
+    XCTAssertTrue(allCallsCancelledWhenSecondCancelReturned);
 }
 
 @end
