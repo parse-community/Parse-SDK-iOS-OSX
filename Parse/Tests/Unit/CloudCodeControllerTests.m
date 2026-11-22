@@ -105,4 +105,91 @@
     [self waitForTestExpectations];
 }
 
+- (void)testCallCloudFunctionEncodesParameters {
+    __block NSDictionary *commandParameters = nil;
+    id runner = PFStrictProtocolMock(@protocol(PFCommandRunning));
+    [runner mockCommandResult:nil forCommandsPassingTest:^BOOL(PFRESTCommand *command) {
+        commandParameters = command.parameters;
+        return YES;
+    }];
+    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
+    OCMStub([dataSource commandRunner]).andReturn(runner);
+
+    PFCloudCodeController *controller = [PFCloudCodeController controllerWithDataSource:dataSource];
+    [[controller callCloudCodeFunctionAsync:@"a"
+                             withParameters:@{ @"date" : [NSDate dateWithTimeIntervalSince1970:0] }
+                               sessionToken:@"b"] waitUntilFinished];
+
+    XCTAssertEqualObjects(commandParameters, (@{ @"date" : @{ @"__type" : @"Date", @"iso" : @"1970-01-01T00:00:00.000Z" } }));
+}
+
+- (void)testCallCloudFunctionDecodesResult {
+    id runner = PFStrictProtocolMock(@protocol(PFCommandRunning));
+    [runner mockCommandResult:@{ @"result" : @{ @"date" : @{ @"__type" : @"Date", @"iso" : @"1970-01-01T00:00:00.000Z" } } }
+       forCommandsPassingTest:^BOOL(PFRESTCommand *command) {
+        return YES;
+    }];
+    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
+    OCMStub([dataSource commandRunner]).andReturn(runner);
+
+    PFCloudCodeController *controller = [PFCloudCodeController controllerWithDataSource:dataSource];
+    BFTask *task = [controller callCloudCodeFunctionAsync:@"a" withParameters:nil sessionToken:@"b"];
+    [task waitUntilFinished];
+
+    XCTAssertEqualObjects(task.result, (@{ @"date" : [NSDate dateWithTimeIntervalSince1970:0] }));
+}
+
+- (void)testCallCloudFunctionPassesCancellationTokenToCommandRunner {
+    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
+    PFCommandResult *commandResult = [PFCommandResult commandResultWithResult:@{ @"result" : @"yarr" }
+                                                                 resultString:nil
+                                                                 httpResponse:nil];
+    id runner = PFProtocolMock(@protocol(PFCommandRunning));
+    OCMExpect([runner runCommandAsync:[OCMArg isNotNil]
+                          withOptions:PFCommandRunningOptionRetryIfFailed
+                    cancellationToken:cancellationTokenSource.token]).andReturn([BFTask taskWithResult:commandResult]);
+    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
+    OCMStub([dataSource commandRunner]).andReturn(runner);
+
+    PFCloudCodeController *controller = [PFCloudCodeController controllerWithDataSource:dataSource];
+    BFTask *task = [controller callCloudCodeFunctionAsync:@"a"
+                                           withParameters:nil
+                                             sessionToken:@"b"
+                                        cancellationToken:cancellationTokenSource.token];
+    [task waitUntilFinished];
+
+    OCMVerifyAll(runner);
+    XCTAssertEqualObjects(task.result, @"yarr");
+}
+
+- (void)testCallCloudFunctionCancelledBeforeResultIsDecodedHasNoResult {
+    BFTaskCompletionSource *commandTaskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
+    XCTestExpectation *commandExpectation = [self currentSelectorTestExpectation];
+    id runner = PFProtocolMock(@protocol(PFCommandRunning));
+    [[OCMStub([[runner ignoringNonObjectArgs] runCommandAsync:OCMOCK_ANY
+                                                  withOptions:0
+                                            cancellationToken:OCMOCK_ANY]) andDo:^(NSInvocation *invocation) {
+        [commandExpectation fulfill];
+    }] andReturn:commandTaskCompletionSource.task];
+    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
+    OCMStub([dataSource commandRunner]).andReturn(runner);
+    BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
+
+    PFCloudCodeController *controller = [PFCloudCodeController controllerWithDataSource:dataSource];
+    BFTask *task = [controller callCloudCodeFunctionAsync:@"a"
+                                           withParameters:nil
+                                             sessionToken:@"b"
+                                        cancellationToken:cancellationTokenSource.token];
+    [self waitForTestExpectations];
+
+    [cancellationTokenSource cancel];
+    commandTaskCompletionSource.result = [PFCommandResult commandResultWithResult:@{ @"result" : @"yarr" }
+                                                                     resultString:nil
+                                                                     httpResponse:nil];
+    [task waitUntilFinished];
+
+    XCTAssertTrue(task.cancelled);
+    XCTAssertNil(task.result);
+}
+
 @end

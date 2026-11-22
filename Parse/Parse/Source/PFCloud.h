@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  The `PFCloud` class provides methods for interacting with Parse Cloud Functions.
+
+ To be able to cancel calls, create an instance of `PFCloud`, make the calls with its instance methods,
+ and cancel them with `cancel`.
  */
 @interface PFCloud : NSObject
 
@@ -47,6 +50,49 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)callFunctionInBackground:(NSString *)function
                   withParameters:(nullable NSDictionary *)parameters
                            block:(nullable PFIdResultBlock)block;
+
+/**
+ Calls the given cloud function *asynchronously* with the parameters provided, in a call that `cancel` can cancel.
+
+ If the call is cancelled before it completes, the task is cancelled shortly afterwards, without waiting for
+ the request to end; a cancelled task has no result and no error. A call that completes at the same time
+ as it is cancelled may still have a result or error.
+
+ @warning Cancelling only affects the client. If the request has already reached the server,
+ the cloud function keeps running there and its changes are not rolled back.
+
+ @param function The function name to call.
+ @param parameters The parameters to send to the function.
+
+ @return The task, that encapsulates the work being done.
+ */
+- (BFTask<id> *)callFunctionInBackground:(NSString *)function
+                          withParameters:(nullable NSDictionary *)parameters;
+
+/**
+ Calls the given cloud function *asynchronously* with the parameters provided, in a call that `cancel` can cancel,
+ and executes the given block when it is done, unless the call is cancelled.
+
+ Cancelling on the main thread, where the block is called, ensures that the block isn't called after `cancel` returns.
+ Cancelling on another thread doesn't ensure this: if the main thread is already about to call the block,
+ it calls the block even after `cancel` has returned.
+
+ @warning Cancelling only affects the client. If the request has already reached the server,
+ the cloud function keeps running there and its changes are not rolled back.
+
+ @param function The function name to call.
+ @param parameters The parameters to send to the function.
+ @param block The block to execute when the function call finished.
+ It should have the following argument signature: `^(id result, NSError *error)`.
+ */
+- (void)callFunctionInBackground:(NSString *)function
+                  withParameters:(nullable NSDictionary *)parameters
+                           block:(nullable PFIdResultBlock)block;
+
+/**
+ Cancels the calls made with this instance that haven't completed yet. Calls made afterwards are not affected.
+ */
+- (void)cancel;
 
 @end
 

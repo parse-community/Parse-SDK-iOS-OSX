@@ -64,21 +64,30 @@
 
 - (BFTask *)continueWithMainThreadResultBlock:(PFIdResultBlock)resultBlock
                            executeIfCancelled:(BOOL)executeIfCancelled {
+    return [self continueWithMainThreadResultBlock:resultBlock
+                                executeIfCancelled:executeIfCancelled
+                                 cancellationToken:nil];
+}
+
+- (BFTask *)continueWithMainThreadResultBlock:(PFIdResultBlock)resultBlock
+                           executeIfCancelled:(BOOL)executeIfCancelled
+                            cancellationToken:(BFCancellationToken *)cancellationToken {
     if (!resultBlock) {
         return self;
     }
     return [self continueWithExecutor:[BFExecutor mainThreadExecutor]
-                            withBlock:^id(BFTask *task) {
-                                BFTaskCompletionSource *tcs = [BFTaskCompletionSource taskCompletionSource];
-                                @try {
-                                    if (!self.cancelled || executeIfCancelled) {
-                                        resultBlock(self.result, self.error);
+                                block:^id(BFTask *task) {
+                                    BFTaskCompletionSource *tcs = [BFTaskCompletionSource taskCompletionSource];
+                                    @try {
+                                        if (!self.cancelled || executeIfCancelled) {
+                                            resultBlock(self.result, self.error);
+                                        }
+                                    } @finally {
+                                        tcs.result = nil;
                                     }
-                                } @finally {
-                                    tcs.result = nil;
+                                    return tcs.task;
                                 }
-                                return tcs.task;
-                            }];
+                    cancellationToken:cancellationToken];
 }
 
 - (BFTask *)continueWithMainThreadBooleanResultBlock:(PFBooleanResultBlock)resultBlock
@@ -90,6 +99,11 @@
 
 - (BFTask *)thenCallBackOnMainThreadAsync:(void(^)(id result, NSError *error))block {
     return [self continueWithMainThreadResultBlock:block executeIfCancelled:NO];
+}
+
+- (BFTask *)thenCallBackOnMainThreadAsync:(void(^)(id result, NSError *error))block
+                        cancellationToken:(BFCancellationToken *)cancellationToken {
+    return [self continueWithMainThreadResultBlock:block executeIfCancelled:NO cancellationToken:cancellationToken];
 }
 
 - (BFTask *)thenCallBackOnMainThreadWithBoolValueAsync:(void(^)(BOOL result, NSError *error))block {
