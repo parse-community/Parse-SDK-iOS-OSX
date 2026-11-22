@@ -13,8 +13,10 @@
 
 #import "BFTask+Private.h"
 #import "PFCloudCodeController.h"
+#import "PFCommandRunning.h"
 #import "PFCoreManager.h"
 #import "PFCurrentUserController.h"
+#import "PFMockURLProtocol.h"
 #import "PFUnitTestCase.h"
 #import "Parse_Private.h"
 
@@ -31,6 +33,16 @@
 @implementation CloudUnitTests
 
 ///--------------------------------------
+#pragma mark - XCTestCase
+///--------------------------------------
+
+- (void)setUp {
+    [super setUp];
+
+    [Parse _currentManager].commandRunner.initialRetryDelay = 0.001;
+}
+
+///--------------------------------------
 #pragma mark - Helpers
 ///--------------------------------------
 
@@ -41,7 +53,11 @@
     } else {
         task = [BFTask taskWithResult:result];
     }
+    return [self cloudCodeControllerWithTask:task];
+}
 
+// Stubs the call without a cancellation token, which the class methods make
+- (PFCloudCodeController *)cloudCodeControllerWithTask:(BFTask *)task {
     id controllerMock = PFClassMock([PFCloudCodeController class]);
     OCMStub([controllerMock callCloudCodeFunctionAsync:OCMOCK_ANY
                                         withParameters:OCMOCK_ANY
@@ -86,6 +102,16 @@
         [expectation fulfill];
     });
     [self waitForTestExpectations];
+}
+
+- (void)mockRequestsForFunction:(NSString *)function withResponse:(PFMockURLResponseContructingBlock)constructingBlock {
+    NSString *path = [@"/functions/" stringByAppendingString:function];
+    [PFMockURLProtocol mockRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.HTTPMethod isEqualToString:@"POST"] && [request.URL.path hasSuffix:path];
+    } withResponse:constructingBlock];
+    [self addTeardownBlock:^{
+        [PFMockURLProtocol removeAllMocking];
+    }];
 }
 
 ///--------------------------------------
@@ -221,6 +247,183 @@
     OCMVerify([controllerMock callCloudCodeFunctionAsync:[OCMArg isEqual:@"yolo"]
                                           withParameters:[OCMArg isEqual:parameters]
                                             sessionToken:[OCMArg isNil]]);
+}
+
+- (void)testCallFunctionPassesCurrentUserSessionToken {
+    [self mockCurrentUserSessionTokenWithTask:[BFTask taskWithResult:@"r:yolo"]];
+    id controllerMock = [self cloudCodeControllerWithResult:@"yarr" error:nil];
+    [Parse _currentManager].coreManager.cloudCodeController = controllerMock;
+
+    [[PFCloud callFunctionInBackground:@"yolo" withParameters:nil] waitUntilFinished];
+
+    OCMVerify([controllerMock callCloudCodeFunctionAsync:OCMOCK_ANY
+                                          withParameters:OCMOCK_ANY
+                                            sessionToken:[OCMArg isEqual:@"r:yolo"]]);
+}
+
+- (void)testCallFunctionWithoutSessionTokenIfReadingItFails {
+    NSError *error = [NSError errorWithDomain:@"ParseTestDomain" code:100500 userInfo:nil];
+    [self mockCurrentUserSessionTokenWithTask:[BFTask taskWithError:error]];
+    id controllerMock = [self cloudCodeControllerWithResult:@"yarr" error:nil];
+    [Parse _currentManager].coreManager.cloudCodeController = controllerMock;
+
+    BFTask *task = [PFCloud callFunctionInBackground:@"yolo" withParameters:nil];
+    [task waitUntilFinished];
+
+    XCTAssertEqualObjects(task.result, @"yarr");
+    OCMVerify([controllerMock callCloudCodeFunctionAsync:[OCMArg isEqual:@"yolo"]
+                                          withParameters:[OCMArg isNil]
+                                            sessionToken:[OCMArg isNil]]);
+}
+
+- (void)testCallFunctionViaBlockPassesParameters {
+    id controllerMock = [self cloudCodeControllerWithResult:@"yarr" error:nil];
+    [Parse _currentManager].coreManager.cloudCodeController = controllerMock;
+
+    NSDictionary *parameters = @{ @"a" : @1 };
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [PFCloud callFunctionInBackground:@"yolo" withParameters:parameters block:^(id result, NSError *error) {
+        [expectation fulfill];
+    }];
+    [self waitForTestExpectations];
+
+    OCMVerify([controllerMock callCloudCodeFunctionAsync:[OCMArg isEqual:@"yolo"]
+                                          withParameters:[OCMArg isEqual:parameters]
+                                            sessionToken:OCMOCK_ANY]);
+}
+
+- (void)testCallFunctionViaTargetSelectorPassesParameters {
+    id controllerMock = [self cloudCodeControllerWithResult:@"yarr" error:nil];
+    [Parse _currentManager].coreManager.cloudCodeController = controllerMock;
+    id mock = PFProtocolMock(@protocol(CloudCodeMockedObserver));
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    OCMStub([mock callbackWithResult:OCMOCK_ANY error:OCMOCK_ANY]).andCall(expectation, @selector(fulfill));
+
+    NSDictionary *parameters = @{ @"a" : @1 };
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [PFCloud callFunctionInBackground:@"yolo"
+                       withParameters:parameters
+                               target:mock
+                             selector:@selector(callbackWithResult:error:)];
+#pragma clang diagnostic pop
+    [self waitForTestExpectations];
+
+    OCMVerify([controllerMock callCloudCodeFunctionAsync:[OCMArg isEqual:@"yolo"]
+                                          withParameters:[OCMArg isEqual:parameters]
+                                            sessionToken:OCMOCK_ANY]);
+}
+
+- (void)testCallFunctionViaBlockCallsBlockOnMainThread {
+    BFTaskCompletionSource *taskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
+    [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithTask:taskCompletionSource.task];
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    // Calls and completes the function on a background thread, so that the block has to be dispatched to the main thread
+    [[BFExecutor defaultPriorityBackgroundExecutor] execute:^{
+        [PFCloud callFunctionInBackground:@"yolo" withParameters:nil block:^(id result, NSError *error) {
+            XCTAssertTrue([NSThread isMainThread]);
+            XCTAssertEqualObjects(result, @"yarr");
+            [expectation fulfill];
+        }];
+        taskCompletionSource.result = @"yarr";
+    }];
+    [self waitForTestExpectations];
+}
+
+- (void)testCallFunctionViaTargetSelectorCallsTargetOnMainThread {
+    BFTaskCompletionSource *taskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
+    [Parse _currentManager].coreManager.cloudCodeController = [self cloudCodeControllerWithTask:taskCompletionSource.task];
+    id mock = PFProtocolMock(@protocol(CloudCodeMockedObserver));
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    OCMStub([mock callbackWithResult:[OCMArg isEqual:@"yarr"] error:[OCMArg isNil]]).andDo(^(NSInvocation *invocation) {
+        XCTAssertTrue([NSThread isMainThread]);
+        [expectation fulfill];
+    });
+
+    // Calls and completes the function on a background thread, so that the target has to be called on the main thread
+    [[BFExecutor defaultPriorityBackgroundExecutor] execute:^{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [PFCloud callFunctionInBackground:@"yolo"
+                           withParameters:nil
+                                   target:mock
+                                 selector:@selector(callbackWithResult:error:)];
+#pragma clang diagnostic pop
+        taskCompletionSource.result = @"yarr";
+    }];
+    [self waitForTestExpectations];
+}
+
+- (void)testCallFunctionViaBlockDoesNotCallBlockIfCancelled {
+    // Reads the session token synchronously, so that the call has completed when the main queue is drained
+    [self mockCurrentUserSessionTokenWithTask:[BFTask taskWithResult:nil]];
+    id controllerMock = [self cloudCodeControllerWithTask:[BFTask cancelledTask]];
+    [Parse _currentManager].coreManager.cloudCodeController = controllerMock;
+
+    __block BOOL blockCalled = NO;
+    [PFCloud callFunctionInBackground:@"yolo" withParameters:nil block:^(id result, NSError *error) {
+        blockCalled = YES;
+    }];
+    [self waitForMainQueue];
+
+    OCMVerify([controllerMock callCloudCodeFunctionAsync:OCMOCK_ANY
+                                          withParameters:OCMOCK_ANY
+                                            sessionToken:OCMOCK_ANY]);
+    XCTAssertFalse(blockCalled);
+}
+
+- (void)testCallFunctionViaBlockWithoutBlockCallsFunction {
+    // Reads the session token synchronously, so that the call has been made when the method returns
+    [self mockCurrentUserSessionTokenWithTask:[BFTask taskWithResult:nil]];
+    id controllerMock = [self cloudCodeControllerWithResult:@"yarr" error:nil];
+    [Parse _currentManager].coreManager.cloudCodeController = controllerMock;
+
+    NSDictionary *parameters = @{ @"a" : @1 };
+    [PFCloud callFunctionInBackground:@"yolo" withParameters:parameters block:nil];
+
+    OCMVerify([controllerMock callCloudCodeFunctionAsync:[OCMArg isEqual:@"yolo"]
+                                          withParameters:[OCMArg isEqual:parameters]
+                                            sessionToken:[OCMArg isNil]]);
+}
+
+- (void)testCallFunctionRetriesFailedRequest {
+    __block NSUInteger requestCount = 0;
+    [self mockRequestsForFunction:@"yolo" withResponse:^PFMockURLResponse *(NSURLRequest *request) {
+        requestCount++;
+        if (requestCount == 1) {
+            return [PFMockURLResponse responseWithString:@"{ \"error\": \"yarr\", \"code\": 1 }" statusCode:500 delay:0.0];
+        }
+        return [PFMockURLResponse responseWithString:@"{ \"result\": \"yolo\" }" statusCode:200 delay:0.0];
+    }];
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[PFCloud callFunctionInBackground:@"yolo" withParameters:nil] continueWithBlock:^id(BFTask *task) {
+        XCTAssertEqualObjects(task.result, @"yolo");
+        XCTAssertNil(task.error);
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
+
+    XCTAssertEqual(requestCount, 2);
+}
+
+- (void)testCallFunctionReturnsCloudCodeError {
+    [self mockRequestsForFunction:@"yolo" withResponse:^PFMockURLResponse *(NSURLRequest *request) {
+        return [PFMockURLResponse responseWithString:@"{ \"error\": \"yarr\", \"code\": 141 }" statusCode:400 delay:0.0];
+    }];
+
+    XCTestExpectation *expectation = [self currentSelectorTestExpectation];
+    [[PFCloud callFunctionInBackground:@"yolo" withParameters:nil] continueWithBlock:^id(BFTask *task) {
+        XCTAssertNil(task.result);
+        XCTAssertEqualObjects(task.error.domain, PFParseErrorDomain);
+        XCTAssertEqual(task.error.code, kPFScriptError);
+        XCTAssertEqualObjects(task.error.userInfo[@"error"], @"yarr");
+        [expectation fulfill];
+        return nil;
+    }];
+    [self waitForTestExpectations];
 }
 
 ///--------------------------------------

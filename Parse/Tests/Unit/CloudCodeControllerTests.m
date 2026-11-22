@@ -105,6 +105,40 @@
     [self waitForTestExpectations];
 }
 
+- (void)testCallCloudFunctionEncodesParameters {
+    __block NSDictionary *commandParameters = nil;
+    id runner = PFStrictProtocolMock(@protocol(PFCommandRunning));
+    [runner mockCommandResult:nil forCommandsPassingTest:^BOOL(PFRESTCommand *command) {
+        commandParameters = command.parameters;
+        return YES;
+    }];
+    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
+    OCMStub([dataSource commandRunner]).andReturn(runner);
+
+    PFCloudCodeController *controller = [PFCloudCodeController controllerWithDataSource:dataSource];
+    [[controller callCloudCodeFunctionAsync:@"a"
+                             withParameters:@{ @"date" : [NSDate dateWithTimeIntervalSince1970:0] }
+                               sessionToken:@"b"] waitUntilFinished];
+
+    XCTAssertEqualObjects(commandParameters, (@{ @"date" : @{ @"__type" : @"Date", @"iso" : @"1970-01-01T00:00:00.000Z" } }));
+}
+
+- (void)testCallCloudFunctionDecodesResult {
+    id runner = PFStrictProtocolMock(@protocol(PFCommandRunning));
+    [runner mockCommandResult:@{ @"result" : @{ @"date" : @{ @"__type" : @"Date", @"iso" : @"1970-01-01T00:00:00.000Z" } } }
+       forCommandsPassingTest:^BOOL(PFRESTCommand *command) {
+        return YES;
+    }];
+    id dataSource = PFStrictProtocolMock(@protocol(PFCommandRunnerProvider));
+    OCMStub([dataSource commandRunner]).andReturn(runner);
+
+    PFCloudCodeController *controller = [PFCloudCodeController controllerWithDataSource:dataSource];
+    BFTask *task = [controller callCloudCodeFunctionAsync:@"a" withParameters:nil sessionToken:@"b"];
+    [task waitUntilFinished];
+
+    XCTAssertEqualObjects(task.result, (@{ @"date" : [NSDate dateWithTimeIntervalSince1970:0] }));
+}
+
 - (void)testCallCloudFunctionPassesCancellationTokenToCommandRunner {
     BFCancellationTokenSource *cancellationTokenSource = [BFCancellationTokenSource cancellationTokenSource];
     PFCommandResult *commandResult = [PFCommandResult commandResultWithResult:@{ @"result" : @"yarr" }
