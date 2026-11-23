@@ -462,9 +462,12 @@ extern NSString *const _Nonnull PFNetworkNotificationURLResponseBodyUserInfoKey;
 #ifndef TARGET_OS_TV
 #  define TARGET_OS_TV 0
 #endif
+#ifndef TARGET_OS_VISION
+#  define TARGET_OS_VISION 0
+#endif
 
 #ifndef PF_TARGET_OS_OSX
-#  define PF_TARGET_OS_OSX (TARGET_OS_MAC && !TARGET_OS_IOS && !TARGET_OS_WATCH && !TARGET_OS_TV)
+#  define PF_TARGET_OS_OSX (TARGET_OS_MAC && !TARGET_OS_IOS && !TARGET_OS_WATCH && !TARGET_OS_TV && !TARGET_OS_VISION)
 #endif
 
 ///--------------------------------------
@@ -484,6 +487,22 @@ extern NSString *const _Nonnull PFNetworkNotificationURLResponseBodyUserInfoKey;
 #    define PF_IOS_UNAVAILABLE_WARNING _Pragma("GCC warning \"This file is unavailable on iOS.\"")
 #  else
 #    define PF_IOS_UNAVAILABLE_WARNING
+#  endif
+#endif
+
+#ifndef PF_VISION_UNAVAILABLE
+#  ifdef __VISION_UNAVILABLE
+#    define PF_VISION_UNAVAILABLE __VISION_UNAVAILABLE
+#  else
+#    define PF_VISION_UNAVAILABLE
+#  endif
+#endif
+
+#ifndef PF_VISION_UNAVAILABLE_WARNING
+#  if TARGET_OS_VISION
+#    define PF_VISION_UNAVAILABLE_WARNING _Pragma("GCC warning \"This file is unavailable on visionOS.\"")
+#  else
+#    define PF_VISION_UNAVAILABLE_WARNING
 #  endif
 #endif
 
